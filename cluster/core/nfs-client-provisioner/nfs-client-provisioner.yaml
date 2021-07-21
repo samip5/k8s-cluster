@@ -23,5 +23,12 @@ spec:
     nfs:
       server: "192.168.2.2"
       path: "/volume2/SSD_NFS/k8s/"
+    mountOptions:
+    - nfsvers=3
+    - tcp
+    - intr
+    - hard
+    - noatime
+    - nodiratime
     storageClass:
       defaultClass: true
