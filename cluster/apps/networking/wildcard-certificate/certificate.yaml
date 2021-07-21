@@ -1,0 +1,15 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: k8s.home.samip.fi
+  namespace: networking
+spec:
+  secretName: k8s.home.samip.fi-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "k8s.home.samip.fi"
+  dnsNames:
+  - "k8s.home.samip.fi"
+  - "*.k8s.home.samip.fi"
