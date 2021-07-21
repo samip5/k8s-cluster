@@ -34,7 +34,7 @@ spec:
         format: json
         level: DEBUG
       access:
-        enabled: true
+        enabled: false
         format: json
     ingressClass:
       enabled: true
