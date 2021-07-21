@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: flux-system
+  name: cluster-settings
+data:
+  GATEWAY_ADDRESS: "192.168.2.1"
+  SVC_BLOCKY_ADDRESS: "192.168.69.102"

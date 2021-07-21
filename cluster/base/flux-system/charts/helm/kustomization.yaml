@@ -1,0 +1,7 @@
+piVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- k8s-at-home-charts.yaml
+- nfs-subdir-external-provisioner-charts.yaml
+- prometheus-community-charts.yaml
+- traefik-charts.yaml
