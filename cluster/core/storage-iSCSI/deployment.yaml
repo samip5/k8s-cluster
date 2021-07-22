@@ -1,0 +1,111 @@
+# vim:set sw=2 ts=2 et:
+#
+# Copyright (c) 2017 Torchbox Ltd.
+#
+# Permission is granted to anyone to use this software for any purpose,
+# including commercial applications, and to alter it and redistribute it
+# freely. This software is provided 'as-is', without any express or implied
+# warranty.
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  namespace: kube-system
+  name: hostpath-provisioner
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: hostpath-provisioner
+subjects:
+- kind: ServiceAccount
+  name: hostpath-provisioner
+  namespace: kube-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:persistent-volume-provisioner
+
+---
+
+# The default system:persistent-volume-provisioner role in Kubernetes 1.8 is
+# insufficient:
+#
+# I1007 18:09:10.073558       1 controller.go:874] cannot start watcher for PVC default/testpvc: events is forbidden: User "system:serviceaccount:kube-system:hostpath-provisioner" cannot list events in the namespace "default": access denied
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: hostpath-provisioner-extra
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+  - update
+  - list
+  - get
+  - watch
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: hostpath-provisioner-extra
+subjects:
+- kind: ServiceAccount
+  namespace: kube-system
+  name: hostpath-provisioner
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: hostpath-provisioner-extra
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hostpath-provisioner
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hostpath-provisioner
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: hostpath-provisioner
+
+    spec:
+      serviceAccountName: hostpath-provisioner
+
+      volumes:
+      - name: volumes
+        hostPath:
+          path: /volumes
+
+      containers:
+      - name: hostpath-provisioner
+        image: torchbox/k8s-hostpath-provisioner:latest
+
+        volumeMounts:
+        - name: volumes
+          mountPath: /volumes
+
+        resources:
+          limits:
+            cpu: 100m
+            memory: 64Mi
+          requests:
+            cpu: 100m
+            memory: 64Mi
