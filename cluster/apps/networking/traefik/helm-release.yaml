@@ -26,8 +26,8 @@ spec:
       spec:
         ipFamilyPolicy: PreferDualStack
         externalIPs:
-         - "2001:67c:1104:fcb::443"
-        #- "${SVC_TRAEFIK_ADDRESS}"
+        # - "2001:67c:1104:fcb::443"
+        - "${SVC_TRAEFIK_ADDRESS}"
         externalTrafficPolicy: Cluster
     logs:
       general:
