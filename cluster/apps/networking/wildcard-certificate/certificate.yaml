@@ -9,6 +9,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
+  privateKey:
+    algorithm: ECDSA
+    size: 384
   commonName: "k8s.home.samip.fi"
   dnsNames:
   - "k8s.home.samip.fi"
