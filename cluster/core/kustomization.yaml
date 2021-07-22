@@ -3,6 +3,6 @@ kind: Kustomization
 resources:
 - namespaces
 - cert-manager
-#- nfs-client-provisioner
-- storage-iSCSI
-#- nfs-pv
+- nfs-client-provisioner
+#- storage-iSCSI
+- nfs-pv
