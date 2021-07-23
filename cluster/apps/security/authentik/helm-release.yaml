@@ -67,9 +67,9 @@ spec:
       image:
         repository: postgres
         tag: '11.12'
-      POSTGRES_USER: authentik
-      POSTGRES_DB: authentik
-      POSTGRES_PASSWORD: "${SECRET_AUTHENTIK_POSTGRES_PASSWORD}"
+      postgresqlUsername: authentik
+      postgresqlDatabase: authentik
+      postgresqlPassword: "${SECRET_AUTHENTIK_POSTGRES_PASSWORD}"
       postgresqlDataDir: "/data/pgdata"
       persistence:
        enabled: true
