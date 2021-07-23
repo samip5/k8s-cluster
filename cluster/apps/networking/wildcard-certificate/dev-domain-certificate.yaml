@@ -1,0 +1,18 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: samip.dev
+  namespace: networking
+spec:
+  secretName: samip.dev-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  privateKey:
+    algorithm: ECDSA
+    size: 384
+  commonName: "samip.dev"
+  dnsNames:
+  - "samip.dev"
+  - "*.samip.dev"
