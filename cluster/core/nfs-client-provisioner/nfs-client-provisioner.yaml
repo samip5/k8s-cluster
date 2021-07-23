@@ -32,3 +32,4 @@ spec:
     - nodiratime
     storageClass:
       defaultClass: true
+      archiveOnDelete: false
