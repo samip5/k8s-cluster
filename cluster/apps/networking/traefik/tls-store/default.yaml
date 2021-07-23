@@ -6,4 +6,4 @@ metadata:
   namespace: networking
 spec:
   defaultCertificate:
-    secretName: "k8s.home.samip.fi-tls"
+    secretName: "${K8S_DOMAIN}-tls"
