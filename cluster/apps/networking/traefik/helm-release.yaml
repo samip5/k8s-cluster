@@ -32,7 +32,7 @@ spec:
     logs:
       general:
         format: json
-        level: DEBUG
+        level: INFO
       access:
         enabled: false
         format: json
