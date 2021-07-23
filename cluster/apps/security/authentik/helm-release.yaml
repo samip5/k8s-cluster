@@ -1,0 +1,69 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: authentik
+  namespace: security
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.goauthentik.io
+      chart: authentik
+      version: 2.0.0
+      sourceRef:
+        kind: HelmRepository
+        name: authentik-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    fullnameOverride: authentik
+    image:
+      repository: beryju.org/authentik/server
+      tag: gh-next
+      pullPolicy: Always
+    authentik:
+      outposts:
+        docker_image_base: beryju.org/authentik/outpost-%(type)s:gh-%(build_hash)s
+      secret_key: "${SECRET_AUTHENTIK_SECRET_KEY}"
+      postgresql:
+        host: "authentik-postgresql"
+        name: "authentik"
+        user: "authentik"
+        password: "${SECRET_AUTHENTIK_POSTGRES_PASSWORD}"
+      redis:
+        host: "authentik-redis-master"
+      email:
+        host: "smtp.eu.mailgun.org"
+        port: 587
+        use_tls: true
+        username: "sso.${MAIN_DOMAIN}"
+        password: "${SECRET_MAILGUN_PASSWORD}"
+        from: "no-reply@mg.${MAIN_DOMAIN}"
+    volumeMounts:
+    - name: media
+      mountPath: /media
+    volumes:
+    - name: media
+      persistentVolumeClaim:
+        claimName: authentik-media-v1
+
+    ingress:
+      enabled: true
+      ingressClassName: "traefik"
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        traefik.ingress.kubernetes.io/router.middlewares: "networking-cloudflare-ips@kubernetescrd"
+      hosts:
+      - host: "id.${MAIN_DOMAIN}"
+        paths:
+        - path: "/"
+          pathType: Prefix
+      tls:
+      - hosts:
+        - "id.${MAIN_DOMAIN}"
+    postgresql:
+      enabled: true
+      postgresqlPassword: "${SECRET_AUTHENTIK_POSTGRES_PASSWORD}"
+    redis:
+      enabled: true
