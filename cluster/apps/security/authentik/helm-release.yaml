@@ -62,6 +62,7 @@ spec:
       tls:
       - hosts:
         - "id.${MAIN_DOMAIN}"
+        secretName: ${MAIN_DOMAIN}-tls
     postgresql:
       enabled: true
       image:
