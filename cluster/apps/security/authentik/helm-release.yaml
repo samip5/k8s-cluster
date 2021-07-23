@@ -63,7 +63,6 @@ spec:
       - hosts:
         - "id.${MAIN_DOMAIN}"
     postgresql:
-      enabled: true
-      postgresqlPassword: "${SECRET_AUTHENTIK_POSTGRES_PASSWORD}"
+      enabled: false
     redis:
-      enabled: true
+      enabled: false
