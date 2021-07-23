@@ -17,14 +17,14 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    outposts:
+      docker_image_base: ghcr.io/goauthentik/%(type)s
     fullnameOverride: authentik
     image:
       repository: ghcr.io/goauthentik/server
       tag: latest@sha256:cc84b9f0d4f55f33bdc01af581fcd2c030d841f6b5625cbc3ee56002433cb49a
       pullPolicy: Always
     authentik:
-      outposts:
-        docker_image_base: beryju.org/authentik/outpost-%(type)s:gh-%(build_hash)s
       secret_key: "${SECRET_AUTHENTIK_SECRET_KEY}"
       postgresql:
         host: "authentik-postgresql"
