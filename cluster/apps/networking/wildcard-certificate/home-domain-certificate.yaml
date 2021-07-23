@@ -2,17 +2,17 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: home.samip.fi
+  name: ${HOME_DOMAIN}
   namespace: networking
 spec:
-  secretName: home.samip.fi-tls
+  secretName: ${HOME_DOMAIN}-tls
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
   privateKey:
     algorithm: ECDSA
     size: 384
-  commonName: "home.samip.fi"
+  commonName: "${HOME_DOMAIN}"
   dnsNames:
-  - "home.samip.fi"
-  - "*.home.samip.fi"
+  - "${HOME_DOMAIN}"
+  - "*.${HOME_DOMAIN}"

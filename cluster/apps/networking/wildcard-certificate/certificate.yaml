@@ -2,17 +2,17 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: k8s.home.samip.fi
+  name: ${K8S_DOMAIN}
   namespace: networking
 spec:
-  secretName: k8s.home.samip.fi-tls
+  secretName: ${K8S_DOMAIN}-tls
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
   privateKey:
     algorithm: ECDSA
     size: 384
-  commonName: "k8s.home.samip.fi"
+  commonName: "${K8S_DOMAIN}"
   dnsNames:
-  - "k8s.home.samip.fi"
-  - "*.k8s.home.samip.fi"
+  - "${K8S_DOMAIN}"
+  - "*.${K8S_DOMAIN}"
