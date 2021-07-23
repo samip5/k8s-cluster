@@ -63,6 +63,19 @@ spec:
       - hosts:
         - "id.${MAIN_DOMAIN}"
     postgresql:
-      enabled: false
+      enabled: true
+      image:
+        repository: postgres
+        tag: '11.12'
+      postgresqlUsername: authentik
+      postgresqlDatabase: authentik
+      postgresqlDataDir: "/data/pgdata"
+      persistence:
+       enabled: true
+       size: 8Gi
+       mountPath: "/data/"
     redis:
-      enabled: false
+      enabled: true
+      image:
+       repository: redis
+       tag: 'latest'
