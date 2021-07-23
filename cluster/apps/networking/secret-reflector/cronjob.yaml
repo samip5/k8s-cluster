@@ -5,7 +5,7 @@ metadata:
   name: secret-reflector
   namespace: networking
 spec:
-  schedule: "0 0 */2 * *"
+  schedule: "0 0 * * 6"
   jobTemplate:
     spec:
       template:
@@ -21,11 +21,11 @@ spec:
               set -o nounset
               set -o errexit
               # space delimited secrets to copy
-              SECRETS="k8s.home.samip.fi-tls"
+              SECRETS="${DEV_DOMAIN}-tls ${HOME_DOMAIN}-tls ${K8S_DOMAIN}-tls ${MAIN_DOMAIN}-tls"
               # source namespace to reflect secret from
               NAMESPACE_SOURCE="networking"
               # space delimited namespace where to reflect the secrets to
-              NAMESPACE_DEST="media"
+              NAMESPACE_DEST="media security"
               for secret in ${SECRETS}; do
                   secret_source_content="$(kubectl get secret "${secret}" -n "${NAMESPACE_SOURCE}" -o json | jq 'del(.metadata.managedFields, .metadata.creationTimestamp, .metadata.resourceVersion, .metadata.uid)')"
                   secret_source_checksum="$(echo "${secret_source_content}" | jq 'del(.metadata.namespace)' | md5sum | awk '{ print $1 }')"
