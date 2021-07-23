@@ -5,7 +5,7 @@ metadata:
   name: secret-reflector
   namespace: networking
 spec:
-  schedule: "0 0 * * 6"
+  schedule: "0 21 * * *"
   jobTemplate:
     spec:
       template:
