@@ -69,6 +69,7 @@ spec:
         tag: '11.12'
       postgresqlUsername: authentik
       postgresqlDatabase: authentik
+      postgresqlPassword: "${SECRET_AUTHENTIK_POSTGRES_PASSWORD}"
       postgresqlDataDir: "/data/pgdata"
       persistence:
        enabled: true
