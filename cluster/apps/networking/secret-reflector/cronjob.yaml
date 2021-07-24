@@ -1,11 +1,11 @@
 ---
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: secret-reflector
   namespace: networking
 spec:
-  schedule: "0 21 * * *"
+  schedule: "@daily"
   jobTemplate:
     spec:
       template:
@@ -13,7 +13,7 @@ spec:
           serviceAccountName: sa-secret-reflector
           containers:
           - name: secret-reflector
-            image: bitnami/kubectl:1.20.5
+            image: samip537/kubectl:latest
             command:
             - "/bin/sh"
             - "-ec"
