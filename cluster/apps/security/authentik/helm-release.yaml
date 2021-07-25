@@ -37,7 +37,7 @@ spec:
         host: "smtp.eu.mailgun.org"
         port: 587
         use_tls: true
-        username: "sso.${MAIN_DOMAIN}"
+        username: "authentik@mg.${MAIN_DOMAIN}"
         password: "${SECRET_MAILGUN_PASSWORD}"
         from: "no-reply@mg.${MAIN_DOMAIN}"
     volumeMounts:
