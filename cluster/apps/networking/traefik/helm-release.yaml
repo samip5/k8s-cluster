@@ -28,7 +28,7 @@ spec:
         externalIPs:
         # - "2001:67c:1104:fcb::443"
         - "${SVC_TRAEFIK_ADDRESS}"
-        externalTrafficPolicy: Cluster
+        externalTrafficPolicy: Local
     logs:
       general:
         format: json
