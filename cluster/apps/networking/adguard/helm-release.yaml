@@ -18,6 +18,26 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    initContainers:
+      - name: copy-configmap
+        image: busybox
+        command:
+          - "sh"
+          - "-c"
+          - |
+            if [ ! -f /opt/adguardhome/conf/AdGuardHome.yaml ]; then
+              mkdir -p /opt/adguardhome/conf
+              cp /tmp/AdGuardHome.yaml /opt/adguardhome/conf/AdGuardHome.yaml
+            fi
+        volumeMounts:
+          - name: adguard-home-config
+            mountPath: /tmp/AdGuardHome.yaml
+            subPath: AdGuardHome.yaml
+          - name: config
+            mountPath: /opt/adguardhome/conf
+        securityContext:
+          runAsUser: 0
+        imagePullPolicy: IfNotPresent
     image:
       repository: adguard/adguardhome
       tag: v0.106.3
