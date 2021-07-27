@@ -77,6 +77,17 @@ spec:
             port: 53
             protocol: UDP
             targetPort: 53
+      dns-tcp:
+        enabled: true
+        type: LoadBalancer
+        externalTrafficPolicy: Local
+        loadBalancerIP: ${LB_ADGUARD_V6}
+        ports:
+          dns-udp:
+            enable: true
+            port: 53
+            protocol: UDP
+            targetPort: 53
     resources:
       requests:
         memory: 500Mi
