@@ -71,7 +71,7 @@ spec:
       bind_port: 3000
       users: []
       http_proxy: ""
-      language: "de"
+      language: "en"
       rlimit_nofile: 0
       debug_pprof: false
       web_session_ttl: 720
