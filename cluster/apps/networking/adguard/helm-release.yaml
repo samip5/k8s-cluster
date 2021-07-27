@@ -70,7 +70,8 @@ spec:
         enabled: true
         type: LoadBalancer
         externalTrafficPolicy: Local
-        loadBalancerIP: ${LB_ADGUARD_V6}
+        externalIPs: 
+         - ${LB_ADGUARD_V6}
         ports:
           dns-udp:
             enable: true
@@ -81,7 +82,8 @@ spec:
         enabled: true
         type: LoadBalancer
         externalTrafficPolicy: Local
-        loadBalancerIP: ${LB_ADGUARD_V6}
+        externalIPs: 
+         - ${LB_ADGUARD_V6}
         ports:
           dns-udp:
             enable: true
