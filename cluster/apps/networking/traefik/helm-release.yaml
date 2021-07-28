@@ -19,7 +19,7 @@ spec:
   values:
     deployment:
       kind: Deployment
-      replicas: 3
+      replicas: 4
     service:
       enabled: true
       type: LoadBalancer
@@ -95,4 +95,4 @@ spec:
         memory: 100Mi
         cpu: 500m
       limits:
-        memory: 500Mi
+        memory: 300Mi
