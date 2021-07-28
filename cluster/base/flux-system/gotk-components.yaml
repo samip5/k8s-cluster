@@ -3249,7 +3249,7 @@ spec:
         kubernetes.io/os: linux
       tolerations:
       - key: "cputype"
-        operator: "Equals"
+        operator: "Equal"
         value: "amd64"
         effect: "PreferNoSchedule"
       serviceAccountName: helm-controller
@@ -3327,7 +3327,7 @@ spec:
         kubernetes.io/os: linux
       tolerations:
       - key: "cputype"
-        operator: "Equals"
+        operator: "Equal"
         value: "amd64"
         effect: "PreferNoSchedule"
       securityContext:
@@ -3410,7 +3410,7 @@ spec:
         kubernetes.io/os: linux
       tolerations:
       - key: "cputype"
-        operator: "Equals"
+        operator: "Equal"
         value: "amd64"
         effect: "PreferNoSchedule"
       serviceAccountName: notification-controller
@@ -3495,7 +3495,7 @@ spec:
         kubernetes.io/os: linux
       tolerations:
       - key: "cputype"
-        operator: "Equals"
+        operator: "Equal"
         value: "amd64"
         effect: "PreferNoSchedule"
       securityContext:
