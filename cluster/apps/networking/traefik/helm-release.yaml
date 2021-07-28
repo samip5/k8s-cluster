@@ -80,7 +80,7 @@ spec:
       node-role.kubernetes.io/worker: "true"
     affinity:
       podAntiAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
+        requiredDuringSchedulingIgnoredDuringExecution:
         - weight: 100
           podAffinityTerm:
             labelSelector:
