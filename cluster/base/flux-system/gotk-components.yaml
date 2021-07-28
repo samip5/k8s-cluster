@@ -3235,7 +3235,7 @@ spec:
         resources:
           limits:
             cpu: 1000m
-            memory: 256Mi
+            memory: 1Gi
           requests:
             cpu: 100m
             memory: 64Mi
@@ -3247,6 +3247,11 @@ spec:
           name: temp
       nodeSelector:
         kubernetes.io/os: linux
+      tolerations:
+      - key: "cputype"
+        operator: "Equals"
+        value: "amd64"
+        effect: "PreferNoSchedule"
       serviceAccountName: helm-controller
       terminationGracePeriodSeconds: 600
       volumes:
@@ -3308,7 +3313,7 @@ spec:
         resources:
           limits:
             cpu: 1000m
-            memory: 128Mi
+            memory: 1Gi
           requests:
             cpu: 100m
             memory: 64Mi
@@ -3320,6 +3325,11 @@ spec:
           name: temp
       nodeSelector:
         kubernetes.io/os: linux
+      tolerations:
+      - key: "cputype"
+        operator: "Equals"
+        value: "amd64"
+        effect: "PreferNoSchedule"
       securityContext:
         fsGroup: 1337
       serviceAccountName: kustomize-controller
@@ -3386,7 +3396,7 @@ spec:
         resources:
           limits:
             cpu: 1000m
-            memory: 128Mi
+            memory: 1Gi
           requests:
             cpu: 100m
             memory: 64Mi
@@ -3398,6 +3408,11 @@ spec:
           name: temp
       nodeSelector:
         kubernetes.io/os: linux
+      tolerations:
+      - key: "cputype"
+        operator: "Equals"
+        value: "amd64"
+        effect: "PreferNoSchedule"
       serviceAccountName: notification-controller
       terminationGracePeriodSeconds: 10
       volumes:
@@ -3464,7 +3479,7 @@ spec:
         resources:
           limits:
             cpu: 1000m
-            memory: 128Mi
+            memory: 1Gi
           requests:
             cpu: 50m
             memory: 64Mi
@@ -3478,6 +3493,11 @@ spec:
           name: tmp
       nodeSelector:
         kubernetes.io/os: linux
+      tolerations:
+      - key: "cputype"
+        operator: "Equals"
+        value: "amd64"
+        effect: "PreferNoSchedule"
       securityContext:
         fsGroup: 1337
       serviceAccountName: source-controller
