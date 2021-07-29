@@ -3247,11 +3247,6 @@ spec:
           name: temp
       nodeSelector:
         kubernetes.io/os: linux
-      tolerations:
-      - key: "cputype"
-        operator: "Equal"
-        value: "amd64"
-        effect: "PreferNoSchedule"
       serviceAccountName: helm-controller
       terminationGracePeriodSeconds: 600
       volumes:
@@ -3325,11 +3320,6 @@ spec:
           name: temp
       nodeSelector:
         kubernetes.io/os: linux
-      tolerations:
-      - key: "cputype"
-        operator: "Equal"
-        value: "amd64"
-        effect: "PreferNoSchedule"
       securityContext:
         fsGroup: 1337
       serviceAccountName: kustomize-controller
@@ -3408,11 +3398,6 @@ spec:
           name: temp
       nodeSelector:
         kubernetes.io/os: linux
-      tolerations:
-      - key: "cputype"
-        operator: "Equal"
-        value: "amd64"
-        effect: "PreferNoSchedule"
       serviceAccountName: notification-controller
       terminationGracePeriodSeconds: 10
       volumes:
@@ -3493,11 +3478,6 @@ spec:
           name: tmp
       nodeSelector:
         kubernetes.io/os: linux
-      tolerations:
-      - key: "cputype"
-        operator: "Equal"
-        value: "amd64"
-        effect: "PreferNoSchedule"
       securityContext:
         fsGroup: 1337
       serviceAccountName: source-controller
