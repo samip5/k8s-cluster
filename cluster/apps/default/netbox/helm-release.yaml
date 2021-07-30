@@ -1,0 +1,56 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: netbox
+  namespace: default
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.boo.tc
+      chart: netbox
+      version: 3.0.0
+      sourceRef:
+        kind: HelmRepository
+        name: bootc-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    timezone: Europe/Helsinki
+    loginRequired: true
+    
+    image:
+      repository: linuxserver/netbox
+      tag: "latest"
+      pullPolicy: IfNotPresent
+    
+    postgresql:
+      enabled: true
+      image: postgres
+      tag: "11"
+
+    redis:
+      enabled: true
+      image: redis
+      tag: "latest"
+
+
+    ingress:
+      enabled: true
+      hosts:
+       - host: box.${K8S_DOMAIN}
+         paths:
+          - /
+      tls:
+       - hosts:
+         - "box.${K8S_DOMAIN}"
+         secretName: ${K8S_DOMAIN}-tls
+
+    resources:
+     limits:
+      cpu: 100m
+      memory: 256Mi
+     requests:
+      cpu: 100m
+      memory: 128Mi
