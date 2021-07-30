@@ -12,11 +12,11 @@ spec:
           resources:
             limits:
               memory: 1Gi
-          tolerations:
-           - key: "cputype"
-             operator: "Equal"
-             value: "amd64"
-             effect: "PreferNoSchedule"
+        tolerations:
+         - key: "cputype"
+           operator: "Equal"
+           value: "amd64"
+           effect: "PreferNoSchedule"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -31,11 +31,11 @@ spec:
           resources:
             limits:
               memory: 512Mi
-          tolerations:
-           - key: "cputype"
-             operator: "Equal"
-             value: "amd64"
-             effect: "PreferNoSchedule"
+        tolerations:
+         - key: "cputype"
+           operator: "Equal"
+           value: "amd64"
+           effect: "PreferNoSchedule"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -50,8 +50,8 @@ spec:
           resources:
             limits:
               memory: 512Mi
-          tolerations:
-           - key: "cputype"
-             operator: "Equal"
-             value: "amd64"
-             effect: "PreferNoSchedule"
+        tolerations:
+         - key: "cputype"
+           operator: "Equal"
+           value: "amd64"
+           effect: "PreferNoSchedule"
