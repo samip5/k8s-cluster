@@ -19,7 +19,6 @@ spec:
   values:
     timezone: Europe/Helsinki
     loginRequired: true
-    imagePullSecrets: ""
     
     image:
       repository: linuxserver/netbox
@@ -35,6 +34,7 @@ spec:
       enabled: true
       image: redis
       tag: "latest"
+      imagePullSecrets: ""
 
 
     ingress:
