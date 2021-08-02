@@ -20,6 +20,11 @@ spec:
     ingress:
      enabled: true
      hostname: ci.samipsolutions.fi
+    rbac:
+     create: false
+    serviceAccount:
+     create: false
+     name: jenkins-samipsolutions
     controller:
      resources:
       requests:
