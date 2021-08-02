@@ -5,5 +5,5 @@ resources:
 #- security
 - kube-system
 - media
-- ci
+#- ci
 #- default
