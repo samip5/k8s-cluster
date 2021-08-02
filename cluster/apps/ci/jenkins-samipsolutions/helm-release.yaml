@@ -1,0 +1,30 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: jenkins-samipsolutions
+  namespace: ci
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.jenkins.io
+      chart: jenkins
+      version: 3.5.9
+      sourceRef:
+        kind: HelmRepository
+        name: jenkinsci-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    ingress:
+     enabled: true
+     hostname: ci.samipsolutions.fi
+    controller:
+     resources:
+      requests:
+       cpu: "50m"
+       memory: "256Mi"
+      limits:
+       cpu: "2000m"
+       memory: "1024Mi"
