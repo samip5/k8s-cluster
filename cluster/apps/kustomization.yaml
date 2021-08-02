@@ -5,4 +5,4 @@ resources:
 #- security
 - kube-system
 - media
-- default
+#- default
