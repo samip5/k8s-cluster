@@ -5,6 +5,7 @@ resources:
 - bitnami-charts.yaml
 - bootc-charts.yaml
 - jetstack-charts.yaml
+- jenkinsci-charts.yaml
 - k8s-at-home-charts.yaml
 - kubernetes-sigs-descheduler-charts.yaml
 - nfs-subdir-external-provisioner-charts.yaml
