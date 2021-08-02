@@ -20,6 +20,11 @@ spec:
     ingress:
      enabled: true
      hostname: ci.genpi64.com
+    rbac:
+     create: false
+    serviceAccount:
+     create: false
+     name: jenkins-genpi
     controller:
      resources:
       requests:
@@ -28,3 +33,4 @@ spec:
       limits:
        cpu: "2000m"
        memory: "1024Mi"
+    
