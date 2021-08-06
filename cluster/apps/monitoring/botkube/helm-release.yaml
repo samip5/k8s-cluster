@@ -17,12 +17,17 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    image:
+     registry: registry.docker.com
+     repository: raspbernetes/botkube
+     pullPolicy: IfNotPresent
+     tag: latest
     communications:
       discord:
         enabled: true
-        token: "${SECRET_BOTKUBE_DISCORD_TOKEN}"
-        botid: "${SECRET_BOTKUBE_DISCORD_BOT_ID}"
-        channel: "${SECRET_BOTKUBE_DISCORD_CHANNEL_ID}"
+        token: ${SECRET_BOTKUBE_DISCORD_TOKEN}
+        botid: ${SECRET_BOTKUBE_DISCORD_BOT_ID}
+        channel: ${SECRET_BOTKUBE_DISCORD_CHANNEL_ID}
     config:
       recommendations: false
       settings:
