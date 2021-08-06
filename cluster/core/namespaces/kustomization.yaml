@@ -4,5 +4,6 @@ resources:
 - cert-manager.yaml
 - ci.yaml
 - media.yaml
+- monitoring.yaml
 - networking.yaml
 - security.yaml
