@@ -11,3 +11,4 @@ resources:
 - nfs-subdir-external-provisioner-charts.yaml
 - prometheus-community-charts.yaml
 - traefik-charts.yaml
+- infracloudio-charts.yaml
