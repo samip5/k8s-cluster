@@ -30,5 +30,11 @@ spec:
               - requiredDuringSchedulingIgnoredDuringExecution
         RemovePodsViolatingInterPodAntiAffinity:
           enabled: false
+        RemovePodsHavingTooManyRestarts:
+          enabled: true
+          params:
+           podsHavingTooManyRestarts:
+             podRestartThreshold: 100
+             includingInitContainers: true
         LowNodeUtilization:
-          enabled: false
+          enabled: true
