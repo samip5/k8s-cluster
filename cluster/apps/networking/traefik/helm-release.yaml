@@ -34,7 +34,7 @@ spec:
         format: json
         level: INFO
       access:
-        enabled: false
+        enabled: true
         format: json
     ingressClass:
       enabled: true
