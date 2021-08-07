@@ -13,3 +13,4 @@ resources:
 - prometheus-community-charts.yaml
 - traefik-charts.yaml
 - infracloudio-charts.yaml
+- influxdata-charts.yaml
