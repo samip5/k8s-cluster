@@ -60,15 +60,15 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/default
-    datasources:
-      datasources.yaml:
-        apiVersion: 1
-        datasources:
-          - name: Prometheus
-            type: prometheus
-            access: proxy
-            url: http://prometheus-prometheus.monitoring.svc.cluster.local:9090/
-            isDefault: true
+#    datasources:
+#      datasources.yaml:
+#        apiVersion: 1
+#        datasources:
+#          - name: Prometheus
+#            type: prometheus
+#            access: proxy
+#            url: http://prometheus-prometheus.monitoring.svc.cluster.local:9090/
+#            isDefault: true
     dashboards:
       default:
          # Ref: https://grafana.com/grafana/dashboards/12175

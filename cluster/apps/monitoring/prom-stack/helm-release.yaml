@@ -94,6 +94,7 @@ spec:
       fullnameOverride: node-exporter
     grafana:
       enabled: false
+      forceDeployDatasources: true
       forceDeployDashboards: true
     kubelet:
       enabled: true
