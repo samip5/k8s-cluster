@@ -93,9 +93,57 @@ spec:
     prometheus-node-exporter:
       fullnameOverride: node-exporter
     grafana:
-      enabled: false
-      forceDeployDatasources: true
-      forceDeployDashboards: true
+      enabled: true
+      replicas: 1
+      env:
+        GF_EXPLORE_ENABLED: true
+        GF_PANELS_DISABLE_SANITIZE_HTML: true
+        GF_LOG_FILTERS: rendering:debug
+        GF_DATE_FORMATS_USE_BROWSER_LOCALE: true
+        GF_DATE_FORMATS_FULL_DATE: "MMM Do, YYYY hh:mm:ss a"
+        GF_DATE_FORMATS_INTERVAL_SECOND: "hh:mm:ss a"
+        GF_DATE_FORMATS_INTERVAL_MINUTE: "hh:mm a"
+        GF_DATE_FORMATS_INTERVAL_HOUR: "DD/MM hh:mm a"
+        GF_DATE_FORMATS_INTERVAL_DAY: "DD/MM"
+        GF_DATE_FORMATS_INTERVAL_MONTH: "MM-YYYY"
+        GF_DATE_FORMATS_INTERVAL_YEAR: "YYYY"
+        VAR_BLOCKY_URL: "http://blocky.networking.svc.cluster.local:4000"
+      adminPassword: "${SECRET_GRAFANA_PASSWORD}"
+      
+      sidecar:
+        dashboards:
+          enabled: true
+          searchNamespace: ALL
+        datasources:
+          enabled: true
+          searchNamespace: ALL
+        plugins:
+          - natel-discrete-panel
+          - pr0ps-trackmap-panel
+          - grafana-piechart-panel
+          - vonage-status-panel
+          - grafana-worldmap-panel
+          - grafana-clock-panel
+      serviceMonitor:
+        enabled: true
+
+      ingress:
+        enabled: true
+        ingressClassName: "traefik"
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        hosts:
+          - "grafana.${K8S_DOMAIN}"
+        tls:
+          - hosts:
+              - "grafana.${K8S_DOMAIN}" 
+        #forceDeployDatasources: true
+        #forceDeployDashboards: true
+      serviceAccount:
+        create: true
+        autoMount: true
+      persistence:
+        enabled: false
     kubelet:
       enabled: true
       serviceMonitor:
