@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - dashboards
   - felix-metrics
-  - kube-controllers-metrics
+  - kube-controller-metrics
