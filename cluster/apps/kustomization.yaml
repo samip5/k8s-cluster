@@ -7,4 +7,5 @@ resources:
 - media
 - monitoring
 #- ci
+- calico-system
 #- default
