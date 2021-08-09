@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: calico-dashboards
-  namespace: calico-system
+  namespace: kube-system
   labels:
     grafana_dashboard: "true"
 data:
