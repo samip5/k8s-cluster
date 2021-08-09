@@ -4,6 +4,10 @@ resources:
 - authentik-charts.yaml
 - bitnami-charts.yaml
 - bootc-charts.yaml
+- coredns-charts.yaml
+- deliveryhero-charts.yaml
+- drone-charts.yaml
+- falco-security-charts.yaml
 - jetstack-charts.yaml
 - grafana-charts.yaml
 - jenkinsci-charts.yaml
@@ -11,6 +15,8 @@ resources:
 - kubernetes-sigs-descheduler-charts.yaml
 - nfs-subdir-external-provisioner-charts.yaml
 - prometheus-community-charts.yaml
+- stakater-charts.yaml
 - traefik-charts.yaml
 - infracloudio-charts.yaml
 - influxdata-charts.yaml
+
