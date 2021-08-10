@@ -43,7 +43,7 @@ spec:
     podSecurityContext:
       fsGroup: 568
       runAsNonRoot: true
-      fsAsUser: 568
+      runAsUser: 568
     resources:
       requests:
         memory: 100Mi
