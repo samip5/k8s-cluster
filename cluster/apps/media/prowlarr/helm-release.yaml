@@ -40,6 +40,10 @@ spec:
       config:
         enabled: true
         existingClaim: prowlarr-config-v1
+    podSecurityContext:
+      fsGroup: 568
+      runAsNonRoot: true
+      fsAsUser: 568
     resources:
       requests:
         memory: 100Mi
