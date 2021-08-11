@@ -19,4 +19,5 @@ resources:
 - traefik-charts.yaml
 - infracloudio-charts.yaml
 - influxdata-charts.yaml
+- longhorn-charts.yaml
 
