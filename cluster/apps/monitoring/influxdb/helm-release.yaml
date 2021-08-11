@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       # renovate: registryUrl=https://helm.influxdata.com/
-      chart: influxdb2
+      chart: influxdb
       version: 4.10.0
       sourceRef:
         kind: HelmRepository
@@ -19,8 +19,18 @@ spec:
   values:
     image:
       repository: "influxdb"
-      tag: "1.8.9-alpine"
+      tag: "1.8.9"
       pullPolicy: IfNotPresent
+    persistence:
+      enabled: true
+      size: 50Gi
+      storageClass: nfs-client
+    resources:
+      requests:
+        memory: 400Mi
+        cpu: 100m
+      limits:
+        memory: 1Gi
     serviceAccount:
       create: true
     ingress:
