@@ -20,7 +20,7 @@ spec:
     persistence:
       enabled: true
       size: 50Gi
-      storageClass: nfs-client
+      storageClass: longhorn
     resources:
       requests:
         memory: 400Mi

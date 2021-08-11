@@ -21,11 +21,10 @@ spec:
       defaultClassReplicaCount: 2
     defaultSettings:
       defaultReplicaCount: 2
-      defaultLonghornStaticStorageClass: longhorn
     ingress:
-      enabled: true
+      enabled: false
       ingressClassName: "traefik"
       tls: true
-      host: horn.{K8S_DOMAIN}
+      host: "horn.{K8S_DOMAIN}"
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
