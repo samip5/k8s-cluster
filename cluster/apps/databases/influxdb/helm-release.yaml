@@ -32,10 +32,7 @@ spec:
     ingress:
       enabled: true
       ingressClassName: "traefik"
+      tls: true
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-      hosts:
-        - "influx.${K8S_DOMAIN}"
-      tls:
-        - hosts:
-            - "influx.${K8S_DOMAIN}"
+      hostname: influx.${K8S_DOMAIN}
