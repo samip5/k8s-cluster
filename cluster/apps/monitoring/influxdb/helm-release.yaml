@@ -9,18 +9,14 @@ spec:
   chart:
     spec:
       # renovate: registryUrl=https://helm.influxdata.com/
-      chart: influxdb
-      version: 4.10.0
+      chart: influxdb2
+      version: 2.0.1
       sourceRef:
         kind: HelmRepository
         name: influxdata-charts
         namespace: flux-system
       interval: 15m
   values:
-    image:
-      repository: "influxdb"
-      tag: "1.8.9"
-      pullPolicy: IfNotPresent
     persistence:
       enabled: true
       size: 50Gi
