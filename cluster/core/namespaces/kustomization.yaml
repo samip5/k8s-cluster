@@ -8,3 +8,4 @@ resources:
 - monitoring.yaml
 - networking.yaml
 - security.yaml
+- databases.yaml
