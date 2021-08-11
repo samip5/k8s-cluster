@@ -4,6 +4,5 @@ resources:
 - namespaces
 - cert-manager
 - prefer-dual-stack
-- nfs-client-provisioner
-#- storage-iSCSI
-- nfs-pv
+- storage-classes
+- persistent-volumes
