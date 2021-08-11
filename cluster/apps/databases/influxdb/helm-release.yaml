@@ -17,6 +17,9 @@ spec:
         namespace: flux-system
       interval: 15m
   values:
+    image:
+      repository: quay.io/influxdb/influxdb-dockerhub-rcs
+      tag: v2.0.4-rc0
     persistence:
       enabled: true
       size: 10Gi
