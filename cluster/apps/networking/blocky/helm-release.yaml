@@ -61,11 +61,11 @@ spec:
     config: |
       upstream:
         externalResolvers:
-        - tcp:1.1.1.1
-        - udp:1.1.1.1
+        - tcp+udp:1.1.1.1
+        - tcp+udp:8.8.8.8
       conditional:
         mapping:
-          lan.${HOME_DOMAIN}: udp:${GATEWAY_ADDRESS}
+          lan.${HOME_DOMAIN}: tcp+udp:${GATEWAY_ADDRESS}
       blocking:
         blackLists:
           ads:
@@ -78,7 +78,7 @@ spec:
           default:
           - ads
       clientLookup:
-        upstream: udp:${GATEWAY_ADDRESS}
+        upstream: tcp+udp:${GATEWAY_ADDRESS}
       prometheus:
         enable: true
         path: /metrics
@@ -108,4 +108,4 @@ spec:
         memory: 100Mi
         cpu: 100m
       limits:
-        memory: 200Mi
+        memory: 250Mi
