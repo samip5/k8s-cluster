@@ -83,7 +83,7 @@ spec:
         enable: true
         path: /metrics
       httpPort: 4000
-      logLevel: info
+      logLevel: debug
     prometheus:
       serviceMonitor:
         enabled: true
