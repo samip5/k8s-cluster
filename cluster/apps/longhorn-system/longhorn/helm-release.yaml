@@ -22,7 +22,7 @@ spec:
     defaultSettings:
       defaultReplicaCount: 2
     ingress:
-      enabled: false
+      enabled: true
       ingressClassName: "traefik"
       tls: true
       host: "horn.{K8S_DOMAIN}"
