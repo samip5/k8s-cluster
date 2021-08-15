@@ -40,6 +40,10 @@ spec:
       config:
         enabled: true
         existingClaim: jackett-config-v1
+    podSecurityContext:
+      fsGroup: 568
+      runAsNonRoot: true
+      runAsUser: 568
     resources:
       requests:
         memory: 100Mi
