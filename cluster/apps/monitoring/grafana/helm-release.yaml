@@ -72,6 +72,10 @@ spec:
             access: proxy
             url: http://prom-stack-prometheus:9090/
             isDefault: true
+          - name: InfluxDB
+            type: influxdb
+            access: proxy
+            url: http://influxdb-influxdb2.databases.svc
           - name: Loki
             type: loki
             access: proxy
