@@ -31,5 +31,5 @@ spec:
     - noatime
     - nodiratime
     storageClass:
-      defaultClass: true
+      defaultClass: false
       archiveOnDelete: false
