@@ -1,0 +1,24 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: zerossl-production
+spec:
+  acme:
+    # The ACME server URL
+    server: https://acme.zerossl.com/v2/DV90
+    externalAccountBinding:
+      keyID: LCtXMe3YG1Fo6kO_XC4eXw
+      keySecretRef:
+        name: zerossl-eabsecret
+        key: secret
+      keyAlgorithm: HS256
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: zerossl-prod
+    solvers:
+    - dns01:
+        cloudflare:
+          email: "${SECRET_EMAIL}"
+          apiKeySecretRef:
+            name: cloudflare-token-secret
+            key: cloudflare-token
