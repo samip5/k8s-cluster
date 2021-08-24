@@ -18,10 +18,10 @@ spec:
       interval: 5m
   values:
     image:
-     registry: registry.docker.com
-     repository: raspbernetes/botkube
+     registry: ghcr.io
+     repository: infracloudio/botkube
      pullPolicy: IfNotPresent
-     tag: latest
+     tag: v0.12.2
     communications:
       discord:
         enabled: true
