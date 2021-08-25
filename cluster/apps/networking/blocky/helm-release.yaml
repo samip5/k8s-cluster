@@ -60,27 +60,11 @@ spec:
       conditional:
         mapping:
           lan.${HOME_DOMAIN}: tcp+udp:${GATEWAY_ADDRESS}
-          ${HOME_DOMAIN}: tcp+udp:ns1.${COMPANY_DOMAIN}
       blocking:
         blackLists:
           ads:
           # https://oisd.nl/
-          - https://raw.githubusercontent.com/ookangzheng/dbl-oisd-nl/master/dbl.txt
-          - https://blocklistproject.github.io/Lists/ads.txt
-          - https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt
-          - https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
-          - https://raw.githubusercontent.com/FadeMind/hosts.extras/master/UncheckyAds/hosts
-          - https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
-          analyticsAndTracking:
-          - https://adaway.org/hosts.txt
-          - https://hostfiles.frogeye.fr/firstparty-trackers-hosts.txt
-          - https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-blocklist.txt
-          - https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
-          badhosts:
-          - https://osint.digitalside.it/Threat-Intel/lists/latestdomains.txt
-          malwareAndPhishing:
-          - https://phishing.army/download/phishing_army_blocklist_extended.txt
-          - https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareHosts.tx
+          - https://abp.oisd.nl/
           windowsSpy:
           - https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt
         whiteLists:
@@ -89,9 +73,6 @@ spec:
         clientGroupsBlock:
           default:
           - ads
-          - analyticsAndTracking
-          - badhosts
-          - malwareAndPhishing
           - windowsSpy
       clientLookup:
         upstream: tcp+udp:${GATEWAY_ADDRESS}
