@@ -6,4 +6,4 @@ resources:
   - prefer-dual-stack
   - storage-classes
   - persistent-volumes
-#  - system-upgrade
+  - system-upgrade
