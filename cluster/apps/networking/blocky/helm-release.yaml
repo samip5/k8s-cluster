@@ -53,6 +53,8 @@ spec:
     config: |
       upstream:
         externalResolvers:
+        - tcp+udp:2606:4700:4700::1111
+        - tcp+udp:2606:4700:4700::1001
         - tcp+udp:1.1.1.1
         - tcp+udp:8.8.8.8
       conditional:
@@ -97,7 +99,7 @@ spec:
         enable: true
         path: /metrics
       httpPort: 4000
-      logLevel: debug
+      logLevel: info
     prometheus:
       serviceMonitor:
         enabled: true
