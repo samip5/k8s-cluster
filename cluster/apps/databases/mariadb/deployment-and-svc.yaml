@@ -13,6 +13,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mariadb
+  namespace: databases
 spec:
   selector:
     matchLabels:
@@ -31,9 +32,8 @@ spec:
         - name: MARIADB_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: cluster-secrets
+              name: mariadb-secrets
               key: SECRET_MARIADB_ROOT_PW
-              namespace: flux-system
         ports:
         - containerPort: 3306
           name: mysql

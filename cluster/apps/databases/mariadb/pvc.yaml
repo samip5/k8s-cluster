@@ -3,6 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mariadb-pv-claim
+  namespace: databases
 spec:
   storageClassName: longhorn 
   accessModes:
