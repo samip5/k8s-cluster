@@ -9,6 +9,6 @@ resources:
   - monitoring
   #- ci
   #- calico-system
-  #- default
+  - default
   - databases
   - system-upgrade
