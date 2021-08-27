@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: traefik
+  name: traefik-v4
   namespace: networking
 spec:
   interval: 5m
@@ -19,7 +19,7 @@ spec:
   values:
     deployment:
       kind: Deployment
-      replicas: 2
+      replicas: 1
     service:
       enabled: true
       type: LoadBalancer
