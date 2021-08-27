@@ -2,10 +2,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: webhook-receiver
-  namespace: networking
+  namespace: flux-system
 spec:
-  tls:
-  - secretName: "${K8S_DOMAIN}-tls"
+#  tls:
+#  - secretName: "${K8S_DOMAIN}-tls"
   rules:
   - host: flux-webhook.${K8S_DOMAIN}
     http:
