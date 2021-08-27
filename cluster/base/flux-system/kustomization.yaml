@@ -4,5 +4,6 @@ resources:
   - gotk-components.yaml
   - gotk-sync.yaml
   - charts
+  - flux-github-reciever.yaml
 patchesStrategicMerge:
   - gotk-patches.yaml
