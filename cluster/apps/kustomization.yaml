@@ -10,5 +10,6 @@ resources:
   #- ci
   #- calico-system
   - default
+  - flux-system
   - databases
   - system-upgrade
