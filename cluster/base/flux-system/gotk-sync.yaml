@@ -11,6 +11,7 @@ spec:
   secretRef:
     name: flux-system
   url: ssh://git@github.com/samip5/k8s-cluster
+  #url: https://github.com/samip5/k8s-cluster
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
