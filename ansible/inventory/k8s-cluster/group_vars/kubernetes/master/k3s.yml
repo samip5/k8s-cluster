@@ -7,9 +7,10 @@ k3s_control_node: true
 
 # k3s settings for all control-plane nodes
 k3s_server:
-  node-ip: "{{ ansible_host }}"
+  node-ip: "{{ ansible_host }},{{ ansible_default_ipv6.address }}"
   tls-san:
     - "{{ k3s_registration_address }}"
+    - "{{ ansible_default_ipv6.address }}"
   docker: false
   flannel-backend: "none" # This needs to be in quotes
   disable:
@@ -23,16 +24,23 @@ k3s_server:
   write-kubeconfig-mode: "644"
   # Network CIDR to use for pod IPs
   cluster-cidr: "10.244.0.0/16,fddf:f7bc:9670::/48"
+  #cluster-cidr: "fddf:f7bc:9670::/48,10.244.0.0/16"
   # Network CIDR to use for service IPs
   service-cidr: "10.96.0.0/16,2001:67c:1104:fdb::/112"
+  #service-cidr: "2001:67c:1104:fdb::/112,10.96.0.0/16"
   kubelet-arg:
     - "feature-gates=GracefulNodeShutdown=true"
     - "feature-gates=MixedProtocolLBService=true"
+  kube-apiserver-arg:
+    - "service-cluster-ip-range=10.96.0.0/16,2001:67c:1104:fdb::/112"
   # Required to use kube-prometheus-stack
   kube-controller-manager-arg:
+    - "cluster-cidr=10.244.0.0/16,fddf:f7bc:9670::/48"
+    - "service-cluster-ip-range=10.96.0.0/16,2001:67c:1104:fdb::/112"
     - "address=0.0.0.0"
     - "bind-address=0.0.0.0"
   kube-proxy-arg:
+    - "cluster-cidr=10.244.0.0/16,fddf:f7bc:9670::/48"
     - "metrics-bind-address=0.0.0.0"
   kube-scheduler-arg:
     - "address=0.0.0.0"
