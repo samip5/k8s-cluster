@@ -25,6 +25,6 @@ spec:
       enabled: true
       ingressClassName: "traefik"
       tls: true
-      host: "horn.${K8S_DOMAIN}"
+      host: "horn.${SECRET_DOMAIN}"
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
