@@ -17,12 +17,10 @@ spec:
         namespace: flux-system
       interval: 15m
   values:
-    image:
-      repository: quay.io/influxdb/influxdb-dockerhub-rcs
-      tag: v2.0.4-rc0
     persistence:
       enabled: true
       size: 10Gi
+      mountPath: /var/lib/influxdb2
       storageClass: longhorn
     resources:
       requests:
@@ -38,7 +36,7 @@ spec:
       tls: true
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-      hostname: influx.${K8S_DOMAIN}
+      hostname: influx.${SECRET_DOMAIN}
     affinity:
         nodeAffinity:
          requiredDuringSchedulingIgnoredDuringExecution:
