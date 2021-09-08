@@ -31,16 +31,16 @@ k3s_server:
   kubelet-arg:
     - "feature-gates=GracefulNodeShutdown=true"
     - "feature-gates=MixedProtocolLBService=true"
-  kube-apiserver-arg:
-    - "service-cluster-ip-range=10.96.0.0/16,2001:67c:1104:fdb::/112"
+  #kube-apiserver-arg:
+  #  - "service-cluster-ip-range=10.96.0.0/16,2001:67c:1104:fdb::/112"
   # Required to use kube-prometheus-stack
   kube-controller-manager-arg:
-    - "cluster-cidr=10.244.0.0/16,fddf:f7bc:9670::/48"
-    - "service-cluster-ip-range=10.96.0.0/16,2001:67c:1104:fdb::/112"
+  #  - "cluster-cidr=10.244.0.0/16,fddf:f7bc:9670::/48"
+  #  - "service-cluster-ip-range=10.96.0.0/16,2001:67c:1104:fdb::/112"
     - "address=0.0.0.0"
     - "bind-address=0.0.0.0"
   kube-proxy-arg:
-    - "cluster-cidr=10.244.0.0/16,fddf:f7bc:9670::/48"
+  #  - "cluster-cidr=10.244.0.0/16,fddf:f7bc:9670::/48"
     - "metrics-bind-address=0.0.0.0"
   kube-scheduler-arg:
     - "address=0.0.0.0"
