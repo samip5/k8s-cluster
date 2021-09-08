@@ -9,9 +9,9 @@ metadata:
 spec:
   ingressClassName: traefik
   tls:
-  - secretName: "${K8S_DOMAIN}-tls"
+  - secretName: "${SECRET_DOMAIN}-tls"
   rules:
-  - host: traefik.${K8S_DOMAIN}
+  - host: traefik.${SECRET_DOMAIN}
     http:
       paths:
       - path: /
