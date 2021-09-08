@@ -7,7 +7,7 @@ spec:
     # The ACME server URL
     server: https://acme.zerossl.com/v2/DV90
     externalAccountBinding:
-      keyID: LCtXMe3YG1Fo6kO_XC4eXw
+      keyID: fY3FgZdzCS5UO2gEsnavbw
       keySecretRef:
         name: zerossl-eabsecret
         key: secret
