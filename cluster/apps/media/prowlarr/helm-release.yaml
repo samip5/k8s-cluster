@@ -44,6 +44,8 @@ spec:
       fsGroup: 568
       runAsNonRoot: true
       runAsUser: 568
+      runAsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
     resources:
       requests:
         memory: 100Mi
