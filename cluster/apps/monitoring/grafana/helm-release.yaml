@@ -111,6 +111,7 @@ spec:
       - vonage-status-panel
       - grafana-worldmap-panel
       - grafana-clock-panel
+      - alexanderzobnin-zabbix-app
     serviceMonitor:
       enabled: true
     ingress:
