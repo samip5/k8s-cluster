@@ -5,6 +5,6 @@ metadata:
   name: jenkinsci-charts
   namespace: flux-system
 spec:
-  interval: 10m
+  interval: 15m
   url: https://charts.jenkins.io
   timeout: 3m

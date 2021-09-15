@@ -5,6 +5,6 @@ metadata:
   name: longhorn-charts
   namespace: flux-system
 spec:
-  interval: 10m
+  interval: 15m
   url: https://charts.longhorn.io
   timeout: 3m
