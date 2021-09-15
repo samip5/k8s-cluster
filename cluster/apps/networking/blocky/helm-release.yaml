@@ -60,6 +60,7 @@ spec:
       conditional:
         mapping:
           lan.${HOME_DOMAIN}: tcp+udp:${GATEWAY_ADDRESS}
+          ${SECRET_DOMAIN}: udp:ns1.${COMPANY_DOMAIN}
       blocking:
         blackLists:
           ads:
