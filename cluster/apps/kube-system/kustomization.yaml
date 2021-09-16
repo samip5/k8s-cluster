@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
   - calico
   - descheduler
+  - nginx
 #  - node-problem-detector
   - reloader
