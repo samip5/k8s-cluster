@@ -7,7 +7,7 @@ metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
 spec:
-  ingressClassName: traefik
+  ingressClassName: nginx
   tls:
   - secretName: "${SECRET_DOMAIN}-tls"
   rules:
