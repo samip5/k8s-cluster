@@ -23,8 +23,6 @@ spec:
       defaultReplicaCount: 2
     ingress:
       enabled: true
-      ingressClassName: "traefik"
+      ingressClassName: "nginx"
       tls: true
       host: "horn.${SECRET_DOMAIN}"
-      annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"

@@ -4,12 +4,10 @@ kind: Ingress
 metadata:
   name: webhook-receiver
   namespace: flux-system
-  annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
 spec:
-  ingressClassName: "traefik"
+  ingressClassName: "nginx"
   rules:
-    - host: "flux-webhook.${K8S_DOMAIN}"
+    - host: "flux-webhook.${SECRET_DOMAIN}"
       http:
         paths:
           - path: /
@@ -21,4 +19,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - "flux-webhook.${K8S_DOMAIN}"
+        - "flux-webhook.${SECRET_DOMAIN}"
