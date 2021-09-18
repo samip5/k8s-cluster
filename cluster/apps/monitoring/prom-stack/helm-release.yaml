@@ -64,9 +64,7 @@ spec:
       ingress:
         enabled: true
         pathType: Prefix
-        ingressClassName: "traefik"
-        annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        ingressClassName: "nginx"
         hosts:
           - "alert-manager.${K8S_DOMAIN}"
         tls:
@@ -132,9 +130,7 @@ spec:
       ingress:
         enabled: true
         pathType: Prefix
-        ingressClassName: "traefik"
-        annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        ingressClassName: "nginx"
         hosts:
           - "prom.${K8S_DOMAIN}"
         tls:

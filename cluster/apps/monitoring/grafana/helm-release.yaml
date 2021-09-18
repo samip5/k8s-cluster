@@ -116,9 +116,7 @@ spec:
       enabled: true
     ingress:
       enabled: true
-      ingressClassName: "traefik"
-      annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+      ingressClassName: "nginx"
       hosts:
         - "grafana.${SECRET_DOMAIN}"
       tls:
