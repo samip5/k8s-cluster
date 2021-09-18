@@ -17,6 +17,9 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    image:
+      repository: docker.io/samip537/external-dns
+      tag: v1.0.0-dirty
     interval: 5m
     logLevel: debug
     provider: pdns
