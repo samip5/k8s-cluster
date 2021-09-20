@@ -5,4 +5,5 @@ resources:
   - descheduler
   - nginx
 #  - node-problem-detector
+  - metrics-server
   - reloader
