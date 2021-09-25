@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - longhorn-system
   - networking
-  #- security
+  - security
   - kube-system
   - media
   - monitoring

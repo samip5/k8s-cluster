@@ -56,14 +56,14 @@ spec:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
 #        traefik.ingress.kubernetes.io/router.middlewares: "networking-cloudflare-ips@kubernetescrd"
       hosts:
-      - host: "id.${MAIN_DOMAIN}"
+      - host: "id.${SECRET_DOMAIN}"
         paths:
         - path: "/"
           pathType: Prefix
       tls:
       - hosts:
-        - "id.${MAIN_DOMAIN}"
-        secretName: ${MAIN_DOMAIN}-tls
+        - "id.${SECRET_DOMAIN}"
+        secretName: ${SECRET_DOMAIN}-tls
     postgresql:
       enabled: true
       image:
