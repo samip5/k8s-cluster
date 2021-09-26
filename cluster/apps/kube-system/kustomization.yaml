@@ -4,6 +4,5 @@ resources:
   - calico
   - descheduler
   - nginx
-  - node-problem-detector
   - metrics-server
   - reloader
