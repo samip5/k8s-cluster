@@ -7,4 +7,4 @@ resources:
   - blocky
   - secret-reflector
   - wildcard-certificate
-#  - flux-webhook-ingress.yaml
+  - misc-ingresses

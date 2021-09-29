@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: nas
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+spec:
+  rules:
+    - host: "nas.${MAIN_DOMAIN}"
+      http:
+        paths:
+          - backend:
+              serviceName: nas
+              servicePort: 5000
+  tls:
+    - hosts:
+        - "nas.${MAIN_DOMAIN}"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nas
+spec:
+  ports:
+    - name: http
+      port: 5000
+  type: ExternalName
+  externalName: 192.168.2.2
