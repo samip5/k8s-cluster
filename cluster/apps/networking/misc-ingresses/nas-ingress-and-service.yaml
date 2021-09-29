@@ -2,10 +2,11 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: nas
+  namespace: networking
   annotations:
-    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
+  ingressClassName: nginx
   rules:
     - host: "nas.${MAIN_DOMAIN}"
       http:
@@ -16,11 +17,13 @@ spec:
   tls:
     - hosts:
         - "nas.${MAIN_DOMAIN}"
+      secretName: {MAIN_DOMAIN}-tls
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: nas
+  namespace: networking
 spec:
   ports:
     - name: http
