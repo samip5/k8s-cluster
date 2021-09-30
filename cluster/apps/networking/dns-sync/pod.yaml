@@ -1,0 +1,37 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dns-sync
+  namespace: networking
+spec:
+  serviceAccountName: sa-dns-sync
+  volumes:
+    - name: configmap-volume
+      configMap:
+        name: dns-sync-creds
+  containers:
+    - name: app
+      image: ghcr.io/cloudydeno/kubernetes-dns-sync
+      args:
+        - --dry-run
+      env:
+        - name: POWERDNS_API_KEY
+          value: ${PDNS_SAMIPSOLUTIONS_API_KEY}
+      securityContext:
+        capabilities:
+          drop:
+            - ALL
+      volumeMounts:
+        - mountPath: /src/kubernetes-dns-sync/config.toml
+          name: configmap-volume
+          subPath: config.toml
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                  - "amd64"
