@@ -18,7 +18,7 @@ spec:
   tls:
     - hosts:
         - "nas.${MAIN_DOMAIN}"
-      secretName: {MAIN_DOMAIN}-tls
+      secretName: ${MAIN_DOMAIN}-tls
 ---
 apiVersion: v1
 kind: Service
