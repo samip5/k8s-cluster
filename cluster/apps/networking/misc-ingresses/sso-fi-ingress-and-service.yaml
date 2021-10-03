@@ -1,0 +1,33 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: sso-fi
+  namespace: networking
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "sso.${MAIN_DOMAIN}"
+      http:
+        paths:
+          - backend:
+              serviceName: home-srv-docker
+              servicePort: 443
+  tls:
+    - hosts:
+        - "sso.${MAIN_DOMAIN}"
+      secretName: ${MAIN_DOMAIN}-tls
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: home-srv-docker
+  namespace: networking
+spec:
+  ports:
+    - name: https
+      port: 443
+  type: ExternalName
+  externalName: 192.168.2.18
