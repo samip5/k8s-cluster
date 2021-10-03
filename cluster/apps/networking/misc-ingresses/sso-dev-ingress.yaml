@@ -1,0 +1,21 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: sso-dev
+  namespace: networking
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "sso.${DEV_DOMAIN}"
+      http:
+        paths:
+          - backend:
+              serviceName: home-srv-docker
+              servicePort: 443
+  tls:
+    - hosts:
+        - "sso.${DEV_DOMAIN}"
+      secretName: ${DEV_DOMAIN}-tls
