@@ -41,13 +41,6 @@ spec:
         username: "authentik@mg.${MAIN_DOMAIN}"
         password: "${SECRET_MAILGUN_PASSWORD}"
         from: "no-reply@mg.${MAIN_DOMAIN}"
-    volumeMounts:
-    - name: media
-      mountPath: /media
-    volumes:
-    - name: media
-      persistentVolumeClaim:
-        claimName: authentik-media-v1
 
     ingress:
       enabled: true
