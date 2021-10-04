@@ -4,3 +4,4 @@ resources:
   - nas-ingress-and-service.yaml
   - sso-fi-ingress-and-service.yaml
   - sso-dev-ingress.yaml
+  - dh-ingress-and-service.yaml
