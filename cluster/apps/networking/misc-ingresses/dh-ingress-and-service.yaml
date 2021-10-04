@@ -37,4 +37,4 @@ spec:
     - name: https
       port: 443
   type: ExternalName
-  externalName: ${DH_IPv6}
+  externalName: dh6.${DEV_DOMAIN}
