@@ -26,7 +26,6 @@ spec:
       use-forwarded-headers: "true"
       service:
         externalIPs:
-        - ${SVC_NGINX_IPv4}
         - ${SVC_NGINX_v4}
         - ${SVC_NGINX_IPv6}
         externalTrafficPolicy: Local
