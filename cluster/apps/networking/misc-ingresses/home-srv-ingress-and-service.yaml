@@ -1,0 +1,21 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: bitwarden
+  namespace: networking
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "vault.${MAIN_DOMAIN}"
+      http:
+        paths:
+          - backend:
+              serviceName: home-srv-docker
+              servicePort: 443
+  tls:
+    - hosts:
+        - "vault.${MAIN_DOMAIN}"
+      secretName: ${MAIN_DOMAIN}-tls
