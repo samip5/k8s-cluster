@@ -1,0 +1,56 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: littlelink
+  namespace: collab
+spec:
+  interval: 5m
+  releaseName: littlelink
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: littlelink-server
+      version: 1.0.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: ghcr.io/techno-tim/littlelink-server
+      tag: latest
+    env:
+      TZ: "Europe/Helsinki"
+      META_TITLE: Skyler Mäntysaari
+      META_DESCRIPTION: Skyler M Link Page
+      META_AUTHOR: Skyler Mäntysaari
+      THEME: Dark
+      FAVICON_URL: https://avatars.githubusercontent.com/u/1703002?v=4
+      AVATAR_URL: https://cdn4.telesco.pe/file/lY0cwBDoXJUr8CJ3_JhiRAXC5xLTWCAh1YfzKdnjJDKaw5XQgbF7ffLK5SOuTrnzk-_sH4Iu4xUusK1Yf08O9EmP95DeCEW-W5fdSeI3dIyGnyYq-4hY0Ecpxux51rfGYjH_gBQZ5lbG5Dq0zswuoVPNOd-fuILvXlLn7MAItzuT7qAmSYtL95sXQqZU4hehBENaLruH7hqv-oGnfrb4LOSMq_WC9jRpZKp6JY4vMVpqBj1Y47-FC59YPN_Cn82oNBfMeSrkW23xkz_KQf8xTseHwok66TbizwLR5-oSvoKnbP7ut4vQ7CteImHQ1kfbb05aPDU1OWvu9U0LMf7Ogg.jpg
+      AVATAR_2X_URL: https://cdn4.telesco.pe/file/lY0cwBDoXJUr8CJ3_JhiRAXC5xLTWCAh1YfzKdnjJDKaw5XQgbF7ffLK5SOuTrnzk-_sH4Iu4xUusK1Yf08O9EmP95DeCEW-W5fdSeI3dIyGnyYq-4hY0Ecpxux51rfGYjH_gBQZ5lbG5Dq0zswuoVPNOd-fuILvXlLn7MAItzuT7qAmSYtL95sXQqZU4hehBENaLruH7hqv-oGnfrb4LOSMq_WC9jRpZKp6JY4vMVpqBj1Y47-FC59YPN_Cn82oNBfMeSrkW23xkz_KQf8xTseHwok66TbizwLR5-oSvoKnbP7ut4vQ7CteImHQ1kfbb05aPDU1OWvu9U0LMf7Ogg.jpg
+      AVATAR_ALT: Skyler Mäntysaari
+      NAME: Skyler Mäntysaari
+      BIO: Hi there traveler! You found my links, so feel free to reach out.
+      GITHUB: https://github.com/samip5
+      GITLAB: https://gitlab.com/samip5
+      LINKED_IN: https://linkedin.com/in/samip537
+      TWITTER: https://twitter.com/mantysaaris
+      TELEGRAM: https://t.me/samip537
+      STEAM: https://steamcommunity.com/id/samip537
+      EMAIL: sm+me@samip.fi
+      FOOTER: Thank you for visiting. :)
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        hosts:
+          - host: "${DEV_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "${DEV_DOMAIN}"
+            secretName: ${DEV_DOMAIN}-tls
