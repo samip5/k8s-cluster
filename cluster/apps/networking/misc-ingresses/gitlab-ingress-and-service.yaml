@@ -1,0 +1,33 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: gitlab
+  namespace: networking
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "src.${MAIN_DOMAIN}"
+      http:
+        paths:
+          - backend:
+              serviceName: gitlab-docker
+              servicePort: 443
+  tls:
+    - hosts:
+        - "src.${MAIN_DOMAIN}"
+      secretName: ${MAIN_DOMAIN}-tls
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitlab-docker
+  namespace: networking
+spec:
+  ports:
+    - name: https
+      port: 443
+  type: ExternalName
+  externalName: 192.168.2.33
