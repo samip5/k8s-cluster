@@ -4,6 +4,7 @@ resources:
 - longhorn-system.yaml
 - cert-manager.yaml
 - ci.yaml
+- collab.yaml
 - media.yaml
 - monitoring.yaml
 - networking.yaml
