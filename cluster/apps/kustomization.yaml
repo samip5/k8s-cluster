@@ -8,6 +8,7 @@ resources:
   - media
   - monitoring
   #- ci
+  - collab
   #- calico-system
   #- default
   - flux-system
