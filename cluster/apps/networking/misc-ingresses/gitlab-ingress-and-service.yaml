@@ -6,8 +6,9 @@ metadata:
   namespace: networking
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   rules:
     - host: "src.${SECRET_DOMAIN}"
       http:
