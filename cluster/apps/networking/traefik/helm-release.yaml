@@ -53,6 +53,8 @@ spec:
     additionalArguments:
     - "--providers.kubernetesingress.ingressendpoint.ip=${SVC_TRAEFIK_ADDRESS}"
     - "--providers.kubernetesingress.ingressendpoint.ip=${SVC_TRAEFIK_V4}"
+    - "--providers.kubernetesingress.allowexternalnameservices=true"
+    - "--providers.kubernetescrd.allowexternalnameservices=true"
     ports:
       traefik:
         expose: true
