@@ -29,6 +29,7 @@ spec:
     policy: sync
     sources:
       - ingress
+    txtOwnerId: "default-external-dns"
     domainFilters:
       - "${SECRET_DOMAIN}"
     resources:
