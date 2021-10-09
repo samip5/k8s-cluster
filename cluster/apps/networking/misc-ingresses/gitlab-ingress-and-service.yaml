@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: "src.${MAIN_DOMAIN}"
+    - host: "src.${SECRET_DOMAIN}"
       http:
         paths:
           - backend:
@@ -17,8 +17,8 @@ spec:
               servicePort: 443
   tls:
     - hosts:
-        - "src.${MAIN_DOMAIN}"
-      secretName: ${MAIN_DOMAIN}-tls
+        - "src.${SECRET_DOMAIN}"
+      secretName: ${SECRET_DOMAIN}-tls
 ---
 apiVersion: v1
 kind: Service
