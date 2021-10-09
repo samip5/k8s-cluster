@@ -56,7 +56,7 @@ spec:
       tls:
       - hosts:
         - "id.${SECRET_DOMAIN}"
-        secretName: ${SECRET_DOMAIN}-tls
+        secretName: networking/${SECRET_DOMAIN}-tls
     postgresql:
       enabled: true
       image:
