@@ -13,7 +13,7 @@ spec:
   url: ssh://git@github.com/samip5/k8s-cluster
   #url: https://github.com/samip5/k8s-cluster
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: flux-system
