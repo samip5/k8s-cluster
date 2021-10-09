@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: "*.home.${MAIN_DOMAIN}"
+    - host: "*.${HOME_DOMAIN}"
       http:
         paths:
           - backend:
@@ -17,5 +17,5 @@ spec:
               servicePort: 443
   tls:
     - hosts:
-        - "*.home.${MAIN_DOMAIN}"
-      secretName: ${MAIN_DOMAIN}-tls
+        - "*.${HOME_DOMAIN}"
+      secretName: ${HOME_DOMAIN}-tls
