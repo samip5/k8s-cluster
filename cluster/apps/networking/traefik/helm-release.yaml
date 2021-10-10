@@ -36,6 +36,8 @@ spec:
       access:
         enabled: true
         format: json
+        filters:
+          statuscodes: "404,401,300-302"
     ingressClass:
       enabled: true
       isDefaultClass: true
