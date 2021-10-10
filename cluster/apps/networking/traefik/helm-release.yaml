@@ -68,6 +68,14 @@ spec:
         port: 8082
         expose: false
         exposedPort: 8082
+      tcpdns:
+        port: 53
+        exposedPort: 53
+        protocol: tcp
+      udpdns:
+        port: 53
+        exposedPort: 53
+        protocol: udp
     tlsOptions:
       default:
         minVersion: VersionTLS12
