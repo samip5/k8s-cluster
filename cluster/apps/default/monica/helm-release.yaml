@@ -25,7 +25,7 @@ spec:
     env:
       TZ: Europe/Helsinki
       APP_KEY: ${SECRET_MONICA_APPKEY}
-      APP_URL: "https://crm.${K8S_DOMAIN}"
+      APP_URL: "https://crm.${SECRET_DOMAIN}"
       APP_ENV: production
       DB_HOST: mariadb.databases.svc
       DB_DATABASE: monica
@@ -39,10 +39,10 @@ spec:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
-          - host: "crm.${K8S_DOMAIN}"
+          - host: "crm.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "crm.${K8S_DOMAIN}"
+              - "crm.${SECRET_DOMAIN}"
