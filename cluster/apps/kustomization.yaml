@@ -10,7 +10,7 @@ resources:
   #- ci
   - collab
   #- calico-system
-  #- default
+  - default
   - flux-system
   - databases
   - system-upgrade
