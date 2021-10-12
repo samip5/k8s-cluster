@@ -31,9 +31,9 @@ spec:
         - ${SVC_NGINX_IPv6}
         externalTrafficPolicy: Local
       metrics:
-        enabled: false
+        enabled: true
         prometheusRule:
-          enabled: false
+          enabled: true
       extraArgs:
         default-ssl-certificate: "networking/${SECRET_DOMAIN}-tls"
       affinity:
