@@ -21,6 +21,7 @@ spec:
     image:
       repository: ghcr.io/techno-tim/littlelink-server
       tag: latest
+      pullPolicy: always
     env:
       TZ: "Europe/Helsinki"
       META_TITLE: Skyler Mäntysaari
@@ -28,8 +29,8 @@ spec:
       META_AUTHOR: Skyler Mäntysaari
       THEME: Dark
       FAVICON_URL: https://avatars.githubusercontent.com/u/1703002?v=4
-      AVATAR_URL: https://cdn4.telesco.pe/file/lY0cwBDoXJUr8CJ3_JhiRAXC5xLTWCAh1YfzKdnjJDKaw5XQgbF7ffLK5SOuTrnzk-_sH4Iu4xUusK1Yf08O9EmP95DeCEW-W5fdSeI3dIyGnyYq-4hY0Ecpxux51rfGYjH_gBQZ5lbG5Dq0zswuoVPNOd-fuILvXlLn7MAItzuT7qAmSYtL95sXQqZU4hehBENaLruH7hqv-oGnfrb4LOSMq_WC9jRpZKp6JY4vMVpqBj1Y47-FC59YPN_Cn82oNBfMeSrkW23xkz_KQf8xTseHwok66TbizwLR5-oSvoKnbP7ut4vQ7CteImHQ1kfbb05aPDU1OWvu9U0LMf7Ogg.jpg
-      AVATAR_2X_URL: https://cdn4.telesco.pe/file/lY0cwBDoXJUr8CJ3_JhiRAXC5xLTWCAh1YfzKdnjJDKaw5XQgbF7ffLK5SOuTrnzk-_sH4Iu4xUusK1Yf08O9EmP95DeCEW-W5fdSeI3dIyGnyYq-4hY0Ecpxux51rfGYjH_gBQZ5lbG5Dq0zswuoVPNOd-fuILvXlLn7MAItzuT7qAmSYtL95sXQqZU4hehBENaLruH7hqv-oGnfrb4LOSMq_WC9jRpZKp6JY4vMVpqBj1Y47-FC59YPN_Cn82oNBfMeSrkW23xkz_KQf8xTseHwok66TbizwLR5-oSvoKnbP7ut4vQ7CteImHQ1kfbb05aPDU1OWvu9U0LMf7Ogg.jpg
+      AVATAR_URL: https://avatars.githubusercontent.com/u/1703002?v=4
+      AVATAR_2X_URL: https://avatars.githubusercontent.com/u/1703002?v=4
       AVATAR_ALT: Skyler Mäntysaari
       NAME: Skyler Mäntysaari
       BIO: Hi there traveler! You found my links, so feel free to reach out.
@@ -53,4 +54,4 @@ spec:
         tls:
           - hosts:
               - "${DEV_DOMAIN}"
-            secretName: networking/${DEV_DOMAIN}-tls
+            secretName: ${DEV_DOMAIN}-tls
