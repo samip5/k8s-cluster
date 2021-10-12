@@ -35,4 +35,4 @@ spec:
         tls:
           - hosts:
               - "paste.${DEV_DOMAIN}"
-            secretName: networking/${DEV_DOMAIN}-tls
+            secretName: ${DEV_DOMAIN}-tls

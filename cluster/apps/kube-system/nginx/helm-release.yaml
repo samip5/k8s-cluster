@@ -23,6 +23,7 @@ spec:
         custom-http-errors: 404,401,403,500,503
         hsts: false
         ssl-prefer-server-ciphers: false
+        ssl-redirect: false
       use-forwarded-headers: "true"
       service:
         externalIPs:
