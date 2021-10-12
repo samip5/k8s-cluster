@@ -66,10 +66,10 @@ spec:
         pathType: Prefix
         ingressClassName: "nginx"
         hosts:
-          - "alert-manager.${K8S_DOMAIN}"
+          - "alert-manager.${SECRET_DOMAIN}"
         tls:
           - hosts:
-              - "alert-manager.${K8S_DOMAIN}"
+              - "alert-manager.${SECRET_DOMAIN}"
       alertmanagerSpec:
         storage:
           volumeClaimTemplate:
@@ -126,10 +126,10 @@ spec:
         pathType: Prefix
         ingressClassName: "nginx"
         hosts:
-          - "prom.${K8S_DOMAIN}"
+          - "prom.${SECRET_DOMAIN}"
         tls:
           - hosts:
-              - "prom.${K8S_DOMAIN}"
+              - "prom.${SECRET_DOMAIN}"
       thanosService:
         enabled: false
       prometheusSpec:
