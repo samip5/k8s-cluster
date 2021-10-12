@@ -24,7 +24,6 @@ spec:
         hsts: false
         ssl-prefer-server-ciphers: false
         ssl-redirect: false
-        enable-real-ip: true
       use-forwarded-headers: "true"
       service:
         externalIPs:
