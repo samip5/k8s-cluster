@@ -106,23 +106,17 @@ spec:
     kubeControllerManager:
       enabled: true
       endpoints:
-        - 192.168.2.9
+        - 10.0.105.10
     kubeScheduler:
       enabled: true
       endpoints:
-        - 192.168.2.9
+        - 10.0.105.10
     kubeProxy:
       enabled: true
       endpoints:
-        - 192.168.2.9
+        - 10.0.105.10
     kubeEtcd:
-      enabled: true
-      endpoints:
-        - 192.168.2.9
-      service:
-        enabled: true
-        port: 2381
-        targetPort: 2381
+      enabled: false
     # Setting this option to 0 disabled CPU limits
     prometheusOperator:
       configReloaderCpu: 0
