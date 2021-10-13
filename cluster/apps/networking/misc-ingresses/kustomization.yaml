@@ -8,3 +8,4 @@ resources:
   - home-srv-ingress-and-service.yaml
   - home-ingress.yaml
   - gitlab-ingress-and-service.yaml
+  - dev-machine-ingress.yml
