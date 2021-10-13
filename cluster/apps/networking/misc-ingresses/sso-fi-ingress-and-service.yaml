@@ -30,4 +30,4 @@ spec:
     - name: https
       port: 443
   type: ExternalName
-  externalName: 192.168.2.18
+  externalName: home-srv-docker.local.${SECRET_DOMAIN}

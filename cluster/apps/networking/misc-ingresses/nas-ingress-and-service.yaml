@@ -30,4 +30,4 @@ spec:
     - name: http
       port: 5000
   type: ExternalName
-  externalName: 192.168.2.2
+  externalName: nas.local.${SECRET_DOMAIN}
