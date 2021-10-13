@@ -20,7 +20,7 @@ spec:
     controller:
       replicaCount: 2
       config:
-        custom-http-errors: 404,401,403,500,503
+        custom-http-errors: 404,403,500,503
         hsts: false
         ssl-prefer-server-ciphers: false
         ssl-redirect: false
