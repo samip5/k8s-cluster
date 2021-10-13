@@ -62,22 +62,4 @@ spec:
         limits:
           memory: 600Mi
     defaultBackend:
-      enabled: true
-      image:
-        repository: billimek/custom-error-pages
-        tag: 0.4.4
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: kubernetes.io/arch
-                    operator: In
-                    values:
-                      - "amd64"
-      resources:
-        requests:
-          memory: 250Mi
-          cpu: 25m
-        limits:
-          memory: 350Mi
+      enabled: false
