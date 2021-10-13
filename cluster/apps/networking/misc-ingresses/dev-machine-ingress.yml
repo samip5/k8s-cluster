@@ -12,14 +12,14 @@ spec:
     - host: "${DEV_DOMAIN}"
       http:
         paths:
-          - backend:
-              path: "/api/"
+          - path: "/api/"
+            backend:
               serviceName: ryzen-gaming
               servicePort: 8090
   tls:
     - hosts:
-        - "sso.${MAIN_DOMAIN}"
-      secretName: ${MAIN_DOMAIN}-tls
+        - "${DEV_DOMAIN}"
+      secretName: ${DEV_DOMAIN}-tls
 ---
 apiVersion: v1
 kind: Service
