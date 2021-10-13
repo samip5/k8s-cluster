@@ -31,4 +31,4 @@ spec:
     - name: https
       port: 443
   type: ExternalName
-  externalName: gitlab.pve.local.${SECRET_DOMAIN}
+  externalName: 192.168.2.33
