@@ -61,6 +61,7 @@ spec:
         mapping:
           lan.${HOME_DOMAIN}: tcp+udp:${GATEWAY_ADDRESS}
           ${SECRET_DOMAIN}: udp:ns1.${COMPANY_DOMAIN}
+          local.${SECRET_DOMAIN}: udp:ns1.${COMPANY_DOMAIN}
       blocking:
         blackLists:
           ads:
@@ -103,7 +104,7 @@ spec:
               topologyKey: kubernetes.io/hostname
     resources:
       requests:
-        memory: 100Mi
+        memory: 300Mi
         cpu: 100m
       limits:
         memory: 600Mi
