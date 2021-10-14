@@ -22,7 +22,7 @@ k3s_etcd_datastore: false
 
 # Control Plane registration address
 # ...this is set to my kube-vip address
-k3s_registration_address: 192.168.2.9
+k3s_registration_address: 10.0.105.10
 
 #
 # /var/lib/rancher/k3s/server/manifests
