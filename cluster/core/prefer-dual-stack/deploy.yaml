@@ -82,7 +82,7 @@ webhooks:
         name: prefer-dual-stack-webhook
         path: /mutate/services
 
-# Interesting part ends here, the rest is just so that the server certificates are 
+# Interesting part ends here, the rest is just so that the server certificates are
 # automatically generated on apply.
 ---
 apiVersion: v1
@@ -157,7 +157,7 @@ spec:
     spec:
       containers:
         - name: create
-          image: k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1
+          image: k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.0
           imagePullPolicy: IfNotPresent
           args:
             - create
@@ -187,7 +187,7 @@ spec:
     spec:
       containers:
         - name: patch
-          image: k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1
+          image: k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.0
           imagePullPolicy: IfNotPresent
           args:
             - patch
