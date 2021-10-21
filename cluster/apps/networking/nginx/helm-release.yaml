@@ -33,7 +33,7 @@ spec:
       metrics:
         enabled: true
         prometheusRule:
-          enabled: true
+          enabled: false
       extraArgs:
         default-ssl-certificate: "networking/${SECRET_DOMAIN}-tls"
       affinity:
