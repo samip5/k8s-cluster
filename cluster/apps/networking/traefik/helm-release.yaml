@@ -101,6 +101,14 @@ spec:
               values:
               - traefik
           topologyKey: kubernetes.io/hostname
+    securityContext:
+      capabilities:
+        drop: [ALL]
+        add: [NET_BIND_SERVICE]
+      readOnlyRootFilesystem: true
+      runAsGroup: 65532
+      runAsNonRoot: true
+      runAsUser: 65532
     resources:
       requests:
         memory: 100Mi
