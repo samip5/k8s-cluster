@@ -29,6 +29,17 @@ spec:
         - "${SVC_TRAEFIK_ADDRESS}"
         - "${SVC_TRAEFIK_V4}"
         externalTrafficPolicy: Local
+        ports:
+          tcpdns:
+            port: 53
+            expose: true
+            exposedPort: 53
+            protocol: TCP
+          udpdns:
+            port: 53
+            expose: true
+            exposedPort: 53
+            protocol: UDP
     logs:
       general:
         format: json
@@ -70,14 +81,6 @@ spec:
         port: 8082
         expose: false
         exposedPort: 8082
-      tcpdns:
-        port: 53
-        exposedPort: 53
-        protocol: TCP
-      udpdns:
-        port: 53
-        exposedPort: 53
-        protocol: UDP
     tlsOptions:
       default:
         minVersion: VersionTLS12
