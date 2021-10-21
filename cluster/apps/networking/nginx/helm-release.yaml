@@ -18,6 +18,7 @@ spec:
       interval: 5m
   values:
     controller:
+      namespace: networking
       replicaCount: 2
       config:
         custom-http-errors: 404,403,500,503
