@@ -22,7 +22,7 @@ spec:
     fullnameOverride: authentik
     image:
       repository: ghcr.io/goauthentik/server
-      tag: 2021.9.8
+      tag: 2021.10.1-rc2
       
     authentik:
       secret_key: "${SECRET_AUTHENTIK_SECRET_KEY}"
@@ -55,7 +55,7 @@ spec:
       tls:
       - hosts:
         - "id.${SECRET_DOMAIN}"
-        secretName: networking/${SECRET_DOMAIN}-tls
+        secretName: ${SECRET_DOMAIN}-tls
     postgresql:
       enabled: true
       image:
