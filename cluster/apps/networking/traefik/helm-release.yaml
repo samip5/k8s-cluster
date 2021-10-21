@@ -73,11 +73,11 @@ spec:
       tcpdns:
         port: 53
         exposedPort: 53
-        protocol: tcp
+        protocol: TCP
       udpdns:
         port: 53
         exposedPort: 53
-        protocol: udp
+        protocol: UDP
     tlsOptions:
       default:
         minVersion: VersionTLS12
