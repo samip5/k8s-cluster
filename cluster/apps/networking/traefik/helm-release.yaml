@@ -106,9 +106,9 @@ spec:
         drop: [ALL]
         add: [NET_BIND_SERVICE]
       readOnlyRootFilesystem: true
-      runAsGroup: 65532
+      runAsGroup: 0
       runAsNonRoot: false
-      runAsUser: 65532
+      runAsUser: 0
     resources:
       requests:
         memory: 100Mi
