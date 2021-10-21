@@ -21,7 +21,7 @@ spec:
     image:
       repository: ghcr.io/techno-tim/littlelink-server
       tag: latest
-      pullPolicy: always
+      pullPolicy: Always
     env:
       TZ: "Europe/Helsinki"
       META_TITLE: Skyler Mäntysaari
