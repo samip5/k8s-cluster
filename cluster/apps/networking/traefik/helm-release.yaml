@@ -57,6 +57,19 @@ spec:
     - "--providers.kubernetesingress.ingressendpoint.ip=${SVC_TRAEFIK_V4}"
     - "--providers.kubernetesingress.allowexternalnameservices=true"
     - "--providers.kubernetescrd.allowexternalnameservices=true"
+    ports:
+      traefik:
+        expose: true
+      web:
+        redirectTo: websecure
+      websecure:
+        tls:
+          enabled: true
+          options: "default"
+      metrics:
+        port: 8082
+        expose: false
+        exposedPort: 8082
     tlsOptions:
       default:
         minVersion: VersionTLS12
