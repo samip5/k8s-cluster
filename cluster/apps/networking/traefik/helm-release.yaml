@@ -29,17 +29,6 @@ spec:
         - "${SVC_TRAEFIK_ADDRESS}"
         - "${SVC_TRAEFIK_V4}"
         externalTrafficPolicy: Local
-        ports:
-          tcpdns:
-            port: 53
-            expose: true
-            exposedPort: 53
-            protocol: TCP
-          udpdns:
-            port: 53
-            expose: true
-            exposedPort: 53
-            protocol: UDP
     logs:
       general:
         format: json
@@ -91,14 +80,6 @@ spec:
               values:
               - traefik
           topologyKey: kubernetes.io/hostname
-    securityContext:
-      capabilities:
-        drop: [ALL]
-        add: [NET_BIND_SERVICE]
-      readOnlyRootFilesystem: true
-      runAsGroup: 0
-      runAsNonRoot: false
-      runAsUser: 0
     resources:
       requests:
         memory: 100Mi
