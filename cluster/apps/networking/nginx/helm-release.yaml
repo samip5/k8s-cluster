@@ -18,7 +18,6 @@ spec:
       interval: 5m
   values:
     controller:
-      namespace: networking
       replicaCount: 2
       config:
         custom-http-errors: 404,403,500,503
@@ -36,7 +35,7 @@ spec:
         prometheusRule:
           enabled: false
       extraArgs:
-        default-ssl-certificate: "networking/${SECRET_DOMAIN}-tls"
+        default-ssl-certificate: "${SECRET_DOMAIN}-tls"
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
