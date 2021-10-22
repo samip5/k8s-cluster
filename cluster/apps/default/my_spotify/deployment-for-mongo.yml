@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: your-spotify-mongo
+  namespace: default
+spec:
+  ports:
+    - port: 27017
+      targetPort: 27017
+  selector:
+    app: your-spotify-mongo
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: your-spotify-mongo
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: your-spotify-mongo
+  template:
+    metadata:
+      labels:
+        app: your-spotify-mongo
+    spec:
+      containers:
+        - name: mongodb
+          image: mongo:5.0.3-focal
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongodb-persistent-storage
+              mountPath: /data/db
+            - name: mongodb-configuration-file
+              mountPath: /etc/mongod.conf
+              readOnly: true
+      volumes:
+        - name: mongodb-persistent-storage
+          persistentVolumeClaim:
+            claimName: my-spotify-db-claim
+        - name: mongodb-configuration-file
+          configMap:
+            name: my-spotify-mongodb-config-file
