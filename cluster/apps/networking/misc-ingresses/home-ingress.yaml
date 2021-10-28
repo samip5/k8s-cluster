@@ -5,6 +5,7 @@ metadata:
   name: home-srv
   namespace: networking
   annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   ingressClassName: nginx
@@ -18,4 +19,4 @@ spec:
   tls:
     - hosts:
         - "*.${HOME_DOMAIN}"
-      secretName: networking/${HOME_DOMAIN}-tls
+      secretName: ${MAIN_DOMAIN}-tls
