@@ -19,4 +19,4 @@ spec:
   tls:
     - hosts:
         - "*.${HOME_DOMAIN}"
-      secretName: ${MAIN_DOMAIN}-tls
+      secretName: ${HOME_DOMAIN}-tls
