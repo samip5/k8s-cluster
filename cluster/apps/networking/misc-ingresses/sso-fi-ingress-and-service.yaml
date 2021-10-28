@@ -5,9 +5,10 @@ metadata:
   name: sso-fi
   namespace: networking
   annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   rules:
     - host: "sso.${MAIN_DOMAIN}"
       http:

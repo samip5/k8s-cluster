@@ -5,9 +5,10 @@ metadata:
   name: sso-dev
   namespace: networking
   annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   rules:
     - host: "sso.${DEV_DOMAIN}"
       http:

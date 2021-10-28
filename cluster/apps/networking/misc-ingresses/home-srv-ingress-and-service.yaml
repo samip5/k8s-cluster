@@ -5,9 +5,10 @@ metadata:
   name: bitwarden
   namespace: networking
   annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   rules:
     - host: "vault.${MAIN_DOMAIN}"
       http:

@@ -5,9 +5,10 @@ metadata:
   name: nas
   namespace: networking
   annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   rules:
     - host: "nas.${MAIN_DOMAIN}"
       http:
