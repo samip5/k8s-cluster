@@ -32,7 +32,9 @@ spec:
       create: true
     ingress:
       enabled: true
-      ingressClassName: "nginx"
+      ingressClassName: "traefik"
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       tls: true
       hostname: influx.${SECRET_DOMAIN}
     affinity:
