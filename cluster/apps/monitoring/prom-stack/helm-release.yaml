@@ -65,6 +65,8 @@ spec:
         enabled: true
         pathType: Prefix
         ingressClassName: "nginx"
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
           - "alert-manager.${SECRET_DOMAIN}"
         tls:
@@ -125,6 +127,8 @@ spec:
         enabled: true
         pathType: Prefix
         ingressClassName: "nginx"
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
           - "prom.${SECRET_DOMAIN}"
         tls:

@@ -117,6 +117,8 @@ spec:
     ingress:
       enabled: true
       ingressClassName: "nginx"
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       hosts:
         - "grafana.${SECRET_DOMAIN}"
       tls:
