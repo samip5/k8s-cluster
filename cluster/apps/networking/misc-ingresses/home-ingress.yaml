@@ -18,4 +18,4 @@ spec:
   tls:
     - hosts:
         - "*.${HOME_DOMAIN}"
-      secretName: ${HOME_DOMAIN}-tls
+      secretName: networking/${HOME_DOMAIN}-tls
