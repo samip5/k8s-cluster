@@ -26,7 +26,9 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: "traefik"
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
           - host: "paste.${DEV_DOMAIN}"
             paths:
