@@ -22,8 +22,8 @@ spec:
     fullnameOverride: authentik
     image:
       repository: ghcr.io/goauthentik/server
-      tag: 2021.10.1-rc2
-      
+      tag: 2021.10.2
+
     authentik:
       secret_key: "${SECRET_AUTHENTIK_SECRET_KEY}"
       postgresql:
