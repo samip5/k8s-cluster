@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: mongodb
-          image: mongo:5.0.3-focal
+          image: mongo:4.4.10-focal # CPU without AVX being used, 5.0+ not supported
           ports:
             - containerPort: 27017
           volumeMounts:
