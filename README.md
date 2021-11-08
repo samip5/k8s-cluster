@@ -35,7 +35,7 @@ cluster
 | Raspberry Pi 4 Model B   |k8s-worker6| 8GB  | 320GB HDD    | Kube Worker Node  | Ubuntu 20.04.3 LTS         |
 | VM on Proxmox   |k8s-worker-amd64-1 | 8GB  | 30GB Unknown    | Kube Worker Node  | Ubuntu 20.04.3 LTS         |
 | Synology NAS        | NAS | 16GB  | 2 x 3TB HDD, 2 x 6TB HDD, 1 TB NVME  | NFS Server | DSM 7 |
-| Home Server | pve | 32GB | 256GB SSD, 320 GB HDD | Virtualization host | Proxmox 7|
+| Dell PVE | dell-pve | 48GB | 2 x 64GB SSD | Virtualization host | Proxmox 7|
 
 ## Network
 
