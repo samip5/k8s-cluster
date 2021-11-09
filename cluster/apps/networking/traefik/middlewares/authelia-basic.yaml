@@ -1,0 +1,12 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: basic-authelia
+  namespace: networking
+spec:
+  forwardAuth:
+    address: "http://192.168.2.18:9091/api/verify?auth=basic"
+    trustFrowardHeader: true
+    authResponseHeaders:
+      - Remote-User
+      - Remote-Groups
