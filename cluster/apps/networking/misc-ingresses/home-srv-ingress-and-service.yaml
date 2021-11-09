@@ -6,7 +6,7 @@ metadata:
   namespace: networking
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-    traefik.ingress.kubernetes.io/router.middlewares: "authelia"
+    traefik.ingress.kubernetes.io/router.middlewares: "networking-authelia@kubernetescrd"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   ingressClassName: traefik
@@ -29,7 +29,7 @@ metadata:
   namespace: networking
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-    traefik.ingress.kubernetes.io/router.middlewares: "basic-authelia"
+    traefik.ingress.kubernetes.io/router.middlewares: "networking-basic-authelia@kubernetescrd"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   ingressClassName: traefik
@@ -54,7 +54,7 @@ metadata:
   namespace: networking
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-    traefik.ingress.kubernetes.io/router.middlewares: "basic-authelia"
+    traefik.ingress.kubernetes.io/router.middlewares: "networking-basic-authelia@kubernetescrd"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   ingressClassName: traefik
