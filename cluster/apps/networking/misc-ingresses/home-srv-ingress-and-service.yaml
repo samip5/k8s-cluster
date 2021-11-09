@@ -6,6 +6,7 @@ metadata:
   namespace: networking
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    traefik.ingress.kubernetes.io/router.middlewares: "authelia"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   ingressClassName: traefik
@@ -14,12 +15,74 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: home-srv-docker
-              servicePort: 443
+              serviceName: tvheadend-home-srv
+              servicePort: 9981
   tls:
     - hosts:
         - "tv.${MAIN_DOMAIN}"
       secretName: ${MAIN_DOMAIN}-tls
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: livetv-stream
+  namespace: networking
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    traefik.ingress.kubernetes.io/router.middlewares: "basic-authelia"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: "tv.${MAIN_DOMAIN}"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/stream/"
+            backend:
+              serviceName: tvheadend-home-srv
+              servicePort: 9981
+  tls:
+    - hosts:
+        - "tv.${MAIN_DOMAIN}"
+      secretName: ${MAIN_DOMAIN}-tls
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: livetv-stream
+  namespace: networking
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    traefik.ingress.kubernetes.io/router.middlewares: "basic-authelia"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: "tv.${MAIN_DOMAIN}"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/dvrfile/"
+            backend:
+              serviceName: tvheadend-home-srv
+              servicePort: 9981
+  tls:
+    - hosts:
+        - "tv.${MAIN_DOMAIN}"
+      secretName: ${MAIN_DOMAIN}-tls
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tvheadend-home-srv
+  namespace: networking
+spec:
+  ports:
+    - name: http
+      port: 9981
+  type: ExternalName
+  externalName: 192.168.2.75
 ---
 apiVersion: v1
 kind: Service
