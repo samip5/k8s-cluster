@@ -6,5 +6,6 @@ resources:
   - sso-dev-ingress.yaml
   - dh-ingress-and-service.yaml
   - home-srv-ingress-and-service.yaml
+  - home-pve-ingress-and-service.yaml
   - home-ingress.yaml
   - gitlab-ingress-and-service.yaml
