@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: sso-fi
+  name: bitwarden
   namespace: networking
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
@@ -10,25 +10,13 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: "sso.${MAIN_DOMAIN}"
+    - host: "vault.${MAIN_DOMAIN}"
       http:
         paths:
           - backend:
-              serviceName: home-srv-docker
+              serviceName: home-pve-docker
               servicePort: 443
   tls:
     - hosts:
-        - "sso.${MAIN_DOMAIN}"
+        - "vault.${MAIN_DOMAIN}"
       secretName: ${MAIN_DOMAIN}-tls
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: home-pve-docker
-  namespace: networking
-spec:
-  ports:
-    - name: https
-      port: 443
-  type: ExternalName
-  externalName: 192.168.2.18

@@ -14,7 +14,7 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: home-srv-docker
+              serviceName: home-pve-docker
               servicePort: 443
   tls:
     - hosts:
