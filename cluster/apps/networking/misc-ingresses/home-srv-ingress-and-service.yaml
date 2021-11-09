@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: bitwarden
+  name: dh
   namespace: networking
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
@@ -10,7 +10,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: "vault.${MAIN_DOMAIN}"
+    - host: "tv.${MAIN_DOMAIN}"
       http:
         paths:
           - backend:
@@ -18,5 +18,31 @@ spec:
               servicePort: 443
   tls:
     - hosts:
-        - "vault.${MAIN_DOMAIN}"
+        - "tv.${MAIN_DOMAIN}"
       secretName: ${MAIN_DOMAIN}-tls
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: home-srv-docker
+  namespace: networking
+spec:
+  ports:
+    - name: https
+      port: 443
+      targetPort: 443
+    - name: http
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: dh
+  namespace: networking
+subsets:
+  - addresses:
+      - ip: ${HS_IPv6}
+    ports:
+      - port: 443
