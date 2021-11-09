@@ -30,19 +30,7 @@ spec:
   ports:
     - name: https
       port: 443
-      targetPort: 443
     - name: http
       port: 80
-      targetPort: 80
-  type: ClusterIP
----
-apiVersion: v1
-kind: Endpoints
-metadata:
-  name: home-srv-docker
-  namespace: networking
-subsets:
-  - addresses:
-      - ip: ${HS_IPv6}
-    ports:
-      - port: 443
+  type: ExternalName
+  externalName: 192.168.2.75
