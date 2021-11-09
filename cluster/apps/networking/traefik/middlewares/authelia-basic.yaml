@@ -6,7 +6,7 @@ metadata:
 spec:
   forwardAuth:
     address: http://192.168.2.18:9091/api/verify?auth=basic
-    trustFrowardHeader: true
+    trustForwardHeader: true
     authResponseHeaders:
       - Remote-User
       - Remote-Groups
