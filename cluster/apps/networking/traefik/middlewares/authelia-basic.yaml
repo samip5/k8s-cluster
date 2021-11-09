@@ -5,7 +5,7 @@ metadata:
   namespace: networking
 spec:
   forwardAuth:
-    address: "http://192.168.2.18:9091/api/verify?auth=basic"
+    address: http://192.168.2.18:9091/api/verify?auth=basic
     trustFrowardHeader: true
     authResponseHeaders:
       - Remote-User
