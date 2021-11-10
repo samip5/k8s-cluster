@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - traefik
   #- nginx
-  #- external-dns
+  - external-dns
   #- adguard
   - blocky
   - secret-reflector
