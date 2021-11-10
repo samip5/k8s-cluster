@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: docker.io/samip537/external-dns
-      tag: v1.0.0-dirty
+      tag: v1.0.1
     interval: 5m
     logLevel: info
     provider: pdns
@@ -38,3 +38,12 @@ spec:
         cpu: 25m
       limits:
         memory: 250Mi
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                    - "amd64"
