@@ -82,7 +82,7 @@ spec:
     - name: http
       port: 9981
   type: ExternalName
-  externalName: 192.168.2.75
+  externalName: 192.168.2.10
 ---
 apiVersion: v1
 kind: Service
@@ -96,4 +96,4 @@ spec:
     - name: http
       port: 80
   type: ExternalName
-  externalName: 192.168.2.75
+  externalName: 192.168.2.10
