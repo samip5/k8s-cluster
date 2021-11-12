@@ -23,6 +23,6 @@ spec:
       defaultReplicaCount: 2
     ingress:
       enabled: true
-      ingressClassName: "nginx"
+      ingressClassName: "traefik"
       tls: true
       host: "horn.skylab.fi"
