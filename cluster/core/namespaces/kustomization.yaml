@@ -11,3 +11,4 @@ resources:
   - security.yaml
   - databases.yaml
   - vpn.yaml
+  - proxy.yaml
