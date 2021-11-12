@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: netshoot
-  namespace: mail
+  namespace: vpn
   labels:
     app: netshoot
 spec:
