@@ -36,7 +36,7 @@ spec:
               - "SYS_MODULE"
         env:
           TZ: "Europe/Helsinki"
-          IPTABLES_BACKEND: nft
+          IPTABLES_BACKEND: legacy
           KILLSWITCH: "false"
         configFileSecret: vpn-gateway-vpnconfig
         resources:
