@@ -60,14 +60,17 @@ spec:
             - to:
                 - ipBlock:
                     cidr: 0.0.0.0/0
-                - ipBlock:
-                    cidr: ::/0
               ports:
                 # VPN traffic
                 - port: ${SECRET_VPN_GATEWAY_PORT}
                   protocol: UDP
             - to:
-                - namespaceSelector: { }
+                - ipBlock:
+                    cidr: 10.96.0.0/16 # Service CIDR
+                - ipBlock:
+                    cidr: 10.244.0.0/16 # Cluster CIDR
+                - ipBlock:
+                    cidr: 185.218.193.134/31
     DNS: 172.16.1.1
     routed_namespaces:
       - proxy
