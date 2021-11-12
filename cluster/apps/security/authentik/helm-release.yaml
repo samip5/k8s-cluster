@@ -60,7 +60,7 @@ spec:
       enabled: true
       image:
         repository: postgres
-        tag: '11.12'
+        tag: '11.14'
       postgresqlUsername: authentik
       postgresqlDatabase: authentik
       postgresqlPassword: "${SECRET_AUTHENTIK_POSTGRES_PASSWORD}"
