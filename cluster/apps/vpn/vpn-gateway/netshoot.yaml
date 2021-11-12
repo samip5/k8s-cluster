@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: netshoot
-  namespace: vpn
+  namespace: proxy
   labels:
     app: netshoot
 spec:
