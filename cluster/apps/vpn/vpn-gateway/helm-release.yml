@@ -65,7 +65,7 @@ spec:
                     cidr: 10.244.0.0/16 # Cluster CIDR
                 - ipBlock:
                     cidr: 185.218.193.134/31
-    DNS: 172.16.1.1
+    DNS: 192.168.242.1
     routed_namespaces:
       - proxy
     settings:
@@ -75,7 +75,7 @@ spec:
       VPN_TRAFFIC_PORT: "${SECRET_VPN_GATEWAY_PORT}"
       NOT_ROUTED_TO_GATEWAY_CIDRS: "172.16.0.0/12 10.0.105.0/24"
       VPN_LOCAL_CIDRS: "172.16.0.0/12 10.0.105.0/24"
-      VXLAN_IP_NETWORK: "192.168.242.0/24"
+      VXLAN_IP_NETWORK: "192.168.242"
     webhook:
       image:
         repository: ghcr.io/k8s-at-home/gateway-admision-controller
