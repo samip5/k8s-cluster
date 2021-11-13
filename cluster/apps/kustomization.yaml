@@ -9,9 +9,9 @@ resources:
   - monitoring
   #- ci
   - collab
-  #- calico-system
   - default
   - flux-system
   - databases
   - system-upgrade
   - vpn
+  - proxy
