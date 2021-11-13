@@ -23,4 +23,5 @@ resources:
   - ingress-nginx-charts.yaml
   - influxdata-charts.yaml
   - longhorn-charts.yaml
+  - hajimari-charts.yaml
 
