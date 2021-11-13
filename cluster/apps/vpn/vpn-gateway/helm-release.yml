@@ -18,8 +18,8 @@ spec:
       interval: 5m
   values:
     image:
-      repository: ghcr.io/k8s-at-home/pod-gateway
-      tag: v1.4.0
+      repository: ghcr.io/samip5/pod-gateway
+      tag: dev
     addons:
       vpn:
         enabled: true
