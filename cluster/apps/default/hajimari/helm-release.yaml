@@ -1,0 +1,100 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: hajimari
+  namespace: home
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://hajimari.io
+      chart: hajimari
+      version: 1.1.1
+      sourceRef:
+        kind: HelmRepository
+        name: hajimari-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: ghcr.io/toboshii/hajimari
+      tag: v0.1.0
+    env:
+      TZ: "Europe/Helsinki"
+    hajimari:
+      namespaceSelector:
+        matchNames:
+          - media
+          - monitoring
+          - security
+      groups:
+        - name: Communicate
+          links:
+            - name: Discord
+              url: 'https://discord.com'
+            - name: Gmail
+              url: 'https://mail.google.com'
+            - name: Slack
+              url: 'https://slack.com/signin'
+        - name: Cloud
+          links:
+            - name: Box
+              url: 'https://box.com'
+            - name: Dropbox
+              url: 'https://dropbox.com'
+            - name: Drive
+              url: 'https://drive.google.com'
+        - name: Dev
+          links:
+            - name: Codepen
+              url: 'https://codepen.io/'
+            - name: Devdocs
+              url: 'https://devdocs.io'
+            - name: Devhints
+              url: 'https://devhints.io'
+        - name: Media
+          links:
+            - name: Trakt
+              url: 'http://trakt.tv'
+            - name: YouTube
+              url: 'https://youtube.com/feed/subscriptions'
+        - name: Reading
+          links:
+            - name: Instapaper
+              url: 'https://www.instapaper.com/u'
+            - name: Medium
+              url: 'http://medium.com'
+            - name: Reddit
+              url: 'http://reddit.com'
+        - name: Tech
+          links:
+            - name: Hacker News
+              url: 'https://news.ycombinator.com/'
+            - name: The Verge
+              url: 'https://theverge.com/'
+            - name: MIT Technology Review
+              url: 'https://www.technologyreview.com/'
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "traefik"
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
+        hosts:
+          - host: "start.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "start.${SECRET_DOMAIN}"
+    persistence:
+      data:
+        enabled: true
+        existingClaim: hajimari-data-v1
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128M
