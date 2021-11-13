@@ -22,7 +22,7 @@ spec:
     fullnameOverride: authentik
     image:
       repository: ghcr.io/goauthentik/server
-      tag: 2021.10.3
+      tag: 2021.10.4
 
     authentik:
       secret_key: "${SECRET_AUTHENTIK_SECRET_KEY}"
