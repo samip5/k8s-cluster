@@ -18,8 +18,9 @@ spec:
       interval: 5m
   values:
     image:
-      repository: ghcr.io/k8s-at-home/pod-gateway
-      tag: v1.4.0
+      repository: ghcr.io/samip5/pod-gateway
+      tag: dev
+      imagePullPolicy: Always
     addons:
       vpn:
         enabled: true
@@ -49,7 +50,7 @@ spec:
           periodSeconds: 60
           failureThreshold: 1
         networkPolicy:
-          enabled: true
+          enabled: false
           egress:
             - to:
                 - ipBlock:
@@ -71,7 +72,7 @@ spec:
     settings:
       VPN_INTERFACE: wg0
       VXLAN_ID: 43
-      VPN_BLOCK_OTHER_TRAFFIC: true
+      VPN_BLOCK_OTHER_TRAFFIC: false
       VPN_TRAFFIC_PORT: "${SECRET_VPN_GATEWAY_PORT}"
       NOT_ROUTED_TO_GATEWAY_CIDRS: "172.16.0.0/12 10.0.0.0/8 192.168.2.0/24"
       VPN_LOCAL_CIDRS: "172.16.0.0/12 10.0.0.0/8 192.168.2.0/24"
