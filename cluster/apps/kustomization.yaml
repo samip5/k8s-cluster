@@ -13,5 +13,5 @@ resources:
   - flux-system
   - databases
   - system-upgrade
-  - vpn
+#  - vpn
   - proxy
