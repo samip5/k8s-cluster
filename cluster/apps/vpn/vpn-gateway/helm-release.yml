@@ -71,11 +71,11 @@ spec:
     settings:
       VPN_INTERFACE: wg0
       VXLAN_ID: 43
-      VXLAN_IP_NETWORK: 172.16.1
       VPN_BLOCK_OTHER_TRAFFIC: true
       VPN_TRAFFIC_PORT: "${SECRET_VPN_GATEWAY_PORT}"
       NOT_ROUTED_TO_GATEWAY_CIDRS: "172.16.0.0/12 10.0.105.0/24"
-      VPN_LOCAL_CIDRS: "172.16.0.0/12"
+      VPN_LOCAL_CIDRS: "172.16.0.0/12 10.0.105.0/24"
+      VXLAN_IP_NETWORK: "192.168.242.0/24"
     webhook:
       image:
         repository: ghcr.io/k8s-at-home/gateway-admision-controller
