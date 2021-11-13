@@ -19,7 +19,8 @@ spec:
   values:
     image:
       repository: ghcr.io/samip5/pod-gateway
-      tag: dev@74624bed6718bad8f41215bd892bc3b7c22051f9931b8fe1253d6838b0d549da
+      tag: dev
+      imagePullPolicy: Always
     addons:
       vpn:
         enabled: true
