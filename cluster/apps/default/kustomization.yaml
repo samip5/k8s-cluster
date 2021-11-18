@@ -4,6 +4,5 @@ kind: Kustomization
 resources:
   - monica
   - my_spotify
-  - node-red
   - hajimari
   - organizr
