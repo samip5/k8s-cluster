@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: gitlab-runner
+  name: samipsolutions
   namespace: ci
 spec:
   interval: 5m
@@ -19,5 +19,9 @@ spec:
   values:
     image: gitlab/gitlab-runner:alpine-v11.6.0
     imagePullPolicy: IfNotPresent
+    rbac:
+      create: true
     gitlabUrl: https://gitlab.${COMPANY_DOMAIN}
     runnerRegistrationToken: "${SECRET_GITLAB_RUNNER_REG_TOKEN}"
+    runners:
+      secret: gitlab-runner-secrets
