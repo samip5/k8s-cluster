@@ -1,0 +1,23 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: gitlab-runner
+  namespace: ci
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.gitlab.io
+      chart: gitlab-runner
+      version: 0.36.0-beta
+      sourceRef:
+        kind: HelmRepository
+        name: gitlab-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image: gitlab/gitlab-runner:alpine-v11.6.0
+    imagePullPolicy: IfNotPresent
+    gitlabUrl: https://gitlab.${COMPANY_DOMAIN}
+    runnerRegistrationToken: "${SECRET_GITLAB_RUNNER_REG_TOKEN}"
