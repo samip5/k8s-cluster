@@ -21,7 +21,7 @@ spec:
     image:
       repository: monica
       tag: 3.5.0-apache
-    
+
     env:
       TZ: Europe/Helsinki
       APP_KEY: ${SECRET_MONICA_APPKEY}
@@ -31,7 +31,7 @@ spec:
       DB_DATABASE: monica
       DB_USERNAME: monica_user
       DB_PASSWORD: ${SECRET_MONICA_MARIADB_PASSWORD}
-      
+
     ingress:
       main:
         enabled: true
@@ -46,3 +46,8 @@ spec:
         tls:
           - hosts:
               - "crm.${SECRET_DOMAIN}"
+
+    persistence:
+      config:
+        enabled: true
+        mountPath: /var/www/html/storage
