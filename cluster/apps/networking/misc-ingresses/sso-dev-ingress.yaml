@@ -18,8 +18,8 @@ spec:
                name: home-pve-docker
                port:
                  number: 443
-            path: '/'
-            pathType: Path
+            path: /
+            pathType: Prefix
   tls:
     - hosts:
         - "sso.${DEV_DOMAIN}"

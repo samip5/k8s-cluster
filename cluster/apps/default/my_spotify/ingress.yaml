@@ -17,8 +17,8 @@ spec:
                name: your-spotify-frontend
                port:
                 number: 80
-            path: "/"
-            pathType: Path
+            path: /
+            pathType: Prefix
   tls:
     - hosts:
         - "spotify.${SECRET_DOMAIN}"
@@ -42,8 +42,8 @@ spec:
                 name: your-spotify-backend
                 port:
                   number: 80
-            path: "/"
-            pathType: Path
+            path: /
+            pathType: Prefix
   tls:
     - hosts:
         - "spotify-backend.${SECRET_DOMAIN}"
