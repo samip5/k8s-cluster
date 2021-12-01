@@ -20,7 +20,7 @@ spec:
                port:
                  number: 9981
             path: '/'
-            pathType: Path
+            pathType: Prefix
   tls:
     - hosts:
         - "tv.${MAIN_DOMAIN}"
