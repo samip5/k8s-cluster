@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: my-spotify
@@ -13,14 +13,17 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: your-spotify-frontend
-              servicePort: 80
+              service:
+               name: your-spotify-frontend
+               port:
+                number: 80
             path: "/"
+            pathType: Path
   tls:
     - hosts:
         - "spotify.${SECRET_DOMAIN}"
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: my-spotify-backend
@@ -35,8 +38,12 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: your-spotify-backend
-              servicePort: 80
+              service:
+                name: your-spotify-backend
+                port:
+                  number: 80
+            path: "/"
+            pathType: Path
   tls:
     - hosts:
         - "spotify-backend.${SECRET_DOMAIN}"

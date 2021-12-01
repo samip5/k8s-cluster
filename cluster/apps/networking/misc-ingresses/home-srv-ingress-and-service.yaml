@@ -1,5 +1,5 @@
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: livetv
@@ -15,14 +15,18 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: tvheadend-home-srv
-              servicePort: 9981
+              service:
+               name: tvheadend-home-srv
+               port:
+                 number: 9981
+            path: '/'
+            pathType: Path
   tls:
     - hosts:
         - "tv.${MAIN_DOMAIN}"
       secretName: ${MAIN_DOMAIN}-tls
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: livetv-stream
@@ -40,14 +44,16 @@ spec:
           - pathType: Prefix
             path: "/stream/"
             backend:
-              serviceName: tvheadend-home-srv
-              servicePort: 9981
+              service:
+               name: tvheadend-home-srv
+               port:
+                number: 9981
   tls:
     - hosts:
         - "tv.${MAIN_DOMAIN}"
       secretName: ${MAIN_DOMAIN}-tls
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: livetv-dvr
@@ -65,8 +71,10 @@ spec:
           - pathType: Prefix
             path: "/dvrfile/"
             backend:
-              serviceName: tvheadend-home-srv
-              servicePort: 9981
+              service:
+                name: tvheadend-home-srv
+                port:
+                  number: 9981
   tls:
     - hosts:
         - "tv.${MAIN_DOMAIN}"
