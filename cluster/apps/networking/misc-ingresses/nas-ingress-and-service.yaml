@@ -18,8 +18,8 @@ spec:
                name: nas
                port:
                  number: 5000
-            path: '/'
-            pathType: Path
+            path: /
+            pathType: Prefix
   tls:
     - hosts:
         - "nas.${MAIN_DOMAIN}"

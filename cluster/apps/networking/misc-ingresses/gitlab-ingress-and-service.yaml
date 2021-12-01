@@ -18,7 +18,8 @@ spec:
                 name: gitlab-docker
                 port:
                   number: 443
-            pathType: Path
+            path: /
+            pathType: Prefix
   tls:
     - hosts:
         - "src.${SECRET_DOMAIN}"
