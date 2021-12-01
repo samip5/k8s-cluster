@@ -1,0 +1,11 @@
+[[source]]
+type = "ingress"
+
+[[provider]]
+type = "powerdns"
+api_endpoint = "https://ns1.samipsolutions.fi/api/"
+
+[registry]
+type = "txt"
+txt_prefix = "_registry."
+txt_owner_id = "dns-sync"

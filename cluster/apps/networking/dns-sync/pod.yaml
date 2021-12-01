@@ -14,10 +14,10 @@ spec:
     - name: app
       image: ghcr.io/cloudydeno/kubernetes-dns-sync
       args:
-        - --dry-run
+        - --yes
       env:
         - name: POWERDNS_API_KEY
-          value: ${PDNS_SAMIPSOLUTIONS_API_KEY}
+          value: "Lol12@@"
       securityContext:
         capabilities:
           drop:
