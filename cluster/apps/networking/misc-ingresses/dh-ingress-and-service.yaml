@@ -18,6 +18,7 @@ spec:
                name: dh
                port:
                  number: 443
+            path: /
             pathType: Prefix
     - host: "dh4.${DEV_DOMAIN}"
       http:
@@ -27,6 +28,7 @@ spec:
                 name: dh
                 port:
                   number: 443
+            path: /
             pathType: Prefix
   tls:
     - hosts:
