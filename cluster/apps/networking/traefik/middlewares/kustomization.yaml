@@ -6,3 +6,4 @@ resources:
   - cloudflare.yaml
   - rfc1918.yaml
   - redirect-path.yaml
+  - global-default.yaml
