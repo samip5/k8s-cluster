@@ -73,4 +73,4 @@ spec:
       port: 443
       targetPort: 443
   type: ExternalName
-  externalName: ${DH_IPv6}
+  externalName: 192.168.2.46
