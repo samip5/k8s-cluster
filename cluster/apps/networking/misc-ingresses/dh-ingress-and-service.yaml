@@ -72,16 +72,5 @@ spec:
     - name: https
       port: 443
       targetPort: 443
-  type: ClusterIP
----
-apiVersion: v1
-kind: Endpoints
-metadata:
-  name: dh
-  namespace: networking
-subsets:
-  - addresses:
-      - ip: ${DH_IPv6}
-      - ip: 192.168.2.46
-    ports:
-      - port: 443
+  type: ExternalName
+  externalName: 192.168.2.46
