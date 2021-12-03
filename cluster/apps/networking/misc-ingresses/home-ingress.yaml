@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: home-srv-assistant
+  name: home-srv
   namespace: networking
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
@@ -10,17 +10,17 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: "assistant.${HOME_DOMAIN}"
+    - host: "*.${HOME_DOMAIN}"
       http:
         paths:
           - backend:
               service:
-               name: home-pve-docker
-               port:
-                number: 443
+                name: home-pve-docker
+                port:
+                  number: 443
             path: /
             pathType: Prefix
   tls:
     - hosts:
-        - "assistant.${HOME_DOMAIN}"
+        - "*.${HOME_DOMAIN}"
       secretName: ${HOME_DOMAIN}-tls
