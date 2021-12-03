@@ -25,205 +25,6 @@
   "liveNow": false,
   "panels": [
     {
-      "columns": [],
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fontSize": "100%",
-      "gridPos": {
-        "h": 3,
-        "w": 12,
-        "x": 12,
-        "y": 0
-      },
-      "id": 8,
-      "links": [],
-      "pageSize": null,
-      "scroll": true,
-      "showHeader": true,
-      "sort": {
-        "col": null,
-        "desc": false
-      },
-      "styles": [
-        {
-          "$$hashKey": "object:93",
-          "alias": "",
-          "align": "",
-          "colorMode": "value",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "/paristo$/",
-          "preserveFormat": false,
-          "sanitize": false,
-          "thresholds": [
-            "1",
-            "1"
-          ],
-          "type": "string",
-          "unit": "short",
-          "valueMaps": [
-            {
-              "$$hashKey": "object:122",
-              "text": "OK",
-              "value": "1"
-            },
-            {
-              "$$hashKey": "object:454",
-              "text": "LOPUSSA",
-              "value": "0"
-            }
-          ]
-        },
-        {
-          "$$hashKey": "object:482",
-          "alias": "Valvonta",
-          "align": "auto",
-          "colorMode": "value",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "#FADE2A",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "pk",
-          "thresholds": [
-            "0",
-            "1"
-          ],
-          "type": "string",
-          "unit": "short",
-          "valueMaps": [
-            {
-              "$$hashKey": "object:580",
-              "text": "Pois päältä",
-              "value": "0"
-            },
-            {
-              "$$hashKey": "object:582",
-              "text": "Käynnissä",
-              "value": "1"
-            }
-          ]
-        },
-        {
-          "$$hashKey": "object:869",
-          "alias": "Jännite",
-          "align": "auto",
-          "colorMode": "value",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 2,
-          "pattern": "voltage",
-          "preserveFormat": false,
-          "rangeMaps": [
-            {
-              "$$hashKey": "object:2303",
-              "from": "14.5",
-              "text": "Verkkosähkö",
-              "to": "100"
-            }
-          ],
-          "thresholds": [
-            "12",
-            "14.5"
-          ],
-          "type": "string",
-          "unit": "volt",
-          "valueMaps": [
-            {
-              "$$hashKey": "object:1991",
-              "text": "Sähköverkossa",
-              "value": "100"
-            }
-          ]
-        },
-        {
-          "$$hashKey": "object:2589",
-          "alias": "Internet",
-          "align": "auto",
-          "colorMode": "value",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "internet_ok",
-          "thresholds": [
-            "1",
-            "1"
-          ],
-          "type": "string",
-          "unit": "short",
-          "valueMaps": [
-            {
-              "$$hashKey": "object:2610",
-              "text": "POIKKI",
-              "value": "0"
-            },
-            {
-              "$$hashKey": "object:2630",
-              "text": "OK",
-              "value": "1"
-            }
-          ]
-        }
-      ],
-      "targets": [
-        {
-          "alias": "",
-          "format": "table",
-          "group": [],
-          "hide": false,
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select\n(select battery_ok_in from ahma where battery_ok_in is not null order by ts desc limit 1) as \"Sisäanturin paristo\",\n(select battery_ok_basement from ahma where battery_ok_basement is not null order by ts desc limit 1) as \"Kellarianturin paristo\",\n(select battery_ok_out from ahma where battery_ok_out is not null order by ts desc limit 1) as \"Ulkoanturin paristo\",\n(select internet_ok from ahma where internet_ok is not null order by ts desc limit 1),\n(select voltage from ahma where ac is not null order by ts desc limit 1),\n(select pk from ahma where battery_ok_basement is not null order by ts desc limit 1)",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "title": "Tilatiedot",
-      "transform": "table",
-      "type": "table-old",
-      "datasource": null
-    },
-    {
       "datasource": {
         "type": "influxdb",
         "uid": "P7D7E27EDDA4DFA74"
@@ -284,7 +85,7 @@
         "h": 9,
         "w": 8,
         "x": 3,
-        "y": 8
+        "y": 0
       },
       "id": 2,
       "options": {
@@ -383,7 +184,7 @@
         "h": 9,
         "w": 8,
         "x": 11,
-        "y": 8
+        "y": 0
       },
       "id": 10,
       "options": {
@@ -479,10 +280,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 7,
         "w": 9,
         "x": 3,
-        "y": 17
+        "y": 9
       },
       "id": 6,
       "options": {
@@ -587,7 +388,7 @@
         "h": 7,
         "w": 8,
         "x": 12,
-        "y": 17
+        "y": 9
       },
       "id": 8,
       "options": {
@@ -631,6 +432,295 @@
       ],
       "title": "Humidity inside Apartment",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P7D7E27EDDA4DFA74"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/paristo$/"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-text"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "rgba(245, 54, 54, 0.9)",
+                      "value": null
+                    },
+                    {
+                      "color": "rgba(237, 129, 40, 0.89)",
+                      "value": 1
+                    },
+                    {
+                      "color": "rgba(50, 172, 45, 0.97)",
+                      "value": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "pk"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Valvonta"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-text"
+              },
+              {
+                "id": "custom.align"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "rgba(245, 54, 54, 0.9)",
+                      "value": null
+                    },
+                    {
+                      "color": "#FADE2A",
+                      "value": 0
+                    },
+                    {
+                      "color": "rgba(50, 172, 45, 0.97)",
+                      "value": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "voltage"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Jännite"
+              },
+              {
+                "id": "unit",
+                "value": "volt"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-text"
+              },
+              {
+                "id": "custom.align"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "rgba(245, 54, 54, 0.9)",
+                      "value": null
+                    },
+                    {
+                      "color": "rgba(237, 129, 40, 0.89)",
+                      "value": 12
+                    },
+                    {
+                      "color": "rgba(50, 172, 45, 0.97)",
+                      "value": 14
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "internet_ok"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Internet"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-text"
+              },
+              {
+                "id": "custom.align"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "rgba(245, 54, 54, 0.9)",
+                      "value": null
+                    },
+                    {
+                      "color": "rgba(237, 129, 40, 0.89)",
+                      "value": 1
+                    },
+                    {
+                      "color": "rgba(50, 172, 45, 0.97)",
+                      "value": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 15,
+        "x": 6,
+        "y": 16
+      },
+      "id": 8,
+      "links": [],
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P7D7E27EDDA4DFA74"
+          },
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesShade = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mV\")\n  |> filter(fn: (r) => r[\"_field\"] == \"battery\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"outdoor_shade_voltage\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeriesShade = RawSeriesShade\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Outdoor Shade\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesShade |> yield()",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P7D7E27EDDA4DFA74"
+          },
+          "hide": false,
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeries = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mV\")\n  |> filter(fn: (r) => r[\"_field\"] == \"battery\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"outdoor_sensor_voltage\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeries = RawSeries\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Outdoor\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeries |> yield()",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P7D7E27EDDA4DFA74"
+          },
+          "hide": false,
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesLivingRoom = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mV\")\n  |> filter(fn: (r) => r[\"_field\"] == \"battery\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"living_room_voltage\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeriesLivingRoom = RawSeriesLivingRoom\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Living Room\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesLivingRoom |> yield()",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P7D7E27EDDA4DFA74"
+          },
+          "hide": false,
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesBedroom = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mV\")\n  |> filter(fn: (r) => r[\"_field\"] == \"battery\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"bedroom_sensor_voltage\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeriesBedroom = RawSeriesBedroom\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Bedroom\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesBedroom |> yield()",
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P7D7E27EDDA4DFA74"
+          },
+          "hide": false,
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesBatroom = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mV\")\n  |> filter(fn: (r) => r[\"_field\"] == \"battery\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"bathroom_sensor_voltage\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeriesBathroom = RawSeriesBatroom\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Bathroom\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesBathroom |> yield()",
+          "refId": "E"
+        }
+      ],
+      "title": "Sensor battery status in mV",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {
+            "reducers": []
+          }
+        }
+      ],
+      "type": "table"
     }
   ],
   "refresh": false,
