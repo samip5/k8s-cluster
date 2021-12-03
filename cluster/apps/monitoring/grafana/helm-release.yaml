@@ -95,7 +95,14 @@ spec:
           - name: InfluxDB (outside)
             type: influxdb
             access: proxy
-            url: https://home-pve-docker.networking.svc
+            url: https://influx.${HOME_DOMAIN}
+            secureJsonData:
+              token: ${SECRET_GRAFANA_OUTSIDE_INFLUX_TOKEN}
+            jsonData:
+              version: Flux
+              organization: default
+              defaultBucket: home_assistant
+              tlsSkipVerify: true
           - name: Loki
             type: loki
             access: proxy
@@ -117,6 +124,9 @@ spec:
         blocky:
           url: https://raw.githubusercontent.com/0xERR0R/blocky/master/docs/blocky-grafana.json
           datasource: Prometheus
+        zigbee:
+          url: https://raw.githubusercontent.com/samip5/k8s-cluster/main/cluster/apps/monitoring/grafana/dashboards/zigbee_dash.json
+          datasource: InfluxDB (outside)
     sidecar:
       dashboards:
         enabled: true
