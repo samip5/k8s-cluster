@@ -74,12 +74,14 @@ spec:
       targetPort: 443
   type: ClusterIP
 ---
-apiVersion: discovery.k8s.io/v1
-kind: EndpointSlice
+apiVersion: v1
+kind: Endpoints
 metadata:
   name: dh
   namespace: networking
-addressType: IPv6
-endpoints:
+subsets:
   - addresses:
-      - ${DH_IPv6}
+      - ip: ${DH_IPv6}
+      - ip: 192.168.2.46
+    ports:
+      - port: 443
