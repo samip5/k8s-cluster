@@ -21,737 +21,617 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": {
-        "type": "influxdb",
-        "uid": "hzelLcBMk"
+      "columns": [],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
       },
-      "fill": 0,
-      "fillGradient": 0,
+      "fontSize": "100%",
       "gridPos": {
-        "h": 9,
-        "w": 8,
-        "x": 8,
+        "h": 3,
+        "w": 12,
+        "x": 12,
         "y": 0
       },
-      "hiddenSeries": false,
-      "id": 2,
-      "legend": {
-        "alignAsTable": false,
-        "avg": false,
-        "current": false,
-        "hideEmpty": false,
-        "hideZero": false,
-        "max": false,
-        "min": false,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 3,
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": false
-      },
-      "percentage": false,
-      "pluginVersion": "8.3.0",
-      "pointradius": 3,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\r\n\r\nRawSeries = from(bucket: \"home_assistant\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°C\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"sensor_outside\")\r\n      \r\nNamedSeries = RawSeries\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Temperature (°C)\"}))\r\n  |> keep(columns:FinalOutput)\r\n\r\nNamedSeries |> yield()\r\n\r\n",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\r\n\r\nRawSeriesHumidity = from(bucket: \"home_assistant\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"entity_id\"] == \"sensor_outside_2\")\r\n      \r\nNamedSeriesHumidity = RawSeriesHumidity\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Humidity (%)\"}))\r\n  |> keep(columns:FinalOutput)\r\n\r\nNamedSeriesHumidity |> yield()",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "thresholds": [],
-      "timeRegions": [],
-      "title": "Outside Weather",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "transformations": [],
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:136",
-          "decimals": 1,
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:137",
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "fill": 0,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 5,
-        "x": 19,
-        "y": 0
-      },
-      "hiddenSeries": false,
-      "id": 4,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 4,
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "8.3.0",
-      "pointradius": 3,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT\r\n  last_changed AS \"time\",\r\n  entity_id,\r\n  cast(state as INTEGER)\r\nfrom states\r\n\r\nwhere\r\n     entity_id='sensor.temperature_outside_battery_level' and\r\n     state != 'unavailable' and $__timeFilter(last_changed);\r\n",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "state_id"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "states",
-          "timeColumn": "created",
-          "timeColumnType": "timestamptz",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        },
-        {
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT\r\n  last_changed AS \"time\",\r\n  entity_id,\r\n  cast(state as INTEGER)\r\nfrom states\r\n\r\nwhere\r\n     entity_id='sensor.temperature_bedroom_battery_level' and\r\n     state != 'unavailable' and $__timeFilter(last_changed);\r\n",
-          "refId": "B",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        },
-        {
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT\r\n  last_changed AS \"time\",\r\n  entity_id,\r\n  cast(state as INTEGER)\r\nfrom states\r\n\r\nwhere\r\n     entity_id='sensor.temperature_livingroom_battery_level' and\r\n     state != 'unavailable' and $__timeFilter(last_changed);",
-          "refId": "C",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        },
-        {
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT\r\n  last_changed AS \"time\",\r\n  entity_id,\r\n  cast(state as INTEGER)\r\nfrom states\r\n\r\nwhere\r\n     entity_id='sensor.temperature_bathroom_battery_level' and\r\n     state != 'unavailable' and $__timeFilter(last_changed);",
-          "refId": "D",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "thresholds": [
-        {
-          "$$hashKey": "object:355",
-          "colorMode": "critical",
-          "fill": true,
-          "line": true,
-          "op": "lt",
-          "value": 30,
-          "yaxis": "left"
-        },
-        {
-          "$$hashKey": "object:361",
-          "colorMode": "warning",
-          "fill": true,
-          "line": true,
-          "op": "lt",
-          "value": 40,
-          "yaxis": "left"
-        }
-      ],
-      "timeRegions": [],
-      "title": "Battery Status of Sensors",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "transformations": [],
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:61",
-          "decimals": 1,
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:62",
-          "decimals": 1,
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": {
-        "type": "influxdb",
-        "uid": "hzelLcBMk"
-      },
-      "fill": 0,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 9,
-        "w": 8,
-        "x": 8,
-        "y": 9
-      },
-      "hiddenSeries": false,
-      "id": 6,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 3,
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "8.3.0",
-      "pointradius": 3,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\r\n\r\nRawSeries = from(bucket: \"home_assistant\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°C\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"friendly_name\"] == \"Temperature_Bedroom\")\r\n      \r\nNamedSeries = RawSeries\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Temperature in Bedroom (°C)\"}))\r\n  |> keep(columns:FinalOutput)\r\n\r\nNamedSeries |> yield()\r\n\r\n",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\r\n\r\nRawSeries = from(bucket: \"home_assistant\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°C\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"friendly_name\"] == \"Temperature_Bathroom\")\r\n      \r\nNamedSeries = RawSeries\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Temperature in Bathroom (°C)\"}))\r\n  |> keep(columns:FinalOutput)\r\n\r\nNamedSeries |> yield()\r\n\r\n",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\r\n\r\nRawSeries = from(bucket: \"home_assistant\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°C\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"friendly_name\"] == \"Temperature_LivingRoom\")\r\n      \r\nNamedSeries = RawSeries\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Temperature in LivingRoom (°C)\"}))\r\n  |> keep(columns:FinalOutput)\r\n\r\nNamedSeries |> yield()\r\n\r\n",
-          "refId": "E",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "thresholds": [],
-      "timeRegions": [],
-      "title": "Temperature inside Apartment",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:612",
-          "decimals": 1,
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:613",
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": {
-        "type": "influxdb",
-        "uid": "hzelLcBMk"
-      },
-      "fill": 0,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 8,
-        "y": 18
-      },
-      "hiddenSeries": false,
       "id": 8,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": null,
+        "desc": false
       },
-      "lines": true,
-      "linewidth": 3,
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "8.3.0",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
+      "styles": [
+        {
+          "$$hashKey": "object:93",
+          "alias": "",
+          "align": "",
+          "colorMode": "value",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "/paristo$/",
+          "preserveFormat": false,
+          "sanitize": false,
+          "thresholds": [
+            "1",
+            "1"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:122",
+              "text": "OK",
+              "value": "1"
+            },
+            {
+              "$$hashKey": "object:454",
+              "text": "LOPUSSA",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:482",
+          "alias": "Valvonta",
+          "align": "auto",
+          "colorMode": "value",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "#FADE2A",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "pk",
+          "thresholds": [
+            "0",
+            "1"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:580",
+              "text": "Pois päältä",
+              "value": "0"
+            },
+            {
+              "$$hashKey": "object:582",
+              "text": "Käynnissä",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:869",
+          "alias": "Jännite",
+          "align": "auto",
+          "colorMode": "value",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 2,
+          "pattern": "voltage",
+          "preserveFormat": false,
+          "rangeMaps": [
+            {
+              "$$hashKey": "object:2303",
+              "from": "14.5",
+              "text": "Verkkosähkö",
+              "to": "100"
+            }
+          ],
+          "thresholds": [
+            "12",
+            "14.5"
+          ],
+          "type": "string",
+          "unit": "volt",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:1991",
+              "text": "Sähköverkossa",
+              "value": "100"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:2589",
+          "alias": "Internet",
+          "align": "auto",
+          "colorMode": "value",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "internet_ok",
+          "thresholds": [
+            "1",
+            "1"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:2610",
+              "text": "POIKKI",
+              "value": "0"
+            },
+            {
+              "$$hashKey": "object:2630",
+              "text": "OK",
+              "value": "1"
+            }
+          ]
+        }
+      ],
       "targets": [
         {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\r\n\r\nRawSeriesHumidity = from(bucket: \"home_assistant\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"friendly_name\"] == \"Temperature_Bedroom\")\r\n      \r\nNamedSeriesHumidity = RawSeriesHumidity\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Humidity in Bedroom (%)\"}))\r\n  |> keep(columns:FinalOutput)\r\n\r\nNamedSeriesHumidity |> yield()",
+          "alias": "",
+          "format": "table",
+          "group": [],
+          "hide": false,
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "select\n(select battery_ok_in from ahma where battery_ok_in is not null order by ts desc limit 1) as \"Sisäanturin paristo\",\n(select battery_ok_basement from ahma where battery_ok_basement is not null order by ts desc limit 1) as \"Kellarianturin paristo\",\n(select battery_ok_out from ahma where battery_ok_out is not null order by ts desc limit 1) as \"Ulkoanturin paristo\",\n(select internet_ok from ahma where internet_ok is not null order by ts desc limit 1),\n(select voltage from ahma where ac is not null order by ts desc limit 1),\n(select pk from ahma where battery_ok_basement is not null order by ts desc limit 1)",
           "refId": "A",
-          "resultFormat": "time_series",
           "select": [
             [
               {
                 "params": [
                   "value"
                 ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
+                "type": "column"
               }
             ]
           ],
-          "tags": []
-        },
-        {
-          "groupBy": [
+          "timeColumn": "time",
+          "where": [
             {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
             }
-          ],
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\r\n\r\nRawSeriesHumidity = from(bucket: \"home_assistant\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"friendly_name\"] == \"Temperature_Bathroom\")\r\n      \r\nNamedSeriesHumidity = RawSeriesHumidity\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Humidity in Bathroom (%)\"}))\r\n  |> keep(columns:FinalOutput)\r\n\r\nNamedSeriesHumidity |> yield()",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\r\n\r\nRawSeriesHumidity = from(bucket: \"home_assistant\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\r\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\r\n  |> filter(fn: (r) => r[\"friendly_name\"] == \"Temperature_LivingRoom\")\r\n      \r\nNamedSeriesHumidity = RawSeriesHumidity\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Humidity in LivingRoom (%)\"}))\r\n  |> keep(columns:FinalOutput)\r\n\r\nNamedSeriesHumidity |> yield()",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
+          ]
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
+      "title": "Tilatiedot",
+      "transform": "table",
+      "type": "table-old",
+      "datasource": null
+    }
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P7D7E27EDDA4DFA74"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 3,
+        "y": 8
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P7D7E27EDDA4DFA74"
+          },
+          "hide": false,
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesHumidity = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"outdoor_shade_humidity\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeriesHumidity = RawSeriesHumidity\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Humidity in shade (%)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesHumidity |> yield()",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P7D7E27EDDA4DFA74"
+          },
+          "hide": false,
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesShadeTemperature = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°C\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"outdoor_shade_temperature\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n\nNamedSeriesShadeTemperature = RawSeriesShadeTemperature\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Temperature in shade (°C)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesShadeTemperature |> yield()",
+          "refId": "D"
+        }
+      ],
+      "title": "Outside Weather (Shade)",
+      "transformations": [],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P7D7E27EDDA4DFA74"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 11,
+        "y": 8
+      },
+      "id": 10,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P7D7E27EDDA4DFA74"
+          },
+          "hide": false,
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeries = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°C\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"outdoor_sensor_temperature\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeries = RawSeries\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Temperature (°C)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeries |> yield()",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P7D7E27EDDA4DFA74"
+          },
+          "hide": false,
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesHumidity = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"outdoor_sensor_humidity\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeriesHumidity = RawSeriesHumidity\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Humidity (%)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesHumidity |> yield()",
+          "refId": "D"
+        }
+      ],
+      "title": "Outside Weather",
+      "transformations": [],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P7D7E27EDDA4DFA74"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 9,
+        "x": 3,
+        "y": 17
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P7D7E27EDDA4DFA74"
+          },
+          "hide": false,
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeries = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°C\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"bathroom_sensor_temperature\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeries = RawSeries\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Temperature in Bathroom (°C)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeries |> yield()",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P7D7E27EDDA4DFA74"
+          },
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeries = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°C\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"bedroom_sensor_temperature\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeries = RawSeries\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Temperature in Bedroom (°C)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeries |> yield()",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P7D7E27EDDA4DFA74"
+          },
+          "hide": false,
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeries = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°C\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"living_room_temperature\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeries = RawSeries\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Temperature in LivingRoom (°C)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeries |> yield()",
+          "refId": "B"
+        }
+      ],
+      "title": "Temperature inside Apartment",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P7D7E27EDDA4DFA74"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 12,
+        "y": 17
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P7D7E27EDDA4DFA74"
+          },
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesHumidity = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"living_room_humidity\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeriesHumidity = RawSeriesHumidity\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Humidity in Living Room (%)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesHumidity |> yield()",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P7D7E27EDDA4DFA74"
+          },
+          "hide": false,
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesHumidity = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"bedroom_sensor_humidity\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeriesHumidity = RawSeriesHumidity\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Humidity in Bathroom (%)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesHumidity |> yield()",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P7D7E27EDDA4DFA74"
+          },
+          "hide": false,
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesHumidity = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"bathroom_sensor_humidity\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeriesHumidity = RawSeriesHumidity\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Humidity in Bedroom (%)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesHumidity |> yield()",
+          "refId": "C"
+        }
+      ],
       "title": "Humidity inside Apartment",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:157",
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:158",
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
+      "type": "timeseries"
     }
   ],
   "refresh": false,
@@ -762,13 +642,13 @@
     "list": []
   },
   "time": {
-    "from": "2021-01-17T02:09:59.881Z",
-    "to": "2021-01-19T02:09:59.881Z"
+    "from": "now-24h",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Zigbee Dashboard",
   "uid": "-rwms5fGz",
-  "version": 23,
+  "version": 1,
   "weekStart": ""
 }
