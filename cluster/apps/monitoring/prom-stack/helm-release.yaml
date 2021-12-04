@@ -153,7 +153,7 @@ spec:
                 requests:
                   storage: 10Gi
         addionalScrapeConfig:
-          - job_name: "blocky"
+          - job_name: 'blocky'
             honor_timestamps: true
             static_configs:
               - targets: ['blocky.networking.svc.cluster.local:4000']
