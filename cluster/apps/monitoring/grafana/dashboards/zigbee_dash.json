@@ -79,7 +79,32 @@
           },
           "unit": "short"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "Temperature in shade (°C)"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 9,
@@ -106,8 +131,8 @@
             "uid": "P7D7E27EDDA4DFA74"
           },
           "hide": false,
-          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesHumidity = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"outdoor_shade_humidity\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeriesHumidity = RawSeriesHumidity\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Humidity in shade (%)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesHumidity |> yield()",
-          "refId": "C"
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesShadeTemperature = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°C\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"outdoor_shade_temperature\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n\nNamedSeriesShadeTemperature = RawSeriesShadeTemperature\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Temperature in shade (°C)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesShadeTemperature |> yield()",
+          "refId": "A"
         },
         {
           "datasource": {
@@ -115,8 +140,8 @@
             "uid": "P7D7E27EDDA4DFA74"
           },
           "hide": false,
-          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesShadeTemperature = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°C\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"outdoor_shade_temperature\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n\nNamedSeriesShadeTemperature = RawSeriesShadeTemperature\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Temperature in shade (°C)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesShadeTemperature |> yield()",
-          "refId": "D"
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesHumidity = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"outdoor_shade_humidity\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeriesHumidity = RawSeriesHumidity\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Humidity in shade (%)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesHumidity |> yield()",
+          "refId": "B"
         }
       ],
       "title": "Outside Weather (Shade)",
@@ -178,7 +203,32 @@
           },
           "unit": "short"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "Temperature (°C)"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 9,
