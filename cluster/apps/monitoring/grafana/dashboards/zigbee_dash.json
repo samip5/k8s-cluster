@@ -441,11 +441,35 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "palette-classic"
           },
           "custom": {
-            "align": "auto",
-            "displayMode": "auto"
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
@@ -462,216 +486,32 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/paristo$/"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              },
-              {
-                "id": "custom.displayMode",
-                "value": "color-text"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "rgba(245, 54, 54, 0.9)",
-                      "value": null
-                    },
-                    {
-                      "color": "rgba(237, 129, 40, 0.89)",
-                      "value": 1
-                    },
-                    {
-                      "color": "rgba(50, 172, 45, 0.97)",
-                      "value": 1
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "pk"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Valvonta"
-              },
-              {
-                "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              },
-              {
-                "id": "custom.displayMode",
-                "value": "color-text"
-              },
-              {
-                "id": "custom.align"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "rgba(245, 54, 54, 0.9)",
-                      "value": null
-                    },
-                    {
-                      "color": "#FADE2A",
-                      "value": 0
-                    },
-                    {
-                      "color": "rgba(50, 172, 45, 0.97)",
-                      "value": 1
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "voltage"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Jännite"
-              },
-              {
-                "id": "unit",
-                "value": "volt"
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              },
-              {
-                "id": "custom.displayMode",
-                "value": "color-text"
-              },
-              {
-                "id": "custom.align"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "rgba(245, 54, 54, 0.9)",
-                      "value": null
-                    },
-                    {
-                      "color": "rgba(237, 129, 40, 0.89)",
-                      "value": 12
-                    },
-                    {
-                      "color": "rgba(50, 172, 45, 0.97)",
-                      "value": 14
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "internet_ok"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Internet"
-              },
-              {
-                "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              },
-              {
-                "id": "custom.displayMode",
-                "value": "color-text"
-              },
-              {
-                "id": "custom.align"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "rgba(245, 54, 54, 0.9)",
-                      "value": null
-                    },
-                    {
-                      "color": "rgba(237, 129, 40, 0.89)",
-                      "value": 1
-                    },
-                    {
-                      "color": "rgba(50, 172, 45, 0.97)",
-                      "value": 1
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 15,
+        "h": 8,
+        "w": 12,
         "x": 6,
         "y": 16
       },
-      "id": 8,
-      "links": [],
+      "id": 12,
       "options": {
-        "footer": {
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
         },
-        "showHeader": true
+        "tooltip": {
+          "mode": "single"
+        }
       },
-      "pluginVersion": "8.3.0",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "P7D7E27EDDA4DFA74"
           },
-          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesShade = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mV\")\n  |> filter(fn: (r) => r[\"_field\"] == \"battery\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"outdoor_shade_voltage\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeriesShade = RawSeriesShade\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Outdoor Shade\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesShade |> yield()",
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\n\nRawSeries = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\n  |> filter(fn: (r) => r[\"_field\"] == \"battery\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"outdoor_sensor_battery\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n\n  NamedSeries = RawSeries\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Outdoor sensor (%)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeries |> yield()",
           "refId": "A"
         },
         {
@@ -680,7 +520,7 @@
             "uid": "P7D7E27EDDA4DFA74"
           },
           "hide": false,
-          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeries = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mV\")\n  |> filter(fn: (r) => r[\"_field\"] == \"battery\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"outdoor_sensor_voltage\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeries = RawSeries\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Outdoor\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeries |> yield()",
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\n\nRawSeriesShade = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\n  |> filter(fn: (r) => r[\"_field\"] == \"battery\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"outdoor_shade_battery\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n\n  NamedSeriesShade = RawSeriesShade\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Outdoor shade sensor (%)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesShade |> yield()",
           "refId": "B"
         },
         {
@@ -689,7 +529,7 @@
             "uid": "P7D7E27EDDA4DFA74"
           },
           "hide": false,
-          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesLivingRoom = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mV\")\n  |> filter(fn: (r) => r[\"_field\"] == \"battery\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"living_room_voltage\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeriesLivingRoom = RawSeriesLivingRoom\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Living Room\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesLivingRoom |> yield()",
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\n\nRawSeriesBath = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\n  |> filter(fn: (r) => r[\"_field\"] == \"battery\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"bathroom_sensor_battery\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n\n  NamedSeriesBath = RawSeriesBath\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Bathroom sensor (%)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesBath |> yield()",
           "refId": "C"
         },
         {
@@ -698,7 +538,7 @@
             "uid": "P7D7E27EDDA4DFA74"
           },
           "hide": false,
-          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesBedroom = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mV\")\n  |> filter(fn: (r) => r[\"_field\"] == \"battery\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"bedroom_sensor_voltage\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeriesBedroom = RawSeriesBedroom\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Bedroom\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesBedroom |> yield()",
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\n\nRawSeriesBed = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\n  |> filter(fn: (r) => r[\"_field\"] == \"battery\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"bedroom_sensor_battery\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n\n  NamedSeriesBed = RawSeriesBed\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Bedroom sensor (%)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesBed |> yield()",
           "refId": "D"
         },
         {
@@ -707,20 +547,12 @@
             "uid": "P7D7E27EDDA4DFA74"
           },
           "hide": false,
-          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesBatroom = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mV\")\n  |> filter(fn: (r) => r[\"_field\"] == \"battery\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"bathroom_sensor_voltage\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeriesBathroom = RawSeriesBatroom\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Bathroom\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesBathroom |> yield()",
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\n\nRawSeriesLiving = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\n  |> filter(fn: (r) => r[\"_field\"] == \"battery\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"living_room_battery\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n\n  NamedSeriesLiving = RawSeriesLiving\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Livingroom sensor (%)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesLiving |> yield()",
           "refId": "E"
         }
       ],
-      "title": "Sensor battery status in mV",
-      "transformations": [
-        {
-          "id": "seriesToRows",
-          "options": {
-            "reducers": []
-          }
-        }
-      ],
-      "type": "table"
+      "title": "Battery status",
+      "type": "timeseries"
     }
   ],
   "refresh": false,
