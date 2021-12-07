@@ -170,7 +170,8 @@
         "kube-prometheus-stack",
         "traefik",
         "grafana",
-        "authentik"
+        "authentik",
+        "ingress-nginx"
       ]
     }
   ],
