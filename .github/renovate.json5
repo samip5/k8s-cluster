@@ -129,11 +129,6 @@
     // custom version schemes
     {
       "matchDatasources": ["docker"],
-      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>.*)$",
-      "matchPackageNames": ["blakeblackshear/frigate"],
-    },
-    {
-      "matchDatasources": ["docker"],
       "versioning": "regex:^RELEASE\\.(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)T.*Z(-(?<compatibility>.*))?$",
       "matchPackageNames": ["minio/minio"],
     },
@@ -162,6 +157,7 @@
       "matchPackageNames": [
         "ghcr.io/k8s-at-home/jackett",
         "ghcr.io/k8s-at-home/prowlarr",
+        "ghcr.io/k8s-at-home/prowlarr-develop",
      ],
     },
   ],
