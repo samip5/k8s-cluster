@@ -155,6 +155,7 @@
       "requiredStatusChecks": null,
       "matchUpdateTypes": ["minor", "patch"],
       "matchPackageNames": [
+        "ghcr.io/k8s-at-home/grafana",
         "ghcr.io/k8s-at-home/jackett",
         "ghcr.io/k8s-at-home/prowlarr",
         "ghcr.io/k8s-at-home/prowlarr-develop",
