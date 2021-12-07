@@ -1,0 +1,4 @@
+---
+- include: network.yml
+  tags:
+    - network
