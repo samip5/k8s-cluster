@@ -1,0 +1,14 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: BGPConfiguration
+metadata:
+  name: default
+spec:
+  logSeverityScreen: Info
+  nodeToNodeMeshEnabled: false
+  asNumber: "{{ calico_bgp_as_number }}"
+  serviceExternalIPs:
+    - cidr: "{{ calico_bgp_external_ips }}"
+    - cidr: "{{ calico_bgp_external_ips6 }}"
+  prefixAdvertisements:
+    - cidr: 172.16.0.0/16

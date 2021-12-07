@@ -1,0 +1,16 @@
+---
+apiVersion: crd.projectcalico.org/v1
+kind: BGPPeer
+metadata:
+  name: homenet-router-v4
+spec:
+  peerIP: {{ calico_bgp_peer_ip }}
+  asNumber: {{ calico_bgp_as_number }}
+---
+apiVersion: crd.projectcalico.org/v1
+kind: BGPPeer
+metadata:
+  name: homenet-router-v6
+spec:
+  peerIP: {{ calico_bgp_peer_ip6 }}
+  asNumber: {{ calico_bgp_as_number }}
