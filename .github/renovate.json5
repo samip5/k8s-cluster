@@ -160,5 +160,18 @@
         "ghcr.io/k8s-at-home/prowlarr-develop",
      ],
     },
+    {
+      "matchDatasources": ["helm"],
+      "automerge": true,
+      "automergeType": "branch",
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchPackageNames": [
+        "kube-prometheus-stack",
+        "traefik",
+        "grafana",
+        "authentik"
+      ]
+    }
   ],
 }
