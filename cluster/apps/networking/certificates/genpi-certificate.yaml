@@ -10,7 +10,7 @@ spec:
     labels:
       use-http-solver: "true"
   issuerRef:
-    name: zerossl-production
+    name: letsencrypt-production
     kind: ClusterIssuer
   privateKey:
     algorithm: ECDSA
