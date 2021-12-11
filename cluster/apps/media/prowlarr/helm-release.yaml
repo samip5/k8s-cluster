@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/prowlarr-develop
-      tag: v0.1.7.1209
+      tag: v0.1.8.1231
     env:
       TZ: "Europe/Helsinki"
     ingress:
