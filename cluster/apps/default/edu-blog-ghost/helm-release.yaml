@@ -1,0 +1,50 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: edu-blog-ghost
+  namespace: default
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: ghost
+      version: 15.1.6
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    ghostUsername: sm
+    existingSecret: "edu-blog-ghost"
+    ghostHost: "blog.edu.${MAIN_DOMAIN]"
+    ghostBlogTitle: Skyler's Educational Blog
+    ghostEnableHttps: true
+
+    image:
+      registry: docker.io
+      repository: ghost
+      tag: 4.27.2
+
+    ingress:
+      enabled: true
+      ingressClassName: "traefik"
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+      hostname: blog.edu.${MAIN_DOMAIN}
+      tls: true
+
+    persistence:
+      enabled: true
+
+    mariadb:
+      enabled: false
+
+    externalDatabase:
+      host: mariadb.svc.databases.cluster.local
+      port: 3306
+      user: edublog_ghost
+      database: edublog_ghost
+      existingSecret: "edu-blog-ghost"
