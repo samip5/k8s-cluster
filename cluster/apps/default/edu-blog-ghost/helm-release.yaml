@@ -19,7 +19,7 @@ spec:
   values:
     ghostUsername: sm
     existingSecret: "edu-blog-ghost"
-    ghostHost: "blog.edu.${MAIN_DOMAIN]"
+    ghostHost: "blog.edu.${MAIN_DOMAIN}"
     ghostBlogTitle: Skyler's Educational Blog
     ghostEnableHttps: true
 
