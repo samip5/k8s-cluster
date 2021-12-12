@@ -8,7 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      # renovate: registryUrl=https://charts.bitnami.com/bitnami
       chart: ghost
       version: 15.1.6
       sourceRef:
@@ -24,9 +24,6 @@ spec:
     ghostEnableHttps: true
 
     image:
-      registry: docker.io
-      repository: ghost
-      tag: 4.27.2
       debug: true
 
     service:
@@ -52,3 +49,13 @@ spec:
       user: edublog_ghost
       database: edublog_ghost
       existingSecret: "edu-blog-ghost"
+
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                    - "amd64"
