@@ -29,6 +29,9 @@ spec:
       tag: 4.27.2
       debug: true
 
+    service:
+      type: ClusterIP
+
     ingress:
       enabled: true
       ingressClassName: "traefik"
