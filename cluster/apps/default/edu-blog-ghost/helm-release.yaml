@@ -44,7 +44,7 @@ spec:
       enabled: false
 
     externalDatabase:
-      host: mariadb.svc.databases.cluster.local
+      host: mariadb.databases.svc.cluster.local
       port: 3306
       user: edublog_ghost
       database: edublog_ghost
