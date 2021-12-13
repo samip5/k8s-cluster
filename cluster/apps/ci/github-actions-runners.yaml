@@ -33,7 +33,7 @@ spec:
       name: "contoller-manager"
 
     githubWebhookServer:
-      enabled: true
+      enabled: false
       syncPeriod: 10m
 
       secret:
