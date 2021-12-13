@@ -21,7 +21,7 @@ spec:
      registry: ghcr.io
      repository: infracloudio/botkube
      pullPolicy: IfNotPresent
-     tag: v0.12.3
+     tag: v0.12.4
     communications:
       discord:
         enabled: true
