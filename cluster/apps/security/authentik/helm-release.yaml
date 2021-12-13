@@ -29,6 +29,7 @@ spec:
       secret_key: "${SECRET_AUTHENTIK_SECRET_KEY}"
       error_reporting:
         enabled: true
+        sample_rate: 1
         environment: "kryptonian"
       postgresql:
         host: "authentik-postgresql"
