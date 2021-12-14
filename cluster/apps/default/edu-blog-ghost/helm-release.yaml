@@ -29,15 +29,12 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          traefik.ingress.kubernetes.io/router.entrypoints: "web"
         hosts:
           - host: "blog.edu.${MAIN_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
-        tls:
-          - hosts:
-              - "blog.edu.${MAIN_DOMAIN}"
 
 
     persistence:

@@ -8,4 +8,3 @@ spec:
   headers:
     customResponseHeaders:
       X-Powerd-By: "Traefik inside kubernetes"
-

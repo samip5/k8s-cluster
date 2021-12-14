@@ -61,8 +61,6 @@ spec:
     ports:
       traefik:
         expose: true
-      web:
-        redirectTo: websecure
       websecure:
         tls:
           enabled: true
