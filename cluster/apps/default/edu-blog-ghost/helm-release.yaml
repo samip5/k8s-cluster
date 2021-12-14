@@ -8,54 +8,41 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://charts.bitnami.com/bitnami
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: ghost
-      version: 15.1.6
+      version: 1.0.0
       sourceRef:
         kind: HelmRepository
-        name: bitnami-charts
+        name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
   values:
-    ghostUsername: sm
-    existingSecret: "edu-blog-ghost"
-    ghostHost: "blog.edu.${MAIN_DOMAIN}"
-    ghostBlogTitle: Skyler's Educational Blog
-    ghostSkipInstall: true
-
-    image:
-      debug: true
-
-    service:
-      type: ClusterIP
+    env:
+      url: "https://blog.edu.${MAIN_DOMAIN]"
+      database__connection__host: "mariadb.databases.svc.cluster.local"
+      database__connection__database: "edublog_ghost"
+      database__connection__user: "edublog_ghost"
+      database__connection__password: "${SECRET_EDUBLOG_DB_PASS}"
 
     ingress:
-      enabled: true
-      ingressClassName: "traefik"
-      annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-      hostname: blog.edu.${MAIN_DOMAIN}
-      tls: true
+      main:
+        enabled: true
+        ingressClassName: "traefik"
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        hosts:
+          - host: "blog.edu.${MAIN_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "blog.edu.${MAIN_DOMAIN}"
+
 
     persistence:
+     content:
       enabled: true
 
     mariadb:
       enabled: false
-
-    externalDatabase:
-      host: mariadb.databases.svc.cluster.local
-      port: 3306
-      user: edublog_ghost
-      database: edublog_ghost
-      existingSecret: "edu-blog-ghost"
-
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: kubernetes.io/arch
-                  operator: In
-                  values:
-                    - "amd64"
