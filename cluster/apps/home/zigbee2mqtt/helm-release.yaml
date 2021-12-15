@@ -80,6 +80,7 @@ spec:
           - 86
           - 44
           - 159
+        pan_id: GENERATE
       frontend:
         port: 8080
       experimental:
