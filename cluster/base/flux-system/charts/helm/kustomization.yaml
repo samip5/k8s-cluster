@@ -18,6 +18,7 @@ resources:
   - kubernetes-sigs-descheduler-charts.yaml
   - kubernetes-sigs-metrics-server-charts.yaml
   - external-dns-charts.yaml
+  - emqx-charts.yaml
   - nfs-subdir-external-provisioner-charts.yaml
   - prometheus-community-charts.yaml
   - stakater-charts.yaml
