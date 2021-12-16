@@ -36,6 +36,11 @@ spec:
       VAR_BLOCKY_URL: "http://blocky.networking.svc.cluster.local:4000"
     adminPassword: "${SECRET_GRAFANA_PASSWORD}"
     grafana.ini:
+      orgs:
+        - id: 1
+          name: Main Org.
+        - id: 2
+          name: k8s
       server:
         root_url: "https://grafana.${SECRET_DOMAIN}"
       paths:
