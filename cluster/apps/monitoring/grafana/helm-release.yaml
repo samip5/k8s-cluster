@@ -78,7 +78,6 @@ spec:
         apiVersion: 1
         providers:
           - name: "default"
-            orgId: 2
             folder: "public"
             type: file
             disableDeletion: false
@@ -86,7 +85,6 @@ spec:
             options:
               path: /var/lib/grafana/dashboards/default
           - name: "k8s"
-            orgId: 1
             folder: "k8s"
             type: file
             disableDeletion: false
@@ -108,8 +106,6 @@ spec:
           - name: InfluxDB (outside)
             type: influxdb
             access: proxy
-            orgId: 2
-            isDefault: true
             url: https://influx.${HOME_DOMAIN}
             secureJsonData:
               token: ${SECRET_GRAFANA_OUTSIDE_INFLUX_TOKEN}
