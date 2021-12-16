@@ -55,6 +55,7 @@ spec:
         oauth_auto_login: true
       auth.anonymous:
         enabled: true
+        org_name: Main Org.
         org_role: Viewer
         hide_version: true
       auth.generic_oauth:
@@ -72,13 +73,21 @@ spec:
         apiVersion: 1
         providers:
           - name: "default"
-            orgId: 1
-            folder: ""
+            orgId: 2
+            folder: "public"
             type: file
             disableDeletion: false
             editable: true
             options:
               path: /var/lib/grafana/dashboards/default
+          - name: "k8s"
+            orgId: 1
+            folder: "k8s"
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/k8s
     datasources:
       datasources.yaml:
         apiVersion: 1
@@ -94,6 +103,8 @@ spec:
           - name: InfluxDB (outside)
             type: influxdb
             access: proxy
+            orgId: 2
+            isDefault: true
             url: https://influx.${HOME_DOMAIN}
             secureJsonData:
               token: ${SECRET_GRAFANA_OUTSIDE_INFLUX_TOKEN}
@@ -108,7 +119,11 @@ spec:
             url: http://loki:3100
     dashboards:
       default:
-         # Ref: https://grafana.com/grafana/dashboards/12175
+        zigbee:
+          url: https://raw.githubusercontent.com/samip5/k8s-cluster/main/cluster/apps/monitoring/grafana/dashboards/zigbee_dash.json
+          datasource: InfluxDB (outside)
+      k8s:
+        # Ref: https://grafana.com/grafana/dashboards/12175
         calico-felix:
           gnetId: 12175
           revision: 5
@@ -123,9 +138,6 @@ spec:
         blocky:
           url: https://raw.githubusercontent.com/0xERR0R/blocky/master/docs/blocky-grafana.json
           datasource: Prometheus
-        zigbee:
-          url: https://raw.githubusercontent.com/samip5/k8s-cluster/main/cluster/apps/monitoring/grafana/dashboards/zigbee_dash.json
-          datasource: InfluxDB (outside)
     sidecar:
       dashboards:
         enabled: true
