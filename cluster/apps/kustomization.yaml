@@ -13,6 +13,6 @@ resources:
   - flux-system
   - databases
   - system-upgrade
-  - vpn
-  - proxy
+#  - vpn
+#  - proxy
   - home
