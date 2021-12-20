@@ -11,6 +11,7 @@ resources:
   - drone-charts.yaml
   - falco-security-charts.yaml
   - jetstack-charts.yaml
+  - gitea-charts.yaml
   - gitlab-charts.yaml
   - grafana-charts.yaml
   - jenkinsci-charts.yaml
