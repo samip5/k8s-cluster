@@ -54,10 +54,6 @@ spec:
           resync_interval: 5s
           shared_store: s3
       ruler:
-        storage:
-          type: local
-          local:
-            directory: /rules
         rule_path: /tmp/scratch
         alertmanager_url: http://prometheus-alertmanager:9093
         ring:
