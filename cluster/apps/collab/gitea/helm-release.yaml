@@ -82,12 +82,6 @@ spec:
         builtIn:
           postgresql:
             enabled: true
-      oauth:
-        - enabled: true
-          name: 'Authentik'
-          provider: openidConnect
-          existingSecret: gitea-oauth-secret
-          autoDiscoverUrl: https://id.{SECRET_DOMAIN}/application/o/gitea/.well-known/openid-configuration
       postgresql:
         persistence:
           storageclass: "longhorn"
