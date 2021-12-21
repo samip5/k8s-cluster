@@ -1,0 +1,7 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - gitea-admin-secret.enc.yaml
+  - gitea-oauth-secret.enc.yaml
+  - helm-release.yaml

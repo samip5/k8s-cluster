@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - littlelink
   - haste
+  - gitea
