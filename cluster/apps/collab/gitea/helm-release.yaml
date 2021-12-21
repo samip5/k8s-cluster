@@ -85,11 +85,3 @@ spec:
       postgresql:
         persistence:
           storageclass: "longhorn"
-        metrics:
-          enabled: true
-          serviceMonitor:
-            enabled: true
-            namespace: monitoring
-      metrics:
-        enable: true
-        serviceMonitor: true
