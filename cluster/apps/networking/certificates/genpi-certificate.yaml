@@ -8,9 +8,9 @@ spec:
   secretName: ci.genpi64.com-tls
   secretTemplate:
     labels:
-      use-http-solver: "true"
+      "use-http-solver": "true"
   issuerRef:
-    name: letsencrypt-production
+    name: zerossl-production
     kind: ClusterIssuer
   privateKey:
     algorithm: ECDSA
