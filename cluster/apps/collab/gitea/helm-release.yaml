@@ -84,7 +84,7 @@ spec:
             enabled: true
       oauth:
         - name: 'Authentik'
-          provider: OpenID Connect
+          provider: openidConnect
           existingSecret: gitea-oauth-secret
           autoDiscoverUrl: https://id.{SECRET_DOMAIN}/application/o/gitea/.well-known/openid-configuration
       postgresql:
