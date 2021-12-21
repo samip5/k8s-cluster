@@ -7,5 +7,5 @@ resources:
   #- adguard
   - blocky
   - secret-reflector
-  - certificates/wildcards
+  - certificates
   - misc-ingresses
