@@ -53,6 +53,8 @@ spec:
     config: |
       upstream:
         default:
+        - tcp+udp:2a03:4000:4d:c92:88c0:96ff:fec6:b9d # OpenNIC, ns29.de
+        - tcp+udp:2001:67c:13e4:1::37 # OpenNIC, ns5.ru
         - tcp+udp:2606:4700:4700::1111
         - tcp+udp:2606:4700:4700::1001
         - tcp+udp:1.1.1.1
@@ -78,6 +80,13 @@ spec:
           - windowsSpy
       clientLookup:
         upstream: tcp+udp:${GATEWAY_ADDRESS}
+      caching:
+        minTime: 0
+        maxTime: 48h
+        prefetching: true
+        prefetchexpires: 2h
+        prefetchThreshold: 5
+        prefetchMaxItemsCount: 0
       prometheus:
         enable: true
         path: /metrics
