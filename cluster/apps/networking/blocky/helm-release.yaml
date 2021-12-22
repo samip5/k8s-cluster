@@ -84,7 +84,7 @@ spec:
         minTime: 0
         maxTime: 48h
         prefetching: true
-        prefetchexpires: 2h
+        prefetchExpires: 2h
         prefetchThreshold: 5
         prefetchMaxItemsCount: 0
       prometheus:
