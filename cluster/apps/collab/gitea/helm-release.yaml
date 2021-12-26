@@ -61,6 +61,22 @@ spec:
         - ReadWriteOnce
       storageClass: nfs-client
 
+    postgresql:
+      image:
+        repository: postgres
+        tag: 12
+        pullPolicy: IfNotPresent
+      volumePermissions:
+        enabled: true
+        pullPolicy: IfNotPresent
+        postgresqlDataDir: /data/pgdata
+      persistence:
+        storageclass: "longhorn"
+        smountPath: /data/
+      metrics:
+        serviceMonitor:
+        enabled: true
+
     gitea:
       admin:
         existingSecret: gitea-admin-secret
@@ -78,25 +94,3 @@ spec:
           DEFAULT_PRIVATE: true
         admin:
           DISABLE_REGULAR_ORG_CREATION: true
-
-    postgresql:
-      image:
-        repository: postgres
-        tag: 12
-        pullPolicy: IfNotPresent
-      volumePermissions:
-        enabled: true
-        pullPolicy: IfNotPresent
-        postgresqlDataDir: /data/pgdata
-      persistence:
-        storageclass: "longhorn"
-        smountPath: /data/
-      metrics:
-        serviceMonitor:
-        enabled: true
-
-    memcached:
-      image:
-        repository: memcached
-        tag: 1.6.6
-        pullPolicy: IfNotPresent
