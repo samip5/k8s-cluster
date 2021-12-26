@@ -32,7 +32,7 @@ spec:
         port: 22
         externalTrafficPolicy: Local
         externalIPs:
-        -  "2001:67c:1104:fc00::22"
+          -  "2001:67c:1104:fc00::22"
 
     ingress:
       enabled: true
@@ -79,23 +79,23 @@ spec:
         admin:
           DISABLE_REGULAR_ORG_CREATION: true
 
-   postgresql:
-    image:
-      repository: postgres
-      tag: 12
-      pullPolicy: IfNotPresent
-    volumePermissions:
-      enabled: true
-      pullPolicy: IfNotPresent
-      postgresqlDataDir: /data/pgdata
-    persistence:
-      storageclass: "longhorn"
-      smountPath: /data/
-    metrics:
-      serviceMonitor:
-      enabled: true
+    postgresql:
+      image:
+        repository: postgres
+        tag: 12
+        pullPolicy: IfNotPresent
+      volumePermissions:
+        enabled: true
+        pullPolicy: IfNotPresent
+        postgresqlDataDir: /data/pgdata
+      persistence:
+        storageclass: "longhorn"
+        smountPath: /data/
+      metrics:
+        serviceMonitor:
+        enabled: true
 
-   memcached:
+    memcached:
       image:
         repository: memcached
         tag: 1.6.6
