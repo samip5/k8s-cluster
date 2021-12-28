@@ -8,5 +8,4 @@ resources:
   - home-srv-ingress-and-service.yaml
   - home-pve-ingress-and-service.yaml
   - home-ingress.yaml
-  - gitlab-ingress-and-service.yaml
   - jenkins-ingress-and-service.yaml
