@@ -44,6 +44,6 @@ metadata:
   namespace: networking
 subsets:
   - addresses:
-      - ip: 2001:67c:1104:ea00:a007:c3ff:fe53:537a
+      - ip: 2001:67c:1104:e09a:f05b:33ff:fe5a:8c4a
     ports:
       - port: 8080
