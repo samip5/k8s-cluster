@@ -43,7 +43,7 @@ spec:
       CUSTOM_BUTTON_URL: https://liberapay.com/samip537/
       CUSTOM_BUTTON_ALT_TEXT: Donation link
       CUSTOM_BUTTON_ICON: fas fa-donate
-      CUSTOM_BUTTON_TEXT_COLOR: #ED2756
+      CUSTOM_BUTTON_TEXT_COLOR: "#ED2756"
       BUTTON_TARGET: _blank
       LINKED_IN: https://linkedin.com/in/samip537
       TWITTER: https://twitter.com/mantysaaris
