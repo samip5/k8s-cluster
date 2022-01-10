@@ -7,6 +7,7 @@ resources:
   - bitnami-charts.yaml
   - bootc-charts.yaml
   - coredns-charts.yaml
+  - cloudydeno-charts.yaml
   - deliveryhero-charts.yaml
   - drone-charts.yaml
   - falco-security-charts.yaml
