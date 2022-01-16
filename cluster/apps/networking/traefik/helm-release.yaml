@@ -28,7 +28,7 @@ spec:
         externalIPs:
         - "${SVC_TRAEFIK_ADDRESS}"
         - "${SVC_TRAEFIK_V4}"
-        externalTrafficPolicy: Local
+        externalTrafficPolicy: Cluster
     logs:
       general:
         format: json
