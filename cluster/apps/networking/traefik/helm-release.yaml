@@ -106,6 +106,12 @@ spec:
               values:
               - traefik
           topologyKey: kubernetes.io/hostname
+        - nodeSelectorTerms:
+            matchExpressions:
+            - key: kubernetes.io/arch
+              operator: In
+              values:
+               - "amd64"
     resources:
       requests:
         memory: 100Mi
