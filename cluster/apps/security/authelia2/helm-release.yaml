@@ -24,10 +24,11 @@ spec:
     domain: ${DEV_DOMAIN}
     ingress:
       enabled: true
+      certManager: true
       subdomain: sso
       tls:
         enabled: true
-        secret: networking/${DEV_DOMAIN}-tls
+        secret: ${DEV_DOMAIN}-tls
       traefikCRD:
         enabled: false
 
