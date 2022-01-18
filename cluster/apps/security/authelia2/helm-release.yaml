@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.authelia.com
       chart: authelia
-      version: 0.7.10
+      version: 0.8.1
       sourceRef:
         kind: HelmRepository
         name: authelia-charts
@@ -23,6 +23,7 @@ spec:
       serviceAccountName: authelia-dev
     domain: ${DEV_DOMAIN}
     ingress:
+      enabled: true
       subdomain: sso
       tls:
         enabled: true
@@ -32,6 +33,7 @@ spec:
 
     configMap:
       enabled: true
+
       server:
         port: 9091
         read_buffer_size: 4096
@@ -42,10 +44,45 @@ spec:
         format: json
 
       theme: dark
+
       totp:
         issuer: ${DEV_DOMAIN}
         period: 30
         skew: 1
+
+      ntp:
+        address: "10.0.105.1"
+
+      access_control:
+        secret:
+          existingSecret: authelia-dev-secrets
+
+      session:
+        name: authelia_session_dev
+        expiration: 24h
+        inactivity: 30m
+        remember_me_duration: 1w
+
+      storage:
+        postgres:
+          enabled: true
+          host: 192.168.2.2
+          port: 5432
+          database: authelia_dev
+          username: authelia_dev
+
+      notifier:
+        disable_startup_check: true
+        smtp:
+          enabled: true
+          enabledSecret: true
+          username: sso@mg.${MAIN_DOMAIN}
+          host: smtp.eu.mailgun.org
+          port: 587
+          sender: sso@mg.${MAIN_DOMAIN}
+          indentifier: sso.${MAIN_DOMAIN}
+          subject: "[samip-sso] {title}"
+
 
       authenication_backend:
         disable_reset_password: false
