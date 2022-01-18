@@ -24,11 +24,11 @@ spec:
     domain: ${DEV_DOMAIN}
     ingress:
       enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
       subdomain: sso
       tls:
         enabled: true
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
         secret: sso-${DEV_DOMAIN}-tls
       traefikCRD:
         enabled: false
