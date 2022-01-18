@@ -371,7 +371,7 @@
             "uid": "P7D7E27EDDA4DFA74"
           },
           "hide": false,
-          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeries = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°C\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"living_room_temperature\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeries = RawSeries\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Temperature in LivingRoom (°C)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeries |> yield()",
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeries = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"°C\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"livingroom_sensor_temperature\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeries = RawSeries\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Temperature in LivingRoom (°C)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeries |> yield()",
           "refId": "B"
         }
       ],
@@ -458,7 +458,7 @@
             "type": "influxdb",
             "uid": "P7D7E27EDDA4DFA74"
           },
-          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesHumidity = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"living_room_humidity\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeriesHumidity = RawSeriesHumidity\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Humidity in Living Room (%)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesHumidity |> yield()",
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeriesHumidity = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"%\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"livingroom_sensor_humidity\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n      \nNamedSeriesHumidity = RawSeriesHumidity\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Humidity in Living Room (%)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeriesHumidity |> yield()",
           "refId": "A"
         },
         {
@@ -606,7 +606,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 33,
+  "schemaVersion": 34,
   "style": "dark",
   "tags": [],
   "templating": {
