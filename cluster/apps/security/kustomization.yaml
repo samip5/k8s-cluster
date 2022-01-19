@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - authentik
   - authelia_dev
+  - authelia_fi
