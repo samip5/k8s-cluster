@@ -1,0 +1,112 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: authelia-dev
+  namespace: security
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.authelia.com
+      chart: authelia
+      version: 0.8.1
+      sourceRef:
+        kind: HelmRepository
+        name: authelia-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    rbac:
+      enabled: true
+      serviceAccountName: authelia-fi
+    domain: ${MAIN_DOMAIN}
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      subdomain: sso
+      tls:
+        enabled: true
+        secret: sso-${MAIN_DOMAIN}-tls
+      traefikCRD:
+        enabled: false
+
+
+    pod:
+      kind: Deployment
+      replicas: 1
+
+    configMap:
+      enabled: true
+
+      server:
+        port: 9091
+        read_buffer_size: 4096
+        write_buffer_size: 4096
+
+      log:
+        level: debug
+        format: text
+
+      theme: dark
+
+      totp:
+        issuer: ${MAIN_DOMAIN}
+        period: 30
+        skew: 1
+
+      ntp:
+        address: "10.0.105.1"
+
+      access_control:
+        secret:
+          existingSecret: authelia-fi-secrets
+
+      session:
+        name: authelia_session_fi
+        expiration: 24h
+        inactivity: 30m
+        remember_me_duration: 1w
+
+        redis:
+          database_index: 1
+
+      storage:
+        postgres:
+          enabled: true
+          host: 192.168.2.2
+          port: 5432
+          database: authelia_fi
+          username: authelia_fi
+
+      notifier:
+        disable_startup_check: true
+        smtp:
+          enabled: true
+          enabledSecret: true
+          username: sso@mg.${MAIN_DOMAIN}
+          host: smtp.eu.mailgun.org
+          port: 587
+          sender: sso@mg.${MAIN_DOMAIN}
+          indentifier: sso.${MAIN_DOMAIN}
+          subject: "[samip-sso] {title}"
+
+
+      authentication_backend:
+        disable_reset_password: false
+
+        ldap:
+          enabled: true
+          implementation: custom
+
+          url: ldap://ak-outpost-ldap.security.svc.cluster.local
+          start_tls: false
+          base_dn: DC=ldap,DC=skylab,DC=fi
+          username_attribute: "cn"
+          additional_users_dn: "ou=users"
+          users_filter: "(&({username_attribute}={input}))"
+          groups_filter: "(&(member={dn})(objectClass=group))"
+          user: cn=akadmin,dc=ldap,DC=skylab,dc=fi
+    secret:
+      existingSecret: "authelia-dev-secrets"
