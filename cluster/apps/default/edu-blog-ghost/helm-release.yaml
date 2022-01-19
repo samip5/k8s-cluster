@@ -44,6 +44,7 @@ spec:
      content:
       enabled: true
       accessMode: ReadWriteOnce
+      size: 1G
 
     mariadb:
       enabled: false
