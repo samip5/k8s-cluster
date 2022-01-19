@@ -31,9 +31,20 @@ spec:
         enabled: true
         secret: sso-${DEV_DOMAIN}-tls
       traefikCRD:
-        enabled: false
+        enabled: true
+        disableIngressRoute: true
+        entryPoints:
+          - websecure
 
-
+        middlewares:
+          auth:
+            nameOverride: authelia-dev-auth
+            authresponseHeaders:
+              - Remote-User
+              - Remote-Groups
+          chains:
+            auth:
+              nameOverride: authelia-dev-chain
     pod:
       kind: Deployment
       replicas: 3
