@@ -6,7 +6,7 @@ metadata:
   namespace: networking
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-    traefik.ingress.kubernetes.io/router.middlewares: "security-authelia-dev-auth@kubernetescrd"
+    traefik.ingress.kubernetes.io/router.middlewares: "security-authelia-fi-auth@kubernetescrd"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   ingressClassName: traefik
