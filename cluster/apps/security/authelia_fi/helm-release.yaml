@@ -30,7 +30,20 @@ spec:
         enabled: true
         secret: sso-${MAIN_DOMAIN}-tls
       traefikCRD:
-        enabled: false
+        enabled: true
+        disableIngressRoute: true
+        entryPoints:
+          - websecure
+
+        middlewares:
+          auth:
+            nameOverride: authelia-fi-auth
+            authresponseHeaders:
+              - Remote-User
+              - Remote-Groups
+          chains:
+            auth:
+              nameOverride: authelia-fi-chain
 
 
     pod:
