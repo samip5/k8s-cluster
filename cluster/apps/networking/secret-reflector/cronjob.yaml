@@ -14,7 +14,7 @@ spec:
           serviceAccountName: sa-secret-reflector
           containers:
             - name: secret-reflector
-              image: ghcr.io/k8s-at-home/kubectl:v1.23.1
+              image: ghcr.io/k8s-at-home/kubectl:v1.23.2
               env:
                 - name: SECRETS
                   value: "${DEV_DOMAIN}-tls ${HOME_DOMAIN}-tls ${K8S_DOMAIN}-tls ${MAIN_DOMAIN}-tls ${SECRET_DOMAIN}-tls"
