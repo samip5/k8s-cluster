@@ -5,7 +5,7 @@ metadata:
   namespace: networking
 spec:
   forwardAuth:
-    address: http://authelia-fi-api.svc.security.cluster.local/api/verify?auth=basic
+    address: http://authelia-dev.security.svc.cluster.local/api/verify?auth=basic
     trustForwardHeader: true
     authResponseHeaders:
       - Remote-User
