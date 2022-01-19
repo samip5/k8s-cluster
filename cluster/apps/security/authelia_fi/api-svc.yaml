@@ -4,8 +4,7 @@ metadata:
   name: authelia-fi-api
   namespace: security
 spec:
-  ipFamilies:
-    - IPv6
+  ipFamilyPolicy: PreferDualStack
   ports:
     - name: https
       port: 9091
