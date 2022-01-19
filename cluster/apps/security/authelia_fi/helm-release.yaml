@@ -35,7 +35,7 @@ spec:
 
     pod:
       kind: Deployment
-      replicas: 1
+      replicas: 3
 
     configMap:
       enabled: true
