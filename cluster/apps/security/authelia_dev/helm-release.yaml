@@ -109,3 +109,5 @@ spec:
           users_filter: "(&({username_attribute}={input})"
           groups_filter: "(&(member={dn})(objectClass=group))"
           user: cn=akadmin,dc=ldap,DC=skylab,dc=fi
+    secret:
+      existingSecret: "authelia-dev-secrets"
