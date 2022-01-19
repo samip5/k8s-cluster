@@ -38,6 +38,7 @@ spec:
         tls:
           - hosts:
               - "blog.edu.${MAIN_DOMAIN}"
+            secretName: ${MAIN_DOMAIN}-tls
 
 
     persistence:
