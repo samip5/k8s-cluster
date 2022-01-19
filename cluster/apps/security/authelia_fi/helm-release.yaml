@@ -103,11 +103,11 @@ spec:
           port: 587
           sender: sso@mg.${MAIN_DOMAIN}
           indentifier: sso.${MAIN_DOMAIN}
-          subject: "[samip-sso] {title}"
+          subject: "[samip-sso-fi] {title}"
 
 
       authentication_backend:
-        disable_reset_password: false
+        disable_reset_password: true # Authentik's LDAP outpost will not let you change it.
 
         ldap:
           enabled: true
