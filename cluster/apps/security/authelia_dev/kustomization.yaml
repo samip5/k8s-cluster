@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - secret.encrypt.yaml
   - helm-release.yaml
+  - api-svc.yaml
