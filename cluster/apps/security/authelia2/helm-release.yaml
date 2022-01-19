@@ -86,7 +86,7 @@ spec:
           subject: "[samip-sso] {title}"
 
 
-      authenication_backend:
+      authentication_backend:
         disable_reset_password: false
 
         ldap:
