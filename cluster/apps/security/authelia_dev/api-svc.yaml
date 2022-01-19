@@ -5,9 +5,11 @@ metadata:
   namespace: security
 spec:
   ipFamilyPolicy: PreferDualStack
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/instance: authelia-dev
   ports:
-    - name: https
+    - name: http
       port: 9091
+      protocol: TCP
       targetPort: 9091
-  type: ExternalName
-  externalName: authelia-dev.svc.security.cluster.local
