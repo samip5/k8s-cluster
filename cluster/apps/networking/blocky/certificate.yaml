@@ -18,3 +18,4 @@ spec:
   commonName: blocky.${SECRET_DOMAIN}
   dnsNames:
     - "*.blocky.${SECRET_DOMAIN}"
+    - blocky.${SECRET_DOMAIN}
