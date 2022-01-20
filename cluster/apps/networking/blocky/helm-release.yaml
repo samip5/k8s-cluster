@@ -121,7 +121,7 @@ spec:
       startup:
         spec:
           initialDelaySeconds: 30
-    persistance:
+    persistence:
       blocky-cert:
         enabled: true
         mountPath: /cert
