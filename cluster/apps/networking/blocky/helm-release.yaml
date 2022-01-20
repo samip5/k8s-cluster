@@ -105,11 +105,11 @@ spec:
         enable: true
         path: /metrics
       httpPort: 4000
-      httpsPort: 443
-      tlsPort: 853
+      #httpsPort: 443
+      #tlsPort: 853
       logLevel: info
-      certFile: /cert/tls.crt
-      keyFile: /cert/tls.key
+      #certFile: /cert/tls.crt
+      #keyFile: /cert/tls.key
     metrics:
       enabled: true
       serviceMonitor:
@@ -121,12 +121,6 @@ spec:
       startup:
         spec:
           initialDelaySeconds: 30
-    persistance:
-      blocky-cert:
-        enabled: true
-        mountPath: /cert
-        type: secret
-        name: blocky-cert
     podAnnotations:
       configmap.reloader.stakater.com/reload: blocky-config
       secret.reloader.stakater.com/reload: blocky-cert
