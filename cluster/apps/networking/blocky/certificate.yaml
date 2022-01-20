@@ -30,7 +30,6 @@ spec:
   privateKey:
     algorithm: ECDSA
     size: 384
-  commonName: ${LB_BLOCKY_V6}
   ipAddresses:
     - ${LB_BLOCKY_V6}
 
