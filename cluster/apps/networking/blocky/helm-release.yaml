@@ -16,6 +16,12 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      remediateLastFailure: true
   values:
     image:
       repository: ghcr.io/0xerr0r/blocky
@@ -39,12 +45,22 @@ spec:
           - "${LB_BLOCKY_V4}"
           - "${LB_BLOCKY_V6}"
         ports:
-          tcp:
+          dns-https:
+            enabled: true
+            port: 443
+            protocol: TCP
+            targetPort: 443
+          dns-tls:
+            enabled: true
+            port: 853
+            protocol: TCP
+            targetPort: 853
+          dns-tcp:
             enabled: true
             port: 53
             protocol: TCP
             targetPort: 53
-          udp:
+          dns-udp:
             enabled: true
             port: 53
             protocol: UDP
@@ -55,12 +71,8 @@ spec:
         default:
         #- tcp+udp:2a03:4000:4d:c92:88c0:96ff:fec6:b9d # OpenNIC, ns29.de
         #- tcp+udp:2001:67c:13e4:1::37 # OpenNIC, ns5.ru
-        - tcp+udp:2606:4700:4700::1111
-        - tcp+udp:2606:4700:4700::1001
-        - tcp+udp:2001:4860:4860::8888
-        - tcp+udp:2001:4860:4860::8844
-        - tcp+udp:1.1.1.1
-        #- tcp+udp:8.8.8.8
+        - tcp-tls:one.one.one.one
+        - tcp-tls:dns.google
       conditional:
         mapping:
           lan.${HOME_DOMAIN}: tcp+udp:${GATEWAY_ADDRESS}
@@ -84,7 +96,7 @@ spec:
         upstream: tcp+udp:${GATEWAY_ADDRESS}
       caching:
         minTime: 0
-        maxTime: 48h
+        maxTime: 30m
         prefetching: true
         prefetchExpires: 2h
         prefetchThreshold: 5
@@ -93,11 +105,31 @@ spec:
         enable: true
         path: /metrics
       httpPort: 4000
+      httpsPort: 443
+      tlsPort: 853
       logLevel: info
+      certFile: /cert/tls.crt
+      keyFile: /cert/tls.key
     metrics:
       enabled: true
+      serviceMonitor:
+        interval: 30s
+        scrapeTimeout: 10s
+      prometheusRule:
+        enabled: true
+    probes:
+      startup:
+        spec:
+          initialDelaySeconds: 30
+    persistance:
+      blocky-cert:
+        enabled: true
+        mountPath: /cert
+        type: secret
+        name: blocky-cert
     podAnnotations:
-      configmap.reloader.stakater.com/reload: "blocky-config"
+      configmap.reloader.stakater.com/reload: blocky-config
+      secret.reloader.stakater.com/reload: blocky-cert
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
     affinity:
