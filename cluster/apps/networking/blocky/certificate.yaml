@@ -7,14 +7,13 @@ metadata:
 spec:
   secretName: blocky-cert
   issuerRef:
-    name: letsencrypt-production
+    name: zerossl-production
     kind: ClusterIssuer
   privateKey:
     algorithm: ECDSA
     size: 384
   ipAddresses:
     - ${LB_BLOCKY_V6}
-    - ${LB_BLOCKY_V4}
   commonName: blocky.${SECRET_DOMAIN}
   dnsNames:
     - "*.blocky.${SECRET_DOMAIN}"
