@@ -77,6 +77,7 @@ spec:
       conditional:
         mapping:
           lan.${HOME_DOMAIN}: tcp+udp:${GATEWAY_ADDRESS}
+          ${HOME_DOMAIN}: tcp+udp:ns1.${COMPANY_DOMAIN}
           ${SECRET_DOMAIN}: tcp+udp:ns1.${COMPANY_DOMAIN}
           local.${SECRET_DOMAIN}: tcp+udp:ns1.${COMPANY_DOMAIN}
       blocking:
@@ -96,7 +97,7 @@ spec:
       clientLookup:
         upstream: tcp+udp:${GATEWAY_ADDRESS}
       caching:
-        minTime: 0
+        minTime: 1m
         maxTime: 30m
         prefetching: true
         prefetchExpires: 2h
