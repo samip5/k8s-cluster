@@ -21,7 +21,7 @@ spec:
       repository: docker.io/samip537/external-dns
       tag: v1.0.1
     interval: 5m
-    logLevel: info
+    logLevel: debug
     provider: pdns
     extraArgs:
       - --pdns-server=${PDNS_SAMIPSOLUTIONS_API_URL}
