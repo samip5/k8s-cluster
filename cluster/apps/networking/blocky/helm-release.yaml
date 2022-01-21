@@ -77,7 +77,6 @@ spec:
       conditional:
         mapping:
           lan.${HOME_DOMAIN}: tcp+udp:${GATEWAY_ADDRESS}
-          ${HOME_DOMAIN}: tcp+udp:ns1.${COMPANY_DOMAIN}
           ${SECRET_DOMAIN}: tcp+udp:ns1.${COMPANY_DOMAIN}
           local.${SECRET_DOMAIN}: tcp+udp:ns1.${COMPANY_DOMAIN}
       blocking:

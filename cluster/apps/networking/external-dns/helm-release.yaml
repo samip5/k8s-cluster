@@ -32,7 +32,6 @@ spec:
     txtOwnerId: "default-external-dns"
     domainFilters:
       - "${SECRET_DOMAIN}"
-      - "${HOME_DOMAIN}"
     resources:
       requests:
         memory: 100Mi
