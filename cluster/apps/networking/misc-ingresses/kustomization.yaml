@@ -9,3 +9,4 @@ resources:
   - home-ingress.yaml
   - home-pve-docker-svc.yaml
   - jenkins-ingress-and-service.yaml
+  - zabbix-ingress.yaml
