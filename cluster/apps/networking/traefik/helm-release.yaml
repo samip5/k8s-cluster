@@ -32,9 +32,9 @@ spec:
     logs:
       general:
         format: json
-        level: INFO
+        level: DEBUG
       access:
-        enabled: true
+        enabled: false
         format: json
         filters:
           statuscodes: "404,401,300-302"
@@ -58,7 +58,6 @@ spec:
     - "--providers.kubernetesingress.ingressendpoint.ip=${SVC_TRAEFIK_ADDRESS}"
     - "--providers.kubernetesingress.ingressendpoint.ip=${SVC_TRAEFIK_V4}"
     - "--providers.kubernetesingress.allowexternalnameservices=true"
-    - "--providers.kubernetesingress.allowEmptyServices=true"
     - "--providers.kubernetescrd.allowexternalnameservices=true"
     ports:
       traefik:
