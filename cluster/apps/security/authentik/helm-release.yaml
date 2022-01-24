@@ -32,7 +32,7 @@ spec:
         sample_rate: 1
         environment: "kryptonian"
       postgresql:
-        host: "authentik-postgresql"
+        host: "192.168.2.2"
         name: "authentik"
         user: "authentik"
         password: "${SECRET_AUTHENTIK_POSTGRES_PASSWORD}"
@@ -63,10 +63,6 @@ spec:
         secretName: ${SECRET_DOMAIN}-tls
     postgresql:
       enabled: false
-      host: 192.168.2.2
-      postgresqlUsername: authentik
-      postgresqlDatabase: authentik
-      postgresqlPassword: "${SECRET_AUTHENTIK_POSTGRES_PASSWORD}"
     redis:
       enabled: true
       image:
