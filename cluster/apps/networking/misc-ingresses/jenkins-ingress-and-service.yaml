@@ -17,7 +17,7 @@ spec:
               service:
                 name: jenkins
                 port:
-                  number: 80
+                  number: 8080
             path: /
             pathType: Prefix
   tls:
@@ -33,17 +33,7 @@ metadata:
 spec:
   ports:
     - name: http
-      port: 80
+      port: 8080
       targetPort: 8080
-  type: ClusterIP
----
-apiVersion: v1
-kind: Endpoints
-metadata:
-  name: jenkins
-  namespace: networking
-subsets:
-  - addresses:
-      - ip: 2001:67c:1104:e09a:f05b:33ff:fe5a:8c4a
-    ports:
-      - port: 8080
+  type: ExternalName
+  externalName: 192.168.2.118
