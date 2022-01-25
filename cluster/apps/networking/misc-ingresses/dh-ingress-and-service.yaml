@@ -56,10 +56,21 @@ spec:
                   number: 443
             path: /
             pathType: Prefix
+    - host: "dh6.${DEV_DOMAIN}"
+      http:
+        paths:
+          - backend:
+              service:
+                name: dh
+                port:
+                  number: 443
+            path: /
+            pathType: Prefix
   tls:
     - hosts:
         - "dh.${DEV_DOMAIN}"
         - "dh4.${DEV_DOMAIN}"
+        - "dh6.${DEV_DOMAIN}"
       secretName: ${DEV_DOMAIN}-tls
 ---
 apiVersion: v1
