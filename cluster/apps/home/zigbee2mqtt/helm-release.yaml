@@ -16,9 +16,6 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
-  dependsOn:
-    - name: mosquitto
-      namespace: home
   values:
     image:
       repository: ghcr.io/koenkk/zigbee2mqtt
