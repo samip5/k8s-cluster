@@ -28,9 +28,11 @@ spec:
     image:
       repository: quay.io/bugfest/tor-controller
       pullPolicy: Always
+      tag: latest
 
     # Runs Tor client
     manager:
       image:
         repository: quay.io/bugfest/tor-daemon-manager
         pullPolicy: Always
+        tag: latest
