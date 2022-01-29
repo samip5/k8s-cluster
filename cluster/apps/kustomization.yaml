@@ -16,3 +16,4 @@ resources:
 #  - vpn
 #  - proxy
   - home
+  - tor
