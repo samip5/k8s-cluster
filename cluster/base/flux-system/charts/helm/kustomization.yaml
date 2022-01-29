@@ -30,4 +30,5 @@ resources:
   - influxdata-charts.yaml
   - longhorn-charts.yaml
   - hajimari-charts.yaml
+  - bugfeast-tor-chart.yaml
 
