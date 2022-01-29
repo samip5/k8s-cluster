@@ -2,6 +2,8 @@ kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
   name: longhorn-crypto-per-volume
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
 provisioner: driver.longhorn.io
 allowVolumeExpansion: true
 parameters:
