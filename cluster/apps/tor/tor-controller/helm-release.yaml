@@ -27,10 +27,10 @@ spec:
     # Watches onionservices
     image:
       repository: quay.io/bugfest/tor-controller
-      pullPolicy: IfNotPresent
+      pullPolicy: Always
 
     # Runs Tor client
     manager:
       image:
         repository: quay.io/bugfest/tor-daemon-manager
-        pullPolicy: IfNotPresent
+        pullPolicy: Always
