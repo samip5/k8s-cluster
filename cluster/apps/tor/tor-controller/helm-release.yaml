@@ -2,13 +2,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: tor-controller
+  name: controller
   namespace: tor
 spec:
   interval: 5m
   chart:
     spec:
-      chart: bugfest
+      chart: tor-controller
       version: 0.1.0
       sourceRef:
         kind: HelmRepository
