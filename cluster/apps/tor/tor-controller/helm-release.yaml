@@ -8,6 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://bugfest.github.io/tor-controller
       chart: tor-controller
       version: 0.1.0
       sourceRef:
