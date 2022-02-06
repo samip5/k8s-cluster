@@ -5,5 +5,5 @@ resources:
   - letsencrypt-production.yaml
   - letsencrypt-staging.yaml
   - secret.enc.yaml
-  - zerossl-production.yaml
-  - zerossl-secret.enc.yaml
+#  - zerossl-production.yaml
+#  - zerossl-secret.enc.yaml
