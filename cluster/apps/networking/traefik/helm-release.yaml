@@ -104,7 +104,11 @@ spec:
             - key: app.kubernetes.io/name
               operator: In
               values:
-              - traefik
+                - traefik
+            - key: kubernetes.io/arch
+              operator: In
+              values:
+                - "amd64"
           topologyKey: kubernetes.io/hostname
     resources:
       requests:
