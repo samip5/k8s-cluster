@@ -37,7 +37,7 @@ spec:
         user: "authentik"
         password: "${SECRET_AUTHENTIK_POSTGRES_PASSWORD}"
       redis:
-        host: "authentik-redis-master"
+        host: "redis.databases.svc.cluster.local"
       email:
         host: "smtp.eu.mailgun.org"
         port: 587
@@ -64,7 +64,4 @@ spec:
     postgresql:
       enabled: false
     redis:
-      enabled: true
-      image:
-       repository: redis
-       tag: 'latest'
+      enabled: false

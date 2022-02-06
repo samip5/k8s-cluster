@@ -82,7 +82,7 @@ spec:
         remember_me_duration: 1w
 
         redis:
-          database_index: 0
+          database_index: 2
 
       storage:
         postgres:
