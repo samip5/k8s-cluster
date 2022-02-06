@@ -39,6 +39,7 @@ spec:
     persistence:
       config:
         enabled: true
+        storageClass: longhorn
     resources:
       requests:
         cpu: 100m
