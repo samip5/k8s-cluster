@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a6eb28f-0b63-4069-b18e-933c7c453351" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/cluster/apps/networking/secret-reflector/cronjob.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cluster/apps/networking/secret-reflector/cronjob.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster/apps/networking/traefik/helm-release.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cluster/apps/networking/traefik/helm-release.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster/apps/networking/certificates/genpi-certificate.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster/apps/security/authentik/helm-release.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cluster/apps/security/authentik/helm-release.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster/base/flux-system/flux-system-ssh.secret.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cluster/base/flux-system/flux-system-ssh.secret.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster/core/storage-classes/kustomization.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cluster/core/storage-classes/kustomization.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/provision/ansible/inventory/group_vars/kubernetes/k3s.yml" beforeDir="false" afterPath="$PROJECT_DIR$/provision/ansible/inventory/group_vars/kubernetes/k3s.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +19,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiPersistence">
+    <option name="context" value="default" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1vmk14ACWlfWthS0CS73Ma3VXvH" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -26,6 +35,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="go.format.on.save.advertiser.fired" value="true" />
+    <property name="go.formatter.settings.were.checked" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -37,10 +49,34 @@
       <option name="presentableId" value="Default" />
       <updated>1627174433409</updated>
       <workItem from="1627174434645" duration="290000" />
+      <workItem from="1644111635445" duration="310000" />
     </task>
+    <task id="LOCAL-00001" summary="Certificates: No need for genpi-certificate anymore.">
+      <created>1644111668991</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1644111668991</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Certificates: No need for genpi-certificate anymore." />
+    <option name="LAST_COMMIT_MESSAGE" value="Certificates: No need for genpi-certificate anymore." />
   </component>
 </project>
