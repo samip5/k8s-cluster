@@ -31,7 +31,3 @@ spec:
         core:
           sources:
             - cpu
-        sources:
-          cpu:
-            cpuid:
-              attributeWhitelist: [avx]
