@@ -10,6 +10,28 @@ spec:
   selector:
     app: your-spotify-mongo
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-spotify-mongodb-config-file
+  namespace: etc
+data:
+  mongodb.conf: |
+    systemLog:
+      destination: file
+      path: "/var/log/mongodb/mongod.log"
+      logAppend: true
+    storage:
+      journal:
+        enabled: true
+    processManagement:
+      fork: true
+    net:
+      bindIp: 0.0.0.0
+      port: 27017
+    setParameter:
+      enableLocalhostAuthBypass: false
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -27,7 +49,7 @@ spec:
     spec:
       containers:
         - name: mongodb
-          image: mongo:4.4.10-focal # CPU without AVX being used, 5.0+ not supported
+          image: mongo:5.0.6-focal
           ports:
             - containerPort: 27017
           volumeMounts:
@@ -45,6 +67,10 @@ spec:
                     operator: In
                     values:
                       - "amd64"
+                  - key: feature.node.kubernetes.io/cpu-cpuid.AVX
+                    operator: In
+                    values:
+                      - "true"
       volumes:
         - name: mongodb-persistent-storage
           persistentVolumeClaim:
@@ -52,3 +78,6 @@ spec:
         - name: mongodb-configuration-file
           configMap:
             name: my-spotify-mongodb-config-file
+            items:
+              - key: mongodb.conf
+                path: "mongodb.conf"
