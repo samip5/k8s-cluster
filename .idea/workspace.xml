@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4a6eb28f-0b63-4069-b18e-933c7c453351" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/cluster/apps/networking/certificates/genpi-certificate.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster/apps/security/authentik/helm-release.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cluster/apps/security/authentik/helm-release.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster/base/flux-system/flux-system-ssh.secret.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cluster/base/flux-system/flux-system-ssh.secret.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster/core/storage-classes/kustomization.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cluster/core/storage-classes/kustomization.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/provision/ansible/inventory/group_vars/kubernetes/k3s.yml" beforeDir="false" afterPath="$PROJECT_DIR$/provision/ansible/inventory/group_vars/kubernetes/k3s.yml" afterDir="false" />
+    <list default="true" id="4a6eb28f-0b63-4069-b18e-933c7c453351" name="Default Changelist" comment="Tweak node-feature-discovery.">
+      <change beforePath="$PROJECT_DIR$/.idea/kubernetes-settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kubernetes-settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +15,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="KubernetesApiPersistence">
     <option name="context" value="default" />
@@ -38,7 +36,17 @@
     <property name="go.format.on.save.advertiser.fired" value="true" />
     <property name="go.formatter.settings.were.checked" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/cluster/apps/kube-system/node-feature-discovery" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="com.intellij.kubernetes.config.KubernetesConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/cluster/apps/kube-system/node-feature-discovery" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/cluster/base/flux-system" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -49,7 +57,10 @@
       <option name="presentableId" value="Default" />
       <updated>1627174433409</updated>
       <workItem from="1627174434645" duration="290000" />
-      <workItem from="1644111635445" duration="310000" />
+      <workItem from="1644111635445" duration="4471000" />
+      <workItem from="1644126369781" duration="8629000" />
+      <workItem from="1644191530549" duration="4898000" />
+      <workItem from="1644392691691" duration="3630000" />
     </task>
     <task id="LOCAL-00001" summary="Certificates: No need for genpi-certificate anymore.">
       <created>1644111668991</created>
@@ -58,7 +69,175 @@
       <option name="project" value="LOCAL" />
       <updated>1644111668991</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Redis things">
+      <created>1644112139587</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1644112139587</updated>
+    </task>
+    <task id="LOCAL-00003" summary="No local storage">
+      <created>1644112153408</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1644112153408</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Changes">
+      <created>1644112180202</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1644112180202</updated>
+    </task>
+    <task id="LOCAL-00005" summary="More changes">
+      <created>1644112442081</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1644112442081</updated>
+    </task>
+    <task id="LOCAL-00006" summary="ZeroSSL">
+      <created>1644112881178</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1644112881178</updated>
+    </task>
+    <task id="LOCAL-00007" summary="No ZeroSSL">
+      <created>1644113021569</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1644113021569</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Blocky cert">
+      <created>1644113042959</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1644113042959</updated>
+    </task>
+    <task id="LOCAL-00009" summary="What ever">
+      <created>1644113345187</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1644113345187</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Longhorn change">
+      <created>1644117533204</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1644117533204</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Tweak Traefik resource limits">
+      <created>1644126403682</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1644126403682</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Just 3">
+      <created>1644128027226</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1644128027226</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Schedule on amd64 due to RAM">
+      <created>1644129666889</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1644129666889</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Maybe it works?">
+      <created>1644130215334</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1644130215334</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Hmm?">
+      <created>1644130387917</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1644130387917</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Blody hell, why is it still crashing due to OOM?">
+      <created>1644178839576</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1644178839576</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Hmm">
+      <created>1644187189179</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1644187189179</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Automatic redirect">
+      <created>1644189631632</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1644189631632</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Proper redirect">
+      <created>1644191589648</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1644191589648</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Node feature discovery charts">
+      <created>1644393824415</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1644393824415</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Sops">
+      <created>1644393835288</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1644393835288</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Deploy node-feature-discovery.">
+      <created>1644393976539</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1644393976539</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Tweak node-feature-discovery.">
+      <created>1644394368144</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1644394368144</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Provision my_spotify to Cluster again.">
+      <created>1644395017920</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1644395017920</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Oops">
+      <created>1644395114234</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1644395114234</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -77,6 +256,34 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Certificates: No need for genpi-certificate anymore." />
-    <option name="LAST_COMMIT_MESSAGE" value="Certificates: No need for genpi-certificate anymore." />
+    <MESSAGE value="Redis things" />
+    <MESSAGE value="No local storage" />
+    <MESSAGE value="Changes" />
+    <MESSAGE value="More changes" />
+    <MESSAGE value="ZeroSSL" />
+    <MESSAGE value="No ZeroSSL" />
+    <MESSAGE value="Blocky cert" />
+    <MESSAGE value="What ever" />
+    <MESSAGE value="Longhorn change" />
+    <MESSAGE value="Tweak Traefik resource limits" />
+    <MESSAGE value="Just 3" />
+    <MESSAGE value="Schedule on amd64 due to RAM" />
+    <MESSAGE value="Maybe it works?" />
+    <MESSAGE value="Hmm?" />
+    <MESSAGE value="Blody hell, why is it still crashing due to OOM?" />
+    <MESSAGE value="Hmm" />
+    <MESSAGE value="Automatic redirect" />
+    <MESSAGE value="Proper redirect" />
+    <MESSAGE value="Node feature discovery charts" />
+    <MESSAGE value="Sops" />
+    <MESSAGE value="Deploy node-feature-discovery." />
+    <MESSAGE value="Tweak node-feature-discovery." />
+    <MESSAGE value="Provision my_spotify to Cluster again." />
+    <MESSAGE value="Oops" />
+    <option name="LAST_COMMIT_MESSAGE" value="Oops" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
