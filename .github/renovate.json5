@@ -169,7 +169,6 @@
       "matchPackageNames": [
         "kube-prometheus-stack",
         "traefik",
-        "grafana",
         "authentik",
         "ingress-nginx"
       ]
