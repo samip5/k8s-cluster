@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a6eb28f-0b63-4069-b18e-933c7c453351" name="Default Changelist" comment="Tweak node-feature-discovery.">
-      <change beforePath="$PROJECT_DIR$/.idea/kubernetes-settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kubernetes-settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,6 +60,7 @@
       <workItem from="1644126369781" duration="8629000" />
       <workItem from="1644191530549" duration="4898000" />
       <workItem from="1644392691691" duration="3630000" />
+      <workItem from="1644690379582" duration="2509000" />
     </task>
     <task id="LOCAL-00001" summary="Certificates: No need for genpi-certificate anymore.">
       <created>1644111668991</created>
