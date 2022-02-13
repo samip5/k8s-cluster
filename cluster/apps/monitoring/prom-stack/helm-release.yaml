@@ -102,13 +102,14 @@ spec:
       enabled: true
     kubeControllerManager:
       enabled: true
+      endpoints:
+        - 10.0.105.10
     kubeScheduler:
       enabled: true
     kubeProxy:
       enabled: true
     kubeEtcd:
       enabled: false
-    # Setting this option to 0 disabled CPU limits
     prometheusOperator:
       prometheusConfigReloader:
         resources:
