@@ -101,13 +101,13 @@ spec:
     kubeApiServer:
       enabled: true
     kubeControllerManager:
-      enabled: true
-      endpoints:
-        - 10.0.105.10
+      enabled: false
     kubeScheduler:
       enabled: true
     kubeProxy:
       enabled: true
+      endpoints:
+        - 10.0.105.10
     kubeEtcd:
       enabled: false
     prometheusOperator:
