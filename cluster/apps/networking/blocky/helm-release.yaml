@@ -76,10 +76,10 @@ spec:
         - tcp-tls:dns.google
       conditional:
         mapping:
-          lan.${HOME_DOMAIN}: tcp+udp:${GATEWAY_ADDRESS}
-          ${SECRET_DOMAIN}: tcp+udp:ns1.${COMPANY_DOMAIN}
-          local.${SECRET_DOMAIN}: tcp+udp:ns1.${COMPANY_DOMAIN}
-          fh: tcp+udp:fd0d:944c:1337:a::
+          lan.${HOME_DOMAIN}: udp:${GATEWAY_ADDRESS}
+          ${SECRET_DOMAIN}: udp:ns1.${COMPANY_DOMAIN}
+          local.${SECRET_DOMAIN}: udp:ns1.${COMPANY_DOMAIN}
+          fh: "udp:fd0d:944c:1337:a::0"
       blocking:
         blackLists:
           ads:
