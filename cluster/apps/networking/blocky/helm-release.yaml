@@ -79,7 +79,7 @@ spec:
           lan.${HOME_DOMAIN}: tcp+udp:${GATEWAY_ADDRESS}
           ${SECRET_DOMAIN}: tcp+udp:ns1.${COMPANY_DOMAIN}
           local.${SECRET_DOMAIN}: tcp+udp:ns1.${COMPANY_DOMAIN}
-          fh: tcp+udp:[fd0d:944c:1337:a::]
+          fh: tcp+udp:fd0d:944c:1337:a::
       blocking:
         blackLists:
           ads:
