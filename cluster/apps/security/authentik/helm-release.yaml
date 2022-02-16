@@ -22,7 +22,7 @@ spec:
     fullnameOverride: authentik
     image:
       repository: ghcr.io/goauthentik/server
-      tag: 2022.1.5
+      tag: 2022.2.1
       pullPolicy: Always
 
     authentik:
