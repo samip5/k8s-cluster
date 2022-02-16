@@ -22,6 +22,8 @@ spec:
       ingressClassResource:
         name: tor-nginx
       ingressClass: tor-nginx
+      scope:
+        enabled: true
       config:
         hsts: false
         ssl-prefer-server-ciphers: false
