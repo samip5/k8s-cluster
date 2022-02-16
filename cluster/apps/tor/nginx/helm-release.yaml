@@ -1,0 +1,62 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ingress-nginx-tor
+  namespace: tor
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://kubernetes.github.io/ingress-nginx
+      chart: ingress-nginx
+      version: 4.0.17
+      sourceRef:
+        kind: HelmRepository
+        name: ingress-nginx-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    controller:
+      replicaCount: 2
+      ingressClassResource:
+        name: tor-nginx
+      ingressClass: tor-nginx
+      config:
+        hsts: false
+        ssl-prefer-server-ciphers: false
+        ssl-redirect: false
+      use-forwarded-headers: "true"
+      service:
+        externalTrafficPolicy: Local
+      metrics:
+        enabled: true
+        prometheusRule:
+          enabled: false
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values:
+                      - ingress-nginx
+                  - key: app.kubernetes.io/instance
+                    operator: In
+                    values:
+                      - ingress-nginx
+                  - key: app.kubernetes.io/component
+                    operator: In
+                    values:
+                      - controller
+              topologyKey: "kubernetes.io/hostname"
+
+      resources:
+        requests:
+          memory: 500Mi
+          cpu: 25m
+        limits:
+          memory: 600Mi
+    defaultBackend:
+      enabled: false
