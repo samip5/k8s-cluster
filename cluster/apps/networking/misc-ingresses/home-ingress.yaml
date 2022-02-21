@@ -15,7 +15,7 @@ spec:
         paths:
           - backend:
               service:
-                name: home-pve-docker
+                name: home-srv-docker
                 port:
                   number: 443
             path: /
