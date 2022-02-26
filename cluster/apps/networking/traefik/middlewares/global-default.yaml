@@ -7,4 +7,4 @@ metadata:
 spec:
   headers:
     customResponseHeaders:
-      X-Powerd-By: "Traefik inside kubernetes"
+      X-proxied-by: "Traefik inside k8s"
