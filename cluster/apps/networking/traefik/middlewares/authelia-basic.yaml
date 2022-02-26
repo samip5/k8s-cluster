@@ -10,3 +10,7 @@ spec:
     authResponseHeaders:
       - Remote-User
       - Remote-Groups
+    authRequestHeaders:
+      - X-Fowarded-Proto
+      - X-Forwarded-Host
+      - X-Forwarded-URI
