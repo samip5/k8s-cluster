@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/jackett
-      tag: v0.20.660
+      tag: v0.20.662
     env:
       TZ: "Europe/Helsinki"
     ingress:
