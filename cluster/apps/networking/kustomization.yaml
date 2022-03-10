@@ -4,7 +4,6 @@ resources:
   - traefik
   #- nginx
   - external-dns
-  #- adguard
   - blocky
   - secret-reflector
   - certificates

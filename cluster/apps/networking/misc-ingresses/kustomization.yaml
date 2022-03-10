@@ -4,9 +4,7 @@ resources:
   - nas-ingress-and-service.yaml
 #  - sso-fi-ingress.yaml
 #  - sso-dev-ingress.yaml
-  - dh-ingress-and-service.yaml
   - home-srv-ingress-and-service.yaml
   - home-ingress.yaml
-  - home-pve-docker-svc.yaml
   - jenkins-ingress-and-service.yaml
   - zabbix-ingress.yaml
