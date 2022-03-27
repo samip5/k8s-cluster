@@ -58,7 +58,7 @@ spec:
         write_buffer_size: 4096
 
       log:
-        level: info
+        level: debug
         format: text
 
       theme: dark
