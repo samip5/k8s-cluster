@@ -27,6 +27,9 @@ spec:
       data:
         enabled: true
         mountPath: /unifi
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        retain: true
         storageClass: nfs-client
 
     nodeSelector:
