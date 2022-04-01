@@ -23,6 +23,9 @@ spec:
     env:
       TZ: "${TIMEZONE}"
 
+    hostNetwork: true
+    dnsPolicy: ClusterFirstWithHostNet
+
     persistence:
       data:
         enabled: true
