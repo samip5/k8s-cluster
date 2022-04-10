@@ -28,11 +28,12 @@ spec:
         externalIPs:
         - "${SVC_TRAEFIK_ADDRESS}"
         - "${SVC_TRAEFIK_V4}"
+        - "192.168.10.80"
         externalTrafficPolicy: Local
     logs:
       general:
         format: json
-        level: DEBUG
+        level: INFO
       access:
         enabled: false
         format: json
