@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - image: yooooomi/your_spotify_server
-          name: express-mongo
+          name: backend
           env:
             - name: API_ENDPOINT
               value: https://spotify-backend.${SECRET_DOMAIN}
