@@ -14,6 +14,9 @@
       "cluster/.+/helm-release\\.yaml$",
     ],
   },
+  "flux": {
+    "enabled": false
+  },
   "kubernetes": {
     "fileMatch": [
       "cluster/.+\\.yaml$",
