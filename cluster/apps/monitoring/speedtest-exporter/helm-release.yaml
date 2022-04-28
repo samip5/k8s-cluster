@@ -1,0 +1,31 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: speedtest-exporter
+      version: 5.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: grafana-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: ghcr.io/miguelndecarvalho/speedtest-exporter
+      tag: v3.5.1
+    env:
+      TZ: Europe/Helsinki
+    metrics:
+      enabled: true
+      serviceMonitor:
+        interval: 60m
+        scrapeTimeout: 1m
+      prometheusRule:
+        enabled: false
