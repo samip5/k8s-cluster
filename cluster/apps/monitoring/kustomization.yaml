@@ -6,3 +6,4 @@ resources:
   - prom-stack
   - loki
   - promtail
+  - speedtest-exporter
