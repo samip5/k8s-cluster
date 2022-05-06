@@ -12,7 +12,7 @@ resources:
   - default
   - flux-system
   - databases
-#  - system-upgrade
+  - system-upgrade
 #  - vpn
 #  - proxy
   - home
