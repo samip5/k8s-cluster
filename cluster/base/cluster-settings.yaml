@@ -6,6 +6,7 @@ metadata:
   name: cluster-settings
 data:
   GATEWAY_ADDRESS: "192.168.2.1"
+  SVC_TREAFIK_DNA_ADDRESS: "2001:14ba:16d6:a6a0::443"
   SVC_TRAEFIK_ADDRESS: "2001:67c:1104:fc00::443"
   LB_BLOCKY_V6: "2001:67c:1104:fc00:53::1"
   LB_BLOCKY_V4: "192.168.10.54"
