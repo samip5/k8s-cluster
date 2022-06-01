@@ -26,6 +26,7 @@ spec:
       spec:
         ipFamilyPolicy: PreferDualStack
         externalIPs:
+        - "${SVC_TREAFIK_DNA_ADDRESS}"
         - "${SVC_TRAEFIK_ADDRESS}"
         - "${SVC_TRAEFIK_V4}"
         - "192.168.10.80"
