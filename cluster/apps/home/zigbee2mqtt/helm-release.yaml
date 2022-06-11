@@ -18,8 +18,8 @@ spec:
       interval: 5m
   values:
     image:
-      repository: ghcr.io/koenkk/zigbee2mqtt
-      tag: 1.25.1
+      repository: koenkk/zigbee2mqtt
+      tag: 1.25.2
     env:
       TZ: Europe/Helsinki
       ZIGBEE2MQTT_DATA: /data
