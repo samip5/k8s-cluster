@@ -1,4 +1,4 @@
-ARG VARIANT=focal
+ARG VARIANT=jammy
 FROM ubuntu:${VARIANT}
 
 COPY molecule/requirements.txt /tmp/molecule/requirements.txt
