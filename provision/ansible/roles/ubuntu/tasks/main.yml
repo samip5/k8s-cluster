@@ -7,6 +7,10 @@
   tags:
     - packages
 
+- import_tasks: kernel.yml
+  tags:
+    - kernel
+
 - include: network.yml
   tags:
     - network
@@ -14,6 +18,10 @@
 - include: filesystem.yml
   tags:
     - filesystem
+
+- include: unattended-upgrades.yml
+  tags:
+    - unattended-upgrades
 
 - include: user.yml
   tags:
