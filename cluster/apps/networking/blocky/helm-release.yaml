@@ -117,8 +117,7 @@ spec:
         enabled: true
     probes:
       startup:
-        spec:
-          initialDelaySeconds: 30
+        enabled: false
     podAnnotations:
       configmap.reloader.stakater.com/reload: blocky-config
       secret.reloader.stakater.com/reload: blocky-cert
