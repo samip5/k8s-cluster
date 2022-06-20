@@ -103,6 +103,12 @@ spec:
         prefetchExpires: 2h
         prefetchThreshold: 5
         prefetchMaxItemsCount: 0
+      redis:
+        address: redis.databases.svc.cluster.local
+        database: 10
+        required: false
+        connectionAttempts: 10
+        connectionCooldown: 30s
       prometheus:
         enable: true
         path: /metrics
