@@ -116,6 +116,12 @@ spec:
         scrapeTimeout: 10s
       prometheusRule:
         enabled: true
+    persistence:
+      blocky-cert:
+        enabled: true
+        mountPath: /cert
+        type: secret
+        name: blocky-cert
     probes:
       startup:
         enabled: false
