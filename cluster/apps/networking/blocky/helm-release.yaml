@@ -107,6 +107,7 @@ spec:
         enable: true
         path: /metrics
       httpPort: 4000
+      httpsPort: 443
       logLevel: info
     metrics:
       enabled: true
