@@ -108,7 +108,10 @@ spec:
         path: /metrics
       httpPort: 4000
       httpsPort: 443
+      tlsPort: 853
       logLevel: info
+      certFile: /cert/tls.crt
+      keyFile: /cert/tls.key
     metrics:
       enabled: true
       serviceMonitor:
