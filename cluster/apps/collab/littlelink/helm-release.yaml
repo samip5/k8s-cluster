@@ -34,7 +34,7 @@ spec:
       AVATAR_ALT: Skyler Mäntysaari
       NAME: Skyler Mäntysaari
       BIO: Hi there traveler! You have managed to find the link index of mine. Good job! :)
-      BUTTON_ORDER: GITHUB,GITLAB,GITEA,LINKED_IN,TELEGRAM
+      BUTTON_ORDER: GITHUB,GITLAB,GITEA,LINKED_IN,MATRIX,DISCORD,TELEGRAM
       GITHUB: https://github.com/samip5
       GITLAB: https://gitlab.com/samip5
       GITEA: https://git.samip.fi
@@ -49,6 +49,9 @@ spec:
       LINKED_IN: https://linkedin.com/in/samip537
       TWITTER: https://twitter.com/mantysaaris
       TELEGRAM: https://t.me/samip537
+      DISCORD: https://discord.com/users/157970669261422592
+      MATRIX: https://matrix.to/#/@sm:pikaviestin.fi
+      TRAKT: https://trakt.tv/users/samip537
       STEAM: https://steamcommunity.com/id/samip537
       EMAIL: sm+me@samip.fi
       EMAIL_TEXT: Email me!
