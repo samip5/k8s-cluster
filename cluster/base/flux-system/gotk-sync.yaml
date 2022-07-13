@@ -8,10 +8,10 @@ spec:
   interval: 1m0s
   ref:
     branch: main
-  secretRef:
-    name: flux-system
-  url: ssh://git@github.com/samip5/k8s-cluster
-  #url: https://github.com/samip5/k8s-cluster
+  #secretRef:
+  #  name: flux-system
+  #url: ssh://git@github.com/samip5/k8s-cluster
+  url: https://github.com/samip5/k8s-cluster
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
