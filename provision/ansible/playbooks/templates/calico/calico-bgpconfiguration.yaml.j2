@@ -6,9 +6,10 @@ metadata:
 spec:
   logSeverityScreen: Info
   nodeToNodeMeshEnabled: false
-  asNumber: "{{ calico_bgp_as_number }}"
+  asNumber: {{ calico_bgp_as_number }}
   serviceExternalIPs:
-    - cidr: "{{ calico_bgp_external_ips }}"
-    - cidr: "{{ calico_bgp_external_ips6 }}"
+    - cidr: {{ calico_bgp_external_ips }}
+    - cidr: {{ calico_bgp_external_ips2 }}
+    - cidr: {{ calico_bgp_external_ips6 }}
   prefixAdvertisements:
-    - cidr: 172.16.0.0/16
+    - cidr: 10.244.0.0/16

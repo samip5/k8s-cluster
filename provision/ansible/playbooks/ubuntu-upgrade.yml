@@ -2,6 +2,7 @@
 - hosts:
     - master
     - worker
+    - worker-amd64
   become: true
   gather_facts: true
   any_errors_fatal: true
