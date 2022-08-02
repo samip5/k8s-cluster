@@ -1,0 +1,14 @@
+# yamllint disable
+apiVersion: v1
+kind: Secret
+metadata:
+  name: dendrite-matrix-key
+  namespace: default
+type: Opaque
+data:
+  matrix_key.pem: |
+    -----BEGIN MATRIX PRIVATE KEY-----
+    Key-ID: ed25519:t1PkBK
+  
+    BKS9PY14L/vqXpCL4tw2kiMV2AC7XrwFNDkxWYuS1xA=
+    -----END MATRIX PRIVATE KEY-----
