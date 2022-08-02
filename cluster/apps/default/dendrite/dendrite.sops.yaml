@@ -2,13 +2,38 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: dendrite-matrix-key
-  namespace: default
-type: Opaque
+    name: dendrite-matrix-key
+    namespace: default
 data:
-  matrix_key.pem: |
-    -----BEGIN MATRIX PRIVATE KEY-----
-    Key-ID: ed25519:t1PkBK
-  
-    BKS9PY14L/vqXpCL4tw2kiMV2AC7XrwFNDkxWYuS1xA=
-    -----END MATRIX PRIVATE KEY-----
+    matrix_key.pem: ENC[AES256_GCM,data:oOYavWAK/SELal60g9aJ9Vy1cJdlEIBT9cl2vjDuEDmFZs+P5BbT9EmBOnsZcnyaOVLdKhY/THRu3ddM+77ySmqzWW2jwYt4Ag6VF1pFxDHSkk3rdwN2fB0oCqKayBhe7QZJVchfQnplZe508ltI6ltbFh+kFqR+CRzwufneGObiKjIgNlX1bSgMQeL9+bLeCiVfKpZUCAIaZxP95+8N8NTL9DXtFD4lTGWITsy3iffJKGbe,iv:8wz+4lf+16tLTy2PQCH40huioyqmzZshSqwNLzDkhtU=,tag:mBEwYLdyH6MlUz9Z33QzBw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2022-08-02T10:05:46Z"
+    mac: ENC[AES256_GCM,data:AnO00TpwOnfD02Yp+QVI3txEU6rCLG1/H3HgUYNnQL8tsY0HtrpsyCHYHA9PqLDnt+7S+xuDsRRCVZGi8KNXi73xgU+zNdcABueLe2ajusQSz2jIWYIgaPsIOdZHkc4sonDlUmeS8gAKIvwUSc9bbr/D5i4P9VcesMp4FVgeFWo=,iv:Y7ha4T2MN3EWDZ+sXVCL/nb0pDlmEp3mo70LzlqNVvU=,tag:/sVmu+Gfb2uga5RnRKk7oA==,type:str]
+    pgp:
+        - created_at: "2022-08-02T10:05:46Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMAzGbrIJF3UKrARAAnZ73iPuhJgglFheZuphVseWiyGA3FyJEgxRKWln56SaI
+            C2Zrv1yvDkr8hqz2XKnYk03w4ahYDhxFUOFJhBqflD7DA73mbUEKUTMLM11EYazo
+            FHbDRYku0hNKa1oA51aJi74t1pd2Ou0oxPjiwCw4Um1JHrAnyDsU80S1UgClzYEf
+            MgG5IBU+7zNmdMD8ASd1VzVDyWtdJX8Ymc4TybSL2q0HTYuDcnUzFINLImByBbpk
+            q7HpQM26ukjJyaYX7OUoyWTVbi7um/ZwkZ9updReoAulXE3RuRS7R9paNwGhQVA4
+            sGVOI9F4gBScwHHpmQgwl9cIAs6R9jINdp/ULaxgH2R18VybtO98bWmZZvcJxC8x
+            xolTVS6q0ZBGg+Mx3vz8qTaVa8VZZP3JmBpUH+kLzCTbhONef4J723Vc7LDnruxT
+            ZW2XaY9c0Dh0uVpIx+6dSiHOJyTwdnJFSsn/9bZ7L0T//v99/aeMPxYQSOrDGIem
+            SrYyn6fz8uTMXCEWnnFP7AcI7Iq69EZKnkoB0BSftsi10RuIKRlKQsPctePgSCxC
+            p/Yylh46G/qyhPWRikd1ADfMM1qX7MOZsU+DZxnx+Q8LQlIrHjbH5EoPJ505fWml
+            3sdBXBY29+fCN7DCcp5yFh7zvsSKPHn8zjylpPAaoO2PCTkaTTsi4jQLRxsVMqTS
+            XgFeDcc0eunx9lQtnEmOSQtCr4OdmLuiHP7semQ5To24A+zyXDznLQdQKKRO1g68
+            Q86R34vra0PyCj4sfBIbB8wF/DQoNq79uNopPhpAcBrT1TNVeFAMVplKcIDToP4=
+            =6O3Z
+            -----END PGP MESSAGE-----
+          fp: 6CD908E8381A8B4FA3F20A891CF4D098419C9124
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1
