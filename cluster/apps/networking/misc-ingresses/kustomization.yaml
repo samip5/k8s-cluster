@@ -5,5 +5,3 @@ resources:
 #  - sso-fi-ingress.yaml
 #  - sso-dev-ingress.yaml
   - home-srv-ingress-and-service.yaml
-  - home-ingress.yaml
-  - zabbix-ingress.yaml
