@@ -6,13 +6,17 @@ metadata:
   namespace: security
 spec:
   entryPoints:
-    - web
+    - websecure
   routes:
     - match: HostSNI(`sso.${SECRET_DOMAIN}`)
       priority: 10
       services:
         - name: authelia-dev-api
           port: 9091
+  tls:
+    secretName: sso-${SECRET_DOMAIN}-tls
+    domains:
+      - main: sso.${SECRET_DOMAIN}
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRouteTCP
@@ -21,11 +25,15 @@ metadata:
   namespace: security
 spec:
   entryPoints:
-    - web
+    - websecure
   routes:
     - match: HostSNI(`sso.${MAIN_DOMAIN}`)
       priority: 10
       services:
         - name: authelia-fi-api
           port: 9091
+  tls:
+    secretName: sso-${MAIN_DOMAIN}-tls
+    domains:
+      - main: sso.${MAIN_DOMAIN}
 
