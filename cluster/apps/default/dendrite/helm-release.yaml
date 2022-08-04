@@ -27,6 +27,10 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+              - path: /.well-known/matrix/server
+                pathType: Prefix
+              - path: /.well-known/matrix/client
+                pathType: Prefix
         tls:
           - secretName: dendrite-cert
             hosts:
