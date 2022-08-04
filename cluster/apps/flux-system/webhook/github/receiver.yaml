@@ -13,7 +13,7 @@ spec:
     name: github-webhook-token
   resources:
     - kind: GitRepository
-      name: flux-system
+      name: flux-cluster
     - kind: Kustomization
       name: apps
       apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -22,4 +22,10 @@ spec:
       apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
     - kind: Kustomization
       name: crds
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+    - kind: Kustomization
+      name: charts
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+    - kind: Kustomization
+      name: config
       apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
