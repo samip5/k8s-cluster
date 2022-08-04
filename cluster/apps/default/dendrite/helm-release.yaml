@@ -39,6 +39,8 @@ spec:
                 pathType: Prefix
           - host: ${SECRET_DOMAIN}
             paths:
+              - path: /.well-known/matrix/
+                pathType: Prefix
               - path: /.well-known/matrix/server
                 pathType: Prefix
               - path: /.well-known/matrix/client
