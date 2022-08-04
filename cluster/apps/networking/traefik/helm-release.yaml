@@ -60,6 +60,7 @@ spec:
     additionalArguments:
     - "--providers.kubernetesingress.ingressendpoint.ip=${SVC_TRAEFIK_ADDRESS}"
     - "--providers.kubernetesingress.ingressendpoint.ip=${SVC_TRAEFIK_V4}"
+    - "--providers.kubernetesingress.ingressendpoint.ip=${SVC_TREAFIK_DNA_ADDRESS}"
     - "--providers.kubernetesingress.allowexternalnameservices=true"
     - "--providers.kubernetescrd.allowexternalnameservices=true"
     ports:
