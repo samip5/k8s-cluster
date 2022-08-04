@@ -3,7 +3,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRouteTCP
 metadata:
   name: tcp-authelia-dev
-  namespace: networking
+  namespace: security
 spec:
   entryPoints:
     - web
@@ -18,7 +18,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRouteTCP
 metadata:
   name: tcp-authelia-fi
-  namespace: networking
+  namespace: security
 spec:
   entryPoints:
     - web
