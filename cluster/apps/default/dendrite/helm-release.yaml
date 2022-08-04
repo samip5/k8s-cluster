@@ -48,7 +48,7 @@ spec:
       matrix_key_secret:
         existingSecret: dendrite-matrix-key
       global:
-        server_name: ${SECRET_DOMAIN}
+        server_name: dendrite.${SECRET_DOMAIN}
         well_known_server_name: dendrite.${SECRET_DOMAIN}:443
         well_known_client_name: dendrite.${SECRET_DOMAIN}:443
         mscs:
