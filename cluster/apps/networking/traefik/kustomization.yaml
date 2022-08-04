@@ -7,4 +7,4 @@ resources:
   - tls-store
   - dashboard
   - middlewares
-  - custom-tcp-rules
+#   - custom-tcp-rules
