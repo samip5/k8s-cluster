@@ -54,19 +54,15 @@ spec:
         mscs:
           - msc2946
           - msc2444
+        presence:
+          enable_outbound: true
+          enable_inbound: true
+        database:
+          connection_string: ${CONNECTION_STRING}
     clientapi:
       config:
         registration_shared_secret: ${SECRET_DENDRITE_REGISTRATION_SECRET}
     podAnnotations:
       secret.reloader.stakater.com/reload: "dendrite-config"
     postgresql:
-      enabled: true
-      primary:
-        persistence:
-          enabled: true
-          existingClaim: "dendrite-postgres-pvc"
-      auth:
-        username: dendrite
-        database: dendrite
-        password: ${SECRET_DENDRITE_POSTGRES_PASSWORD}
-        postgresPassword: ${SECRET_DENDRITE_POSTGRES_POSTGRES_PASSWORD}
+      enabled: false

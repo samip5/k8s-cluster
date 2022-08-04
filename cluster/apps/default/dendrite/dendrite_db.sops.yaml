@@ -1,0 +1,39 @@
+# yamllint disable
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: dendrite-db
+    namespace: default
+data:
+    CONNECTION_STRING: ENC[AES256_GCM,data:r7vBE7zhhJFNU2WMJTR5eZepplxnUxqHVMTAJOo+lghpaIE5vuwxk2S5WHqHJ+C6z+ARZthTwcjUpanYX5qnCtHF/qtWo0SyzF8D325fkrQ=,iv:XvU8cPVASEQJaG0f6E+1ojkOd7QxN+cl0TLdMa3jA2w=,tag:P2Ha8aS9++EqfPUHgdO83Q==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2022-08-04T15:17:11Z"
+    mac: ENC[AES256_GCM,data:ei0mLM9UAAZwDlQRkJ8NMSdd+vhwHN0IxaQbCXlEfHtNXnjBs+mNd7qt8Lx0OZLpuBpjMGxMkP9y3ZJvqn5/1BVjeV6a5n0c165qiKxoVYpqLGXRQngirqZMbUDC1qIUlaE0BnMEIpzcIUiUY8al0CygJ+E6LE9qZxjP+uSDzmU=,iv:LtYuwx5h5AucesxMNvoydzsvfACBOlxn+EQNcIDPu5g=,tag:qqRYg3+VXJdDxqDP48wmqA==,type:str]
+    pgp:
+        - created_at: "2022-08-04T15:17:11Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMAzGbrIJF3UKrARAAiI/UlRpaGidTglixwN5D9VBGPMF5EcCELUUsTWJ1N11/
+            z51/pNEVXj9UghFNVRC3Ik/TTPmiNBBLTVUdIQGI+2POz5QYQXGYT4ENWcbndx3V
+            +Na84YN4kn7XOiiL+hECMOhdSiO5JufpbKw160vNGMvdbxxr3tO0+W7WPDafAAR+
+            Yfc7KcqtYW1SO2RCswcQC+3bkfONoo6BcVkZsuNs8f8+DvQdmyp12VeLnoAm/zVs
+            D6F2KWcbNDrwzSvhiPXFU4hZ0J8ligN5o5s6lGWgQwudsm+FSopRWuwul+NsAZ1T
+            /vF1ksAQUyJb0txreG7Lns1ozr3pMiyykYddYHuJx8mUBPIdC+qfRgVc0dM9USMt
+            3b56uUCzI5NY6R9eQBWoPssTwyT3mEXVnGkvYNWqDRCtU21gOGilT4Bv5CDjsETz
+            pF//BHOmLcMY6ailoS3xuueovXce0+6io2j7VzZivhVJWUSd3cHl8U37af4ZVWn+
+            K18unFjjE+TFZrjY2kHqTzqpPc2JAvQ73oX296TbhO4LhEcDefpfTkBPfb6p9siZ
+            4CxE9JuWYwOec7yLZmKBSxLmNCMmU6AfLITyAVnYeft2O88U40WNN3TyEFi6236i
+            F4oga1aGRL81Uxcajr77j/xi5+oBdGrUL/Tt3Ok1dbLtKenOCWdqnVTRDN9ewRHS
+            XgHB9qBvvmN6/evxQDz6hcrurdAdv+w1aDMDZpgkCvOe3o8+rB3vhONN+XJJYzT3
+            teBXg3FeVHO6L0uTUQsDVPe4p2HmVeUsTH1zQsHQMyADVDYCmzsydOPSFcOOq3Q=
+            =Om/i
+            -----END PGP MESSAGE-----
+          fp: 6CD908E8381A8B4FA3F20A891CF4D098419C9124
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1
