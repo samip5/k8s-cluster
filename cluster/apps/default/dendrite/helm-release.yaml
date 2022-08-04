@@ -23,10 +23,22 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
-          - host: dendrite.${SECRET_DOMAIN}
+          - host: d.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
+              - path: /.well-known/matrix/server
+                pathType: Prefix
+              - path: /.well-known/matrix/client
+                pathType: Prefix
+          - host: dendrite.${SECRET_DOMAIN}
+            paths:
+              - path: /.well-known/matrix/server
+                pathType: Prefix
+              - path: /.well-known/matrix/client
+                pathType: Prefix
+          - host: ${SECRET_DOMAIN}
+            paths:
               - path: /.well-known/matrix/server
                 pathType: Prefix
               - path: /.well-known/matrix/client
@@ -35,6 +47,7 @@ spec:
           - secretName: dendrite-cert
             hosts:
               - dendrite.${SECRET_DOMAIN}
+              - d.${SECRET_DOMAIN}
     persistence:
       media:
         enabled: true
@@ -47,9 +60,9 @@ spec:
       matrix_key_secret:
         existingSecret: dendrite-matrix-key
       global:
-        server_name: dendrite.${SECRET_DOMAIN}
-        well_known_server_name: dendrite.${SECRET_DOMAIN}:443
-        well_known_client_name: dendrite.${SECRET_DOMAIN}:443
+        server_name: ${SECRET_DOMAIN}
+        well_known_server_name: d.${SECRET_DOMAIN}:443
+        well_known_client_name: d.${SECRET_DOMAIN}:443
         mscs:
           - msc2946
           - msc2444
