@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: HostSNI('sso.${SECRET_DOMAIN}')
+    - match: HostSNI(`sso.${SECRET_DOMAIN}`)
       priority: 10
       services:
         - name: authelia-dev-api
@@ -23,7 +23,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: HostSNI('sso.${MAIN_DOMAIN}')
+    - match: HostSNI(`sso.${MAIN_DOMAIN}`)
       priority: 10
       services:
         - name: authelia-fi-api
