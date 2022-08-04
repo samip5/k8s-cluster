@@ -19,18 +19,13 @@ spec:
     ingress:
       main:
         enabled: true
+        ingressClassName: traefik
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
           - host: dendrite.${SECRET_DOMAIN}
             paths:
               - path: /
-                pathType: Prefix
-          - host: ${SECRET_DOMAIN}
-            paths:
-              - path: /.well-known/matrix/server
-                pathType: Prefix
-              - path: /.well-known/matrix/client
                 pathType: Prefix
         tls:
           - secretName: dendrite-cert
