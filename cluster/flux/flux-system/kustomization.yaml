@@ -1,8 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - flux-system-ssh.sops.yaml
   - gotk-components.yaml
-  - gotk-sync.yaml
-  - charts
+  - flux-cluster.yaml
 patchesStrategicMerge:
   - gotk-patches.yaml
