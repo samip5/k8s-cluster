@@ -53,12 +53,11 @@ spec:
           - msc2444
     clientapi:
       config:
-        registration_disabled: false
         registration_shared_secret: ${SECRET_DENDRITE_REGISTRATION_SECRET}
     podAnnotations:
       secret.reloader.stakater.com/reload: "dendrite-config"
     postgresql:
-      enabled: false
+      enabled: true
       primary:
         persistence:
           enabled: true
