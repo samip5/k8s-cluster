@@ -1,0 +1,31 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: tcp-authelia-dev
+  namespace: networking
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: HostSNI('sso.${SECRET_DOMAIN}')
+      priority: 10
+      services:
+        - name: authelia-dev-api
+          port: 9091
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: tcp-authelia-dev
+  namespace: networking
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: HostSNI('sso.${MAIN_DOMAIN}')
+      priority: 10
+      services:
+        - name: authelia-fi-api
+          port: 9091
+
