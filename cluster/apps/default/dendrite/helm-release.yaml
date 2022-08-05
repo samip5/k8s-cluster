@@ -64,7 +64,7 @@ spec:
       global:
         server_name: ${SECRET_DOMAIN}
         well_known_server_name: d.${SECRET_DOMAIN}:443
-        well_known_client_name: d.${SECRET_DOMAIN}:443
+        well_known_client_name: https://d.${SECRET_DOMAIN}:443
         mscs:
           - msc2946
           - msc2444
