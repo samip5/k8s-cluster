@@ -166,4 +166,4 @@ spec:
             spec:
               resources:
                 requests:
-                  storage: 10Gi
+                  storage: 50Gi
