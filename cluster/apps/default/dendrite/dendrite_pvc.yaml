@@ -24,16 +24,3 @@ spec:
     requests:
       storage: 2Gi
   storageClassName: longhorn
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: dendrite-postgres-pvc
-  namespace: default
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 15Gi
-  storageClassName: longhorn
