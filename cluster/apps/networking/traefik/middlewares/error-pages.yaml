@@ -7,7 +7,7 @@ metadata:
 spec:
   errors:
     status:
-      - "400-599"
+      - "500-599"
     query: /{status}.html
     service:
       name: error-pages
