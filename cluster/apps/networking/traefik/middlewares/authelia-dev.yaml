@@ -1,11 +1,11 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: basic-authelia
+  name: authelia-dev
   namespace: networking
 spec:
   forwardAuth:
-    address: http://[2001:67c:1be8::56]:40119/api/verify?auth=basic
+    address: http://[2001:67c:1be8::56]:40118/api/verify?rd=sso.${DEV_DOMAIN}
     trustForwardHeader: true
     authResponseHeaders:
       - Remote-User
