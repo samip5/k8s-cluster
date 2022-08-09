@@ -7,5 +7,5 @@ metadata:
 spec:
   chain:
     middlewares:
-      - name: networking-global-default
-      - name: networking-error-pages
+      - name: traefik-header
+      - name: error-pages

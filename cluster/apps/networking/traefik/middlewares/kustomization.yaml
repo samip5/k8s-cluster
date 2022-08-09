@@ -9,3 +9,4 @@ resources:
   - redirect-path.yaml
   - global-default.yaml
   - error-pages.yaml
+  - traefik-header.yaml
