@@ -8,3 +8,4 @@ resources:
   - rfc1918.yaml
   - redirect-path.yaml
   - global-default.yaml
+  - error-pages.yaml
