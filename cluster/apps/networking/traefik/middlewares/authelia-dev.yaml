@@ -5,7 +5,7 @@ metadata:
   namespace: networking
 spec:
   forwardAuth:
-    address: http://[2001:67c:1be8::56]:40118/api/verify?rd=sso.${DEV_DOMAIN}
+    address: http://[2001:67c:1be8::56]:40118/api/verify?rd=https://sso.${DEV_DOMAIN}
     trustForwardHeader: true
     authResponseHeaders:
       - Remote-User
