@@ -5,6 +5,7 @@ metadata:
   name: global-default
   namespace: networking
 spec:
-  headers:
-    customResponseHeaders:
-      X-proxied-by: "Traefik inside k8s"
+  chain:
+    middlewares:
+      - name: networking-global-default
+      - name: networking-error-pages
