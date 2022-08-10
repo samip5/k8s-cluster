@@ -31,14 +31,14 @@ spec:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
-          - host: "blog.edu.${MAIN_DOMAIN}"
+          - host: "blog.edu.${MAIN_DOMAIN_2}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "blog.edu.${MAIN_DOMAIN}"
-            secretName: ${MAIN_DOMAIN}-tls
+              - "blog.edu.${MAIN_DOMAIN_2}"
+            secretName: blog.edu.${MAIN_DOMAIN_2}-tls
 
 
     persistence:
