@@ -17,6 +17,10 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    image:
+      repository: ghost
+      tag: 5.8.3
+      pullPolicy: IfNotPresent
     env:
       url: "https://blog.edu.${MAIN_DOMAIN_2}"
       database__connection__host: "mariadb.databases.svc.cluster.local"
