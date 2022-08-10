@@ -67,7 +67,7 @@ spec:
             targetPort: 53
         externalTrafficPolicy: Local
     config: |
-      bootstrapDns: tcp:1.1.1.1
+      bootstrapDns: tcp+udp:1.1.1.1
       upstream:
         default:
         #- tcp+udp:2a03:4000:4d:c92:88c0:96ff:fec6:b9d # OpenNIC, ns29.de
