@@ -76,7 +76,7 @@ spec:
         - tcp-tls:dns.google
       conditional:
         mapping:
-          lan.${HOME_DOMAIN}: udp:${GATEWAY_ADDRESS}
+          lan.${HOME_DOMAIN}: tcp+udp:${GATEWAY_ADDRESS}
       blocking:
         blackLists:
           ads:
