@@ -19,7 +19,7 @@ spec:
   values:
     image:
      repository: ghcr.io/k8s-at-home/grafana
-     tag: v9.0.6
+     tag: v9.0.7
     replicas: 1
     env:
       GF_EXPLORE_ENABLED: true
