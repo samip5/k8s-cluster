@@ -18,7 +18,7 @@ spec:
       interval: 5m
   values:
     env:
-      url: "https://blog.edu.${MAIN_DOMAIN}"
+      url: "https://blog.edu.${MAIN_DOMAIN_2}"
       database__connection__host: "mariadb.databases.svc.cluster.local"
       database__connection__database: "edublog_ghost"
       database__connection__user: "edublog_ghost"
