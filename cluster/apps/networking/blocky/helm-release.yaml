@@ -117,10 +117,11 @@ spec:
     metrics:
       enabled: true
       serviceMonitor:
+        enabled: false
         interval: 30s
         scrapeTimeout: 10s
       prometheusRule:
-        enabled: true
+        enabled: false
     persistence:
       blocky-cert:
         enabled: true
