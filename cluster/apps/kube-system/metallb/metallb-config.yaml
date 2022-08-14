@@ -1,0 +1,12 @@
+---
+peers:
+  - peer-address:
+    peer-asn: 213021
+    my-asn: 213021
+address-pools:
+  - name: default
+    protocol: bgp
+    avoid-buggy-ips: true
+    addresses:
+      - 10.96.0.0/16
+      - 2001:67c:1104:fdb::/112
