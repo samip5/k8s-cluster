@@ -68,7 +68,7 @@ spec:
       ingress:
         enabled: true
         pathType: Prefix
-        ingressClassName: "traefik"
+        ingressClassName: "nginx"
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
@@ -141,7 +141,7 @@ spec:
       ingress:
         enabled: true
         pathType: Prefix
-        ingressClassName: "traefik"
+        ingressClassName: "nginx"
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
