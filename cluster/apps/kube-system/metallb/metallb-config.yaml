@@ -1,6 +1,6 @@
 ---
 peers:
-  - peer-address:
+  - peer-address: 10.0.105.1
     peer-asn: 213021
     my-asn: 213021
 address-pools:
