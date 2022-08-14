@@ -103,10 +103,6 @@ spec:
             type: influxdb
             access: proxy
             url: http://influxdb-influxdb2.databases.svc
-          - name: InfluxDB (outside)
-            type: influxdb
-            access: proxy
-            url: https://influx.${HOME_DOMAIN}
             secureJsonData:
               token: ${SECRET_GRAFANA_OUTSIDE_INFLUX_TOKEN}
             jsonData:
@@ -158,7 +154,7 @@ spec:
       enabled: true
     ingress:
       enabled: true
-      ingressClassName: "traefik"
+      ingressClassName: "nginx"
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       hosts:
