@@ -24,6 +24,7 @@ resources:
   - external-dns-charts.yaml
   - emqx-charts.yaml
   - nfs-subdir-external-provisioner-charts.yaml
+  - metallb-charts.yaml
   - prometheus-community-charts.yaml
   - stakater-charts.yaml
   - traefik-charts.yaml
