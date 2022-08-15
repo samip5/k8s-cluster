@@ -68,4 +68,4 @@ spec:
         tls:
           - hosts:
               - "${DEV_DOMAIN}"
-            secretName: networking/${DEV_DOMAIN}-tls
+            secretName: ${DEV_DOMAIN}-tls
