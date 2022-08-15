@@ -22,7 +22,6 @@ spec:
             key: cloudflare-token
       selector:
         dnsZones:
-          - "${SECRET_DOMAIN}"
           - "${COMPANY_DOMAIN}"
           - "${MAIN_DOMAIN}"
           - "${MAIN_DOMAIN_2}"
