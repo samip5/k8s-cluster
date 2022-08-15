@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - organizr
   - dendrite
-  - edu-blog-ghost
+#  - edu-blog-ghost
