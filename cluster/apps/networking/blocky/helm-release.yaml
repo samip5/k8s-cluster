@@ -41,9 +41,8 @@ spec:
       dns:
         enabled: true
         type: LoadBalancer
-        externalIPs:
-          - "${LB_BLOCKY_V4}"
-          - "${LB_BLOCKY_V6}"
+        annotations:
+          metallb.universe.tf/loadBalancerIPs: "${LB_BLOCKY_V4},${LB_BLOCKY_V6}"
         ports:
           dns-https:
             enabled: true
@@ -66,6 +65,10 @@ spec:
             protocol: UDP
             targetPort: 53
         externalTrafficPolicy: Local
+        lyPolicy: "PreferDualStack"
+        ipFamilies:
+          - IPv4
+          - IPv6
     config: |
       bootstrapDns: tcp+udp:1.1.1.1
       upstream:
