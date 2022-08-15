@@ -89,7 +89,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
-  ingressClassName: traefik
+  ingressClassName: nginx
   rules:
     - host: "home-srv.${DEV_DOMAIN}"
       http:
