@@ -9,17 +9,8 @@ address-pools:
     avoid-buggy-ips: true
     addresses:
       - 10.96.69.0/24
+      - 192.168.10.0/24
       - 2001:67c:1104:fdb::/112
-  - name: traefik-pool
-    protocol: bgp
-    auto-assign: false
-    addresses:
-      - 192.168.10.80/32
-  - name: nginx-pool
-    protocol: bgp
-    auto-assign: false
-    addresses:
-      - 192.168.10.81/32
   - name: blocky-pool
     protocol: bgp
     addresses:
