@@ -25,6 +25,7 @@ address-pools:
     auto-assign: false
     addresses:
       - 192.168.10.54/32
+      - 2001:67c:1104:fc00:53::1/128
   - name: public
     protocol: bgp
     avoid-buggy-ips: true
