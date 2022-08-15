@@ -65,7 +65,7 @@ spec:
             protocol: UDP
             targetPort: 53
         externalTrafficPolicy: Local
-        lyPolicy: "PreferDualStack"
+        ipFamilyPolicy: "PreferDualStack"
         ipFamilies:
           - IPv4
           - IPv6
