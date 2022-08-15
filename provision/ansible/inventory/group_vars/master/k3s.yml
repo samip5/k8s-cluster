@@ -4,6 +4,7 @@
 
 # Define the host as control plane nodes
 k3s_control_node: true
+k3s_disable_kube_proxy: true
 
 # k3s settings for all control-plane nodes
 k3s_server:
