@@ -26,7 +26,7 @@ spec:
       annotations:
        metallb.universe.tf/allow-shared-ip: "traefik"
        metallb.universe.tf/loadBalancerIPs: "${SVC_TRAEFIK_ADDRESS},${SVC_TRAEFIK_V4}"
-       tallb.universe.tf/address-pool: traefik-pool
+       metallb.universe.tf/address-pool: traefik-pool
       externalTrafficPolicy: Local
     logs:
       general:
