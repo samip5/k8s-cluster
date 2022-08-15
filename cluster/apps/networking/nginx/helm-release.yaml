@@ -24,16 +24,71 @@ spec:
         hsts: false
         ssl-prefer-server-ciphers: false
         ssl-redirect: false
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values:
+                      - ingress-nginx
+                  - key: app.kubernetes.io/instance
+                    operator: In
+                    values:
+                      - ingress-nginx
+                  - key: app.kubernetes.io/component
+                    operator: In
+                    values:
+                      - controller
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+      autoscaling:
+        enabled: true
+        minReplicas: 3
+        maxReplicas: 6
+        targetCPUUtilizationPercentage: 80
+        targetMemoryUtilizationPercentage: 80
+        behavior:
+          scaleDown:
+            stabilizationWindowSeconds: 300
+            policies:
+              - type: Pods
+                value: 1
+                periodSeconds: 180
+          scaleUp:
+            stabilizationWindowSeconds: 300
+            policies:
+              - type: Pods
+                value: 2
+                periodSeconds: 60
       use-forwarded-headers: "true"
       service:
-        externalIPs:
-        - ${SVC_NGINX_v4}
-        - ${SVC_NGINX_IPv6}
+        enabled: true
+        type: LoadBalancer
+        annotations:
+          metallb.universe.tf/allow-shared-ip: "nginx"
+          metallb.universe.tf/loadBalancerIPs: "${SVC_NGINX_v4},${SVC_NGINX_IPv6}"
         externalTrafficPolicy: Local
+        ipFamilyPolicy: "PreferDualStack"
+        ipFamilies:
+          - IPv4
+          - IPv6
+      publichService:
+        enabled: false
+
       metrics:
         enabled: true
         prometheusRule:
           enabled: false
+      topologySpreadConstraints:
+        - maxSkew: 3
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/instance: ingress-nginx
+              app.kubernetes.io/component: controller
       extraArgs:
         default-ssl-certificate: "networking/${SECRET_DOMAIN}-tls"
       affinity:
@@ -57,9 +112,28 @@ spec:
 
       resources:
         requests:
-          memory: 500Mi
-          cpu: 25m
+          cpu: 2281m
+          memory: 524M
         limits:
-          memory: 600Mi
+          cpu: 2281m
+          memory: 524M
     defaultBackend:
-      enabled: false
+      enabled: true
+      autoscaling:
+        enabled: true
+        maxReplicas: 3
+        image:
+          repository: ghcr.io/tarampampam/error-pages
+          tag: 2.17.0
+        extraEnvs:
+          - name: TEMPLATE_NAME
+            value: lost-in-space
+          - name: SHOW_DETAILS
+            value: "false"
+        resources:
+          requests:
+            cpu: 15m
+            memory: 105M
+          limits:
+            cpu: 20m
+            memory: 105M
