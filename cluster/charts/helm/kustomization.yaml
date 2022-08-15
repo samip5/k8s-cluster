@@ -9,6 +9,7 @@ resources:
   - coredns-charts.yaml
   - cilium-charts.yaml
   - cloudydeno-charts.yaml
+  - cert-manager-webhook-powerdns-charts.yaml
   - deliveryhero-charts.yaml
   - drone-charts.yaml
   - falco-security-charts.yaml
