@@ -109,7 +109,11 @@ spec:
         enable: true
         path: /metrics
       httpPort: 4000
+      httpsPort: 443
+      tlsPort: 853
       logLevel: info
+      certFile: /cert/tls.crt
+      keyFile: /cert/tls.key
     metrics:
       enabled: true
       serviceMonitor:
@@ -118,6 +122,12 @@ spec:
         scrapeTimeout: 10s
       prometheusRule:
         enabled: false
+    persistence:
+      blocky-cert:
+        enabled: true
+        mountPath: /cert
+        type: secret
+        name: blocky-cert
     probes:
       liveness:
         failureThreshold: 5
