@@ -43,7 +43,7 @@ spec:
         type: LoadBalancer
         annotations:
           metallb.universe.tf/allow-shared-ip: "blocky"
-          metallb.universe.tf/loadBalancerIPs: "${LB_BLOCKY_V6}"
+          metallb.universe.tf/loadBalancerIPs: "${LB_BLOCKY_V4}"
         ports:
           dns-https:
             enabled: true
