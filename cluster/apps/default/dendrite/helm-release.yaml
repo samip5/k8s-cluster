@@ -25,7 +25,7 @@ spec:
         enabled: true
         ingressClassName: traefik
         annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
+          cert-manager.io/cluster-issuer: zerossl-production
         hosts:
           - host: d.${SECRET_DOMAIN}
             paths:
