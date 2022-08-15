@@ -48,7 +48,6 @@ spec:
         enabled: true
         type: LoadBalancer
         annotations:
-          metallb.universe.tf/allow-shared-ip: "nginx"
           metallb.universe.tf/loadBalancerIPs: "${SVC_NGINX_v4},${SVC_NGINX_IPv6}"
         externalTrafficPolicy: Local
         ipFamilyPolicy: "PreferDualStack"
