@@ -49,7 +49,7 @@ spec:
         type: LoadBalancer
         annotations:
           metallb.universe.tf/allow-shared-ip: "nginx"
-          metallb.universe.tf/loadBalancerIPs: "${SVC_NGINX_v4},${SVC_NGINX_IPv6}"
+          metallb.universe.tf/loadBalancerIPs: "${SVC_NGINX_v4},192.168.10.80,${SVC_NGINX_IPv6}"
         externalTrafficPolicy: Local
         ipFamilyPolicy: "PreferDualStack"
         ipFamilies:
