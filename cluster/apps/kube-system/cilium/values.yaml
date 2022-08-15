@@ -1,0 +1,37 @@
+kubeProxyReplacement: "strict"
+kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
+ipv4NativeRoutingCIDR: "10.244.0.0/16"
+ipv6NativeRoutingCIDR: "fddf:f7bc:9670::/48"
+k8sServiceHost: "10.0.105.10"
+k8sServicePort: 6443
+loadBalancer:
+  algorithm: "maglev"
+  mode: "dsr"
+tunnel: "disabled"
+endpointRoutes:
+  enabled: true
+autoDirectNodeRoutes: true
+ipv6:
+  enabled: true
+hubble:
+  enabled: true
+  metrics:
+    enabled:
+      - dns:query
+      - drop
+      - tcp
+      - flow
+      - port-distribution
+      - icmp
+      - http
+    serviceMonitor:
+      enabled: false
+  relay:
+    enabled: true
+    rollOutPods: true
+  ui:
+    enabled: false
+bgp:
+  enabled: false
+  announce:
+    loadbalancerIP: false
