@@ -66,10 +66,6 @@ spec:
             protocol: UDP
             targetPort: 53
         externalTrafficPolicy: Local
-        ipFamilyPolicy: "PreferDualStack"
-        ipFamilies:
-          - IPv4
-          - IPv6
     config: |
       bootstrapDns: tcp+udp:1.1.1.1
       upstream:
