@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - descheduler
   - metrics-server
-#  - metallb
+  - metallb
   - reloader
   - node-feature-discovery
   - cilium
