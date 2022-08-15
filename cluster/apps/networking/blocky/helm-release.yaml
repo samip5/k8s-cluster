@@ -68,8 +68,8 @@ spec:
         externalTrafficPolicy: Local
         ipFamilyPolicy: "PreferDualStack"
         ipFamilies:
-          - IPv6
           - IPv4
+          - IPv6
     config: |
       bootstrapDns: tcp+udp:1.1.1.1
       upstream:
