@@ -11,10 +11,6 @@ address-pools:
       - 10.96.69.0/24
       - 192.168.10.0/24
       - 2001:67c:1104:fdb::/112
-  - name: blocky-pool
-    protocol: bgp
-    addresses:
-      - 192.168.10.54/32
   - name: public
     protocol: bgp
     avoid-buggy-ips: true
