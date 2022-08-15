@@ -8,7 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://charts.jetstack.io/
+      # renovate: registryUrl=https://lordofsystem.github.io/cert-manager-webhook-powerdns
       chart: cert-manager-webhook-powerdns
       version: 0.1.6
       sourceRef:

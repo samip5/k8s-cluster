@@ -13,6 +13,7 @@ spec:
       strategy: rollback
   chart:
     spec:
+      # renovate: registryUrl=https://helm.cilium.io/
       chart: cilium
       version: 1.11.7
       sourceRef:
