@@ -11,9 +11,6 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-production
     solvers:
-    - http01:
-        ingress:
-          class: traefik
     - dns01:
         cloudflare:
           email: "${SECRET_EMAIL}"
