@@ -20,10 +20,14 @@ address-pools:
     auto-assign: false
     addresses:
       - 192.168.10.81/32
+  - name: blocky-pool
+    protocol: bgp
+    auto-assign: false
+    addresses:
+      - 192.168.10.54/32
   - name: public
     protocol: bgp
     avoid-buggy-ips: true
-    auto-assign: false
     addresses:
       - 185.218.193.60/30
       - 2001:67c:1104:fc00::/64
