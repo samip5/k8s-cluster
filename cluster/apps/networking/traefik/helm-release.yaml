@@ -23,14 +23,15 @@ spec:
     service:
       enabled: true
       type: LoadBalancer
-      annotations:
+      spec:
+       annotations:
         metallb.universe.tf/allow-shared-ip: "traefik"
         metallb.universe.tf/loadBalancerIPs: "${SVC_TRAEFIK_ADDRESS},${SVC_TRAEFIK_V4},192.168.10.80"
-      externalTrafficPolicy: Local
-      ipFamilyPolicy: "PreferDualStack"
-      ipFamilies:
-        - IPv4
-        - IPv6
+       externalTrafficPolicy: Local
+       ipFamilyPolicy: "PreferDualStack"
+       ipFamilies:
+         - IPv4
+         - IPv6
     logs:
       general:
         format: json
