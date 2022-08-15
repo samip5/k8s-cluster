@@ -9,6 +9,7 @@ address-pools:
     avoid-buggy-ips: true
     addresses:
       - 10.96.69.0/24
+      - 192.168.10.0/24
       - 2001:67c:1104:fdb::/112
   - name: public
     protocol: bgp
