@@ -43,25 +43,6 @@ spec:
                       - controller
               topologyKey: kubernetes.io/hostname
             weight: 100
-      autoscaling:
-        enabled: true
-        minReplicas: 3
-        maxReplicas: 6
-        targetCPUUtilizationPercentage: 80
-        targetMemoryUtilizationPercentage: 80
-        behavior:
-          scaleDown:
-            stabilizationWindowSeconds: 300
-            policies:
-              - type: Pods
-                value: 1
-                periodSeconds: 180
-          scaleUp:
-            stabilizationWindowSeconds: 300
-            policies:
-              - type: Pods
-                value: 2
-                periodSeconds: 60
       use-forwarded-headers: "true"
       service:
         enabled: true
@@ -118,22 +99,4 @@ spec:
           cpu: 2281m
           memory: 524M
     defaultBackend:
-      enabled: true
-      autoscaling:
-        enabled: true
-        maxReplicas: 3
-        image:
-          repository: ghcr.io/tarampampam/error-pages
-          tag: 2.17.0
-        extraEnvs:
-          - name: TEMPLATE_NAME
-            value: lost-in-space
-          - name: SHOW_DETAILS
-            value: "false"
-        resources:
-          requests:
-            cpu: 15m
-            memory: 105M
-          limits:
-            cpu: 20m
-            memory: 105M
+      enabled: false
