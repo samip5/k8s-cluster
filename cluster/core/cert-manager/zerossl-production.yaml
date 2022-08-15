@@ -28,14 +28,6 @@ spec:
           apiKeySecretRef:
             name: cloudflare-token-secret
             key: cloudflare-token
-        webhook:
-          groupName: acme.${COMPANY_DOMAIN}
-          solverName: pdns
-          config:
-            zone: ${MAIN_DOMAIN}
-            secretName: pdns-secret
-            zoneName: ${MAIN_DOMAIN}.
-            apiUrl: https://ns1.${COMPANY_DOMAIN}
       selector:
         dnsZones:
           - "${COMPANY_DOMAIN}"
