@@ -21,13 +21,11 @@ spec:
   ports:
     - appProtocol: http
       name: http
-      nodePort: 32038
       port: 80
       protocol: TCP
       targetPort: http
     - appProtocol: https
       name: https
-      nodePort: 30821
       port: 443
       protocol: TCP
       targetPort: https
