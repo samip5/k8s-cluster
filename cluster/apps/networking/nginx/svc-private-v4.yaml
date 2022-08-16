@@ -17,7 +17,6 @@ spec:
   ipFamilies:
     - IPv4
   externalTrafficPolicy: Local
-  healthCheckNodePort: 32411
   internalTrafficPolicy: Cluster
   ports:
     - appProtocol: http
