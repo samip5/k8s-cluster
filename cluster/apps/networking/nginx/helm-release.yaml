@@ -48,7 +48,7 @@ spec:
         enabled: true
         type: LoadBalancer
         annotations:
-          metallb.universe.tf/loadBalancerIPs: "${SVC_NGINX_v4},192.168.10.80,${SVC_NGINX_IPv6}"
+          metallb.universe.tf/loadBalancerIPs: "${SVC_NGINX_v4},${SVC_NGINX_IPv6}"
           metallb.universe.tf/address-pool: nginx
         externalTrafficPolicy: Local
       publichService:
