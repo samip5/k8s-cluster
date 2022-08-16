@@ -9,11 +9,26 @@ address-pools:
     avoid-buggy-ips: true
     addresses:
       - 10.96.69.0/24
-      - 192.168.10.0/24
       - 2001:67c:1104:fdb::/112
+  - name: blocky
+    protocol: bgp
+    addresses:
+      - 2001:67c:1104:fc00::53/128
+      - 192.168.10.53/32
+  - name: traefik
+    protocol: bgp
+    addresses:
+      - 2001:67c:1104:fc00::443/128
+      - 185.218.193.62/32
+      - 192.168.10.81/32
+  - name: nginx
+    protocol: bgp
+    addresses:
+      - 185.218.193.61/32
+      - 2001:67c:1104:fc00::4443/128
+      - 192.168.10.80/32
   - name: public
     protocol: bgp
     avoid-buggy-ips: true
     addresses:
-      - 185.218.193.60/30
-      - 2001:67c:1104:fc00::/64
+      - 2001:67c:1104:fc00::100-2001:67c:1104:fc00::200
