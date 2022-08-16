@@ -45,7 +45,7 @@ spec:
         type: LoadBalancer
         annotations:
           metallb.universe.tf/allow-shared-ip: "blocky"
-          metallb.universe.tf/loadBalancerIPs: "${LB_BLOCKY_V4},${LB_BLOCKY_V6}"
+          metallb.universe.tf/loadBalancerIPs: "${LB_BLOCKY_V6}"
         ports:
           dns-https:
             enabled: true
@@ -68,9 +68,8 @@ spec:
             protocol: UDP
             targetPort: 53
         externalTrafficPolicy: Local
-        ipFamilyPolicy: "RequireDualStack"
+        ipFamilyPolicy: "SingleStack"
         ipFamilies:
-          - IPv4
           - IPv6
     config: |
       bootstrapDns: tcp+udp:1.1.1.1
