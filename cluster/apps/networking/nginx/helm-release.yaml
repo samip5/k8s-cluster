@@ -51,6 +51,10 @@ spec:
           metallb.universe.tf/loadBalancerIPs: "${SVC_NGINX_v4},${SVC_NGINX_IPv6}"
           metallb.universe.tf/address-pool: nginx
         externalTrafficPolicy: Local
+        ipFamilyPolicy: "PreferDualStack"
+        ipFamilies:
+          - IPv4
+          - IPv6
       publichService:
         enabled: false
 
