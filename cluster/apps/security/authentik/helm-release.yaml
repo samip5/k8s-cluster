@@ -39,12 +39,12 @@ spec:
       redis:
         host: "redis.databases.svc.cluster.local"
       email:
-        host: "smtp.eu.mailgun.org"
+        host: "mailer.${SECRET_DOMAIN}"
         port: 587
         use_tls: true
-        username: "authentik@mg.${MAIN_DOMAIN}"
-        password: "${SECRET_MAILGUN_PASSWORD}"
-        from: "no-reply@mg.${MAIN_DOMAIN}"
+        username: "samipsolutions/authentik"
+        password: "${SECRET_AUHENTIK_POSTAL_PASSWORD}"
+        from: "no-reply@${SECRET_DOMAIN}"
 
     ingress:
       enabled: true
