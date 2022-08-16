@@ -5,7 +5,7 @@ resources:
   - nginx
   - external-dns
   - error-pages
-#  - blocky
+  - blocky
   - secret-reflector
   - certificates
   - misc-ingresses
