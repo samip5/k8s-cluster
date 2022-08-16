@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
   - certificate.yaml
   - helm-release.yaml
-  - svc-private-v4.yaml
