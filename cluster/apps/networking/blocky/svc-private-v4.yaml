@@ -1,0 +1,47 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    metallb.universe.tf/address-pool: blocky
+    metallb.universe.tf/loadBalancerIPs: 192.168.10.53
+  labels:
+    helm.sh/chart: blocky-10.5.2
+    helm.toolkit.fluxcd.io/name: blocky
+    helm.toolkit.fluxcd.io/namespace: networking
+  name: blocky-private-v4
+  namespace: networking
+spec:
+  allocateLoadBalancerNodePorts: true
+  ipFamilyPolicy: SingleStack
+  ipFamilies:
+    - IPv4
+  externalTrafficPolicy: Local
+  internalTrafficPolicy: Cluster
+  ports:
+    - name: dns-https
+      nodePort: 31122
+      port: 443
+      protocol: TCP
+      targetPort: 443
+    - name: dns-tcp
+      nodePort: 30205
+      port: 53
+      protocol: TCP
+      targetPort: 53
+    - name: dns-tls
+      nodePort: 31883
+      port: 853
+      protocol: TCP
+      targetPort: 853
+    - name: dns-udp
+      nodePort: 30205
+      port: 53
+      protocol: UDP
+      targetPort: 53
+  selector:
+    app.kubernetes.io/instance: blocky
+    app.kubernetes.io/name: blocky
+  sessionAffinity: None
+  type: LoadBalancer
+
