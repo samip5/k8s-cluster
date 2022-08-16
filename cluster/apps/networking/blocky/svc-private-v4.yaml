@@ -20,22 +20,18 @@ spec:
   internalTrafficPolicy: Cluster
   ports:
     - name: dns-https
-      nodePort: 31122
       port: 443
       protocol: TCP
       targetPort: 443
     - name: dns-tcp
-      nodePort: 30205
       port: 53
       protocol: TCP
       targetPort: 53
     - name: dns-tls
-      nodePort: 31883
       port: 853
       protocol: TCP
       targetPort: 853
     - name: dns-udp
-      nodePort: 30205
       port: 53
       protocol: UDP
       targetPort: 53
