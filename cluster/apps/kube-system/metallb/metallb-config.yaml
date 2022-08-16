@@ -13,7 +13,7 @@ address-pools:
   - name: blocky
     protocol: bgp
     addresses:
-      - 2001:67c:1104:fc00::53/128
+      - 2001:67c:1104:fc00:53::1/128
       - 192.168.10.53/32
   - name: traefik
     protocol: bgp
