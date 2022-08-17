@@ -22,7 +22,12 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    cluster:
+      name: "default"
+      id: "1"
+    autoDirectNodeRoutes: true
     localRedirectPolicy: true
+    rollOutCiliumPods: true
     kubeProxyReplacement: "strict"
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
     ipv4NativeRoutingCIDR: "10.244.0.0/16"
@@ -32,10 +37,11 @@ spec:
     loadBalancer:
       algorithm: "maglev"
       mode: "dsr"
+    l2NeighDiscovery:
+      enabled: false
     tunnel: "disabled"
     endpointRoutes:
       enabled: true
-    autoDirectNodeRoutes: true
     encryption:
       enabled: false
     ipam:
@@ -79,3 +85,6 @@ spec:
       enabled: false
       announce:
         loadbalancerIP: false
+
+    securityContext:
+      privileged: true
