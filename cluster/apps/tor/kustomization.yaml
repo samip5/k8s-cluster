@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - tor-controller
-#  - nginx
+  - nginx
