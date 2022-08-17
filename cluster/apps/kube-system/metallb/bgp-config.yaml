@@ -56,6 +56,15 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
+  name: game-prefix-pool
+  namespace: kube-system
+spec:
+  addresses:
+    - 192.168.10.12/32
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
   name: public
   namespace: kube-system
 spec:
@@ -82,3 +91,4 @@ spec:
     - default-pool
     - blocky
     - public
+    - game-prefix-pool
