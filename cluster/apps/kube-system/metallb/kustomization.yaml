@@ -3,6 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - helm-release.yaml
+  - bgp-config.yaml
 namespace: kube-system
 generatorOptions:
   disableNameSuffixHash: true

@@ -36,30 +36,30 @@ spec:
     # https://github.com/cilium/cilium/issues/20436
     # https://github.com/metallb/metallb/issues/1512
     # This is really yank, when I have this many prefixes in use..
-    postRenderers:
-      - kustomize:
-          patchesJson6902:
-            - target:
-                version: v1
-                kind: DaemonSet
-                name: metallb-speaker
-              patch:
-                - op: add
-                  path: /spec/template/spec/initContainers/3
-                  value:
-                    name: routes
-                    command:
-                      - /bin/sh
-                      - -c
-                      - |-
-                        ip r add local 192.168.10.0/24 dev lo table local proto 66 scope host || true
-                        ip r add local 10.96.69.0/24 dev lo table local proto 66 scope host || true
-                        ip r add local 185.218.193.60/30 dev lo table local proto 66 scope host || true
-                        ip -6 r add local 2001:67c:1104:fdb::/112 dev lo table local proto 67 scope host || true
-                        ip -6 r add local 2001:67c:1104:fc00::/64 dev lo table local proto 67 scope host || true
-                    image: alpine
-                    imagePullPolicy: IfNotPresent
-                    securityContext:
-                      capabilities:
-                        add:
-                          - NET_ADMIN
+  postRenderers:
+    - kustomize:
+        patchesJson6902:
+          - target:
+              version: v1
+              kind: DaemonSet
+              name: metallb-speaker
+            patch:
+              - op: add
+                path: /spec/template/spec/initContainers/3
+                value:
+                  name: routes
+                  command:
+                    - /bin/sh
+                    - -c
+                    - |-
+                      ip r add local 192.168.10.0/24 dev lo table local proto 66 scope host || true
+                      ip r add local 10.96.69.0/24 dev lo table local proto 66 scope host || true
+                      ip r add local 185.218.193.60/30 dev lo table local proto 66 scope host || true
+                      ip -6 r add local 2001:67c:1104:fdb::/112 dev lo table local proto 67 scope host || true
+                      ip -6 r add local 2001:67c:1104:fc00::/64 dev lo table local proto 67 scope host || true
+                  image: alpine
+                  imagePullPolicy: IfNotPresent
+                  securityContext:
+                    capabilities:
+                      add:
+                        - NET_ADMIN
