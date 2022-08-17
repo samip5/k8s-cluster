@@ -41,9 +41,9 @@ spec:
       main:
         type: LoadBalancer # Setting Ip external to cluster for easy port forward
         externalTrafficPolicy: Cluster
-        loadBalancerIP: "${LB_SATISFACTORY}"
         annotations:
-          metallb.universe.tf/allow-shared-ip: factorio
+          metallb.universe.tf/loadBalancerIPs: "${LB_SATISFACTORY}"
+          metallb.universe.tf/address-pool: game-prefix-pool
 
     persistence:
       config:
