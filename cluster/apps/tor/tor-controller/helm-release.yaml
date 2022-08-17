@@ -25,15 +25,34 @@ spec:
   values:
     replicaCount: 1
 
-    # Watches onionservices
+    # -- tor-controller image, it watches onionservices objects
     image:
       repository: quay.io/bugfest/tor-controller
       pullPolicy: Always
-      tag: latest
+      # -- Overrides the image tag whose default is the chart appVersion.
+      tag: ""
 
-    # Runs Tor client
+
+    daemon:
+      # -- tor-daemon image, it runs Tor client
+      image:
+        repository: quay.io/bugfest/tor-daemon
+        pullPolicy: Always
+        # -- Overrides the image tag whose default is the chart appVersion.
+        tag: ""
+
     manager:
+      # -- tor-daemon-manager image, it runs Tor client with manager
       image:
         repository: quay.io/bugfest/tor-daemon-manager
         pullPolicy: Always
-        tag: latest
+        # -- Overrides the image tag whose default is the chart appVersion.
+        tag: ""
+
+    onionbalance:
+      # -- tor-onionbalance-manager image, it runs Tor client
+      image:
+        repository: quay.io/bugfest/tor-onionbalance-manager
+        pullPolicy: Always
+        # -- Overrides the image tag whose default is the chart appVersion.
+        tag: ""
