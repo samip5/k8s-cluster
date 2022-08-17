@@ -22,9 +22,6 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    cluster:
-      name: "home-k3s"
-      id: "1"
     autoDirectNodeRoutes: true
     localRedirectPolicy: true
     rollOutCiliumPods: true
