@@ -43,7 +43,10 @@ spec:
         externalTrafficPolicy: Cluster
         annotations:
           metallb.universe.tf/loadBalancerIPs: "${LB_SATISFACTORY}"
-          metallb.universe.tf/address-pool: game-prefix-pool
+        ipFamilyPolicy: RequireDualStack
+        ipFamilies:
+          - IPv4
+          - IPv6
 
     persistence:
       config:
