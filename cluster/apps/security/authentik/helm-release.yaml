@@ -48,7 +48,7 @@ spec:
 
     ingress:
       enabled: true
-      ingressClassName: "traefik"
+      ingressClassName: "nginx"
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
 #        traefik.ingress.kubernetes.io/router.middlewares: "networking-cloudflare-ips@kubernetescrd"
