@@ -18,6 +18,7 @@ metadata:
 spec:
   addresses:
     - 10.96.69.0/24
+    - 2001:14ba:16d6:a6ad::/64
     - 2001:67c:1104:fdb::/112
   avoidBuggyIPs: true
 ---
