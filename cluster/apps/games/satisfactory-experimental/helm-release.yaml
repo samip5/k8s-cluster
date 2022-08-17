@@ -32,7 +32,7 @@ spec:
 
     env:
       # -- Set the container timezone
-      TZ: ${TZ}
+      TZ: ${TIMEZONE}
       STEAMBETA: true
 
     # -- Configures service settings for the chart.
