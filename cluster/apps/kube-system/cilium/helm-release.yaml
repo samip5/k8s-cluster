@@ -9,7 +9,7 @@ spec:
   upgrade:
     remediation:
       remediateLastFailure: true
-      retries: 50
+      retries: 5
       strategy: rollback
   chart:
     spec:
