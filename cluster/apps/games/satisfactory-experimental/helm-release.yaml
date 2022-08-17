@@ -42,7 +42,7 @@ spec:
         type: LoadBalancer # Setting Ip external to cluster for easy port forward
         externalTrafficPolicy: Cluster
         annotations:
-          metallb.universe.tf/loadBalancerIPs: "${LB_SATISFACTORY}"
+          metallb.universe.tf/loadBalancerIPs: "${LB_SATISFACTORY}, ${LB_SATISFACTORY_V6}"
         ipFamilyPolicy: RequireDualStack
         ipFamilies:
           - IPv4
