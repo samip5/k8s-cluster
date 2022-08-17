@@ -23,7 +23,7 @@ spec:
       interval: 5m
   values:
     cluster:
-      name: "default"
+      name: "home-k3s"
       id: "1"
     autoDirectNodeRoutes: true
     localRedirectPolicy: true
