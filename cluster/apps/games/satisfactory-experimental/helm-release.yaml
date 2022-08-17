@@ -1,0 +1,73 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: satisfactory
+  namespace: games
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: satisfactory
+      version: 1.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    remediation: # perform remediation when helm install fails
+      retries: 3
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
+  # Values: https://github.com/k8s-at-home/charts/blob/master/charts/stable/satisfactory/values.yaml
+  values:
+    image:
+      repository: wolveix/satisfactory-server
+      tag: v1.2.5
+
+    env:
+      # -- Set the container timezone
+      TZ: ${TZ}
+      STEAMBETA: true
+
+    # -- Configures service settings for the chart.
+    # @default -- See values.yaml
+    service:
+      main:
+        type: LoadBalancer # Setting Ip external to cluster for easy port forward
+        externalTrafficPolicy: Cluster
+        loadBalancerIP: "${LB_SATISFACTORY}"
+        annotations:
+          metallb.universe.tf/allow-shared-ip: factorio
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: satisfactory-data
+
+      server-cache:
+        enabled: true
+        existingClaim: satisfactory-gamedata
+
+    resources:
+      requests:
+        cpu: 200m
+        memory: 1640M
+      limits:
+      # memory: 4315M
+
+    affinity:
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                    - k8s-worker-amd64-3
