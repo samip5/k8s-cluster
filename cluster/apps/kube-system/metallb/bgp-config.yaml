@@ -6,7 +6,6 @@ metadata:
   namespace: kube-system
 spec:
   holdTime: 1m30s
-  keepaliveTime: 0s
   myASN: 213021
   peerASN: 213021
   peerAddress: 10.0.105.1
@@ -70,8 +69,16 @@ metadata:
   namespace: kube-system
 spec:
   ipAddressPools:
-    - default-pool
-    - blocky
     - traefik
     - nginx
+---
+apiVersion: metallb.io/v1beta1
+kind: BGPAdvertisement
+metadata:
+  name: bgp-other
+  namespace: kube-system
+spec:
+  ipAddressPools:
+    - default-pool
+    - blocky
     - public
