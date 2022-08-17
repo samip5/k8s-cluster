@@ -16,5 +16,5 @@ resources:
 #  - vpn
 #  - proxy
   - home
-#  - tor
+  - tor
   - games
