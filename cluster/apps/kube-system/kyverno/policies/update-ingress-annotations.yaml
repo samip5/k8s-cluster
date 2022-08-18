@@ -147,6 +147,9 @@ spec:
           - resources:
               annotations:
                 external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+          - resources:
+              annotations:
+                auth-basic-fi.home.arpa/enabled: "true"
       mutate:
         patchStrategicMerge:
           metadata:
