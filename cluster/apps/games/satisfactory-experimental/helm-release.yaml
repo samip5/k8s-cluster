@@ -8,6 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: satisfactory
       version: 1.1.0
       sourceRef:
@@ -26,7 +27,8 @@ spec:
     cleanupOnFail: true
   # Values: https://github.com/k8s-at-home/charts/blob/master/charts/stable/satisfactory/values.yaml
   values:
-    # DANG IT
+    # If someone gets it to work via LB, I would love to know how.
+    # I could see the traffic on the pod, but it wasn't replying.
     hostNetwork: true
 
     image:
