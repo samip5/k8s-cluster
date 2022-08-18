@@ -15,7 +15,7 @@ spec:
     spec:
       # renovate: registryUrl=https://actions-runner-controller.github.io/actions-runner-controller
       chart: actions-runner-controller
-      version: 0.17.3
+      version: 0.20.2
       sourceRef:
         kind: HelmRepository
         name: actions-runner-controller-charts
@@ -42,8 +42,8 @@ spec:
       ingress:
         enabled: true
         annotations:
-          kubernetes.io/ingress.class: traefik
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          kubernetes.io/ingress.class: nginx
+          external-dns.home.arpa/enabled: "true"
         hosts:
         - host: acr-hook.{SECRET_DOMAIN}
           paths:
