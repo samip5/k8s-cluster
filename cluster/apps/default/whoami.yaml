@@ -51,26 +51,6 @@ spec:
             paths:
               - path: /
 
-      test1:
-        enabled: true
-        ingressClassName: traefik
-        hosts:
-          - host: &host2 who-traefik.${SECRET_DOMAIN}
-            paths:
-              - path: /
-      test2:
-        enabled: true
-        ingressClassName: traefik
-        hosts:
-        - host: *host2
-          paths:
-            - path: /
-
-        tls:
-          - secretName: ${SECRET_DOMAIN}-tls
-            hosts:
-            - *host2
-
 
 
     resources:
