@@ -35,6 +35,7 @@ spec:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           cert-manager.io/cluster-issuer: letsencrypt-production
+          external-dns.home.arpa/enabled: "true"
         hosts:
           - host: "blog.edu.${MAIN_DOMAIN_2}"
             paths:

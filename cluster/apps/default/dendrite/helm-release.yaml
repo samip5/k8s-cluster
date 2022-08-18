@@ -26,6 +26,7 @@ spec:
         ingressClassName: nginx
         annotations:
           cert-manager.io/cluster-issuer: zerossl-production
+          external-dns.home.arpa/enabled: "true"
         hosts:
           - host: d.${SECRET_DOMAIN}
             paths:
