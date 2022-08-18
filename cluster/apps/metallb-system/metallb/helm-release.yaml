@@ -5,6 +5,9 @@ metadata:
   name: metallb
   namespace: kube-system
 spec:
+  install:
+    crds: CreateReplace
+
   interval: 5m
   chart:
     spec:
@@ -18,7 +21,7 @@ spec:
       interval: 5m
   values:
     controller:
-      logLevel: debug
+      logLevel: info
     prometheus:
       serviceAccount: kube-prometheus-stack-prometheus
       namespace: monitoring
@@ -28,7 +31,7 @@ spec:
         enabled: true
     speaker:
       tolerateMaster: true
-      logLevel: debug
+      logLevel: info
       frr:
         enabled: true
         image:
