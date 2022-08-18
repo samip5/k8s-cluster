@@ -4,6 +4,7 @@ resources:
   - longhorn-system
   - networking
   - security
+  - metallb-system
   - kube-system
   - media
   - monitoring
