@@ -29,7 +29,7 @@ spec:
 
   values:
     authSecret:
-      create: false
+      create: true
       name: "contoller-manager"
 
     githubWebhookServer:
