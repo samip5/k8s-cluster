@@ -7,9 +7,9 @@ metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     traefik.ingress.kubernetes.io/router.middlewares: "networking-authelia-fi-auth@kubernetescrd"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
-  ingressClassName: traefik
+  ingressClassName: nginx
   rules:
     - host: "tv.${MAIN_DOMAIN}"
       http:
@@ -32,11 +32,12 @@ metadata:
   name: livetv-stream
   namespace: networking
   annotations:
+    auth-basic-fi.home.arpa/enabled: "true"
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     traefik.ingress.kubernetes.io/router.middlewares: "networking-basic-authelia@kubernetescrd"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
-  ingressClassName: traefik
+  ingressClassName: nginx
   rules:
     - host: "tv.${MAIN_DOMAIN}"
       http:
@@ -59,11 +60,12 @@ metadata:
   name: livetv-dvr
   namespace: networking
   annotations:
+    auth-fi.home.arpa/enabled: "true"
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     traefik.ingress.kubernetes.io/router.middlewares: "networking-basic-authelia@kubernetescrd"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
-  ingressClassName: traefik
+  ingressClassName: nginx
   rules:
     - host: "tv.${MAIN_DOMAIN}"
       http:
@@ -79,44 +81,6 @@ spec:
     - hosts:
         - "tv.${MAIN_DOMAIN}"
       secretName: ${MAIN_DOMAIN}-tls
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: home-srv-plex
-  namespace: networking
-  annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: "home-srv.${DEV_DOMAIN}"
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: home-srv-plex
-                port:
-                  name: https
-  tls:
-    - hosts:
-        - "home-srv.${DEV_DOMAIN}"
-      secretName: ${DEV_DOMAIN}-tls
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: home-srv-plex
-  namespace: networking
-spec:
-  ports:
-    - name: https
-      port: 32400
-  type: ExternalName
-  externalName: 192.168.2.10
 ---
 apiVersion: v1
 kind: Service
