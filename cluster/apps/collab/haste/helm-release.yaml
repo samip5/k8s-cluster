@@ -29,6 +29,8 @@ spec:
         ingressClassName: "nginx"
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+          external-dns-cf/is-public: "true"
         hosts:
           - host: "paste.${DEV_DOMAIN}"
             paths:
