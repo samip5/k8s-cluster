@@ -22,6 +22,7 @@ resources:
   - k8s-at-home-charts.yaml
   - kubernetes-sigs-descheduler-charts.yaml
   - kubernetes-sigs-metrics-server-charts.yaml
+  - kyverno-charts.yaml
   - node-feature-discovery-charts.yaml
   - external-dns-charts.yaml
   - nfs-subdir-external-provisioner-charts.yaml
