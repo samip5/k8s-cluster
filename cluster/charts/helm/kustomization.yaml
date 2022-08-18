@@ -6,6 +6,7 @@ resources:
   - authentik-charts.yaml
   - bitnami-charts.yaml
   - bootc-charts.yaml
+  - bjw-s-charts.yaml
   - coredns-charts.yaml
   - cilium-charts.yaml
   - cloudydeno-charts.yaml
@@ -23,7 +24,6 @@ resources:
   - kubernetes-sigs-metrics-server-charts.yaml
   - node-feature-discovery-charts.yaml
   - external-dns-charts.yaml
-  - emqx-charts.yaml
   - nfs-subdir-external-provisioner-charts.yaml
   - metallb-charts.yaml
   - prometheus-community-charts.yaml
