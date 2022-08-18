@@ -34,7 +34,8 @@ metadata:
   namespace: networking
   annotations:
     auth-basic-fi.home.arpa/enabled: "true"
-    external-dns-cf.home.arpa/enabled: "true"
+    external-dns.home.arpa/enabled: "true"
+    external-dns-cf-public/enabled: "true"
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     traefik.ingress.kubernetes.io/router.middlewares: "networking-basic-authelia@kubernetescrd"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
@@ -63,7 +64,8 @@ metadata:
   namespace: networking
   annotations:
     auth-fi.home.arpa/enabled: "true"
-    external-dns-cf.home.arpa/enabled: "true"
+    external-dns.home.arpa/enabled: "true"
+    external-dns-cf-public/enabled: "true"
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     traefik.ingress.kubernetes.io/router.middlewares: "networking-basic-authelia@kubernetescrd"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
