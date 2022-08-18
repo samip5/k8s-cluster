@@ -21,8 +21,9 @@ spec:
       repository: docker.io/samip537/external-dns
       tag: v1.0.1
     extraArgs:
-      - --annotation-filter=external-dns.home.arpa/enabled in (true)
+      - --annotation-filter=external-dns-cf/is-public in (true)
       - --zone-id-filter=565f87a7bf0ab8ea9db9b83dca55bc54
+      - --zone-id-filter=bf373c97a414f6037f449ab854c0c0bc
     interval: 5m
     logLevel: debug
     provider: cloudflare
@@ -32,6 +33,7 @@ spec:
     txtOwnerId: "cf-external-dns"
     domainFilters:
       - "${MAIN_DOMAIN}"
+      - "${DEV_DOMAIN}"
     env:
       - name: CF_API_EMAIL
         value: ${EMAIL_1}
