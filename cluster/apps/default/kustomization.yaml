@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
   - organizr
   - dendrite
+  - whoami.yaml
 #  - edu-blog-ghost
