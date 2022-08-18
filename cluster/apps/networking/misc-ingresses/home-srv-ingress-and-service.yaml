@@ -96,19 +96,15 @@ spec:
   ports:
     - name: http
       port: 9981
-  type: ExternalName
-  externalName: 192.168.2.10
+  type: ClusterIP
 ---
 apiVersion: v1
-kind: Service
+kind: Endpoints
 metadata:
-  name: home-srv-docker
+  name: tvheadend-home-srv
   namespace: networking
-spec:
-  ports:
-    - name: https
-      port: 443
-    - name: http
-      port: 80
-  type: ExternalName
-  externalName: 192.168.2.10
+subsets:
+  - addresses:
+      - ip: 192.168.2.10
+  - ports:
+      - port: 9981
