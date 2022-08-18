@@ -21,7 +21,7 @@ spec:
       repository: docker.io/samip537/external-dns
       tag: v1.0.1
     extraArgs:
-      - --annotation-filter=external-dns-cf.home.arpa/enabled in (true)
+      - --annotation-filter=external-dns-cf-public.home.arpa/enabled in (true)
       - --zone-id-filter=565f87a7bf0ab8ea9db9b83dca55bc54
     interval: 5m
     logLevel: debug
