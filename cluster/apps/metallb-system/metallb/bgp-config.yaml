@@ -3,7 +3,7 @@ apiVersion: metallb.io/v1beta2
 kind: BGPPeer
 metadata:
   name: home-router-v4
-  namespace: kube-system
+  namespace: metallb-system
 spec:
   holdTime: 1m30s
   myASN: 213021
@@ -14,7 +14,7 @@ apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
   name: default-pool
-  namespace: kube-system
+  namespace: metallb-system
 spec:
   addresses:
     - 10.96.69.0/24
@@ -26,7 +26,7 @@ apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
   name: blocky
-  namespace: kube-system
+  namespace: metallb-system
 spec:
   addresses:
     - 2001:67c:1104:fc00:53::1/128
@@ -36,7 +36,7 @@ apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
   name: traefik
-  namespace: kube-system
+  namespace: metallb-system
 spec:
   addresses:
     - 2001:67c:1104:fc00::443/128
@@ -47,7 +47,7 @@ apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
   name: nginx
-  namespace: kube-system
+  namespace: metallb-system
 spec:
   addresses:
     - 185.218.193.61/32
@@ -58,7 +58,7 @@ apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
   name: game-prefix-pool
-  namespace: kube-system
+  namespace: metallb-system
 spec:
   addresses:
     - 192.168.10.12/32
@@ -67,7 +67,7 @@ apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
   name: public
-  namespace: kube-system
+  namespace: metallb-system
 spec:
   addresses:
     - 2001:67c:1104:fc00::100-2001:67c:1104:fc00::200
@@ -76,7 +76,7 @@ apiVersion: metallb.io/v1beta1
 kind: BGPAdvertisement
 metadata:
   name: bgp-lb
-  namespace: kube-system
+  namespace: metallb-system
 spec:
   ipAddressPools:
     - traefik
@@ -86,7 +86,7 @@ apiVersion: metallb.io/v1beta1
 kind: BGPAdvertisement
 metadata:
   name: bgp-other
-  namespace: kube-system
+  namespace: metallb-system
 spec:
   ipAddressPools:
     - default-pool
