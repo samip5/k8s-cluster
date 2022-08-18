@@ -30,6 +30,8 @@ spec:
         ssl-redirect: false
       use-forwarded-headers: "true"
       service:
+        enabled: true
+        type: ClusterIP
         externalTrafficPolicy: Local
       metrics:
         enabled: true
