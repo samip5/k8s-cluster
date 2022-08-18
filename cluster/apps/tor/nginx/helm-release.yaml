@@ -20,8 +20,11 @@ spec:
     controller:
       replicaCount: 2
       ingressClassResource:
+        enabled: true
         name: tor-nginx
+        controllerValue: tor-nginx
       ingressClass: tor-nginx
+      ingressClassByName: true
       scope:
         enabled: true
         namespace: tor
