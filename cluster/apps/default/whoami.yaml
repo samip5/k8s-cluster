@@ -33,7 +33,10 @@ spec:
         enabled: true
         ingressClassName: nginx
         hosts:
-          - &host who.${SECRET_DOMAIN}
+          - host: &host who.${SECRET_DOMAIN}
+            paths:
+              - path: /
+
         tls:
           - secretName: ${SECRET_DOMAIN}-tls
             hosts:
