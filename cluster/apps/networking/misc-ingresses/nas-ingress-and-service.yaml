@@ -27,19 +27,6 @@ spec:
       secretName: ${MAIN_DOMAIN}-tls
 ---
 apiVersion: v1
-kind: Endpoints
-metadata:
-  name: nas
-  namespace: networking
-subsets:
-  - addresses:
-      - ip: 192.168.2.2
-  - ports:
-      - name: http
-        port: 5000
-        protocol: TCP
----
-apiVersion: v1
 kind: Service
 metadata:
   name: nas
