@@ -63,7 +63,7 @@ metadata:
   name: livetv-dvr
   namespace: networking
   annotations:
-    auth-fi.home.arpa/enabled: "true"
+    auth-basic-fi.home.arpa/enabled: "true"
     external-dns.home.arpa/enabled: "true"
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     traefik.ingress.kubernetes.io/router.middlewares: "networking-basic-authelia@kubernetescrd"
@@ -85,6 +85,19 @@ spec:
     - hosts:
         - "tv.${MAIN_DOMAIN}"
       secretName: ${MAIN_DOMAIN}-tls
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: tvheadend-home-srv
+  namespace: networking
+subsets:
+  - addresses:
+      - ip: 192.168.2.10
+    ports:
+      - name: http
+        port: 9981
+        protocol: TCP
 ---
 apiVersion: v1
 kind: Service
