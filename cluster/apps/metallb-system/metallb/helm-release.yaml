@@ -21,7 +21,7 @@ spec:
       interval: 5m
   values:
     controller:
-      logLevel: info
+      logLevel: debug
     prometheus:
       serviceAccount: kube-prometheus-stack-prometheus
       namespace: monitoring
