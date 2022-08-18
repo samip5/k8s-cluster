@@ -27,6 +27,7 @@ spec:
         ports:
           http:
             enabled: true
+            port: 80
 
     ingress:
       main:
