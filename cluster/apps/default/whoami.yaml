@@ -14,9 +14,6 @@ spec:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
-  install:
-    remediation:
-      retries: 5
   upgrade:
     remediation:
       retries: 5
@@ -37,7 +34,6 @@ spec:
         ingressClassName: nginx
         hosts:
           - host: &host who.${SECRET_DOMAIN}
-
         tls:
           - secretName: ${SECRET_DOMAIN}-tls
             hosts: *host
