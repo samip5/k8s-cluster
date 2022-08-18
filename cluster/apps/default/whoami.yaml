@@ -58,7 +58,8 @@ spec:
 
         tls:
           - secretName: ${SECRET_DOMAIN}-tls
-            hosts: *host2
+            hosts:
+            - host: *host2
 
 
 
