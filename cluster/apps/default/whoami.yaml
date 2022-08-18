@@ -33,7 +33,7 @@ spec:
         enabled: true
         ingressClassName: nginx
         hosts:
-          - &host "who.${SECRET_DOMAIN}"
+          - &host who.${SECRET_DOMAIN}
         tls:
           - secretName: ${SECRET_DOMAIN}-tls
             hosts:
@@ -43,19 +43,24 @@ spec:
         enabled: true
         ingressClassName: nginx
         hosts:
-          - *host
+          - host: *host
+            paths:
+              - path: /
 
       test1:
         enabled: true
         ingressClassName: traefik
         hosts:
-          - &host2 "who-traefik.${SECRET_DOMAIN}"
-
+          - host: &host2 who-traefik.${SECRET_DOMAIN}
+            paths:
+              - path: /
       test2:
         enabled: true
         ingressClassName: traefik
         hosts:
-        - *host2
+        - host: *host2
+          paths:
+            - path: /
 
         tls:
           - secretName: ${SECRET_DOMAIN}-tls
