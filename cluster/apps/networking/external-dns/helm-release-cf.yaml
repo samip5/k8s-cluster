@@ -23,7 +23,7 @@ spec:
     extraArgs:
       - --annotation-filter=external-dns-cf.home.arpa/enabled in (true)
     interval: 5m
-    logLevel: info
+    logLevel: debug
     provider: cloudflare
     policy: sync
     sources:
