@@ -114,11 +114,11 @@ spec:
             type: loki
             access: proxy
             url: http://loki:3100
-    dashboards:
-      default:
-        zigbee:
-          url: https://raw.githubusercontent.com/samip5/k8s-cluster/main/cluster/apps/monitoring/grafana/dashboards/zigbee_dash.json
-          datasource: InfluxDB (outside)
+#    dashboards:
+#      default:
+#        zigbee:
+#          url: https://raw.githubusercontent.com/samip5/k8s-cluster/main/cluster/apps/monitoring/grafana/dashboards/zigbee_dash.json
+#          datasource: InfluxDB (outside)
       k8s:
         # Ref: https://grafana.com/grafana/dashboards/12175
         calico-felix:
@@ -154,7 +154,7 @@ spec:
       enabled: true
     ingress:
       enabled: true
-      ingressClassName: "traefik"
+      ingressClassName: "nginx"
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       hosts:
