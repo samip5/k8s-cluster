@@ -107,4 +107,6 @@ subsets:
   - addresses:
       - ip: 192.168.2.10
   - ports:
-      - port: 9981
+      - name: http
+        port: 9981
+        protocol: TCP

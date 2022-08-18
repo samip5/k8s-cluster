@@ -35,7 +35,9 @@ subsets:
   - addresses:
       - ip: 192.168.2.2
   - ports:
-      - port: 5000
+      - name: http
+        port: 5000
+        protocol: TCP
 ---
 apiVersion: v1
 kind: Service
