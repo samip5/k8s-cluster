@@ -26,6 +26,7 @@ spec:
         enabled: true
     speaker:
       tolerateMaster: true
+      logLevel: debug
       frr:
         enabled: true
         image:
