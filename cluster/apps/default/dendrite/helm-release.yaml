@@ -80,6 +80,7 @@ spec:
           connection_string: ${CONNECTION_STRING}
     clientapi:
       config:
+        registration_disabled: false
         # registration_shared_secret: ${SECRET_DENDRITE_REGISTRATION_SECRET}
     podAnnotations:
       secret.reloader.stakater.com/reload: "dendrite-config"
