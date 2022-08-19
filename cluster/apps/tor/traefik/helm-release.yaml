@@ -1,0 +1,71 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: traefik-tor
+  namespace: tor
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://helm.traefik.io/traefik
+      chart: traefik
+      version: 10.24.0
+      sourceRef:
+        kind: HelmRepository
+        name: traefik-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    deployment:
+      kind: Deployment
+      replicas: 2
+    service:
+      enabled: true
+      type: LoadBalancer
+    logs:
+      general:
+        format: json
+        level: INFO
+      access:
+        enabled: false
+        format: json
+        filters:
+          statuscodes: "404,401,300-302"
+    ingressClass:
+      enabled: true
+      isDefaultClass: false
+      fallbackApiVersion: v1
+    ingressRoute:
+      dashboard:
+        enabled: false
+    pilot:
+      enabled: false
+      token: ""
+    providers:
+      kubernetesCRD:
+        enabled: true
+        namespaces:
+          - "tor"
+      kubernetesIngress:
+        enabled: true
+        namespaces:
+          - "tor"
+    experimental:
+      plugins:
+        enabled: false
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - traefik
+            topologyKey: kubernetes.io/hostname
+    resources:
+      requests:
+        memory: 512Mi
+      limits:
+        memory: 1Gi
