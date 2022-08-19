@@ -47,16 +47,6 @@ spec:
           metallb.universe.tf/allow-shared-ip: "blocky"
           metallb.universe.tf/loadBalancerIPs: "${LB_BLOCKY_V6}"
         ports:
-          dns-https:
-            enabled: true
-            port: 443
-            protocol: TCP
-            targetPort: 443
-          dns-tls:
-            enabled: true
-            port: 853
-            protocol: TCP
-            targetPort: 853
           dns-tcp:
             enabled: true
             port: 53
@@ -114,11 +104,6 @@ spec:
         enable: true
         path: /metrics
       httpPort: 4000
-      httpsPort: 443
-      tlsPort: 853
-      logLevel: info
-      certFile: /cert/tls.crt
-      keyFile: /cert/tls.key
     metrics:
       enabled: true
       serviceMonitor:
@@ -129,7 +114,7 @@ spec:
         enabled: false
     persistence:
       blocky-cert:
-        enabled: true
+        enabled: false
         mountPath: /cert
         type: secret
         name: blocky-cert
