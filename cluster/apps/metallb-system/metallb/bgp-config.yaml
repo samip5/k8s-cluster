@@ -9,6 +9,8 @@ spec:
   myASN: 213021
   peerASN: 213021
   peerAddress: 10.0.105.1
+  # https://github.com/metallb/metallb/issues/1537
+  ebgpMultiHop: false
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
