@@ -22,8 +22,6 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    bpf:
-      masquerade: true
     autoDirectNodeRoutes: true
     localRedirectPolicy: true
     rollOutCiliumPods: true
