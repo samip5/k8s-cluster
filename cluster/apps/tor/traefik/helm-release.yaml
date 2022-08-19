@@ -17,6 +17,8 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    image:
+      tag: 2.8.3
     deployment:
       kind: Deployment
       replicas: 2
