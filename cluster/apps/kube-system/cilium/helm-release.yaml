@@ -65,6 +65,9 @@ spec:
       relay:
         enabled: true
         rollOutPods: true
+        prometheus:
+          enabled: true
+          serviceMonitor: true
       ui:
         enabled: true
         rollOutPods: true
@@ -86,3 +89,7 @@ spec:
 
     securityContext:
       privileged: true
+
+    prometheus:
+      enabled: true
+      serviceMonitor: true
