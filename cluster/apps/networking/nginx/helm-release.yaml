@@ -99,5 +99,5 @@ spec:
           cpu: 2281m
           memory: 524M
     defaultBackend:
-      enabled: false
+      enabled: true
       name: error-pages
