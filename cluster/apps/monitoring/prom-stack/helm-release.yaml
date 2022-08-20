@@ -22,7 +22,12 @@ spec:
       retries: 3
   values:
     fullnameOverride: prom-stack
+    defaultRules:
+      enabled: true
+      rules:
+        kubeProxy: false
     alertmanager:
+      enabled: true
       config:
         global:
           slack_api_url: "${SECRET_ALERT_MANAGER_DISCORD_WEBHOOK}"
