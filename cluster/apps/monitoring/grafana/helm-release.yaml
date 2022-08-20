@@ -102,7 +102,7 @@ spec:
           - name: InfluxDB
             type: influxdb
             access: proxy
-            url: https://influx.${MAIN_DOMAIN2}
+            url: "https://influx.${MAIN_DOMAIN2}"
             secureJsonData:
               token: ${SECRET_GRAFANA_OUTSIDE_INFLUX_TOKEN}
             jsonData:
@@ -122,10 +122,10 @@ spec:
       k8s:
         #Ref: https://grafana.com/grafana/dashboards/2842
         flux-cluster:
-          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/cluster.json
+          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/cluster.json
           datasource: Prometheus
         flux-control-plane:
-          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/control-plane.json
+          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/control-plane.json
           datasource: Prometheus
         blocky:
           url: https://raw.githubusercontent.com/0xERR0R/blocky/master/docs/blocky-grafana.json
