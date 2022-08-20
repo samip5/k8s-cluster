@@ -103,9 +103,7 @@ spec:
         https: true
         insecureSkipVerify: true
     kubeProxy:
-      enabled: true
-      endpoints:
-        - 10.0.105.10
+      enabled: false
     kubeEtcd:
       enabled: false
     prometheusOperator:
