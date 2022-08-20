@@ -23,7 +23,7 @@ spec:
     remediation:
       retries: 5
   dependsOn:
-    - name: traefik
+    - name: nginx
       namespace: networking
   values:
     image:
