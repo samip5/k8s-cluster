@@ -100,3 +100,4 @@ spec:
           memory: 524M
     defaultBackend:
       enabled: false
+      name: error-pages
