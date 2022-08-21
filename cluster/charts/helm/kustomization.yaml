@@ -29,6 +29,7 @@ resources:
   - metallb-charts.yaml
   - prometheus-community-charts.yaml
   - stakater-charts.yaml
+  - samipsolutions-charts.yaml
   - traefik-charts.yaml
   - infracloudio-charts.yaml
   - ingress-nginx-charts.yaml
