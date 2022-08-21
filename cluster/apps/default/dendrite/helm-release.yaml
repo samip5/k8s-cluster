@@ -80,13 +80,13 @@ spec:
           connection_string: ${CONNECTION_STRING}
     clientapi:
       config:
-        registration_disabled: false
+        registration_disabled: true
+        registration_shared_secret: ${SECRET_DENDRITE_REGISTRATION_SECRET}
         captcha:
           enabled: true
           recaptcha_public_key: ${SECRET_DENDRITE_RECA_PUB_KEY}
           recaptcha_private_key: ${SECRET_DENDRITE_RECA_PRIV_KEY}
           recaptcha_siteverify_api: https://www.google.com/recaptcha/api/siteverify
-        # registration_shared_secret: ${SECRET_DENDRITE_REGISTRATION_SECRET}
     podAnnotations:
       secret.reloader.stakater.com/reload: "dendrite-config"
     postgresql:
