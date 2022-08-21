@@ -1,0 +1,30 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: renovate-bot
+  namespace: default
+spec:
+  interval: 5m
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+      retries: 5
+      strategy: rollback
+  chart:
+    spec:
+      chart: whitesource-renovate
+      version: 3.1.1
+      sourceRef:
+        kind: GitRepository
+        name: renovate-on-prem
+        namespace: flux-system
+      interval: 30m
+  values:
+    renovate:
+      acceptWhiteSourceTos: y
+      renovatePlatform: github
+      renovateEndpoint: https://api.github.com
+      githubAppId: ${SECRET_RENOVATE_GITHUB_APP_ID}
+      githubAppKey: ${SECRET_RENOVATE_GITHUB_APP_KEY}
+
