@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
   - dendrite_pvc.yaml
   - dendrite.sops.yaml
-  - dendrite_db.sops.yaml
   - helm-release.yaml
