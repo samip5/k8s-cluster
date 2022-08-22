@@ -76,8 +76,8 @@ spec:
         presence:
           enable_outbound: true
           enable_inbound: true
-        database:
-          connection_string: ${CONNECTION_STRING}
+    database:
+      connection_string: ${CONNECTION_STRING}
     clientapi:
       config:
         registration_disabled: true
