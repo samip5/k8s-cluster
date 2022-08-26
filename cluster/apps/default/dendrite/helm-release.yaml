@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: ghcr.io/matrix-org/dendrite-monolith
-      tag: v0.9.4
+      tag: v0.9.5
       pullPolicy: IfNotPresent
     ingress:
       main:
