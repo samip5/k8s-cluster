@@ -15,5 +15,8 @@ spec:
         operator: In
         values:
           - "true"
+  tolerations:
+    - key: node-role.kubernetes.io/master
+      operator: Exists
   upgrade:
     image: rancher/k3s-upgrade
