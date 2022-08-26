@@ -13,8 +13,8 @@ spec:
       strategy: rollback
   chart:
     spec:
-      chart: renovate
-      version: 32.176.2
+      chart: whitesource-renovate
+      version: 3.1.1
       sourceRef:
         kind: HelmRepository
         name: renovate-on-prem-charts
