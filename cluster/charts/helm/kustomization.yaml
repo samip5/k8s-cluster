@@ -28,6 +28,7 @@ resources:
   - nfs-subdir-external-provisioner-charts.yaml
   - metallb-charts.yaml
   - prometheus-community-charts.yaml
+  - renovate-on-prem-charts.yaml
   - stakater-charts.yaml
   - samipsolutions-charts.yaml
   - traefik-charts.yaml
