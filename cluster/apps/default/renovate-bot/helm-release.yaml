@@ -16,8 +16,8 @@ spec:
       chart: whitesource-renovate
       version: 3.1.1
       sourceRef:
-        kind: HelmRepository
-        name: renovate-on-prem-charts
+        kind: GitRepository
+        name: renovate-on-prem
         namespace: flux-system
       interval: 30m
   values:
