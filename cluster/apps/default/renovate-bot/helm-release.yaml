@@ -22,12 +22,13 @@ spec:
       interval: 30m
   values:
     renovate:
-      acceptWhiteSourceTos: y
-      licenseKey: ${SECRET_RENOVATE_KEY}
-      renovatePlatform: github
-      renovateEndpoint: https://api.github.com
-      githubAppId: ${SECRET_RENOVATE_GITHUB_APP_ID}
-      githubAppKey: ${SECRET_RENOVATE_GITHUB_APP_KEY}
+      config:
+        acceptWhiteSourceTos: y
+        licenseKey: ${SECRET_RENOVATE_KEY}
+        renovatePlatform: github
+        renovateEndpoint: https://api.github.com
+        githubAppId: ${SECRET_RENOVATE_GITHUB_APP_ID}
+        githubAppKey: ${SECRET_RENOVATE_GITHUB_APP_KEY}
     ingress:
       enabled: true
       ingressClassName: nginx
