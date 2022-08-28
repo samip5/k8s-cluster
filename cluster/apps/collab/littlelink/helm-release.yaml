@@ -61,6 +61,7 @@ spec:
           http:
             enabled: true
             port: 3000
+      externalTrafficPolicy: Local
     ingress:
       main:
         enabled: true
