@@ -9,12 +9,11 @@ spec:
   releaseName: littlelink
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: littlelink-server
-      version: 1.4.2
+      chart: app-template
+      version: 0.1.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
       interval: 5m
   values:
@@ -33,18 +32,18 @@ spec:
       AVATAR_2X_URL: https://avatars.githubusercontent.com/u/1703002?v=4
       AVATAR_ALT: Skyler Mäntysaari
       NAME: Skyler Mäntysaari
-      BIO: Hi there traveler! You have managed to find the link index of mine. Good job! :)
-      BUTTON_ORDER: GITHUB,GITLAB,GITEA,LINKED_IN,MATRIX,DISCORD,TELEGRAM
+      BIO: Hobbyist developer | Gamer | #ActuallyAutistic | I.T-student at Turku University of Applied Sciences. | AS213021 network operator
+      BUTTON_ORDER: Website,GITHUB,GITLAB,GITEA,LINKED_IN,MATRIX,DISCORD,TELEGRAM
       GITHUB: https://github.com/samip5
       GITLAB: https://gitlab.com/samip5
       GITEA: https://git.samip.fi
-      CUSTOM_BUTTON_ALT_TEXT: Donation link
-      CUSTOM_BUTTON_ICON: fas fa-donate
-      CUSTOM_BUTTON_NAME: Donations
-      CUSTOM_BUTTON_COLOR: "#FFF"
-      CUSTOM_BUTTON_TEXT: Donate!
-      CUSTOM_BUTTON_TEXT_COLOR: "#ED2756"
-      CUSTOM_BUTTON_URL: https://liberapay.com/samip537/
+      CUSTOM_BUTTON_ALT_TEXT: Donation link,Website link
+      CUSTOM_BUTTON_ICON: fas fa-donate,fa-solid fa-globe
+      CUSTOM_BUTTON_NAME: Donations,Website
+      CUSTOM_BUTTON_COLOR: "#ffffff,#ffffff"
+      CUSTOM_BUTTON_TEXT: Donate!,Main website
+      CUSTOM_BUTTON_TEXT_COLOR: "#ED2756,ffffff"
+      CUSTOM_BUTTON_URL: https://liberapay.com/samip537/,https://skym.fi
       BUTTON_TARGET: _blank
       LINKED_IN: https://linkedin.com/in/samip537
       TWITTER: https://twitter.com/mantysaaris
@@ -55,7 +54,7 @@ spec:
       STEAM: https://steamcommunity.com/id/samip537
       EMAIL: sm+me@skym.fi
       EMAIL_TEXT: Email me!
-      FOOTER: Thank you for visiting. :)
+      FOOTER: Skyler Mäntysaari © 2022
     ingress:
       main:
         enabled: true
