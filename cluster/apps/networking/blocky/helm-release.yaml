@@ -60,13 +60,12 @@ spec:
         ipFamilies:
           - IPv6
     config: |
-      bootstrapDns: tcp+udp:1.1.1.1
+      bootstrapDns: tcp+udp:2001:67c:1104:ac::5353
       upstream:
         default:
-        #- tcp+udp:2a03:4000:4d:c92:88c0:96ff:fec6:b9d # OpenNIC, ns29.de
-        #- tcp+udp:2001:67c:13e4:1::37 # OpenNIC, ns5.ru
-        - tcp-tls:one.one.one.one
-        - tcp-tls:dns.google
+        - tcp+udp:2001:67c:1104:ac::5353
+        #- tcp-tls:one.one.one.one
+        #- tcp-tls:dns.google
       conditional:
         mapping:
           lan.${HOME_DOMAIN}: tcp+udp:${GATEWAY_ADDRESS}
