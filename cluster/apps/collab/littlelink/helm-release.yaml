@@ -55,6 +55,12 @@ spec:
       EMAIL: sm+me@skym.fi
       EMAIL_TEXT: Email me!
       FOOTER: Skyler Mäntysaari © 2022
+    service:
+      main:
+        ports:
+          http:
+            enabled: true
+            port: 3000
     ingress:
       main:
         enabled: true
