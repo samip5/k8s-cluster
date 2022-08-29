@@ -63,7 +63,6 @@ spec:
             enabled: true
             port: 80
             targetPort: 3000
-      externalTrafficPolicy: Local
     ingress:
       main:
         enabled: true
