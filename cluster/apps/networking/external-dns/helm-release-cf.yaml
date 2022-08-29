@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: docker.io/samip537/external-dns
-      tag: v1.0.1
+      tag: v1.1.0
     extraArgs:
       - --annotation-filter=external-dns-cf/is-public in (true)
       - --zone-id-filter=565f87a7bf0ab8ea9db9b83dca55bc54
