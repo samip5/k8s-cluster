@@ -51,6 +51,8 @@ spec:
       TELEGRAM: https://t.me/samip537
       DISCORD: https://discord.com/users/157970669261422592
       MATRIX: https://matrix.to/#/@sm:pikaviestin.fi
+      MATOMO_URL: https://skym.fi/matomo
+      MATOMO_SITE_ID: 8
       TRAKT: https://trakt.tv/users/samip537
       STEAM: https://steamcommunity.com/id/samip537
       EMAIL: sm+me@skym.fi
