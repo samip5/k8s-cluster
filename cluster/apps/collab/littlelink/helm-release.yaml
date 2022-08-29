@@ -43,7 +43,7 @@ spec:
       CUSTOM_BUTTON_NAME: Donations,Website
       CUSTOM_BUTTON_COLOR: "#ffffff,#ffffff"
       CUSTOM_BUTTON_TEXT: Donate!,Main website
-      CUSTOM_BUTTON_TEXT_COLOR: "#ED2756,ffffff"
+      CUSTOM_BUTTON_TEXT_COLOR: "#ED2756,#00000"
       CUSTOM_BUTTON_URL: https://liberapay.com/samip537/,https://skym.fi
       BUTTON_TARGET: _blank
       LINKED_IN: https://linkedin.com/in/samip537
