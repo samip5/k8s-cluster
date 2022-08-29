@@ -9,6 +9,7 @@ spec:
   releaseName: littlelink
   chart:
     spec:
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts
       chart: app-template
       version: 0.1.1
       sourceRef:
