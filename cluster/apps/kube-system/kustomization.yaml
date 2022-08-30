@@ -6,4 +6,4 @@ resources:
   - reloader
   - node-feature-discovery
   - cilium
-  - kyverno
+#  - kyverno
