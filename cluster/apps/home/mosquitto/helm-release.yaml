@@ -26,8 +26,12 @@ spec:
       main:
         type: LoadBalancer
         annotations:
-          metallb.universe.tf/loadBalancerIPs: "${SVC_MQTT_ADDR}"
+          metallb.universe.tf/loadBalancerIPs: "${SVC_MQTT_ADDR},2001:67c:1104:fc00::10"
         externalTrafficPolicy: Local
+        ipFamilyPolicy: "PreferDualStack"
+        ipFamilies:
+          - IPv4
+          - IPv6
     auth:
       enabled: true
     podAnnotations:
