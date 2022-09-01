@@ -37,13 +37,12 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: traefik
+  name: mosquitto
   namespace: metallb-system
 spec:
   addresses:
-    - 2001:67c:1104:fc00::443/128
-    - 185.218.193.62/32
-    - 192.168.10.81/32
+    - 2001:67c:1104:fc00::10/128
+    - 192.168.10.10/32
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
@@ -93,5 +92,6 @@ spec:
   ipAddressPools:
     - default-pool
     - blocky
+    - mosquitto
     - public
     - game-prefix-pool
