@@ -28,7 +28,6 @@ spec:
         annotations:
           metallb.universe.tf/loadBalancerIPs: "${SVC_MQTT_ADDR}"
         externalTrafficPolicy: Local
-        ipFamilyPolicy: "PreferDualStack"
     auth:
       enabled: true
     podAnnotations:
