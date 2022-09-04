@@ -102,7 +102,7 @@ spec:
           - name: InfluxDB
             type: influxdb
             access: proxy
-            url: "https://influx.${MAIN_DOMAIN2}"
+            url: "https://influx.${MAIN_DOMAIN_2}"
             secureJsonData:
               token: ${SECRET_GRAFANA_OUTSIDE_INFLUX_TOKEN}
             jsonData:
