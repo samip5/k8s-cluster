@@ -42,13 +42,15 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: "nginx"
         hosts:
-          - host: &host blocky.${SECRET_DOMAIN}
-            path: /
-            PathType: Prefix
+          - host: &host "blocky.${MAIN_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
         tls:
-          - host: *host
+          - hosts:
+              - *host
             secretName: blocky-cert
 
       dns:
