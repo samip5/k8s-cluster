@@ -1,0 +1,19 @@
+controller:
+  logLevel: debug
+prometheus:
+  serviceAccount: kube-prometheus-stack-prometheus
+  namespace: monitoring
+  podMonitor:
+    enabled: false
+  prometheusRule:
+    enabled: false
+speaker:
+  tolerateMaster: true
+  logLevel: info
+  frr:
+    enabled: true
+    image:
+      repository: docker.io/frrouting/frr
+      tag: v7.5.1
+crds:
+  enabled: true
