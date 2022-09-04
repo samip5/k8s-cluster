@@ -36,6 +36,7 @@ spec:
       replicas: 3
     service:
       main:
+        enabled: true
         ports:
           http:
             port: 4000
@@ -48,9 +49,6 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
-                service:
-                  name: blocky
-                  port: 4000
         tls:
           - hosts:
               - *host
