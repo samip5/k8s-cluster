@@ -39,12 +39,24 @@ spec:
         ports:
           http:
             port: 4000
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        hosts:
+          - host: &host blocky.${SECRET_DOMAIN}
+            path: /
+            PathType: Prefix
+        tls:
+          - host: *host
+            secretName: blocky-cert
+
       dns:
         enabled: true
         type: LoadBalancer
         annotations:
           metallb.universe.tf/allow-shared-ip: "blocky"
-          metallb.universe.tf/loadBalancerIPs: "${LB_BLOCKY_V6}"
+          metallb.universe.tf/loadBalancerIPs: "${LB_BLOCKY_V4},${LB_BLOCKY_V6}"
         ports:
           dns-tcp:
             enabled: true
@@ -57,8 +69,9 @@ spec:
             protocol: UDP
             targetPort: 53
         externalTrafficPolicy: Local
-        ipFamilyPolicy: "SingleStack"
+        ipFamilyPolicy: "PreferDualStack"
         ipFamilies:
+          - IPv4
           - IPv6
     config: |
       bootstrapDns: tcp+udp:2001:67c:1104:ac::5353
