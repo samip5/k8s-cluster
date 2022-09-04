@@ -40,20 +40,6 @@ spec:
         ports:
           http:
             port: 4000
-    ingress:
-      main:
-        enabled: true
-        ingressClassName: "nginx"
-        hosts:
-          - host: &host "blocky.${MAIN_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
-            secretName: blocky-cert
-
       dns:
         enabled: true
         type: LoadBalancer
@@ -76,6 +62,19 @@ spec:
         ipFamilies:
           - IPv4
           - IPv6
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        hosts:
+          - host: &host "blocky.${MAIN_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+            secretName: blocky-cert
     config: |
       bootstrapDns: tcp+udp:2001:67c:1104:ac::5353
       upstream:
