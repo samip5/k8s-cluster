@@ -96,6 +96,9 @@ spec:
                 external-dns.home.arpa/enabled: "true"
           - resources:
               annotations:
+                external-dns-cf/is-public: "true"
+          - resources:
+              annotations:
                 external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           - resources:
               annotations:
