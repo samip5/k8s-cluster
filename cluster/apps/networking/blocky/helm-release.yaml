@@ -84,7 +84,7 @@ spec:
       conditional:
         mapping:
           lan.${HOME_DOMAIN}: tcp+udp:${GATEWAY_ADDRESS}
-          f: tcp+udp:fd0d:944c:1337:a::1
+          fh: tcp+udp:fd0d:944c:1337:a::1
       blocking:
         blackLists:
           ads:
