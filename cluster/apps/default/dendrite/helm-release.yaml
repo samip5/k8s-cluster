@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://helm.samipsolutions.fi/
       chart: dendrite
-      version: 7.1.2
+      version: 7.2.0
       sourceRef:
         kind: HelmRepository
         name: samipsolutions-charts
