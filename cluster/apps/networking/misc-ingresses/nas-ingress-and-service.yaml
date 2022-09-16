@@ -5,7 +5,7 @@ metadata:
   name: nas
   namespace: networking
   annotations:
-    external-dns-cf-public.home.arpa/enabled: "true"
+    external-dns-cf/is-public: "true"
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
