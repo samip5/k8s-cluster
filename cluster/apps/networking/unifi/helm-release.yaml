@@ -19,9 +19,7 @@ spec:
   values:
     image:
       repository: jacobalberty/unifi
-      tag: v7.2.92
-    env:
-      TZ: "${TIMEZONE}"
+      tag: v7.2.94
 
     hostNetwork: true
     dnsPolicy: ClusterFirstWithHostNet
