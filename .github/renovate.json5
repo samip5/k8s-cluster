@@ -175,6 +175,7 @@
         "traefik",
         "authentik",
         "ingress-nginx"
+        "grafana".
       ]
     }
   ],
