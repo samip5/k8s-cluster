@@ -26,6 +26,7 @@ spec:
       pullPolicy: Always
 
     authentik:
+      log_level: debug
       secret_key: "${SECRET_AUTHENTIK_SECRET_KEY}"
       error_reporting:
         enabled: true
