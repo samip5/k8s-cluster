@@ -33,7 +33,7 @@ spec:
 
     image:
       repository: wolveix/satisfactory-server
-      tag: v1.2.5
+      tag: v1.3.0
 
     env:
       # -- Set the container timezone
