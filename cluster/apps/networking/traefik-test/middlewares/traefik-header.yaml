@@ -1,0 +1,10 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: traefik-header
+  namespace: networking
+spec:
+  headers:
+    customResponseHeaders:
+      X-proxied-by: "Traefik inside k8s"
