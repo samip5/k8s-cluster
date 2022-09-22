@@ -18,4 +18,4 @@ resources:
 #  - proxy
   - home
   - tor
-#  - games
+  - games
