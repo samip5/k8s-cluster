@@ -21,7 +21,7 @@ spec:
       fullnameOverride: assistant
     image:
       repository: ghcr.io/home-assistant/home-assistant
-      tag: 2022.9.5
+      tag: 2022.9.6
 
     ingress:
       main:
