@@ -36,9 +36,6 @@ spec:
         annotations:
           metallb.universe.tf/loadBalancerIPs: "${LB_VALHEIM}"
         ipFamilyPolicy: RequireDualStack
-        ipFamilies:
-          - IPv4
-          - IPv6
 
     persistence:
       config:
