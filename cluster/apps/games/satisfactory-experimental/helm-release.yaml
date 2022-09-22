@@ -36,9 +36,7 @@ spec:
       tag: v1.3.0
 
     env:
-      # -- Set the container timezone
-      TZ: ${TIMEZONE}
-      STEAMBETA: true
+      STEAMBETA: false
 
     # -- Configures service settings for the chart.
     # @default -- See values.yaml
