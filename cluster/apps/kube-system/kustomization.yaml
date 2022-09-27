@@ -7,3 +7,4 @@ resources:
   - node-feature-discovery
   - cilium
   - kyverno
+  - kopia
