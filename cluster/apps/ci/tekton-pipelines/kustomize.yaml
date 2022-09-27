@@ -1,0 +1,32 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: tekton-pipeline
+  namespace: tekton-pipelines
+spec:
+  interval: 9m0s
+  ref:
+    # renovate: datasource=github-releases depName=tektoncd/pipeline
+    tag: v0.38.3
+  url: https://github.com/tektoncd/pipeline
+  ignore: |
+    # exclude all
+    /*
+    # include gitops dirs
+    !/config
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: tekton-pipeline
+  namespace: tekton-pipelines
+spec:
+  interval: 10m0s
+  path: ./config
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: tekton-pipeline
+    namespace: tekton-pipelines
