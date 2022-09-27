@@ -87,7 +87,7 @@ spec:
       snapshots:
         enabled: true
         type: pvc
-        existingClaim: snapshots
+        existingClaim: kopia-snapshots
         mountPath: /snapshots
     podAnnotations:
       configmap.reloader.stakater.com/reload: *app
