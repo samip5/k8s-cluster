@@ -59,7 +59,7 @@ spec:
           volumes:
             - name: snapshots
               persistentVolumeClaim:
-                claimName: snapshots
+                claimName: kopia-snapshots
             - name: remote-config
               secret:
                 secretName: *app
