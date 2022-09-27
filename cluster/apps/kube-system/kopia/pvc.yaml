@@ -2,7 +2,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: snapshots
+  name: kopia-snapshots
   namespace: kube-system
 spec:
   volumeName: snapshots
