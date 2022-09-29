@@ -17,8 +17,10 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: ghcr.io/matrix-org/dendrite-monolith
-      tag: v0.9.9
+      #repository: ghcr.io/matrix-org/dendrite-monolith
+      repository: ghcr.io/samip5/dendrite-monolith
+      tag: loginsso
+      #tag: v0.9.9
       pullPolicy: IfNotPresent
     ingress:
       main:
