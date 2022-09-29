@@ -24,7 +24,7 @@ spec:
         ssl-prefer-server-ciphers: false
         ssl-redirect: false
         server-tokens: false
-        use-forwarded-headers: true
+        enable-real-ip: true
       podAntiAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
           - podAffinityTerm:
