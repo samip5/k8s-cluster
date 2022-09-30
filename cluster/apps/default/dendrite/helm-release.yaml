@@ -81,6 +81,18 @@ spec:
     database:
       connection_string: ${SECRET_DENDRITE_DB_CONNECTION_STRING}
     clientapi:
+      login:
+        sso:
+          enabled: true
+          providers:
+            - id: id.${SECRET_DOMAIN}
+              name: Skylab SSO
+              type: oidc
+              oauth2:
+                client_id: a6ae6d5e71260fa262cab88c7dc80d2014e22515
+                client_secret: ${SECRET_DENDRITE_CLIENT_SECRET}
+              oidc:
+                discovery_url: https://id.${SECRET_DOMAIN}/application/o/dendrite/.well-known/openid-configuration
       config:
         registration_disabled: true
         registration_shared_secret: ${SECRET_DENDRITE_REGISTRATION_SECRET}
