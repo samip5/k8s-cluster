@@ -116,6 +116,9 @@ spec:
             url: http://loki:3100
     dashboards:
       default:
+        electricity:
+          url: https://raw.githubusercontent.com/samip5/k8s-cluster/main/cluster/apps/monitoring/grafana/dashboards/electricity_dash.json
+          datasource: InfluxDB
         zigbee:
           url: https://raw.githubusercontent.com/samip5/k8s-cluster/main/cluster/apps/monitoring/grafana/dashboards/zigbee_dash.json
           datasource: InfluxDB
