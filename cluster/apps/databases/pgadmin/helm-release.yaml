@@ -5,19 +5,45 @@ metadata:
   name: pgadmin
   namespace: databases
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      chart: pgadmin
-      version: 7.0.37
+      chart: app-template
+      version: 0.2.1
       sourceRef:
         kind: HelmRepository
-        name: true-charts
+        name: bjw-s-charts
         namespace: flux-system
+      interval: 15m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
   values:
-    secretEnv:
+    image:
+      repository: dpage/pgadmin4
+      tag: "6.14"
+    strategy:
+      type: Recreate
+
+    env:
       PGADMIN_DEFAULT_EMAIL: sm@${SECRET_DOMAIN}
       PGADMIN_DEFAULT_PASSWORD: ${PASSWORD}
+
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+
+    podSecurityContext:
+      runAsUser: 5050
+      runAsGroup: 5050
+      fsGroup: 5050
+      fsGroupChangePolicy: "OnRootMismatch"
 
     persistence:
       config:
@@ -38,3 +64,10 @@ spec:
           - secretName: ${SECRET_DOMAIN}-tls
             hosts:
               - pgadmin.${SECRET_DOMAIN}
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 164M
+      limits:
+        memory: 236M
