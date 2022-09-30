@@ -19,6 +19,12 @@ spec:
       PGADMIN_DEFAULT_EMAIL: sm@${SECRET_DOMAIN}
       PGADMIN_DEFAULT_PASSWORD: ${PASSWORD}
 
+    persistence:
+      config:
+        enabled: true
+        mountPath: "/var/lib/pgadmin"
+        size: 1Gi
+
     ingress:
       main:
         enabled: true
