@@ -19,7 +19,7 @@ spec:
     image:
       #repository: ghcr.io/matrix-org/dendrite-monolith
       repository: ghcr.io/samip5/dendrite-monolith
-      tag: loginsso@37f7718d5f7bde2786cc0e158dab9e21ff7cd7e9db2326fb623b73de7acfd2ca
+      tag: loginsso@sha256:37f7718d5f7bde2786cc0e158dab9e21ff7cd7e9db2326fb623b73de7acfd2ca
       #tag: v0.9.9
       pullPolicy: IfNotPresent
     ingress:
