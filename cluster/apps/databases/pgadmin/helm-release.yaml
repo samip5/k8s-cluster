@@ -20,14 +20,15 @@ spec:
       PGADMIN_DEFAULT_PASSWORD: ${PASSWORD}
 
     ingress:
-      enabled: true
-      ingressClassName: nginx
-      hosts:
-        - host: pgadmin.${SECRET_DOMAIN}
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - secretName: ${SECRET_DOMAIN}-tls
-          hosts:
-            - pgadmin.${SECRET_DOMAIN}
+      main:
+        enabled: true
+        ingressClassName: nginx
+        hosts:
+          - host: pgadmin.${SECRET_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: ${SECRET_DOMAIN}-tls
+            hosts:
+              - pgadmin.${SECRET_DOMAIN}
