@@ -178,7 +178,7 @@ spec:
         room_server:
         sync_api:
           search:
-            enabled: true
+            enabled: false
             index_path: "/var/dendrite/search"
             language: "fi"
         user_api:
