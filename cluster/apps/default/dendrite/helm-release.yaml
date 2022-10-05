@@ -20,7 +20,7 @@ spec:
     image:
       #repository: ghcr.io/matrix-org/dendrite-monolith
       repository: ghcr.io/samip5/dendrite-monolith
-      tag: loginsso@sha256:8c3f45d7bcb6f9af740f47027d880ca8e2495ba11068a0805915bda5ad3c74d1
+      tag: loginsso@sha256:05fb6841cd4c98f22170b6c7a2d54c0b64c988cb96d4792613bc1d6848e3116f
       #tag: v0.9.9
       pullPolicy: IfNotPresent
     strategy:
@@ -178,7 +178,7 @@ spec:
         room_server:
         sync_api:
           search:
-            enabled: false
+            enabled: true
             index_path: "/var/dendrite/search"
             language: "fi"
         user_api:
