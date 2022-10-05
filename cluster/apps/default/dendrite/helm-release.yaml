@@ -108,7 +108,7 @@ spec:
             cache_lifetime: 5m
           database:
             connection_string: ${SECRET_DENDRITE_DB_CONNECTION_STRING}
-            max_open_conns: 100
+            max_open_conns: 30
             max_idle_conns: 2
             conn_max_lifetime: -1
         app_service_api:
