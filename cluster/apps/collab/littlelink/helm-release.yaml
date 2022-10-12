@@ -40,11 +40,11 @@ spec:
       GITEA: https://git.samip.fi
       CUSTOM_BUTTON_ALT_TEXT: Donation link,Website link
       CUSTOM_BUTTON_ICON: fas fa-donate,fa-solid fa-globe
-      CUSTOM_BUTTON_NAME: Donations,Website
+      CUSTOM_BUTTON_NAME: Donate,Website
       CUSTOM_BUTTON_COLOR: "#ffffff,#ffffff"
-      CUSTOM_BUTTON_TEXT: Donate!,Main website
+      CUSTOM_BUTTON_TEXT: Bye me a coffee,Main website
       CUSTOM_BUTTON_TEXT_COLOR: "#ED2756,#00000"
-      CUSTOM_BUTTON_URL: https://liberapay.com/samip537/,https://skym.fi
+      CUSTOM_BUTTON_URL: https://www.buymeacoffee.com/skykrypt,https://skym.fi
       BUTTON_TARGET: _blank
       LINKED_IN: https://linkedin.com/in/samip537
       TWITTER: https://twitter.com/mantysaaris
