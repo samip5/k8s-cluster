@@ -42,7 +42,7 @@ spec:
       CUSTOM_BUTTON_ICON: fas fa-donate,fa-solid fa-globe
       CUSTOM_BUTTON_NAME: Donate,Website
       CUSTOM_BUTTON_COLOR: "#ffffff,#ffffff"
-      CUSTOM_BUTTON_TEXT: Bye me a coffee,Main website
+      CUSTOM_BUTTON_TEXT: Buy me a coffee,Main website
       CUSTOM_BUTTON_TEXT_COLOR: "#ED2756,#00000"
       CUSTOM_BUTTON_URL: https://www.buymeacoffee.com/skykrypt,https://skym.fi
       BUTTON_TARGET: _blank
