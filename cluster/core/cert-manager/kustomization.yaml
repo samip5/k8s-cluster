@@ -9,4 +9,5 @@ resources:
   - secret.enc.yaml
   - zerossl-production.yaml
   - zerossl-prod.yaml
+  - zerossl-prod-pdns.yaml
   - zerossl-secret.enc.yaml
