@@ -1,0 +1,28 @@
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: zerossl-prod-pdns
+spec:
+  acme:
+    # The ACME server URL
+    server: https://acme.zerossl.com/v2/DV90
+
+    externalAccountBinding:
+      keyID: fY3FgZdzCS5UO2gEsnavbw
+      keySecretRef:
+        name: zerossl-eabsecret
+        key: secret
+
+    privateKeySecretRef:
+      name: zerossl-prod
+
+    solvers:
+      - dns01:
+          webhook:
+            # This group needs to be configured when installing the helm package, otherwise the webhook won't have permission to create an ACME challenge for this API group.
+            groupName: acme.${COMPANY_DOMAIN}
+            solverName: pdns
+            config:
+              secretName: pdns-secret
+              apiUrl: ${PDNS_SAMIPSOLUTIONS_API_URL}
