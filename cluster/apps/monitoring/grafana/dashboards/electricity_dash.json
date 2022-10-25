@@ -24,7 +24,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 31,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -76,7 +75,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.5",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -219,12 +218,22 @@
           "hide": false,
           "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeries = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"W\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"hallway_socket_power\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n\n  NamedSeries = RawSeries\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Hallway socket\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeries |> yield()",
           "refId": "F"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "hide": false,
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeries = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"W\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"kitchensocket1_energy_power\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n\n  NamedSeries = RawSeries\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Kitchen socket (Dish Washer)\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeries |> yield()",
+          "refId": "G"
         }
       ],
       "title": "Electricity usage in watts",
       "type": "timeseries"
     }
   ],
+  "refresh": true,
   "schemaVersion": 37,
   "style": "dark",
   "tags": [],
@@ -239,6 +248,6 @@
   "timezone": "",
   "title": "Electricity dashboard",
   "uid": "vBMPFd4Vz",
-  "version": 2,
+  "version": 1,
   "weekStart": ""
 }
