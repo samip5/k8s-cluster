@@ -59,12 +59,6 @@ spec:
             kvstore:
               store: inmemory
           enable_api: true
-
-        monitoring:
-          selfMonitoring:
-            enabled: false
-            grafanaAgent:
-              installOperator: false
     affinity:
      nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
