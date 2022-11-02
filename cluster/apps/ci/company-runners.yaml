@@ -86,5 +86,5 @@ spec:
   scaleUpTriggers:
     - githubEvent:
         workflowJob: {}
-        check_run: {}
+        checkRun: {}
       duration: "15m"
