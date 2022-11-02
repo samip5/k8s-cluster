@@ -17,7 +17,6 @@ spec:
       organization: samipsolutions
       labels:
         - self-hosted
-      group: Default
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
