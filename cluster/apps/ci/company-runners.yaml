@@ -14,7 +14,8 @@ spec:
           value: "true"
       image: summerwind/actions-runner-dind
       organization: samipsolutions
-      labels: custom-arm64
+      labels:
+      - custom-arm64
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -58,6 +59,8 @@ spec:
           value: "true"
       image: summerwind/actions-runner-dind
       organization: samipsolutions
+      labels:
+        - self-hosted
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
