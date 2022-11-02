@@ -1,0 +1,25 @@
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: samipsolutions-runners
+spec:
+  template:
+    spec:
+      organization: samipsolutions
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: HorizontalRunnerAutoscaler
+metadata:
+  name: samipsolutions-runners
+spec:
+  minReplicas: 1
+  maxReplicas: 10
+  scaleTargetRef:
+    kind: RunnerDeployment
+    # # In case the scale target is RunnerSet:
+    # kind: RunnerSet
+    name: samipsolutions-runners
+  scaleUpTriggers:
+    - githubEvent:
+        workflowJob: {}
+      duration: "1h"

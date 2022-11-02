@@ -5,3 +5,4 @@ resources:
   - github-actions-runners.yaml
   - actions-runner-controller-auth.sops.yaml
   - actions-runner-controller-webhook.sops.yaml
+  - company-runners.yaml
