@@ -12,7 +12,6 @@ spec:
       env:
         - name: DISABLE_RUNNER_UPDATE
           value: "true"
-      priorityClassName: "high"
       image: summerwind/actions-runner-dind
       organization: samipsolutions
       affinity:
@@ -58,7 +57,6 @@ spec:
       env:
         - name: DISABLE_RUNNER_UPDATE
           value: "true"
-      priorityClassName: "high"
       image: summerwind/actions-runner-dind
       organization: samipsolutions
       affinity:
