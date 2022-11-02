@@ -2,6 +2,7 @@ apiVersion: actions.summerwind.dev/v1alpha1
 kind: RunnerDeployment
 metadata:
   name: samipsolutions-runners
+  namespace: ci
 spec:
   template:
     spec:
@@ -11,6 +12,7 @@ apiVersion: actions.summerwind.dev/v1alpha1
 kind: HorizontalRunnerAutoscaler
 metadata:
   name: samipsolutions-runners
+  namespace: ci
 spec:
   minReplicas: 1
   maxReplicas: 10
