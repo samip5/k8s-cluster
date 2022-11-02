@@ -6,3 +6,4 @@ resources:
   - actions-runner-controller-auth.sops.yaml
   - actions-runner-controller-webhook.sops.yaml
   - company-runners.yaml
+  - company-runners-arm64.yaml
