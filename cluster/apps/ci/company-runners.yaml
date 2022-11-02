@@ -1,18 +1,35 @@
 apiVersion: actions.summerwind.dev/v1alpha1
 kind: RunnerDeployment
 metadata:
-  name: samipsolutions-runners
+  name: samipsolutions-runners-arm64
   namespace: ci
 spec:
   template:
+    metadata:
+      annotations:
+        cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
     spec:
+      env:
+        - name: DISABLE_RUNNER_UPDATE
+          value: "true"
+      priorityClassName: "high"
       image: summerwind/actions-runner-dind
       organization: samipsolutions
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              preference:
+                matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                      - arm64
 ---
 apiVersion: actions.summerwind.dev/v1alpha1
 kind: HorizontalRunnerAutoscaler
 metadata:
-  name: samipsolutions-runners
+  name: samipsolutions-runners-arm64
   namespace: ci
 spec:
   minReplicas: 1
@@ -21,8 +38,54 @@ spec:
     kind: RunnerDeployment
     # # In case the scale target is RunnerSet:
     # kind: RunnerSet
-    name: samipsolutions-runners
+    name: samipsolutions-runners-arm64
   scaleUpTriggers:
     - githubEvent:
         workflowJob: {}
-      duration: "1h"
+      duration: "15m"
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: samipsolutions-runners-amd64
+  namespace: ci
+spec:
+  template:
+    metadata:
+      annotations:
+        cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
+    spec:
+      env:
+        - name: DISABLE_RUNNER_UPDATE
+          value: "true"
+      priorityClassName: "high"
+      image: summerwind/actions-runner-dind
+      organization: samipsolutions
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              preference:
+                matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                      - amd64
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: HorizontalRunnerAutoscaler
+metadata:
+  name: samipsolutions-runners-amd64
+  namespace: ci
+spec:
+  minReplicas: 1
+  maxReplicas: 10
+  scaleTargetRef:
+    kind: RunnerDeployment
+    # # In case the scale target is RunnerSet:
+    # kind: RunnerSet
+    name: samipsolutions-runners-amd64
+  scaleUpTriggers:
+    - githubEvent:
+        workflowJob: {}
+      duration: "15m"
