@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: actions-runner-system
+  name: ci
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -29,15 +29,19 @@ spec:
 
   values:
     authSecret:
-      create: true
-      name: "contoller-manager"
+      create: false
+      name: "actions-runner-controller-auth"
+
+    image:
+      repository: summerwind/actions-runner-controller
 
     githubWebhookServer:
-      enabled: false
+      enabled: true
       syncPeriod: 10m
 
       secret:
-        create: true
+        create: false
+        name: actions-runner-controller-webhook
 
       ingress:
         enabled: true
@@ -45,13 +49,13 @@ spec:
           kubernetes.io/ingress.class: nginx
           external-dns.home.arpa/enabled: "true"
         hosts:
-        - host: acr-hook.${SECRET_DOMAIN}
+        - host: runner.${SECRET_DOMAIN}
           paths:
             - path: /
               pathType: Prefix
         tls:
           - hosts:
-              - acr-hook.${SECRET_DOMAIN}
+              - runner.${SECRET_DOMAIN}
 
     resources:
       requests:
