@@ -15,8 +15,6 @@ spec:
           value: "true"
       image: summerwind/actions-runner-dind
       organization: samipsolutions
-      labels:
-        - self-hosted
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -34,15 +32,12 @@ metadata:
   name: samipsolutions-runners
   namespace: ci
 spec:
+  minReplicas: 1
+  maxReplicas: 3
   scaleTargetRef:
     kind: RunnerDeployment
     name: samipsolutions-runners
-  minReplicas: 1
-  maxReplicas: 5
-  metrics:
-    - type: PercentageRunnersBusy
-      scaleUpThreshold: '0.75'    # The percentage of busy runners at which the number of desired runners are re-evaluated to scale up
-      scaleDownThreshold: '0.3'   # The percentage of busy runners at which the number of desired runners are re-evaluated to scale down
-      scaleUpFactor: '1.4'        # The scale up multiplier factor applied to desired count
-      scaleDownFactor: '0.7'      # The scale down multiplier factor applied to desired count
-
+  scaleUpTriggers:
+    - githubEvent:
+        workflowJob: {}
+      duration: "15m"
