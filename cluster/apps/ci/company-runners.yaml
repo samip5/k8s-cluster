@@ -14,6 +14,7 @@ spec:
           value: "true"
       image: summerwind/actions-runner-dind
       organization: samipsolutions
+      labels: custom-arm64
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -35,8 +36,6 @@ spec:
   maxReplicas: 10
   scaleTargetRef:
     kind: RunnerDeployment
-    # # In case the scale target is RunnerSet:
-    # kind: RunnerSet
     name: samipsolutions-runners-arm64
   scaleUpTriggers:
     - githubEvent:
@@ -80,8 +79,6 @@ spec:
   maxReplicas: 10
   scaleTargetRef:
     kind: RunnerDeployment
-    # # In case the scale target is RunnerSet:
-    # kind: RunnerSet
     name: samipsolutions-runners-amd64
   scaleUpTriggers:
     - githubEvent:
