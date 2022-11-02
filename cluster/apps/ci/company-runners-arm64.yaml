@@ -1,8 +1,7 @@
----
 apiVersion: actions.summerwind.dev/v1alpha1
 kind: RunnerDeployment
 metadata:
-  name: samipsolutions-runners
+  name: samipsolutions-runners-arm64
   namespace: ci
 spec:
   template:
@@ -16,7 +15,7 @@ spec:
       image: summerwind/actions-runner-dind
       organization: samipsolutions
       labels:
-        - self-hosted
+        - custom-arm64
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -26,21 +25,20 @@ spec:
                   - key: kubernetes.io/arch
                     operator: In
                     values:
-                      - amd64
+                      - arm64
 ---
 apiVersion: actions.summerwind.dev/v1alpha1
 kind: HorizontalRunnerAutoscaler
 metadata:
-  name: samipsolutions-runners
+  name: samipsolutions-runners-arm64
   namespace: ci
 spec:
   minReplicas: 1
   maxReplicas: 10
   scaleTargetRef:
     kind: RunnerDeployment
-    name: samipsolutions-runners
+    name: samipsolutions-runners-arm64
   scaleUpTriggers:
     - githubEvent:
         workflowJob: {}
-        checkRun: {}
       duration: "15m"
