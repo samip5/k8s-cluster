@@ -36,12 +36,11 @@ metadata:
   namespace: ci
 spec:
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 3
   scaleTargetRef:
     kind: RunnerDeployment
     name: samipsolutions-runners
   scaleUpTriggers:
     - githubEvent:
         workflowJob: {}
-        checkRun: {}
       duration: "15m"
