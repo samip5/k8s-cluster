@@ -10,7 +10,7 @@ spec:
       annotations:
         cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
     spec:
-      image: summerwind/actions-runner-dind
+      image: ghcr.io/samipsolutions/actions-runner
       organization: samipsolutions
       labels:
         - self-hosted
