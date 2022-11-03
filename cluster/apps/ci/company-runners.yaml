@@ -33,7 +33,7 @@ metadata:
   namespace: ci
 spec:
   minReplicas: 1
-  maxReplicas: 20
+  maxReplicas: 100
   scaleTargetRef:
     kind: RunnerDeployment
     name: samipsolutions-runners
@@ -56,8 +56,6 @@ spec:
       image: summerwind/actions-runner-dind
       organization: samipsolutions
       labels:
-        - self-hosted
-        - X64
         - default
       affinity:
         nodeAffinity:
