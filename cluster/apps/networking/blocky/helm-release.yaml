@@ -75,10 +75,10 @@ spec:
               - *host
             secretName: blocky-cert
     config: |
-      bootstrapDns: tcp+udp:2001:67c:1104:ac::5353
+      bootstrapDns: tcp+udp:2001:67c:1104::1
       upstream:
         default:
-        - tcp+udp:2001:67c:1104:ac::5353
+        - tcp+udp:2001:67c:1104::1
         #- tcp-tls:one.one.one.one
         #- tcp-tls:dns.google
       conditional:
