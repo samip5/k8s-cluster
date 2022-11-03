@@ -9,9 +9,6 @@ spec:
       annotations:
         cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
     spec:
-      env:
-        - name: DISABLE_RUNNER_UPDATE
-          value: "true"
       image: summerwind/actions-runner-dind
       organization: samipsolutions
       labels:
