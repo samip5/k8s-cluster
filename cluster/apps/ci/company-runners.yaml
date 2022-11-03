@@ -80,7 +80,7 @@ spec:
   maxReplicas: 3
   scaleTargetRef:
     kind: RunnerDeployment
-    name: samipsolutions-runners
+    name: samipsolutions-runners-amd64-default
   scaleUpTriggers:
     - githubEvent:
         workflowJob: {}
