@@ -10,7 +10,7 @@ spec:
       annotations:
         cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
     spec:
-      image: ghcr.io/samipsolutions/actions-runner
+      image: ghcr.io/samipsolutions/actions-runner:rolling
       organization: samipsolutions
       labels:
         - self-hosted
