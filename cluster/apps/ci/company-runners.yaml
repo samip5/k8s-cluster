@@ -12,6 +12,9 @@ spec:
     spec:
       image: summerwind/actions-runner-dind
       organization: samipsolutions
+      labels:
+        - self-hosted
+        - X64
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
