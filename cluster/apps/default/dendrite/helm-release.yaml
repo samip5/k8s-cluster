@@ -123,9 +123,8 @@ spec:
                  name: Skylab SSO
                  type: oidc
                  oidc:
-                  oauth2:
-                   client_id: a6ae6d5e71260fa262cab88c7dc80d2014e22515
-                   client_secret: ${SECRET_DENDRITE_CLIENT_SECRET}
+                  client_id: a6ae6d5e71260fa262cab88c7dc80d2014e22515
+                  client_secret: ${SECRET_DENDRITE_CLIENT_SECRET}
                   discovery_url: https://id.${SECRET_DOMAIN}/application/o/dendrite/.well-known/openid-configuration
           registration_disabled: true
           registration_shared_secret: "${SECRET_DENDRITE_REGISTRATION_SECRET}"
