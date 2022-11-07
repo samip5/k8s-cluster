@@ -95,7 +95,7 @@ spec:
             addresses:
               []
             in_memory: false
-            storage_path: /var/dendrite/jetstream
+            storage_path: /jetstream
             topic_prefix: "Dendrite"
           metrics:
             enabled: false
@@ -157,7 +157,7 @@ spec:
           prefer_direct_fetch: false
         key_server:
         media_api:
-          base_path: "/var/dendrite/media"
+          base_path: "/media"
           max_file_size_bytes: 10485760
           dynamic_thumbnails: true
           max_thumbnail_generators: 10
@@ -181,7 +181,7 @@ spec:
         sync_api:
           search:
             enabled: true
-            index_path: "/var/dendrite/search"
+            index_path: "/search"
             language: "fi"
         user_api:
           bcrypt_cost: 10
@@ -202,8 +202,6 @@ spec:
             params:
               path: /var/log/dendrite
             type: file
-          - level: trace
-            type: std
     persistence:
       media:
         enabled: true
