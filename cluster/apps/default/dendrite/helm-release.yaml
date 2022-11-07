@@ -83,7 +83,7 @@ spec:
             enable_inbound: true
             enable_outbound: true
           report_stats:
-            enabled: false
+            enabled: true
             endpoint: https://matrix.org/report-usage-stats/push
           server_notices:
             enabled: false
@@ -123,8 +123,9 @@ spec:
                  name: Skylab SSO
                  type: oidc
                  oidc:
-                  client_id: a6ae6d5e71260fa262cab88c7dc80d2014e22515
-                  client_secret: ${SECRET_DENDRITE_CLIENT_SECRET}
+                  oauth2:
+                   client_id: a6ae6d5e71260fa262cab88c7dc80d2014e22515
+                   client_secret: ${SECRET_DENDRITE_CLIENT_SECRET}
                   discovery_url: https://id.${SECRET_DOMAIN}/application/o/dendrite/.well-known/openid-configuration
           registration_disabled: true
           registration_shared_secret: "${SECRET_DENDRITE_REGISTRATION_SECRET}"
@@ -159,7 +160,7 @@ spec:
         media_api:
           base_path: "/var/dendrite/media"
           max_file_size_bytes: 10485760
-          dynamic_thumbnails: false
+          dynamic_thumbnails: true
           max_thumbnail_generators: 10
           thumbnail_sizes:
             - height: 32
@@ -172,9 +173,11 @@ spec:
               method: scale
               width: 640
         mscs:
-          mscs: 
+          mscs:
+            - msc2836
             - msc2946
             - msc2444
+            - msc2753
         room_server:
         sync_api:
           search:
@@ -200,6 +203,8 @@ spec:
             params:
               path: /var/log/dendrite
             type: file
+          - level: trace
+            type: std
     persistence:
       media:
         enabled: true
