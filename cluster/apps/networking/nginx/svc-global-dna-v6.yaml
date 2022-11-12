@@ -9,7 +9,7 @@ metadata:
     helm.sh/chart: ingress-nginx-4.2.1
     helm.toolkit.fluxcd.io/name: ingress-nginx
     helm.toolkit.fluxcd.io/namespace: networking
-  name: ingress-nginx-private-v4
+  name: ingress-nginx-global-dna-v6
   namespace: networking
 spec:
   allocateLoadBalancerNodePorts: true
