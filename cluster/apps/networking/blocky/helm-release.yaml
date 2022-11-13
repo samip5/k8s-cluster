@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://helm.samipsolutions.fi/
       chart: blocky
-      version: 11.3.0
+      version: 12.0.2
       sourceRef:
         kind: HelmRepository
         name: samipsolutions-charts
