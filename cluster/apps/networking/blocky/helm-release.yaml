@@ -121,7 +121,7 @@ spec:
         path: /metrics
       queryLog:
         type: postgresql
-        target: blocky:${SECRET_BLOCKY_DB_PASSWORD}@192.168.2.2/blocky?charset=utf8mb4&parseTime=True
+        target: blocky:${SECRET_BLOCKY_DB_PASSWORD}@tcp(192.168.2.2)/blocky?charset=utf8mb4&parseTime=True
         logRetentionDays: 14
       httpPort: 4000
     metrics:
