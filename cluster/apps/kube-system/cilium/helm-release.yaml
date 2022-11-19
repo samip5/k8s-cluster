@@ -62,6 +62,7 @@ spec:
           - http
         serviceMonitor:
           enabled: true
+          namespace: kube-system
       relay:
         enabled: true
         rollOutPods: true
