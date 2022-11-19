@@ -5,6 +5,7 @@ metadata:
   name: update-ingress-annotations
   annotations:
     policies.kyverno.io/title: Update ingress annotations
+    policies.kyverno.io/category: Security
     policies.kyverno.io/subject: Ingress
     policies.kyverno.io/description: >-
       This policy creates auth annotations on ingresses, external-dns,
