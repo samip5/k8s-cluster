@@ -7,18 +7,15 @@ metadata:
   labels:
     k3s-upgrade: agent
 spec:
+  # renovate: datasource=github-releases depName=k3s-io/k3s
+  version: "v1.25.3+k3s1"
   serviceAccountName: system-upgrade
   concurrency: 1
-  cordon: true
-  channel: https://update.k3s.io/v1-release/channels/stable
   nodeSelector:
     matchExpressions:
-      - key: node-role.kubernetes.io/master
-        operator: DoesNotExist
+      - { key: node-role.kubernetes.io/control-plane, operator: DoesNotExist }
   prepare:
     image: rancher/k3s-upgrade
-    args:
-      - prepare
-      - server-plan
+    args: [ "prepare", "k3s-server" ]
   upgrade:
     image: rancher/k3s-upgrade
