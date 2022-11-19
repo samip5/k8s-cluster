@@ -28,7 +28,7 @@ env:
 jobs:
   renovate:
     name: Renovate
-    runs-on: ["self-hosted", "X64", "default"]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
