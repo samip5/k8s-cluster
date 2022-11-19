@@ -4,6 +4,8 @@ kind: Plan
 metadata:
   name: k3s-server
   namespace: system-upgrade
+  labels:
+    k3s-upgrade: server
 spec:
   serviceAccountName: system-upgrade
   concurrency: 1
