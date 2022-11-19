@@ -61,14 +61,13 @@ spec:
           - icmp
           - http
         serviceMonitor:
-          enabled: true
+          enabled: false
           namespace: kube-system
       relay:
         enabled: true
         rollOutPods: true
         prometheus:
-          enabled: true
-          serviceMonitor: true
+          enabled: false
       ui:
         enabled: true
         rollOutPods: true
