@@ -198,7 +198,7 @@
             "uid": "P951FEA4DE68E13C5"
           },
           "hide": false,
-          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeries = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"W\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"livingroomsocket1_energy_power\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n\n  NamedSeries = RawSeries\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Home Server & Router\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeries |> yield()",
+          "query": "FinalOutput = [\"_field\", \"_time\", \"_value\"]\n\nRawSeries = from(bucket: \"home_assistant\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"W\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> filter(fn: (r) => r[\"domain\"] == \"sensor\")\n  |> filter(fn: (r) => r[\"entity_id\"] == \"livingroomsocket1_energy_power\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n\n  NamedSeries = RawSeries\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:\"Home Server & VR gaming rig\"}))\n  |> keep(columns:FinalOutput)\n\nNamedSeries |> yield()",
           "refId": "D"
         },
         {
@@ -233,7 +233,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": true,
+  "refresh": "30s",
   "schemaVersion": 37,
   "style": "dark",
   "tags": [],
@@ -241,7 +241,7 @@
     "list": []
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {},
