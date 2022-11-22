@@ -122,9 +122,9 @@ spec:
         zigbee:
           url: https://raw.githubusercontent.com/samip5/k8s-cluster/main/cluster/apps/monitoring/grafana/dashboards/zigbee_dash.json
           datasource: InfluxDB
-        #speedtest:
-        #  url: https://raw.githubusercontent.com/samip5/k8s-cluster/main/cluster/apps/monitoring/grafana/dashboards/speedtest_exporter.json
-        #  datasource: Prometheus
+        speedtest:
+          url: https://raw.githubusercontent.com/samip5/k8s-cluster/main/cluster/apps/monitoring/grafana/dashboards/speedtest_exporter.json
+          datasource: Prometheus
       k8s:
         #Ref: https://grafana.com/grafana/dashboards/2842
         flux-cluster:
