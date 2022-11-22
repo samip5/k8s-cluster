@@ -73,7 +73,7 @@ spec:
             - name: PORT
               value: "9707"
             - name: URL
-              value: "https://dh.${DEV_DOMAIN}/sonarr/"
+              value: "https://dh.${DEV_DOMAIN}/sonarr"
             - name: APIKEY
               valueFrom:
                 secretKeyRef:
