@@ -113,7 +113,7 @@ spec:
           - name: Loki
             type: loki
             access: proxy
-            url: http://loki:3100
+            url: http://loki-gateway.monitoring.svc.cluster.local:80
     dashboards:
       default:
         electricity:
