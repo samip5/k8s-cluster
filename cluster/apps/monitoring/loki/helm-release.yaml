@@ -104,7 +104,7 @@ spec:
         replicas: 3
         persistence:
           size: 10Gi
-          storageClass: ceph-block
+          storageClass: nfs-client
       read:
         replicas: 3
         extraVolumeMounts:
@@ -124,7 +124,7 @@ spec:
             emptyDir: { }
         persistence:
           size: 10Gi
-          storageClass: ceph-block
+          storageClass: nfs-client
       test:
         enabled: false
       monitoring:
