@@ -86,45 +86,45 @@ spec:
                 store: memberlist
         analytics:
           reporting_enabled: false
-      gateway:
+    gateway:
+      enabled: true
+      replicas: 3
+      ingress:
         enabled: true
-        replicas: 3
-        ingress:
-          enabled: true
-          ingressClassName: "nginx"
-          hosts:
-            - host: &host "loki.${SECRET_DOMAIN}"
-              paths:
-                - path: /
-                  pathType: Prefix
-          tls:
-            - hosts:
-                - *host
-      write:
-        replicas: 3
-        persistence:
-          size: 10Gi
-          storageClass: nfs-client
-      read:
-        replicas: 3
-        extraVolumeMounts:
-          - name: loki-rules
-            mountPath: /rules/fake
-          - name: loki-rules-tmp
-            mountPath: /tmp/scratch
-          - name: loki-tmp
-            mountPath: /tmp/loki-tmp
-        extraVolumes:
-          - name: loki-rules
-            configMap:
-              name: loki-alerting-rules
-          - name: loki-rules-tmp
-            emptyDir: { }
-          - name: loki-tmp
-            emptyDir: { }
-        persistence:
-          size: 10Gi
-          storageClass: nfs-client
+        ingressClassName: "nginx"
+        hosts:
+          - host: &host "loki.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    write:
+      replicas: 3
+      persistence:
+        size: 10Gi
+        storageClass: nfs-client
+    read:
+      replicas: 3
+      extraVolumeMounts:
+        - name: loki-rules
+          mountPath: /rules/fake
+        - name: loki-rules-tmp
+          mountPath: /tmp/scratch
+        - name: loki-tmp
+          mountPath: /tmp/loki-tmp
+      extraVolumes:
+        - name: loki-rules
+          configMap:
+            name: loki-alerting-rules
+        - name: loki-rules-tmp
+          emptyDir: { }
+        - name: loki-tmp
+          emptyDir: { }
+      persistence:
+        size: 10Gi
+        storageClass: nfs-client
       test:
         enabled: false
     monitoring:
