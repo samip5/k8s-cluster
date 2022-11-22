@@ -7,3 +7,4 @@ resources:
   - loki
   - vector
   - speedtest-exporter
+  - arrs
