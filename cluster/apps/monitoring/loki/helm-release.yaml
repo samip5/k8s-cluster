@@ -125,32 +125,21 @@ spec:
             persistence:
               size: 10Gi
               storageClass: ceph-block
-          monitoring:
-            serviceMonitor:
-              enabled: false
-              metricsInstance:
-                enabled: false
-            selfMonitoring:
-              enabled: false
-              grafanaAgent:
-                installOperator: false
-              lokiCanary:
-                enabled: false
           test:
             enabled: false
-        monitoring:
-          serviceMonitor:
+      monitoring:
+        serviceMonitor:
+          enabled: false
+          metricsInstance:
             enabled: false
-            metricsInstance:
-              enabled: false
-          selfMonitoring:
+        selfMonitoring:
+          enabled: false
+          grafanaAgent:
+            installOperator: false
+          lokiCanary:
             enabled: false
-            grafanaAgent:
-              installOperator: false
-            lokiCanary:
-              enabled: false
-          test:
-            enabled: false
+        test:
+          enabled: false
     affinity:
      nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
