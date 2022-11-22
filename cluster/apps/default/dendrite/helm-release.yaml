@@ -229,7 +229,7 @@ spec:
       dendrite-config:
         enabled: true
         type: secret
-        name: dendrite
+        name: dendrite-yaml
         mountPath: "/etc/dendrite/dendrite.yaml"
         subPath: "dendrite.yaml"
     podAnnotations:
