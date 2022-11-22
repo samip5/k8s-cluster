@@ -38,4 +38,5 @@ resources:
   - longhorn-charts.yaml
   - hajimari-charts.yaml
   - bugfeast-tor-chart.yaml
+  - vector-charts.yaml
 
