@@ -78,28 +78,28 @@ spec:
           retention_enabled: true
           retention_delete_delay: 2h
           retention_delete_worker_count: 150
-          ingester:
-            max_chunk_age: 1h
-            lifecycler:
-              ring:
-                kvstore:
-                  store: memberlist
+        ingester:
+          max_chunk_age: 1h
+          lifecycler:
+            ring:
+              kvstore:
+                store: memberlist
           analytics:
             reporting_enabled: false
-        gateway:
+      gateway:
+        enabled: true
+        replicas: 3
+        ingress:
           enabled: true
-          replicas: 3
-          ingress:
-            enabled: true
-            ingressClassName: "nginx"
-            hosts:
-              - host: &host "loki.${SECRET_DOMAIN}"
-                paths:
-                  - path: /
-                    pathType: Prefix
-            tls:
-              - hosts:
-                  - *host
+          ingressClassName: "nginx"
+          hosts:
+            - host: &host "loki.${SECRET_DOMAIN}"
+              paths:
+                - path: /
+                  pathType: Prefix
+          tls:
+            - hosts:
+                - *host
           write:
             replicas: 3
             persistence:
