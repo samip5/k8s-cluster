@@ -17,41 +17,48 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    ingress:
-      enabled: true
-      ingressClassName: "nginx"
-      annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-      hosts:
-        - host: "loki.${SECRET_DOMAIN}"
-          paths:
-            - /
-      tls:
-        - hosts:
-            - "loki.${SECRET_DOMAIN}"
-    serviceMonitor:
-      enabled: true
     loki:
       structuredConfig:
+        auth_enabled: false
+        server:
+          log_level: info
+          http_listen_port: 3100
+          grpc_listen_port: 9095
+        memberlist:
+          join_members: [ "loki-memberlist" ]
         limits_config:
+          retention_period: 14d
           enforce_metric_name: false
           reject_old_samples: true
           reject_old_samples_max_age: 168h
+          max_cache_freshness_per_query: 10m
+          split_queries_by_interval: 15m
           ingestion_rate_mb: 8
-          ingestion_burst_size_mb: 12
-        storage_config:
-          aws:
-            bucketnames: loki
-            endpoint: "192.168.2.2:9000"
-            access_key_id: "${SECRET_MINIO_ACCESS_KEY}"
-            secret_access_key: "${SECRET_MINIO_SECRET_KEY}"
-            s3forcepathstyle: true
-            insecure: true
-          boltdb_shipper:
-            active_index_directory: /data/loki/index
-            cache_location: /data/loki/index_cache
-            resync_interval: 5s
-            shared_store: s3
+          ingestion_burst_size_mb: 16
+        schema_config:
+          configs:
+            - from: "2021-08-01"
+              store: boltdb-shipper
+              object_store: s3
+              schema: v11
+              index:
+                prefix: loki_index_
+                period: 24h
+        common:
+          path_prefix: /var/loki
+          replication_factor: 3
+          storage:
+            s3:
+              s3: null
+              insecure: true
+              s3forcepathstyle: true
+              endpoint: "192.168.2.2:9000"
+              bucketnames: loki
+              access_key_id: "${SECRET_MINIO_ACCESS_KEY}"
+              secret_access_key: "${SECRET_MINIO_SECRET_KEY}"
+          ring:
+            kvstore:
+              store: memberlist
         ruler:
           rule_path: /tmp/scratch
           alertmanager_url: http://prometheus-alertmanager:9093
@@ -59,6 +66,91 @@ spec:
             kvstore:
               store: inmemory
           enable_api: true
+          enable_alertmanager_v2: true
+        distributor:
+          ring:
+            kvstore:
+              store: memberlist
+        compactor:
+          working_directory: /var/loki/boltdb-shipper-compactor
+          shared_store: s3
+          compaction_interval: 10m
+          retention_enabled: true
+          retention_delete_delay: 2h
+          retention_delete_worker_count: 150
+          ingester:
+            max_chunk_age: 1h
+            lifecycler:
+              ring:
+                kvstore:
+                  store: memberlist
+          analytics:
+            reporting_enabled: false
+        gateway:
+          enabled: true
+          replicas: 3
+          ingress:
+            enabled: true
+            ingressClassName: "nginx"
+            hosts:
+              - host: &host "loki.${SECRET_DOMAIN}"
+                paths:
+                  - path: /
+                    pathType: Prefix
+            tls:
+              - hosts:
+                  - *host
+          write:
+            replicas: 3
+            persistence:
+              size: 10Gi
+              storageClass: ceph-block
+          read:
+            replicas: 3
+            extraVolumeMounts:
+              - name: loki-rules
+                mountPath: /rules/fake
+              - name: loki-rules-tmp
+                mountPath: /tmp/scratch
+              - name: loki-tmp
+                mountPath: /tmp/loki-tmp
+            extraVolumes:
+              - name: loki-rules
+                configMap:
+                  name: loki-alerting-rules
+              - name: loki-rules-tmp
+                emptyDir: { }
+              - name: loki-tmp
+                emptyDir: { }
+            persistence:
+              size: 10Gi
+              storageClass: ceph-block
+          monitoring:
+            serviceMonitor:
+              enabled: false
+              metricsInstance:
+                enabled: false
+            selfMonitoring:
+              enabled: false
+              grafanaAgent:
+                installOperator: false
+              lokiCanary:
+                enabled: false
+          test:
+            enabled: false
+        monitoring:
+          serviceMonitor:
+            enabled: false
+            metricsInstance:
+              enabled: false
+          selfMonitoring:
+            enabled: false
+            grafanaAgent:
+              installOperator: false
+            lokiCanary:
+              enabled: false
+          test:
+            enabled: false
     affinity:
      nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
