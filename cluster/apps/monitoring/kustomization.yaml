@@ -5,5 +5,5 @@ resources:
   - grafana
   - prom-stack
   - loki
-  - promtail
+  - vector
   - speedtest-exporter
