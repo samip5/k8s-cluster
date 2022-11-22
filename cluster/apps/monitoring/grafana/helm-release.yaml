@@ -122,6 +122,9 @@ spec:
         zigbee:
           url: https://raw.githubusercontent.com/samip5/k8s-cluster/main/cluster/apps/monitoring/grafana/dashboards/zigbee_dash.json
           datasource: InfluxDB
+        speedtest:
+          url: https://raw.githubusercontent.com/samip5/k8s-cluster/main/cluster/apps/monitoring/grafana/dashboards/speedtest_exporter.json
+          datasource: Prometheus
       k8s:
         #Ref: https://grafana.com/grafana/dashboards/2842
         flux-cluster:
@@ -129,9 +132,6 @@ spec:
           datasource: Prometheus
         flux-control-plane:
           url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/control-plane.json
-          datasource: Prometheus
-        blocky:
-          url: https://raw.githubusercontent.com/0xERR0R/blocky/master/docs/blocky-grafana.json
           datasource: Prometheus
     sidecar:
       dashboards:
