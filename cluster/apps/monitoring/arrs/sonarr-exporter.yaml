@@ -68,7 +68,8 @@ spec:
           image: ghcr.io/onedr0p/exportarr:v1.1.0
           imagePullPolicy: IfNotPresent
           args:
-            - -l debug s
+            - -l debug
+            - s
           env:
             - name: PORT
               value: "9707"
