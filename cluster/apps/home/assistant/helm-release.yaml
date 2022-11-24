@@ -24,24 +24,24 @@ spec:
       tag: 2022.11.4
 
 
-  #  service:
-  #    main:
-  #      type: LoadBalancer
-  #      loadBalancerIP: "${SVC_HA_ADDR}"
-  #      externalTrafficPolicy: Local
-  #      ports:
-  #        http:
-  #          port: 8123
-  #        mdns-tcp:
-  #          enabled: true
-  #          port: 5353
-  #          protocol: TCP
-  #          targetPort: 5353
-  #        mdns-udp:
-  #          enabled: true
-  #          port: 5353
-  #          protocol: UDP
-  #          targetPort: 5353
+    service:
+      main:
+        type: LoadBalancer
+        loadBalancerIP: "${SVC_HA_ADDR}"
+        externalTrafficPolicy: Local
+        ports:
+          http:
+            port: 8123
+          mdns-tcp:
+            enabled: true
+            port: 5353
+            protocol: TCP
+            targetPort: 5353
+          mdns-udp:
+            enabled: true
+            port: 5353
+            protocol: UDP
+            targetPort: 5353
 
     ingress:
       main:
@@ -60,8 +60,8 @@ spec:
           - hosts:
               - *host
 
-    podAnnotations:
-      k8s.v1.cni.cncf.io/networks: hass-iot-static
+  #  podAnnotations:
+  #    k8s.v1.cni.cncf.io/networks: hass-iot-static
 
     probes:
       liveness:
