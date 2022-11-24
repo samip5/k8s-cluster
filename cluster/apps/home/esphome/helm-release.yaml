@@ -1,0 +1,85 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: esphome
+  namespace: home
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.0.1
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+
+  values:
+    image:
+      repository: esphome/esphome
+      tag: 2022.10.2
+
+    env:
+      ESPHOME_DASHBOARD_USE_PING: true
+      ESPHOME__INSTANCE_NAME: ESPHome
+      ESPHOME__PORT: &port 6052
+      ESPHOME__APPLICATION_URL: &host-cluster "esph.${SECRET_DOMAIN}"
+      ESPHOME__LOG_LEVEL: info
+
+    # App needs to run as root because of this: https://github.com/esphome/issues/issues/2752
+    securityContext:
+      runAsNonRoot: false
+      readOnlyRootFilesystem: false
+      privileged: true
+      allowPrivilegeEscalation: true
+
+    service:
+      main:
+        type: LoadBalancer
+        loadBalancerIP: "${SVC_ESPHOME_ADDR}"
+        externalTrafficPolicy: Local
+        ports:
+          http:
+            port: 6052
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          external-dns.target/enabled: "true"
+        hosts:
+          - host: *host-cluster
+            paths:
+              - path: /
+          - host: &host "esph.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host-cluster
+              - *host
+
+    podAnnotations:
+      k8s.v1.cni.cncf.io/networks: esphome-iot-static
+
+    persistence:
+      config:
+        enabled: true
+        storageClass: nfs-client
+        accessMode: ReadWriteOnce
+        size: 1Gi
+
+    # IOT VLAN (50) is only configured on k8s-worker-amd64-3
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                    - "k8s-worker-amd64-3"
