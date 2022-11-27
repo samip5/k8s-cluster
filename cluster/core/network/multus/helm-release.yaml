@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: ghcr.io/k8snetworkplumbingwg/multus-cni
-      tag: snapshot-thick
+      tag: latest
 
     tolerations:
       - effect: NoSchedule
