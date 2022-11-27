@@ -51,16 +51,12 @@ spec:
         annotations:
           external-dns.target/enabled: "true"
         hosts:
-          - host: *host-cluster
-            paths:
-              - path: /
           - host: &host "esph.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - *host-cluster
               - *host
 
     podAnnotations:
