@@ -44,6 +44,9 @@ spec:
           http:
             port: 6052
 
+    # Shit's fucked, and options are quite limited.
+    hostNetwork: true
+
     ingress:
       main:
         enabled: true
@@ -59,8 +62,8 @@ spec:
           - hosts:
               - *host
 
-    podAnnotations:
-      k8s.v1.cni.cncf.io/networks: esphome-iot-static
+    #podAnnotations:
+    #  k8s.v1.cni.cncf.io/networks: esphome-iot-static
 
     persistence:
       config:
