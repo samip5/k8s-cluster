@@ -30,7 +30,7 @@ spec:
         tag: "1.1.1"
 
       paths:
-        config: /var/lib/rancher/k3s/agent/etc/cni/net.d
-        bin: /var/lib/rancher/k3s/data/current/bin
+        config: /etc/cni/net.d
+        bin: /opt/cni/bin
 
       version: "0.3.1"
