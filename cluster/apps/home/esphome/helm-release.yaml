@@ -44,9 +44,6 @@ spec:
           http:
             port: 6052
 
-    # Shit's fucked, and options are quite limited.
-    hostNetwork: true
-
     ingress:
       main:
         enabled: true
