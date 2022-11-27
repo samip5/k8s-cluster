@@ -23,6 +23,9 @@ spec:
       repository: ghcr.io/home-assistant/home-assistant
       tag: 2022.11.4
 
+    # Will it see esphome? :))))
+    hostNetwork: true
+
 
     service:
       main:
