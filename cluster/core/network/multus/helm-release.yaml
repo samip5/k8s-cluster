@@ -9,16 +9,16 @@ spec:
   chart:
     spec:
       chart: multus
-      version: 3.5.2
+      version: 4.0.0
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: angelnu-charts
         namespace: flux-system
       interval: 5m
   values:
     image:
       repository: ghcr.io/k8snetworkplumbingwg/multus-cni
-      tag: v3.9.2
+      tag: latest
 
     tolerations:
       - effect: NoSchedule
@@ -30,7 +30,7 @@ spec:
         tag: "1.1.1"
 
       paths:
-        config: /etc/cni/net.d
-        bin: /opt/cni/bin
+        config: /var/lib/rancher/k3s/agent/etc/cni/net.d
+        bin: /var/lib/rancher/k3s/data/current/bin
 
       version: "0.3.1"
