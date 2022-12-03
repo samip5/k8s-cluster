@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghost
-      tag: 5.24.2
+      tag: 5.25.0
       pullPolicy: IfNotPresent
     env:
       url: "https://blog.edu.${MAIN_DOMAIN_2}"
