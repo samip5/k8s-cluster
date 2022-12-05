@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - namespaces
   - cert-manager
-  - network
+#  - network
 #  - prefer-dual-stack
   - storage-classes
   - persistent-volumes
