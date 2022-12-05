@@ -30,3 +30,7 @@
 - include: cgroup-killer.yml
   tags:
     - cgroup-killer
+
+- include: nut-config.yaml
+  tags:
+    - nut
