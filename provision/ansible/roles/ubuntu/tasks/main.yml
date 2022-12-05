@@ -26,3 +26,7 @@
 - include: user.yml
   tags:
     - user
+
+- include: cgroup-killer.yml
+  tags:
+    - cgroup-killer
