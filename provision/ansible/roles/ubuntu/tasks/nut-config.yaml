@@ -1,0 +1,20 @@
+---
+- name: Copy nut config /etc/nut/nut.conf
+  copy:
+    src: "{{ role_path }}/files/nut/nut.conf"
+    dest: /etc/nut/nut.conf
+    owner: nut
+
+- name: Load encrypted vars
+  community.sops.load_vars:
+    file: "{{ role_path }}/files/nut/secrets.sops.yaml"
+
+- name: Copy nut main monitor config /etc/nut/upsmon.conf
+  template:
+    src: "{{ role_path }}/templates/upsmon.conf"
+    dest: /etc/nut/upsmon.conf
+
+- name: Restart nut-client
+  systemd:
+    name: nut-client
+    state: restarted
