@@ -8,12 +8,12 @@ resources:
   - kube-system
   - media
   - monitoring
-  - ci
+#  - ci
   - collab
   - default
   - databases
-  - system-upgrade
+#  - system-upgrade
 #  - vpn
 #  - proxy
   - home
-  - games
+#  - games
