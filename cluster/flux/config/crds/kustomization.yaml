@@ -6,4 +6,6 @@ resources:
 #  - cert-manager.yaml
   - kube-prometheus-stack.yaml
   - kyverno.yaml
+  - actions-runner-controller.yaml
+  - metallb.yaml
 #  - ./traefik.yaml
