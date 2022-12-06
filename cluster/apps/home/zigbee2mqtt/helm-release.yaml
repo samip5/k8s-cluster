@@ -8,17 +8,25 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: zigbee2mqtt
-      version: 9.4.2
+      chart: app-template
+      version: 1.2.0
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
+      interval: 15m
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  dependsOn:
+    - name: mosquitto
+      namespace: home
   values:
     image:
-      repository: koenkk/zigbee2mqtt
+      repository: ghcr.io/koenkk/zigbee2mqtt
       tag: 1.28.4
     env:
       TZ: Europe/Helsinki
@@ -43,43 +51,3 @@ spec:
         enabled: true
         existingClaim: zigbee2mqtt-config-v1
         mountPath: "/data"
-    # These config values are not what is my current state of zigbee2mqtt
-    # It's merely a guide for the initial start up on a fresh install
-    # Everything after the first start is managed in the UI
-    config:
-      homeassistant: true
-      device_options:
-        retain: true
-      permit_join: false
-      mqtt:
-        base_topic: zigbee2mqtt
-        server: "mqtt://mosquitto"
-        user: "${SECRET_MQTT_USERNAME}"
-        password: "${SECRET_MQTT_PASSWORD}"
-      serial:
-        port: "tcp://192.168.2.112:6638"
-      advanced:
-        log_output:
-          - console
-        network_key:
-          - 250
-          - 61
-          - 75
-          - 23
-          - 44
-          - 230
-          - 25
-          - 210
-          - 53
-          - 6
-          - 248
-          - 32
-          - 51
-          - 86
-          - 44
-          - 159
-        pan_id: GENERATE
-      frontend:
-        port: 8080
-      experimental:
-        new_api: true
