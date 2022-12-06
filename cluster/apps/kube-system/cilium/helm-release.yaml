@@ -74,7 +74,7 @@ spec:
         ingress:
           enabled: true
           annotations:
-            cert-manager.io/cluster-issuer: zerossl-prod
+            cert-manager.io/cluster-issuer: zerossl-production
             kubernetes.io/ingress.class: nginx
           hosts:
             - "hubble.${SECRET_DOMAIN}"
