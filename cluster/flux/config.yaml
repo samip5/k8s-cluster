@@ -2,26 +2,18 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: apps
+  name: flux-config
   namespace: flux-system
 spec:
   interval: 30m
-  path: ./cluster/apps
+  path: ./cluster/config
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-cluster
   dependsOn:
     - name: flux-installation
-    - name: flux-cluster
-    - name: flux-config
   decryption:
     provider: sops
     secretRef:
       name: sops-gpg
-  postBuild:
-    substituteFrom:
-      - kind: ConfigMap
-        name: cluster-settings
-      - kind: Secret
-        name: cluster-secrets
