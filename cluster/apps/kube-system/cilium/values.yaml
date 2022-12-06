@@ -1,3 +1,5 @@
+localRedirectPolicy: true
+rollOutCiliumPods: true
 kubeProxyReplacement: "strict"
 kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
 ipv4NativeRoutingCIDR: "10.244.0.0/16"
@@ -10,7 +12,13 @@ loadBalancer:
 tunnel: "disabled"
 endpointRoutes:
   enabled: true
+l2NeighDiscovery:
+  enabled: false
+ipam:
+  mode: "kubernetes"
 autoDirectNodeRoutes: true
+containerRuntime:
+  integration: containerd
 ipv6:
   enabled: true
 hubble:
