@@ -16,12 +16,6 @@ spec:
     privateKeySecretRef:
       name: zerossl-prod
     solvers:
-    - http01:
-        ingress:
-          class: traefik
-      selector:
-        matchLabels:
-          "use-http-solver": "true"
     - dns01:
         cloudflare:
           email: "${SECRET_EMAIL}"
