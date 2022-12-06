@@ -3,5 +3,5 @@ kind: Kustomization
 resources:
   - certificate.yaml
   - dev-domain-certificate.yaml
-  - home-domain-certificate.yaml
+#  - home-domain-certificate.yaml
   - root-domain-certificate.yaml
