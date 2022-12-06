@@ -38,7 +38,7 @@ spec:
           repository: docker.io/frrouting/frr
           tag: v7.5.1
     crds:
-      enabled: false
+      enabled: true
     # https://github.com/cilium/cilium/issues/20436
     # https://github.com/metallb/metallb/issues/1512
     # This is really yank, when I have this many prefixes in use..
