@@ -5,4 +5,5 @@ namespace: flux-system
 resources:
 #  - cert-manager.yaml
   - kube-prometheus-stack.yaml
+  - kyverno.yaml
 #  - ./traefik.yaml
