@@ -1,19 +1,29 @@
+
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: flux-cluster
+  namespace: flux-system
+spec:
+  interval: 30m
+  url: https://github.com/samip5/k8s-cluster
+  ref:
+    branch: main
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: apps
+  name: flux-cluster
   namespace: flux-system
 spec:
   interval: 30m
-  path: ./cluster/apps
+  path: ./cluster/flux
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: flux-cluster
-  dependsOn:
-    - name: flux-installation
-    - name: flux-cluster
   decryption:
     provider: sops
     secretRef:
@@ -22,5 +32,7 @@ spec:
     substituteFrom:
       - kind: ConfigMap
         name: cluster-settings
+        optional: false
       - kind: Secret
         name: cluster-secrets
+        optional: false

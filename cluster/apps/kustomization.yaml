@@ -11,7 +11,6 @@ resources:
   - ci
   - collab
   - default
-  - flux-system
   - databases
   - system-upgrade
 #  - vpn
