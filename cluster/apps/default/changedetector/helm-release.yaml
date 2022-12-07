@@ -50,7 +50,7 @@ spec:
                 pathType: Prefix
         tls:
           - hosts:
-              - &host
+              - "{{ .Release.Name }}.${SECRET_DOMAIN}"
             secretName: ${SECRET_DOMAIN}-tls
     persistence:
       config:
