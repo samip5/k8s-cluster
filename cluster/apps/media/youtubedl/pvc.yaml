@@ -7,7 +7,20 @@ metadata:
 spec:
   storageClassName: longhorn
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: youtubedl-media
+  namespace: media
+spec:
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce
   resources:
     requests:
       storage: 100Gi
