@@ -6,6 +6,7 @@ metadata:
   namespace: kube-system
 spec:
   interval: 15m
+  timeout: 10m0s
   chart:
     spec:
       chart: kyverno
