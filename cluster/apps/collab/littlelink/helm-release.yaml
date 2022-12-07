@@ -71,7 +71,7 @@ spec:
         ingressClassName: "nginx"
         annotations:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-          external-dns-cf/is-public: "true"
+          external-dns-cf/is-public-dns: "true"
         hosts:
           - host: "${DEV_DOMAIN}"
             paths:
