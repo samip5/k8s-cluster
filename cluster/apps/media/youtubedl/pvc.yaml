@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: youtubedl-appdata
-  namespace: databases
+  namespace: media
 spec:
   storageClassName: longhorn
   accessModes:
