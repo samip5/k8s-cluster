@@ -6,6 +6,7 @@ metadata:
   namespace: networking
   annotations:
     external-dns-cf/is-public-dns: "true"
+    external-dns-cf/is-public: "true"
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
