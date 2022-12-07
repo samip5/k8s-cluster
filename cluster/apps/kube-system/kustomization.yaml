@@ -6,5 +6,4 @@ resources:
   - reloader
   - node-feature-discovery
   - cilium
-  - kyverno
   - kopia
