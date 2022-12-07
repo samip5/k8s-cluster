@@ -23,6 +23,12 @@ spec:
   upgrade:
     remediation:
       retries: 5
+      remediateLastFailure: true
+    cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    cleanupOnFail: true
   dependsOn:
     - name: youtubedl-mongo
       namespace: media
@@ -92,6 +98,18 @@ spec:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+      remediateLastFailure: true
+    cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    cleanupOnFail: true
   values:
     controller:
       strategy: RollingUpdate
