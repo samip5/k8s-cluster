@@ -8,24 +8,42 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: speedtest-exporter
-      version: 5.4.2
+      version: 1.2.0
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
       interval: 5m
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+      remediateLastFailure: true
+    cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    cleanupOnFail: true
   values:
     image:
       repository: ghcr.io/miguelndecarvalho/speedtest-exporter
       tag: v3.5.3
-    env:
-      TZ: Europe/Helsinki
-    metrics:
-      enabled: true
+
+    service:
+      main:
+        ports:
+          http:
+            port: 9798
+
       serviceMonitor:
-        interval: 60m
-        scrapeTimeout: 1m
-      prometheusRule:
-        enabled: false
+        main:
+          enabled: true
+          endpoints:
+            - port: http
+              scheme: http
+              path: /metrics
+              interval: 60m
+              scrapeTimeout: 1m
