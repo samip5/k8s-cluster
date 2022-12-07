@@ -5,28 +5,47 @@ metadata:
   name: edu-blog-ghost
   namespace: default
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: ghost
-      version: 2.1.2
+      chart: app-template
+      version: 1.2.0
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
+      interval: 15m
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+      remediateLastFailure: true
+    cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    cleanupOnFail: true
   values:
     image:
       repository: ghost
       tag: 5.25.0
       pullPolicy: IfNotPresent
+
     env:
       url: "https://blog.edu.${MAIN_DOMAIN_2}"
       database__connection__host: "mariadb.databases.svc.cluster.local"
       database__connection__database: "edublog_ghost"
       database__connection__user: "edublog_ghost"
       database__connection__password: "${SECRET_EDUBLOG_DB_PASS}"
+      NODE_ENV: production
+
+    service:
+      main:
+        ports:
+          http:
+            port: 2368
 
     ingress:
       main:
@@ -36,6 +55,7 @@ spec:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           cert-manager.io/cluster-issuer: letsencrypt-production
           external-dns.home.arpa/enabled: "true"
+          nginx.ingress.kubernetes.io/proxy-body-size: 2G
         hosts:
           - host: "blog.edu.${MAIN_DOMAIN_2}"
             paths:
@@ -50,6 +70,7 @@ spec:
     persistence:
      content:
       enabled: true
+      mountPath: /var/lib/ghost/content
       accessMode: ReadWriteOnce
       size: 1G
 
