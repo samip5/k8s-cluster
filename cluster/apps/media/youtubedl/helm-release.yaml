@@ -53,7 +53,7 @@ spec:
         subPath: youtubedl
       media:
         enabled: true
-        existingClaim: media
+        existingClaim: youtubedl-media
         subPath:
           - path: library/youtube/audio
             mountPath: /app/audio
