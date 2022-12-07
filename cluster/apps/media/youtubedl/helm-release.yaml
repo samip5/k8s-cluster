@@ -74,7 +74,7 @@ spec:
         ingressClassName: "nginx"
         annotations:
           external-dns.target/enabled: "true"
-          external-dns-cf/is-public: "true"
+          external-dns-cf/is-dns-public: "true"
         hosts:
           - host: &host "yt.${SECRET_DOMAIN}"
             paths:

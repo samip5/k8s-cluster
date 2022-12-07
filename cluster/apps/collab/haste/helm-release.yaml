@@ -41,7 +41,7 @@ spec:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-          external-dns-cf/is-public: "true"
+          external-dns-cf/is-public-dns: "true"
         hosts:
           - host: "paste.${DEV_DOMAIN}"
             paths:
