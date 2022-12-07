@@ -86,11 +86,11 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.0.1
+      version: 1.2.0
       interval: 15m
       sourceRef:
         kind: HelmRepository
-        name: bjw-s
+        name: bjw-s-charts
         namespace: flux-system
   values:
     controller:
