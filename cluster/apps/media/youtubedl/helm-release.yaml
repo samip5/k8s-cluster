@@ -24,8 +24,6 @@ spec:
     remediation:
       retries: 5
   dependsOn:
-    - name: ingress-nginx
-      namespace: networking
     - name: youtubedl-mongo
       namespace: media
   values:
