@@ -104,6 +104,9 @@ spec:
           - resources:
               annotations:
                 auth-basic-fi.home.arpa/enabled: "true"
+          - resources:
+              annotations:
+                auth-fi.home.arpa/enabled: "true"
       mutate:
         patchStrategicMerge:
           metadata:
