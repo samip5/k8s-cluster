@@ -6,6 +6,7 @@ metadata:
   namespace: networking
 spec:
   interval: 5m
+  timeout: 10m0s
   chart:
     spec:
       # renovate: registryUrl=https://kubernetes.github.io/ingress-nginx
@@ -16,6 +17,18 @@ spec:
         name: ingress-nginx-charts
         namespace: flux-system
       interval: 5m
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+      remediateLastFailure: true
+    cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    cleanupOnFail: true
   values:
     controller:
       replicaCount: 2
