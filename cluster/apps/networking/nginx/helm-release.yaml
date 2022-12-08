@@ -25,6 +25,7 @@ spec:
         ssl-redirect: false
         server-tokens: false
         enable-real-ip: true
+        custom-http-errors: 404,403,500
       podAntiAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
           - podAffinityTerm:
@@ -105,5 +106,5 @@ spec:
         repository: ghcr.io/tarampampam/error-pages
         tag: 2.19.0
       env:
-        TEMPLATE_NAME: lost-in-space
+        TEMPLATE_NAME: matrix
         SHOW_DETAILS: "false"
