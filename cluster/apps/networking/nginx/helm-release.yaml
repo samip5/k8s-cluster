@@ -119,5 +119,5 @@ spec:
         repository: ghcr.io/tarampampam/error-pages
         tag: 2.19.0
       extraEnvs:
-        TEMPLATE_NAME: matrix
-        SHOW_DETAILS: "false"
+        - TEMPLATE_NAME: matrix
+        - SHOW_DETAILS: "false"
