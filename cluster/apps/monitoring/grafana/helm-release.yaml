@@ -166,4 +166,5 @@ spec:
       autoMount: true
     persistence:
       enabled: true
-      size: 1G
+      size: 500Mi
+      storageClass: nfs-client
