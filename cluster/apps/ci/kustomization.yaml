@@ -2,8 +2,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - github-actions-runners.yaml
   - actions-runner-controller-auth.sops.yaml
   - actions-runner-controller-webhook.sops.yaml
   - company-runners.yaml
   - company-runners-arm64.yaml
+  - github-actions-runners.yaml
