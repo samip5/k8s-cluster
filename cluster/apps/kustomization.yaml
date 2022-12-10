@@ -9,7 +9,7 @@ resources:
   - system
   - media
   - monitoring
-#  - ci
+  - ci
   - collab
   - default
   - databases
