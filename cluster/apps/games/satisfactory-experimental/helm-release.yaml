@@ -33,7 +33,7 @@ spec:
 
     image:
       repository: wolveix/satisfactory-server
-      tag: v1.4.1
+      tag: v1.4.3
 
     env:
       STEAMBETA: false
