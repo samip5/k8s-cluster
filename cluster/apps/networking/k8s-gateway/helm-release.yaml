@@ -37,7 +37,8 @@ spec:
     service:
       main:
         type: LoadBalancer
-        externalIPs: ["${SVC_K8S_GATEWAY_ADDR}"]
+        annotations:
+          metallb.universe.tf/loadBalancerIPs: "${SVC_K8S_GATEWAY_ADDR}"
         externalTrafficPolicy: Local
         ports:
           http:
