@@ -27,3 +27,12 @@ spec:
             capabilities:
               add:
                 - NET_ADMIN
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - "k8s-worker-amd64-3"
