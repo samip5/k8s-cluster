@@ -5,9 +5,6 @@ metadata:
   name: multus
   namespace: system
 spec:
-  dependsOn:
-    - name: cilium
-      namespace: kube-system
   interval: 5m
   chart:
     spec:
