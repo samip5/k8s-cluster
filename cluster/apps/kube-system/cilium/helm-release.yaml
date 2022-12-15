@@ -91,5 +91,4 @@ spec:
       privileged: true
 
     prometheus:
-      enabled: true
-      serviceMonitor: true
+      enabled: false
