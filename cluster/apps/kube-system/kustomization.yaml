@@ -5,5 +5,4 @@ resources:
   - metrics-server
   - reloader
   - node-feature-discovery
-  - cilium
   - kopia
