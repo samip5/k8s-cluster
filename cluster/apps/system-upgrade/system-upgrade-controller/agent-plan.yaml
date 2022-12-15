@@ -17,7 +17,7 @@ spec:
       - { key: k3s-upgrade, operator: NotIn, values: [ "disabled", "false" ] }
       - { key: node-role.kubernetes.io/master, operator: NotIn, values: [ "true" ] }
   tolerations:
-    - { key: cm4=true, operator: Exists }
+    - { key: cm4, operator: Exists }
   prepare:
     image: rancher/k3s-upgrade
     args: [ "prepare", "k3s-server" ]
