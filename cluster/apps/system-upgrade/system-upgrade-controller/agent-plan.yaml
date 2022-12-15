@@ -10,10 +10,12 @@ spec:
   # renovate: datasource=github-releases depName=k3s-io/k3s
   version: " v1.24.8+k3s1"
   serviceAccountName: system-upgrade
-  concurrency: 1
+  concurrency: 4
   nodeSelector:
     matchExpressions:
-      - { key: node-role.kubernetes.io/control-plane, operator: DoesNotExist }
+      - { key: k3s-upgrade, operator: Exists }
+      - { key: k3s-upgrade, operator: NotIn, values: [ "disabled", "false" ] }
+      - { key: node-role.kubernetes.io/master, operator: NotIn, values: [ "true" ] }
   prepare:
     image: rancher/k3s-upgrade
     args: [ "prepare", "k3s-server" ]
