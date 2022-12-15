@@ -28,9 +28,17 @@ spec:
     image:
       repository: ghcr.io/koenkk/zigbee2mqtt
       tag: 1.28.4
+
     env:
       TZ: Europe/Helsinki
       ZIGBEE2MQTT_DATA: /data
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+
     ingress:
       main:
         enabled: true
@@ -46,6 +54,7 @@ spec:
         tls:
           - hosts:
               - "zigbee2mqtt.${SECRET_DOMAIN}"
+
     persistence:
       config:
         enabled: true
