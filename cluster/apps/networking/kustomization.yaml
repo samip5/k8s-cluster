@@ -9,5 +9,6 @@ resources:
   - certificates
   - misc-ingresses
   - netshoot.yaml
+  - netshoot-net-attach.yaml
   - unifi
   - k8s-gateway
