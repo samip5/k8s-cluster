@@ -10,3 +10,4 @@ resources:
   - misc-ingresses
   - netshoot.yaml
   - unifi
+  - k8s-gateway
