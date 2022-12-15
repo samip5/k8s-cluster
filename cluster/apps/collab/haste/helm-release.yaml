@@ -5,6 +5,9 @@ metadata:
   name: haste
   namespace: collab
 spec:
+  dependsOn:
+    - name: redis
+      namespace: databases
   interval: 15m
   chart:
     spec:
