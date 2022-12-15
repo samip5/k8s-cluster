@@ -1,3 +1,4 @@
+autoDirectNodeRoutes: true
 localRedirectPolicy: true
 rollOutCiliumPods: true
 kubeProxyReplacement: "strict"
@@ -9,18 +10,21 @@ k8sServicePort: 6443
 loadBalancer:
   algorithm: "maglev"
   mode: "dsr"
+l2NeighDiscovery:
+  enabled: false
 tunnel: "disabled"
 endpointRoutes:
   enabled: true
-l2NeighDiscovery:
+encryption:
   enabled: false
 ipam:
   mode: "kubernetes"
-autoDirectNodeRoutes: true
-containerRuntime:
-  integration: containerd
 ipv6:
   enabled: true
+operator:
+  rollOutPods: true
+containerRuntime:
+  integration: containerd
 hubble:
   enabled: true
   metrics:
@@ -34,12 +38,21 @@ hubble:
       - http
     serviceMonitor:
       enabled: false
+      namespace: kube-system
   relay:
     enabled: true
     rollOutPods: true
+    prometheus:
+      enabled: false
   ui:
     enabled: false
 bgp:
   enabled: false
   announce:
     loadbalancerIP: false
+
+securityContext:
+  privileged: true
+
+prometheus:
+  enabled: false
