@@ -31,7 +31,7 @@ metadata:
   namespace: ci
 spec:
   minReplicas: 5
-  maxReplicas: 50
+  maxReplicas: 20
   scaleTargetRef:
     kind: RunnerDeployment
     name: samipsolutions-runners-arm64
