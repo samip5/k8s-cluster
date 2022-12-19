@@ -1,10 +1,17 @@
 {
   "packageRules": [
     {
-      "description": "Only major updates for Home-Assistant",
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["ghcr.io/home-assistant/home-assistant"],
-      "matchUpdateTypes": ["major"],
+      description: "Only major updates for Home-Assistant",
+      matchDatasources: ["docker"],
+      matchPackageNames: ["ghcr.io/home-assistant/home-assistant"],
+      matchUpdateTypes: ["major"],
+    },
+     {
+      description: "Disable minor and patch updates for Home-Assistant",
+      enabled: false,
+      matchDatasources: ["docker"],
+      matchPackageNames: ["ghcr.io/home-assistant/home-assistant"],
+      matchUpdateTypes: ["minor", "patch"],
     },
     {
       description: "Auto merge container digests",
@@ -17,12 +24,12 @@
     },
     // enable auto-merge
     {
-      "matchDatasources": ["docker"],
-      "automerge": true,
-      "automergeType": "branch",
-      "requiredStatusChecks": null,
-      "matchUpdateTypes": ["minor", "patch", "digest"],
-      "matchPackageNames": [
+      matchDatasources: ["docker"],
+      automerge: true,
+      automergeType: "branch",
+      requiredStatusChecks: null,
+      matchUpdateTypes: ["minor", "patch", "digest"],
+      matchPackageNames: [
         "k8s.gcr.io/descheduler/descheduler",
         "ghcr.io/techno-tim/littlelink-server",
         "ghcr.io/sct/overseerr",
@@ -30,29 +37,29 @@
       ],
     },
     {
-      "matchDatasources": ["docker"],
-      "automerge": true,
-      "automergeType": "branch",
-      "requiredStatusChecks": null,
-      "matchUpdateTypes": ["patch"],
-      "matchPackageNames": [
+      matchDatasources: ["docker"],
+      automerge: true,
+      automergeType: "branch",
+      requiredStatusChecks: null,
+      matchUpdateTypes: ["patch"],
+      matchPackageNames: [
         "wolveix/satisfactory-server"
       ],
     },
     {
-      "matchDatasources": ["galaxy-collection"],
-      "automerge": true,
-      "automergeType": "branch",
-      "requiredStatusChecks": null,
-      "matchUpdateTypes": ["minor", "patch"]
+      matchDatasources: ["galaxy-collection"],
+      automerge: true,
+      automergeType: "branch",
+      requiredStatusChecks: null,
+      matchUpdateTypes: ["minor", "patch"]
     },
     {
-      "matchDatasources": ["helm"],
-      "automerge": true,
-      "automergeType": "branch",
-      "requiredStatusChecks": null,
-      "matchUpdateTypes": ["minor", "patch"],
-      "matchPackageNames": [
+      matchDatasources: ["helm"],
+      automerge: true,
+      automergeType: "branch",
+      requiredStatusChecks: null,
+      matchUpdateTypes: ["minor", "patch"],
+      matchPackageNames: [
         "kube-prometheus-stack",
         "traefik",
         "authentik",
