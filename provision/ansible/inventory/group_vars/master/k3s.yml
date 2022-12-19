@@ -21,6 +21,7 @@ k3s_server:
     - servicelb
     - metrics-server
     - local-storage
+    - coredns
   disable-network-policy: true
   disable-cloud-controller: true
   write-kubeconfig-mode: "644"
