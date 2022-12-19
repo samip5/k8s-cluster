@@ -1,18 +1,19 @@
 {
   "packageRules": [
     {
+      "description": "Only major updates for Home-Assistant",
       "matchDatasources": ["docker"],
-      "allowedVersions": "<13",
-      "matchPackageNames": [
-        "postgres",
-      ],
+      "matchPackageNames": ["ghcr.io/home-assistant/home-assistant"],
+      "matchUpdateTypes: ["major"],
     },
     {
-      "matchDatasources": ["docker"],
-      "allowedVersions": "<2",
-      "matchPackageNames": [
-        "influxdb",
-      ]
+      description: "Auto merge container digests",
+      matchDatasources: ["docker"],
+      automerge: true,
+      automergeType: "branch",
+      requiredStatusChecks: null,
+      matchUpdateTypes: ["digest"],
+      matchPackagePattern: ["ghcr.io/k8s-at-home", "ghcr.io/onedr0p"],
     },
     // enable auto-merge
     {
