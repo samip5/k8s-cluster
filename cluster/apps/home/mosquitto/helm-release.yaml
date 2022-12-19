@@ -46,3 +46,7 @@ spec:
         volumeSpec:
           secret:
             secretName: mosquitto
+    tolerations:
+      - key: "cm4"
+        operator: "Exists"
+        effect: "PreferNoSchedule"
