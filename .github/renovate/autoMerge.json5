@@ -20,12 +20,22 @@
       "automerge": true,
       "automergeType": "branch",
       "requiredStatusChecks": null,
-      "matchUpdateTypes": ["minor", "patch"],
+      "matchUpdateTypes": ["minor", "patch", "digest"],
       "matchPackageNames": [
-        "ghcr.io/k8s-at-home/jackett",
-        "ghcr.io/k8s-at-home/prowlarr",
-        "ghcr.io/k8s-at-home/prowlarr-develop",
         "k8s.gcr.io/descheduler/descheduler",
+        "ghcr.io/techno-tim/littlelink-server",
+        "ghcr.io/sct/overseerr",
+        "ghost"
+      ],
+    },
+    {
+      "matchDatasources": ["docker"],
+      "automerge": true,
+      "automergeType": "branch",
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": ["patch"],
+      "matchPackageNames": [
+        "wolveix/satisfactory-server"
       ],
     },
     {
