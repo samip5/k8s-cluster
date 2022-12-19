@@ -60,3 +60,8 @@ spec:
         enabled: true
         existingClaim: zigbee2mqtt-config-v1
         mountPath: "/data"
+
+    tolerations:
+      - key: "cm4"
+        operator: "Exists"
+        effect: "PreferNoSchedule"
