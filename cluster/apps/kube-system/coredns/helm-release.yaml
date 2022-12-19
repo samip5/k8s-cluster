@@ -1,0 +1,104 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: coredns
+  namespace: kube-system
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: coredns
+      version: 1.19.7
+      sourceRef:
+        kind: HelmRepository
+        name: coredns-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+
+  values:
+    image:
+      repository: coredns/coredns
+      tag: 1.10.0
+
+    fullnameOverride: coredns
+
+    replicaCount: 3
+
+    service:
+      clusterIP: 10.43.0.10
+      annotations:
+        fix.coredns.template: "fnord"
+
+    serviceAccount:
+      create: true
+
+    prometheus:
+      service:
+        enabled: true
+
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: "coredns"
+
+    servers:
+      - zones:
+          - zone: .
+            scheme: dns://
+            use_tcp: true
+        port: 53
+        plugins:
+          - name: log
+          - name: errors
+          - name: health
+            configBlock: |-
+              lameduck 5s
+          - name: ready
+          - name: kubernetes
+            parameters: cluster.local in-addr.arpa ip6.arpa
+            configBlock: |-
+              pods insecure
+              fallthrough in-addr.arpa ip6.arpa
+              ttl 30
+          # - name: hosts
+          #   parameters: /etc/coredns/NodeHosts
+          #   configBlock: |-
+          #     ttl 60
+          #     reload 15s
+          #     fallthrough
+          - name: prometheus
+            parameters: 0.0.0.0:9153
+          - name: forward
+            parameters: . 2606:4700:4700::1111 1.0.0.1 9.9.9.9
+          - name: cache
+            parameters: 30
+          - name: loop
+          - name: reload
+          - name: loadbalance
+
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: node-role.kubernetes.io/control-plane
+                  operator: Exists
+
+    tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+      - key: node-role.kubernetes.io/master
+        operator: Exists
+
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/instance: coredns
