@@ -4,7 +4,7 @@
       "description": "Only major updates for Home-Assistant",
       "matchDatasources": ["docker"],
       "matchPackageNames": ["ghcr.io/home-assistant/home-assistant"],
-      "matchUpdateTypes: ["major"],
+      "matchUpdateTypes": ["major"],
     },
     {
       description: "Auto merge container digests",
