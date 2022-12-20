@@ -5,8 +5,8 @@ metadata:
   name: sentry
   namespace: networking
   annotations:
-    auth-fi.home.arpa/enabled: "true"
-    external-dns-cf/is-public-dns-dns: "true"
+    external-dns-cf/is-dns-dns: "true"
+    external-dns-cf/is-dns-public: "true"
     external-dns.target/enabled: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
