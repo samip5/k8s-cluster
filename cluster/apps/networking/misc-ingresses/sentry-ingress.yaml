@@ -1,0 +1,51 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sentry
+  namespace: networking
+  annotations:
+    auth-fi.home.arpa/enabled: "true"
+    external-dns-cf/is-public-dns-dns: "true"
+    external-dns.target/enabled: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "sentry.${MAIN_DOMAIN}"
+      http:
+        paths:
+          - backend:
+              service:
+                name: sentry-home-srv
+                port:
+                  number: 80
+            path: '/'
+            pathType: Prefix
+  tls:
+    - hosts:
+        - "sentry.${MAIN_DOMAIN}"
+      secretName: ${MAIN_DOMAIN}-tls
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: sentry-home-srv
+  namespace: networking
+subsets:
+  - addresses:
+      - ip: 192.168.2.160
+    ports:
+      - port: 9000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sentry-home-srv
+  namespace: networking
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 9000
+  type: ClusterIP

@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - nas-ingress-and-service.yaml
   - home-srv-ingress-and-service.yaml
+  - sentry-ingress.yaml
