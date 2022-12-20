@@ -30,7 +30,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nas
+  name: nas-2
   namespace: networking
   annotations:
     external-dns-cf/is-public-dns: "true"
