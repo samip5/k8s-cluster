@@ -5,7 +5,7 @@ metadata:
   name: sentry
   namespace: networking
   annotations:
-    external-dns-cf/is-dns-dns: "true"
+    external-dns-cf/is-public: "true"
     external-dns-cf/is-dns-public: "true"
     external-dns.target/enabled: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
