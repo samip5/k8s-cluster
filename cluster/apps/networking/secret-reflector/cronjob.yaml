@@ -17,7 +17,7 @@ spec:
               image: ghcr.io/k8s-at-home/kubectl:v1.25.4
               env:
                 - name: SECRETS
-                  value: "${DEV_DOMAIN}-tls ${HOME_DOMAIN}-tls ${K8S_DOMAIN}-tls ${MAIN_DOMAIN}-tls ${SECRET_DOMAIN}-tls"
+                  value: "${DEV_DOMAIN}-tls ${HOME_DOMAIN}-tls ${K8S_DOMAIN}-tls ${MAIN_DOMAIN}-tls skylab.fi-tls"
               command:
                 - "/bin/sh"
                 - "-ec"

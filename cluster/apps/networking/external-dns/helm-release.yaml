@@ -31,7 +31,7 @@ spec:
       - ingress
     txtOwnerId: "default-external-dns"
     domainFilters:
-      - "${SECRET_DOMAIN}"
+      - "skylab.fi"
     resources:
       requests:
         memory: 100Mi

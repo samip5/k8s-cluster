@@ -52,12 +52,12 @@ spec:
       redis:
         host: "redis.databases.svc.cluster.local"
       email:
-        host: "mailer.${SECRET_DOMAIN}"
+        host: "mailer.skylab.fi"
         port: 587
         use_tls: true
         username: "samipsolutions/authentik"
         password: "${SECRET_AUHENTIK_POSTAL_PASSWORD}"
-        from: "no-reply@${SECRET_DOMAIN}"
+        from: "no-reply@skylab.fi"
 
     ingress:
       enabled: true
@@ -68,14 +68,14 @@ spec:
         external-dns.target/enabled: "true"
 #        traefik.ingress.kubernetes.io/router.middlewares: "networking-cloudflare-ips@kubernetescrd"
       hosts:
-      - host: "id.${SECRET_DOMAIN}"
+      - host: "id.skylab.fi"
         paths:
         - path: "/"
           pathType: Prefix
       tls:
       - hosts:
-        - "id.${SECRET_DOMAIN}"
-        secretName: ${SECRET_DOMAIN}-tls
+        - "id.skylab.fi"
+        secretName: skylab.fi-tls
     postgresql:
       enabled: false
     redis:

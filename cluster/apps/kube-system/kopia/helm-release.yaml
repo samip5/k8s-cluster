@@ -67,7 +67,7 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: ruler
         hosts:
-          - host: &host "kopia.${SECRET_DOMAIN}"
+          - host: &host "kopia.skylab.fi"
             paths:
               - path: /
                 pathType: Prefix

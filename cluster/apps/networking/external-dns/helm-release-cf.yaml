@@ -33,7 +33,7 @@ spec:
       - ingress
     txtOwnerId: "cf-external-dns"
     domainFilters:
-      - "${SECRET_DOMAIN}"
+      - "skylab.fi"
       - "${MAIN_DOMAIN}"
       - "${DEV_DOMAIN}"
     env:

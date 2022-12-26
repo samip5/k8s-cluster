@@ -41,7 +41,7 @@ spec:
           external-dns.target/enabled: "true"
           external-dns-cf/is-dns-public: "true"
         hosts:
-          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.skylab.fi"
             paths:
               - path: /
                 pathType: Prefix

@@ -25,7 +25,7 @@ spec:
       ESPHOME_DASHBOARD_USE_PING: true
       ESPHOME__INSTANCE_NAME: ESPHome
       ESPHOME__PORT: &port 6052
-      ESPHOME__APPLICATION_URL: &host-cluster "esph.${SECRET_DOMAIN}"
+      ESPHOME__APPLICATION_URL: &host-cluster "esph.skylab.fi"
       ESPHOME__LOG_LEVEL: info
 
     # App needs to run as root because of this: https://github.com/esphome/issues/issues/2752
@@ -51,7 +51,7 @@ spec:
         annotations:
           external-dns.target/enabled: "true"
         hosts:
-          - host: &host "esph.${SECRET_DOMAIN}"
+          - host: &host "esph.skylab.fi"
             paths:
               - path: /
                 pathType: Prefix

@@ -76,7 +76,7 @@ spec:
           external-dns.target/enabled: "true"
           external-dns-cf/is-dns-public: "true"
         hosts:
-          - host: &host "yt.${SECRET_DOMAIN}"
+          - host: &host "yt.skylab.fi"
             paths:
               - path: /
                 pathType: Prefix

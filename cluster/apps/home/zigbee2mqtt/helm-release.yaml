@@ -47,13 +47,13 @@ spec:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           external-dns.target/enabled: "true"
         hosts:
-          - host: "zigbee2mqtt.${SECRET_DOMAIN}"
+          - host: "zigbee2mqtt.skylab.fi"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "zigbee2mqtt.${SECRET_DOMAIN}"
+              - "zigbee2mqtt.skylab.fi"
 
     persistence:
       config:
