@@ -98,7 +98,7 @@ spec:
           - name: Prometheus
             type: prometheus
             access: proxy
-            url: http://prom-stack-prometheus:9090/
+            url: http://prom-prometheus:9090/
           - name: InfluxDB
             type: influxdb
             access: proxy
