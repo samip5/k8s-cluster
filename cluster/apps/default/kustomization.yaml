@@ -7,4 +7,5 @@ resources:
   - dendrite
   - changedetector
   - whoami.yaml
+  - immich/ks.yaml
 #  - edu-blog-ghost
