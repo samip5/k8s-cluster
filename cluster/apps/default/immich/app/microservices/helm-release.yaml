@@ -23,7 +23,7 @@ spec:
       retries: 3
   dependsOn:
     - name: immich-server
-    - name: redis
+    - name: immich-redis
   values:
     controller:
       annotations:
