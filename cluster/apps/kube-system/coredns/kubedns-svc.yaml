@@ -1,0 +1,36 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    fix.coredns.template: fnord
+    meta.helm.sh/release-name: coredns
+    meta.helm.sh/release-namespace: kube-system
+  labels:
+    app.kubernetes.io/instance: coredns
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: coredns
+    helm.sh/chart: coredns-1.19.7
+    k8s-app: coredns
+    kubernetes.io/cluster-service: "true"
+    kubernetes.io/name: CoreDNS
+  name: kube-dns
+  namespace: kube-system
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilyPolicy: RequireDualStack
+  ports:
+    - name: udp-53
+      port: 53
+      protocol: UDP
+      targetPort: 53
+    - name: tcp-53
+      port: 53
+      protocol: TCP
+      targetPort: 53
+  selector:
+    app.kubernetes.io/instance: coredns
+    app.kubernetes.io/name: coredns
+    k8s-app: coredns
+  sessionAffinity: None
+  type: ClusterIP
