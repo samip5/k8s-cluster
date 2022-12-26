@@ -64,7 +64,11 @@ spec:
               store: memberlist
         ruler:
           rule_path: /tmp/scratch
-          alertmanager_url: http://prometheus-alertmanager:9093
+          alertmanager_url: http://alertmanager-operated:9093
+          storage:
+            type: local
+            local:
+              directory: /rules
           ring:
             kvstore:
               store: inmemory
@@ -92,6 +96,12 @@ spec:
     gateway:
       enabled: true
       replicas: 3
+      verboseLogging: false
+      deploymentStrategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxUnavailable: 2
+          maxSurge: 0
       ingress:
         enabled: true
         ingressClassName: "nginx"
