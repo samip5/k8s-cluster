@@ -14,7 +14,7 @@ spec:
     server: 192.168.2.2
     path: /volume/Storage_HDD/k8s/immich
   mountOptions:
-    - nfsvers=4.2
+    - nfsvers=4.1
     - nconnect=8
     - hard
     - noatime
