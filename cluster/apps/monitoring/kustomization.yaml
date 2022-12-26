@@ -3,8 +3,7 @@ kind: Kustomization
 resources:
 #  - botkube
   - grafana
-#  - prom-stack
-#  - loki
-#  - vector
-#  - speedtest-exporter
-#  - arrs
+  - loki
+  - vector
+  - speedtest-exporter
+  - arrs
