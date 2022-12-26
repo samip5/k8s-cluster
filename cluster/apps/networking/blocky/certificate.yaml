@@ -12,7 +12,7 @@ spec:
   privateKey:
     algorithm: ECDSA
     size: 384
-  commonName: blocky.${SECRET_DOMAIN}
+  commonName: blocky.skylab.fi
   dnsNames:
-    - "*.blocky.${SECRET_DOMAIN}"
-    - blocky.${SECRET_DOMAIN}
+    - "*.blocky.skylab.fi"
+    - blocky.skylab.fi

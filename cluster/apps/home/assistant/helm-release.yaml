@@ -53,7 +53,7 @@ spec:
           external-dns.home.arpa/enabled: "true"
           external-dns.target/enabled: "true"
         hosts:
-          - host: &host assistant.${SECRET_DOMAIN}
+          - host: &host assistant.skylab.fi
             paths:
               - path: /
                 pathType: Prefix

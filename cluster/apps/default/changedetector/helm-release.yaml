@@ -44,14 +44,14 @@ spec:
           external-dns-cf/is-public-dns: "true"
 
         hosts:
-          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.skylab.fi"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "{{ .Release.Name }}.${SECRET_DOMAIN}"
-            secretName: ${SECRET_DOMAIN}-tls
+              - "{{ .Release.Name }}.skylab.fi"
+            secretName: skylab.fi-tls
     persistence:
       config:
         enabled: true

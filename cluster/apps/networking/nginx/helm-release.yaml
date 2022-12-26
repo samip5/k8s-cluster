@@ -93,7 +93,7 @@ spec:
               app.kubernetes.io/instance: ingress-nginx
               app.kubernetes.io/component: controller
       extraArgs:
-        default-ssl-certificate: "networking/${SECRET_DOMAIN}-tls"
+        default-ssl-certificate: "networking/skylab.fi-tls"
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:

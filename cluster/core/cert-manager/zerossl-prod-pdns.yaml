@@ -27,10 +27,10 @@ spec:
             groupName: acme.${COMPANY_DOMAIN}
             solverName: pdns
             config:
-              zone: ${SECRET_DOMAIN}
+              zone: skylab.fi
               secretName: pdns-secret
-              zoneName: ${SECRET_DOMAIN}.
+              zoneName: skylab.fi.
               apiUrl: https://ns1.${COMPANY_DOMAIN}
         selector:
           dnsZones:
-            - "${SECRET_DOMAIN}"
+            - "skylab.fi"

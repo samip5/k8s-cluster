@@ -42,7 +42,7 @@ spec:
         - id: 2
           name: k8s
       server:
-        root_url: "https://grafana.${SECRET_DOMAIN}"
+        root_url: "https://grafana.skylab.fi"
       paths:
         data: /var/lib/grafana/data
         logs: /var/log/grafana
@@ -55,7 +55,7 @@ spec:
       grafana_net:
         url: https://grafana.net
       auth:
-        signout_redirect_url: https://id.${SECRET_DOMAIN}/application/o/grafana/end-session/
+        signout_redirect_url: https://id.skylab.fi/application/o/grafana/end-session/
         disable_login_form: true
         oauth_auto_login: true
       auth.anonymous:
@@ -68,9 +68,9 @@ spec:
         client_id: d1a7ff96ee7113d80a1b2a6d935a91f050856fcc
         client_secret: ${SECRET_GRAFANA_AUTHENTIK_OAUTH_CLIENT}
         scopes: openid email profile
-        auth_url: https://id.${SECRET_DOMAIN}/application/o/authorize/
-        token_url: https://id.${SECRET_DOMAIN}/application/o/token/
-        api_url: https://id.${SECRET_DOMAIN}/application/o/userinfo/
+        auth_url: https://id.skylab.fi/application/o/authorize/
+        token_url: https://id.skylab.fi/application/o/token/
+        api_url: https://id.skylab.fi/application/o/userinfo/
         # Optionally map user groups to Grafana roles
         role_attribute_path: contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'
     dashboardProviders:
@@ -157,10 +157,10 @@ spec:
         external-dns.home.arpa/enabled: "true"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       hosts:
-        - "grafana.${SECRET_DOMAIN}"
+        - "grafana.skylab.fi"
       tls:
         - hosts:
-            - "grafana.${SECRET_DOMAIN}"
+            - "grafana.skylab.fi"
     serviceAccount:
       create: true
       autoMount: true
