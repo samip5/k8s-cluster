@@ -98,6 +98,7 @@ spec:
           - name: Prometheus
             type: prometheus
             access: proxy
+            isDefault: true
             url: http://prom-prometheus:9090/
           - name: InfluxDB
             type: influxdb
