@@ -154,7 +154,7 @@ spec:
         #        annotations:
         #          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
-          - &host "alerts.${SECRET_DOMAIN}"
+          - &host "alerts.skylab.fi"
         tls:
           - hosts:
               - *host
@@ -184,10 +184,10 @@ spec:
 #        annotations:
 #          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
-          - "prom.${SECRET_DOMAIN}"
+          - "prom.skylab.fi"
         tls:
           - hosts:
-              - "prom.${SECRET_DOMAIN}"
+              - "prom.skylab.fi"
       thanosService:
         enabled: false
       prometheusSpec:
