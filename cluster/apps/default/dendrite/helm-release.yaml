@@ -43,7 +43,7 @@ spec:
           external-dns.home.arpa/enabled: "true"
           nginx.ingress.kubernetes.io/default-backend: "dendrite"
         hosts:
-          - host: d.${SECRET_DOMAIN}
+          - host: d.skylab.fi
             paths:
               - path: /
                 pathType: Prefix
@@ -51,7 +51,7 @@ spec:
                 pathType: Prefix
               - path: /.well-known/matrix/client
                 pathType: Prefix
-          - host: ${SECRET_DOMAIN}
+          - host: skylab.fi
             paths:
               - path: /.well-known/matrix/
                 pathType: Prefix
@@ -62,7 +62,7 @@ spec:
         tls:
           - secretName: dendrite-cert
             hosts:
-              - d.${SECRET_DOMAIN}
+              - d.skylab.fi
     secrets:
       yaml:
         enabled: true
@@ -70,14 +70,14 @@ spec:
           dendrite.yaml: |
             version: 2
             global:
-              server_name: "${SECRET_DOMAIN}"
+              server_name: "skylab.fi"
               private_key: matrix_key.pem
               key_validity_period: "168h0m0s"
               cache:
                 max_size_estimated: "1gb"
                 max_age: "1h"
-              well_known_server_name: "d.${SECRET_DOMAIN}:443"
-              well_known_client_name: "https://d.${SECRET_DOMAIN}:443"
+              well_known_server_name: "d.skylab.fi:443"
+              well_known_client_name: "https://d.skylab.fi:443"
               trusted_third_party_id_servers:
                 - matrix.org
                 - vector.im
@@ -122,13 +122,13 @@ spec:
                 sso:
                  enabled: true
                  providers:
-                   - id: id.${SECRET_DOMAIN}
+                   - id: id.skylab.fi
                      name: Skylab SSO
                      type: oidc
                      oidc:
                       client_id: a6ae6d5e71260fa262cab88c7dc80d2014e22515
                       client_secret: ${SECRET_DENDRITE_CLIENT_SECRET}
-                      discovery_url: https://id.${SECRET_DOMAIN}/application/o/dendrite/.well-known/openid-configuration
+                      discovery_url: https://id.skylab.fi/application/o/dendrite/.well-known/openid-configuration
               registration_disabled: true
               registration_shared_secret: "${SECRET_DENDRITE_REGISTRATION_SECRET}"
               enable_registration_captcha: true

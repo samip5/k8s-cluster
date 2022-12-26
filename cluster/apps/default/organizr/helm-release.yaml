@@ -31,13 +31,13 @@ spec:
           external-dns.home.arpa/enabled: "true"
           external-dns.target/enabled: "true"
         hosts:
-          - host: "${SECRET_DOMAIN}"
+          - host: "skylab.fi"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "${SECRET_DOMAIN}"
+              - "skylab.fi"
     persistence:
       config:
         enabled: true

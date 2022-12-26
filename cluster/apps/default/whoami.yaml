@@ -35,12 +35,12 @@ spec:
         enabled: true
         ingressClassName: nginx
         hosts:
-          - host: &host who.${SECRET_DOMAIN}
+          - host: &host who.skylab.fi
             paths:
               - path: /
 
         tls:
-          - secretName: ${SECRET_DOMAIN}-tls
+          - secretName: skylab.fi-tls
             hosts:
             -  *host
 

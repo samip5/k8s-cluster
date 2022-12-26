@@ -12,7 +12,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: "sentry.${SECRET_DOMAIN}"
+    - host: "sentry.skylab.fi"
       http:
         paths:
           - backend:
@@ -24,8 +24,8 @@ spec:
             pathType: Prefix
   tls:
     - hosts:
-        - "sentry.${SECRET_DOMAIN}"
-      secretName: ${SECRET_DOMAIN}-tls
+        - "sentry.skylab.fi"
+      secretName: skylab.fi-tls
 ---
 apiVersion: v1
 kind: Endpoints

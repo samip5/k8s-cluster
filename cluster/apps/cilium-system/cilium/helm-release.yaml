@@ -77,11 +77,11 @@ spec:
             cert-manager.io/cluster-issuer: zerossl-production
             kubernetes.io/ingress.class: nginx
           hosts:
-            - "hubble.${SECRET_DOMAIN}"
+            - "hubble.skylab.fi"
           tls:
             - secretName: hubble-tls
               hosts:
-                - "hubble.${SECRET_DOMAIN}"
+                - "hubble.skylab.fi"
     bgp:
       enabled: false
       announce:
