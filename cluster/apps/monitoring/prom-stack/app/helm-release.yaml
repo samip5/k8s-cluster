@@ -103,7 +103,52 @@ spec:
         - 10.0.105.10
 
     alertmanager:
-      enabled: false
+      config:
+        global:
+          resolve_timeout: 5m
+        receivers:
+          - name: "null"
+          - name: "discord"
+            webhook_configs:
+              - url: http://alertmanager-discord:9094
+                send_resolved: true
+        route:
+          group_by: [ "alertname", "job" ]
+          group_wait: 30s
+          group_interval: 5m
+          repeat_interval: 6h
+          receiver: "discord"
+          routes:
+            - receiver: "null"
+              matchers:
+                - alertname =~ "InfoInhibitor|Watchdog"
+            - receiver: "discord"
+              matchers:
+                - severity = "critical"
+              continue: true
+        inhibit_rules:
+          - source_matchers:
+              - severity = "critical"
+            target_matchers:
+              - severity = "warning"
+        ingress:
+          enabled: true
+          pathType: Prefix
+          ingressClassName: "nginx"
+          hosts:
+            - &host "alerts.skylab.fi"
+          tls:
+            - hosts:
+                - *host
+        alertmanagerSpec:
+          replicas: 1
+          storage:
+            volumeClaimTemplate:
+              spec:
+                storageClass: "nfs-client"
+                resources:
+                  requests:
+                    storage: 1Gi
 
     prometheusOperator:
       prometheusConfigReloader:
