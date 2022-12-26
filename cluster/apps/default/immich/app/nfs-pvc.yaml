@@ -12,7 +12,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: 192.168.2.2
-    path: /volume/Storage_HDD/k8s/immich
+    path: /volume1/Storage_HDD/k8s/immich
   mountOptions:
     - nfsvers=4.1
     - nconnect=8
