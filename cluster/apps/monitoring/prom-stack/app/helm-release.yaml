@@ -102,6 +102,9 @@ spec:
       endpoints:
         - 10.0.105.10
 
+    alertmanager:
+      enabled: false
+
     prometheusOperator:
       prometheusConfigReloader:
         resources:
