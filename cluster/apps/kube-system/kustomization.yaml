@@ -6,4 +6,4 @@ resources:
   - metrics-server
   - reloader
   - node-feature-discovery
-  - kopia
+#  - kopia
