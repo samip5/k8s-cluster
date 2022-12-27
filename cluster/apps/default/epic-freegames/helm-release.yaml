@@ -45,6 +45,9 @@ spec:
         tls:
           - hosts:
               - *host
+              -
+      podAnnotations:
+       kyverno-no-tz: "true"
 
     persistence:
       data:
