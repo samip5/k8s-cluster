@@ -1,0 +1,68 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app epic-freegames
+  namespace: services
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+
+  values:
+    image:
+      repository: ghcr.io/claabs/epicgames-freegames-node
+      tag: latest@sha256:47e30144634b9759e1c8dc4dbfc19abf75a9860aff84c7e7d86f4cdd48c47fc1
+
+    service:
+      main:
+        ports:
+          http:
+            port: 3000
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        hosts:
+          - host: &host epic.skylab.fi
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+
+    persistence:
+      config:
+        enabled: true
+        type: secret
+        name: *app
+        subPath: config.json
+        mountPath: /usr/app/config/config.json
+        readOnly: true
+      data:
+        enabled: true
+        existingClaim: epic-freegames-config-v1
+        mountPath: /usr/app/config
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 380M
+      limits:
+        cpu: 100m
+        memory: 2000m

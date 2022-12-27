@@ -8,4 +8,5 @@ resources:
   - changedetector
   - whoami.yaml
   - immich/ks.yaml
+  - epic-freegames
 #  - edu-blog-ghost
