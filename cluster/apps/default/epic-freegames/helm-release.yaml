@@ -47,13 +47,6 @@ spec:
               - *host
 
     persistence:
-      config:
-        enabled: true
-        type: secret
-        name: *app
-        subPath: config.json
-        mountPath: /usr/app/config/config.json
-        readOnly: true
       data:
         enabled: true
         existingClaim: epic-freegames-config-v1
