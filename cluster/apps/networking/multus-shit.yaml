@@ -36,7 +36,7 @@ spec:
         - args:
             - --multus-conf-file=auto
             - --cleanup-config-on-exit=true
-            - --multus-logl-level=debug
+            - --multus-log-level=debug
             - --cni-version=0.3.1
             - --multus-kubeconfig-file-host=/etc/cni/net.d/multus.d/multus.kubeconfig
           command:
