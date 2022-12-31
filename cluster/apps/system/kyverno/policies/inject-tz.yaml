@@ -23,6 +23,9 @@ spec:
       exclude:
         any:
           - resources:
+              namespaces:
+                - longhorn-system
+          - resources:
               annotations:
                 kyverno-no-tz: "true"
 
