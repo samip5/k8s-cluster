@@ -12,4 +12,4 @@ resources:
   - netshoot-net-attach.yaml
   - unifi
   - k8s-gateway
-  - multus-shit.yaml
+#  - multus-shit.yaml
