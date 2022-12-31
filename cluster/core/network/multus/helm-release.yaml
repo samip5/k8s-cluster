@@ -20,7 +20,7 @@ spec:
       #repository: ghcr.io/k8snetworkplumbingwg/multus-cni
       #tag: latest
       repository: ghcr.io/k8snetworkplumbingwg/multus-cni
-      tag: v3.5.2
+      tag: v3.9.2
 
     tolerations:
       - effect: NoSchedule
