@@ -45,7 +45,6 @@ spec:
         tls:
           - hosts:
               - *host
-              -
       podAnnotations:
        kyverno-no-tz: "true"
 
@@ -54,3 +53,7 @@ spec:
         enabled: true
         existingClaim: epic-freegames-config-v1
         mountPath: /usr/app/config
+
+    resources:
+      limits:
+        memory: 2Gi
