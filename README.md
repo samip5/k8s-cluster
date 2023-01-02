@@ -41,7 +41,7 @@ cluster
 | VM on Synology   | k8s-worker-amd64-0 | 5GB  | 32GB Unknown     | Kube Worker Node  | Ubuntu 22.04 LTS |
 | VM on home-server | w-amd-2 | 8GB | 64GB SSD | Kube Worker Node | Debian 11 |
 | HP EliteDesk 800 G2 | k8s-worker-amd64-3 | 32GB | 256GB SSD | Kube Worker Node | Ubuntu 22.04 LTS |
-| Lenovo ThinkCentre M910q Tiny | w-amd-1 | 16GB | 256GB SSD x 2 | Ubuntu 22.04 LTS |
+| Lenovo ThinkCentre M910q Tiny | w-amd-1 | 16GB | 256GB SSD x 2 | Kube Worker | Ubuntu 22.04 LTS |
 ## Network
 
 All nodes are connected to a dual-stack network, with private IPv4 and public IPv6.  
