@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: metallb
-  namespace: kube-system
+  namespace: metallb-system
 spec:
   install:
     crds: CreateReplace
@@ -51,7 +51,7 @@ spec:
               name: metallb-speaker
             patch:
               - op: add
-                path: /spec/template/spec/initContainers/4
+                path: /spec/template/spec/initContainers/3
                 value:
                   name: routes
                   command:
