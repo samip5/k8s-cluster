@@ -51,7 +51,7 @@ spec:
               name: metallb-speaker
             patch:
               - op: add
-                path: /spec/template/spec/initContainers/3
+                path: /spec/template/spec/initContainers/4
                 value:
                   name: routes
                   command:
