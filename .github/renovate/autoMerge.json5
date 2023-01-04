@@ -1,11 +1,11 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "packageRules": [
     {
       description: "Auto merge container digests",
       matchDatasources: ["docker"],
       automerge: true,
       automergeType: "branch",
-      requiredStatusChecks: null,
       matchUpdateTypes: ["digest", "minor", "patch"],
       matchPackagePattern: ["ghcr.io/k8s-at-home", "ghcr.io/onedr0p"],
     },
@@ -14,7 +14,6 @@
       matchDatasources: ["docker"],
       automerge: true,
       automergeType: "branch",
-      requiredStatusChecks: null,
       matchUpdateTypes: ["minor", "patch", "digest"],
       matchPackageNames: [
         "k8s.gcr.io/descheduler/descheduler",
@@ -27,7 +26,6 @@
       matchDatasources: ["docker"],
       automerge: true,
       automergeType: "branch",
-      requiredStatusChecks: null,
       matchUpdateTypes: ["patch"],
       matchPackageNames: [
         "wolveix/satisfactory-server"
@@ -37,20 +35,17 @@
       matchDatasources: ["galaxy-collection"],
       automerge: true,
       automergeType: "branch",
-      requiredStatusChecks: null,
       matchUpdateTypes: ["minor", "patch"]
     },
     {
       matchDatasources: ["github-actions"],
       automerge: true,
-      requiredStatusChecks: null,
       matchUpdateTypes: ["minor", "patch"],
     },
     {
       matchDatasources: ["helm"],
       automerge: true,
       automergeType: "branch",
-      requiredStatusChecks: null,
       matchUpdateTypes: ["minor", "patch"],
       matchPackageNames: [
         "kube-prometheus-stack",
