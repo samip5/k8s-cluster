@@ -1,19 +1,6 @@
 {
   "packageRules": [
     {
-      description: "Only major updates for Home-Assistant",
-      matchDatasources: ["docker"],
-      matchPackageNames: ["ghcr.io/home-assistant/home-assistant"],
-      matchUpdateTypes: ["major"],
-    },
-     {
-      description: "Disable minor and patch updates for Home-Assistant",
-      enabled: false,
-      matchDatasources: ["docker"],
-      matchPackageNames: ["ghcr.io/home-assistant/home-assistant"],
-      matchUpdateTypes: ["minor", "patch"],
-    },
-    {
       description: "Auto merge container digests",
       matchDatasources: ["docker"],
       automerge: true,
@@ -52,6 +39,12 @@
       automergeType: "branch",
       requiredStatusChecks: null,
       matchUpdateTypes: ["minor", "patch"]
+    },
+    {
+      matchDatasources: ["github-actions"],
+      automerge: true,
+      requiredStatusChecks: null,
+      matchUpdateTypes: ["minor", "patch"],
     },
     {
       matchDatasources: ["helm"],
