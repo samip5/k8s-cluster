@@ -34,7 +34,7 @@ spec:
       tag: 7.0.7
     env:
       REDIS_REPLICATION_MODE: master
-    command: ["redis-server", "--save", "50 1", "--loglevel", "warning"]
+    command: ["redis-server", "--save", "50 1", "--loglevel", "notice"]
     service:
       main:
         ports:
