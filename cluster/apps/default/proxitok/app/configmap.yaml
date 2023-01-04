@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: proxitok-configmap
+  namespace: default
+data:
+  LATTE_CACHE: /cache
+  API_CACHE: redis
+  REDIS_HOST: proxitok-redis
+  REDIS_PORT: 6379
+  API_SIGNER: remote
+  API_SIGNER_URL: http://proxitok-signer/signature
