@@ -11,3 +11,4 @@ data:
   REDIS_PORT: "6379"
   API_SIGNER: remote
   API_SIGNER_URL: http://proxitok-signer.default.svc.cluster.local:8080/signature
+  API_FORCE_LEGACY: "1"
