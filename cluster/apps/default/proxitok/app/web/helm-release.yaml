@@ -55,14 +55,6 @@ spec:
           - hosts:
               - *host
     persistence:
-      config:
-        enabled: true
-        mountPath: "/var/www/html/.env"
-        subPath: ".env"
-        name: proxitok-configmap
-        type: "configmap"
-        volumeSpec:
-          configMap: proxitok-configmap
       cache:
         enabled: true
         size: 5Gi
