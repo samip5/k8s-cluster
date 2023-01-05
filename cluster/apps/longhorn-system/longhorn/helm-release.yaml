@@ -21,6 +21,7 @@ spec:
       defaultClassReplicaCount: 2
     defaultSettings:
       defaultReplicaCount: 2
+    pspEnable: false
     ingress:
       enabled: true
       ingressClassName: "nginx"
