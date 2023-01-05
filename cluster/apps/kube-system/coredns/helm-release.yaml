@@ -32,7 +32,6 @@ spec:
     replicaCount: 3
 
     service:
-      clusterIP: 10.43.0.10
       annotations:
         fix.coredns.template: "fnord"
 
