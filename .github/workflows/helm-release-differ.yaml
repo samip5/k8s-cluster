@@ -44,10 +44,10 @@ jobs:
       - id: set-matrix
         run: echo "matrix={\"file\":${{ steps.changed-files.outputs.all_changed_files }}}" >> "${GITHUB_OUTPUT}"
 
-  iff:
+  diff:
     name: Diff on Helm Releases
     runs-on: ubuntu-latest
-    needs: [ changed-files ]
+    needs: [changed-files]
     strategy:
       matrix: ${{ fromJSON(needs.changed-files.outputs.matrix) }}
     steps:
@@ -106,46 +106,8 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             Helm Release: `${{ matrix.file }}`
-            
+
             ```
             ${{ steps.diff.outputs.diff }}
             ```
-          edit-mode: replace
-
-      - name: Checkout default branch
-        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3
-        with:
-          ref: "${{ env.DEFAULT_BRANCH }}"
-          path: default
-
-      - name: Install Helm
-        uses: azure/setup-helm@5119fcb9089d432beecbf79bb2c7915207344b78 # v3
-        with:
-          version: latest
-
-      - name: Helm Release Differ
-        id: diff
-        run: |
-          diff=$(.github/scripts/helm-release-differ.sh --source-file "default/${{ matrix.file }}" --target-file "${{ matrix.file }}" --remove-common-labels)
-          echo "${diff}"
-          diff="${diff//'%'/'%25'}"
-          diff="${diff//$'\n'/'%0A'}"
-          diff="${diff//$'\r'/'%0D'}"
-          echo "::set-output name=diff::$(echo ${diff})"
-
-      - name: Find Comment
-        uses: peter-evans/find-comment@81e2da3af01c92f83cb927cf3ace0e085617c556 # v2
-        id: find-comment
-        with:
-          issue-number: "${{ github.event.pull_request.number }}"
-          comment-author: "${{ env.BOT_USERNAME }}"
-          body-includes: "${{ matrix.file }}"
-
-      - name: Create or update comment
-        uses: peter-evans/create-or-update-comment@5adcb0bb0f9fb3f95ef05400558bdb3f329ee808 # v2
-        with:
-          token: "${{ steps.generate-token.outputs.token }}"
-          comment-id: "${{ steps.find-comment.outputs.comment-id }}"
-          issue-number: "${{ github.event.pull_request.number }}"
-          body: "${{ steps.diff.outputs.diff }}"
           edit-mode: replace
