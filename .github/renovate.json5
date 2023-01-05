@@ -34,7 +34,7 @@
     "fileMatch": ["ansible/.+/docker-compose.*\\.ya?ml(\\.j2)?$"]
   },
   "flux": {
-    "enabled": false
+    "fileMatch": ["cluster/.+\\.ya?ml$"]
   },
   "helm-values": {
     "fileMatch": ["cluster/.+\\.ya?ml$"]
