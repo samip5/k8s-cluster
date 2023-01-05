@@ -15,36 +15,34 @@ env:
   KUBERNETES_DIR: cluster/
 
 jobs:
+  changed-files:
+    name: Detect File Changes
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Generate Token
+        uses: tibdex/github-app-token@021a2405c7f990db57f5eae5397423dcc554159c # renovate: tag=v1.7.0
+        id: generate-token
+        with:
+          app_id: "${{ secrets.BOT_APP_ID }}"
+          private_key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
 
-  jobs:
-    changed-files:
-      name: Detect File Changes
-      runs-on: ubuntu-latest
-      outputs:
-        matrix: ${{ steps.set-matrix.outputs.matrix }}
-      steps:
-        - name: Generate Token
-          uses: tibdex/github-app-token@021a2405c7f990db57f5eae5397423dcc554159c # renovate: tag=v1.7.0
-          id: generate-token
-          with:
-            app_id: "${{ secrets.BOT_APP_ID }}"
-            private_key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
+      - name: Checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+        with:
+          token: "${{ steps.generate-token.outputs.token }}"
 
-        - name: Checkout
-          uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
-          with:
-            token: "${{ steps.generate-token.outputs.token }}"
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@7839ede089e483df865be448d6f3652f875005e0 # v35.3.2
+        with:
+          json: true
+          files: |
+            cluster/**/helmrelease.yaml
 
-        - name: Get changed files
-          id: changed-files
-          uses: tj-actions/changed-files@7839ede089e483df865be448d6f3652f875005e0 # v35.3.2
-          with:
-            json: true
-            files: |
-              cluster/**/helmrelease.yaml
-
-        - id: set-matrix
-          run: echo "matrix={\"file\":${{ steps.changed-files.outputs.all_changed_files }}}" >> "${GITHUB_OUTPUT}"
+      - id: set-matrix
+        run: echo "matrix={\"file\":${{ steps.changed-files.outputs.all_changed_files }}}" >> "${GITHUB_OUTPUT}"
 
   iff:
     name: Diff on Helm Releases
