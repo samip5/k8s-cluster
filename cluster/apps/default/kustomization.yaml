@@ -9,5 +9,5 @@ resources:
   - whoami.yaml
   - immich/ks.yaml
   - proxitok/ks.yaml
-  - epic-freegames
+#  - epic-freegames
 #  - edu-blog-ghost
