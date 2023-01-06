@@ -45,7 +45,7 @@
   "regexManagers": [
     {
       "description": ["Process CRD dependencies - Chart and Github Release are the same version"],
-      "fileMatch": ["kubernetes/.+\\.ya?ml$"],
+      "fileMatch": ["cluster/.+\\.ya?ml$"],
       "matchStrings": [
         "# renovate: registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n",
       ],
