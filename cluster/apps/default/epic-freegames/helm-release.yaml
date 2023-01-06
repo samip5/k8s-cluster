@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.2.0
+      version: 1.2.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -54,6 +54,7 @@ spec:
         enabled: true
         existingClaim: epic-freegames-config-v1
         mountPath: /usr/app/config
+        retain: true
 
     resources:
       limits:
