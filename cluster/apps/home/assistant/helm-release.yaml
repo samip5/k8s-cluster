@@ -89,7 +89,7 @@ spec:
         existingClaim: assistant-config-v1
 
     nodeSelector:
-      kubernetes.io/hostname: "k8s-worker7"
+      kubernetes.io/hostname: "k8s-worker-amd64-3"
     tolerations:
       - key: "cm4"
         operator: "Exists"
