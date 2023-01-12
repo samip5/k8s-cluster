@@ -40,7 +40,7 @@
     {
       matchDatasources: ["github-actions"],
       automerge: true,
-      matchUpdateTypes: ["minor", "patch"],
+      automergeType: "branch"
     },
     {
       matchDatasources: ["helm"],
