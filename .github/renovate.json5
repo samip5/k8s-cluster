@@ -80,5 +80,5 @@
       "matchDatasources": ["docker"],
       "versioning": "loose",
       "matchPackagePatterns": ["changedetection", "immich"]
-    },
+    }]
 }
