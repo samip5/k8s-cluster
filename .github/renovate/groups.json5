@@ -1,0 +1,14 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "packageRules": [
+  {
+    "description": "Immich images",
+    "groupName": "Immich",
+    "matchPackagePatterns": ["immich"],
+    "matchDatasources": ["docker"],
+    "group": {
+      "commitMessageTopic": "{{{groupName}}} group"
+    },
+    "separateMinorPatch": true
+  }]
+}
