@@ -29,7 +29,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/immich-app/immich-proxy
-      tag: v1.40.1_63-dev
+      tag: 1313
     envFrom:
       - secretRef:
           name: immich-secret
