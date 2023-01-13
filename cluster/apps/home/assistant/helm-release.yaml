@@ -32,7 +32,7 @@ spec:
       fullnameOverride: assistant
     image:
       repository: ghcr.io/home-assistant/home-assistant
-      tag: 2023.1.2
+      tag: 2023.1.4
 
 
 
