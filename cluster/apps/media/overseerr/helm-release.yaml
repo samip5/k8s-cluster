@@ -5,29 +5,41 @@ metadata:
   name: overseerr
   namespace: media
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: overseerr
-      version: 5.4.2
+      chart: app-template
+      version: 1.2.1
+      interval: 10m
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
   values:
     image:
       repository: ghcr.io/sct/overseerr
       tag: 1.31.0
     env:
-      TZ: "Europe/Helsinki"
       LOG_LEVEL: "info"
+      PORT: 80
+
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+
     ingress:
       main:
         enabled: true
-        ingressClassName: "cilium"
+        ingressClassName: "nginx"
         annotations:
+          external-dns-cf/is-dns-public: "true"
+          external-dns.target/enabled: "true"
+          external-dns-cf/is-public: "true"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Accept-Encoding "";
+            sub_filter_once on;
           hajimari.io/enable: "true"
           hajimari.io/icon: "eye-circle"
         hosts:
@@ -38,7 +50,6 @@ spec:
         tls:
           - hosts:
               - "requests.skylab.fi"
-            secretName: skylab.fi-tls
     persistence:
       config:
         enabled: true
