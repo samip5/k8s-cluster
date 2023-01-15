@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: cilium
-  namespace: kube-system
+  namespace: cilium-system
 spec:
   interval: 5m
   upgrade:
@@ -11,6 +11,8 @@ spec:
       remediateLastFailure: true
       retries: 5
       strategy: rollback
+  install:
+    createNamespace: true
   chart:
     spec:
       # renovate: registryUrl=https://helm.cilium.io/
