@@ -38,6 +38,7 @@ spec:
         tls:
           - hosts:
               - "requests.skylab.fi"
+            secretName: skylab.fi-tls
     persistence:
       config:
         enabled: true
