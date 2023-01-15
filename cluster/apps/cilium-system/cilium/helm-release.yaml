@@ -26,6 +26,7 @@ spec:
   values:
     ingressController:
       enabled: true
+      loadbalancerMode: shared
     autoDirectNodeRoutes: true
     localRedirectPolicy: true
     rollOutCiliumPods: true
