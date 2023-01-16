@@ -13,7 +13,7 @@ spec:
       interval: 15m
       sourceRef:
         kind: HelmRepository
-        name: bjw-s-helm-charts
+        name: bjw-s-charts
         namespace: flux-system
   # See https://github.com/bjw-s/helm-charts/blob/main/charts/library/common/values.yaml
   values:
