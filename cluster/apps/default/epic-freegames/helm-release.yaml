@@ -56,6 +56,10 @@ spec:
         mountPath: /usr/app/config
         retain: true
 
+    probes:
+      startup:
+        enabled: false
+
     resources:
       limits:
         memory: 2Gi
