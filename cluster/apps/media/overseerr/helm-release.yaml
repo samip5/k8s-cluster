@@ -43,7 +43,7 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "eye-circle"
         hosts:
-          - host: "requests.skylab.fi"
+          - host: "overseerr.skylab.fi"
             paths:
               - path: /
                 pathType: Prefix
