@@ -1,0 +1,20 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: intel-device-plugin-operator
+spec:
+  path: ./cluster/apps/kube-system/intel-gpu-plugin/operator
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+    namespace: flux-system
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: intel-device-plugin-operator
+      namespace: kube-system
+  interval: 2h
+  retryInterval: 2m
+  timeout: 1m
