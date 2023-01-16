@@ -22,7 +22,6 @@ spec:
       tag: 2022.12.3
 
     env:
-      ESPHOME_DASHBOARD_USE_PING: true
       ESPHOME__INSTANCE_NAME: ESPHome
       ESPHOME__PORT: &port 6052
       ESPHOME__APPLICATION_URL: &host-cluster "esph.skylab.fi"
@@ -50,6 +49,16 @@ spec:
         ingressClassName: "nginx"
         annotations:
           external-dns.target/enabled: "true"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "chip"
+          nginx.ingress.kubernetes.io/auth-url: |-
+            http://ak-outpost-authentik-embedded-outpost.security.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
+          nginx.ingress.kubernetes.io/auth-signin: |-
+            https://id.skylab.fi/outpost.goauthentik.io/start?rd=$escaped_request_uri
+          nginx.ingress.kubernetes.io/auth-response-headers: |-
+            Set-Cookie,X-authentik-username,X-authentik-uid
+          nginx.ingress.kubernetes.io/auth-snippet: |
+            proxy_set_header X-Forwarded-Host $http_host;
         hosts:
           - host: &host "esph.skylab.fi"
             paths:
