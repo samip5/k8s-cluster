@@ -19,6 +19,12 @@ spec:
     image:
       repository: ghcr.io/sct/overseerr
       tag: develop@sha256:ac136c03026a5b538db97201b815d6ab3cafa8d66a5bd49c895a4870151b5255
+
+    dnsConfig:
+      options:
+        - name: ndots
+          value: "1"
+
     env:
       LOG_LEVEL: "info"
       PORT: 80
