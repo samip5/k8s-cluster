@@ -1,0 +1,85 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app syncthing
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+      interval: 15m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    fullnameOverride: syncthing
+    podSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+      fsGroupChangePolicy: "OnRootMismatch"
+
+    image:
+      repository: syncthing/syncthing
+      tag: 1.23.0
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8384
+
+      transfer:
+        type: LoadBalancer
+        ports:
+          tcp-transfer:
+            enabled: true
+            port: 22000
+            protocol: TCP
+          quic-transfer:
+            enabled: true
+            port: 22000
+            protocol: UDP
+
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          external-dns.target/enabled: "true"
+          external-dns-cf/is-dns-public: "true"
+        hosts:
+          - host: &host "{{ .Release.Name }}.skylab.fi"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    env:
+      PUID: 1000
+      PGID: 1000
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: syncthing
+        mountPath: /var/syncthing
+
+    resources:
+      requests:
+        memory: 75Mi
+        cpu: 100m
+      limits:
+        memory: 300Mi
+        cpu: 500m
+

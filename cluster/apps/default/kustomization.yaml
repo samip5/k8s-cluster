@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
 #  - organizr
   - theme-park
+  - syncthing
 #  - dendrite
 #  - changedetector
   - whoami.yaml
