@@ -39,6 +39,7 @@ jobs:
         with:
           json: true
           files: |
+            cluster/**/helm-release.yaml
             cluster/**/helmrelease.yaml
 
       - id: set-matrix
