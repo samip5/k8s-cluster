@@ -19,7 +19,8 @@ spec:
   values:
     image:
       repository: docker.io/fallenbagel/jellyseerr
-      tag: 1.3.0
+      tag: preview-pr184
+      #tag: 1.3.0
 
     env:
       LOG_LEVEL: "info"
