@@ -8,6 +8,7 @@ resources:
 #  - dendrite
 #  - changedetector
   - whoami.yaml
+  - hajimari
   - immich/ks.yaml
   - proxitok/ks.yaml
   - epic-freegames
