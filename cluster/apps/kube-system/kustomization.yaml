@@ -6,4 +6,5 @@ resources:
   - metrics-server
   - reloader
   - node-feature-discovery
+  - intel-gpu-plugin
 #  - kopia
