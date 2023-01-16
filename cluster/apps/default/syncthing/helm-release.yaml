@@ -54,6 +54,7 @@ spec:
     ingress:
       main:
         enabled: true
+        ingressClassName: "nginx"
         annotations:
           external-dns.target/enabled: "true"
           external-dns-cf/is-dns-public: "true"
