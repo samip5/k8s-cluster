@@ -89,8 +89,8 @@ spec:
         - name: Whoogle
           token: w
           icon: ci:search
-          searchUrl: https:/search.${EXTERNAL_DOMAIN}/search?q={query}
-          url: https://search.${EXTERNAL_DOMAIN}
+          searchUrl: https:/search.${SECRET_DOMAIN}/search?q={query}
+          url: https://search.${SECRET_DOMAIN}
         - name: Google
           token: g
           icon: simple-icons:google
