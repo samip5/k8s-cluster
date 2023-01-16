@@ -18,7 +18,6 @@
     "helpers:pinGitHubActionDigests"
   ],
   "platform": "github",
-  recreateClosed: true,
   "username": "samip5-bot[bot]",
   "repositories": ["samip5/k8s-cluster"],
   "onboarding": false,
@@ -49,7 +48,7 @@
       "description": ["Process CRD dependencies - Chart and Github Release are the same version"],
       "fileMatch": ["cluster/.+\\.ya?ml$"],
       "matchStrings": [
-        "# renovate: registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n"
+        "# renovate: registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n",
       ],
       "datasourceTemplate": "helm"
     },
