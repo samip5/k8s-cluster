@@ -9,7 +9,7 @@ spec:
   url: https://github.com/actions-runner-controller/actions-runner-controller.git
   ref:
     # renovate: registryUrl=https://actions-runner-controller.github.io/actions-runner-controller chart=actions-runner-controller
-    tag: actions-runner-controller-0.21.1
+    tag: actions-runner-controller-0.22.0
   ignore: |
     # exclude all
     /*
