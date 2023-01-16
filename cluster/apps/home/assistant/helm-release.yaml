@@ -8,12 +8,11 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: home-assistant
-      version: 13.4.2
+      chart: app-template
+      version: 1.2.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
       interval: 5m
   maxHistory: 3
@@ -64,6 +63,7 @@ spec:
           external-dns.home.arpa/enabled: "true"
           external-dns.target/enabled: "true"
           external-dns-cf/is-dns-public: "true"
+          hajimari.io/icon: mdi:home-assistant
         hosts:
           - host: &host assistant.skylab.fi
             paths:
