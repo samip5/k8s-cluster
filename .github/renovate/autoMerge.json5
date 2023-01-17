@@ -6,6 +6,7 @@
       matchDatasources: ["docker"],
       automerge: true,
       automergeType: "branch",
+      ignoreTests: true,
       matchUpdateTypes: ["digest", "minor", "patch"],
       matchPackagePattern: ["ghcr.io/k8s-at-home", "ghcr.io/onedr0p"],
     },
@@ -14,6 +15,7 @@
       matchDatasources: ["docker"],
       automerge: true,
       automergeType: "branch",
+      ignoreTests: true,
       matchUpdateTypes: ["minor", "patch", "digest"],
       matchPackageNames: [
         "k8s.gcr.io/descheduler/descheduler",
@@ -26,6 +28,7 @@
       matchDatasources: ["docker"],
       automerge: true,
       automergeType: "branch",
+      ignoreTests: true,
       matchUpdateTypes: ["patch"],
       matchPackageNames: [
         "wolveix/satisfactory-server"
@@ -35,17 +38,20 @@
       matchDatasources: ["galaxy-collection"],
       automerge: true,
       automergeType: "branch",
+      ignoreTests: true,
       matchUpdateTypes: ["minor", "patch"]
     },
     {
       matchDatasources: ["github-actions"],
       automerge: true,
+      ignoreTests: true,
       automergeType: "branch"
     },
     {
       matchDatasources: ["helm"],
       automerge: true,
       automergeType: "branch",
+      ignoreTests: true,
       matchUpdateTypes: ["minor", "patch"],
       matchPackageNames: [
         "kube-prometheus-stack",
