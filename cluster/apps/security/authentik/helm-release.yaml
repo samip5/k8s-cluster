@@ -30,15 +30,18 @@ spec:
     cleanupOnFail: true
   values:
     outposts:
-      docker_image_base: ghcr.io/goauthentik/%(type)s
+      #docker_image_base: ghcr.io/goauthentik/%(type)s
+      docker_image_base: ghcr.io/goauthentik/dev-%(type)s:gh-next
     fullnameOverride: authentik
     image:
-      repository: ghcr.io/goauthentik/server
-      tag: 2022.12.2
+      #repository: ghcr.io/goauthentik/server
+      #tag: 2022.12.2
+      repository: ghcr.io/goauthentik/dev-server
+      tag: gh-next
       pullPolicy: Always
 
     authentik:
-      log_level: info
+      log_level: debug
       secret_key: "${SECRET_AUTHENTIK_SECRET_KEY}"
       error_reporting:
         enabled: true
