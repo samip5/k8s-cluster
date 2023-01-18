@@ -21,5 +21,5 @@ spec:
       name: core
       apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
     - kind: Kustomization
-      name: config
+      name: flux-config
       apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
