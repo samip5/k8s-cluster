@@ -6,7 +6,7 @@ resources:
   - theme-park
   - syncthing
 #  - dendrite
-#  - changedetector
+  - changedetector
   - whoami.yaml
   - hajimari/ks.yaml
   - immich/ks.yaml

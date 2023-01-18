@@ -2,12 +2,9 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: changedetection
+  name: changedetect
   namespace: default
 spec:
-  dependsOn:
-    - name: longhorn
-      namespace: longhorn-system
   interval: 15m
   chart:
     spec:
@@ -55,7 +52,7 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: longhorn
+        storageClass: nfs-client
         accessMode: ReadWriteOnce
         size: 1G
         mountPath: /datastore
