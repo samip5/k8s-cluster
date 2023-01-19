@@ -10,4 +10,4 @@ spec:
   storageClassName: longhorn-crypto-per-volume
   resources:
     requests:
-      storage: 30Gi
+      storage: 35Gi
