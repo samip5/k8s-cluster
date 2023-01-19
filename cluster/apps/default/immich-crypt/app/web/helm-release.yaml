@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: immich-web
+  name: immich-crypt-web
   namespace: default
 spec:
   interval: 15m
@@ -35,9 +35,9 @@ spec:
       - ./entrypoint.sh
     envFrom:
       - secretRef:
-          name: immich-secret
+          name: immich-crypt-secret
       - configMapRef:
-          name: immich-configmap
+          name: immich-crypt-configmap
     service:
       main:
         ports:
@@ -46,7 +46,7 @@ spec:
     persistence:
       library:
         enabled: true
-        existingClaim: immich-nfs
+        existingClaim: immich-crypt
         mountPath: /usr/src/app/upload
     resources:
       requests:
