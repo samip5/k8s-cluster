@@ -42,10 +42,13 @@
       matchUpdateTypes: ["minor", "patch"]
     },
     {
-      matchDatasources: ["github-actions"],
+      description: "Auto merge GitHub Actions",
+      matchManagers: ["github-actions"],
+      matchDatasources: ["github-tags"],
       automerge: true,
       ignoreTests: true,
-      automergeType: "branch"
+      automergeType: "branch",
+      matchUpdateTypes: ["minor", "patch"]
     },
     {
       matchDatasources: ["helm"],
