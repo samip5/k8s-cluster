@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  X-Proxied-By: "ingress-nginx"
+kind: ConfigMap
+metadata:
+  name: nginx-custom
+  namespace: networking
