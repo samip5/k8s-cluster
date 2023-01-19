@@ -22,7 +22,7 @@ spec:
     remediation:
       retries: 3
   dependsOn:
-    - name: immich-server
+    - name: immich-crypt-server
   values:
     controller:
       annotations:
