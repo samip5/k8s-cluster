@@ -58,13 +58,11 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
-              - path: /api/
+              - path: /api
                 pathType: Prefix
-                backend:
-                  service:
-                   name: immich-server
-                   port:
-                    number: 3001
+                service:
+                  name: immich-server
+                  port: 3001
 
         tls:
           - hosts:
