@@ -53,6 +53,8 @@ spec:
           external-dns.target/enabled: "true"
           external-dns-cf/is-dns-public: "true"
           external-dns-cf/is-public: "true"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+              rewrite /api/(.*) /$1 break;
         hosts:
           - host: &host photos.skylab.fi
             paths:
