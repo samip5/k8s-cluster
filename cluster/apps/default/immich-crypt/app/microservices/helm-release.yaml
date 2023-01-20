@@ -29,8 +29,10 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     image:
-      repository: ghcr.io/immich-app/immich-server
-      tag: v1.42.0_65-dev
+      #repository: ghcr.io/immich-app/immich-server
+      #tag: v1.42.0_65-dev
+      repository: ghcr.io/samip5/immich-server
+      tag: webm-support
     command: /bin/sh
     args:
       - ./start-microservices.sh
@@ -42,11 +44,22 @@ spec:
     service:
       main:
         enabled: false
+
     persistence:
       library:
         enabled: true
         existingClaim: immich-crypt
         mountPath: /usr/src/app/upload
+
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                    - "amd64"
     resources:
       requests:
         cpu: 100m
