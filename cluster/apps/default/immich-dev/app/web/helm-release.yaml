@@ -69,7 +69,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: networking/${DEV_DOMAIN}-tls
+            secretName: ${DEV_DOMAIN}-tls
 
     persistence:
       library:
