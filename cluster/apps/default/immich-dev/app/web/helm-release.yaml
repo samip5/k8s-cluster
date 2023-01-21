@@ -65,7 +65,7 @@ spec:
               - path: /api
                 pathType: Prefix
                 service:
-                  name: immich-server
+                  name: immich-dev-server
                   port: 3001
 
         tls:
