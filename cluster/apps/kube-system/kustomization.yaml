@@ -5,6 +5,7 @@ resources:
   - descheduler
   - metrics-server
   - reloader
+  - reflector
   - node-feature-discovery
   - intel-gpu-plugin
 #  - kopia
