@@ -69,6 +69,7 @@ spec:
         tls:
           - hosts:
               - *host
+            secretName: ${DEV_DOMAIN}-tls
 
     persistence:
       library:
