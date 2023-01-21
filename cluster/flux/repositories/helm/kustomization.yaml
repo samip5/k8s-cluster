@@ -40,4 +40,5 @@ resources:
   - hajimari-charts.yaml
   - bugfeast-tor-chart.yaml
   - vector-charts.yaml
+  - emberstack-charts.yaml
 
