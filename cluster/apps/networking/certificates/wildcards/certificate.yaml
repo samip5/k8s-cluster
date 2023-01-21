@@ -16,3 +16,7 @@ spec:
   dnsNames:
   - "skylab.fi"
   - "*.skylab.fi"
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "media,default"
