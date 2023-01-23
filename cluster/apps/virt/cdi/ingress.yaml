@@ -17,3 +17,7 @@ spec:
                   number: 443
             pathType: Prefix
             path: /
+  tls:
+    - hosts:
+        - cdi-upload.skylab.fi
+      secretName: skylab.fi-tls
