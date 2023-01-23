@@ -6,6 +6,7 @@ metadata:
   namespace: cdi
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/proxy-body-size: "70G"
 spec:
   ingressClassName: nginx
   rules:
