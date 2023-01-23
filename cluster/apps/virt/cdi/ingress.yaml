@@ -4,6 +4,8 @@ kind: Ingress
 metadata:
   name: cdi-uploadproxy
   namespace: cdi
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   ingressClassName: nginx
   rules:
