@@ -1,0 +1,19 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cdi-uploadproxy
+  namespace: cdi
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: cdi-upload.skylab.fi
+      http:
+        paths:
+          - backend:
+              service:
+                name: cdi-uploadproxy
+                port:
+                  number: 443
+            pathType: Prefix
+            path: /
