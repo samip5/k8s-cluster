@@ -7,7 +7,7 @@ resources:
   - prom-stack/install.yaml
   - node-problem-detector
   - grafana
-  - loki
-  - vector
+#  - loki
+#  - vector
   - speedtest-exporter
   - arrs
