@@ -15,6 +15,8 @@ resources:
   - default
   - databases
   - system-upgrade
+  - virt/ks-cdi.yaml
+  - virt/ks-kubevirt.yaml
 #  - vpn
 #  - proxy
   - home
