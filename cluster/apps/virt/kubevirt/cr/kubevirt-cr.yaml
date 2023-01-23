@@ -11,4 +11,8 @@ spec:
       featureGates: []
   customizeComponents: {}
   imagePullPolicy: IfNotPresent
+  infra:
+    nodePlacement:
+      nodeSelector:
+        kubernetes.io/arch: amd64
   workloadUpdateStrategy: {}
