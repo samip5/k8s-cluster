@@ -23,7 +23,7 @@ spec:
     devices:
       disks:
         - disk:
-            bus: virtio
+            bus: sata
           name: pvcdisk
       interfaces:
         - masquerade: {}
