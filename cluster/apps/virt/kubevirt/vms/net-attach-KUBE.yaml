@@ -3,7 +3,7 @@ apiVersion: "k8s.cni.cncf.io/v1"
 kind: NetworkAttachmentDefinition
 metadata:
   name: work-vm-kube-dhcp
-  namespace: home
+  namespace: kubevirt
 spec:
   config: '{
       "cniVersion": "0.3.1",
