@@ -31,8 +31,6 @@ spec:
         - masquerade: {}
           model: e1000
           name: default
-        - name: kube-lan
-          bridge: {}
     features:
       acpi: {}
       apic: {}
@@ -61,9 +59,6 @@ spec:
   networks:
     - name: default
       pod: {}
-    - name: kube-lan
-      multus:
-        networkName: work-vm-kube-dhcp
   terminationGracePeriodSeconds: 0
   volumes:
     - name: pvcdisk
