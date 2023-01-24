@@ -30,6 +30,8 @@ spec:
         - masquerade: {}
           model: e1000
           name: default
+        - name: kube-lan
+          bridge: {}
       tpm: {}
     features:
       acpi: {}
@@ -47,9 +49,21 @@ spec:
     resources:
       requests:
         memory: 8Gi
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: kubernetes.io/hostname=
+                operator: Equals
+                values:
+                  - "w-amd-1"
   networks:
     - name: default
       pod: {}
+    - name: kube-lan
+      multus:
+        networkName: work-vm-kube-dhcp
   terminationGracePeriodSeconds: 0
   volumes:
     - name: pvcdisk
