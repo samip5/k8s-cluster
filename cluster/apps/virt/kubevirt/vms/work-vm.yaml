@@ -54,8 +54,8 @@ spec:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
           - matchExpressions:
-              - key: kubernetes.io/hostname=
-                operator: Equals
+              - key: kubernetes.io/hostname
+                operator: In
                 values:
                   - "w-amd-1"
   networks:
