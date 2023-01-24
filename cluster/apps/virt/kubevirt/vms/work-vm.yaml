@@ -41,6 +41,7 @@ spec:
         spinlocks:
           spinlocks: 8191
         vapic: {}
+      smm: {}
     firmware:
       bootloader:
         efi:
