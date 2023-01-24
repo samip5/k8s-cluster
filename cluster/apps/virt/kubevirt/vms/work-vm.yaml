@@ -20,6 +20,7 @@ spec:
       utc: {}
     cpu:
       cores: 4
+      model: host-passthrough
     devices:
       disks:
         - disk:
@@ -49,7 +50,7 @@ spec:
   networks:
     - name: default
       pod: {}
-  terminationGracePeriodSeconds: 60
+  terminationGracePeriodSeconds: 0
   volumes:
     - name: pvcdisk
       persistentVolumeClaim:
