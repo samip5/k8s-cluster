@@ -19,7 +19,8 @@ spec:
           tickPolicy: catchup
       utc: {}
     cpu:
-      cores: 4
+      cores: 2
+      threads: 2
       model: host-passthrough
     devices:
       disks:
@@ -32,7 +33,6 @@ spec:
           name: default
         - name: kube-lan
           bridge: {}
-      tpm: {}
     features:
       acpi: {}
       apic: {}
@@ -41,7 +41,6 @@ spec:
         spinlocks:
           spinlocks: 8191
         vapic: {}
-      smm: {}
     firmware:
       bootloader:
         efi:

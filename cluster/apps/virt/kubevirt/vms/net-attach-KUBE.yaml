@@ -11,6 +11,11 @@ spec:
       "master": "enp0s31f6",
       "mode": "bridge",
       "ipam": {
-        "type": "dhcp"
+         "type": "static",
+        "addresses": [
+           {
+             "address": "10.0.105.210/24"
+           }
+         ]
       }
     }'
