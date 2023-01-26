@@ -39,14 +39,20 @@ spec:
     command: ["/bin/bash", "/app/cf-ddns.sh"]
     env:
       - name: CLOUDFLARE_EMAIL
-        value: ${EMAIL_1}
+        valueFrom:
+          secretKeyRef:
+            name: cf-ddns-secrets
+            key: EMAIL
       - name: CLOUDFLARE_APIKEY
         valueFrom:
           secretKeyRef:
             name: externaldns-secrets
             key: cloudflare_api_token
       - name: CLOUDFLARE_RECORD_NAME
-        value: r.home.samip.fi
+        valueFrom:
+          secretKeyRef:
+            name: cf-ddns-secrets
+            key: CLOUDFLARE_RECORD_NAME
     service:
       main:
         enabled: false
