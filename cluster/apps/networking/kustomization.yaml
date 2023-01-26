@@ -11,4 +11,5 @@ resources:
   - netshoot-net-attach.yaml
   - unifi
   - k8s-gateway
+  - cf-ddns/ks.yaml
 #  - multus-shit.yaml
