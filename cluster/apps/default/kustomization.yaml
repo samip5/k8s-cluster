@@ -12,7 +12,6 @@ resources:
   - immich/ks.yaml
   - immich-crypt/ks.yaml
   - immich-dev/ks.yaml
-  - photoprism
   - proxitok/ks.yaml
   - whoogle/ks.yaml
   - epic-freegames
