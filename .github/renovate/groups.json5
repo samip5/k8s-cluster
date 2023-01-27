@@ -6,7 +6,6 @@
     "groupName": "Immich",
     "matchPackagePatterns": ["immich"],
     "matchDatasources": ["docker"],
-    allowedVersions: "/v.*_(.*)/",
     "group": {
       "commitMessageTopic": "{{{groupName}}} group"
     },
