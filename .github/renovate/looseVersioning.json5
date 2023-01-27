@@ -6,5 +6,5 @@
       "matchDatasources": ["docker"],
       "versioning": "loose",
       "matchPackagePatterns": ["changedetection"]
-    },
+    }]
 }
