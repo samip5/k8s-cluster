@@ -29,10 +29,8 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     image:
-      #repository: ghcr.io/immich-app/immich-server
-      #tag: v1.42.0_65-dev
-      repository: ghcr.io/samip5/immich-server
-      tag: webm-support
+      repository: ghcr.io/immich-app/immich-server
+      tag: v1.42.0_65-dev
     command: /bin/sh
     args:
       - ./start-microservices.sh
