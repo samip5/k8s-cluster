@@ -29,7 +29,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/immich-app/immich-server
-      tag: v1.43.0
+      tag: 1372
     command: /bin/sh
     args:
       - ./start-server.sh
