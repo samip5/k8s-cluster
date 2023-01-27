@@ -61,7 +61,7 @@ spec:
         enabled: true
         type: configMap
         name: cloudflare-ddns-configmap
-        subPath: cloudflare-ddns.sh
+        subPath: cf-ddns.sh
         mountPath: /app/cf-ddns.sh
         defaultMode: 0775
         readOnly: true
