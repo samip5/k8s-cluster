@@ -11,7 +11,7 @@ resources:
   - hajimari/ks.yaml
   - immich/ks.yaml
   - immich-crypt/ks.yaml
-  - immich-dev/ks.yaml
+#  - immich-dev/ks.yaml
   - proxitok/ks.yaml
   - whoogle/ks.yaml
   - epic-freegames
