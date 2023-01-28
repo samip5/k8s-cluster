@@ -7,6 +7,7 @@ metadata:
 data:
   DB_PORT: "5432"
   DISABLE_REVERSE_GEOCODING: "true"
+  MACHINE_LEARNING_ENABLED: "false"
   ENABLE_MAPBOX: "false"
   LOG_LEVEL: verbose
   NODE_ENV: "production"
@@ -15,4 +16,3 @@ data:
   PUBLIC_IMMICH_SERVER_URL: http://immich-crypt-server.default.svc.cluster.local:3001
   IMMICH_WEB_URL: http://immich-crypt-web.default.svc.cluster.local:3000
   IMMICH_SERVER_URL: http://immich-crypt-server.default.svc.cluster.local:3001
-  IMMICH_MACHINE_LEARNING_URL: http://immich-crypt-machine-learning.default.svc.cluster.local:3003
