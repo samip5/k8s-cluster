@@ -10,7 +10,7 @@ resources:
   - whoami.yaml
   - hajimari/ks.yaml
   - immich/ks.yaml
-  - immich-crypt/ks.yaml
+#  - immich-crypt/ks.yaml
 #  - immich-dev/ks.yaml
   - epic-freegames
 #  - edu-blog-ghost
