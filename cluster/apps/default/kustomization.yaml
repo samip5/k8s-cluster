@@ -5,7 +5,7 @@ resources:
 #  - organizr
   - theme-park
   - syncthing
-  - dendrite
+#  - dendrite
   - changedetector
   - whoami.yaml
   - hajimari/ks.yaml
