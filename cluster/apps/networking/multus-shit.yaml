@@ -5,8 +5,6 @@ metadata:
     deprecated.daemonset.template.generation: "3"
     meta.helm.sh/release-name: multus
     meta.helm.sh/release-namespace: system
-  creationTimestamp: "2022-12-19T15:23:32Z"
-  generation: 3
   labels:
     app.kubernetes.io/instance: multus
     app.kubernetes.io/managed-by: Helm
@@ -17,8 +15,6 @@ metadata:
     helm.toolkit.fluxcd.io/namespace: system
   name: multus
   namespace: system
-  resourceVersion: "29167662"
-  uid: 101b4cdd-6479-49c7-86ed-1e041a615781
 spec:
   revisionHistoryLimit: 3
   selector:
