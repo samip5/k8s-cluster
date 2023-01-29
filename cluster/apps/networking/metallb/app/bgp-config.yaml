@@ -27,6 +27,15 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
+  name: unifi
+  namespace: metallb-system
+spec:
+  addresses:
+    - 192.168.10.5/32
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
   name: blocky
   namespace: metallb-system
 spec:
@@ -96,3 +105,4 @@ spec:
     - mosquitto
     - public
     - game-prefix-pool
+    - unifi
