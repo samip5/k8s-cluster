@@ -21,8 +21,62 @@ spec:
       repository: jacobalberty/unifi
       tag: v7.3.76
 
-    hostNetwork: true
-    dnsPolicy: ClusterFirstWithHostNet
+    service:
+      main:
+        type: LoadBalancer
+        externalTrafficPolicy: Local
+        loadBalancerIP: ${METALLB_UNIFI_ADDR}
+        annotations:
+          metallb.universe.tf/allow-shared-ip: unifi
+        ports:
+          http:
+            port: 8443
+            protocol: HTTPS
+          controller:
+            enabled: true
+            port: 8080
+            protocol: TCP
+          portal-http:
+            enabled: false
+            port: 8880
+            protocol: HTTP
+          portal-https:
+            enabled: false
+            port: 8843
+            protocol: HTTPS
+          speedtest:
+            enabled: true
+            port: 6789
+            protocol: TCP
+          stun:
+            enabled: true
+            port: 3478
+            protocol: UDP
+          syslog:
+            enabled: true
+            port: 5514
+            protocol: UDP
+          discovery:
+            enabled: true
+            port: 10001
+            protocol: UDP
+
+      ingress:
+        main:
+          enabled: true
+          ingressClassName: nginx
+          annotations:
+            nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+            hajimari.io/icon: mdi:wifi
+            hajimari.io/group: system management
+          hosts:
+            - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+              paths:
+                - path: /
+                  pathType: Prefix
+          tls:
+            - hosts:
+                - *host
 
     persistence:
       data:
