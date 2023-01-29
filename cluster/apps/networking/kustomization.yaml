@@ -7,7 +7,6 @@ resources:
   - external-dns
 #  - error-pages
   - blocky
-  - certificates
   - misc-ingresses
   - netshoot.yaml
   - netshoot-net-attach.yaml
