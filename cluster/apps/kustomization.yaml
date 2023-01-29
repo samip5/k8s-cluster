@@ -1,23 +1,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - longhorn-system
   - cilium-system
-  - networking
-  - security
-  - metallb-system
-  - kube-system
   - system
-  - media
+  - cert-manager
+  - storage
+  - networking
   - monitoring
-  - ci
+  - security
   - collab
-  - default
-  - databases
-  - system-upgrade
-  - virt/ks-cdi.yaml
-  - virt/ks-kubevirt.yaml
-#  - vpn
-#  - proxy
-  - home
-#  - games
+  - media
+  - virt

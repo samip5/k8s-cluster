@@ -17,10 +17,13 @@ spec:
   install:
     createNamespace: true
     remediation:
-      retries: 5
+      retries: 3
   upgrade:
     remediation:
-      retries: 5
+      retries: 3
+  dependsOn:
+    - name: nfs-external-provisioner
+      namespace: system
   values:
     fullnameOverride: syncthing
     podSecurityContext:

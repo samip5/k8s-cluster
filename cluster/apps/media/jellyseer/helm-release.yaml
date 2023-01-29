@@ -15,7 +15,20 @@ spec:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
-
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    - name: nfs-external-provisioner
+      namespace: system
   values:
     image:
       repository: docker.io/fallenbagel/jellyseerr

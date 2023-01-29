@@ -25,6 +25,9 @@ spec:
     crds: CreateReplace
     remediation:
       retries: 3
+  dependsOn:
+    - name: nfs-external-provisioner
+      namespace: system
   values:
     fullnameOverride: prom
     defaultRules:

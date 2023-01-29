@@ -15,15 +15,22 @@ spec:
         name: bjw-s-charts
         namespace: flux-system
       interval: 15m
+  maxHistory: 3
   install:
+    createNamespace: true
     remediation:
       retries: 5
   upgrade:
+    cleanupOnFail: true
     remediation:
       retries: 5
+  uninstall:
+    keepHistory: false
   dependsOn:
     - name: mosquitto
       namespace: home
+    - name: nfs-external-provisioner
+      namespace: system
   values:
     image:
       repository: ghcr.io/koenkk/zigbee2mqtt
