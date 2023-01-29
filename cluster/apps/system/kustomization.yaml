@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
   - coredns
   - descheduler
-  - metrics-server
   - node-feature-discovery
   - reloader
   - reflector
