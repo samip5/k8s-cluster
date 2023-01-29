@@ -13,6 +13,6 @@ resources:
   - default
   - home
   - databases
-  - virt/ks-kubevirt.yaml
-  - virt/ks-cdi.yaml
-  - virt/ks-kubevirt-vms.yaml
+#  - virt/ks-kubevirt.yaml
+#  - virt/ks-cdi.yaml
+#  - virt/ks-kubevirt-vms.yaml
