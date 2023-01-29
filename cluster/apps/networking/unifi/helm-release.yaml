@@ -34,7 +34,7 @@ spec:
         storageClass: nfs-client
 
     nodeSelector:
-      kubernetes.io/hostname: "k8s-worker7"
+      kubernetes.io/hostname: "w7"
     tolerations:
       - key: "cm4"
         operator: "Exists"

@@ -100,4 +100,4 @@ spec:
                 - key: kubernetes.io/hostname
                   operator: In
                   values:
-                    - "k8s-worker-amd64-3"
+                    - "w-amd-3"
