@@ -1,9 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-#  - ns.yaml
-  - assistant
-  - mosquitto
-  - zigbee2mqtt
-  - esphome
-  - grocy
+  - assistant/ks.yaml
+  - esphome/ks.yaml
+  - grocy/ks.yaml
+  - mosquitto/ks.yaml
+  - zigbee2mqtt/ks.yaml
