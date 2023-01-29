@@ -17,7 +17,7 @@ spec:
         name: jetstack-charts
         namespace: flux-system
   values:
-    installCRDs: false
+    installCRDs: true
     webhook:
       enabled: true
     extraArgs:
