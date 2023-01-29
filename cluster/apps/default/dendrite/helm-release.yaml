@@ -16,6 +16,18 @@ spec:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  dependsOn:
+    - name: nfs-external-provisioner
+      namespace: system
   values:
     image:
       repository: ghcr.io/matrix-org/dendrite-monolith

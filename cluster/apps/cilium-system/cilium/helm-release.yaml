@@ -24,9 +24,6 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    ingressController:
-      enabled: true
-      loadbalancerMode: shared
     autoDirectNodeRoutes: true
     localRedirectPolicy: true
     rollOutCiliumPods: true

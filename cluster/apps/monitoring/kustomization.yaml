@@ -2,12 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - namespace.yaml
-  - alert-manager
-#  - botkube
-  - prom-stack/install.yaml
+  - metrics-server
   - node-problem-detector
+  - prom-stack
+  - alert-manager
   - grafana
-#  - loki
-#  - vector
   - speedtest-exporter
-  - arrs

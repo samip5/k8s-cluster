@@ -23,6 +23,8 @@ spec:
       retries: 3
   dependsOn:
     - name: immich-redis
+    - name: nfs-external-provisioner
+      namespace: system
   values:
     controller:
       annotations:
