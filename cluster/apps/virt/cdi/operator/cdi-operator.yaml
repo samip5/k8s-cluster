@@ -4785,6 +4785,7 @@ spec:
             type: RuntimeDefault
       nodeSelector:
         kubernetes.io/os: linux
+        kubernetes.io/arch: amd64
       securityContext:
         runAsNonRoot: true
       serviceAccountName: cdi-operator
