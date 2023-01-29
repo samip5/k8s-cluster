@@ -7,7 +7,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: ./cluster/apps/default/mosquitto/app
+  path: ./cluster/apps/home/mosquitto/app
   prune: true
   sourceRef:
     kind: GitRepository
