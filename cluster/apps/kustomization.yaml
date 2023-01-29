@@ -11,5 +11,6 @@ resources:
   - collab
   - media
   - default
+  - home
   - databases
 #  - virt
