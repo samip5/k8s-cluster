@@ -11,4 +11,4 @@ resources:
   - collab
   - media
   - default
-  - virt
+#  - virt
