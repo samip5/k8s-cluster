@@ -10,10 +10,10 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-cluster
+    name: cluster
   dependsOn:
-    - name: flux-installation
-    - name: flux-cluster
+    - name: flux
+    - name: cluster
     - name: flux-config
   decryption:
     provider: sops
