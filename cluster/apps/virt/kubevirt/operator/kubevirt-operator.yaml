@@ -6616,6 +6616,7 @@ spec:
           name: profile-data
       nodeSelector:
         kubernetes.io/os: linux
+        kubernetes.io/arch: amd64
       priorityClassName: kubevirt-cluster-critical
       securityContext:
         runAsNonRoot: true
