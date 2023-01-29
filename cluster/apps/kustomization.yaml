@@ -10,4 +10,5 @@ resources:
   - security
   - collab
   - media
-#  - virt
+  - default
+  - virt
