@@ -9,10 +9,10 @@ metadata:
     substitution.flux.home.arpa/enabled: "true"
 spec:
   path: ./cluster/apps/virt/kubevirt/
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
-    name: flux-cluster
+    name: cluster
   interval: 30m
   retryInterval: 1m
   timeout: 5m
