@@ -4,7 +4,6 @@
 
 # Define the host as control plane nodes
 k3s_control_node: true
-k3s_disable_kube_proxy: true
 
 # k3s settings for all control-plane nodes
 k3s_server:
@@ -24,7 +23,7 @@ k3s_server:
     - coredns
   disable-network-policy: true
   disable-cloud-controller: true
-  write-kubeconfig-mode: "644"
+  disable-kube-proxy: true
   # Network CIDR to use for pod IPs
   cluster-cidr: "10.244.0.0/16,fddf:f7bc:9670::/48"
   #cluster-cidr: "fddf:f7bc:9670::/48,10.244.0.0/16"
@@ -34,17 +33,25 @@ k3s_server:
   kubelet-arg:
     - "feature-gates=GracefulNodeShutdown=true"
     - "feature-gates=MixedProtocolLBService=true"
-#  kube-apiserver-arg:
-   # - "service-cluster-ip-range=10.96.0.0/16,2001:67c:1104:fdb::/112"
-   # Workaround for upstream bug https://github.com/kubernetes/kubernetes/issues/111671
-   # - "--advertise-address=2001:67c:1104:e08d:e89b:6305:d07e:123e"
+    - "node-status-update-frequency=4s"
   kube-controller-manager-arg:
   #  - "cluster-cidr=10.244.0.0/16,fddf:f7bc:9670::/48"
   #  - "service-cluster-ip-range=10.96.0.0/16,2001:67c:1104:fdb::/112"
     - "bind-address=0.0.0.0"
+    # https://github.com/k3s-io/k3s/issues/1264
+    - "node-monitor-period=4s"
+    - "node-monitor-grace-period=16s"
+    - "pod-eviction-timeout=20s"
   kube-proxy-arg:
   #  - "cluster-cidr=10.244.0.0/16,fddf:f7bc:9670::/48"
     - "metrics-bind-address=0.0.0.0"
   kube-scheduler-arg:
     - "bind-address=0.0.0.0"
+  kube-apiserver-arg:
+    # https://github.com/k3s-io/k3s/issues/1264
+    - "default-not-ready-toleration-seconds=20"
+    - "default-unreachable-toleration-seconds=20"
+    # - "service-cluster-ip-range=10.96.0.0/16,2001:67c:1104:fdb::/112"
+    # Workaround for upstream bug https://github.com/kubernetes/kubernetes/issues/111671
+    # - "--advertise-address=2001:67c:1104:e08d:e89b:6305:d07e:123e"
   etcd-expose-metrics: true
