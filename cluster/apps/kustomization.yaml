@@ -3,11 +3,11 @@ kind: Kustomization
 resources:
   - cilium-system
   - system
-  - cert-manager
-  - storage
-  - networking
-  - monitoring
-  - security
-  - collab
-  - media
-  - virt
+#  - cert-manager
+#  - storage
+#  - networking
+#  - monitoring
+#  - security
+#  - collab
+#  - media
+#  - virt
