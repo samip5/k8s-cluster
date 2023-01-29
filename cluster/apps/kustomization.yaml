@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - cilium-system
   - system
-  - cert-manager
+#  - cert-manager
   - storage
   - networking
   - monitoring
