@@ -8,8 +8,8 @@ resources:
 #  - error-pages
   - blocky
   - misc-ingresses
-  - netshoot.yaml
-  - netshoot-net-attach.yaml
+#  - netshoot.yaml
+#  - netshoot-net-attach.yaml
   - unifi
   - k8s-gateway
-#  - multus-shit.yaml
+  - multus-shit.yaml
