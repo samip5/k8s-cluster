@@ -166,6 +166,4 @@ spec:
       create: true
       autoMount: true
     persistence:
-      enabled: true
-      size: 500Mi
-      storageClass: nfs-client
+      enabled: false
