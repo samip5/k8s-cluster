@@ -9,6 +9,7 @@ metadata:
 spec:
   dependsOn:
     - name: github-actions-runner-controller
+      namespace: ci
   path: ./cluster/apps/ci/github-actions/runners
   prune: true
   sourceRef:
