@@ -60,7 +60,6 @@
         "kube-prometheus-stack",
         "traefik",
         "authentik",
-        "ingress-nginx",
         "grafana",
         "ghost"
       ]
