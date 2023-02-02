@@ -6,11 +6,11 @@ resources:
   - cert-manager
   - storage
   - networking
-  - monitoring
+#  - monitoring
   - security
   - collab
-  - media
-  - default
-  - home
+#  - media
+#  - default
+#  - home
   - databases
 #  - ci
