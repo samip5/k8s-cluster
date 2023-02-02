@@ -10,3 +10,4 @@ resources:
   - k8s-gateway
   - multus/ks.yaml
   - metallb/ks.yaml
+  - metallb/ks-config.yaml
