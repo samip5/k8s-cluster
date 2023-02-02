@@ -5,8 +5,8 @@ resources:
   - system
 #  - cert-manager
   - storage
-#  - networking
-#  - monitoring
+  - networking
+  - monitoring
 #  - security
 #  - collab
 #  - media
