@@ -5,6 +5,7 @@ resources:
   - actions-runner-controller-charts.yaml
   - authelia-charts.yaml
   - authentik-charts.yaml
+  - backtube-charts.yaml
   - bitnami-charts.yaml
   - bootc-charts.yaml
   - bjw-s-charts.yaml
