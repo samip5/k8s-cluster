@@ -22,7 +22,7 @@ spec:
       retries: 5
   dependsOn:
     - name: csi-driver-nfs
-      namespace: system
+      namespace: storage
   values:
     image:
       repository: ghcr.io/dgtlmoon/changedetection.io

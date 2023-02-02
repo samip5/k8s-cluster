@@ -30,7 +30,7 @@ spec:
     - name: mosquitto
       namespace: home
     - name: csi-driver-nfs
-      namespace: system
+      namespace: storage
   values:
     image:
       repository: ghcr.io/koenkk/zigbee2mqtt
