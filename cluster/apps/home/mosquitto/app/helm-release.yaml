@@ -29,11 +29,12 @@ spec:
     keepHistory: false
   dependsOn:
     - name: csi-driver-nfs
-      namespace: system
+      namespace: storage
   values:
     image:
       repository: ghcr.io/k8s-at-home/eclipse-mosquitto
       tag: v2.0.15
+
     service:
       main:
         type: LoadBalancer
