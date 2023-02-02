@@ -9,8 +9,8 @@ resources:
 #  - monitoring
   - security
   - collab
-#  - media
-#  - default
-#  - home
+  - media
+  - default
+  - home
   - databases
 #  - ci
