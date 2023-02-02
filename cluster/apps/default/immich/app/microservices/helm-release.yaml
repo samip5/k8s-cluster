@@ -24,8 +24,6 @@ spec:
   dependsOn:
     - name: immich-server
     - name: immich-redis
-    - name: nfs-external-provisioner
-      namespace: system
   values:
     controller:
       annotations:

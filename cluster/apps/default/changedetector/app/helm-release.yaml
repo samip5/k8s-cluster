@@ -21,7 +21,7 @@ spec:
     remediation:
       retries: 5
   dependsOn:
-    - name: nfs-external-provisioner
+    - name: csi-driver-nfs
       namespace: system
   values:
     image:

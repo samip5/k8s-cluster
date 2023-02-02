@@ -22,7 +22,7 @@ spec:
     remediation:
       retries: 3
   dependsOn:
-    - name: nfs-external-provisioner
+    - name: csi-driver-nfs
       namespace: system
   values:
     fullnameOverride: syncthing
