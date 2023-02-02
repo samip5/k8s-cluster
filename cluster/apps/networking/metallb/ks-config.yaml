@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    name: cluster-apps-networking-metallb
+    - name: cluster-apps-networking-metallb
   path: ./cluster/apps/networking/metallb/config
   prune: true
   sourceRef:
