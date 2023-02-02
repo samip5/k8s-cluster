@@ -8,3 +8,5 @@ resources:
   - reloader
   - reflector
   - intel-gpu-plugin
+  - kyverno/ks.yaml
+  - kyverno/ks-policies.yaml
