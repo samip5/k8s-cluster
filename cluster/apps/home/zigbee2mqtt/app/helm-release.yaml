@@ -29,7 +29,7 @@ spec:
   dependsOn:
     - name: mosquitto
       namespace: home
-    - name: nfs-external-provisioner
+    - name: csi-driver-nfs
       namespace: system
   values:
     image:
