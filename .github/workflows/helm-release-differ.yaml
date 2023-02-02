@@ -72,12 +72,20 @@ jobs:
           ref: "${{ github.event.repository.default_branch }}"
           path: default
 
-      - name: Set up Homebrew
-        uses: Homebrew/actions/setup-homebrew@master
+      - name: Install Helm
+        uses: azure/setup-helm@v3
+        with:
+          version: latest
 
-      - name: Setup Tools
+      - name: Helm Release Differ
+        id: diff
         run: |
-          brew install helm homeport/tap/dyff kustomize yq
+          diff=$(.github/scripts/helm-release-differ.sh --source-file "default/${{ matrix.file }}" --target-file "${{ matrix.file }}" --remove-common-labels)
+          echo "${diff}"
+          diff="${diff//'%'/'%25'}"
+          diff="${diff//$'\n'/'%0A'}"
+          diff="${diff//$'\r'/'%0D'}"
+          echo "::set-output name=diff::$(echo ${diff})"
 
       - name: Diff
         id: diff
