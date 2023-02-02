@@ -28,7 +28,7 @@ spec:
     keepHistory: false
   dependsOn:
     - name: csi-driver-nfs
-      namespace: system
+      namespace: storage
   values:
     global:
       fullnameOverride: assistant
