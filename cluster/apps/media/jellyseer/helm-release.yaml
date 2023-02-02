@@ -28,7 +28,7 @@ spec:
     keepHistory: false
   dependsOn:
     - name: csi-driver-nfs
-      namespace: system
+      namespace: storage
   values:
     image:
       repository: docker.io/fallenbagel/jellyseerr
