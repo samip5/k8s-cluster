@@ -6,14 +6,11 @@ resources:
   - cert-manager
   - storage
   - networking
-  - monitoring
+#  - monitoring
   - security
-  - collab
-  - media
-  - default
-  - home
+#  - collab
+#  - media
+#  - default
+#  - home
   - databases
-  - ci
-#  - virt/ks-kubevirt.yaml
-#  - virt/ks-cdi.yaml
-#  - virt/ks-kubevirt-vms.yaml
+#  - ci
