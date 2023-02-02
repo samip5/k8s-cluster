@@ -1,5 +1,5 @@
 #!/usr/bin/env zx
-$.verbose = false
+$.verbose = true
 /* Stolen from https://raw.githubusercontent.com/onedr0p/home-ops/main/.github/scripts/helmReleaseDiff.mjs */
 
 
