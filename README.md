@@ -34,15 +34,18 @@ cluster
 ## 💻 Nodes
 | Node                     | Hostname | RAM  | Storage       | Function          | Operating System 
 | ------------------------ |--|------| ------------- | ----------------- |------------------|
-| Raspberry Pi 4 Model B   | k8s-master1 | 8GB  | 64GB SSD     | Kube Master Node  | Ubuntu 22.04 LTS |
-| Raspberry Pi 4 Model B   | k8s-worker5 | 8GB  | 64GB SSD    | Kube Worker Node  | Ubuntu 22.04 LTS |
-| Raspberry Pi 4 Model B   | k8s-worker6 | 8GB  | TBD         | TBD | Ubuntu 22.04 LTS |
-| Raspberry Pi Compute Module 4 | k8s-worker7 | 8GB  | 32GB eMMC    | Kube Worker Node  | Ubuntu 22.04 LTS |
-| Synology NAS        | NAS | 16GB | 2 x 3TB HDD, 2 x 6TB HDD, 1 TB NVME  | NFS Server | DSM 7            |
+| Raspberry Pi 4 Model B   | w1 | 8GB  | 64GB SSD     | Kube Master Node  | Ubuntu 22.04 LTS |
+| Raspberry Pi 4 Model B   | w2 | 8GB  | 64GB SSD    | Kube Worker Node  | Ubuntu 22.04 LTS |
+| Raspberry Pi Compute Module 4 | w7 | 8GB  | 32GB eMMC    | Kube Worker Node  | Ubuntu 22.04 LTS |
 | VM on Synology   | k8s-worker-amd64-0 | 5GB  | 32GB Unknown     | Kube Worker Node  | Ubuntu 22.04 LTS |
 | VM on home-server | w-amd-2 | 8GB | 64GB SSD | Kube Worker Node | Debian 11 |
 | HP EliteDesk 800 G2 | k8s-worker-amd64-3 | 32GB | 256GB SSD | Kube Worker Node | Ubuntu 22.04 LTS |
-| Lenovo ThinkCentre M910q Tiny | w-amd-1 | 16GB | 256GB SSD x 2 | Kube Worker | Ubuntu 22.04 LTS |
+| Lenovo ThinkCentre M910q Tiny | m1 | 16GB | 256GB SSD x 2 | Kube Worker | Ubuntu 22.04 LTS |
+
+## Storage
+| Node                     | Hostname | RAM  | Storage       | Function          | Operating System
+| ------------------------ |--|------| ------------- | ----------------- |------------------|
+| Synology NAS        | NAS | 16GB | 2 x 3TB HDD, 2 x 6TB HDD, 1 TB NVME  | NFS Server | DSM 7            |
 
 ## Network
 
