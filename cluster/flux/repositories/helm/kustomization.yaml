@@ -11,6 +11,7 @@ resources:
   - bjw-s-charts.yaml
   - coredns-charts.yaml
   - cilium-charts.yaml
+  - csi-driver-nfs-charts.yaml
   - cloudydeno-charts.yaml
   - cert-manager-webhook-powerdns-charts.yaml
   - deliveryhero-charts.yaml
