@@ -46,7 +46,6 @@ spec:
       error_reporting:
         enabled: true
         environment: "kryptonian"
-        sentry_dsn: "https://46f0bfcc74854b0592f6e60dd3e49121@sentry.skylab.fi/2"
       postgresql:
         host: "192.168.2.2"
         name: "authentik"
