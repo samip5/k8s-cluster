@@ -8,9 +8,9 @@ resources:
   - networking
   - monitoring
   - security
-#  - collab
-#  - media
-#  - default
-#  - home
+  - collab
+  - media
+  - default
+  - home
   - databases
 #  - ci
