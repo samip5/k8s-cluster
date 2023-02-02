@@ -9,6 +9,7 @@ parameters:
   share: /volume2/SSD_NFS/k8s/
 reclaimPolicy: Retain
 volumeBindingMode: Immediate
+allowVolumeExpansion: true
 mountOptions:
   - nfsvers=3
   - nconnect=8
