@@ -3,5 +3,5 @@ kind: Kustomization
 resources:
 #  - nfs-client-provisioner
 #  - local-storage
-  - csi-driver-nfs
+#  - csi-driver-nfs
   - longhorn-custom
