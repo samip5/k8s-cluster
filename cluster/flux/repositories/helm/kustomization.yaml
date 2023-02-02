@@ -32,7 +32,6 @@ resources:
   - infracloudio-charts.yaml
   - ingress-nginx-charts.yaml
   - longhorn-charts.yaml
-  - hajimari-charts.yaml
   - bugfeast-tor-chart.yaml
   - vector-charts.yaml
   - emberstack-charts.yaml
