@@ -19,7 +19,6 @@ resources:
   - falco-security-charts.yaml
   - jetstack-charts.yaml
   - gitea-charts.yaml
-  - gitlab-charts.yaml
   - grafana-charts.yaml
   - jenkinsci-charts.yaml
   - k8s-at-home-charts.yaml
@@ -33,8 +32,6 @@ resources:
   - prometheus-community-charts.yaml
   - stakater-charts.yaml
   - samipsolutions-charts.yaml
-  - traefik-charts.yaml
-  - true-charts.yaml
   - infracloudio-charts.yaml
   - ingress-nginx-charts.yaml
   - influxdata-charts.yaml
