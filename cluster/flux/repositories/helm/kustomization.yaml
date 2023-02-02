@@ -43,4 +43,5 @@ resources:
   - bugfeast-tor-chart.yaml
   - vector-charts.yaml
   - emberstack-charts.yaml
+  - piraeus-charts.yaml
 
