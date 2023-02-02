@@ -3,14 +3,14 @@ kind: Kustomization
 resources:
   - cilium-system
   - system
-#  - cert-manager
+  - cert-manager
   - storage
   - networking
   - monitoring
-#  - security
-#  - collab
-#  - media
-#  - default
-#  - home
+  - security
+  - collab
+  - media
+  - default
+  - home
   - databases
 #  - ci
