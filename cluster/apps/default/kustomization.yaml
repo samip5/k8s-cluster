@@ -5,6 +5,5 @@ resources:
   - changedetector/ks.yaml
   - dendrite/ks.yaml
   - epic-freegames/ks.yaml
-  - hajimari/ks.yaml
   - immich/ks.yaml
   - theme-park/ks.yaml
