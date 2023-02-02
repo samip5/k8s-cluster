@@ -7,10 +7,10 @@ resources:
   - storage
   - networking
   - monitoring
-  - security
-  - collab
-  - media
-  - default
-  - home
+#  - security
+#  - collab
+#  - media
+#  - default
+#  - home
   - databases
 #  - ci
