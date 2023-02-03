@@ -68,6 +68,9 @@ spec:
                 - *host
         redis:
           storageClass: longhorn
+          nodeSelector:
+            kubernetes.io/arch: amd64
+
     # https://securityhub.dev/
     customRules:
       rules-admin-activities.yaml: |
