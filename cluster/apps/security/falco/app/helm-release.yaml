@@ -13,7 +13,7 @@ spec:
       version: 2.5.3
       sourceRef:
         kind: HelmRepository
-        name: falco-security
+        name: falco-security-charts
         namespace: flux-system
   maxHistory: 3
   install:
