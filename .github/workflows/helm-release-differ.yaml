@@ -85,15 +85,6 @@ jobs:
           diff="${diff//'%'/'%25'}"
           diff="${diff//$'\n'/'%0A'}"
           diff="${diff//$'\r'/'%0D'}"
-          echo "::set-output name=diff::$(echo ${diff})"
-
-      - name: Diff
-        id: diff
-        run: |
-          diff=$(npx zx ./.github/scripts/helmReleaseDiff.mjs \
-            --current-release "default/${{ matrix.file }}" \
-            --incoming-release "${{ matrix.file }}" \
-            --kubernetes-dir ${{ env.KUBERNETES_DIR }})
           echo "diff<<EOF" >> "${GITHUB_OUTPUT}"
           echo "${diff}" >> "${GITHUB_OUTPUT}"
           echo "EOF" >> "${GITHUB_OUTPUT}"
