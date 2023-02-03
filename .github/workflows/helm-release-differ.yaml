@@ -85,9 +85,7 @@ jobs:
           diff="${diff//'%'/'%25'}"
           diff="${diff//$'\n'/'%0A'}"
           diff="${diff//$'\r'/'%0D'}"
-          echo "diff<<EOF" >> "${GITHUB_OUTPUT}"
-          echo "${diff}" >> "${GITHUB_OUTPUT}"
-          echo "EOF" >> "${GITHUB_OUTPUT}"
+          echo "::set-output name=diff::$(echo ${diff})"
 
       - name: Find Comment
         if: ${{ always() && steps.diff.outputs.diff != '' }}
