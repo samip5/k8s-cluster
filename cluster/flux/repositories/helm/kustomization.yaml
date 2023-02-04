@@ -36,4 +36,5 @@ resources:
   - vector-charts.yaml
   - emberstack-charts.yaml
   - piraeus-charts.yaml
+  - fairwinds-charts.yaml
 
