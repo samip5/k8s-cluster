@@ -13,4 +13,5 @@ resources:
   - default
   - home
   - databases
+  - services
 #  - ci
