@@ -8,3 +8,5 @@ resources:
   - alert-manager
   - grafana
   - speedtest-exporter
+  - vpa/ks.yaml
+  - goldilocks/ks.yaml
