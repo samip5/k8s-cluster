@@ -90,10 +90,11 @@ spec:
         memory: 250Mi
     affinity:
       nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
                 - key: kubernetes.io/arch
-                  operator: Equals
+                  operator: In
                   values:
-                    - "amd64"
+                    - amd64
