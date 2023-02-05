@@ -4,20 +4,14 @@ The Git repository contains the following directories under `cluster` and are or
 
 - **flux** directory is the entrypoint to Flux
 - **bootstrap** directory contains a simple Kustomize resource to deploy Flux to an empty cluster
-- **charts** directory contains all of my different chart repos
-- **crds** directory contains custom resource definitions (CRDs) that need to exist globally in my cluster before anything else exists
 - **config** directory contains cluster-wide configs like global variables
-- **core** directory (depends on **crds**) are important infrastructure applications (grouped by namespace) that should never be pruned by Flux
 - **apps** directory (depends on **core**) is where my common applications (grouped by namespace) are placed.
 
 ```
 cluster
 ├── apps
 ├── bootstrap
-├── charts
 ├── config
-├── core
-├── crds
 └── flux
 ```
 
@@ -34,13 +28,13 @@ cluster
 ## 💻 Nodes
 | Node                     | Hostname | RAM  | Storage       | Function          | Operating System 
 | ------------------------ |--|------| ------------- | ----------------- |------------------|
-| Raspberry Pi 4 Model B   | w1 | 8GB  | 64GB SSD     | Kube Master Node  | Ubuntu 22.04 LTS |
-| Raspberry Pi 4 Model B   | w2 | 8GB  | 64GB SSD    | Kube Worker Node  | Ubuntu 22.04 LTS |
-| Raspberry Pi Compute Module 4 | w7 | 8GB  | 32GB eMMC    | Kube Worker Node  | Ubuntu 22.04 LTS |
-| VM on Synology   | k8s-worker-amd64-0 | 5GB  | 32GB Unknown     | Kube Worker Node  | Ubuntu 22.04 LTS |
-| VM on home-server | w-amd-2 | 8GB | 64GB SSD | Kube Worker Node | Debian 11 |
-| HP EliteDesk 800 G2 | k8s-worker-amd64-3 | 32GB | 256GB SSD | Kube Worker Node | Ubuntu 22.04 LTS |
-| Lenovo ThinkCentre M910q Tiny | m1 | 16GB | 256GB SSD x 2 | Kube Worker | Ubuntu 22.04 LTS |
+| Raspberry Pi 4 Model B   | w1 | 8GB  | 64GB SSD     | Kube Worker  | Ubuntu 22.04 LTS |
+| Raspberry Pi 4 Model B   | w2 | 8GB  | 64GB SSD    | Kube Worker   | Ubuntu 22.04 LTS |
+| Raspberry Pi Compute Module 4 | w7 | 8GB  | 32GB eMMC    | Kube Worker   | Ubuntu 22.04 LTS |
+| VM on Synology   | k8s-worker-amd64-0 | 5GB  | 32GB Unknown     | Kube Worker   | Ubuntu 22.04 LTS |
+| VM on home-server | w-amd-2 | 8GB | 64GB SSD | Kube Worker  | Debian 11 |
+| HP EliteDesk 800 G2 | k8s-worker-amd64-3 | 32GB | 256GB SSD | Kube Worker  | Ubuntu 22.04 LTS |
+| Lenovo ThinkCentre M910q Tiny | m1 | 16GB | 256GB SSD x 2 | Kube Master | Ubuntu 22.04 LTS |
 
 ## Storage
 | Node                     | Hostname | RAM  | Storage       | Function          | Operating System
