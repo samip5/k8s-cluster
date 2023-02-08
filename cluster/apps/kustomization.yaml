@@ -14,4 +14,4 @@ resources:
   - home
   - databases
   - services
-#  - ci
+  - ci
