@@ -8,7 +8,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: ./cluster/apps/default/proxitok/app
+  path: ./cluster/apps/services/proxitok/app
   prune: true
   sourceRef:
     kind: GitRepository
