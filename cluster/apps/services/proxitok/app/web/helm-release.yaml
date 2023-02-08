@@ -29,8 +29,9 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     image:
-      repository: ghcr.io/pablouser1/proxitok
-      tag: master
+      repository: ghcr.io/samip5/proxitok
+      tag: master@sha256:85506660c82f10f856aa5d88cb080fdaa85e4a44cb25fb8ee08ef90eb85d80d9
+      pullPolicy: Always
     envFrom:
       - configMapRef:
           name: proxitok-configmap
