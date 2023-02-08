@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - ns.yaml
   - nitter/ks.yaml
+  - proxitok/ks.yaml

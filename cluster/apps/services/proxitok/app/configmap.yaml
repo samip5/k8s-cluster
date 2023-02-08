@@ -3,13 +3,13 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: proxitok-configmap
-  namespace: default
+  namespace: services
 data:
   LATTE_CACHE: /cache
   API_CACHE: redis
-  REDIS_HOST: proxitok-redis.default.svc.cluster.local
+  REDIS_HOST: proxitok-redis.services.svc.cluster.local
   REDIS_PORT: "6379"
   API_SIGNER: remote
-  API_SIGNER_URL: http://proxitok-signer.default.svc.cluster.local:8080/signature
+  API_SIGNER_URL: http://proxitok-signer.services.svc.cluster.local:8080/signature
   API_FORCE_LEGACY: "1"
   APP_URL: https://proxitok.skylab.fi
