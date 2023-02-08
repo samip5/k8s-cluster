@@ -84,6 +84,20 @@ spec:
             annotations:
               +(external-dns.alpha.kubernetes.io/target): r.home.${MAIN_DOMAIN}
 
+    - name: external-dns-proxied-cf
+      match:
+        any:
+          - resources:
+              kinds:
+                - Ingress
+              annotations:
+                external-dns-cf/is-cf-proxied: "true"
+      mutate:
+        patchStrategicMerge:
+          metadata:
+            annotations:
+              +(external-dns.alpha.kubernetes.io/cloudflare-proxied): "true"
+
     - name: whitelist-source-range
       match:
         any:

@@ -46,6 +46,7 @@ spec:
         annotations:
           external-dns-cf/is-dns-public: "true"
           external-dns-cf/is-public: "true"
+          external-dns-cf/is-cf-proxied: "true"
         hosts:
           - host: &host proxitok.skylab.fi
             paths:
