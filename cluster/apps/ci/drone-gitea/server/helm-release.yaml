@@ -35,5 +35,19 @@ spec:
     extraSecretNamesForEnvFrom:
       - drone-gitea-secrets
     env:
-      DRONE_SERVER_HOST: "drone-gitea.skylab.fi"
+      DRONE_SERVER_HOST: &host "drone-gitea.skylab.fi"
       DRONE_SERVER_PROTO: https
+
+    ingress:
+      enabled: true
+      className: "nginx"
+      hosts:
+        - host: *host
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: skylab.fi-tls
+          hosts:
+            - *host
+
