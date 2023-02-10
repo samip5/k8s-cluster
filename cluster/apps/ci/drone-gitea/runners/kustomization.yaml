@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - secret.sops.yaml
   - amd64
-  - arm64
+#  - arm64
