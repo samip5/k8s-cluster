@@ -3,7 +3,7 @@ apiVersion: elasticsearch.k8s.elastic.co/v1
 kind: Elasticsearch
 metadata:
   name: main
-  namespace: elastic
+  namespace: ahmia-search
 spec:
   version: 7.17.9
   nodeSets:
@@ -31,3 +31,4 @@ spec:
             resources:
               requests:
                 storage: 300Gi
+
