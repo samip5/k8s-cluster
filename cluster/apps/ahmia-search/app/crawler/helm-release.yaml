@@ -25,6 +25,9 @@ spec:
     image:
       repository: git.samip.fi/samip537/ahmia-crawler
       tag: 88694dd88b760298651c40331aa2adbc935480cb
+      command: /bin/bash
+      args:
+        - /app/container-run.sh
 
     service:
       main:
