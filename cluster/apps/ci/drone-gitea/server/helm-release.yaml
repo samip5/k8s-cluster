@@ -32,6 +32,9 @@ spec:
     keepHistory: false
 
   values:
+    podAnnotations:
+      reloader.stakater.com/search: "true"
+
     extraSecretNamesForEnvFrom:
       - drone-gitea-secrets
     env:
