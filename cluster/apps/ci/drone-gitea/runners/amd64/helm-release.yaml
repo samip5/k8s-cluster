@@ -39,7 +39,7 @@ spec:
       DRONE_DEBUG: true
       DRONE_RPC_DUMP_HTTP: true
       DRONE_RPC_DUMP_HTTP_BODY: true
-      DRONE_RPC_HOST: drone-gitea
+      DRONE_RPC_HOST: drone-gitea:8080
 
     extraSecretNamesForEnvFrom:
       - drone-gitea-runner-secrets
