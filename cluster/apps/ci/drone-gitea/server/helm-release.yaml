@@ -45,6 +45,8 @@ spec:
     ingress:
       enabled: true
       className: "nginx"
+      annotations:
+        external-dns-cf/is-dns-public: "true"
       hosts:
         - host: *host
           paths:
