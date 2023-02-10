@@ -38,4 +38,5 @@ resources:
   - emberstack-charts.yaml
   - piraeus-charts.yaml
   - fairwinds-charts.yaml
+  - drone-charts.yaml
 
