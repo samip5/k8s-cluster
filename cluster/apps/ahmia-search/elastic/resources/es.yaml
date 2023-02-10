@@ -11,8 +11,6 @@ spec:
       count: 1
       config:
         node.store.allow_mmap: false
-        script.engine.groovy.inline.update: on
-        script.engine.groovy.inline.aggs: on
         xpack.security.authc:
           anonymous:
             username: anonymous
