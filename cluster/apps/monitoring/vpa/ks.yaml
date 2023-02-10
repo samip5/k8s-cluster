@@ -17,5 +17,3 @@ spec:
       kind: HelmRelease
       name: vpa
       namespace: monitoring
-  dependsOn:
-    - name: cluster-apps-monitoring-vpa
