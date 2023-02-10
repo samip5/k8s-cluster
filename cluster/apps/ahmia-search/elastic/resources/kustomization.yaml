@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - es.yaml
   - kibana.yaml
+  - ingress-elk.yaml
