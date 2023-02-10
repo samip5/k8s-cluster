@@ -39,9 +39,17 @@ spec:
       DRONE_DEBUG: true
       DRONE_RPC_DUMP_HTTP: true
       DRONE_RPC_DUMP_HTTP_BODY: true
+      DRONE_RPC_HOST:
+        valueFrom:
+          secretKeyRef:
+            name: drone-gitea-secrets
+            key: DRONE_RPC_HOST
+      DRONE_RPC_SECRET:
+        valueFrom:
+          secretKeyRef:
+            name: drone-gitea-secrets
+            key: DRONE_RPC_SECRET
 
-    extraSecretNamesForEnvFrom:
-      - drone-gitea-secrets
 
     nodeSelector:
       kubernetes.io/arch: amd64
