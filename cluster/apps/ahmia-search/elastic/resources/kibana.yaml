@@ -1,0 +1,11 @@
+---
+kind: Kibana
+apiVersion: kibana.k8s.elastic.co/v1
+metadata:
+  name: main
+  namespace: ahmia-search
+spec:
+  version: 8.6.1
+  count: 1
+  elasticsearchRef:
+    name: main
