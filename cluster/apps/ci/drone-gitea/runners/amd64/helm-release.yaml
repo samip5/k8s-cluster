@@ -32,6 +32,9 @@ spec:
     keepHistory: false
 
   values:
+    env:
+      DRONE_RPC_HOST: drone-gitea
+
     extraSecretNamesForEnvFrom:
       - drone-gitea-secrets
 
