@@ -63,11 +63,8 @@ spec:
       DRONE_RPC_PROTO: http
       DRONE_RUNNER_NETWORK_OPTS: "com.docker.network.driver.mtu:1430"
 
-    valuesFrom:
-      - targetPath: env.DRONE_RPC_SECRET
-        kind: Secret
-        name: drone-runner-secrets
-        valuesKey: DRONE_RPC_SECRET
+    extraSecretNamesForEnvFrom:
+      - drone-gitea-runner-secrets
 
 
     nodeSelector:
