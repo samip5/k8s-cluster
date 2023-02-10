@@ -24,6 +24,7 @@ resources:
   - kyverno-charts.yaml
   - node-feature-discovery-charts.yaml
   - external-dns-charts.yaml
+  - elastic-charts.yaml
   - nfs-subdir-external-provisioner-charts.yaml
   - metallb-charts.yaml
   - prometheus-community-charts.yaml
