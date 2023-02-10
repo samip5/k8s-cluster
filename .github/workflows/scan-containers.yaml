@@ -59,7 +59,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
       - name: Scan Container
-        uses: aquasecurity/trivy-action@cff3e9a7f62c41dd51975266d0ae235709e39c41 # 0.9.0
+        uses: aquasecurity/trivy-action@8bd2f9fbda2109502356ff8a6a89da55b1ead252 # 0.9.1
         with:
           image-ref: ${{ matrix.containers }}
           vuln-type: os,library
