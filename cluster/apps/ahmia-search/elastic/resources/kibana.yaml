@@ -5,7 +5,7 @@ metadata:
   name: main
   namespace: ahmia-search
 spec:
-  version: 8.6.1
+  version: 7.17.9
   count: 1
   elasticsearchRef:
     name: main
