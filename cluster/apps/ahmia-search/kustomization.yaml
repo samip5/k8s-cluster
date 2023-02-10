@@ -4,3 +4,5 @@ resources:
   - ns.yaml
   - elastic/ks.yaml
   - elastic/ks-resources.yaml
+  - app/ks-indexer.yaml
+  - app/ks-crawler.yaml
