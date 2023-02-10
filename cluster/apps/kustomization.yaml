@@ -6,7 +6,7 @@ resources:
   - cert-manager
   - storage
   - networking
-#  - monitoring
+  - monitoring
   - security
   - collab
   - media
@@ -16,3 +16,4 @@ resources:
   - services
   - ci
   - ahmia-search
+  - tor
