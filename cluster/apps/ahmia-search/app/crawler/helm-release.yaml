@@ -22,7 +22,8 @@ spec:
     remediation:
       retries: 3
   values:
-    replicas: 2
+    controller:
+     replicas: 2
     image:
       repository: git.samip.fi/samip537/ahmia-crawler
       tag: 807934b980a0554d30b7e307fbd1acb8cd1d209c
