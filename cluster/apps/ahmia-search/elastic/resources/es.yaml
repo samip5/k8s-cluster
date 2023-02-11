@@ -6,6 +6,11 @@ metadata:
   namespace: ahmia-search
 spec:
   version: 7.17.9
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: true
+
   nodeSets:
     - name: default
       count: 1
