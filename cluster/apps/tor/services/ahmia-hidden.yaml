@@ -3,6 +3,7 @@ apiVersion: tor.k8s.torproject.org/v1alpha1
 kind: OnionService
 metadata:
   name: ahmia-search
+  namespace: tor
 spec:
   version: 3
   privateKeySecret:
