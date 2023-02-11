@@ -32,7 +32,7 @@ spec:
   values:
     image:
       repository: ghcr.io/sct/overseerr
-      tag: develop@sha256:0efbceb45e2f5c7413bd90db124ac7caf9bc2a50e7050251758f44fa62034dca
+      tag: develop@sha256:1e30f88cb1884d071e72460eba0e57c5d2bfab6118a2b8850451fb84670052b9
 
     dnsConfig:
       options:
