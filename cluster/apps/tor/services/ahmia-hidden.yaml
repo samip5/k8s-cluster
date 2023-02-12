@@ -13,6 +13,6 @@ spec:
         number: 80
       backend:
         service:
-          name: ingress-nginx-tor
+          name: ingress-nginx-tor-controller
           port:
             number: 80
