@@ -49,7 +49,6 @@ spec:
       use-forwarded-headers: "true"
       config:
         proxy-hide-headers: "Server, X-Powered-By"
-        server-tokens: "off"
         server_tokens: "off"
         http-snippet: |
           more_clear_headers Server;
