@@ -51,7 +51,7 @@ spec:
         proxy-hide-headers: "Server, X-Powered-By"
         server-tokens: "False"
         http-snippet: |
-          more_clear_headers "Server: ";
+          more_clear_headers Server;
 
       service:
         type: LoadBalancer
