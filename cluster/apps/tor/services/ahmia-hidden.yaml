@@ -13,6 +13,6 @@ spec:
         number: 80
       backend:
         service:
-          name: ahmia-site
+          name: ingress-nginx-tor
           port:
             number: 80
