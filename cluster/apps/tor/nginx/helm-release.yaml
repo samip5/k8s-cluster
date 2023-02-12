@@ -47,6 +47,11 @@ spec:
               values:
                 - nginx-tor
       use-forwarded-headers: "true"
+      config:
+        proxy-hide-headers: "Server, X-Powered-By"
+        server-tokens: "False"
+        http-snippet: |
+          more_set_headers "Server: ";
 
       service:
         type: LoadBalancer
