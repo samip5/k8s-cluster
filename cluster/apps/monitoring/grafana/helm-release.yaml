@@ -50,6 +50,7 @@ spec:
         provisioning: /etc/grafana/provisioning
       analytics:
         check_for_updates: false
+        reporting_enabled: false
       log:
         mode: console
       grafana_net:
