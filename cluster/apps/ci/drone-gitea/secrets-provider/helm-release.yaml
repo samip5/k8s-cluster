@@ -2,6 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: drone-gitea-kubernetes-secrets
+  namespace: ci
 spec:
   interval: 1h
   chart:
