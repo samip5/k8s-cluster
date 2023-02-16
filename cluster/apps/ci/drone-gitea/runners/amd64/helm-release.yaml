@@ -31,19 +31,34 @@ spec:
     keepHistory: false
 
   values:
+    replicaCount: 2
     fullnameOverride: drone-runner-amd64
     image:
       repository: drone/drone-runner-kube
-      tag: 1.0.0-rc.3
-    replicaCount: 2
+      tag: 1.0.0-beta.5
+
+    rbac:
+      buildNamespaces:
+        - drone-build
 
     extraSecretNamesForEnvFrom:
       - drone-gitea-runner-secrets
     env:
-      DRONE_RPC_HOST: drone-gitea:8080
-      DRONE_RPC_PROTO: http
-      DRONE_SERVER_HOST: "drone-gitea.skylab.fi"
-      DRONE_NAMESPACE_DEFAULT: ci
+      - name: DRONE_RPC_HOST
+        value: drone-gitea:8080
+      - name: DRONE_RPC_PROTO
+        value: http
+      - name: DRONE_SERVER_HOST
+        value: "drone-gitea.skylab.fi"
+      - name: DRONE_NAMESPACE_DEFAULT
+        value: ci
+      - name: DRONE_SECRET_PLUGIN_ENDPOINT
+        value: http://drone-kubernetes-secrets.ci.svc:3000
+      - name: DRONE_SECRET_PLUGIN_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: drone-gitea-runner-secrets
+            key: DRONE_PLUGIN_SECRET
 
     nodeSelector:
       kubernetes.io/arch: amd64
