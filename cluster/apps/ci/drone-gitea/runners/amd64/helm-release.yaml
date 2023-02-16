@@ -53,7 +53,7 @@ spec:
       - name: DRONE_NAMESPACE_DEFAULT
         value: ci
       - name: DRONE_SECRET_PLUGIN_ENDPOINT
-        value: http://drone-kubernetes-secrets.ci.svc:3000
+        value: http://drone-gitea-kubernetes-secrets.ci.svc:3000
       - name: DRONE_SECRET_PLUGIN_TOKEN
         valueFrom:
           secretKeyRef:
