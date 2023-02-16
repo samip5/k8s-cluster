@@ -41,6 +41,8 @@ spec:
       buildNamespaces:
         - drone-build
 
+    serviceAccount: drone-runner
+
     extraSecretNamesForEnvFrom:
       - drone-gitea-runner-secrets
     env:
