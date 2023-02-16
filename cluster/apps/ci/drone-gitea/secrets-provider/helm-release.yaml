@@ -14,7 +14,7 @@ spec:
         name: drone-charts
         namespace: flux-system
   values:
-    fullNameOverride: drone-gitea-kubernetes-secrets
+    fullnameOverride: drone-gitea-kubernetes-secrets
     rbac:
       secretNamespace: ci
     env:
