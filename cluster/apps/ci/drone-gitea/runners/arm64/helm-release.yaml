@@ -51,7 +51,7 @@ spec:
         - "dockerd"
       commandArgs:
         - "--host"
-        - "tcp://localhost:2375"
+        - "tcp://0.0.0.0:2375"
       securityContext:
         privileged: true
       ## If you have declared extra volumes, mount them here, per the Pod Container's
