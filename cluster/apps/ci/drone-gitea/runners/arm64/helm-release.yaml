@@ -48,7 +48,7 @@ spec:
       DRONE_RPC_PROTO: http
       DRONE_SERVER_HOST: "drone-gitea.skylab.fi"
       DRONE_NAMESPACE_DEFAULT: ci
-      DRONE_SECRET_PLUGIN_ENDPOINT: http://drone-gitea-kubernetes-secrets.ci.svc:3000
+      DRONE_SECRET_PLUGIN_ENDPOINT: http://drone-gitea-kubernetes-secrets.ci.svc.cluster.local:3000
       DRONE_SECRET_PLUGIN_TOKEN: ${DRONE_GITEA_PLUGIN_SECRET}
 
     nodeSelector:
