@@ -17,10 +17,5 @@ spec:
     rbac:
       secretNamespace: ci
     env:
-      - name: KUBERNETES_NAMESPACE
-        value: ci
-      - name: SECRET_KEY
-        valueFrom:
-          secretKeyRef:
-            name: drone-gitea-runner-secrets
-            key: DRONE_PLUGIN_SECRET
+      KUBERNETES_NAMESPACE: ci
+      SECRET_KEY: ${DRONE_GITEA_PLUGIN_SECRET}
