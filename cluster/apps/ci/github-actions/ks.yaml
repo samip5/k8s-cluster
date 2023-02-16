@@ -2,7 +2,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-apps-ci-github-actions-runner
+  name: cluster-apps-ci-github-actions-controller
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: "true"
