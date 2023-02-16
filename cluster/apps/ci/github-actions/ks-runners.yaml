@@ -8,7 +8,7 @@ metadata:
     substitution.flux.home.arpa/enabled: "true"
 spec:
   dependsOn:
-    - name: cluster-apps-ci-github-actions-runner
+    - name: cluster-apps-ci-github-actions-controller
   path: ./cluster/apps/ci/github-actions/runners
   prune: true
   sourceRef:
