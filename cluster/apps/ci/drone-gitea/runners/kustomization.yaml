@@ -5,4 +5,3 @@ resources:
   - secret.sops.yaml
   - amd64
   - arm64
-  - ../secrets-provider
