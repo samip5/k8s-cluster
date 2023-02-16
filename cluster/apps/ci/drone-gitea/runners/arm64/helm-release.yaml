@@ -44,21 +44,12 @@ spec:
     extraSecretNamesForEnvFrom:
       - drone-gitea-runner-secrets
     env:
-      - name: DRONE_RPC_HOST
-        value: drone-gitea:8080
-      - name: DRONE_RPC_PROTO
-        value: http
-      - name: DRONE_SERVER_HOST
-        value: "drone-gitea.skylab.fi"
-      - name: DRONE_NAMESPACE_DEFAULT
-        value: ci
-      - name: DRONE_SECRET_PLUGIN_ENDPOINT
-        value: http://drone-gitea-kubernetes-secrets.ci.svc:3000
-      - name: DRONE_SECRET_PLUGIN_TOKEN
-        valueFrom:
-          secretKeyRef:
-            name: drone-gitea-runner-secrets
-            key: DRONE_PLUGIN_SECRET
+      DRONE_RPC_HOST: drone-gitea:8080
+      DRONE_RPC_PROTO: http
+      DRONE_SERVER_HOST: "drone-gitea.skylab.fi"
+      DRONE_NAMESPACE_DEFAULT: ci
+      DRONE_SECRET_PLUGIN_ENDPOINT: http://drone-gitea-kubernetes-secrets.ci.svc:3000
+      DRONE_SECRET_PLUGIN_TOKEN: ${DRONE_GITEA_PLUGIN_SECRET}
 
     nodeSelector:
       kubernetes.io/arch: arm64
