@@ -34,6 +34,34 @@ spec:
     replicaCount: 1
     fullnameOverride: drone-gitea-runner-amd64
 
+    extraVolumes:
+      - name: storage
+        storageClass: longhorn
+
+
+    dind:
+      ## The official docker (dind) image, change tag to use a different version.
+      ## ref: https://hub.docker.com/r/library/docker/tags/
+      ##
+      registry: docker.io
+      repository: docker
+      tag: 23-dind
+      pullPolicy: IfNotPresent
+      command:
+        - "dockerd"
+      commandArgs:
+        - "--host"
+        - "tcp://localhost:2375"
+      securityContext:
+        privileged: true
+      ## If you have declared extra volumes, mount them here, per the Pod Container's
+      ## "volumeMounts" section of dind container
+      ##
+      extraVolumeMounts:
+        - name: storage
+          mountPath: /var/lib/docker
+          subPath: docker
+
 
     extraSecretNamesForEnvFrom:
       - drone-gitea-runner-secrets
