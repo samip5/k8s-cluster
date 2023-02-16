@@ -1,0 +1,34 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ahmia-crawler
+  namespace: ahmia-search
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.3.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    controller:
+      replicas: 2
+    image:
+      repository: git.samip.fi/samip537/ahmia-site
+      tag: cceb5cc7bb3a2b0669f7eef635c526158cab178f
+
+    service:
+      main:
+        enabled: false
+
