@@ -35,7 +35,7 @@ spec:
     fullnameOverride: drone-gitea-runner-amd64
     image:
       repository: drone/drone-runner-kube
-      tag: 1.0.0-beta.5
+      tag: v1.0.0-rc.3
 
     rbac:
       buildNamespaces:
