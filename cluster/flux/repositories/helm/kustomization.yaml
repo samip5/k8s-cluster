@@ -39,4 +39,5 @@ resources:
   - piraeus-charts.yaml
   - fairwinds-charts.yaml
   - drone-charts.yaml
+  - gitlab-charts.yaml
 
