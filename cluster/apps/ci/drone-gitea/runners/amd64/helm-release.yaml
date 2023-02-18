@@ -52,8 +52,9 @@ spec:
       command:
         - "dockerd"
       commandArgs:
-        - "--host"
-        - "unix://var/run/docker.sock"
+        - "-H"
+        - "unix:///var/run/docker.sock"
+        - "-H 127.0.0.1:2375"
       securityContext:
         privileged: true
       ## If you have declared extra volumes, mount them here, per the Pod Container's
