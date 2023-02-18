@@ -34,8 +34,15 @@ spec:
     replicaCount: 1
     fullnameOverride: drone-gitea-runner-amd64
 
-    nodeSelector:
-      kubernetes.io/arch: amd64
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                    - "amd64"
 
     extraVolumes:
       - name: storage
