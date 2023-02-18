@@ -47,6 +47,7 @@ spec:
       commandArgs:
         - "--host"
         - "tcp://0.0.0.0:2375"
+        - "--mtu=1430"
       securityContext:
         privileged: true
       ## If you have declared extra volumes, mount them here, per the Pod Container's
@@ -65,6 +66,7 @@ spec:
       DRONE_SERVER_HOST: "drone-gitea.skylab.fi"
       DRONE_NAMESPACE_DEFAULT: ci
       DOCKER_HOST: "tcp://localhost:2375"
+      DRONE_RUNNER_NETWORK_OPTS: "com.docker.network.driver.mtu:1430"
 
     nodeSelector:
       kubernetes.io/arch: arm64
