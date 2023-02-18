@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/kustomization_v1beta2.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cluster-apps-ci-gitlab-runners
+  namespace: flux-system
+  labels:
+    substitution.flux.home.arpa/enabled: "true"
+spec:
+  path: ./cluster/apps/ci/gitlab-runner/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: cluster
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: gitlab-runner-amd64
+      namespace: ci
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: gitlab-runner-arm64
+      namespace: ci
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m
