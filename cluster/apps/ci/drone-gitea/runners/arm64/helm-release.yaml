@@ -34,8 +34,15 @@ spec:
     replicaCount: 1
     fullnameOverride: drone-gitea-runner-arm64
 
-    nodeSelector:
-      kubernetes.io/arch: arm64
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                    - "arm64"
 
     dind:
       ## The official docker (dind) image, change tag to use a different version.
