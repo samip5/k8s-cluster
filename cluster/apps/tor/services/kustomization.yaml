@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - ahmia-secret.sops.yaml
   - ahmia-hidden.yaml
+  - reddit-hidden.yaml
