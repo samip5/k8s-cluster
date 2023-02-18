@@ -34,7 +34,7 @@ spec:
     restartPolicy: OnFailure
     image:
       repository: git.samip.fi/samip537/ahmia-index
-      tag: c705b45a5abe539447c02d93ab495588b2653ae0
+      tag: 7b4dac0caf1e178651aa9b7dd16ad7f54d1388eb
       command: ["/app/venv/bin/python", "/app/point_to_indexes.py", "--add"]
     service:
       main:
