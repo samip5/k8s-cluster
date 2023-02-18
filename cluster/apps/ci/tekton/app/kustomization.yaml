@@ -6,5 +6,6 @@ resources:
   - dashboard
   - pipelines
   - triggers
+  - sa.yaml
 patchesStrategicMerge:
   - feature-flags.yaml
