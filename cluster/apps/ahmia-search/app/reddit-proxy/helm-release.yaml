@@ -1,0 +1,54 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: reddit-proxy
+  namespace: ahmia-search
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.3.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    controller:
+      replicas: 2
+    image:
+      repository: git.samip.fi/samip537/reddit-onion-proxy
+      tag: 306888127a08d9ecd5e645c1065598779fe1cf46
+
+    service:
+      main:
+        enabled: true
+        ports:
+          http:
+            port: 80
+
+      alt:
+        enabled: true
+        ports:
+          http:
+            port: 81
+
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx-tor
+        hosts:
+          - host: vnxmwp6jcoboqbicxcr22cgm3rm6kog4ooyp26owbeoolv5rie4fcfqd.onion
+            paths:
+              - path: /
+                pathType: Prefix
+
