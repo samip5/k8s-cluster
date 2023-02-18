@@ -6,3 +6,4 @@ resources:
   - elastic/ks-resources.yaml
   - app/ks-indexer.yaml
   - app/ks-crawler.yaml
+  - app/ks-reddit.yaml
