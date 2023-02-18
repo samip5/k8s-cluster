@@ -32,7 +32,7 @@ spec:
   values:
     image:
       repository: esphome/esphome
-      tag: 2022.12.8
+      tag: 2023.2.2
 
     env:
       ESPHOME__INSTANCE_NAME: ESPHome
