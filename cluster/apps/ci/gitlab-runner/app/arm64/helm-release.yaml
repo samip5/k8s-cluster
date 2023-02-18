@@ -1,0 +1,38 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: gitlab-runner-arm64
+  namespace: ci
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: gitlab-runner
+      version: 0.49.0
+      sourceRef:
+        kind: HelmRepository
+        name: gitlab-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    replicas: 2
+    imagePullPolicy: IfNotPresent
+    gitlabUrl: https://gitlab.${COMPANY_DOMAIN}
+    runnerRegistrationToken: ${SECRET_GITLAB_RUNNER_TOKEN}
+    concurrent: 20
+    unregisterRunners: true
+    logLevel: info
+    runners:
+      privileged: true
+      cache_dir: cache
+      imagePullPolicy: "if-not-present"
+      namespace: ci
+      env:
+        DOCKER_HOST: tcp://docker:2375
+        DOCKER_TLS_CERTDIR: ""
+      nodeSelector:
+       kubernetes.io/arch: arm64
+
+    rbac:
+      create: true
