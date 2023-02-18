@@ -34,6 +34,9 @@ spec:
     replicaCount: 1
     fullnameOverride: drone-gitea-runner-amd64
 
+    nodeSelector:
+      kubernetes.io/arch: amd64
+
     extraVolumes:
       - name: storage
       - name: dockersock
@@ -53,8 +56,7 @@ spec:
         - "dockerd"
       commandArgs:
         - "-H"
-        - "unix:///var/run/docker.sock"
-        - "-H 127.0.0.1:2375"
+        - "127.0.0.1:2375"
       securityContext:
         privileged: true
       ## If you have declared extra volumes, mount them here, per the Pod Container's
@@ -64,8 +66,6 @@ spec:
         - name: storage
           mountPath: /var/lib/docker
           subPath: docker
-        - name: dockersock
-          mountPath: /var/run/
 
 
     extraSecretNamesForEnvFrom:
@@ -77,5 +77,3 @@ spec:
       DRONE_NAMESPACE_DEFAULT: ci
       DOCKER_HOST: "tcp://localhost:2375"
 
-    nodeSelector:
-      kubernetes.io/arch: amd64
