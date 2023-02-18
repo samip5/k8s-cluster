@@ -121,6 +121,9 @@ spec:
           - resources:
               annotations:
                 auth-fi.home.arpa/enabled: "true"
+          - resources:
+              namespaces:
+                - ahmia-search
       mutate:
         patchStrategicMerge:
           metadata:
