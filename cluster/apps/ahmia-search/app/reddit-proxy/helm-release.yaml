@@ -38,7 +38,7 @@ spec:
       alt:
         enabled: true
         ports:
-          http:
+          old:
             port: 81
 
 
