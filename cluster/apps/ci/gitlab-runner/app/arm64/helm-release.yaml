@@ -31,8 +31,8 @@ spec:
       env:
         DOCKER_HOST: tcp://docker:2375
         DOCKER_TLS_CERTDIR: ""
-      nodeSelector:
-       kubernetes.io/arch: arm64
+    nodeSelector:
+     kubernetes.io/arch: arm64
 
     rbac:
       create: true
