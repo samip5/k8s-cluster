@@ -43,6 +43,13 @@ spec:
                   requests:
                     cpu: 10m
                     memory: 100Mi
+                securityContext:
+                  allowPrivilegeEscalation: false
+                  capabilities:
+                    drop: ["ALL"]
+                  runAsNonRoot: true
+                  seccompProfile:
+                    profile: RuntimeDefault
                 volumeMounts:
                   - mountPath: /mnt/zoneinfo
                     name: timezone
