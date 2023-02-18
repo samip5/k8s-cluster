@@ -34,6 +34,9 @@ spec:
     replicaCount: 1
     fullnameOverride: drone-gitea-runner-arm64
 
+    nodeSelector:
+      kubernetes.io/arch: arm64
+
     dind:
       ## The official docker (dind) image, change tag to use a different version.
       ## ref: https://hub.docker.com/r/library/docker/tags/
@@ -67,6 +70,3 @@ spec:
       DRONE_NAMESPACE_DEFAULT: ci
       DOCKER_HOST: "tcp://localhost:2375"
       DRONE_RUNNER_NETWORK_OPTS: "com.docker.network.driver.mtu:1430"
-
-    nodeSelector:
-      kubernetes.io/arch: arm64
