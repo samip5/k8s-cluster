@@ -26,6 +26,7 @@ spec:
               namespaces:
                 - longhorn-system
                 - system-upgrade
+                - ci
           - resources:
               annotations:
                 kyverno-no-tz: "true"
