@@ -25,16 +25,11 @@ spec:
     logLevel: info
     runners:
       privileged: true
-      cache_dir: cache
       imagePullPolicy: "if-not-present"
       namespace: ci
       env:
         DOCKER_HOST: tcp://docker:2375
         DOCKER_TLS_CERTDIR: ""
-      config: |
-        [[runners]]
-          [runners.kubernetes]
-          tags = ["amd64"]
     nodeSelector:
       kubernetes.io/arch: amd64
 
