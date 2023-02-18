@@ -1,0 +1,148 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: clone-and-build
+  namespace: tekton-pipelines
+spec:
+  params:
+    - name: gitUrl
+      type: string
+      default: https://git.samip.fi/samip537/ahmia-crawler
+    - name: gitRevision
+      type: string
+      default: v0.12.0
+    - name: containerRegistry
+      type: string
+      default: git.samip.fi
+    - name: manifestName
+      type: string
+      default: ahmia-crawler
+    - name: containerName
+      type: string
+      default: samip537/ahmia-crawler
+
+  workspaces:
+    - name: ws
+    - name: containers
+
+  tasks:
+    # Initial Step
+    - name: clone
+      taskRef:
+        kind: Task
+        name: git-clone
+      params:
+        - name: url
+          value: $(params.gitUrl)
+        - name: revision
+          value: $(params.gitRevision)
+        - name: sslVerify
+          value: false
+      workspaces:
+        - name: output
+          workspace: ws
+
+    - name: amd64
+      taskRef:
+        kind: Task
+        name: buildah
+      workspaces:
+        - name: source
+          workspace: ws
+        - name: containers
+          workspace: containers
+      runAfter:
+        - clone
+      params:
+        - name: IMAGE
+          value: "$(params.containerRegistry)/$(params.containerName):$(params.gitRevision)"
+        - name: ARCH
+          value: amd64
+        - name: BUILD_EXTRA_ARGS
+          value: "--no-cache"
+
+    - name: arm64
+      taskRef:
+        kind: Task
+        name: buildah
+      workspaces:
+        - name: source
+          workspace: ws
+        - name: containers
+          workspace: containers
+      runAfter:
+        - clone
+      params:
+        - name: IMAGE
+          value: "$(params.containerRegistry)/$(params.containerName):$(params.gitRevision)"
+        - name: ARCH
+          value: arm64
+        - name: BUILD_EXTRA_ARGS
+          value: "--no-cache"
+
+    # Push up the container images to the image destination
+    - name: push
+      taskRef:
+        kind: Task
+        name: buildah
+      workspaces:
+        - name: containers
+          workspace: containers
+      runAfter:
+        - amd64
+        - arm64
+      params:
+        - name: IMAGE
+          value: "$(params.containerRegistry)/$(params.containerName):$(params.gitRevision)"
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: ahmia-crawler
+  generateName: ahmia-crawler-
+  namespace: tekton-pipelines
+spec:
+  serviceAccountName: tekton-user
+  pipelineRef:
+    name: clone-and-build
+  taskRunSpecs:
+    # Build the amd64 image on dedicated amd64 hardware
+    - pipelineTaskName: amd64
+      taskPodTemplate:
+        hostNetwork: true
+        nodeSelector:
+          kubernetes.io/arch: amd64
+    # Build the arm64 image on dedicated arm64 hardware
+    - pipelineTaskName: arm64
+      taskPodTemplate:
+        hostNetwork: true
+        nodeSelector:
+          kubernetes.io/arch: arm64
+    # Faster Networking on the amd64 nodes
+    - pipelineTaskName: push
+      taskPodTemplate:
+        hostNetwork: true
+        nodeSelector:
+          kubernetes.io/arch: amd64
+  workspaces:
+    # Disk Volumes
+    - name: ws
+      volumeClaimTemplate:
+        spec:
+          storageClassName: longhorn
+          accessModes:
+            - ReadWriteMany # access mode may affect how you can use this volume in parallel tasks
+          resources:
+            requests:
+              storage: 1Gi
+    - name: containers
+      volumeClaimTemplate:
+        spec:
+          storageClassName: longhorn
+          accessModes:
+            - ReadWriteMany # access mode may affect how you can use this volume in parallel tasks
+          resources:
+            requests:
+              storage: 5Gi
