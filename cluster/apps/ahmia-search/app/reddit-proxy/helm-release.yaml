@@ -23,10 +23,10 @@ spec:
       retries: 3
   values:
     controller:
-      replicas: 2
+      replicas: 4
     image:
       repository: git.samip.fi/samip537/reddit-onion-proxy
-      tag: 306888127a08d9ecd5e645c1065598779fe1cf46
+      tag: 134f32aefcfa36ffd2b1f8809f9203388fadf25b
 
     service:
       main:
