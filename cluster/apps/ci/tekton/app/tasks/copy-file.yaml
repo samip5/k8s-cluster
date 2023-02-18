@@ -24,7 +24,7 @@ spec:
       description: Destination Workspace
   steps:
     - name: copy-file
-      image: docker.io/library/alpine:3.16
+      image: docker.io/library/alpine:3.17
       workingDir: $(workspaces.source.path)
       script: |
         #!/bin/sh
