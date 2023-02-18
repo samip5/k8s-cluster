@@ -50,7 +50,7 @@ spec:
       ##
       registry: docker.io
       repository: docker
-      tag: 23-dind
+      tag: 20-dind
       pullPolicy: IfNotPresent
       command:
         - "dockerd"
