@@ -34,11 +34,6 @@ spec:
     replicaCount: 1
     fullnameOverride: drone-gitea-runner-arm64
 
-    extraVolumes:
-      - name: storage
-        storageClass: longhorn
-
-
     dind:
       ## The official docker (dind) image, change tag to use a different version.
       ## ref: https://hub.docker.com/r/library/docker/tags/
