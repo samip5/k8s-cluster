@@ -27,10 +27,6 @@ spec:
     cleanupOnFail: true
   # Values: https://github.com/k8s-at-home/charts/blob/master/charts/stable/satisfactory/values.yaml
   values:
-    # If someone gets it to work via LB, I would love to know how.
-    # I could see the traffic on the pod, but it wasn't replying.
-    hostNetwork: true
-
     image:
       repository: wolveix/satisfactory-server
       tag: v1.4.6
@@ -44,7 +40,7 @@ spec:
       main:
         enabled: false
         type: LoadBalancer
-        externalTrafficPolicy: Cluster
+        externalTrafficPolicy: Local
         annotations:
           metallb.universe.tf/loadBalancerIPs: "${LB_SATISFACTORY},${LB_SATISFACTORY_V6}"
         ipFamilyPolicy: RequireDualStack
