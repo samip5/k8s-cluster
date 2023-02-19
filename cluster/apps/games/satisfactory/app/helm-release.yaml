@@ -38,7 +38,7 @@ spec:
     # @default -- See values.yaml
     service:
       main:
-        enabled: false
+        enabled: true
         type: LoadBalancer
         externalTrafficPolicy: Local
         annotations:
