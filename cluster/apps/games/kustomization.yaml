@@ -4,5 +4,4 @@ kind: Kustomization
 namespace: games
 resources:
   - namespace.yaml
-#  - satisfactory-experimental
-#  - valheim
+  - satisfactory/ks.yaml
