@@ -53,7 +53,7 @@ spec:
       i2np:
         enabled: true
         type: LoadBalancer
-        externalTrafficPolicy: Cluster
+        externalTrafficPolicy: Local
         annotations:
          metallb.universe.tf/loadBalancerIPs: "10.96.69.4"
         ipFamilies:
