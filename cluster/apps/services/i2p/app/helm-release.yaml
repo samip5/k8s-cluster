@@ -46,12 +46,10 @@ spec:
         ports:
           http-proxy:
             enabled: true
-            http:
-              port: 4444
+            port: 4444
           https-proxy:
             enabled: true
-            https:
-              port: 4445
+            port: 4445
       i2np:
         enabled: true
         type: NodePort
@@ -62,12 +60,12 @@ spec:
         ports:
           tcp:
             enabled: true
-            port: 30300
+            port: 50520
             protocol: TCP
             targetPort: 12345
           udp:
             enabled: true
-            port: 30300
+            port: 50520
             protocol: UDP
             targetPort: 12345
 
