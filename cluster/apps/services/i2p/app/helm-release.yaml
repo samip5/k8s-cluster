@@ -25,6 +25,7 @@ spec:
     - name: csi-driver-nfs
       namespace: storage
   values:
+    hostNetwork: true
     controller:
       replicas: 1
       strategy: RollingUpdate
