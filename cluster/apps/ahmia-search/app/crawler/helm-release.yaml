@@ -26,7 +26,7 @@ spec:
      replicas: 2
     image:
       repository: git.samip.fi/samip537/ahmia-crawler
-      tag: 70c06b5d491f3ddb1215cb2bdc382518a4d72192
+      tag: b5842ddca59d99d676ecbbf3ec5e4b6e7ea4e61c
 
     service:
       main:
