@@ -54,3 +54,15 @@ spec:
         memory: 250Mi
       limits:
         memory: 2000Mi
+
+
+    # Next release at least is not going to have arm64 images..
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                    - "amd64"
