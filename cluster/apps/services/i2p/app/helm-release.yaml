@@ -40,7 +40,7 @@ spec:
         enabled: true
         ports:
           http:
-            port: &port 7657
+            port: 7657
       other:
         enabled: true
         ports:
