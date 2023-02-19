@@ -30,7 +30,7 @@ spec:
       strategy: RollingUpdate
     fullNameOverride: *app
     image:
-      repository: docker.io/i2p
+      repository: geti2p/i2p
       tag: latest
 
     env:
