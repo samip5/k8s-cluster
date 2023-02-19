@@ -52,7 +52,7 @@ spec:
             port: 4445
       i2np:
         enabled: true
-        type: NodePort
+        type: LoadBalancer
         ipFamilyPolicy: "RequireDualStack"
         ipFamilies:
           - IPv6
