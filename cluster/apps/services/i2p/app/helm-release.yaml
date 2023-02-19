@@ -53,9 +53,10 @@ spec:
       i2np:
         enabled: true
         type: LoadBalancer
-        ipFamilyPolicy: "RequireDualStack"
+        externalTrafficPolicy: Cluster
+        annotations:
+         metallb.universe.tf/loadBalancerIPs: "10.96.69.4"
         ipFamilies:
-          - IPv6
           - IPv4
         ports:
           tcp:
