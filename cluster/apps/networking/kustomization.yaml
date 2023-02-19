@@ -11,3 +11,4 @@ resources:
   - multus/ks.yaml
   - metallb/ks.yaml
   - metallb/ks-config.yaml
+  - netshoot.yaml
