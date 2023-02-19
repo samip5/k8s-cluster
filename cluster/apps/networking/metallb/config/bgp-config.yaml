@@ -72,7 +72,17 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
+    - 192.168.10.13/32
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: satisfactory
+  namespace: metallb-system
+spec:
+  addresses:
     - 192.168.10.12/32
+    - 2001:14ba:16d6:a6ad::12/128
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
@@ -106,3 +116,4 @@ spec:
     - public
     - game-prefix-pool
     - unifi
+    - satisfactory

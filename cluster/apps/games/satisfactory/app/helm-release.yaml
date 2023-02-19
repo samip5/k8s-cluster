@@ -42,6 +42,7 @@ spec:
         type: LoadBalancer
         externalTrafficPolicy: Local
         annotations:
+          metallb.universe.tf/allow-shared-ip: "satisfactory"
           metallb.universe.tf/loadBalancerIPs: "${LB_SATISFACTORY},${LB_SATISFACTORY_V6}"
         ipFamilyPolicy: RequireDualStack
         ipFamilies:
