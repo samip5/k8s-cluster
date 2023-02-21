@@ -3,5 +3,5 @@ kind: Kustomization
 resources:
   - add-ndots.yaml
   - inject-tz.yaml
-  - inject-private-registry-secret.yaml
+#  - inject-private-registry-secret.yaml
   - update-ingress-annotations.yaml
