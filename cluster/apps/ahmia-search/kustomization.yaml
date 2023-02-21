@@ -8,3 +8,4 @@ resources:
   - app/ks-indexer.yaml
   - app/ks-crawler.yaml
   - app/ks-reddit.yaml
+  - app/ks-site.yaml
