@@ -37,3 +37,15 @@ spec:
           http:
             port: 80
 
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: 'nginx-tor'
+        hosts:
+          - host: ahmian7frsesohtma3ggz7nqbzcvyflkoetgwoewfztm676ctmwew3ad.onion
+            paths:
+              - path: /
+                pathType: Prefix
+
+
+
