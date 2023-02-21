@@ -24,9 +24,11 @@ spec:
   values:
     controller:
       replicas: 2
+    imagePullSecrets:
+      - name: privateregistry
     image:
-      repository: git.samip.fi/samip537/ahmia-site
-      tag: cceb5cc7bb3a2b0669f7eef635c526158cab178f
+      repository: registry.samipsolutions.fi/ahmia/ahmia-site
+      tag: 89e83c8c298c7694fdb906f125c607a6e4cd06e4
 
     service:
       main:

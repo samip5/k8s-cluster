@@ -32,9 +32,11 @@ spec:
         concurrencyPolicy: Forbid
         schedule: "10 04 01 * *"
     restartPolicy: OnFailure
+    imagePullSecrets:
+      - name: privateregistry
     image:
-      repository: git.samip.fi/samip537/ahmia-index
-      tag: 7b4dac0caf1e178651aa9b7dd16ad7f54d1388eb
+      repository: registry.samipsolutions.fi/ahmia/ahmia-index
+      tag: 68e591737c130fe300d112c68cfc51996633650e
       command: ["/app/venv/bin/python", "/app/point_to_indexes.py", "--add"]
     service:
       main:
