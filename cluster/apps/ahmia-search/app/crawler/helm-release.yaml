@@ -28,7 +28,7 @@ spec:
       - name: privateregistry
     image:
       repository: registry.samipsolutions.fi/ahmia/ahmia-crawler
-      tag: 68e591737c130fe300d112c68cfc51996633650e
+      tag: latest@sha256:b79745f41fcda0e007a4e13d5d6d20c54e206e59f43bb9704b3311bb1c8e80f7
 
     service:
       main:
