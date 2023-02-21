@@ -35,7 +35,7 @@ spec:
     image:
       repository: git.samip.fi/samip537/ahmia-index
       tag: 7b4dac0caf1e178651aa9b7dd16ad7f54d1388eb
-      command: ["/app/venv/bin/python", "/app/point_to_indexes.py", "--rm"]
+      command: ["/app/venv/bin/python /app/point_to_indexes.py --rm"]
     service:
       main:
         enabled: false

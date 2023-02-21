@@ -37,7 +37,7 @@ spec:
     image:
       repository: registry.samipsolutions.fi/ahmia/ahmia-index
       tag: latest@sha256:f0833711d54142c5abb192f39ff01f4e9aa0b966c10276a91792ee5e2560545f
-      command: ["/app/venv/bin/python", "/app/point_to_indexes.py", "--add"]
+      command: ["/app/venv/bin/python /app/point_to_indexes.py --add"]
     service:
       main:
         enabled: false
