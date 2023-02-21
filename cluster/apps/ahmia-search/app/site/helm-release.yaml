@@ -28,7 +28,7 @@ spec:
       - name: privateregistry
     image:
       repository: registry.samipsolutions.fi/ahmia/ahmia-site
-      tag: latest@sha256:64f73cf248a88557bdd36c4a2fa0eeccc0ebdfd4cf5804da839f057999632cf0
+      tag: latest@sha256:a50847c7a10c5ebf6ee9c131e7622d603437a498436da9cdaa0f418f75e20f47
 
     service:
       main:
@@ -46,6 +46,14 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+
+
+    persistence:
+      config:
+        enabled: true
+        mountPath: /app/ahmia/db/
+        existingClaim: ahmia-site-db
+
 
 
 
