@@ -1,6 +1,4 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ahmia-secret.sops.yaml
-  - ahmia-hidden.yaml
   - reddit-hidden.yaml
