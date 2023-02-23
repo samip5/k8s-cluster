@@ -1,0 +1,45 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: private-cluster
+  namespace: flux-system
+spec:
+  interval: 30m
+  url: ssh://git@git.samip.fi:samip537/k3s-cluster.git
+  secretRef:
+    name: private-cluster-ssh-credentials
+  ref:
+    branch: main
+  ignore: |
+    # exclude all
+    /*
+    # include cluster directory
+    !/cluster
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: private-cluster-apps
+  namespace: flux-system
+spec:
+  interval: 30m
+  path: ./cluster/apps
+  prune: true
+  wait: false
+  sourceRef:
+    kind: GitRepository
+    name: private-cluster
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-settings
+        optional: false
+      - kind: Secret
+        name: cluster-secrets
+        optional: false
