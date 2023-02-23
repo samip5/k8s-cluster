@@ -3,7 +3,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: elk
-  namespace: ahmia-search
+  namespace: search
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
     nginx.ingress.kubernetes.io/proxy-ssl-verify: 'off'
@@ -25,7 +25,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: kb
-  namespace: ahmia-search
+  namespace: search
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
     nginx.ingress.kubernetes.io/proxy-ssl-verify: 'off'
