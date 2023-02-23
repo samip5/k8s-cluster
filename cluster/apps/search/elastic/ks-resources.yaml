@@ -18,7 +18,7 @@ spec:
     - apiVersion: kibana.k8s.elastic.co/v1
       kind: Kibana
       name: main
-      namespace: ahmia-search
+      namespace: search
 
   interval: 30m
   retryInterval: 1m
