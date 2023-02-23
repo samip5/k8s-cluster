@@ -10,7 +10,7 @@ spec:
   dependsOn:
     - name: cluster-apps-ahmia-elastic-operator
   path: ./cluster/apps/ahmia-search/elastic/resources
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: cluster
