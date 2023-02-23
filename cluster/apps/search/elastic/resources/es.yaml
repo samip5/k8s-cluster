@@ -13,7 +13,7 @@ spec:
 
   nodeSets:
     - name: default
-      count: 2
+      count: 1
       config:
         node.store.allow_mmap: false
         xpack.security.authc:
@@ -37,7 +37,7 @@ spec:
             name: elasticsearch-data # Do not change this name unless you set up a volume mount for the data path.
           spec:
             accessModes:
-              - ReadWriteMany
+              - ReadWriteOnce
             resources:
               requests:
                 storage: 300Gi
