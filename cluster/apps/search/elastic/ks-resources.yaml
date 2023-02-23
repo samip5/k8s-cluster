@@ -7,7 +7,6 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  suspend: true
   dependsOn:
     - name: cluster-apps-search-elastic-operator
   path: ./cluster/apps/search/elastic/resources
