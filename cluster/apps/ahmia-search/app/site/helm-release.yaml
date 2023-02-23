@@ -28,7 +28,7 @@ spec:
       - name: privateregistry
     image:
       repository: registry.samipsolutions.fi/ahmia/ahmia-site
-      tag: latest@@sha256:e884603bebbc39feca922c4fcaa3b350029e0d0f53a2882db52aedea56da0927
+      tag: latest@sha256:e884603bebbc39feca922c4fcaa3b350029e0d0f53a2882db52aedea56da0927
 
     service:
       main:
