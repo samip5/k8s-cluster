@@ -4,7 +4,6 @@ resources:
   - ns.yaml
   - nginx
   - external-dns
-  - blocky
   - misc-ingresses
   - unifi
   - k8s-gateway
