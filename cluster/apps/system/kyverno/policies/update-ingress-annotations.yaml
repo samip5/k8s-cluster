@@ -123,7 +123,7 @@ spec:
                 auth-fi.home.arpa/enabled: "true"
           - resources:
               namespaces:
-                - ahmia-search
+                - search
       mutate:
         patchStrategicMerge:
           metadata:

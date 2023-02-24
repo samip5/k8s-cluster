@@ -28,6 +28,7 @@ spec:
                 - system-upgrade
                 - ci
                 - tekton-pipelines
+                - search
           - resources:
               annotations:
                 kyverno-no-tz: "true"
