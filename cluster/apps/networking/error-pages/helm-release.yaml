@@ -25,7 +25,7 @@ spec:
   values:
     image:
       repository: ghcr.io/tarampampam/error-pages
-      tag: 2.20.0
+      tag: 2.21.0
     env:
       TEMPLATE_NAME: lost-in-space
       SHOW_DETAILS: "false"
