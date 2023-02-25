@@ -17,9 +17,6 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    image:
-     repository: ghcr.io/k8s-at-home/grafana
-     tag: v9.1.6
     replicas: 1
     env:
       GF_EXPLORE_ENABLED: true
@@ -157,8 +154,8 @@ spec:
       ingressClassName: "nginx"
       annotations:
         external-dns.home.arpa/enabled: "true"
+        external-dns.target/enabled: "true"
         external-dns-cf/is-dns-public: "true"
-        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       hosts:
         - "grafana.skylab.fi"
       tls:
