@@ -157,6 +157,7 @@ spec:
       ingressClassName: "nginx"
       annotations:
         external-dns.home.arpa/enabled: "true"
+        external-dns-cf/is-dns-public: "true"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       hosts:
         - "grafana.skylab.fi"
