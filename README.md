@@ -4,14 +4,12 @@ The Git repository contains the following directories under `cluster` and are or
 
 - **flux** directory is the entrypoint to Flux
 - **bootstrap** directory contains a simple Kustomize resource to deploy Flux to an empty cluster
-- **config** directory contains cluster-wide configs like global variables
-- **apps** directory (depends on **core**) is where my common applications (grouped by namespace) are placed.
+- **apps** directory is where my common applications (grouped by namespace) are placed.
 
 ```
 cluster
 ├── apps
 ├── bootstrap
-├── config
 └── flux
 ```
 
