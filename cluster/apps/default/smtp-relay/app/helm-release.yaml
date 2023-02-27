@@ -26,26 +26,25 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     image:
-      repository: ghcr.io/immich-app/immich-web
-      tag: v1.49.0
-    command: /bin/sh
-    args:
-      - ./entrypoint.sh
-    envFrom:
-      - secretRef:
-          name: immich-secret
-      - configMapRef:
-          name: immich-configmap
+      repository: registry.samipsolutions.fi/docker/boky/postfix
+      tag: latest
+
+    env:
+      RELAYHOST: smtp.dnainternet.fi
+      ALLOWED_SENDER_DOMAINS: skylab.fi
+      POSTFIX_myhostname: mailer.k8s.skylab.fi
+      POSTFIX_mynetworks: 10.244.0.0/16,fddf:f7bc:9670::/48,192.168.2.0/24,10.0.105.0/24
+
     service:
       main:
         ports:
           http:
-            port: 3000
+            enabled: false
+          submission:
+            enabled: true
+            port: 587
     persistence:
-      data:
-        enabled: true
-        existingClaim: postfix-data
       spool:
         enabled: true
-        existingClaim: postfix-spool
+        existingClaim: smtp-relay-postfix-spool
         mountPath: /var/spool/postfix
