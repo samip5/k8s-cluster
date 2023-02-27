@@ -18,9 +18,11 @@ spec:
     createNamespace: true
     remediation:
       retries: 3
+    timeout: 5m
   upgrade:
     remediation:
       retries: 3
+    cleanupOnFail: true
   values:
     image:
       repository: registry.samipsolutions.fi/docker/boky/postfix
