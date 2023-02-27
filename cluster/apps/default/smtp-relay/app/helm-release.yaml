@@ -22,13 +22,13 @@ spec:
     remediation:
       retries: 3
   values:
-    controller:
-      annotations:
-        kyverno-no-tz: "true"
-        reloader.stakater.com/auto: "true"
     image:
       repository: registry.samipsolutions.fi/docker/boky/postfix
       tag: latest
+
+    podAnnotations:
+      kyverno-no-tz: "true"
+
 
     env:
       RELAYHOST: smtp.dnainternet.fi
@@ -38,6 +38,7 @@ spec:
 
     service:
       main:
+        type: LoadBalancer
         ports:
           http:
             enabled: false
