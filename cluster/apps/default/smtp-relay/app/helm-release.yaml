@@ -25,6 +25,7 @@ spec:
     cleanupOnFail: true
   values:
     image:
+      # Pull-though Cache for Docker Hub
       repository: registry.samipsolutions.fi/docker/boky/postfix
       tag: latest
 
