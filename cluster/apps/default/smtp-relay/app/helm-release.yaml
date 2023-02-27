@@ -44,9 +44,6 @@ spec:
         type: LoadBalancer
         ports:
           http:
-            enabled: false
-          submission:
-            enabled: true
             port: 587
       probes:
         liveness:
