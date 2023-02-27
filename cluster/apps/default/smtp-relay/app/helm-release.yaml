@@ -24,6 +24,7 @@ spec:
   values:
     controller:
       annotations:
+        kyverno-no-tz: "true"
         reloader.stakater.com/auto: "true"
     image:
       repository: registry.samipsolutions.fi/docker/boky/postfix
