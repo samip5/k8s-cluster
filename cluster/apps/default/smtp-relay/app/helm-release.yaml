@@ -46,13 +46,14 @@ spec:
         ports:
           http:
             port: 587
-      probes:
-        liveness:
-          enabled: false
-        startup:
-          enabled: false
-        readiness:
-          enabled: false
+
+    probes:
+      liveness:
+        enabled: false
+      startup:
+        enabled: false
+      readiness:
+        enabled: false
     persistence:
       spool:
         enabled: true
