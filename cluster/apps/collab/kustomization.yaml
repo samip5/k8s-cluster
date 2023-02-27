@@ -1,7 +1,7 @@
 ---
+# TODO: Replcase HASTE with a better bin
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ns.yaml
   - littlelink
-  - haste
