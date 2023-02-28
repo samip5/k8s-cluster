@@ -81,15 +81,6 @@ spec:
             - to:
                 - ipBlock:
                     cidr: 10.0.0.0/8
-        livenessProbe:
-          exec:
-            command:
-              - sh
-              - -c
-              - curl -s https://am.i.mullvad.net/connected | grep -q "are connected"
-          initialDelaySeconds: 30
-          periodSeconds: 60
-          failureThreshold: 1
 
 
     podAnnotations:
