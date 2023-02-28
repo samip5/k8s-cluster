@@ -28,9 +28,6 @@ spec:
       pullPolicy: Always
       tag: latest@sha256:e325439286319ee3fd16b8796b55663ef951afae0867dc2f7b3dd24e05166e0f
 
-
-    DNS: 172.16.1.1
-
     addons:
       netshoot:
         enabled: true
@@ -52,7 +49,7 @@ spec:
           - name: DOT
             value: "off"
           - name: FIREWALL_VPN_INPUT_PORTS
-            value: &port 51820
+            value: 51820,55633
           # - name:  WIREGUARD_PRIVATE_KEY
           #   value: set in secret
           # - name:  WIREGUARD_ADDRESSES
@@ -74,18 +71,27 @@ spec:
             - to:
                 - ipBlock:
                     cidr: 0.0.0.0/0
+                - ipBlock:
+                    cidr: ::/0
               ports:
                 # VPN traffic
-                - port: *port
+                - port: 51820
                   protocol: UDP
+                - port: 55633
+                  protocol: UDP
+                - port: 55633
+                  protocol: TCP
             - to:
-                - ipBlock:
-                    cidr: 10.0.0.0/8
-
+                - namespaceSelector: {}
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: downloads-gateway-pod-gateway
       secret.reloader.stakater.com/reload: downloads-gateway-vpnconfig
+
+
+    DNS: 172.16.1.1
+    routed_namespaces:
+      - downloads
 
     settings:
       VPN_INTERFACE: "wg0"
@@ -98,6 +104,21 @@ spec:
       VPN_LOCAL_CIDRS: 10.0.0.0/8 192.168.0.0/16
       VPN_LOCAL_IPv6_CIDRS: 2001:67c:1104::/48
       NOT_ROUTED_TO_GATEWAY_CIDRS: 10.0.0.0/8 192.168.0.0/16
+
+    publicPorts:
+      - hostname: qbittorrent
+        IP: 10
+        ports:
+          - type: tcp
+            port: 55633
+
+    publicIPv6Ports:
+      - hostname: qbittorrent
+        IP: 10
+        ports:
+          - type: tcp
+            port: 55633
+
 
     webhook:
       image:
