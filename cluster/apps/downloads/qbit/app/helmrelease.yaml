@@ -35,7 +35,7 @@ spec:
       tag: 4.5.2@sha256:6d634e1b42fa7b0c8fa98c2f64116539519715c39cd713dbb51331c3a1e02689
     env:
       QBITTORRENT__PORT: &port 80
-      QBITTORRENT__BT_PORT: &port-bt 50413
+      QBITTORRENT__BT_PORT: &port-bt 55633
     service:
       main:
         ports:
