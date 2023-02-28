@@ -26,7 +26,7 @@ spec:
     image:
       repository: registry.samipsolutions.fi/library/pod-gateway
       pullPolicy: Always
-      tag: latest@sha256:c3ff15a02b7bb7b442061e9ef82807d571777d10d7f20c9e676393ab57f0f3f6
+      tag: latest@sha256:4a04f5cef06e92c1b2b002289a8d0531af767d299cfc08afea26050d3f43abec
 
 
     DNS: 172.16.1.1
