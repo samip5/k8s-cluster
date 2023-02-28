@@ -67,6 +67,9 @@ spec:
       fsGroupChangePolicy: OnRootMismatch
       supplementalGroups: [10000]
 
+    podAnnotations:
+      setGateway: "true"
+
     persistence:
       config:
         enabled: true
