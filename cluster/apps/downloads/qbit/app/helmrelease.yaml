@@ -27,7 +27,6 @@ spec:
   values:
     fullNameOverride: qbittorrent
     controller:
-      type: statefulset
       annotations:
         reloader.stakater.com/auto: "true"
     image:
