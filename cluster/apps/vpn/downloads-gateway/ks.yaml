@@ -1,0 +1,19 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: apps-downloads-gateway
+  namespace: flux-system
+spec:
+  path: './cluster/apps/vpn/downloads-gateway/app/'
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: k8s-home-ops
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: downloads-gateway
+      namespace: vpn
