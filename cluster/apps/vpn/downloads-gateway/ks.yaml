@@ -8,7 +8,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: k8s-home-ops
+    name: cluster
   interval: 30m
   retryInterval: 1m
   timeout: 3m
