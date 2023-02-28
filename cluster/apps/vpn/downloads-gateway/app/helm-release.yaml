@@ -9,10 +9,10 @@ spec:
   chart:
     spec:
       chart: pod-gateway
-      version: 6.4.0
+      version: 9.9.0
       sourceRef:
         kind: HelmRepository
-        name: angelnu-charts
+        name: samipsolutions-charts
         namespace: flux-system
       interval: 15m
   install:
