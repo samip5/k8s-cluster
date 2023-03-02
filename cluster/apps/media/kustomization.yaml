@@ -7,3 +7,4 @@ resources:
  - youtubedl
  - prowlarr/ks.yaml
  - flaresolverr/ks.yaml
+ - netshoot.yaml
