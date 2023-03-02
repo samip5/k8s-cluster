@@ -33,8 +33,6 @@ spec:
       repository: ghcr.io/flaresolverr/flaresolverr
       tag: v3.0.2
 
-    podAnnotations:
-      setGateway: "true"
     service:
       main:
         ports:
