@@ -92,6 +92,7 @@ spec:
     DNS: 172.16.1.1
     routed_namespaces:
       - downloads
+      - media
 
     settings:
       VPN_INTERFACE: "wg0"
