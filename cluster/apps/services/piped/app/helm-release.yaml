@@ -26,6 +26,11 @@ spec:
       env:
         BACKEND_HOSTNAME: pipedapi.skylab.fi
 
+    backend:
+      config:
+        PORT: 8080
+        NUM_WORKERS: 2
+
     ingress:
       main:
         enabled: true
