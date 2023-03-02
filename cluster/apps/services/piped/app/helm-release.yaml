@@ -35,7 +35,8 @@ spec:
             paths:
               - path: "/"
         tls:
-          - hosts: *host
+          - hosts:
+              - *host
 
       backend:
         enabled: true
@@ -45,7 +46,8 @@ spec:
             paths:
               - path: "/"
         tls:
-          - hosts: *api_host
+          - hosts:
+             - *api_host
 
 
       ytproxy:
@@ -56,4 +58,5 @@ spec:
             paths:
               - path: "/"
         tls:
-          - hosts: *proxy
+          - hosts:
+              - *proxy
