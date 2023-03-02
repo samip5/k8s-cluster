@@ -40,4 +40,5 @@ resources:
   - fairwinds-charts.yaml
   - drone-charts.yaml
   - gitlab-charts.yaml
+  - teampiped.yaml
 
