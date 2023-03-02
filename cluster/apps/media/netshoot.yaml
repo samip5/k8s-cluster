@@ -31,7 +31,10 @@ spec:
       repository: nicolaka/netshoot
       tag: latest
 
-    command: "/bin/sh  -c sleep infinity"
+    command: "/bin/sh"
+    args:
+     - "-c"
+     - "sleep infinity"
 
     podAnnotations:
       setGateway: "true"
