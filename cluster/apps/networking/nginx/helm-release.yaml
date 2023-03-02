@@ -40,7 +40,7 @@ spec:
         server-tokens: false
         enable-real-ip: true
         enable-brotli: "true"
-        custom-http-errors: 404,403
+        #custom-http-errors: 404,403
         log-format-escape-json: "true"
         log-format-upstream: '{"time": "$time_iso8601", "remote_addr": "$proxy_protocol_addr", "x_forwarded_for": "$proxy_add_x_forwarded_for", "request_id": "$req_id",
                "remote_user": "$remote_user", "bytes_sent": $bytes_sent, "request_time": $request_time, "status": $status, "vhost": "$host", "request_proto": "$server_protocol",
@@ -122,7 +122,7 @@ spec:
           cpu: 2281m
           memory: 524M
     defaultBackend:
-      enabled: true
+      enabled: false
       image:
         repository: ghcr.io/tarampampam/error-pages
         tag: 2.21.0
