@@ -7,3 +7,4 @@ resources:
   - mosquitto/ks.yaml
   - zigbee2mqtt/ks.yaml
   - node-red/ks.yaml
+  - ns.yaml
