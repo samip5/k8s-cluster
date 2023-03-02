@@ -31,9 +31,15 @@ spec:
       repository: nicolaka/netshoot
       tag: latest
 
+    command: "/bin/sh  -c sleep infinity"
+
     podAnnotations:
       setGateway: "true"
 
+    podSecurityContext:
+      capabilities:
+        add:
+          - NET_ADMIN
     service:
       main:
        enabled: false
