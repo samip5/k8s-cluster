@@ -5,3 +5,4 @@ resources:
   - nitter/ks.yaml
   - proxitok/ks.yaml
   - i2p/ks.yaml
+  - piped/ks.yaml
