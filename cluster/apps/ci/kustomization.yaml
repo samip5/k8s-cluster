@@ -6,5 +6,4 @@ resources:
   - github-actions/ks.yaml
   - github-actions/ks-runners.yaml
   - drone-gitea/ks.yaml
-#  - tekton/ks.yaml
   - drone-gitea/ks-runners.yaml
