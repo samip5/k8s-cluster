@@ -77,10 +77,11 @@ spec:
         mountPath: /usr/src/app/upload
     resources:
       requests:
-        cpu: 100m
-        memory: 250Mi
+        cpu: 15m
+        memory: 64M
       limits:
-        memory: 2000Mi
+        cpu: 15m
+        memory: 64M
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:

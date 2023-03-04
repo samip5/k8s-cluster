@@ -47,10 +47,11 @@ spec:
         mountPath: /usr/src/app/upload
     resources:
       requests:
-        cpu: 100m
-        memory: 250Mi
+        cpu: 15m
+        memory: 814M
       limits:
-        memory: 2000Mi
+        cpu: 15m
+        memory: 984M
 
 
     # Next release at least is not going to have arm64 images..

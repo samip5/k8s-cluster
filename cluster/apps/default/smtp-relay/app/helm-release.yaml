@@ -59,3 +59,11 @@ spec:
         enabled: true
         existingClaim: smtp-relay-postfix-spool
         mountPath: /var/spool/postfix
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 64M
+      limits:
+        cpu: 15m
+        memory: 64M

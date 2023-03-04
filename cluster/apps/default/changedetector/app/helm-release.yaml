@@ -60,3 +60,11 @@ spec:
         size: 1G
         mountPath: /datastore
         retain: true
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 145M
+      limits:
+        cpu: 15m
+        memory: 219M
