@@ -5,7 +5,7 @@ metadata:
   name: youtubedl-appdata
   namespace: media
 spec:
-  storageClassName: nfs-client
+  storageClassName: longhorn
   accessModes:
     - ReadWriteOnce
   resources:
