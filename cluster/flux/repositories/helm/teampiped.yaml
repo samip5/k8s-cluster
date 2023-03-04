@@ -7,5 +7,5 @@ metadata:
   namespace: flux-system
 spec:
   interval: 15m
-  url: https://teampiped.github.io/Piped-Kubernetes/
+  url: https://helm.piped.video
   timeout: 3m
