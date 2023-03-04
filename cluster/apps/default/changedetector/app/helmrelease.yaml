@@ -41,6 +41,13 @@ spec:
         ports:
           http:
             port: 3000
+    resources:
+      requests:
+        cpu: 15m
+        memory: 921M
+      limits:
+        cpu: 15m
+        memory: 1184M
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
