@@ -17,6 +17,6 @@ resources:
   - ci
   - search
   - tor
-  - games
+#  - games
   - vpn
   - downloads
