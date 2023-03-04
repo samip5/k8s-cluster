@@ -84,6 +84,14 @@ spec:
           - hosts:
               - *host
 
+    resources:
+      requests:
+        cpu: 15m
+        memory: 324M
+      limits:
+        cpu: 15m
+        memory: 425M
+
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -145,6 +153,14 @@ spec:
         ports:
           http:
             port: 27017
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 94M
+      limits:
+        cpu: 15m
+        memory: 133M
 
     affinity:
       nodeAffinity:
