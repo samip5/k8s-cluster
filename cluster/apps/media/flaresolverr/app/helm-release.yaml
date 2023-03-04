@@ -40,7 +40,6 @@ spec:
             port: 8191
     resources:
       requests:
-        cpu: 15m
         memory: 105Mi
       limits:
         memory: 292Mi
