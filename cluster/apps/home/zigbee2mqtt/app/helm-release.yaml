@@ -76,10 +76,10 @@ spec:
     nodeSelector:
       kubernetes.io/hostname: "w7"
 
-    resources:
-      requests:
-        cpu: 15m
-        memory: 145M
-      limits:
-        cpu: 15m
-        memory: 198M
+#    resources:
+#      requests:
+#        cpu: 15m
+#        memory: 145M
+#      limits:
+#        cpu: 15m
+#        memory: 198M
