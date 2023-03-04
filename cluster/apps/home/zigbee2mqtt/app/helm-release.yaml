@@ -39,7 +39,6 @@ spec:
     env:
       TZ: Europe/Helsinki
       ZIGBEE2MQTT_DATA: /data
-      DEBUG: zigbee-herdsman*
 
     service:
       main:
@@ -73,6 +72,9 @@ spec:
       - key: "cm4"
         operator: "Exists"
         effect: "PreferNoSchedule"
+
+    nodeSelector:
+      kubernetes.io/hostname: "w7"
 
     resources:
       requests:
