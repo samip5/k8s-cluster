@@ -78,10 +78,8 @@ spec:
 
     resources:
       requests:
-        cpu: 15m
         memory: 443M
       limits:
-        cpu: 15m
         memory: 536M
 
     affinity:

@@ -156,18 +156,14 @@ spec:
     prometheusOperator:
       resources:
         requests:
-          cpu: 15m
           memory: 164M
         limits:
-          cpu: 15m
           memory: 300M
       prometheusConfigReloader:
         resources:
           requests:
-            cpu: 100m
             memory: 50Mi
           limits:
-            cpu: 200m
             memory: 100Mi
     prometheus:
       ingress:
@@ -204,10 +200,8 @@ spec:
                   storage: 50Gi
         resources:
           requests:
-            cpu: 510m
             memory: 2281M
           limits:
-            cpu: 1353m
             memory: 3123M
 
 
