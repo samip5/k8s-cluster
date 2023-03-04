@@ -105,7 +105,7 @@ spec:
       VPN_LOCAL_CIDRS: 10.0.0.0/8 192.168.0.0/16
       VPN_LOCAL_IPv6_CIDRS: 2001:67c:1104::/48
       NOT_ROUTED_TO_GATEWAY_CIDRS: 10.0.0.0/8 192.168.0.0/16
-      IPv6_ENABLED: true
+      IPV6_ENABLED: true
       IPV4_ENABLED: true
 
     publicPorts:
