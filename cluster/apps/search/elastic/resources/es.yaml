@@ -6,6 +6,7 @@ metadata:
   namespace: search
 spec:
   version: 7.17.9
+  volumeClaimDeletePolicy: DeleteOnScaledownOnly
   http:
     tls:
       selfSignedCertificate:
