@@ -78,7 +78,7 @@ spec:
       secret-file:
         enabled: true
         type: secret
-        name: mosquitto-secret
+        name: mosquitto
         subPath: mosquitto_pwd
         mountPath: /data/mosquitto_secret/mosquitto_pwd
         readOnly: true
