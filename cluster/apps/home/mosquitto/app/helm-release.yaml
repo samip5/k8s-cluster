@@ -60,7 +60,7 @@ spec:
             listener 1883
             allow_anonymous false
             persistence true
-            persistence_location /data/mosquitto/data
+            persistence_location /data/mosquitto/
             autosave_interval 1800
             connection_messages true
             autosave_interval 60
