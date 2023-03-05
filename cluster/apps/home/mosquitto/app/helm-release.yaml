@@ -82,6 +82,10 @@ spec:
         subPath: mosquitto_pwd
         mountPath: /data/mosquitto_secret/mosquitto_pwd
         readOnly: true
+      external-config:
+        enabled: true
+        type: emptyDir
+        mountPath: /mosquitto/external_config
     tolerations:
       - key: "cm4"
         operator: "Exists"
