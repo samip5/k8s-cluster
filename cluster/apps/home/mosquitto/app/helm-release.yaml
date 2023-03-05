@@ -60,8 +60,6 @@ spec:
           mqtt:
             enabled: true
             port: 1883
-    auth:
-      enabled: true
     podAnnotations:
       secret.reloader.stakater.com/reload: mosquitto
     persistence:
