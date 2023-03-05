@@ -36,7 +36,7 @@ spec:
         image: public.ecr.aws/docker/library/eclipse-mosquitto:2.0.15
         imagePullPolicy: IfNotPresent
         command: [ "/bin/sh", "-c" ]
-        args: [ "cp /data/mosquitto_secret/* /data/external_config/ && mosquitto_passwd -U /data/external_config/mosquitto_pwd" ]
+        args: [ "cp -v /data/mosquitto/* /data/external_config/ && mosquitto_passwd -U /data/external_config/mosquitto_pwd" ]
         volumeMounts:
           - { name: secret-file, mountPath: /data/mosquitto_secret }
           - { name: external-config, mountPath: /data/external_config }
@@ -80,7 +80,7 @@ spec:
         type: secret
         name: mosquitto
         subPath: mosquitto_pwd
-        mountPath: /data/mosquitto_secret/mosquitto_pwd
+        mountPath: /data/mosquitto/mosquitto_pwd
         readOnly: true
       external-config:
         enabled: true
