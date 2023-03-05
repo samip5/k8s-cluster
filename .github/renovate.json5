@@ -10,20 +10,17 @@
     ":automergeDigest",
     ":automergeBranch",
     "github>samip5/k8s-cluster//.github/renovate/autoMerge.json5",
+    "github>samip5/k8s-cluster//.github/renovate/commitMessage.json5",
     "github>samip5/k8s-cluster//.github/renovate/customVersionSchemes.json5",
     "github>samip5/k8s-cluster//.github/renovate/disabledDatasources.json5",
     "github>samip5/k8s-cluster//.github/renovate/groups.json5",
     "github>samip5/k8s-cluster//.github/renovate/labels.json5",
-    "github>samip5/k8s-cluster//.github/renovate/semanticCommits.json5",
     "github>samip5/k8s-cluster//.github/renovate/looseVersioning.json5",
     "helpers:pinGitHubActionDigests"
   ],
   "platform": "github",
-  "username": "samip5-bot[bot]",
-  "repositories": ["samip5/k8s-cluster"],
   "onboarding": false,
   "requireConfig": "optional",
-  "gitAuthor": "samip5-bot <118629685+samip5-bot[bot]@users.noreply.github.com>",
   "commitBodyTable": true,
   "timezone": "Europe/Helsinki",
   "semanticCommits": "enabled",
@@ -32,9 +29,6 @@
   "suppressNotifications": ["prIgnoreNotification"],
   "rebaseWhen": "conflicted",
   "ignorePaths": ["archive/**"],
-  "docker-compose": {
-    "fileMatch": ["ansible/.+/docker-compose.*\\.ya?ml(\\.j2)?$"]
-  },
   "flux": {
     "fileMatch": ["cluster/.+\\.ya?ml$"]
   },
@@ -45,14 +39,6 @@
     "fileMatch": ["cluster/.+\\.ya?ml$"]
   },
   "regexManagers": [
-    {
-      "description": ["Process CRD dependencies - Chart and Github Release are the same version"],
-      "fileMatch": ["cluster/.+\\.ya?ml$"],
-      "matchStrings": [
-        "# renovate: registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n",
-      ],
-      "datasourceTemplate": "helm"
-    },
     {
       "description": "Process various dependencies",
       "fileMatch": [

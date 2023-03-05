@@ -8,7 +8,7 @@
       automergeType: "branch",
       ignoreTests: true,
       matchUpdateTypes: ["digest", "minor", "patch"],
-      matchPackagePattern: ["ghcr.io/k8s-at-home", "ghcr.io/onedr0p"],
+      matchPackagePattern: ["ghcr.io/onedr0p"],
     },
     // enable auto-merge
     {
@@ -58,7 +58,6 @@
       matchUpdateTypes: ["minor", "patch"],
       matchPackageNames: [
         "kube-prometheus-stack",
-        "traefik",
         "authentik",
         "grafana",
         "ghost"
