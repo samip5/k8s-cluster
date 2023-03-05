@@ -82,3 +82,8 @@ spec:
         tls:
           - hosts:
               - *proxy
+
+    postgresql:
+      primary:
+        podAnnotations:
+          kyverno-no-tz: "true"
