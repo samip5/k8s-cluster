@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: piped
-      version: 0.0.4
+      version: 1.1.0
       sourceRef:
         kind: HelmRepository
         name: teampiped
@@ -23,15 +23,34 @@ spec:
       retries: 5
   values:
     frontend:
+      image:
+        # Pull-though cache
+        repository: registry.samipsolutions.fi/docker/1337kavin/piped-frontend
+        tag: latest
+        pullPolicy: Always
+
       env:
         BACKEND_HOSTNAME: pipedapi.skylab.fi
 
     backend:
+      image:
+        # Pull-though cache
+        repository: registry.samipsolutions.fi/docker/1337kavin/piped
+        tag: latest
+        pullPolicy: Always
+
       config:
         PORT: 8080
         NUM_WORKERS: 2
         PROXY_PART: https://ytproxy.skylab.fi
         DISABLE_REGISTRATION: true
+
+    ytproxy:
+      image:
+        # Pull-though cache
+        repository: registry.samipsolutions.fi/docker/1337kavin/piped-proxy
+        tag: latest
+        pullPolicy: Always
 
     ingress:
       main:
@@ -82,8 +101,3 @@ spec:
         tls:
           - hosts:
               - *proxy
-
-    postgresql:
-      primary:
-        podAnnotations:
-          kyverno-no-tz: "true"
