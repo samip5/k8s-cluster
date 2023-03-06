@@ -41,7 +41,7 @@
       ignoreTests: true,
       matchUpdateTypes: ["minor", "patch"],
       matchPackageNames: [
-        "koenkk/zigbee2mqtt"
+        "ghcr.io/koenkk/zigbee2mqtt"
       ]
     },
     {
