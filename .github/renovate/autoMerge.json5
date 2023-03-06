@@ -35,6 +35,16 @@
       ],
     },
     {
+      matchDatasources: ["docker"],
+      automerge: false,
+      automergeType: "branch",
+      ignoreTests: true,
+      matchUpdateTypes: ["minor", "patch"],
+      matchPackageNames: [
+        "koenkk/zigbee2mqtt"
+      ]
+    },
+    {
       matchDatasources: ["galaxy-collection"],
       automerge: true,
       automergeType: "branch",
