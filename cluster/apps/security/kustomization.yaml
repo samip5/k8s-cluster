@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - ns.yaml
   - authentik/ks.yaml
-#  - falco/ks.yaml
+  - falco/ks.yaml
 #  - authelia_dev
 #  - authelia_fi
