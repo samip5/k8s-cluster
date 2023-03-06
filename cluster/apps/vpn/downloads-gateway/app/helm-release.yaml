@@ -26,7 +26,7 @@ spec:
     image:
       repository: registry.samipsolutions.fi/library/pod-gateway
       pullPolicy: Always
-      tag: latest@sha256:cfeb666990b80f5ac7965b2d6273788248e3540fd2107e61523bd3c1e6d820e1
+      tag: latest@sha256:ceb10d30d8457af091d29f994cbd37256e3eb60d811b1ba82c4f61efc3c7b663
 
     addons:
       netshoot:
