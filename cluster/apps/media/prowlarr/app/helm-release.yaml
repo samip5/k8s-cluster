@@ -28,6 +28,7 @@ spec:
     keepHistory: false
   values:
     controller:
+      strategy: RollingUpdate
       annotations:
         reloader.stakater.com/auto: "true"
     image:
@@ -38,6 +39,9 @@ spec:
       PROWLARR__PORT: &port 80
       PROWLARR__LOG_LEVEL: info
       PROWLARR__AUTHENTICATION_METHOD: External
+      PROWLARR__POSTGRES_HOST: 192.168.2.2
+      PROWLARR__POSTGRES_MAIN_DB: prowlarr_main
+      PROWLARR__POSTGRES_LOG_DB: prowlarr_log
     envFrom:
       - secretRef:
           name: prowlarr-secret
@@ -70,12 +74,14 @@ spec:
       runAsGroup: 568
       fsGroup: 568
       fsGroupChangePolicy: OnRootMismatch
-    volumeClaimTemplates:
-      - name: config
-        mountPath: /config
-        accessMode: ReadWriteOnce
-        size: 2Gi
-        storageClass: longhorn
+    persistence:
+      config:
+        enabled: true
+        existingClaim: prowlarr-config-v1
+      backup:
+        enabled: true
+        existingClaim: prowlarr-backup-v1
+        mountPath: /config/Backups
     resources:
       requests:
         memory: 127Mi
