@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - secret.sops.yaml
+  - config-pvc.yaml
 labels:
   - pairs:
       app.kubernetes.io/name: prowlarr
