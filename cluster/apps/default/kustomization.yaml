@@ -8,5 +8,3 @@ resources:
   - theme-park/ks.yaml
   - smtp-relay/ks.yaml
 #  - syncthing/ks.yaml
-# Need to make own one if I want it.
-#  - kubernetes-schemas/ks.yaml
