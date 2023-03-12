@@ -23,12 +23,18 @@ spec:
     loki:
       structuredConfig:
         auth_enabled: false
+
         server:
           log_level: info
           http_listen_port: 3100
           grpc_listen_port: 9095
+
+          grpc_server_max_recv_msg_size: 8388608
+          grpc_server_max_send_msg_size: 8388608
+
         memberlist:
           join_members: [ "loki-memberlist" ]
+
         limits_config:
           retention_period: 14d
           enforce_metric_name: false
@@ -36,8 +42,11 @@ spec:
           reject_old_samples_max_age: 168h
           max_cache_freshness_per_query: 10m
           split_queries_by_interval: 15m
-          ingestion_rate_mb: 8
-          ingestion_burst_size_mb: 16
+          ingestion_rate_mb: 16
+          ingestion_burst_size_mb: 32
+          shard_streams:
+            enabled: true
+
         schema_config:
           configs:
             - from: "2021-08-01"
@@ -47,6 +56,7 @@ spec:
               index:
                 prefix: loki_index_
                 period: 24h
+
         common:
           path_prefix: /var/loki
           replication_factor: 3
@@ -118,31 +128,31 @@ spec:
       persistence:
         size: 10Gi
         storageClass: nfs-client
-      read:
-        replicas: 3
-        persistence:
-          storageClass: nfs-client
-        extraVolumeMounts:
-          - name: rules
-            mountPath: /rules
-        extraVolumes:
-          - name: rules
-            emptyDir: { }
-      backend:
-        replicas: 3
-        persistence:
-          size: 10Gi
-          storageClass: nfs-client
-        extraVolumeMounts:
-          - name: rules
-            mountPath: /rules
-          - name: scratch
-            mountPath: /tmp/scratch
-        extraVolumes:
-          - name: rules
-            emptyDir: {}
-          - name: scratch
-            emptyDir: {}
+    read:
+      replicas: 3
+      persistence:
+        storageClass: nfs-client
+      extraVolumeMounts:
+        - name: rules
+          mountPath: /rules
+      extraVolumes:
+        - name: rules
+          emptyDir: { }
+    backend:
+      replicas: 3
+      persistence:
+        size: 10Gi
+        storageClass: nfs-client
+      extraVolumeMounts:
+        - name: rules
+          mountPath: /rules
+        - name: scratch
+          mountPath: /tmp/scratch
+      extraVolumes:
+        - name: rules
+          emptyDir: {}
+        - name: scratch
+          emptyDir: {}
     monitoring:
       dashboards:
         enabled: true
