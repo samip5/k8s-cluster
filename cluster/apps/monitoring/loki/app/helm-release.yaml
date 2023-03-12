@@ -63,6 +63,8 @@ spec:
             kvstore:
               store: memberlist
         ruler:
+          enable_api: true
+          enable_alertmanager_v2: true
           rule_path: /tmp/scratch
           alertmanager_url: http://alertmanager-operated:9093
           storage:
@@ -72,8 +74,6 @@ spec:
           ring:
             kvstore:
               store: inmemory
-          enable_api: true
-          enable_alertmanager_v2: true
         distributor:
           ring:
             kvstore:
@@ -118,47 +118,50 @@ spec:
       persistence:
         size: 10Gi
         storageClass: nfs-client
-    read:
-      replicas: 3
-      extraVolumeMounts:
-        - name: loki-rules
-          mountPath: /rules/fake
-        - name: loki-rules-tmp
-          mountPath: /tmp/scratch
-        - name: loki-tmp
-          mountPath: /tmp/loki-tmp
-      extraVolumes:
-        - name: loki-rules
-          configMap:
-            name: loki-alerting-rules
-        - name: loki-rules-tmp
-          emptyDir: { }
-        - name: loki-tmp
-          emptyDir: { }
-      persistence:
-        size: 10Gi
-        storageClass: nfs-client
-      test:
-        enabled: false
+      read:
+        replicas: 3
+        persistence:
+          storageClass: nfs-client
+        extraVolumeMounts:
+          - name: rules
+            mountPath: /rules
+        extraVolumes:
+          - name: rules
+            emptyDir: { }
+      backend:
+        replicas: 3
+        persistence:
+          size: 10Gi
+          storageClass: nfs-client
+        extraVolumeMounts:
+          - name: rules
+            mountPath: /rules
+          - name: scratch
+            mountPath: /tmp/scratch
+        extraVolumes:
+          - name: rules
+            emptyDir: {}
+          - name: scratch
+            emptyDir: {}
     monitoring:
-      serviceMonitor:
-        enabled: false
-        metricsInstance:
+      dashboards:
+        enabled: true
+        annotations:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
+          grafana_folder: Loki
+        labels:
+          grafana_dashboard: "true"
+        rules:
+          enabled: true
+          alerting: true
+        serviceMonitor:
           enabled: false
-      selfMonitoring:
-        enabled: false
-        grafanaAgent:
-          installOperator: false
+        selfMonitoring:
+          enabled: false
+          grafanaAgent:
+            installOperator: false
         lokiCanary:
           enabled: false
-    test:
-      enabled: false
-    affinity:
-     nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-          - matchExpressions:
-              - key: kubernetes.io/arch
-                operator: In
-                values:
-                  - "amd64"
+        test:
+          enabled: false
+
