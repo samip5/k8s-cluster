@@ -27,9 +27,18 @@ spec:
     controller:
       annotations:
         reloader.stakater.com/auto: "true"
+
     image:
-      repository: jacobalberty/unifi
+      repository: ghcr.io/jacobalberty/unifi-docker
       tag: v7.3.83
+
+    env:
+      RUNAS_UID0: "false"
+      UNIFI_UID: "1026"
+      UNIFI_GID: "100"
+      UNIFI_STDOUT: "true"
+      JVM_INIT_HEAP_SIZE:
+      JVM_MAX_HEAP_SIZE: 1024M
 
     service:
       main:
@@ -91,11 +100,8 @@ spec:
     persistence:
       data:
         enabled: true
+        existingClaim: unifi-data-v1
         mountPath: /unifi
-        accessMode: ReadWriteOnce
-        size: 1Gi
-        retain: true
-        storageClass: nfs-client
 
     nodeSelector:
       kubernetes.io/hostname: "w7"
