@@ -5,7 +5,7 @@ resources:
   - nginx
   - external-dns
   - misc-ingresses
-  - unifi
+  - unifi/ks.yaml
   - k8s-gateway
   - multus/ks.yaml
   - metallb/ks.yaml
