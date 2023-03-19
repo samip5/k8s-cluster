@@ -29,6 +29,8 @@ spec:
                 - ci
                 - tekton-pipelines
                 - search
+                - crypto
+                - storage
           - resources:
               annotations:
                 kyverno-no-tz: "true"
