@@ -10,6 +10,7 @@ parameters:
   numberOfReplicas: "3"
   staleReplicaTimeout: "2880" # 48 hours in minutes
   fromBackup: ""
+  fsType: "xfs"
   encrypted: "true"
   # per volume secret which utilizes the `pvc.name` and `pvc.namespace` template parameters
   csi.storage.k8s.io/provisioner-secret-name: ${pvc.name}
