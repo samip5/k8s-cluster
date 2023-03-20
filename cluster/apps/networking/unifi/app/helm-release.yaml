@@ -14,7 +14,6 @@ spec:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
   install:
     createNamespace: true
     remediation:
@@ -40,7 +39,9 @@ spec:
       main:
         type: LoadBalancer
         externalTrafficPolicy: Local
-        loadBalancerIP: "${METALLB_UNIFI_ADDR}"
+        annotations:
+          metallb.universe.tf/allow-shared-ip: unifi
+          metallb.universe.tf/loadBalancerIPs: "${METALLB_UNIFI_ADDR}"
         ports:
           http:
             port: 8443
@@ -91,14 +92,7 @@ spec:
                 - *host
 
     persistence:
-      data:
+      config:
         enabled: true
         existingClaim: unifi-data-v1
         mountPath: /unifi
-
-    nodeSelector:
-      kubernetes.io/hostname: "w7"
-    tolerations:
-      - key: "cm4"
-        operator: "Exists"
-        effect: "PreferNoSchedule"
