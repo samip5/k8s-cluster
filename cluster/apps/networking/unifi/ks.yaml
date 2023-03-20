@@ -13,7 +13,7 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: unifi
+      name: unifi-controller
       namespace: networking
   interval: 30m
   retryInterval: 1m
