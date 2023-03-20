@@ -49,6 +49,7 @@ spec:
           metallb.universe.tf/allow-shared-ip: unifi
         ports:
           http:
+            primaryPort: true
             port: 8443
             protocol: HTTPS
           controller:
