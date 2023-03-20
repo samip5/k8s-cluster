@@ -48,48 +48,37 @@ spec:
         annotations:
           metallb.universe.tf/allow-shared-ip: unifi
         ports:
-          # Web admin
           http:
             port: 8443
-          # device communication
-          device-comm:
+            protocol: HTTPS
+          controller:
             enabled: true
             port: 8080
             protocol: TCP
-          # STUN
+          portal-http:
+            enabled: false
+            port: 8880
+            protocol: HTTP
+          portal-https:
+            enabled: false
+            port: 8843
+            protocol: HTTPS
+          speedtest:
+            enabled: true
+            port: 6789
+            protocol: TCP
           stun:
             enabled: true
             port: 3478
             protocol: UDP
-          # AP discovery
-          ap-discovery:
-            enabled: true
-            port: 10001
-            protocol: UDP
-          # 'Make controller discoverable on L2 network' option
-          l2-discovery:
-            enabled: true
-            port: 1900
-            protocol: UDP
-          # mobile throughput test
-          mobile-test:
-            enabled: true
-            port: 6789
-            protocol: TCP
-          # Remote syslog port
           syslog:
             enabled: true
             port: 5514
             protocol: UDP
-          # guest portal redirect ports
-          guest-portal-https:
-            enabled: false
-            port: 8843
-            protocol: TCP
-          guest-portal-http:
-            enabled: false
-            port: 8880
-            protocol: TCP
+          discovery:
+            enabled: true
+            port: 10001
+            protocol: UDP
 
       ingress:
         main:
