@@ -20,7 +20,6 @@ spec:
     persistence:
       defaultClassReplicaCount: 2
       defaultFsType: xfs
-      defaultDataLocality: best-effort
     defaultSettings:
       defaultReplicaCount: 2
     pspEnable: false
