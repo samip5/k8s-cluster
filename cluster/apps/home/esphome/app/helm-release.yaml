@@ -84,20 +84,12 @@ spec:
     podAnnotations:
       k8s.v1.cni.cncf.io/networks: esphome-iot-static
 
+    nodeSelector:
+      kubernetes.io/hostname: "w7"
+
     persistence:
       config:
         enabled: true
         storageClass: nfs-client
         accessMode: ReadWriteOnce
         size: 1Gi
-
-    # IOT VLAN (50) is only configured on k8s-worker-amd64-3
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: kubernetes.io/hostname
-                  operator: In
-                  values:
-                    - "w-amd-3"

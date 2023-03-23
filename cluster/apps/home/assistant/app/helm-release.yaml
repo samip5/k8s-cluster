@@ -93,7 +93,7 @@ spec:
         existingClaim: assistant-config-v1
 
     nodeSelector:
-      kubernetes.io/hostname: "w-amd-3"
+      kubernetes.io/hostname: "w7"
     tolerations:
       - key: "cm4"
         operator: "Exists"
