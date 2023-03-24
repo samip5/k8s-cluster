@@ -31,7 +31,7 @@ spec:
   values:
     image:
       repository: ghcr.io/flaresolverr/flaresolverr
-      tag: v3.0.4
+      tag: v3.1.0
 
     service:
       main:
