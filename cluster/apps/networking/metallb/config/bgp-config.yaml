@@ -12,7 +12,7 @@ spec:
   # https://github.com/metallb/metallb/issues/1537
   ebgpMultiHop: false
 ---
-apiVersion: metallb.io/v1beta1
+apiVersion: metallb.io/v1beta2
 kind: IPAddressPool
 metadata:
   name: default-pool
@@ -24,7 +24,7 @@ spec:
     - 2001:67c:1104:fdb::/112
   avoidBuggyIPs: true
 ---
-apiVersion: metallb.io/v1beta1
+apiVersion: metallb.io/v1beta2
 kind: IPAddressPool
 metadata:
   name: smtp-gateway
@@ -34,7 +34,7 @@ spec:
     - 192.168.10.11/32
     - 2001:67c:1104:fc00::11/128
 ---
-apiVersion: metallb.io/v1beta1
+apiVersion: metallb.io/v1beta2
 kind: IPAddressPool
 metadata:
   name: mailserv
@@ -44,7 +44,7 @@ spec:
     - 185.218.193.51/32
     - 2001:67c:1104:fc00::587/128
 ---
-apiVersion: metallb.io/v1beta1
+apiVersion: metallb.io/v1beta2
 kind: IPAddressPool
 metadata:
   name: unifi
@@ -53,7 +53,7 @@ spec:
   addresses:
     - 192.168.10.5/32
 ---
-apiVersion: metallb.io/v1beta1
+apiVersion: metallb.io/v1beta2
 kind: IPAddressPool
 metadata:
   name: mosquitto
@@ -63,7 +63,7 @@ spec:
     - 2001:67c:1104:fc00::10/128
     - 192.168.10.10/32
 ---
-apiVersion: metallb.io/v1beta1
+apiVersion: metallb.io/v1beta2
 kind: IPAddressPool
 metadata:
   name: nginx
@@ -75,7 +75,7 @@ spec:
     - 192.168.10.80/32
     - 2001:14ba:16d6:a6ad::4443/128
 ---
-apiVersion: metallb.io/v1beta1
+apiVersion: metallb.io/v1beta2
 kind: IPAddressPool
 metadata:
   name: game-prefix-pool
@@ -84,7 +84,7 @@ spec:
   addresses:
     - 192.168.10.13/32
 ---
-apiVersion: metallb.io/v1beta1
+apiVersion: metallb.io/v1beta2
 kind: IPAddressPool
 metadata:
   name: satisfactory
@@ -94,7 +94,7 @@ spec:
     - 192.168.10.12/32
     - 2001:14ba:16d6:a6ad::12/128
 ---
-apiVersion: metallb.io/v1beta1
+apiVersion: metallb.io/v1beta2
 kind: IPAddressPool
 metadata:
   name: public
@@ -103,7 +103,7 @@ spec:
   addresses:
     - 2001:67c:1104:fc00::100-2001:67c:1104:fc00::200
 ---
-apiVersion: metallb.io/v1beta1
+apiVersion: metallb.io/v1beta2
 kind: BGPAdvertisement
 metadata:
   name: bgp-lb
@@ -112,7 +112,7 @@ spec:
   ipAddressPools:
     - nginx
 ---
-apiVersion: metallb.io/v1beta1
+apiVersion: metallb.io/v1beta2
 kind: BGPAdvertisement
 metadata:
   name: bgp-other
