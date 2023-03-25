@@ -1,0 +1,94 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: mailserv
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+    timeout: 5m
+  upgrade:
+    remediation:
+      retries: 3
+    cleanupOnFail: true
+  values:
+    image:
+      # Pull-though Cache for Docker Hub
+      repository: registry.samipsolutions.fi/docker/analogic/poste.io
+      tag: latest
+
+    args:
+      - -h "mail.skylab.fi"
+
+    podAnnotations:
+      kyverno-no-tz: "true"
+
+
+    env:
+      TZ: Europe/Helsinki
+      HTTPS: OFF
+      DISABLE_CLAMAV: TRUE
+      DISABLE_ROUNDCUBE: TRUE
+
+    service:
+      main:
+        type: LoadBalancer
+        annotations:
+          metallb.universe.tf/allow-shared-ip: "mailserv"
+          metallb.universe.tf/loadBalancerIPs: "185.218.193.51,2001:67c:1104:fc00::587"
+        ipFamilyPolicy: RequireDualStack
+        externalTrafficPolicy: Local
+        ports:
+          http:
+            port: 443
+          smtp:
+            enabled: true
+            port: 25
+          smtps:
+            enabled: true
+            port: 465
+          submission:
+            enabled: true
+            port: 587
+          imap:
+            enabled: true
+            port: 143
+          imaps:
+            enabled: true
+            port: 993
+          sieve:
+            enabled: true
+            port: 4190
+
+    probes:
+      liveness:
+        enabled: false
+      startup:
+        enabled: false
+      readiness:
+        enabled: false
+    persistence:
+      data:
+        enabled: true
+        existingClaim: mailserv-data
+        mountPath: /data
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 64M
+      limits:
+        cpu: 15m
+        memory: 64M
