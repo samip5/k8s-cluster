@@ -14,7 +14,7 @@ spec:
 
   nodeSets:
     - name: default
-      count: 1
+      count: 2
       config:
         node.store.allow_mmap: false
         xpack.security.authc:
