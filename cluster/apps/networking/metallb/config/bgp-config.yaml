@@ -37,6 +37,16 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
+  name: mailserv
+  namespace: metallb-system
+spec:
+  addresses:
+    - 185.218.193.51/32
+    - 2001:67c:1104:fc00::587/128
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
   name: unifi
   namespace: metallb-system
 spec:
@@ -111,6 +121,7 @@ spec:
   ipAddressPools:
     - default-pool
     - smtp-gateway
+    - mailserv
     - mosquitto
     - public
     - game-prefix-pool
