@@ -39,6 +39,26 @@ spec:
       DISABLE_CLAMAV: TRUE
       DISABLE_ROUNDCUBE: TRUE
 
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+          nignx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          external-dns.target/enabled: "true"
+          external-dns-cf/is-dns-public: "true"
+          external-dns-cf/is-public: "true"
+        hosts:
+          - host: &host mail.skylab.fi
+            paths:
+              - path: /
+                pathType: Prefix
+
+        tls:
+          - hosts:
+              - *host
+
     service:
       main:
         type: LoadBalancer
@@ -49,6 +69,9 @@ spec:
         externalTrafficPolicy: Local
         ports:
           http:
+            port: 80
+          https:
+            enabled: true
             port: 443
           smtp:
             enabled: true
