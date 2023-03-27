@@ -29,8 +29,6 @@ spec:
       repository: registry.samipsolutions.fi/docker/analogic/poste.io
       tag: latest
 
-    hostname: "mail.skylab.fi"
-
     podAnnotations:
       kyverno-no-tz: "true"
 
