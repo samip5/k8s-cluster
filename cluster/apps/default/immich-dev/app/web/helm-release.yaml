@@ -73,7 +73,7 @@ spec:
     persistence:
       library:
         enabled: true
-        existingClaim: immich-nfs
+        existingClaim: immich-dev
         mountPath: /usr/src/app/upload
     resources:
       requests:
