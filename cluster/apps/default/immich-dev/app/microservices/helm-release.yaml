@@ -30,9 +30,6 @@ spec:
     image:
       repository: registry.samipsolutions.fi/library/immich-microservices-dev
       tag: latest
-    command: /bin/sh
-    args:
-      - ./start-microservices.sh
     envFrom:
       - secretRef:
           name: immich-dev-secret
