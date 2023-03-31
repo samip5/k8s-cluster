@@ -5,7 +5,6 @@ resources:
 #  - changedetector/ks.yaml
   - epic-freegames/ks.yaml
   - immich/ks.yaml
-  - immich-dev/ks.yaml
   - theme-park/ks.yaml
   - smtp-relay/ks.yaml
 #  - syncthing/ks.yaml
