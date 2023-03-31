@@ -44,8 +44,7 @@ spec:
     persistence:
       library:
         enabled: true
-        storageClass: longhorn
-
+        existingClaim: immich-dev
         mountPath: /usr/src/app/upload
     resources:
       requests:
