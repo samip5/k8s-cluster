@@ -30,7 +30,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/pablouser1/proxitok
-      tag: latest@sha256:0576f82423bce9850fcc088e51dea5fbda6d8ba1cc88e96f009d847bcd284865
+      tag: latest@sha256:ca98d6a87a3ba0d180f12a7bbf9528399b20f554f489f2a65f7e008da0f6af51
       pullPolicy: Always
     envFrom:
       - configMapRef:
