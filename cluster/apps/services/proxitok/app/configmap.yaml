@@ -13,3 +13,4 @@ data:
   API_SIGNER_URL: http://proxitok-signer.services.svc.cluster.local:8080/signature
   API_FORCE_LEGACY: "1"
   APP_URL: https://proxitok.skylab.fi
+  USER_AGENT: "Mozilla/5.0 (Android 12; Mobile; rv:109.0) Gecko/109.0 Firefox/109.0"
