@@ -1,6 +1,9 @@
 ---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - https://github.com/rancher/system-upgrade-controller/releases/latest/download/system-upgrade-controller.yaml
-  - system-upgrade-controller
+  # Pre Flux-Kustomizations
+  - ./namespace.yaml
+  # Flux-Kustomizations
+  - ./system-upgrade-controller/ks.yaml
