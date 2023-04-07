@@ -49,6 +49,6 @@ spec:
         mountPath: /usr/src/app/upload
     resources:
       requests:
-        memory: 204M
+        memory: 512M
       limits:
         memory: 1Gi
