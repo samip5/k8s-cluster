@@ -36,7 +36,7 @@ spec:
         enabled: true
         image:
           repository: quay.io/frrouting/frr
-          tag: v8.5.0
+          tag: 8.5.0
     crds:
       enabled: true
     # https://github.com/cilium/cilium/issues/20436
