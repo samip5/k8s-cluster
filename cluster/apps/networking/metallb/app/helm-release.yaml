@@ -35,8 +35,8 @@ spec:
       frr:
         enabled: true
         image:
-          repository: docker.io/frrouting/frr
-          tag: v8.4.1
+          repository: quay.io/frrouting/frr
+          tag: v8.5.0
     crds:
       enabled: true
     # https://github.com/cilium/cilium/issues/20436
