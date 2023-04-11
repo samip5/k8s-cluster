@@ -7,7 +7,6 @@ metadata:
 spec:
   install:
     crds: CreateReplace
-
   interval: 5m
   chart:
     spec:
@@ -45,6 +44,8 @@ spec:
           tag: 8.5.0
     crds:
       enabled: true
+    rbac:
+      create: true
     # https://github.com/cilium/cilium/issues/20436
     # https://github.com/metallb/metallb/issues/1512
     # This is really yank, when I have this many prefixes in use..
