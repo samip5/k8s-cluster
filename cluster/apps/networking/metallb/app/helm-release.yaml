@@ -35,7 +35,7 @@ spec:
     speaker:
       image:
         repository: quay.io/metallb/speaker
-        tag: main@sha256:f9105e549ace8266bc6392a5266e20a7a49a51f92f1dd158b80d48700de38a3e
+        tag: main@sha256:17a21fa269dabfe47e7e5a96b39c0288a84c5b9bc4bb1ce16925650a0f9236d3
       tolerateMaster: true
       logLevel: debug
       frr:
