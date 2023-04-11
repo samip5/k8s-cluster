@@ -21,6 +21,9 @@ spec:
       interval: 5m
   values:
     controller:
+      image:
+        repository: quay.io/metallb/controller
+        tag: main@sha256:f9105e549ace8266bc6392a5266e20a7a49a51f92f1dd158b80d48700de38a3e
       logLevel: debug
     prometheus:
       serviceAccount: kube-prometheus-stack-prometheus
@@ -30,6 +33,9 @@ spec:
       prometheusRule:
         enabled: true
     speaker:
+      image:
+        repository: quay.io/metallb/speaker
+        tag: main@sha256:f9105e549ace8266bc6392a5266e20a7a49a51f92f1dd158b80d48700de38a3e
       tolerateMaster: true
       logLevel: debug
       frr:
