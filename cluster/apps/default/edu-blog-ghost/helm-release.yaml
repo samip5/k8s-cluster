@@ -30,7 +30,7 @@ spec:
   values:
     image:
       repository: ghost
-      tag: 5.42.0
+      tag: 5.42.2
       pullPolicy: IfNotPresent
 
     env:
