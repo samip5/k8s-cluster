@@ -10,4 +10,4 @@ resources:
   - speedtest-exporter
   - vpa/ks.yaml
   - goldilocks/ks.yaml
-  - loki/ks.yaml
+#  - loki/ks.yaml
