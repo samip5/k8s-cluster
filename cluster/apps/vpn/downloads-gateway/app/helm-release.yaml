@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: pod-gateway
-      version: 9.9.0
+      version: 9.10.0
       sourceRef:
         kind: HelmRepository
         name: samipsolutions-charts
