@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
  - ns.yaml
  - jellyseer
-# - youtubedl
+ - youtubedl/ks.yaml
  - prowlarr/ks.yaml
  - flaresolverr/ks.yaml
 # - netshoot.yaml
