@@ -18,8 +18,8 @@ spec:
       interval: 5m
   values:
     image:
-      repository: docker.io/samip537/external-dns
-      tag: v1.2.0
+      repository: registry.samipsolutions.fi/library/external-dns
+      tag: v9.0.0
     extraArgs:
       - --annotation-filter=external-dns-cf/is-dns-public in (true)
       - --zone-id-filter=565f87a7bf0ab8ea9db9b83dca55bc54
