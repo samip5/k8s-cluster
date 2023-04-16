@@ -9,3 +9,5 @@ spec:
   count: 1
   elasticsearchRef:
     name: main
+  config:
+    server.publicBaseUrl: https://kb.skylab.fi
