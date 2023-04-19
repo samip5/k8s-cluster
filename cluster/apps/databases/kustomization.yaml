@@ -3,5 +3,4 @@ kind: Kustomization
 resources:
   - ns.yaml
   - redis/ks.yaml
-  - redis-sentinel/ks.yaml
   - pgadmin/ks.yaml
