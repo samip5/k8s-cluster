@@ -56,8 +56,6 @@ spec:
       PAPERLESS_DBPORT: "5432"
       PAPERLESS_DBNAME: paperless
       PAPERLESS_DBHOST: 192.168.2.2
-      USERMAP_UID: 568
-      USERMAP_GID: 568
     envFrom:
       - secretRef:
           name: paperless-secret
