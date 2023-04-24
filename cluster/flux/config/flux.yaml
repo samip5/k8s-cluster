@@ -53,7 +53,7 @@ spec:
         name: "(kustomize-controller|helm-controller|source-controller)"
     - patch: |
         - op: replace
-          path: /spec/template/spec/containers/0/image/
+          path: /spec/template/spec/containers/0/image/-
           value: ghcr.io/fluxcd/helm-controller:v0.32.2
       target:
         kind: Deployment
