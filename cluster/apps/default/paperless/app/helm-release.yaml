@@ -37,10 +37,10 @@ spec:
       PAPERLESS_CONSUMER_POLLING: 60
       PAPERLESS_CONSUMER_RECURSIVE: "true"
       PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: "true"
-      PAPERLESS_CONSUMPTION_DIR: /library/consume
+      PAPERLESS_CONSUMPTION_DIR: /data/nas/consume
       PAPERLESS_DATA_DIR: /library/data
       PAPERLESS_ENABLE_HTTP_REMOTE_USER: "true"
-      PAPERLESS_EXPORT_DIR: /library/export
+      PAPERLESS_EXPORT_DIR: /data/nas/export
       PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME: HTTP_REMOTE_USER
       PAPERLESS_MEDIA_ROOT: /library/media
       PAPERLESS_OCR_LANGUAGES: fin eng
@@ -57,6 +57,7 @@ spec:
       PAPERLESS_DBPORT: "5432"
       PAPERLESS_DBNAME: paperless
       PAPERLESS_DBHOST: 192.168.2.2
+      USERMAP_GID: 100
     envFrom:
       - secretRef:
           name: paperless-secret
@@ -95,6 +96,18 @@ spec:
         enabled: true
         existingClaim: paperless
         mountPath: /library
+      nas-consume:
+        enabled: true
+        mountPath: /data/nas/consume
+        type: nfs
+        server: "192.168.2.2"
+        path: /volume3/Backups/k8s/paperless/incoming
+      nas-export:
+        enabled: true
+        mountPath: /data/nas/export
+        type: nfs
+        server: "192.168.2.2"
+        path: /volume3/Backups/k8s/paperless/export
     resources:
       requests:
         memory: 1000Mi
