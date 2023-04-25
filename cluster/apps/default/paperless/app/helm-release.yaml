@@ -92,7 +92,7 @@ spec:
     persistence:
       library:
         enabled: true
-        existingClaim: paperless-nfs
+        existingClaim: paperless
         mountPath: /library
     resources:
       requests:
