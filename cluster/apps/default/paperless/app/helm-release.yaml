@@ -75,16 +75,7 @@ spec:
           nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
           external-dns.target/enabled: "true"
           external-dns-cf/is-dns-public: "true"
-          # Do not add whitelist of IPs
-          external-dns.home.arpa/enabled: "true"
-          nginx.ingress.kubernetes.io/auth-url: |-
-            http://ak-outpost-authentik-embedded-outpost.security.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
-          nginx.ingress.kubernetes.io/auth-signin: |-
-            https://id.skylab.fi/outpost.goauthentik.io/start?rd=$escaped_request_uri
-          nginx.ingress.kubernetes.io/auth-response-headers: |-
-            Set-Cookie,X-authentik-username,X-authentik-uid
-          nginx.ingress.kubernetes.io/auth-snippet: |
-            proxy_set_header X-Forwarded-Host $http_host;
+          nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,158.101.199.148/32,2603:c022:c002:4800::10/128,2001:14ba:16e5:fa00::/56,185.218.193.134/32,185.218.193.52/32,2001:67c:1104::/48,2001:67c:1be8::/48"
         hosts:
           - host: &host "{{ .Release.Name }}.skylab.fi"
             paths:
