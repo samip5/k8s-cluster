@@ -22,6 +22,8 @@ spec:
       defaultFsType: xfs
     defaultSettings:
       defaultReplicaCount: 2
+      backupTarget: s3://longhorn/eu-north-1
+      backupTargetCredentialSecret: minio-secret
     pspEnable: false
     ingress:
       enabled: true
