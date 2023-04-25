@@ -43,6 +43,7 @@ spec:
       PAPERLESS_EXPORT_DIR: /library/export
       PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME: HTTP_REMOTE_USER
       PAPERLESS_MEDIA_ROOT: /library/media
+      PAPERLESS_OCR_LANGUAGES: fin eng
       PAPERLESS_OCR_LANGUAGE: fin+eng
       PAPERLESS_PORT: &port 80
       PAPERLESS_REDIS: redis://localhost:6379
