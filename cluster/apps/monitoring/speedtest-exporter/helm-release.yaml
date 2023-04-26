@@ -50,8 +50,8 @@ spec:
             scrapeTimeout: 1m
     resources:
       requests:
-        memory: 50M
+        memory: 128M
       limits:
-        memory: 100M
+        memory: 512M
 
 
