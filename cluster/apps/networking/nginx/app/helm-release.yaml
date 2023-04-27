@@ -123,7 +123,7 @@ spec:
       enabled: false
       image:
         repository: ghcr.io/tarampampam/error-pages
-        tag: 2.23.0
+        tag: 2.24.0
       extraEnvs:
         - name: TEMPLATE_NAME
           value: matrix
