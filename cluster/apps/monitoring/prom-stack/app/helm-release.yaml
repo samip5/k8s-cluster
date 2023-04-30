@@ -192,8 +192,6 @@ spec:
         enabled: true
         pathType: Prefix
         ingressClassName: "nginx"
-#        annotations:
-#          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
           - "prom.skylab.fi"
         tls:
