@@ -35,7 +35,6 @@ spec:
     domainFilters:
       - "skylab.fi"
       - "${MAIN_DOMAIN}"
-      - "${DEV_DOMAIN}"
     env:
       - name: CF_API_EMAIL
         value: ${EMAIL_1}
