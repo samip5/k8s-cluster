@@ -4,6 +4,7 @@ resources:
   - cilium-system
   - system
   - cert-manager
+  - comms
   - storage
   - networking
   - monitoring

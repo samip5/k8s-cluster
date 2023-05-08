@@ -1,0 +1,94 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: matrix-synapse
+  namespace: comms
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://ananace.gitlab.io/charts
+      chart: matrix-synapse
+      version: 2.1.36
+      sourceRef:
+        kind: HelmRepository
+        name: ananace-charts
+        namespace: flux-system
+      interval: 5m
+  dependsOn:
+    - name: authentik
+      namespace: security
+    - name: longhorn
+      namespace: storage
+  values:
+    image:
+      repository: matrixdotorg/synapse
+      tag: v1.58.1
+    serverName: skylab.fi
+    publicServerName: matrix.skylab.fi
+    wellknown:
+      enabled: true
+
+    workers:
+      media_repository:
+        enabled: false
+
+    extraConfig:
+      email:
+        smtp_host: smtp-relay.default.svc.cluster.local
+        smtp_port: 587
+        notif_from: "Your Friendly %(app)s homeserver <noreply@${SECRET_DOMAIN}>"
+
+      enable_3pid_lookup: false
+      account_threepid_delegates:
+        msisdn: https://vector.im
+
+      oidc_providers:
+        - idp_id: authentik
+          idp_name: Skylab SSO
+          discover: true
+          issuer: "https://id.skylab.fi/application/o/matrix/"
+          client_id: "matrix"
+          client_secret: ${SECRET_AUTHENTIK_MATRIX_CLIENT}
+          scopes:
+            - "openid"
+            - "profile"
+            - "email"
+          user_mapping_provider:
+            config:
+              localpart_template: "{{ user.preferred_name }}"
+              display_name_template: "{{ user.name | capitalize }}"
+
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: zerossl-production
+        external-dns.home.arpa/enabled: "true"
+      tls:
+        - hosts:
+            - skylab.fi
+            - matrix.skylab.fi
+
+    postgresql:
+      enabled: false
+
+    externalPostgresql:
+      host: 192.168.2.2
+      port: 5432
+      username: synapse
+      password: ${SECRET_MATRIX_POSTGRESQL_PASSWORD}
+      database: "synapse"
+
+    redis:
+      enabled: true
+      password: ${SECRET_MATRIX_REDIS_PASSWORD}
+
+    signingkey:
+      job:
+        enabled: true
+
+    persistence:
+      enabled: true
+      existingClaim: synapse-data
