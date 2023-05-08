@@ -57,7 +57,7 @@ spec:
             - "email"
           user_mapping_provider:
             config:
-              localpart_template: "{{ user.preferred_name }}"
+              localpart_template: "{{ user.nickname }}"
               display_name_template: "{{ user.name | capitalize }}"
 
     ingress:
