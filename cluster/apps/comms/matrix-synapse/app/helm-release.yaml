@@ -65,7 +65,9 @@ spec:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: zerossl-production
-        external-dns.home.arpa/enabled: "true"
+        external-dns-cf/is-public: "true"
+        external-dns-cf/is-dns-public: "true"
+        external-dns.target/enabled: "true"
       tls:
         - hosts:
             - skylab.fi
@@ -89,7 +91,7 @@ spec:
 
     signingkey:
       job:
-        enabled: true
+        enabled: false
 
     persistence:
       enabled: true
