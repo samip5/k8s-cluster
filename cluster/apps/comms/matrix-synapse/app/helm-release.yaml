@@ -69,7 +69,8 @@ spec:
         external-dns-cf/is-dns-public: "true"
         external-dns.target/enabled: "true"
       tls:
-        - hosts:
+        - secretName: matrix-tls
+          hosts:
             - skylab.fi
             - matrix.skylab.fi
 
