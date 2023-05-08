@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: matrixdotorg/synapse
-      tag: v1.58.1
+      tag: v1.82.0
     serverName: skylab.fi
     publicServerName: matrix.skylab.fi
     wellknown:
