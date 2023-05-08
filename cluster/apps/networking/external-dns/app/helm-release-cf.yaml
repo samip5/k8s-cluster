@@ -23,7 +23,6 @@ spec:
     extraArgs:
       - --annotation-filter=external-dns-cf/is-dns-public in (true)
       - --zone-id-filter=565f87a7bf0ab8ea9db9b83dca55bc54
-      - --zone-id-filter=bf373c97a414f6037f449ab854c0c0bc
       - --zone-id-filter=cd86551a0f95b977ba6b4d8d5686cb9f
     interval: 5m
     logLevel: info
