@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30m
-  url: https://github.com/samip5/k8s-cluster
+  url: https://git.samip.fi/samip537/k8s-cluster.git
   ref:
     branch: main
   ignore: |
