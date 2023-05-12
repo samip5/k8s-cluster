@@ -1,5 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "endpoint": 'https://git.skym.fi',
   "extends": [
     "config:base",
     "docker:enableMajor",
