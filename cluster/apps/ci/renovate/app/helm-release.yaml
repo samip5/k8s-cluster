@@ -32,3 +32,69 @@ spec:
       pullPolicy: IfNotPresent
     cronjob:
       schedule: "0 0 * * *"
+    renovate:
+      config: |
+        {
+          "endpoint": 'https://git.skym.fi',
+          "extends": [
+            "config:base",
+            "docker:enableMajor",
+            ":disableRateLimiting",
+            ":dependencyDashboard",
+            ":semanticCommits",
+            ":enablePreCommit",
+            ":automergeDigest",
+            ":automergeBranch",
+            "local>kryptonian/k8s-cluster//.github/renovate/autoMerge.json5",
+            "local>kryptonian/k8s-cluster//.github/renovate/commitMessage.json5",
+            "local>kryptonian/k8s-cluster//.github/renovate/customVersionSchemes.json5",
+            "local>kryptonian/k8s-cluster//.github/renovate/disabledDatasources.json5",
+            "local>kryptonian/k8s-cluster//.github/renovate/groups.json5",
+            "local>kryptonian/k8s-cluster//.github/renovate/labels.json5",
+            "local>kryptonian/k8s-cluster//.github/renovate/looseVersioning.json5",
+            "helpers:pinGitHubActionDigests"
+          ],
+          "platform": "gitea",
+          "onboarding": false,
+          "requireConfig": "optional",
+          "commitBodyTable": true,
+          "timezone": "Europe/Helsinki",
+          "semanticCommits": "enabled",
+          "dependencyDashboard": true,
+          "dependencyDashboardTitle": "Renovate Dashboard 🤖",
+          "suppressNotifications": ["prIgnoreNotification"],
+          "rebaseWhen": "conflicted",
+          "ignorePaths": ["archive/**"],
+          "flux": {
+            "fileMatch": ["cluster/.+\\.ya?ml$"]
+          },
+          "helm-values": {
+            "fileMatch": ["cluster/.+\\.ya?ml$"]
+          },
+          "kubernetes": {
+            "fileMatch": ["cluster/.+\\.ya?ml$"]
+          },
+          "regexManagers": [
+            {
+              "description": "Process various dependencies",
+              "fileMatch": [
+                "ansible/.+\\.ya?ml$",
+                "cluster/.+\\.ya?ml$"
+              ],
+              "matchStrings": [
+                "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?\"(?<currentValue>.*)\"\n"
+              ],
+              "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
+              "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+            },
+            {
+              "description": "Process raw GitHub URLs",
+              "fileMatch": ["cluster/.+\\.ya?ml$"],
+              "matchStrings": [
+                "https:\\/\\/raw.githubusercontent.com\\/(?<depName>[\\w\\d\\-_]+\\/[\\w\\d\\-_]+)\\/(?<currentValue>[\\w\\d\\.\\-_]+)\\/.*"
+              ],
+              "datasourceTemplate": "github-releases",
+              "versioningTemplate": "semver"
+            }
+          ]
+          }
