@@ -41,5 +41,5 @@ spec:
     extraVolumes:
       - name: renovate-secrets
         secret:
-          secretName: renovate-env
+          secretName: renovate-secrets
           optional: false
