@@ -32,7 +32,7 @@ spec:
     cronjob:
       schedule: "0 */12 * * *"
     renovate:
-      existingConfigFile: "/etc/secrets/config.json"
+      existingConfigFile: "/etc/secrets/config.json5"
     extraVolumeMounts:
       - name: renovate-secrets
         mountPath: "/etc/secrets"
