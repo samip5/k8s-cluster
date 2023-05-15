@@ -32,13 +32,12 @@ spec:
     cronjob:
       schedule: "0 */12 * * *"
     renovate:
-      existingConfigFile: "/etc/secrets/config.json5"
+      existingConfigFile: "/etc/config/config.json5"
     extraVolumeMounts:
-      - name: renovate-secrets
-        mountPath: "/etc/secrets"
+      - name: renovate-config
+        mountPath: "/etc/config"
         readOnly: true
     extraVolumes:
-      - name: renovate-secrets
-        secret:
-          secretName: renovate-secrets
-          optional: false
+      - name: renovate-config
+        persistentVolumeClaim:
+          claimName: renovate-config-v1

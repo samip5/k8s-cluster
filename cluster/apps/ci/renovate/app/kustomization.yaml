@@ -5,6 +5,7 @@ namespace: ci
 resources:
   - helm-release.yaml
   - secret.sops.yaml
+  - pvc.yaml
 labels:
   - pairs:
       app.kubernetes.io/name: renovate
