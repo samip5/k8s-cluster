@@ -42,4 +42,5 @@ resources:
   - drone-charts.yaml
   - gitlab-charts.yaml
   - teampiped.yaml
+  - renovate.yaml
 
