@@ -25,6 +25,7 @@ spec:
   values:
     env:
       LOG_LEVEL: debug
+    existingSecret: renovate-secrets
     image:
       repository: renovate/renovate
       tag: 35.24.5
