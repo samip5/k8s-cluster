@@ -4,8 +4,6 @@ kind: Kustomization
 metadata:
   name: cluster-apps-ci-renovate
   namespace: flux-system
-  labels:
-    substitution.flux.home.arpa/disabled: "true"
 spec:
   path: ./cluster/apps/ci/renovate/app
   prune: true
