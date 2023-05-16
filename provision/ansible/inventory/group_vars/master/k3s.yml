@@ -41,7 +41,6 @@ k3s_server:
     # https://github.com/k3s-io/k3s/issues/1264
     - "node-monitor-period=4s"
     - "node-monitor-grace-period=16s"
-    - "pod-eviction-timeout=20s"
   kube-proxy-arg:
   #  - "cluster-cidr=10.244.0.0/16,fddf:f7bc:9670::/48"
     - "metrics-bind-address=0.0.0.0"
