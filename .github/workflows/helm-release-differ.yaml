@@ -29,13 +29,13 @@ jobs:
       #    private_key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
 
       - name: Checkout
-        uses: actions/checkout@latest
+        uses: github.com/actions/checkout@latest
        # with:
        #   token: "${{ steps.generate-token.outputs.token }}"
 
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@latest
+        uses: github.com/tj-actions/changed-files@latest
         with:
           json: true
           files: |
@@ -61,12 +61,12 @@ jobs:
       #    private_key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
 
       - name: Checkout
-        uses: actions/checkout@latest
+        uses: github.com/actions/checkout@latest
         with:
           token: "${{ steps.generate-token.outputs.token }}"
 
       - name: Checkout default branch
-        uses: actions/checkout@latest
+        uses: github.com/actions/checkout@latest
         with:
       #    token: "${{ steps.generate-token.outputs.token }}"
           ref: "${{ github.event.repository.default_branch }}"
