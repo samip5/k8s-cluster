@@ -34,8 +34,6 @@ spec:
       main:
         enabled: true
         ingressClassName: "nginx"
-        annotations:
-          external-dns.target/enabled: "true"
         hosts:
           - host: &host "tileboard.skylab.fi"
             paths:
