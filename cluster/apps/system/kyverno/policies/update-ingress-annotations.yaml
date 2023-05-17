@@ -52,20 +52,6 @@ spec:
               +(nginx.ingress.kubernetes.io/auth-response-headers): Remote-User,Remote-Groups
               +(nginx.ingress.kubernetes.io/auth-snippet): proxy_set_header X-Forwarded-Method $request_method;
 
-    - name: external-dns
-      match:
-        any:
-          - resources:
-              kinds:
-                - Ingress
-              annotations:
-                external-dns.target/enabled: "true"
-      mutate:
-        patchStrategicMerge:
-          metadata:
-            annotations:
-              +(external-dns.alpha.kubernetes.io/target): r.home.${MAIN_DOMAIN}
-
     - name: external-dns-proxied-cf
       match:
         any:
