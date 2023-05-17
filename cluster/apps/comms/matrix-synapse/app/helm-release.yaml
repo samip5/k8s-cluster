@@ -67,7 +67,6 @@ spec:
         cert-manager.io/cluster-issuer: zerossl-production
         external-dns-cf/is-public: "true"
         external-dns-cf/is-dns-public: "true"
-        external-dns.target/enabled: "true"
       tls:
         - secretName: matrix-tls
           hosts:
