@@ -39,7 +39,7 @@ spec:
     cni:
       image:
         repository: ghcr.io/onedr0p/cni-plugins
-        tag: "1.2.0"
+        tag: "1.3.0"
 
       paths:
         config: /etc/cni/net.d
