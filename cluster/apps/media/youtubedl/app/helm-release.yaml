@@ -73,7 +73,6 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          external-dns.target/enabled: "true"
           external-dns-cf/is-dns-public: "true"
         hosts:
           - host: &host "yt.skylab.fi"

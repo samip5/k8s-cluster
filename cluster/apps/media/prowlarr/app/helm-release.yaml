@@ -60,7 +60,6 @@ spec:
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.skylab.fi/css/base/prowlarr/nord.css"></head>';
             sub_filter_once on;
           external-dns-cf/is-dns-public: "true"
-          external-dns.target/enabled: "true"
         hosts:
           - host: &host "{{ .Release.Name }}.skylab.fi"
             paths:

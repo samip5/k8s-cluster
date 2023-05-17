@@ -154,7 +154,6 @@ spec:
       ingressClassName: "nginx"
       annotations:
         external-dns.home.arpa/enabled: "true"
-        external-dns.target/enabled: "true"
         external-dns-cf/is-dns-public: "true"
       hosts:
         - "grafana.skylab.fi"
