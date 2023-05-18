@@ -23,8 +23,8 @@ spec:
       namespace: storage
   values:
     image:
-      repository: matrixdotorg/synapse
-      tag: v1.82.0
+      repository: ghcr.io/matrix-org/synapse
+      tag: v1.83.0
     serverName: skylab.fi
     publicServerName: matrix.skylab.fi
     wellknown:
