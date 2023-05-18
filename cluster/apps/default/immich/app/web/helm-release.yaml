@@ -78,7 +78,7 @@ spec:
       requests:
         memory: 64M
       limits:
-        memory: 64M
+        memory: 193M
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:

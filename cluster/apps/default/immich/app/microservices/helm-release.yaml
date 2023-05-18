@@ -51,4 +51,4 @@ spec:
       requests:
         memory: 512M
       limits:
-        memory: 1Gi
+        memory: 1056M

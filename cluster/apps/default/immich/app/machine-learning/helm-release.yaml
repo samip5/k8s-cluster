@@ -51,7 +51,9 @@ spec:
 
     resources:
       requests:
-        memory: 1000M
+        memory: 2150M
+      limits:
+        memory: 8Gi
 
 
     topologySpreadConstraints:
