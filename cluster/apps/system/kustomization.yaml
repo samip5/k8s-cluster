@@ -4,7 +4,7 @@ resources:
   - ns.yaml
   - coredns
   - descheduler
-  - node-feature-discovery
+  - node-feature-discovery/ks.yaml
   - reloader
   - reflector
   - intel-device-plugins/ks.yaml
