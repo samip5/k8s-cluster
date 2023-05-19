@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: media
 resources:
   - ./helm-release.yaml
+  - ./pvc.yaml
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
