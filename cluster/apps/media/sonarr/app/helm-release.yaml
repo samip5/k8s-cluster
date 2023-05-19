@@ -73,7 +73,7 @@ spec:
             sub_filter_once on;
           hajimari.io/icon: mdi:television-classic
         hosts:
-          - host: &host "{{ .Release.Name }}.devbu.io"
+          - host: &host "{{ .Release.Name }}.skylab.fi"
             paths:
               - path: /
                 pathType: Prefix
@@ -87,14 +87,10 @@ spec:
       fsGroupChangePolicy: OnRootMismatch
       supplementalGroups: [10000]
 
-    volumeClaimTemplates:
-      - name: config
-        mountPath: /config
-        accessMode: ReadWriteOnce
-        size: 5Gi
-        storageClass: longhorn
-
     persistence:
+      config:
+        enabled: true
+        existingClaim: sonarr-config-v1
       media:
         enabled: true
         type: nfs
