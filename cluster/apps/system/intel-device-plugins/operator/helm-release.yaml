@@ -2,24 +2,20 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: intel-device-plugin-operator
+  name: intel-device-plugins-operator
   namespace: system
 spec:
-  interval: 12h
-  maxHistory: 2
+  interval: 30m
   chart:
     spec:
       chart: intel-device-plugins-operator
       version: 0.26.0
+      interval: 30m
       sourceRef:
         kind: HelmRepository
         name: intel
+        namespace: flux-system
   install:
     crds: CreateReplace
-    remediation:
-      retries: 3
   upgrade:
     crds: CreateReplace
-    remediation:
-      retries: 3
-
