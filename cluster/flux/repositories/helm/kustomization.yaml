@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ananace-charts.yaml
   - angelnu-charts.yaml
-  - actions-runner-controller-charts.yaml
+  - actions-runner-controller.yaml
   - authelia-charts.yaml
   - authentik-charts.yaml
   - backtube-charts.yaml
