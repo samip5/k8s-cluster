@@ -14,7 +14,7 @@ spec:
   wait: true
   dependsOn:
     - name: cluster-apps-cert-manager
-    - name: cluster-apps-node-feature-discovery-rules
+    - name: cluster-apps-node-feature-discovery
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
