@@ -27,7 +27,7 @@ spec:
     keepHistory: false
   values:
     controller:
-      type: statefulset
+      strategy: RollingUpdate
       annotations:
         reloader.stakater.com/auto: "true"
     image:

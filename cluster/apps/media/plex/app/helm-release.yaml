@@ -17,9 +17,7 @@ spec:
   interval: 30m
   values:
     controller:
-      type: statefulset
-      annotations:
-        reloader.stakater.com/auto: "true"
+      strategy: RollingUpdate
 
     image:
       repository: ghcr.io/onedr0p/plex
