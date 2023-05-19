@@ -2,8 +2,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: arc-home-ops
-  namespace: dev
+  name: arc-samipsolutions
+  namespace: ci
 spec:
   interval: 30m
   chart:
