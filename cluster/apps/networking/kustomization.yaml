@@ -7,7 +7,6 @@ resources:
   - misc-ingresses
 #  - unifi/ks.yaml
   - k8s-gateway/ks.yaml
-  - multus/ks.yaml
   - metallb/ks.yaml
   - metallb/ks-config.yaml
   - netshoot.yaml
