@@ -15,9 +15,9 @@ spec:
     kind: GitRepository
     name: cluster
   healthChecks:
-    - apiVersion: actions.summerwind.dev/v1alpha1
-      kind: RunnerDeployment
-      name: samipsolutions-runners
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: arc-samipsolutions
       namespace: ci
   interval: 30m
   retryInterval: 1m
