@@ -29,6 +29,10 @@ spec:
       main:
         type: LoadBalancer
         externalTrafficPolicy: Local
+        ipFamilyPolicy: "PreferDualStack"
+        ipFamilies:
+          - IPv4
+          - IPv6
         annotations:
           metallb.universe.tf/loadBalancerIPs: "10.96.69.20,2001:14ba:16d6:a6ad::20"
         ports:
