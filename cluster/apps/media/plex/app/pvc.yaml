@@ -1,0 +1,16 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: plex-config
+  namespace: media
+  labels:
+    app.kubernetes.io/instance: plex
+    app.kubernetes.io/name: plex
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 30Gi
+  storageClassName: longhorn

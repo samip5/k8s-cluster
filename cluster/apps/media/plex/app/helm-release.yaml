@@ -55,6 +55,9 @@ spec:
               - *host
 
     persistence:
+      config:
+        enabled: true
+        existingClaim: plex-config
       nfs-nas-media:
         enabled: true
         mountPath: /storage/media
