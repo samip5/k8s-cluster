@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: media
 resources:
   - ./helm-release.yaml
+  - ./pvc.yaml
 commonLabels:
   app.kubernetes.io/name: plex
   app.kubernetes.io/instance: plex
