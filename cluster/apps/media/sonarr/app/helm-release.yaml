@@ -34,7 +34,7 @@ spec:
       repository: ghcr.io/onedr0p/sonarr-develop
       tag: 4.0.0.497@sha256:d39243633cf1b87617b0c5dea7189b5a4fd065e706dde76766cb4d51dc4b9dd5
     env:
-      TZ: America/New_York
+      TZ: Europe/Helsinki
       PUSHOVER_DEBUG: "false"
       SONARR__INSTANCE_NAME: Sonarr
       SONARR__PORT: &port 80
