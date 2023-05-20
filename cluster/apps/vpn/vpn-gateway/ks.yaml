@@ -1,10 +1,10 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: apps-downloads-gateway
+  name: apps-vpn-gateway
   namespace: flux-system
 spec:
-  path: './cluster/apps/vpn/downloads-gateway/app/'
+  path: './cluster/apps/vpn/vpn-gateway/app/'
   prune: true
   sourceRef:
     kind: GitRepository
@@ -15,5 +15,5 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: downloads-gateway
+      name: vpn-gateway
       namespace: vpn
