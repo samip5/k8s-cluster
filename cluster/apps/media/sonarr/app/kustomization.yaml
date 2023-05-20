@@ -5,6 +5,7 @@ namespace: media
 resources:
   - ./helm-release.yaml
   - ./pvc.yaml
+  - ./secret.sops.yaml
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
