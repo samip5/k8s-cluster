@@ -25,7 +25,7 @@ spec:
 
     env:
       TZ: "Europe/Helsinki"
-      ADVERTISE_IP: "http://192.168.10.20:32400,http://[2001:14ba:16d6:a6ad::20]:32400,https://{{ .Release.Name }}.skylab.fi:443"
+      ADVERTISE_IP: "https://192-168-10-20.03c2ecb1de9a447d910154f0324e522f.plex.direct:32400,https://{{ .Release.Name }}.skylab.fi:443"
       HOSTNAME: "plex"
 
     service:
