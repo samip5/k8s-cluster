@@ -23,6 +23,11 @@ spec:
       repository: ghcr.io/onedr0p/plex
       tag: 1.32.1.6999-91e1e2e2c@sha256:fa9bbdbd8a73d110c703839619b9e1cc13524187b00662955235c02e07cef50c
 
+    env:
+      TZ: "Europe/Helsinki"
+      ADVERTISE_IP: "http://10.96.69.20:32400,http://[2001:14ba:16d6:a6ad::20]:32400,https://{{ .Release.Name }}.skylab.fi:443"
+      HOSTNAME: "plex"
+
     service:
       main:
         type: LoadBalancer
@@ -37,6 +42,7 @@ spec:
         ports:
           http:
             port: 32400
+            protocol: TCP
 
     ingress:
       main:
