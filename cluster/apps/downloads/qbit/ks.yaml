@@ -4,8 +4,6 @@ kind: Kustomization
 metadata:
   name: downloads-qbit
   namespace: flux-system
-  labels:
-    substitution.flux.home.arpa/enabled: "true"
 spec:
   path: ./cluster/apps/downloads/qbit/app
   prune: true
