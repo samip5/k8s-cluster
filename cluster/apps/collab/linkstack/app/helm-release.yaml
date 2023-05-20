@@ -43,6 +43,27 @@ spec:
         annotations:
           external-dns-cf/is-dns-public: "true"
           external-dns-cf/is-public: "true"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Host               $host;
+            proxy_set_header X-Real-IP          $remote_addr;
+          
+            proxy_set_header X-Forwarded-For    $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto  https;
+            proxy_set_header X-VerifiedViaNginx yes;
+            proxy_read_timeout                  60;
+            proxy_connect_timeout               60;
+            proxy_redirect                      off;
+          
+            # Specific for websockets: force the use of HTTP/1.1 and set the Upgrade header
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_cache_bypass $http_upgrade;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            
+            # Fixes Mixed Content errors.
+            add_header 'Content-Security-Policy' 'upgrade-insecure-requests';
+
         hosts:
           - host: "skylab.fi"
             paths:
