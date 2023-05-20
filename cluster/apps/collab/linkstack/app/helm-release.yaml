@@ -71,7 +71,7 @@ spec:
     persistence:
       config:
         enabled: true
-        mountPath: /pvc
+        mountPath: /htdocs
         existingClaim: linkstack-htdocs
     resources:
       requests:
