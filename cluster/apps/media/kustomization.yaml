@@ -7,5 +7,6 @@ resources:
  - plex/ks.yaml
  - sonarr/ks.yaml
  - prowlarr/ks.yaml
+ - unpackerr/ks.yaml
 # - flaresolverr/ks.yaml
 # - netshoot.yaml
