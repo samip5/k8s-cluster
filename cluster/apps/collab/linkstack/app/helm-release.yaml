@@ -27,7 +27,7 @@ spec:
       SERVER_ADMIN: "me@{SECRET_DOMAIN}"
       HTTP_SERVER_NAME: "skylab.fi"
       HTTPS_SERVER_NAME: "skylab.fi"
-      LOG_LEVEL: "info"
+      LOG_LEVEL: "debug"
 
     service:
       main:
