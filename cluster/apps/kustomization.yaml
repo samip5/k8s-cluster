@@ -17,7 +17,7 @@ resources:
   - services
   - system-upgrade
   - ci
-  - search
-  - tor
+#  - search
+#  - tor
 #  - games
-  - vpn
+#  - vpn
