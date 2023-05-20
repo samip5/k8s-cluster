@@ -92,6 +92,7 @@ spec:
     signingkey:
       job:
         enabled: false
+      existingSecret: matrix-synapse-signingkey
 
     persistence:
       enabled: true
