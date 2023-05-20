@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: matrix-synapse-signingkey
+    namespace: comms
+data:
+    signing.key: ENC[AES256_GCM,data:7sm+wnAy2Uv24rfrVp5Kd8wQce1qCzZf3b8TqsJ9PX/pNIoOaJa0/numXonuJCp3k2hGU3KctDJPbjTQKJ1rG9+m3VsQGIlbLvl3cnqZbz8=,iv:3fPT7Y1y3a6ipJS3DrrI47T0TL/cArNSXZfRpl3F6/4=,tag:z6PpUG7T5qbPNVq9cZMdkQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2023-05-20T00:16:06Z"
+    mac: ENC[AES256_GCM,data:sWuM/m4rmy0XvdMR91yI8J37Up7siucNNmKOlqa1zmQ5UDeRVF6jiUBgTvGZDUnlfWXbr8tTyvbsrbYb1QIjO/HKIr09shdEF67zwbwjM+53zq5XV8CytKJYpq4Asmi6yLq5yhczAoap89NmvatoWOa8ROBBzPYn3OLrO9l/5no=,iv:wfAINhHsiGTjCwniKDrmiA4/9GZOnAZdoU1xuXpej3w=,tag:545MsKccx4CXivCxaFU9UQ==,type:str]
+    pgp:
+        - created_at: "2023-05-20T00:16:05Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMAzGbrIJF3UKrAQ//TOPZre3aB858XQ+UZDGDce+j5odhXY1NBCKG9f9TU2DL
+            feUovVUE2+pDp5TTTurIcCNFIwDbND5H3ZiVYi0tXGI0W5dNFsRoIwtvavGJO9u4
+            YwknijGD5pM9jninpORppShokeEBx2s6Zz3eEf2ebNkmqkUafJti7LqGxrglnwZg
+            8Y3R40htHmU9JmxqQMgDjl93EbHyJEGabEN+gRdj74GxmFetxOcnfoAGQphhY4Vn
+            pB1EQdaT42N9fcS/1TV+/Vt5DDJz/PF5QPLDwukuTQsvRyY0KX0eQ569NuISFjr0
+            z0STFZNKRclbnkYGQ6MVRUpXQBbiCPNBaLgYuNNJWa8zD9AW49mPcbTkKD+BbQPb
+            SPh5w7QGuFFxj4Eg9TX+XJJcbY6mWGCvI4PmRJD78lpxHq01J2cZbedgPcQQb7cr
+            hF4RlNByJUl+E7BlfzQs1ZuNR8DTNTJpCSlve/nkUrT9N20UXPNM9ctQ48HAWj06
+            3eXJtG3zX0Gt9f7ePfubACGifs1TqE6j3g8IRtsEn4vF1pCni6z+Kdiv2b5QgXTJ
+            GTPW1HJOCyNEcveYl+OHhj1Rqw+kq3dnRI+u9uFYrx7zI33ulSf/i+cKTIudF/hq
+            WicoAOlITO9mkwB2UnHLvX7TBViHVzoD1y8PIGNmKI1kZI0xkVOEChdpbbSZFQfS
+            XgGCEUIs5BoZqKHx3l/RuQk4q21kZn6jf10Ke5xhsp1DXweejAl8tPKwDpUBf0qA
+            KnR3OXPrLS8j7l24NIacrSUBE+IXANlvFL1Rv3mCrG9MoE7542yOU5jRZCp3MY4=
+            =D2bn
+            -----END PGP MESSAGE-----
+          fp: 6CD908E8381A8B4FA3F20A891CF4D098419C9124
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1
