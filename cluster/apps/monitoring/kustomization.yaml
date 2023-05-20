@@ -3,11 +3,11 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - metrics-server
-  - node-problem-detector
-  - prom-stack/ks.yaml
-  - alert-manager
-  - grafana
-  - speedtest-exporter
-  - vpa/ks.yaml
-  - goldilocks/ks.yaml
+#  - node-problem-detector
+#  - prom-stack/ks.yaml
+#  - alert-manager
+#  - grafana
+#  - speedtest-exporter
+#  - vpa/ks.yaml
+#  - goldilocks/ks.yaml
 #  - loki/ks.yaml
