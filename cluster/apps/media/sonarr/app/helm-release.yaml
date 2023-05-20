@@ -96,7 +96,7 @@ spec:
         type: nfs
         server: 192.168.2.2
         path: /volume1/Media
-        mountPath: /storage/media
+        mountPath: /media
 
     resources:
       requests:
