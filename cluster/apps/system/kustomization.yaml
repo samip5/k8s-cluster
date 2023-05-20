@@ -11,4 +11,4 @@ resources:
 #  - kyverno/ks.yaml
 #  - kyverno/ks-policies.yaml
   - snapshot-controller/ks.yaml
-  - multus/ks.yaml
+#  - multus/ks.yaml
