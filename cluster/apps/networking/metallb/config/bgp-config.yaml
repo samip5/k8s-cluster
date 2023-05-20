@@ -70,8 +70,6 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-    - 185.218.193.61/32
-    - 2001:67c:1104:fc00::4443/128
     - 192.168.10.80/32
     - 2001:14ba:16d6:a6ad::4443/128
 ---
@@ -104,6 +102,16 @@ spec:
     - 2001:67c:1104:fc00::100-2001:67c:1104:fc00::200
 ---
 apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: plex
+  namespace: metallb-system
+spec:
+  addresses:
+    - 10.96.69.20/32
+    - 2001:14ba:16d6:a6ad::20/128
+---
+apiVersion: metallb.io/v1beta1
 kind: BGPAdvertisement
 metadata:
   name: bgp-lb
@@ -121,9 +129,9 @@ spec:
   ipAddressPools:
     - default-pool
     - smtp-gateway
-    - mailserv
     - mosquitto
     - public
     - game-prefix-pool
     - unifi
     - satisfactory
+    - plex

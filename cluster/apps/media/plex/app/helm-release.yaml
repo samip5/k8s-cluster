@@ -33,6 +33,7 @@ spec:
           - IPv6
         annotations:
           metallb.universe.tf/loadBalancerIPs: "10.96.69.20,2001:14ba:16d6:a6ad::20"
+          metallb.universe.tf/address-pool: plex
         ports:
           http:
             port: 32400
