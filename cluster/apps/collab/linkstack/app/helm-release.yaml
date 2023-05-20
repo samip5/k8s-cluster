@@ -1,0 +1,63 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: linkstack
+  namespace: collab
+spec:
+  interval: 5m
+  releaseName: linkstack
+  chart:
+    spec:
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts
+      chart: app-template
+      version: 1.5.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: registry.samipsolutions.fi/docker/linkstackorg/linkstack
+      tag: latest@sha256:8bdcf3ac7c38fa6adccee14741023874a09ddd041c10bd4ae7d6deb8a92a01f3
+      pullPolicy: Always
+    env:
+      TZ: "Europe/Helsinki"
+      SERVER_ADMIN: "me@{SECRET_DOMAIN}"
+      HTTP_SERVER_NAME: "skylab.fi"
+      HTTPS_SERVER_NAME: "skylab.fi"
+      LOG_LEVEL: "info"
+
+    service:
+      main:
+        ports:
+          http:
+            enabled: true
+            port: 80
+            targetPort: 80
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          external-dns-cf/is-dns-public: "true"
+          external-dns-cf/is-public: "true"
+        hosts:
+          - host: "skylab.fi"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "skylab.fi"
+    persistence:
+      config:
+        enabled: true
+        mountPath: /htdocs
+        existingClaim: linkstack-htdocs
+    resources:
+      requests:
+        memory: 512M
+      limits:
+        memory: 1Gi
