@@ -66,6 +66,20 @@ spec:
             annotations:
               +(external-dns.alpha.kubernetes.io/cloudflare-proxied): "true"
 
+    - name: external-dns
+      match:
+        any:
+          - resources:
+              kinds:
+                - Ingress
+              annotations:
+                external-dns.target/enabled: "true"
+      mutate:
+        patchStrategicMerge:
+          metadata:
+            annotations:
+              +(external-dns.alpha.kubernetes.io/target): r.home.skym.fi
+
     - name: whitelist-source-range
       match:
         any:
