@@ -114,6 +114,9 @@ spec:
                 external-dns.home.arpa/enabled: "true"
           - resources:
               annotations:
+                auth-ak-fw.home.arpa/enabled: "true"
+          - resources:
+              annotations:
                 external-dns-cf/is-public: "true"
           - resources:
               annotations:
