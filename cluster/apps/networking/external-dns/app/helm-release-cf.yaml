@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: registry.samipsolutions.fi/library/external-dns
-      tag: v9.0.0
+      tag: v10.0.0-1-g0ed31684@sha256:5f5c8b5c3c0d95d93297c91dbc83742f5223caceb648973c86d6e4d0e9379c95
     extraArgs:
       - --annotation-filter=external-dns-cf/is-dns-public in (true)
       - --zone-id-filter=565f87a7bf0ab8ea9db9b83dca55bc54
