@@ -41,6 +41,7 @@ spec:
         annotations:
           external-dns-cf/is-public: "true"
           external-dns-cf/is-dns-public: "true"
+          external-dns.target/enabled: "true"
           hajimari.io/icon: 'twitter'
         hosts:
           - host: &host 'nitter.${SECRET_DOMAIN}'

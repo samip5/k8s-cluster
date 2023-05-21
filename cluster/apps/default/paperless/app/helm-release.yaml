@@ -75,6 +75,7 @@ spec:
           nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
           external-dns-cf/is-dns-public: "true"
+          external-dns.target/enabled: "true"
           nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,158.101.199.148/32,2603:c022:c002:4800::10/128,2001:14ba:16e5:fa00::/56,185.218.193.134/32,185.218.193.52/32,2001:67c:1104::/48,2001:67c:1be8::/48"
         hosts:
           - host: &host "{{ .Release.Name }}.skylab.fi"
