@@ -52,6 +52,7 @@ spec:
           nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
           external-dns-cf/is-dns-public: "true"
           external-dns-cf/is-public: "true"
+          external-dns.target/enabled: "true"
           nginx.ingress.kubernetes.io/configuration-snippet: |
               rewrite /api/(.*) /$1 break;
         hosts:

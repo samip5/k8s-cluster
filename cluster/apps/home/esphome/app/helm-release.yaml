@@ -63,6 +63,7 @@ spec:
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/icon: "chip"
+          external-dns.target/enabled: "true"
           nginx.ingress.kubernetes.io/auth-url: |-
             http://ak-outpost-authentik-embedded-outpost.security.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
           nginx.ingress.kubernetes.io/auth-signin: |-
