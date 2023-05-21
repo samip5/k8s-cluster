@@ -31,7 +31,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/onedr0p/qbittorrent
-      tag: 4.5.2@sha256:621c2e012820a2f5d4a4e37ca6bf8aec40ebd0183f6f7d274808a7ac45a135d0
+      tag: 4.5.2@sha256:0efdd8d3ef3964d658d78ea7789efa285e9c01d1d436da2903cfde462a7fe67a
     env:
       QBITTORRENT__PORT: &port 80
       QBITTORRENT__BT_PORT: &port-bt 55633
