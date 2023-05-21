@@ -52,6 +52,27 @@ spec:
               +(nginx.ingress.kubernetes.io/auth-response-headers): Remote-User,Remote-Groups
               +(nginx.ingress.kubernetes.io/auth-snippet): proxy_set_header X-Forwarded-Method $request_method;
 
+    - name: auth-ak-fw
+      match:
+        any:
+          - resources:
+              kinds:
+                - Ingress
+              annotations:
+                auth-ak-fw.home.arpa/enabled: "true"
+      mutate:
+        patchStrategicMerge:
+          metadata:
+            annotations:
+              +(nginx.ingress.kubernetes.io/auth-url): |-
+                http://ak-outpost-authentik-embedded-outpost.security.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
+              +(nginx.ingress.kubernetes.io/auth-signin): |-
+                https://id.skylab.fi/outpost.goauthentik.io/start?rd=$escaped_request_uri
+              +(nginx.ingress.kubernetes.io/auth-response-headers): |-
+                Set-Cookie,X-authentik-username,X-authentik-uid
+              +(nginx.ingress.kubernetes.io/auth-snippet): |
+                proxy_set_header X-Forwarded-Host $http_host;
+
     - name: external-dns-proxied-cf
       match:
         any:
