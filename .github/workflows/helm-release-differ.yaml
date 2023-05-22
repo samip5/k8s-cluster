@@ -73,7 +73,7 @@ jobs:
           path: default
 
       - name: Install Helm
-        uses: azure/setup-helm@5119fcb9089d432beecbf79bb2c7915207344b78 # v3
+        uses: azure/setup-helm@v3
         with:
           version: latest
 
@@ -89,7 +89,7 @@ jobs:
 
       - name: Find Comment
         if: ${{ always() && steps.diff.outputs.diff != '' }}
-        uses: peter-evans/find-comment@a54c31d7fa095754bfef525c0c8e5e5674c4b4b1 # v2
+        uses: peter-evans/find-comment@latest
         id: find-comment
         with:
           issue-number: "${{ github.event.pull_request.number }}"
@@ -98,7 +98,7 @@ jobs:
 
       - name: Create or update comment
         if: ${{ always() && steps.diff.outputs.diff != '' }}
-        uses: peter-evans/create-or-update-comment@ca08ebd5dc95aa0cd97021e9708fcd6b87138c9b # v3
+        uses: peter-evans/create-or-update-comment@latest
         with:
         #  token: "${{ steps.generate-token.outputs.token }}"
           comment-id: "${{ steps.find-comment.outputs.comment-id }}"
