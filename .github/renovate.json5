@@ -16,8 +16,7 @@
     "local>kryptonian/k8s-cluster//.github/renovate/disabledDatasources.json5",
     "local>kryptonian/k8s-cluster//.github/renovate/groups.json5",
     "local>kryptonian/k8s-cluster//.github/renovate/labels.json5",
-    "local>kryptonian/k8s-cluster//.github/renovate/looseVersioning.json5",
-    "helpers:pinGitHubActionDigests"
+    "local>kryptonian/k8s-cluster//.github/renovate/looseVersioning.json5"
   ],
   "platform": "gitea",
   "onboarding": false,
