@@ -31,7 +31,7 @@ spec:
       spec:
         containers:
           - name: runner
-            image: ghcr.io/bjw-s/github-actions-runner:2.304.0@sha256:85690088155072a95c429a1f150f80a7d7ebf35107221cb25c01c56b62866c1b
+            image: ghcr.io/bjw-s/github-actions-runner:2.304.0@sha256:ba72936a41eb612dcfa1749e56d316102c5cf9399f3f565a7bf3e9deaaa69ff4
             command:
               - /home/runner/run.sh
 
