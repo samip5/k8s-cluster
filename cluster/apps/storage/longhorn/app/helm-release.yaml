@@ -24,6 +24,9 @@ spec:
       defaultReplicaCount: 2
       backupTarget: s3://longhorn@us-east-1/
       backupTargetCredentialSecret: minio-secret
+    longhornUI:
+      nodeSelector:
+       kubernetes.io/arch: amd64
     pspEnable: false
     ingress:
       enabled: true
