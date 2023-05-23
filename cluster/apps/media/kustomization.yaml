@@ -6,6 +6,8 @@ resources:
  - jellyseer
  - plex/ks.yaml
  - sonarr/ks.yaml
+ - radarr/ks.yaml
+ - recyclarr/ks.yaml
  - prowlarr/ks.yaml
  - unpackerr/ks.yaml
 # - flaresolverr/ks.yaml
