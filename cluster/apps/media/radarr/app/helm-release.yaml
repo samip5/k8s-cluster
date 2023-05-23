@@ -34,10 +34,10 @@ spec:
     env:
       TZ: America/New_York
       PUSHOVER_DEBUG: "false"
-      PUSHOVER_APP_URL: &host "{{ .Release.Name }}.devbu.io"
+      PUSHOVER_APP_URL: &host "{{ .Release.Name }}.skylab.fi"
       RADARR__INSTANCE_NAME: Radarr
       RADARR__PORT: &port 80
-      RADARR__APPLICATION_URL: "https://{{ .Release.Name }}.devbu.io"
+      RADARR__APPLICATION_URL: "https://{{ .Release.Name }}.skylab.fi"
       RADARR__LOG_LEVEL: info
     envFrom:
       - secretRef:
@@ -69,7 +69,7 @@ spec:
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.devbu.io/css/base/radarr/nord.css"></head>';
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.skylab.fi/css/base/radarr/nord.css"></head>';
             sub_filter_once on;
           hajimari.io/icon: mdi:filmstrip
         hosts:
