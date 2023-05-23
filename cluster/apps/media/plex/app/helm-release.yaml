@@ -50,6 +50,7 @@ spec:
         annotations:
           nginx.ingress.kubernetes.io/backend-protocol: HTTPS
           external-dns.target/enabled: "true"
+          external-dns-cf/is-public: "true"
           external-dns-cf/is-dns-public: "true"
         ingressClassName: nginx
         hosts:
