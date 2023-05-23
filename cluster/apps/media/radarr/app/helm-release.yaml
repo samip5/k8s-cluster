@@ -71,13 +71,13 @@ spec:
             sub_filter_once on;
           hajimari.io/icon: mdi:filmstrip
         hosts:
-          - host: *host
+          - host: {{ .Release.Name }}.skylab.fi
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - *host
+              - {{ .Release.Name }}.skylab.fi
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
