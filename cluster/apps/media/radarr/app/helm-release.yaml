@@ -65,19 +65,22 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
+          external-dns-cf/is-dns-public: "true"
+          external-dns.target/enabled: "true"
+          auth-ak-fw.home.arpa/enabled: "true"
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.skylab.fi/css/base/radarr/nord.css"></head>';
             sub_filter_once on;
           hajimari.io/icon: mdi:filmstrip
         hosts:
-          - host: {{ .Release.Name }}.skylab.fi
+          - host: &host "{{ .Release.Name }}.skylab.fi"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - {{ .Release.Name }}.skylab.fi
+              - *host
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
