@@ -16,4 +16,3 @@ spec:
       name: cluster
     - kind: Kustomization
       name: apps
-      apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
