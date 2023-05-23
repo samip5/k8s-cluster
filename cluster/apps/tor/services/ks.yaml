@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/kustomization_v1beta2.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-apps-tor-services
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: cluster-apps-tor-operator
+  path: ./cluster/apps/tor/services/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: cluster
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m
