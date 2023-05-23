@@ -65,13 +65,11 @@ spec:
               - NET_ADMIN
 
         networkPolicy:
-          enabled: false
+          enabled: true
           egress:
             - to:
                 - ipBlock:
                     cidr: 0.0.0.0/0
-                - ipBlock:
-                    cidr: ::/0
               ports:
                 # VPN traffic
                 - port: 51820
