@@ -33,6 +33,9 @@ jobs:
        # with:
        #   token: "${{ steps.generate-token.outputs.token }}"
 
+      - name: Install things
+        run: sudo apt-get install jq --assume-yes
+
       - name: Get changed files
         id: changed-files
         uses: https://github.com/tj-actions/changed-files@v35
