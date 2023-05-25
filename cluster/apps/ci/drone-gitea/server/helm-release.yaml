@@ -46,6 +46,9 @@ spec:
       className: "nginx"
       annotations:
         external-dns-cf/is-dns-public: "true"
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        external-dns-cf/is-public: "true"
+        external-dns.target/enabled: "true"
       hosts:
         - host: *host
           paths:
