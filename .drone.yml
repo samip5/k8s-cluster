@@ -1,0 +1,60 @@
+kind: pipeline
+type: docker
+name: Helm Release Differ
+
+trigger:
+  event:
+    - pull_request
+  branch:
+    - main
+  path:
+    - cluster/**.yaml
+
+
+steps:
+  - name: Detect File Changes
+    image: ubuntu:latest
+    environment:
+      matrix: file
+    commands:
+      - apk add --no-cache curl jq
+      - changed_files=$(curl -s -H "Authorization: Bearer $${DRONE_TOKEN}" "https://git.skym.fi/api/v1/repos/$${DRONE_REPO_NAMESPACE}/$${DRONE_REPO_NAME}/pulls/$${DRONE_PULL_REQUEST}/files" | jq -r '.[].filename' | grep -E 'cluster\/.*\/helm-release\.ya?ml')
+      - echo "file=$${changed_files}" >> "$${DRONE_ENV_FILE}"
+
+  - name: Diff on Helm Releases
+    image: ubuntu:latest
+    environment:
+      file: ${DRONE_WORKSPACE}/${DRONE_STAGE_METADATA_DIR}/file
+      diff: ${DRONE_WORKSPACE}/${DRONE_STAGE_METADATA_DIR}/diff
+    commands:
+      - curl -s -H "Authorization: Bearer $${DRONE_TOKEN}" "https://git.skym.fi/api/v1/repos/$${DRONE_REPO_NAMESPACE}/$${DRONE_REPO_NAME}/pulls/$${DRONE_PULL_REQUEST}" | jq -r '.head.ref' > default_branch.txt
+      - default_branch=$(cat default_branch.txt)
+      - rm default_branch.txt
+      - git clone --depth 1 --branch "$${default_branch}" https://git.skym.fi/$${DRONE_REPO_NAMESPACE}/$${DRONE_REPO_NAME} default
+      - cd default
+      - apk add --no-cache helm
+      - .github/scripts/helm-release-differ.sh --source-file "$${DRONE_WORKSPACE}/$${file}" --target-file "$${DRONE_WORKSPACE}/$${file}" --remove-common-labels > "$${DRONE_WORKSPACE}/$${diff}"
+
+  - name: Find Comment
+    image: ubuntu:latest
+    environment:
+      file: ${DRONE_WORKSPACE}/${DRONE_STAGE_METADATA_DIR}/file
+    commands:
+      - curl -s -H "Authorization: Bearer $${DRONE_TOKEN}" "https://git.skym.fi/api/v1/repos/$${DRONE_REPO_NAMESPACE}/$${DRONE_REPO_NAME}/pulls/$${DRONE_PULL_REQUEST}/comments?per_page=100" > comments.json
+      - comment_id=$(jq -r ".[] | select(.user.login == \"$${BOT_USERNAME}\" and .body | contains(\"$${file}\")) | .id" comments.json)
+      - echo "comment_id=$${comment_id}" >> "$${DRONE_ENV_FILE}"
+
+  - name: Create or update comment
+    image: ubuntu:latest
+    environment:
+      comment_id: ${DRONE_WORKSPACE}/${DRONE_STAGE_METADATA_DIR}/comment_id
+      file: ${DRONE_WORKSPACE}/${DRONE_STAGE_METADATA_DIR}/file
+      diff: ${DRONE_WORKSPACE}/${DRONE_STAGE_METADATA_DIR}/diff
+    commands:
+      - comment_id=$(cat "$${DRONE_WORKSPACE}/$${comment_id}")
+      - diff=$(cat "$${DRONE_WORKSPACE}/$${diff}")
+      - if [ -n "$${comment_id}" ]; then
+        curl -s -H "Authorization: Bearer $${DRONE_TOKEN}" -X PATCH "https://git.skym.fi/api/v1/repos/$${DRONE_REPO_NAMESPACE}/$${DRONE_REPO_NAME}/pulls/$${DRONE_PULL_REQUEST}/comments/$${comment_id}" -d "{\"body\": \"$${diff}\"}";
+        else
+        curl -s -H "Authorization: Bearer $${DRONE_TOKEN}" -X POST "https://git.skym.fi/api/v1/repos/$${DRONE_REPO_NAMESPACE}/$${DRONE_REPO_NAME}/pulls/$${DRONE_PULL_REQUEST}/comments" -d "{\"body\": \"$${diff}\"}";
+        fi
