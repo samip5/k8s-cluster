@@ -10,10 +10,9 @@ trigger:
   path:
     - cluster/**.yaml
 
-
 steps:
   - name: Detect File Changes
-    image: ubuntu:latest
+    image: alpine:latest
     environment:
       matrix: file
     commands:
@@ -22,7 +21,7 @@ steps:
       - echo "file=$${changed_files}" >> "$${DRONE_ENV_FILE}"
 
   - name: Diff on Helm Releases
-    image: ubuntu:latest
+    image: alpine:latest
     environment:
       file: ${DRONE_WORKSPACE}/${DRONE_STAGE_METADATA_DIR}/file
       diff: ${DRONE_WORKSPACE}/${DRONE_STAGE_METADATA_DIR}/diff
@@ -54,7 +53,7 @@ steps:
       - comment_id=$(cat "$${DRONE_WORKSPACE}/$${comment_id}")
       - diff=$(cat "$${DRONE_WORKSPACE}/$${diff}")
       - if [ -n "$${comment_id}" ]; then
-        curl -s -H "Authorization: Bearer $${DRONE_TOKEN}" -X PATCH "https://git.skym.fi/api/v1/repos/$${DRONE_REPO_NAMESPACE}/$${DRONE_REPO_NAME}/pulls/$${DRONE_PULL_REQUEST}/comments/$${comment_id}" -d "{\"body\": \"$${diff}\"}";
+          curl -s -H "Authorization: Bearer $${DRONE_TOKEN}" -X PATCH "https://git.skym.fi/api/v1/repos/$${DRONE_REPO_NAMESPACE}/$${DRONE_REPO_NAME}/pulls/$${DRONE_PULL_REQUEST}/comments/$${comment_id}" -d "{\"body\": \"$${diff}\"}";
         else
-        curl -s -H "Authorization: Bearer $${DRONE_TOKEN}" -X POST "https://git.skym.fi/api/v1/repos/$${DRONE_REPO_NAMESPACE}/$${DRONE_REPO_NAME}/pulls/$${DRONE_PULL_REQUEST}/comments" -d "{\"body\": \"$${diff}\"}";
+          curl -s -H "Authorization: Bearer $${DRONE_TOKEN}" -X POST "https://git.skym.fi/api/v1/repos/$${DRONE_REPO_NAMESPACE}/$${DRONE_REPO_NAME}/pulls/$${DRONE_PULL_REQUEST}/comments" -d "{\"body\": \"$${diff}\"}";
         fi
