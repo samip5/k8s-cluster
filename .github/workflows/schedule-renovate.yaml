@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3
+        uses: https://github.com/actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3
 
       #- name: Generate Token
       #  uses: tibdex/github-app-token@b62528385c34dbc9f38e5f4225ac829252d1ea92 # v1
@@ -47,7 +47,7 @@ jobs:
           echo "LOG_LEVEL=${{ github.event.inputs.logLevel || env.LOG_LEVEL }}" >> "${GITHUB_ENV}"
 
       - name: Renovate
-        uses: renovatebot/github-action@0da8b0cd8bb013041bad4f818c2790fa3253efb1 # v36.1.1
+        uses: https://github.com/renovatebot/github-action@0da8b0cd8bb013041bad4f818c2790fa3253efb1 # v36.1.1
         with:
           configurationFile: "${{ env.RENOVATE_CONFIG_FILE }}"
           token: "${{ secrets.RENOVATE_TOKEN }}"
