@@ -28,7 +28,7 @@ spec:
   values:
     image:
       repository: ghcr.io/claabs/epicgames-freegames-node
-      tag: latest@sha256:f9a2be876cf5f2ece5517f7c6e50c9b98e243bdbe031b6669952e3adf99ae32e
+      tag: latest@sha256:585f9d05d0ba1b190886ae50dfe20b07137dd151b3437c1196ac4d47cf7e60c7
 
     service:
       main:
