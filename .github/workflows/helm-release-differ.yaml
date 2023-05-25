@@ -35,7 +35,7 @@ jobs:
 
       - name: Get changed files
         id: changed-files
-        uses: https://github.com/tj-actions/changed-files@latest
+        uses: https://github.com/tj-actions/changed-files@v35
         with:
           json: true
           files: |
