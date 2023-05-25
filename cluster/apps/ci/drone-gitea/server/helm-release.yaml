@@ -39,7 +39,7 @@ spec:
     env:
       DRONE_SERVER_HOST: &host "drone-gitea.skylab.fi"
       DRONE_SERVER_PROTO: https
-      DRONE_USER_CREATE: username:samip537,admin:true
+      DRONE_USER_CREATE: username:kryptonian,admin:true
 
     ingress:
       enabled: true
