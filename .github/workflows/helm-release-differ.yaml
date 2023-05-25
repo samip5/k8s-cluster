@@ -17,7 +17,7 @@ env:
 jobs:
   changed-files:
     name: Detect File Changes
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
@@ -29,13 +29,13 @@ jobs:
       #    private_key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
 
       - name: Checkout
-        uses: actions/checkout
+        uses: actions/checkout@v3
        # with:
        #   token: "${{ steps.generate-token.outputs.token }}"
 
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@latest
+        uses: https://github.com/tj-actions/changed-files@latest
         with:
           json: true
           files: |
@@ -47,7 +47,7 @@ jobs:
 
   diff:
     name: Diff on Helm Releases
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [changed-files]
     strategy:
       matrix: ${{ fromJSON(needs.changed-files.outputs.matrix) }}
@@ -73,7 +73,7 @@ jobs:
           path: default
 
       - name: Install Helm
-        uses: azure/setup-helm@v3
+        uses: https://github.com/azure/setup-helm@v3
         with:
           version: latest
 
@@ -89,7 +89,7 @@ jobs:
 
       - name: Find Comment
         if: ${{ always() && steps.diff.outputs.diff != '' }}
-        uses: peter-evans/find-comment@latest
+        uses: https://github.com/peter-evans/find-comment@latest
         id: find-comment
         with:
           issue-number: "${{ github.event.pull_request.number }}"
@@ -98,7 +98,7 @@ jobs:
 
       - name: Create or update comment
         if: ${{ always() && steps.diff.outputs.diff != '' }}
-        uses: peter-evans/create-or-update-comment@latest
+        uses: https://github.com/peter-evans/create-or-update-comment@latest
         with:
         #  token: "${{ steps.generate-token.outputs.token }}"
           comment-id: "${{ steps.find-comment.outputs.comment-id }}"
