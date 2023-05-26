@@ -86,7 +86,7 @@ spec:
       secret.reloader.stakater.com/reload: downloads-gateway-vpnconfig
 
 
-    DNS: 172.16.1.1
+    DNS: 172.16.0.1
     routed_namespaces:
       - downloads
       - media
