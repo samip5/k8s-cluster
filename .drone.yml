@@ -17,7 +17,7 @@ steps:
       matrix: file
     commands:
       - apk add --no-cache curl jq
-      - changed_files=$(curl -s -H "Authorization: Bearer $${DRONE_TOKEN}" "https://git.skym.fi/api/v1/repos/$${DRONE_REPO_NAMESPACE}/$${DRONE_REPO_NAME}/pulls/$${DRONE_PULL_REQUEST}/files" | jq -r '.[].filename' | grep -E 'cluster\/.*\/helm-release\.ya?ml')
+      - changed_files=$(curl -s -H 'Authorization: Bearer $${DRONE_TOKEN} "https://git.skym.fi/api/v1/repos/$${DRONE_REPO_NAMESPACE}/$${DRONE_REPO_NAME}/pulls/$${DRONE_PULL_REQUEST}/files" | jq -r '.[].filename' | grep -E 'cluster\/.*\/helm-release\.ya?ml')
       - echo "file=$${changed_files}" >> "$${DRONE_ENV_FILE}"
 
   name: Diff on Helm Releases
