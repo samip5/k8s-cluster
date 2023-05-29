@@ -29,10 +29,8 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/immich-app/immich-server
-      tag: v1.56.0
-    command: /bin/sh
-    args:
-      - ./start-server.sh
+      tag: v1.58.0
+    command: "start-server.sh"
     envFrom:
       - secretRef:
           name: immich-secret
