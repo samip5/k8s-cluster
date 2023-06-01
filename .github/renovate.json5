@@ -1,6 +1,5 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "endpoint": 'https://git.skym.fi',
   "extends": [
     "config:base",
     "docker:enableMajor",
@@ -10,15 +9,15 @@
     ":enablePreCommit",
     ":automergeDigest",
     ":automergeBranch",
-    "local>kryptonian/k8s-cluster//.github/renovate/autoMerge.json5",
-    "local>kryptonian/k8s-cluster//.github/renovate/commitMessage.json5",
-    "local>kryptonian/k8s-cluster//.github/renovate/customVersionSchemes.json5",
-    "local>kryptonian/k8s-cluster//.github/renovate/disabledDatasources.json5",
-    "local>kryptonian/k8s-cluster//.github/renovate/groups.json5",
-    "local>kryptonian/k8s-cluster//.github/renovate/labels.json5",
-    "local>kryptonian/k8s-cluster//.github/renovate/looseVersioning.json5"
+    "github>samip5/k8s-cluster//.github/renovate/autoMerge.json5",
+    "github>samip5/k8s-cluster//.github/renovate/commitMessage.json5",
+    "github>samip5/k8s-cluster//.github/renovate/customVersionSchemes.json5",
+    "github>samip5/k8s-cluster//.github/renovate/disabledDatasources.json5",
+    "github>samip5/k8s-cluster//.github/renovate/groups.json5",
+    "github>samip5/k8s-cluster//.github/renovate/labels.json5",
+    "github>samip5/k8s-cluster//.github/renovate/looseVersioning.json5"
   ],
-  "platform": "gitea",
+  "platform": "github",
   "onboarding": false,
   "requireConfig": "optional",
   "commitBodyTable": true,
