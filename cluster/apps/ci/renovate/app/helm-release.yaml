@@ -27,8 +27,8 @@ spec:
       LOG_LEVEL: debug
     existingSecret: renovate-secrets
     image:
-      repository: renovate/renovate
-      tag: 35.24.5
+      repository: ghcr.io/renovate/renovate
+      tag: 35.106.1
       pullPolicy: IfNotPresent
     cronjob:
       schedule: "0 */12 * * *"
