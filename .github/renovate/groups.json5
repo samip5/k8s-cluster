@@ -1,7 +1,18 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "packageRules": [
-  {
+    {
+      "description": "Flux Group",
+      "groupName": "Flux",
+      "matchPackagePatterns": ["flux"],
+      "matchDatasources": ["docker", "github-tags"],
+      "versioning": "semver",
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
+      },
+      "separateMinorPatch": true
+    },
+    {
     "description": "Immich images",
     "groupName": "Immich",
     "matchPackagePatterns": ["immich"],
@@ -10,5 +21,6 @@
       "commitMessageTopic": "{{{groupName}}} group"
     },
     "separateMinorPatch": true
-  }]
+    }
+  ]
 }
