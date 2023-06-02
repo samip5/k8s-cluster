@@ -83,7 +83,7 @@ spec:
         enabled: true
         existingClaim: prowlarr-config-v1
       backup:
-        enabled: true
+        enabled: false
         existingClaim: prowlarr-backup-v1
         mountPath: /config/Backups
     resources:
