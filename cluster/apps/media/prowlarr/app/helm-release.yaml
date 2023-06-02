@@ -45,6 +45,10 @@ spec:
     envFrom:
       - secretRef:
           name: prowlarr-secret
+    hostAliases:
+      - ip: "192.168.2.129"
+        hostnames:
+          - "dh.skylab.fi"
     service:
       main:
         ports:
