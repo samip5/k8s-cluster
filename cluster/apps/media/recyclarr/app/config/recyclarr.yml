@@ -5,6 +5,7 @@ sonarr:
     delete_old_custom_formats: true
     quality_definition:
       type: series
+      preferred_ratio: 0.5
     quality_profiles:
       - name: Web-720p
         reset_unmatched_scores: true
@@ -39,20 +40,10 @@ sonarr:
           - name: Web-720p
           - name: Web-1080p
 
-      # Audio Channels
-      - trash_ids:
-          - 834e534f103938853ffced4203b53e72 # 2.0 Stereo
-          - 3fbafa924f361e66fbc6187af82dfa85 # 5.1 Surround
-          - 204c8c3e7315bb0ea81332774fa888d6 # 7.1 Surround
-        quality_profiles:
-          - name: Web-720p
-          - name: Web-1080p
-
       # Streaming Services
       - trash_ids:
           - d660701077794679fd59e8bdf4ce3a29 # AMZN
           - f67c9ca88f463a48346062e8ad07713f # ATVP
-          - f27d46a831e6b16fa3fee2c4e5d10984 # CANAL+
           - 77a7b25585c18af08f60b1547bb9b4fb # CC
           - 36b72f59f4ea20aad9316f475f2d9fbb # DCU
           - 89358767a60cc28783cdc3d0be9388a4 # DSNP
@@ -66,8 +57,6 @@ sonarr:
           - c67a75ae4a1715f2bb4d492755ba4195 # PMTP
           - 3ac5d84fce98bab1b531393e9c82f467 # QIBI
           - c30d2958827d1867c73318a5a2957eb1 # RED
-          - b0d6195c23ae254932da00512db7e8a8 # RTBF
-          - 0455d6519a550dbf648c97b56e7231d2 # SALTO
           - ae58039e1319178e6be73caab5c42166 # SHO
           - 1efe8da11bfd74fbbcd4d8117ddb9213 # STAN
           - 5d2317d99af813b6529c7ebf01c83533 # VDL
@@ -120,6 +109,7 @@ sonarr:
     delete_old_custom_formats: true
     quality_definition:
       type: series
+      preferred_ratio: 0.5
     quality_profiles:
       - name: Web-720p
         reset_unmatched_scores: true
@@ -154,20 +144,10 @@ sonarr:
           - name: Web-720p
           - name: Web-1080p
 
-      # Audio Channels
-      - trash_ids:
-          - 834e534f103938853ffced4203b53e72 # 2.0 Stereo
-          - 3fbafa924f361e66fbc6187af82dfa85 # 5.1 Surround
-          - 204c8c3e7315bb0ea81332774fa888d6 # 7.1 Surround
-        quality_profiles:
-          - name: Web-720p
-          - name: Web-1080p
-
       # Streaming Services
       - trash_ids:
           - d660701077794679fd59e8bdf4ce3a29 # AMZN
           - f67c9ca88f463a48346062e8ad07713f # ATVP
-          - f27d46a831e6b16fa3fee2c4e5d10984 # CANAL+
           - 77a7b25585c18af08f60b1547bb9b4fb # CC
           - 36b72f59f4ea20aad9316f475f2d9fbb # DCU
           - 89358767a60cc28783cdc3d0be9388a4 # DSNP
@@ -181,8 +161,6 @@ sonarr:
           - c67a75ae4a1715f2bb4d492755ba4195 # PMTP
           - 3ac5d84fce98bab1b531393e9c82f467 # QIBI
           - c30d2958827d1867c73318a5a2957eb1 # RED
-          - b0d6195c23ae254932da00512db7e8a8 # RTBF
-          - 0455d6519a550dbf648c97b56e7231d2 # SALTO
           - ae58039e1319178e6be73caab5c42166 # SHO
           - 1efe8da11bfd74fbbcd4d8117ddb9213 # STAN
           - 5d2317d99af813b6529c7ebf01c83533 # VDL
