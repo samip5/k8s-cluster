@@ -36,6 +36,10 @@ spec:
     envFrom:
       - secretRef:
           name: recyclarr-secret
+    hostAliases:
+      - ip: "192.168.2.129"
+        hostnames:
+          - "dh.skylab.fi"
     service:
       main:
         enabled: false
