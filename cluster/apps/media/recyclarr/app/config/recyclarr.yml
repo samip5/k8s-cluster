@@ -94,11 +94,11 @@ sonarr:
       - trash_ids:
           - c9eafd50846d299b862ca9bb6ea91950 # x265
         quality_profiles:
-          - Any
-          - HD
-          - SD
-          - Web-720p
-          - Web-1080p
+          - name: Any
+          - name: HD
+          - name: SD
+          - name: Web-720p
+          - name: Web-1080p
 
       # Misc
       - trash_ids:
