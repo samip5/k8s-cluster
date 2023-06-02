@@ -5,6 +5,11 @@ sonarr:
     delete_old_custom_formats: true
     quality_definition:
       type: series
+    quality_profiles:
+      - name: Web-720p
+        reset_unmatched_scores: true
+      - name: Web-1080p
+        reset_unmatched_scores: true
     custom_formats:
       # Audio Advanced #1
       - trash_ids:
@@ -19,9 +24,7 @@ sonarr:
           - 0d7824bb924701997f874e7ff7d4844a # TrueHD ATMOS
         quality_profiles:
           - name: Web-720p
-            reset_unmatched_scores: true
           - name: Web-1080p
-            reset_unmatched_scores: true
 
       # Audio Advanced #2
       - trash_ids:
@@ -34,9 +37,7 @@ sonarr:
           - 30f70576671ca933adbdcfc736a69718 # PCM
         quality_profiles:
           - name: Web-720p
-            reset_unmatched_scores: true
           - name: Web-1080p
-            reset_unmatched_scores: true
 
       # Audio Channels
       - trash_ids:
@@ -45,9 +46,7 @@ sonarr:
           - 204c8c3e7315bb0ea81332774fa888d6 # 7.1 Surround
         quality_profiles:
           - name: Web-720p
-            reset_unmatched_scores: true
           - name: Web-1080p
-            reset_unmatched_scores: true
 
       # Streaming Services
       - trash_ids:
@@ -75,9 +74,7 @@ sonarr:
           - 0ac24a2a68a9700bcb7eeca8e5cd644c # iT
         quality_profiles:
           - name: Web-720p
-            reset_unmatched_scores: true
           - name: Web-1080p
-            reset_unmatched_scores: true
 
       # HQ Source Groups
       - trash_ids:
@@ -87,9 +84,7 @@ sonarr:
           - d84935abd3f8556dcd51d4f27e22d0a6 # WEB Tier 03
         quality_profiles:
           - name: Web-720p
-            reset_unmatched_scores: true
           - name: Web-1080p
-            reset_unmatched_scores: true
 
       - trash_ids:
           - c9eafd50846d299b862ca9bb6ea91950 # x265
@@ -107,9 +102,7 @@ sonarr:
           - 44e7c4de10ae50265753082e5dc76047 # Repack v3
         quality_profiles:
           - name: Web-720p
-            reset_unmatched_scores: true
           - name: Web-1080p
-            reset_unmatched_scores: true
 
       # Unwanted
       - trash_ids:
@@ -120,15 +113,18 @@ sonarr:
         - 32b367365729d530ca1c124a0b180c64 # Bad Dual Groups
         quality_profiles:
           - name: Web-720p
-            reset_unmatched_scores: true
           - name: Web-1080p
-            reset_unmatched_scores: true
   main:
     base_url: https://dh.skylab.fi/sonarr/
     api_key: !env_var SONARR2_API_KEY
     delete_old_custom_formats: true
     quality_definition:
       type: series
+    quality_profiles:
+      - name: Web-720p
+        reset_unmatched_scores: true
+      - name: Web-1080p
+        reset_unmatched_scores: true
     custom_formats:
       # Audio Advanced #1
       - trash_ids:
@@ -143,9 +139,7 @@ sonarr:
           - 0d7824bb924701997f874e7ff7d4844a # TrueHD ATMOS
         quality_profiles:
           - name: Web-720p
-            reset_unmatched_scores: true
           - name: Web-1080p
-            reset_unmatched_scores: true
 
       # Audio Advanced #2
       - trash_ids:
@@ -158,9 +152,7 @@ sonarr:
           - 30f70576671ca933adbdcfc736a69718 # PCM
         quality_profiles:
           - name: Web-720p
-            reset_unmatched_scores: true
           - name: Web-1080p
-            reset_unmatched_scores: true
 
       # Audio Channels
       - trash_ids:
@@ -169,9 +161,7 @@ sonarr:
           - 204c8c3e7315bb0ea81332774fa888d6 # 7.1 Surround
         quality_profiles:
           - name: Web-720p
-            reset_unmatched_scores: true
           - name: Web-1080p
-            reset_unmatched_scores: true
 
       # Streaming Services
       - trash_ids:
@@ -199,9 +189,7 @@ sonarr:
           - 0ac24a2a68a9700bcb7eeca8e5cd644c # iT
         quality_profiles:
           - name: Web-720p
-            reset_unmatched_scores: true
           - name: Web-1080p
-            reset_unmatched_scores: true
 
       # HQ Source Groups
       - trash_ids:
@@ -211,22 +199,16 @@ sonarr:
           - d84935abd3f8556dcd51d4f27e22d0a6 # WEB Tier 03
         quality_profiles:
           - name: Web-720p
-            reset_unmatched_scores: true
           - name: Web-1080p
-            reset_unmatched_scores: true
 
       - trash_ids:
           - c9eafd50846d299b862ca9bb6ea91950 # x265
         quality_profiles:
           - name: Any
           - name: HD
-            reset_unmatched_scores: true
           - name: SD
-            reset_unmatched_scores: true
           - name: Web-720p
-            reset_unmatched_scores: true
           - name: Web-1080p
-            reset_unmatched_scores: true
 
       # Misc
       - trash_ids:
@@ -235,9 +217,7 @@ sonarr:
           - 44e7c4de10ae50265753082e5dc76047 # Repack v3
         quality_profiles:
           - name: Web-720p
-            reset_unmatched_scores: true
           - name: Web-1080p
-            reset_unmatched_scores: true
 
       # Unwanted
       - trash_ids:
@@ -248,9 +228,7 @@ sonarr:
           - 32b367365729d530ca1c124a0b180c64 # Bad Dual Groups
         quality_profiles:
           - name: Web-720p
-            reset_unmatched_scores: true
           - name: Web-1080p
-            reset_unmatched_scores: true
 
 radarr:
   k8s:
