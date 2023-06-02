@@ -37,3 +37,25 @@
       net.ipv4.conf.default.rp_filter: 0
       net.ipv4.conf.all.rp_filter: 0
 
+- name: Make sure lldpd is installed
+  apt:
+    name: lldpd
+    state: present
+  tags:
+    - lldpd
+
+- name: Copy lldpd config
+  template:
+    src: lldpd.conf
+    dest: /etc/default/lldpd
+    owner: root
+    group: root
+  tags:
+    - lldpd
+
+- name: Restart lldpd
+  systemd:
+    name: lldpd
+    state: restarted
+  tags:
+    - lldpd
