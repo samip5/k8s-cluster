@@ -11,3 +11,15 @@ spec:
     name: main
   config:
     server.publicBaseUrl: https://kb.skylab.fi
+  podTemplate:
+    spec:
+      containers:
+        - name: kibana
+          env:
+            - name: NODE_OPTIONS
+              value: "--max-old-space-size=2048"
+          resources:
+            requests:
+              memory: 1Gi
+            limits:
+              memory: 2Gi
