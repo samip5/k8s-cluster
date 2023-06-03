@@ -2,22 +2,22 @@
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Provider
 metadata:
-  name: forego
+  name: github
   namespace: flux-system
 spec:
   type: github
-  address: https://git.skym.fi/kryptonian/k8s-cluster
-  #secretRef:
-  #  name: github-token
+  address: https://github.com/samip5/k8s-cluster
+  secretRef:
+    name: github-token
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Alert
 metadata:
-  name: forego
+  name: github
   namespace: flux-system
 spec:
   providerRef:
-    name: forego
+    name: github
   eventSeverity: info
   eventSources:
     - kind: Kustomization
