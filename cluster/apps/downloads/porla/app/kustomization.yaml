@@ -3,3 +3,7 @@ kind: Kustomization
 resources:
   - pvc.yaml
   - helm-release.yaml
+configMapGenerator:
+  - name: porla-configmap
+    files:
+      - config.toml=./configs/config.toml
