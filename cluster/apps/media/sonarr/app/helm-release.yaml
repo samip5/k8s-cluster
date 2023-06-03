@@ -32,7 +32,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/onedr0p/sonarr-develop
-      tag: 4.0.0.527@sha256:e167da1f850abd7ff9361027d8ee3248f47bdf3a922f0d7c91b221883c312216
+      tag: 4.0.0.535@sha256:b3c11b23f489f758d1fd6775606cdb1b55e9b3e6d6bf4aa57c8f370f5e3f1490
     env:
       TZ: Europe/Helsinki
       PUSHOVER_DEBUG: "false"
