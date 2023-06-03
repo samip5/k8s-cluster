@@ -34,6 +34,7 @@ spec:
       tag: beta-latest@sha256:226f4be062373ed1e354b3461cef2757c5637c7941599c104aadc2645896ca7f
     env:
       PORLA_STATE_DIR: /config
+      PORLA_CONFIG_FILE: /config/config.toml
     service:
       main:
         ports:
@@ -65,6 +66,13 @@ spec:
       config:
         enabled: true
         existingClaim: porla-config-v1
+      config-file:
+        enabled: true
+        type: configMap
+        name: porla-configmap
+        subPath: porla.toml
+        mountPath: /config/config.toml
+        readOnly: true
       media:
         enabled: true
         type: nfs
