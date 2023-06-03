@@ -70,7 +70,7 @@ spec:
         enabled: true
         type: configMap
         name: porla-configmap
-        subPath: porla.toml
+        subPath: config.toml
         mountPath: /config/config.toml
         readOnly: true
       media:
