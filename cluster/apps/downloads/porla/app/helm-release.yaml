@@ -32,6 +32,8 @@ spec:
     image:
       repository: ghcr.io/porla/porla
       tag: beta-latest@sha256:226f4be062373ed1e354b3461cef2757c5637c7941599c104aadc2645896ca7f
+    env:
+      PORLA_STATE_DIR: /config
     service:
       main:
         ports:
@@ -62,7 +64,6 @@ spec:
     persistence:
       config:
         enabled: true
-        mountPath: /var/lib/porla
         existingClaim: porla-config-v1
       media:
         enabled: true
