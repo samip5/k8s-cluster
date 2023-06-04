@@ -27,7 +27,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: ghcr.io/onedr0p/theme-park
-      tag: 1.13.7@sha256:728e715f6ebd574b5b11ecb53746567b622e54d676768be30396e95e4b68b10c
+      tag: 1.13.8@sha256:28531e35559a65eab4c197d9379c708b27b6d9b80da2f4f81054ac6436b808cf
     service:
       main:
         ports:
