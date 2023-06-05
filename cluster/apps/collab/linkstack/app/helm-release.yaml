@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: registry.samipsolutions.fi/docker/linkstackorg/linkstack
-      tag: latest@sha256:2cdbdea08dcd8379d802f762d46eb24b2d658e88734f92e18a562cc67c81595a
+      tag: latest@sha256:6c40f53096620a40f27ee71a13a69c1cce045348e8bba870b4cc56ba3144018c
       pullPolicy: Always
     env:
       TZ: "Europe/Helsinki"
