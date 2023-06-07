@@ -20,7 +20,7 @@ spec:
       #repository: ghcr.io/k8snetworkplumbingwg/multus-cni
       #tag: latest
       repository: ghcr.io/k8snetworkplumbingwg/multus-cni
-      tag: v4.0.2
+      tag: v4.0.0
 
 
     tolerations:
