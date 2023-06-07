@@ -24,6 +24,8 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    cni:
+      exclusive: false
     autoDirectNodeRoutes: true
     localRedirectPolicy: true
     rollOutCiliumPods: true
