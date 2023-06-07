@@ -14,8 +14,8 @@ jobs:
     name: Detect File Changes
     runs-on: ubuntu-latest
     steps:
-      - uses: https://github.com/actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3
-      - uses: https://github.com/dorny/paths-filter@v2
+      - uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3
+      - uses: dorny/paths-filter@v2
         id: filter
         with:
           list-files: json
@@ -36,10 +36,10 @@ jobs:
         file: ${{ fromJSON(needs.detect-file-changes.outputs.yaml_files) }}
     steps:
       - name: Checkout
-        uses: https://github.com/actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3
       - name: Install Jo
         run: |
-          apt-get install jo
+          sudo apt-get install jo -y
       - name: Detect Containers in Files
         id: containers
         run: |
@@ -57,9 +57,9 @@ jobs:
       fail-fast: false
     steps:
       - name: Checkout
-        uses: https://github.com/actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3
       - name: Scan Container
-        uses: https://github.com/aquasecurity/trivy-action@e5f43133f6e8736992c9f3c1b3296e24b37e17f2 # 0.10.0
+        uses: aquasecurity/trivy-action@e5f43133f6e8736992c9f3c1b3296e24b37e17f2 # 0.10.0
         with:
           image-ref: ${{ matrix.containers }}
           vuln-type: os,library
@@ -68,6 +68,6 @@ jobs:
           template: "@/contrib/sarif.tpl"
           output: trivy-results.sarif
       - name: Upload Trivy scan results to GitHub Security tab
-        uses: https://github.com/github/codeql-action/upload-sarif@29b1f65c5e92e24fe6b6647da1eaabe529cec70f # v2
+        uses: github/codeql-action/upload-sarif@29b1f65c5e92e24fe6b6647da1eaabe529cec70f # v2
         with:
           sarif_file: trivy-results.sarif
