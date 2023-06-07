@@ -33,11 +33,11 @@ spec:
 
     service:
       main:
-        type: LoadBalancer
-        externalTrafficPolicy: Local
-        annotations:
-          metallb.universe.tf/allow-shared-ip: unifi
-          metallb.universe.tf/loadBalancerIPs: "${METALLB_UNIFI_ADDR}"
+        #type: LoadBalancer
+        #externalTrafficPolicy: Local
+        #annotations:
+        #  metallb.universe.tf/allow-shared-ip: unifi
+        #  metallb.universe.tf/loadBalancerIPs: "${METALLB_UNIFI_ADDR}"
         ports:
           http:
             port: 8443
@@ -69,6 +69,12 @@ spec:
             enabled: true
             port: 10001
             protocol: UDP
+
+    podAnnotations:
+      k8s.v1.cni.cncf.io/networks: unifi-mgmnt-static
+
+    nodeSelector:
+      kubernetes.io/hostname: "w7"
 
     ingress:
       main:
