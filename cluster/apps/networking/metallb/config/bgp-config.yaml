@@ -51,7 +51,7 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-    - 192.168.10.5/32
+    - 192.168.10.30/32
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
