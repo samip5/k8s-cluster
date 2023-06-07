@@ -29,7 +29,7 @@ jobs:
           private_key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
 
       - name: Checkout
-        uses: https://github.com/actions/checkout@v3
+        uses: actions/checkout@v3
         with:
           token: "${{ steps.generate-token.outputs.token }}"
 
@@ -38,7 +38,7 @@ jobs:
 
       - name: Get changed files
         id: changed-files
-        uses: https://github.com/tj-actions/changed-files@v35
+        uses: tj-actions/changed-files@v35
         with:
           json: true
           files: |
@@ -64,7 +64,7 @@ jobs:
           private_key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
 
       - name: Checkout
-        uses: https://github.com/actions/checkout@latest
+        uses: actions/checkout@latest
         with:
           token: "${{ steps.generate-token.outputs.token }}"
 
@@ -76,7 +76,7 @@ jobs:
           path: default
 
       - name: Install Helm
-        uses: https://github.com/azure/setup-helm@v3
+        uses: azure/setup-helm@v3
         with:
           version: latest
 
@@ -92,7 +92,7 @@ jobs:
 
       - name: Find Comment
         if: ${{ always() && steps.diff.outputs.diff != '' }}
-        uses: https://github.com/peter-evans/find-comment@latest
+        uses: peter-evans/find-comment@latest
         id: find-comment
         with:
           issue-number: "${{ github.event.pull_request.number }}"
@@ -101,7 +101,7 @@ jobs:
 
       - name: Create or update comment
         if: ${{ always() && steps.diff.outputs.diff != '' }}
-        uses: https://github.com/peter-evans/create-or-update-comment@latest
+        uses: peter-evans/create-or-update-comment@latest
         with:
           token: "${{ steps.generate-token.outputs.token }}"
           comment-id: "${{ steps.find-comment.outputs.comment-id }}"
