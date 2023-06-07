@@ -36,7 +36,7 @@ cluster
 ## Storage
 | Node         | Hostname | RAM  | Storage                             | Function   | Operating System |
 |--------------|----------|------|-------------------------------------|------------|------------------|
-| Synology NAS | NAS      | 16GB | 2 x 3TB HDD, 2 x 6TB HDD, 1 TB NVME | NFS Server | DSM 7            |
+| Synology NAS | NAS      | 16GB | 2 x 3TB HDD, 2 x 8TB HDD, 1 TB NVME | NFS Server | DSM 7            |
 
 ## Network
 
