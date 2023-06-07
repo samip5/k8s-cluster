@@ -20,11 +20,8 @@ spec:
       #repository: ghcr.io/k8snetworkplumbingwg/multus-cni
       #tag: latest
       repository: ghcr.io/k8snetworkplumbingwg/multus-cni
-      tag: v4.0.0-alpha
+      tag: stable@sha256:825aa0a2572184b1475736f95927c52823e00e3db9930f3d41ce0f6e4bacfc49
 
-    args:
-      - --multus-log-level=debug
-      - --multus-log-file=/etc/cni/net.d/multus.d/the-log.log
 
     tolerations:
       - effect: NoSchedule
