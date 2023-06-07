@@ -20,7 +20,7 @@ spec:
       #repository: ghcr.io/k8snetworkplumbingwg/multus-cni
       #tag: latest
       repository: ghcr.io/k8snetworkplumbingwg/multus-cni
-      tag: stable@sha256:825aa0a2572184b1475736f95927c52823e00e3db9930f3d41ce0f6e4bacfc49
+      tag: v4.0.2
 
 
     tolerations:
