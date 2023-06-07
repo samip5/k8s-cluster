@@ -79,7 +79,7 @@ spec:
           hajimari.io/icon: mdi:wifi
           hajimari.io/group: system management
         hosts:
-          - host: &host "unifi.${SECRET_DOMAIN}"
+          - host: &host "unifi.skylab.fi"
             paths:
               - path: /
                 pathType: Prefix
