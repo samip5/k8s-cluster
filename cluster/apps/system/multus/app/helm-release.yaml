@@ -23,6 +23,7 @@ spec:
       tag: v4.0.0-alpha
 
     args:
+      - --multus-conf-file=auto
       - --multus-log-file=/etc/cni/net.d/multus.d/the-log.log
 
 
