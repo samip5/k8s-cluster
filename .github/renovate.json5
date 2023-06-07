@@ -15,7 +15,8 @@
     "github>samip5/k8s-cluster//.github/renovate/disabledDatasources.json5",
     "github>samip5/k8s-cluster//.github/renovate/groups.json5",
     "github>samip5/k8s-cluster//.github/renovate/labels.json5",
-    "github>samip5/k8s-cluster//.github/renovate/looseVersioning.json5"
+    "github>samip5/k8s-cluster//.github/renovate/looseVersioning.json5",
+    "github>samip5/k8s-cluster//.github/renovate-bot.json5"
   ],
   "platform": "github",
   "onboarding": false,
