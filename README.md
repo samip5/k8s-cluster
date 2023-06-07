@@ -44,7 +44,7 @@ cluster
 |----------|----------------------------------|--------------------------------------------------------------|
 | Juniper  | EX2200-48P-4g                    | Hallway switch with PoE and fiber uplinks to rack            |
 | Juniper  | EX3300-48P                       | Rack switch with PoE                                         |
-| Ubiquiti | Unifi USW-Mini-Flex              | Bedroom switching (gaming iTX system and Steam Deck)         |
+| Ubiquiti | Unifi USW-Flex-Mini              | Bedroom switching (gaming iTX system and Steam Deck)         |
 | Ubiquiti | EdgeRouter 12                    | Main router                                                  |
 | Mikrotik | RBD53G-5HacD2HnD (Chateau LTE12) | Handling IPv6 because EdgeRouter's DHCPv6 client is terrible |
 
