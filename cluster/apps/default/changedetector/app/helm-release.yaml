@@ -26,7 +26,7 @@ spec:
   values:
     image:
       repository: ghcr.io/dgtlmoon/changedetection.io
-      tag: 0.41
+      tag: 0.42.2
     env:
       USE_X_SETTINGS: 1
       PLAYWRIGHT_DRIVER_URL: ws://changedetection-browser.default.svc.cluster.local:3000/?stealth=1&--disable-web-security=true&--user-data-dir=~/browserless-cache-123
