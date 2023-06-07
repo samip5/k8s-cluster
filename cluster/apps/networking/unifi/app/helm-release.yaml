@@ -70,8 +70,11 @@ spec:
             port: 10001
             protocol: UDP
 
-    podAnnotations:
-      k8s.v1.cni.cncf.io/networks: unifi-mgmnt-static
+    #podAnnotations:
+    #  k8s.v1.cni.cncf.io/networks: unifi-mgmnt-static
+
+    # Multus did not want to work.
+    hostNetwork: true
 
     nodeSelector:
       kubernetes.io/hostname: "w7"
