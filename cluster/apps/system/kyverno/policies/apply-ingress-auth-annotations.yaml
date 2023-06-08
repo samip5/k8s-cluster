@@ -2,16 +2,13 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: update-ingress-annotations
+  name: apply-ingress-auth-annotations
   annotations:
-    policies.kyverno.io/title: Update ingress annotations
+    policies.kyverno.io/title: Apply Ingress Auth Annotations
     policies.kyverno.io/category: Security
     policies.kyverno.io/subject: Ingress
-    policies.kyverno.io/description: >-
-      This policy creates auth annotations on ingresses, external-dns,
-      and sets an explicit RFC1918 whitelist for any ingresses
-      that are not not exposed to the internet.
 spec:
+  validationFailureAction: enforce
   mutateExistingOnPolicyUpdate: true
   generateExistingOnPolicyUpdate: true
   rules:
@@ -72,66 +69,3 @@ spec:
                 Set-Cookie,X-authentik-username,X-authentik-uid
               +(nginx.ingress.kubernetes.io/auth-snippet): |
                 proxy_set_header X-Forwarded-Host $http_host;
-
-    - name: external-dns-proxied-cf
-      match:
-        any:
-          - resources:
-              kinds:
-                - Ingress
-              annotations:
-                external-dns-cf/is-cf-proxied: "true"
-      mutate:
-        patchStrategicMerge:
-          metadata:
-            annotations:
-              +(external-dns.alpha.kubernetes.io/cloudflare-proxied): "true"
-
-    - name: external-dns
-      match:
-        any:
-          - resources:
-              kinds:
-                - Ingress
-              annotations:
-                external-dns.target/enabled: "true"
-      mutate:
-        patchStrategicMerge:
-          metadata:
-            annotations:
-              +(external-dns.alpha.kubernetes.io/target): r.home.skym.fi
-
-    - name: whitelist-source-range
-      match:
-        any:
-          - resources:
-              kinds:
-                - Ingress
-      exclude:
-        any:
-          - resources:
-              annotations:
-                external-dns.home.arpa/enabled: "true"
-          - resources:
-              annotations:
-                auth-ak-fw.home.arpa/enabled: "true"
-          - resources:
-              annotations:
-                external-dns-cf/is-public: "true"
-          - resources:
-              annotations:
-                external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-          - resources:
-              annotations:
-                auth-basic-fi.home.arpa/enabled: "true"
-          - resources:
-              annotations:
-                auth-fi.home.arpa/enabled: "true"
-          - resources:
-              namespaces:
-                - search
-      mutate:
-        patchStrategicMerge:
-          metadata:
-            annotations:
-              +(nginx.ingress.kubernetes.io/whitelist-source-range): "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,158.101.199.148/32,2603:c022:c002:4800::10/128,2001:14ba:16e5:fa00::/56,185.218.193.134/32,185.218.193.52/32,2001:67c:1104::/48,2001:67c:1be8::/48"

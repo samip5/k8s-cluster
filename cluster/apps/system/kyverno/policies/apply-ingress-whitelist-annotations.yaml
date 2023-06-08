@@ -1,0 +1,50 @@
+---
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: apply-ingress-whitelist-annotations
+  annotations:
+    policies.kyverno.io/title: Apply Ingress Whitelist Annotations
+    policies.kyverno.io/category: Security
+    policies.kyverno.io/subject: Ingress
+spec:
+  validationFailureAction: enforce
+  mutateExistingOnPolicyUpdate: true
+  generateExistingOnPolicyUpdate: true
+  rules:
+    - name: whitelist
+      match:
+        any:
+          - resources:
+              kinds:
+              - Ingress
+      exclude:
+        any:
+          - resources:
+              annotations:
+                external-dns.home.arpa/enabled: "true"
+          - resources:
+              annotations:
+                auth-ak-fw.home.arpa/enabled: "true"
+          - resources:
+              annotations:
+                external-dns-cf/is-public: "true"
+          - resources:
+              annotations:
+                external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+          - resources:
+              annotations:
+                auth-basic-fi.home.arpa/enabled: "true"
+          - resources:
+              annotations:
+                auth-fi.home.arpa/enabled: "true"
+          - resources:
+              namespaces:
+                - search
+      mutate:
+        patchStrategicMerge:
+          metadata:
+            annotations:
+              +(nginx.ingress.kubernetes.io/whitelist-source-range): |-
+                10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,158.101.199.148/32,2603:c022:c002:4800::10/128,2001:14ba:16f3:b00::/56,,2001:67c:1104::/48,2001:67c:1be8::/48
+              
