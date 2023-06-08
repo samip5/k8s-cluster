@@ -1,0 +1,40 @@
+---
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: apply-ingress-external-dns-annotations
+  annotations:
+    policies.kyverno.io/title: Apply Ingress External-DNS Annotations
+    policies.kyverno.io/subject: Ingress
+spec:
+  validationFailureAction: enforce
+  mutateExistingOnPolicyUpdate: true
+  generateExistingOnPolicyUpdate: true
+  rules:
+    - name: external-dns-proxied-cf
+      match:
+        any:
+          - resources:
+              kinds:
+                - Ingress
+              annotations:
+                external-dns-cf/is-cf-proxied: "true"
+      mutate:
+        patchStrategicMerge:
+          metadata:
+            annotations:
+              +(external-dns.alpha.kubernetes.io/cloudflare-proxied): "true"
+
+    - name: external-dns
+      match:
+        any:
+          - resources:
+              kinds:
+                - Ingress
+              annotations:
+                external-dns.target/enabled: "true"
+      mutate:
+        patchStrategicMerge:
+          metadata:
+            annotations:
+              +(external-dns.alpha.kubernetes.io/target): r.home.skym.fi
