@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pastebinfi-backend-data-v1
+  namespace: collab
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-path-provisioner
+  resources:
+    requests:
+      storage: 1Gi
