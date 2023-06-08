@@ -1,0 +1,58 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: pastebinfi-mongo
+  namespace: collab
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      interval: 15m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+      remediateLastFailure: true
+    cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    cleanupOnFail: true
+  values:
+    image:
+      repository: docker.io/library/mongo
+      tag: 5.0.6-focal
+
+    env:
+       MONGO_INITDB_ROOT_USERNAME:
+         valueFrom:
+           secretKeyRef:
+             name: pastebinfi-mongo-secret
+             key: MONGO_USERNAME
+       MONGO_INITDB_ROOT_PASSWORD:
+         valueFrom:
+           secretKeyRef:
+             name: pastebinfi-mongo-secret
+             key: MONGO_PASSWORD
+
+    persistence:
+      data:
+        enabled: true
+        mountPath: /data/db
+        existingClaim: pastebinfi-mongo-data-v1
+        subPath: mongodata
+
+    service:
+      main:
+        ports:
+          http:
+            port: 27017

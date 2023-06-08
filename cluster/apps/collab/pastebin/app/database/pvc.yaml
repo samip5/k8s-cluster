@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pastebinfi-mongo-data-v1
+  namespace: collab
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-path-provisioner
+  resources:
+    requests:
+      storage: 5Gi
