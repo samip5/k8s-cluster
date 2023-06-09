@@ -33,7 +33,7 @@ spec:
   values:
     image:
       repository: ghcr.io/pastebin-fi/backend
-      tag: master@sha256:33ac80b5ec4cae3b9db585021649f370455e8d40bebec0af83f43e8a7814a139
+      tag: master
 
     env:
       DATA_DIR: /config
