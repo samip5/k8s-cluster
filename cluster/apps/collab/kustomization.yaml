@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
   - ns.yaml
   - littlelink/ks.yaml
-  - pastebin/ks.yaml
