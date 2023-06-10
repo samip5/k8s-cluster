@@ -9,3 +9,15 @@ spec:
     - name: https
       port: 443
   type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dh-plex
+  namespace: networking
+spec:
+  ports:
+    - port: 32400
+      targetPort: 32400
+      name: https
+  type: ClusterIP

@@ -22,3 +22,29 @@ spec:
   tls:
     - hosts:
         - "dh.skylab.fi"
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dh-plex
+  namespace: networking
+  annotations:
+    external-dns-cf/is-dns-public: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "plex.dh.skylab.fi"
+      http:
+        paths:
+          - backend:
+              service:
+                name: dh-plex
+                port:
+                  name: https
+            pathType: Prefix
+            path: "/"
+  tls:
+    - hosts:
+        - "plex.dh.skylab.fi"
+      secretName: plex-dh-tls

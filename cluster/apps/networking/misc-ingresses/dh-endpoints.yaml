@@ -11,3 +11,17 @@ subsets:
       - name: https
         port: 443
         protocol: TCP
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: dh-plex
+  namespace: networking
+subsets:
+  - addresses:
+      - ip: 2001:14ba:16f3:b00:a236:9fff:fe18:55fb
+      - ip: 192.168.2.129
+    ports:
+      - name: https
+        port: 32400
+        protocol: TCP
