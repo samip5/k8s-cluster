@@ -37,7 +37,7 @@ spec:
       repository: docker.io/tzahi12345/youtubedl-material
       tag: latest
     env:
-      TZ: "${TIMEZONE}"
+      TZ: "Europe/Helsinki"
       ytdl_use_local_db: "false"
       write_ytdl_config: "true"
       ytdl_mongodb_connection_string:
