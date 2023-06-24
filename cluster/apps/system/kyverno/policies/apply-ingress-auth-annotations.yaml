@@ -22,6 +22,8 @@ spec:
                 auth-fi.home.arpa/enabled: "true"
 
       mutate:
+        targets:
+          - kind: Ingress
         patchStrategicMerge:
           metadata:
             annotations:
@@ -41,6 +43,8 @@ spec:
                 auth-basic-fi.home.arpa/enabled: "true"
 
       mutate:
+        targets:
+          - kind: Ingress
         patchStrategicMerge:
           metadata:
             annotations:
@@ -58,6 +62,8 @@ spec:
               annotations:
                 auth-ak-fw.home.arpa/enabled: "true"
       mutate:
+        targets:
+          - kind: Ingress
         patchStrategicMerge:
           metadata:
             annotations:

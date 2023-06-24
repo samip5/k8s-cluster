@@ -42,6 +42,8 @@ spec:
               namespaces:
                 - search
       mutate:
+        targets:
+          - kind: Ingress
         patchStrategicMerge:
           metadata:
             annotations:
