@@ -20,6 +20,8 @@ spec:
               annotations:
                 external-dns-cf/is-cf-proxied: "true"
       mutate:
+        targets:
+          - kind: Ingress
         patchStrategicMerge:
           metadata:
             annotations:
@@ -34,6 +36,8 @@ spec:
               annotations:
                 external-dns.target/enabled: "true"
       mutate:
+        targets:
+          - kind: Ingress
         patchStrategicMerge:
           metadata:
             annotations:
