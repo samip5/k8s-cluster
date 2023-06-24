@@ -28,7 +28,7 @@
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
   "suppressNotifications": ["prIgnoreNotification"],
   "rebaseWhen": "conflicted",
-  "ignorePaths": ["archive/**"],
+  "ignorePaths": ["archive/**", "cluster/**/config/**"],
   "flux": {
     "fileMatch": ["cluster/.+\\.ya?ml$"]
   },
