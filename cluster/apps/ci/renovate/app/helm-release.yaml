@@ -24,7 +24,7 @@ spec:
       retries: 5
   values:
     env:
-      LOG_LEVEL: info
+      LOG_LEVEL: debug
     existingSecret: renovate-secrets
     image:
       repository: ghcr.io/renovatebot/renovate
