@@ -19,3 +19,13 @@ spec:
     crds: CreateReplace
   upgrade:
     crds: CreateReplace
+  postRenderers:
+    - kustomize:
+        patchesStrategicMerge:
+          - kind: Deployment
+            apiVersion: apps/v1
+            spec:
+              template:
+                spec:
+                  nodeSelector:
+                    kubernetes.io/arch: amd64
