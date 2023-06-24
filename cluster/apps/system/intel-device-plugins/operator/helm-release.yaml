@@ -33,6 +33,9 @@ spec:
           - kind: Deployment
             apiVersion: apps/v1
             spec:
+              selector:
+                matchLabels:
+                  control-plane: controller-manager
               template:
                 spec:
                   nodeSelector:
