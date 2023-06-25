@@ -41,7 +41,7 @@ spec:
         enabled: true
         image:
           repository: quay.io/frrouting/frr
-          tag: 8.5.1
+          tag: 8.5.2
     crds:
       enabled: true
     rbac:
