@@ -11,4 +11,5 @@ resources:
   - speedtest-exporter
   - vpa/ks.yaml
   - goldilocks/ks.yaml
+  - apprise/ks.yaml
 #  - loki/ks.yaml
