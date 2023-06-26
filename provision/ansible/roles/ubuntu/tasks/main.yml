@@ -34,3 +34,6 @@
 - include: nut-config.yaml
   tags:
     - nut
+- include: misc-system.yml
+  tags:
+    - system

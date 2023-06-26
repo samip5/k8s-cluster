@@ -1,0 +1,8 @@
+---
+- name: File sysctl notify fixes
+  copy:
+    src: "{{ role_path }}/files/fs-sysctl-k3s.yaml"
+    dest: /etc/sysctl.d/99-k3s.yaml
+- name: sysctl apply
+  command: |
+    sysctl -p
