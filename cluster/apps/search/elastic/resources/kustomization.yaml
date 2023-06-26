@@ -4,3 +4,4 @@ resources:
   - es.yaml
   - kibana.yaml
   - ingress-elk.yaml
+  - ingress-kb.yaml
