@@ -29,6 +29,9 @@ spec:
     publicServerName: matrix.skylab.fi
     wellknown:
       enabled: true
+      image:
+        repository: ghcr.io/rtsp/docker-lighttpd
+        tag: 1.4.71
 
     workers:
       media_repository:
