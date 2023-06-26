@@ -33,7 +33,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/onedr0p/prowlarr-develop
-      tag: 1.5.2.3484@sha256:4ce09c121f1c5ce64dc626fb86b207a9f66bd7bd9b624a781cac79a42f7768ba
+      tag: 1.6.1.3564@sha256:a4bb61092ab3d4a241ce8d495bfd665c14b9826aceeeeaaf660c808f246f019a
     env:
       PROWLARR__INSTANCE_NAME: Prowlarr
       PROWLARR__PORT: &port 80
