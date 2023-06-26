@@ -28,7 +28,7 @@ spec:
     image:
       # https://hub.docker.com/r/caronc/apprise
       repository: registry.samipsolutions.fi/docker/caronc/apprise
-      tag: v1.2.0
+      tag: v0.9.2
     env:
       TZ: "Europe/Helsinki"
     service:
