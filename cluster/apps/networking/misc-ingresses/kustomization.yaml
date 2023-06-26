@@ -2,7 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - dh-cert.yaml
-  - home-srv-ingress-and-service.yaml
-  - dh-endpoints.yaml
-  - dh-service.yaml
   - dh-ingress.yaml
+  - dh-service.yaml
+  - dh-endpoints.yaml
+  - dh-endpoints-plex.yaml
+  - home-srv-endpoints.yaml
+  - home-srv-svc.yaml
+  - home-srv-livetv-ingress.yaml
+  - home-srv-livetv-stream-ingress.yaml
+  - home-srv-livetv-dvr-ingress.yaml
