@@ -8,6 +8,7 @@ resources:
   - reloader
   - reflector
   - intel-device-plugins/ks.yaml
+  - intel-device-plugins/ks-gpu.yaml
   - kyverno/ks.yaml
   - kyverno/ks-policies.yaml
   - snapshot-controller/ks.yaml
