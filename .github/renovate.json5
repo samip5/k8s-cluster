@@ -23,7 +23,7 @@
   "commitBodyTable": true,
   "timezone": "Europe/Helsinki",
   "semanticCommits": "enabled",
-  "recreateClosed": "always",
+  "recreateClosed": true,
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
   "suppressNotifications": ["prIgnoreNotification"],
