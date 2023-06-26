@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: tvheadend-home-srv
+  namespace: networking
+subsets:
+  - addresses:
+      - ip: 192.168.2.10
+    ports:
+      - name: http
+        port: 9981
+        protocol: TCP
