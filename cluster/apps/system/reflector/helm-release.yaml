@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://emberstack.github.io/helm-charts/
       chart: reflector
-      version: 7.0.178
+      version: 7.0.183
       sourceRef:
         kind: HelmRepository
         name: emberstack-charts
