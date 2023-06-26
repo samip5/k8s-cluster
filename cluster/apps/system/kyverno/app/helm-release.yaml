@@ -28,8 +28,6 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    upgrade:
-     fromV2: true
     crds:
       install: true
     grafana:
@@ -40,16 +38,32 @@ spec:
     backgroundController:
       serviceMonitor:
         enabled: true
+      tracing:
+        enabled: true
+        address: tempo.monitoring
+        port: 4317
     cleanupController:
       serviceMonitor:
         enabled: true
+      tracing:
+        enabled: true
+        address: tempo.monitoring
+        port: 4317
     reportsController:
       serviceMonitor:
         enabled: true
+      tracing:
+        enabled: true
+        address: tempo.monitoring
+        port: 4317
     admissionController:
         replicas: 3
         serviceMonitor:
           enabled: true
+        tracing:
+          enabled: true
+          address: tempo.monitoring
+          port: 4317
         topologySpreadConstraints:
           - maxSkew: 1
             topologyKey: kubernetes.io/hostname
