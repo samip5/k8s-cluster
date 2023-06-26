@@ -2,60 +2,6 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: livetv
-  namespace: networking
-  annotations:
-    auth-fi.home.arpa/enabled: "true"
-    external-dns-cf/is-dns-public: "true"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: "tv.${MAIN_DOMAIN}"
-      http:
-        paths:
-          - backend:
-              service:
-               name: tvheadend-home-srv
-               port:
-                 number: 9981
-            path: '/'
-            pathType: Prefix
-  tls:
-    - hosts:
-        - "tv.${MAIN_DOMAIN}"
-      secretName: ${MAIN_DOMAIN}-tls
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: livetv-stream
-  namespace: networking
-  annotations:
-    auth-basic-fi.home.arpa/enabled: "true"
-    external-dns-cf/is-dns-public: "true"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: "tv.${MAIN_DOMAIN}"
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/stream/"
-            backend:
-              service:
-               name: tvheadend-home-srv
-               port:
-                number: 9981
-  tls:
-    - hosts:
-        - "tv.${MAIN_DOMAIN}"
-      secretName: ${MAIN_DOMAIN}-tls
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
   name: livetv-dvr
   namespace: networking
   annotations:
