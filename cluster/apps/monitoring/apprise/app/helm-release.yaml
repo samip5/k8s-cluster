@@ -27,6 +27,7 @@ spec:
   values:
     image:
       # https://hub.docker.com/r/caronc/apprise
+      # This is just a pull though cache
       repository: registry.samipsolutions.fi/docker/caronc/apprise
       tag: v0.9.2
     env:
