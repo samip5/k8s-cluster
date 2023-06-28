@@ -135,7 +135,7 @@ spec:
     kubeControllerManager:
       enabled: true
       endpoints: &cp
-        - 10.0.105.10
+        - 10.0.105.34
     kubeScheduler:
       enabled: true
       endpoints: *cp
