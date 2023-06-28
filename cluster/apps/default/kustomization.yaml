@@ -8,4 +8,5 @@ resources:
   - theme-park/ks.yaml
   - smtp-relay/ks.yaml
   - paperless/ks.yaml
+  - shiori/ks.yaml
 #  - syncthing/ks.yaml
