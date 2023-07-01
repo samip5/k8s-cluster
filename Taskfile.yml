@@ -1,0 +1,14 @@
+---
+version: "3"
+
+vars:
+  KUBERNETES_DIR: "{{.ROOT_DIR}}/cluster"
+  ANSIBLE_DIR: "{{.ROOT_DIR}}/provision/ansible"
+
+includes:
+  ansible: .taskfiles/AnsibleTasks.yml
+
+tasks:
+  default:
+    silent: true
+    cmds: ["task -l"]
