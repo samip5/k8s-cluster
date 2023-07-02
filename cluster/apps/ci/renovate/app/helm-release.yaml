@@ -28,7 +28,7 @@ spec:
     existingSecret: renovate-secrets
     image:
       repository: ghcr.io/renovatebot/renovate
-      tag: 35.143
+      tag: 35.157
       pullPolicy: Always
     cronjob:
       schedule: "0 */12 * * *"
