@@ -46,7 +46,7 @@ spec:
           - name: VPN_INTERFACE
             value: wg0
           - name: FIREWALL
-            value: "on"
+            value: "off"
           - name: DOT
             value: "off"
           - name: FIREWALL_VPN_INPUT_PORTS
