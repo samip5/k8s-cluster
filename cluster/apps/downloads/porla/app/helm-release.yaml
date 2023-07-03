@@ -30,8 +30,8 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     image:
-      repository: registry.samipsolutions.fi/library/porla
-      tag: dev
+      repository: ghcr.io/porla/porla
+      tag: beta-latest@sha256:40d9a8a94792ca06522486327db32632a80630513862101810657930ea05a65e
     env:
       PORLA_STATE_DIR: /config
       PORLA_CONFIG_FILE: /config/config.toml
