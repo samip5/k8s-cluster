@@ -69,7 +69,7 @@ spec:
               - NET_ADMIN
 
         networkPolicy:
-          enabled: true
+          enabled: false
           egress:
             - to:
                 - ipBlock:
