@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ns.yaml
   - nginx/ks.yaml
+  - ngrok/ks.yaml
   - external-dns/ks.yaml
   - misc-ingresses
   - unifi/ks.yaml

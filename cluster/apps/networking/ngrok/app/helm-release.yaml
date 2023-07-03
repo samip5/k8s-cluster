@@ -1,0 +1,31 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ngrok
+  namespace: networking
+spec:
+  install:
+    crds: CreateReplace
+  interval: 5m
+  chart:
+    spec:
+      chart: kubernetes-ingress-controller
+      version: 0.13.10
+      sourceRef:
+        kind: HelmRepository
+        name: ngrok
+        namespace: flux-system
+      interval: 5m
+  values:
+    credentials:
+      apiKey:
+        valueFrom:
+          secretKeyRef:
+            name: ngrok-secrets
+            key: apiKey
+      authtoken:
+        valueFrom:
+          secretKeyRef:
+            name: ngrok-secrets
+            key: authtoken
