@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - ns.yaml
   - vpn-gateway/ks.yaml
+  - downloads-gateway/ks.yaml
