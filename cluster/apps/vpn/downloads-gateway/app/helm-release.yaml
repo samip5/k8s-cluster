@@ -34,8 +34,8 @@ spec:
         enabled: true
         type: gluetun
         image:
-          repository: docker.io/qmcgaw/gluetun
-          tag: v3.35.0@sha256:a98d1ec99e09a1b806aff7f0c3d8a133a8ede7d3d7a250b62029a39a61f01525
+          repository: registry.samipsolutions.fi/library/gluetun
+          tag: 1688386014
         env:
           - name: VPN_TYPE
             value: wireguard
@@ -49,6 +49,8 @@ spec:
             value: "off"
           - name: FIREWALL_VPN_INPUT_PORTS
             value: 1637,41909,57427
+          - name: WIREGUARD_MTU
+            value: 1320
           # - name:  WIREGUARD_PRIVATE_KEY
           #   value: set in secret
           # - name:  WIREGUARD_ADDRESSES
@@ -141,3 +143,5 @@ spec:
       gatewayAnnotation: setDownloadGateway
       namespaceSelector:
         label: "downloads-routed-gateway"
+
+
