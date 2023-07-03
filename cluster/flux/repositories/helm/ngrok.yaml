@@ -1,0 +1,10 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: ngrok
+  namespace: flux-system
+spec:
+  interval: 15m
+  url: https://ngrok.github.io/kubernetes-ingress-controller
+  timeout: 3m
