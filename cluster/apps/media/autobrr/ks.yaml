@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: apps-vpn-gateway
+    - name: downloads-vpn-gateway
   path: ./cluster/apps/media/autobrr/app
   prune: true
   sourceRef:
