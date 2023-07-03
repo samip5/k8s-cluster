@@ -4,5 +4,5 @@ kind: Namespace
 metadata:
   name: media
   labels:
-    vpn-routed-gateway: "true"
+    downloads-routed-gateway: "true"
     goldilocks.fairwinds.com/enabled: "true"
