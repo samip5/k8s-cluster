@@ -37,6 +37,8 @@ spec:
           repository: registry.samipsolutions.fi/library/gluetun
           tag: 1688386014
         env:
+          - name: LOG_LEVEL
+            value: debug
           - name: VPN_TYPE
             value: wireguard
           - name: VPN_SERVICE_PROVIDER
