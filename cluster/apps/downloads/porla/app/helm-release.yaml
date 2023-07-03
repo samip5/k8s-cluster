@@ -25,7 +25,8 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    fullnameOverride: porla
+    global:
+      fullnameOverride: porla
     controller:
       annotations:
         reloader.stakater.com/auto: "true"

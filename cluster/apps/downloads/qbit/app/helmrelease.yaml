@@ -25,7 +25,8 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    fullnameOverride: qbittorrent
+    global:
+      fullnameOverride: qbittorrent
     controller:
       annotations:
         reloader.stakater.com/auto: "true"
