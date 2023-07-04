@@ -35,7 +35,7 @@ spec:
         type: gluetun
         image:
           repository: registry.samipsolutions.fi/library/gluetun
-          tag: 1688386014
+          tag: 1688394520
         env:
           - name: LOG_LEVEL
             value: debug
