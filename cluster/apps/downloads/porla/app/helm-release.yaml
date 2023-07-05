@@ -27,6 +27,8 @@ spec:
   values:
     global:
       fullnameOverride: porla
+    hostname: porla
+    automountServiceAccountToken: false
     controller:
       annotations:
         reloader.stakater.com/auto: "true"
