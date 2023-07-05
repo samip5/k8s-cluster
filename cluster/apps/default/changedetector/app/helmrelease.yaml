@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: docker.io/browserless/chrome
-      tag: latest@sha256:7231a48572d6b88d0eb5b73ea9cb5a899e94dae3c7f49423f0c843664b3074e2
+      tag: latest@sha256:7ae583e86d4daaf08d8e286494eecea2b5535115592d006d447475bcae6b3b88
     env:
       SCREEN_WIDTH: 1920
       SCREEN_HEIGHT: 1024
