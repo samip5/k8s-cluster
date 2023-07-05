@@ -36,6 +36,7 @@ spec:
     env:
       PORLA_STATE_DIR: /config
       PORLA_CONFIG_FILE: /config/config.toml
+      PORLA_LOG_LEVEL: debug
     service:
       main:
         ports:
