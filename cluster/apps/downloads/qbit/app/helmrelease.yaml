@@ -27,6 +27,7 @@ spec:
   values:
     global:
       fullnameOverride: qbittorrent
+    hostname: qbittorrent
     controller:
       annotations:
         reloader.stakater.com/auto: "true"
