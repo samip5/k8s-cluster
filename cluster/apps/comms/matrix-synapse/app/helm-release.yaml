@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: ghcr.io/matrix-org/synapse
-      tag: v1.86.0
+      tag: v1.87.0
     serverName: skylab.fi
     publicServerName: matrix.skylab.fi
     wellknown:
