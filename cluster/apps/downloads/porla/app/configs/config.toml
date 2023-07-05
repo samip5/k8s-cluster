@@ -1,5 +1,7 @@
 secret_key = "vVzbav7B4I8H6SAFCHkNIAR80OYcVbXe"
 
+[plugins]
+allow_git = true
 
 [presets.sonarr]
 category = "sonarr"
