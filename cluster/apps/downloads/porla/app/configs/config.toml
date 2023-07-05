@@ -1,4 +1,5 @@
 secret_key = "vVzbav7B4I8H6SAFCHkNIAR80OYcVbXe"
+workflow_dir = "/config/workflows"
 
 [plugins]
 allow_git = true
@@ -19,4 +20,4 @@ upload_limit = -1
 max_connections = 500
 max_uploads = 500
 save_path = "/media/downloads/porla/.incomplete"
-tags = ["private"]
+tags = ["racing","private"]
