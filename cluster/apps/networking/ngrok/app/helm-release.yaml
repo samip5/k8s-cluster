@@ -19,13 +19,5 @@ spec:
       interval: 5m
   values:
     credentials:
-      apiKey:
-        valueFrom:
-          secretKeyRef:
-            name: ngrok-secrets
-            key: apiKey
-      authtoken:
-        valueFrom:
-          secretKeyRef:
-            name: ngrok-secrets
-            key: authtoken
+      secret:
+        name: "ngrok-secrets"
