@@ -4,7 +4,7 @@ metadata:
   name: cluster-apps-external-secrets-operator
   namespace: flux-system
 spec:
-  path: './cluster/apps/flux-system/add-ons/external-secrets/operator/'
+  path: './cluster/flux/add-ons/external-secrets/operator/'
   prune: true
   sourceRef:
     kind: GitRepository
