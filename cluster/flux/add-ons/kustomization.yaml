@@ -5,4 +5,4 @@ namespace: flux-system
 resources:
   - ./notifications
   - ./webhook
-  - ./extermal-secrets/ks.yaml
+  - external-secrets/ks.yaml
