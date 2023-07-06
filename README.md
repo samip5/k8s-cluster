@@ -51,3 +51,8 @@ cluster
 
 All nodes are connected to a dual-stack network, with private IPv4 and public IPv6. 
 Kubernetes nodes are on their own VLAN which has access to the NAS.
+
+## Stargazers
+
+[![Star History Chart](https://api.star-history.com/svg?repos=samip5/k8s-cluster&type=Date)](https://star-history.com/#samip5/k8s-cluster&Date)
+
