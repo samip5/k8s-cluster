@@ -25,7 +25,6 @@ spec:
       retries: 3
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
-  # Values: https://github.com/k8s-at-home/charts/blob/master/charts/stable/satisfactory/values.yaml
   values:
     image:
       repository: wolveix/satisfactory-server
