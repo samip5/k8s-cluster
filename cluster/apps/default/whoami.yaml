@@ -52,19 +52,6 @@ spec:
             paths:
               - path: /
 
-      ngrok:
-        enabled: true
-        ingressClassName: ngrok
-        hosts:
-          - host: &ngrok d29054175344-5611230103307766945.ngrok-free.app
-            paths:
-              - path: /
-
-        tls:
-          - secretName: ngrok-free-tls
-            hosts:
-              - *ngrok
-
 
 
     resources:
