@@ -36,6 +36,20 @@ spec:
         grafana_folder: System
 
     backgroundController:
+      rbac:
+        clusterRole:
+          extraResources:
+            - apiGroups:
+                - ""
+              resources:
+                - pods
+              verbs:
+                - create
+                - update
+                - patch
+                - delete
+                - get
+                - list
       serviceMonitor:
         enabled: true
       tracing:
@@ -58,6 +72,17 @@ spec:
         port: 4317
     admissionController:
         replicas: 3
+        rbac:
+          clusterRole:
+            extraResources:
+              - apiGroups:
+                  - ""
+                resources:
+                  - pods
+                verbs:
+                  - create
+                  - update
+                  - delete
         serviceMonitor:
           enabled: true
         tracing:
