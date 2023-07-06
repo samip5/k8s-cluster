@@ -26,6 +26,7 @@ resources:
   - node-feature-discovery-charts.yaml
   - ngrok.yaml
   - external-dns-charts.yaml
+  - external-secrets.yaml
   - elastic-charts.yaml
   - nfs-subdir-external-provisioner-charts.yaml
   - metallb-charts.yaml
