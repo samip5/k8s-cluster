@@ -1,0 +1,21 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cluster-apps-external-secrets-operator
+  namespace: flux-system
+spec:
+  path: './cluster/apps/flux-system/add-ons/external-secrets/operator/'
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: cluster
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: external-secrets-operator
+      namespace: flux-system
+  dependsOn:
+    - name: cluster-apps-cert-manager
