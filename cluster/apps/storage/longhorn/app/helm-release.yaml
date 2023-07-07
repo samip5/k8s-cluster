@@ -21,7 +21,6 @@ spec:
       defaultFsType: xfs
     defaultSettings:
       defaultReplicaCount: 2
-      v2DataEngine: true
       backupTarget: s3://longhorn@us-east-1/
       backupTargetCredentialSecret: minio-secret
     longhornUI:
