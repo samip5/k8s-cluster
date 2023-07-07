@@ -29,7 +29,7 @@ spec:
        kubernetes.io/arch: amd64
     longhornManager:
       nodeSelector:
-        kubernetes.io/arch: amd64
+        longhorn-storage: true
       tolerations:
         - key: "longhorn-storage"
           operator: "Equal"
