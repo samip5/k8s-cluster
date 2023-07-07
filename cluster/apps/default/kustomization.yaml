@@ -6,7 +6,7 @@ resources:
 #  - epic-freegames/ks.yaml # Doesn't work anymore
   - immich/ks.yaml
   - theme-park/ks.yaml
-#  - smtp-relay/ks.yaml
-#  - paperless/ks.yaml
+  - smtp-relay/ks.yaml
+  - paperless/ks.yaml
   - whoami.yaml
 #  - syncthing/ks.yaml
