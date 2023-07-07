@@ -27,6 +27,14 @@ spec:
     longhornUI:
       nodeSelector:
        kubernetes.io/arch: amd64
+    longhornManager:
+      nodeSelector:
+        kubernetes.io/arch: amd64
+      tolerations:
+        - key: "longhorn-storage"
+          operator: "Equal"
+          value: "true"
+          effect: "NoExecute"
     pspEnable: false
     ingress:
       enabled: true
