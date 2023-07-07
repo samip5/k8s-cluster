@@ -5,12 +5,12 @@ resources:
  - ns.yaml
  - jellyseer
  - plex/ks.yaml
-# - sonarr/ks.yaml
-# - radarr/ks.yaml
-# - recyclarr/ks.yaml
+ - sonarr/ks.yaml
+ - radarr/ks.yaml
+ - recyclarr/ks.yaml
  - prowlarr/ks.yaml
-# - unpackerr/ks.yaml
-# - autobrr/ks.yaml
-# - youtubedl/ks.yaml
+ - unpackerr/ks.yaml
+ - autobrr/ks.yaml
+ - youtubedl/ks.yaml
 # - flaresolverr/ks.yaml
 # - netshoot.yaml
