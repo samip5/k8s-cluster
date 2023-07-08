@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
   - ns.yaml
   - redis/ks.yaml
+  - cloudnative-pg/ks.yaml
 #  - pgadmin/ks.yaml
