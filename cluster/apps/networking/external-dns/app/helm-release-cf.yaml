@@ -27,7 +27,7 @@ spec:
     interval: 5m
     logLevel: info
     provider: cloudflare
-    policy: sync
+    policy: upsert-only
     sources:
       - ingress
     txtOwnerId: "cf-external-dns"
