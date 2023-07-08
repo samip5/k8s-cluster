@@ -1,0 +1,91 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: lemmy-deploy
+  namespace: federation
+spec:
+  sourceRef:
+    kind: OCIRepository
+    name: lemmy-ks
+  interval: 10m
+  prune: true
+  wait: true
+  targetNamespace: federation
+  patches:
+    - patch: |-
+        - op: add
+          path: /spec/template/spec/containers/0/env/-
+          value:
+            name: PICTRS__STORE__TYPE
+            value: object_storage
+        - op: add
+          path: /spec/template/spec/containers/0/env/-
+          value:
+            name: PICTRS__STORE__USE_PATH_STYLE
+            value: "true"
+        - op: add
+          path: /spec/template/spec/containers/0/env/-
+          value:
+            # Needs protocol can inject in args as well..
+            name: PICTRS__STORE__ENDPOINT
+            value: "https://s3.skym.fi"
+        - op: add
+          path: /spec/template/spec/containers/0/env/-
+          value:
+            name: PICTRS__STORE__BUCKET_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: pictrs-bucket-v1
+                key: BUCKET_NAME
+        - op: add
+          path: /spec/template/spec/containers/0/env/-
+          value:
+            name: PICTRS__STORE__REGION
+            valueFrom:
+              configMapKeyRef:
+                name: pictrs-bucket-v1
+                key: BUCKET_REGION
+        - op: add
+          path: /spec/template/spec/containers/0/env/-
+          value:
+            name: PICTRS__STORE__ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: pictrs-bucket-v1
+                key: AWS_ACCESS_KEY_ID
+        - op: add
+          path: /spec/template/spec/containers/0/env/-
+          value:
+            name: PICTRS__STORE__SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: pictrs-bucket-v1
+                key: AWS_SECRET_ACCESS_KEY
+      target:
+        kind: Deployment
+        name: pictrs
+        version: v1
+    - patch: |-
+        - op: replace
+          path: /spec/rules/0/host
+          value: lemmy.skylab.fi
+        - op: replace
+          path: /spec/tls/0/hosts/0
+          value: lemmy.skylab.fi
+        - op: add
+          path: /metadata/annotations
+          value:
+            cert-manager.io/cluster-issuer: zerossl-production
+      target:
+        kind: Ingress
+        name: lemmy
+        version: v1
+    - patch: |-
+        - op: replace
+          path: /spec/template/spec/containers/0/env/0/value
+          value: lemmy.skylab.fi
+      target:
+        kind: Deployment
+        name: lemmy-ui
+        version: v1
