@@ -7,3 +7,4 @@ resources:
   - ./webhook
   - external-secrets/ks.yaml
   - external-secrets/ks-bw.yaml
+  - external-secrets/ks-doppler.yaml
