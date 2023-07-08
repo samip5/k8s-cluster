@@ -6,7 +6,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-external-secrets-operator
-  path: ./k8s/cluster-0/workloads/postgresql/cloudnative-pg/app
+  path: ./cluster/apps/databases/cloudnative-pg/app
   prune: true
   sourceRef:
     kind: GitRepository
