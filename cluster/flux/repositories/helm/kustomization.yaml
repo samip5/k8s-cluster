@@ -13,6 +13,7 @@ resources:
   - coredns-charts.yaml
   - cilium-charts.yaml
   - csi-driver-nfs-charts.yaml
+  - cloudnative-pg.yaml
   - cloudydeno-charts.yaml
   - cert-manager-webhook-powerdns-charts.yaml
   - deliveryhero-charts.yaml
