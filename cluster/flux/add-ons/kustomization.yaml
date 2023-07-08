@@ -6,3 +6,4 @@ resources:
   - ./notifications
   - ./webhook
   - external-secrets/ks.yaml
+  - external-secrets/ks-bw.yaml
