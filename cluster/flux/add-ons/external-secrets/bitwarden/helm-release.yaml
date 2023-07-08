@@ -6,8 +6,8 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: external-secrets
-      namespace: kube-system
+    - name: external-secrets-operator
+      namespace: flux-system
   interval: 5m
   chart:
     spec:
