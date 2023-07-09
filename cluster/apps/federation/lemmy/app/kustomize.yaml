@@ -70,7 +70,7 @@ spec:
     - patch: |-
         - op: replace
           path: /spec/template/spec/containers/0/image
-          value: ghcr.io/ubergeek77/lemmy:0.18.1-rc.9
+          value: ghcr.io/ubergeek77/lemmy:0.18.1
         - op: add
           path: /spec/template/spec/initContainers
           value:
@@ -113,6 +113,12 @@ spec:
           value:
             cert-manager.io/cluster-issuer: zerossl-production
         - op: add
+          path: /metadata/annotations
+          value:
+            external-dns-cf/is-public: "true"
+            external-dns-cf/is-dns-public: "true"
+            nignx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        - op: add
           path: /spec/ingressClassName
           value: nginx
 
@@ -126,7 +132,7 @@ spec:
           value: lemmy.skylab.fi
         - op: replace
           path: /spec/template/spec/containers/0/image
-          value: ghcr.io/ubergeek77/lemmy-ui:0.18.1-rc.9
+          value: ghcr.io/ubergeek77/lemmy-ui:0.18.1
       target:
         kind: Deployment
         name: lemmy-ui
