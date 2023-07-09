@@ -1,0 +1,20 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: federation-postgres
+  namespace: federation
+spec:
+  affinity:
+    nodeSelector:
+      kubernetes.io/arch: amd64
+  instances: 2
+  imageName: ghcr.io/cloudnative-pg/postgresql:15.1
+  primaryUpdateStrategy: unsupervised
+  storage:
+    size: 50Gi
+    storageClass: longhorn
+  superuserSecret:
+    name: postgres-superuser
+  monitoring:
+    enablePodMonitor: true
