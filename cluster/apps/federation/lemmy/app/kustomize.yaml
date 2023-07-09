@@ -112,6 +112,10 @@ spec:
           path: /metadata/annotations
           value:
             cert-manager.io/cluster-issuer: zerossl-production
+        - op: add
+          path: /spec/ingressClassName
+          value: nginx
+
       target:
         kind: Ingress
         name: lemmy
