@@ -69,6 +69,40 @@ spec:
         version: v1
     - patch: |-
         - op: replace
+          path: /spec/template/spec/containers/0/image
+          value: ghcr.io/ubergeek77/lemmy:0.18.1-rc.9
+        - op: add
+          path: /spec/template/spec/initContainers
+          value:
+            - env:
+              - name: INIT_POSTGRES_HOST
+                value: federation-postgres-rw.federation.svc.cluster.local
+              - name: INIT_POSTGRES_DBNAME
+                value: lemmy
+              - name: INIT_POSTGRES_SUPER_PASS
+                valueFrom:
+                  secretKeyRef:
+                    key: password
+                    name: postgres-superuser
+              - name: INIT_POSTGRES_USER
+                valueFrom:
+                  secretKeyRef:
+                    key: postgres-user
+                    name: lemmy
+              - name: INIT_POSTGRES_PASS
+                valueFrom:
+                  secretKeyRef:
+                    key: postgres-password
+                    name: lemmy
+              image: ghcr.io/onedr0p/postgres-init:14.8@sha256:dfddde81c0d49da09da1e893c95c32934333baba60edde707be5010dc3baa4c2
+              imagePullPolicy: IfNotPresent
+              name: init-db
+      target:
+        kind: Deployment
+        name: lemmy
+        version: v1
+    - patch: |-
+        - op: replace
           path: /spec/rules/0/host
           value: lemmy.skylab.fi
         - op: replace
@@ -86,6 +120,9 @@ spec:
         - op: replace
           path: /spec/template/spec/containers/0/env/0/value
           value: lemmy.skylab.fi
+        - op: replace
+          path: /spec/template/spec/containers/0/image
+          value: ghcr.io/ubergeek77/lemmy-ui:0.18.1-rc.9
       target:
         kind: Deployment
         name: lemmy-ui
