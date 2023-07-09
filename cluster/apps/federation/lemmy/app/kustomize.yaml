@@ -8,6 +8,7 @@ spec:
   sourceRef:
     kind: OCIRepository
     name: lemmy-ks
+    namespace: federation
   interval: 10m
   prune: true
   wait: true
