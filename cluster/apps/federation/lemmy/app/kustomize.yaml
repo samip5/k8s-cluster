@@ -118,6 +118,7 @@ spec:
             external-dns-cf/is-public: "true"
             external-dns-cf/is-dns-public: "true"
             nignx.ingress.kubernetes.io/force-ssl-redirect: "true"
+            external-dns.alpha.kubernetes.io/target: r.home.skym.fi
         - op: add
           path: /spec/ingressClassName
           value: nginx
