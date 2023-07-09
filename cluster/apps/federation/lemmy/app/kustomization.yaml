@@ -35,16 +35,16 @@ spec:
           value:
             name: PICTRS__STORE__BUCKET_NAME
             valueFrom:
-              configMapKeyRef:
-                name: pictrs-bucket-v1
+              secretKeyRef:
+                name: lemmy-bucket
                 key: BUCKET_NAME
         - op: add
           path: /spec/template/spec/containers/0/env/-
           value:
             name: PICTRS__STORE__REGION
             valueFrom:
-              configMapKeyRef:
-                name: pictrs-bucket-v1
+              secretKeyRef:
+                name: lemmy-bucket
                 key: BUCKET_REGION
         - op: add
           path: /spec/template/spec/containers/0/env/-
@@ -52,7 +52,7 @@ spec:
             name: PICTRS__STORE__ACCESS_KEY
             valueFrom:
               secretKeyRef:
-                name: pictrs-bucket-v1
+                name: lemmy-bucket
                 key: AWS_ACCESS_KEY_ID
         - op: add
           path: /spec/template/spec/containers/0/env/-
@@ -60,7 +60,7 @@ spec:
             name: PICTRS__STORE__SECRET_KEY
             valueFrom:
               secretKeyRef:
-                name: pictrs-bucket-v1
+                name: lemmy-bucket
                 key: AWS_SECRET_ACCESS_KEY
       target:
         kind: Deployment
