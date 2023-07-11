@@ -22,6 +22,9 @@ spec:
                 auth-fi.home.arpa/enabled: "true"
 
       mutate:
+        targets:
+          - apiVersion: networking.k8s.io/v1
+            kind: Ingress
         patchStrategicMerge:
           metadata:
             annotations:
@@ -62,7 +65,8 @@ spec:
                 auth-ak-fw.home.arpa/enabled: "true"
       mutate:
         targets:
-          - kind: Ingress
+          - apiVersion: networking.k8s.io/v1
+            kind: Ingress
         patchStrategicMerge:
           metadata:
             annotations:
