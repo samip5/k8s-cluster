@@ -22,8 +22,6 @@ spec:
                 auth-fi.home.arpa/enabled: "true"
 
       mutate:
-        targets:
-          - kind: Ingress
         patchStrategicMerge:
           metadata:
             annotations:
