@@ -21,7 +21,8 @@ spec:
                 external-dns-cf/is-cf-proxied: "true"
       mutate:
         targets:
-          - kind: Ingress
+          - apiVersion: networking.k8s.io/v1
+            kind: Ingress
         patchStrategicMerge:
           metadata:
             annotations:
