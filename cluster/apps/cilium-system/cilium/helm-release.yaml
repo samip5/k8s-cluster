@@ -28,7 +28,7 @@ spec:
     autoDirectNodeRoutes: true
     localRedirectPolicy: true
     rollOutCiliumPods: true
-    kubeProxyReplacement: "strict"
+    kubeProxyReplacement: "true"
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
     ipv4NativeRoutingCIDR: "10.244.0.0/16"
     ipv6NativeRoutingCIDR: "fddf:f7bc:9670::/48"
@@ -37,8 +37,22 @@ spec:
     loadBalancer:
       algorithm: "maglev"
       mode: "dsr"
+
+    bandwidthManager:
+      enabled: true
+      bbr: true
+    bpf:
+      masquerade: true
+      tproxy: true
+
+    l7Proxy: true
+
+    enableCnpStatusUpdates: true
+    endpointStatus:
+      enabled: true
+      status: "policy"
     l2NeighDiscovery:
-      enabled: false
+      enabled: true
     tunnel: "disabled"
     endpointRoutes:
       enabled: true
