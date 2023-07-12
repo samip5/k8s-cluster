@@ -8,7 +8,7 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: actions-runner-controller-charts/gha-runner-scale-set
+      chart: gha-runner-scale-set
       version: 0.4.0
       sourceRef:
         kind: HelmRepository
@@ -21,8 +21,8 @@ spec:
 
     githubConfigUrl: https://github.com/samipsolutions
 
-    minRunners: 0
-    maxRunners: 2
+    minRunners: 1
+    maxRunners: 4
 
     containerMode:
       type: "dind"
@@ -32,8 +32,6 @@ spec:
         containers:
           - name: runner
             image: ghcr.io/bjw-s/github-actions-runner:2.305.0@sha256:af5d39b9eee1be431060da4be699b8432af302cd7e12cadccc9d494efd0450f1
-            command:
-              - /home/runner/run.sh
 
   valuesFrom:
     - kind: Secret
