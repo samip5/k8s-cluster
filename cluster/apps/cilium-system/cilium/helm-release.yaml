@@ -15,9 +15,8 @@ spec:
     createNamespace: true
   chart:
     spec:
-      # renovate: registryUrl=https://helm.cilium.io/
       chart: cilium
-      version: 1.13.4
+      version: 1.14.0-rc.0
       sourceRef:
         kind: HelmRepository
         name: cilium-charts
@@ -65,8 +64,13 @@ spec:
           - icmp
           - http
         serviceMonitor:
-          enabled: false
-          namespace: kube-system
+          enabled: true
+        dashboards:
+          enabled: true
+          label: grafana_dashboard
+          namespace: monitoring
+          labelValue: "1"
+          annotations: { }
       relay:
         enabled: true
         rollOutPods: true
