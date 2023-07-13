@@ -23,6 +23,8 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    debug:
+      enabled: "datapath envoy policy"
     cni:
       exclusive: false
     autoDirectNodeRoutes: true
