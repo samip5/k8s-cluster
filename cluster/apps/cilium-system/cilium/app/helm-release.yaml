@@ -24,7 +24,8 @@ spec:
       interval: 5m
   values:
     debug:
-      enabled: "datapath envoy policy"
+      enabled: true
+      verbose: "datapath envoy policy"
     cni:
       exclusive: false
     autoDirectNodeRoutes: true
