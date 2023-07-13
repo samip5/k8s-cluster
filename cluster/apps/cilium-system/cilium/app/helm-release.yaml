@@ -45,7 +45,7 @@ spec:
       enabled: true
       bbr: true
     bpf:
-      masquerade: true
+      masquerade: false
       tproxy: true
 
     l7Proxy: true
