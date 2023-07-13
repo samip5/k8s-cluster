@@ -48,7 +48,7 @@ spec:
     #  masquerade: false
     #  tproxy: true
 
-    l7Proxy: true
+    #l7Proxy: true
 
     enableCnpStatusUpdates: true
     l2NeighDiscovery:
