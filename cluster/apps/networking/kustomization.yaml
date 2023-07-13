@@ -8,6 +8,6 @@ resources:
   - unifi/ks.yaml
   - k8s-gateway/ks.yaml
   - metallb/ns.yaml
-  - metallb/ks.yaml
-  - metallb/ks-config.yaml
+#  - metallb/ks.yaml
+#  - metallb/ks-config.yaml
   - netshoot.yaml
