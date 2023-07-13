@@ -17,3 +17,4 @@ spec:
         - peerAddress: "10.0.105.1/32" # unlike bgp-config ConfigMap, peerAddress needs to be in CIDR notation
           peerASN: 213021
         - peerAddress: "2001:14ba:16fd:961c::1/128"
+          peerASN: 213021
