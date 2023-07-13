@@ -38,18 +38,18 @@ spec:
       algorithm: "maglev"
       mode: "dsr"
 
-    bandwidthManager:
-      enabled: true
-      bbr: true
+    #bandwidthManager:
+    #  enabled: true
+    #  bbr: true
     bpf:
       masquerade: true
-      tproxy: true
+    #  tproxy: true
 
-    l7Proxy: true
+ #   l7Proxy: true
 
-    enableCnpStatusUpdates: true
+#    enableCnpStatusUpdates: true
     l2NeighDiscovery:
-      enabled: true
+      enabled: false
     tunnel: "disabled"
     encryption:
       enabled: false
