@@ -34,7 +34,13 @@ spec:
         nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,158.101.199.148/32,2603:c022:c002:4800::10/128,2001:14ba:16fd:9600::/56,185.218.193.134/32,2001:67c:1104::/48,2001:67c:1be8::/48"
       tls: true
       host: "horn.skylab.fi"
-    taintToleration:
-      - key: node-role.kubernetes.io/master
-        operator: Exists
-        effect: NoExecute
+    longhornManager:
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          operator: Exists
+          effect: NoExecute
+    longhornDriver:
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          operator: Exists
+          effect: NoExecute
