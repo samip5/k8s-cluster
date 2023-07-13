@@ -1,0 +1,16 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-apps-networking-cilium-config
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: cluster-apps-networking-cilium-app
+  path: ./cluster/apps/cilium-system/cilium/config
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: cluster
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m
