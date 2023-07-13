@@ -28,7 +28,7 @@ spec:
     autoDirectNodeRoutes: true
     localRedirectPolicy: true
     rollOutCiliumPods: true
-    kubeProxyReplacement: "false"
+    kubeProxyReplacement: "true"
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
     ipv4NativeRoutingCIDR: "10.244.0.0/16"
     ipv6NativeRoutingCIDR: "fddf:f7bc:9670::/48"
@@ -36,7 +36,7 @@ spec:
     k8sServicePort: 6443
     loadBalancer:
       algorithm: "maglev"
-      mode: "dsr"
+      mode: "hybrid"
 
     #bandwidthManager:
     #  enabled: true
