@@ -1,1 +1,2 @@
-vm.nr_hugepages = 102400
+# Longhorn v2 data engine needs this as a min req
+vm.nr_hugepages = 512
