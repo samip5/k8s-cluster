@@ -51,8 +51,6 @@ spec:
     l2NeighDiscovery:
       enabled: true
     tunnel: "disabled"
-    endpointRoutes:
-      enabled: true
     encryption:
       enabled: false
     ipam:
