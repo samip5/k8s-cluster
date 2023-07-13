@@ -11,6 +11,5 @@ resources:
  - prowlarr/ks.yaml
  - unpackerr/ks.yaml
  - autobrr/ks.yaml
- - youtubedl/ks.yaml
 # - flaresolverr/ks.yaml
 # - netshoot.yaml
