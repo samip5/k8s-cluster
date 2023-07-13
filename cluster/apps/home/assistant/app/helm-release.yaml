@@ -40,9 +40,8 @@ spec:
 
     service:
       main:
-        type: LoadBalancer
-        loadBalancerIP: "${SVC_HA_ADDR}"
-        externalTrafficPolicy: Local
+        type: ClusterIP
+        externalTrafficPolicy: Cluster
         ports:
           http:
             port: 8123
