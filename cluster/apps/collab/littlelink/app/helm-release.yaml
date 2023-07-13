@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: ghcr.io/techno-tim/littlelink-server
-      tag: latest@sha256:49c313580eab35ee96fbf2fdf1b26d9ab27e658cace77d91006df1de69dcffe2
+      tag: latest@sha256:c0135dfdd51fe8b5f9a01dfbc3a1e64f9695439406b8ab47e65f39e8d4f21d70
       pullPolicy: Always
     env:
       TZ: "Europe/Helsinki"
