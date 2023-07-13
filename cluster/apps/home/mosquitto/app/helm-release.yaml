@@ -40,7 +40,8 @@ spec:
       main:
         type: LoadBalancer
         annotations:
-          metallb.universe.tf/loadBalancerIPs: "${SVC_MQTT_ADDR},2001:67c:1104:fc00::10"
+        #  metallb.universe.tf/loadBalancerIPs: "${SVC_MQTT_ADDR},2001:67c:1104:fc00::10"
+          io.cilium/lb-ipam-ips: "192.168.10.10,2001:67c:1104:fdc::10"
         externalTrafficPolicy: Local
         ipFamilyPolicy: "PreferDualStack"
         ipFamilies:
