@@ -41,12 +41,12 @@ spec:
       algorithm: "maglev"
       mode: "hybrid"
 
-    bandwidthManager:
-      enabled: false
-      bbr: true
-    bpf:
-      masquerade: false
-      tproxy: true
+    #bandwidthManager:
+    #  enabled: false
+    #  bbr: true
+    #bpf:
+    #  masquerade: false
+    #  tproxy: true
 
     l7Proxy: true
 
