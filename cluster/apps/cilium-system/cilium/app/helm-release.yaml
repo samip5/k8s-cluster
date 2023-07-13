@@ -42,7 +42,7 @@ spec:
       mode: "hybrid"
 
     bandwidthManager:
-      enabled: true
+      enabled: false
       bbr: true
     bpf:
       masquerade: false
