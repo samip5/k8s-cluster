@@ -23,6 +23,10 @@ spec:
       defaultReplicaCount: 2
       backupTarget: s3://longhorn@us-east-1/
       backupTargetCredentialSecret: minio-secret
+      taintToleration:
+        - key: node-role.kubernetes.io/master
+          operator: Exists
+          effect: NoExecute
     longhornUI:
       nodeSelector:
        kubernetes.io/arch: amd64
