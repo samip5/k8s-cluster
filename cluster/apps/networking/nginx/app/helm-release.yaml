@@ -73,9 +73,10 @@ spec:
         type: LoadBalancer
         annotations:
           external-dns.alpha.kubernetes.io/target: "r.home.skym.fi"
-          metallb.universe.tf/loadBalancerIPs: "192.168.10.80,2001:14ba:16d6:a6ad::4443"
-          metallb.universe.tf/address-pool: nginx
-        externalTrafficPolicy: Local
+          "io.cilium/lb-ipam-ips": "10.96.69.80,2001:67c:1104:fdb::4443"
+        #  metallb.universe.tf/loadBalancerIPs: "192.168.10.80,2001:14ba:16d6:a6ad::4443"
+        #  metallb.universe.tf/address-pool: nginx
+        externalTrafficPolicy: Cluster # Cilium DSR
         ipFamilyPolicy: "PreferDualStack"
         ipFamilies:
           - IPv4
