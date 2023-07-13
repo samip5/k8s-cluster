@@ -48,9 +48,6 @@ spec:
     l7Proxy: true
 
     enableCnpStatusUpdates: true
-    endpointStatus:
-      enabled: true
-      status: "policy"
     l2NeighDiscovery:
       enabled: true
     tunnel: "disabled"
