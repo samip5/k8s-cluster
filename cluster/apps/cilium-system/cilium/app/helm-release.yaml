@@ -39,7 +39,7 @@ spec:
     k8sServicePort: 6443
     loadBalancer:
       algorithm: "maglev"
-      mode: "hybrid"
+      mode: "dsr"
 
     #bandwidthManager:
     #  enabled: false
@@ -50,7 +50,6 @@ spec:
 
     #l7Proxy: true
 
-    enableCnpStatusUpdates: true
     l2NeighDiscovery:
       enabled: false
     tunnel: "disabled"
