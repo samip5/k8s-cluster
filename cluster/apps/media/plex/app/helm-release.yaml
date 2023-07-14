@@ -31,14 +31,14 @@ spec:
     service:
       main:
         type: LoadBalancer
-        externalTrafficPolicy: Local
-        ipFamilyPolicy: "PreferDualStack"
+        externalTrafficPolicy: Cluster
+        #ipFamilyPolicy: "PreferDualStack"
         ipFamilies:
           - IPv4
-          - IPv6
-        annotations:
-          metallb.universe.tf/loadBalancerIPs: "192.168.10.20,2001:14ba:16d6:a6ad::20"
-          metallb.universe.tf/address-pool: plex
+        #  - IPv6
+        #annotations:
+        #  metallb.universe.tf/loadBalancerIPs: "192.168.10.20,2001:14ba:16d6:a6ad::20"
+        #  metallb.universe.tf/address-pool: plex
         ports:
           http:
             port: 32400
