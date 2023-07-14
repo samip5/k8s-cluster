@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
  - ns.yaml
  - jellyseer
- - plex/ks.yaml
+# - plex/ks.yaml
 # - sonarr/ks.yaml
 # - radarr/ks.yaml
 # - recyclarr/ks.yaml
