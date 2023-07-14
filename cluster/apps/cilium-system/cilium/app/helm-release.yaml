@@ -13,6 +13,8 @@ spec:
       strategy: rollback
   install:
     createNamespace: true
+    remediation:
+      retries: 2
   chart:
     spec:
       chart: cilium
