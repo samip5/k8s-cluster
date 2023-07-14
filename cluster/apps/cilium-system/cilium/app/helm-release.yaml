@@ -18,7 +18,7 @@ spec:
   chart:
     spec:
       chart: cilium
-      version: 1.13.4
+      version: 1.14.0-rc.0
       sourceRef:
         kind: HelmRepository
         name: cilium-charts
@@ -26,7 +26,7 @@ spec:
       interval: 5m
   values:
     debug:
-      enabled: true
+      enabled: false
       verbose: "datapath envoy policy"
     cni:
       exclusive: false
@@ -77,7 +77,7 @@ spec:
         enabled: true
         rollOutPods: true
         prometheus:
-          enabled: false
+          enabled: true
       ui:
         enabled: true
         rollOutPods: true
@@ -98,7 +98,7 @@ spec:
         loadbalancerIP: false
 
     bgpControlPlane:
-      enabled: false
+      enabled: true
 
     securityContext:
       privileged: true
