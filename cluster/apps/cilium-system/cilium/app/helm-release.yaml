@@ -98,7 +98,7 @@ spec:
         loadbalancerIP: false
 
     bgpControlPlane:
-      enabled: true
+      enabled: false
 
     securityContext:
       privileged: true
