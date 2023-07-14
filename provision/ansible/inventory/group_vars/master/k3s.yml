@@ -28,7 +28,7 @@ k3s_server:
   cluster-cidr: "10.244.0.0/16,fddf:f7bc:9670::/48"
   #cluster-cidr: "fddf:f7bc:9670::/48,10.244.0.0/16"
   # Network CIDR to use for service IPs
-  service-cidr: "10.96.0.0/16,2001:67c:1104:fdb::/112"
+  service-cidr: "10.96.0.0/16,2001:14ba:16fd:961d::1e:0/112"
   #service-cidr: "2001:67c:1104:fdb::/112,10.96.0.0/16"
   kubelet-arg:
     - "feature-gates=GracefulNodeShutdown=true"
