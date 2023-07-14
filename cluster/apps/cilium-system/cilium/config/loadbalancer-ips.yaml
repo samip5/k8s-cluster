@@ -7,7 +7,7 @@ metadata:
 spec:
   cidrs:
     - cidr: 10.96.69.0/24
-    - cidr: 2001:67c:1104:fdb::/112
+    - cidr: 2001:14ba:16fd:961d::/112
 ---
 apiVersion: "cilium.io/v2alpha1"
 kind: CiliumLoadBalancerIPPool
@@ -16,4 +16,4 @@ metadata:
 spec:
   cidrs:
     - cidr: 192.168.10.0/24
-    - cidr: 2001:67c:1104:fdc::/112
+    - cidr: 2001:14ba:16fd:961d::e:0/112
