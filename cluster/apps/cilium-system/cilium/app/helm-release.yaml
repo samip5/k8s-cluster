@@ -31,7 +31,7 @@ spec:
     autoDirectNodeRoutes: true
     localRedirectPolicy: true
     rollOutCiliumPods: true
-    kubeProxyReplacement: "true"
+    kubeProxyReplacement: "no"
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
     ipv4NativeRoutingCIDR: "10.244.0.0/16"
     ipv6NativeRoutingCIDR: "fddf:f7bc:9670::/48"
@@ -50,19 +50,13 @@ spec:
 
     #l7Proxy: true
 
-    l2NeighDiscovery:
-      enabled: false
     tunnel: "disabled"
-    encryption:
-      enabled: false
     ipam:
       mode: "kubernetes"
     ipv6:
       enabled: true
     operator:
       rollOutPods: true
-    containerRuntime:
-      integration: containerd
     hubble:
       enabled: true
       metrics:
@@ -113,4 +107,4 @@ spec:
       privileged: true
 
     prometheus:
-      enabled: false
+      enabled: true
