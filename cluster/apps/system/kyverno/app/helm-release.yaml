@@ -43,6 +43,7 @@ spec:
                 - ""
               resources:
                 - pods
+                - ingress
               verbs:
                 - create
                 - update
@@ -79,6 +80,7 @@ spec:
                   - ""
                 resources:
                   - pods
+                  - ingress
                 verbs:
                   - create
                   - update
