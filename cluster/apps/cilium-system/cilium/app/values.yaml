@@ -3,7 +3,7 @@ cni:
 autoDirectNodeRoutes: true
 localRedirectPolicy: true
 rollOutCiliumPods: true
-kubeProxyReplacement: "true"
+kubeProxyReplacement: false
 kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
 ipv4NativeRoutingCIDR: "10.244.0.0/16"
 ipv6NativeRoutingCIDR: "fddf:f7bc:9670::/48"
@@ -13,31 +13,17 @@ loadBalancer:
   algorithm: "maglev"
   mode: "dsr"
 
-bandwidthManager:
-  enabled: true
-  bbr: true
-bpf:
-  masquerade: true
-  tproxy: true
 
 l7Proxy: true
 
-enableCnpStatusUpdates: true
-l2NeighDiscovery:
-  enabled: true
 tunnel: "disabled"
-endpointRoutes:
-  enabled: true
-encryption:
-  enabled: false
 ipam:
   mode: "kubernetes"
 ipv6:
   enabled: true
+#enableIPv6Masquerade: false
 operator:
   rollOutPods: true
-containerRuntime:
-  integration: containerd
 hubble:
   enabled: true
   metrics:
@@ -61,7 +47,7 @@ hubble:
     enabled: true
     rollOutPods: true
     prometheus:
-      enabled: false
+      enabled: true
   ui:
     enabled: true
     rollOutPods: true
@@ -81,8 +67,11 @@ bgp:
   announce:
     loadbalancerIP: false
 
+bgpControlPlane:
+  enabled: true
+
 securityContext:
   privileged: true
 
 prometheus:
-  enabled: false
+  enabled: true
