@@ -38,8 +38,9 @@ spec:
       main:
         type: LoadBalancer
         annotations:
-          metallb.universe.tf/loadBalancerIPs: "${SVC_K8S_GATEWAY_ADDR},2001:67c:1104:fdb::53"
-        externalTrafficPolicy: Local
+          io.cilium/lb-ipam-ips: "${SVC_K8S_GATEWAY_ADDR},2001:14ba:16fd:961d::53"
+        #  metallb.universe.tf/loadBalancerIPs: "${SVC_K8S_GATEWAY_ADDR},2001:67c:1104:fdb::53"
+        externalTrafficPolicy: Cluster
         ports:
           http:
             enabled: false
