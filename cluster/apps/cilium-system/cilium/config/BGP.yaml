@@ -10,7 +10,7 @@ spec:
       kubernetes.io/os: "linux"
   virtualRouters:
     - localASN: 213021
-      exportPodCIDR: true
+      exportPodCIDR: false
       serviceSelector:
         matchExpressions:
           - { key: thisFakeSelector, operator: NotIn, values: [ 'will-match-and-announce-all-services' ] }
