@@ -14,7 +14,7 @@ spec:
   rules:
     - name: auth-fi
       match:
-        any:
+        all:
           - resources:
               kinds:
                 - Ingress
@@ -36,7 +36,7 @@ spec:
 
     - name: auth-basic-fi
       match:
-        any:
+        all:
           - resources:
               kinds:
                 - Ingress
@@ -57,7 +57,7 @@ spec:
 
     - name: auth-ak-fw
       match:
-        any:
+        all:
           - resources:
               kinds:
                 - Ingress
