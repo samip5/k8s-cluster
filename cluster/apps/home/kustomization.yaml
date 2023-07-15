@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - assistant/ks.yaml
 #  - esphome/ks.yaml
-#  - mosquitto/ks.yaml
+  - mosquitto/ks.yaml
   - zigbee2mqtt/ks.yaml
 #  - node-red/ks.yaml
   - ns.yaml
