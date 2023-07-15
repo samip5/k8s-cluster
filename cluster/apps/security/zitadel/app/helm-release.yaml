@@ -36,6 +36,12 @@ spec:
         Database:
           cockroach:
             Host: "crdb.databases.svc.cluster.local"
+            User:
+              SSL:
+                Mode: "disable"
+              Admin:
+                SSL:
+                  Mode: "disable"
 
         TLS:
           Enabled: true
