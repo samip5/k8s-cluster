@@ -9,8 +9,5 @@ roleRef:
   name: cluster-admin
 subjects:
   - kind: ServiceAccount
-    name: kyverno
-    namespace: system
-  - kind: ServiceAccount
     name: kyverno-background-controller
     namespace: system
