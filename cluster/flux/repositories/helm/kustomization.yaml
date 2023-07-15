@@ -11,6 +11,7 @@ resources:
   - bootc-charts.yaml
   - bjw-s-charts.yaml
   - coredns-charts.yaml
+  - cockroachdb.yaml
   - cilium-charts.yaml
   - csi-driver-nfs-charts.yaml
   - cloudnative-pg.yaml
@@ -46,4 +47,5 @@ resources:
   - gitlab-charts.yaml
   - teampiped.yaml
   - renovate.yaml
+  - zitadel.yaml
 
