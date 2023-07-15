@@ -28,6 +28,7 @@ spec:
         patchStrategicMerge:
           metadata:
             annotations:
+              (auth-fi.home.arpa/enabled): "true"
               +(nginx.ingress.kubernetes.io/auth-method): GET
               +(nginx.ingress.kubernetes.io/auth-url): http://[2001:67c:1be8::56]:40119/api/verify
               +(nginx.ingress.kubernetes.io/auth-signin): https://sso.${MAIN_DOMAIN}?rm=$request_method
@@ -50,6 +51,7 @@ spec:
         patchStrategicMerge:
           metadata:
             annotations:
+              (auth-basic-fi.home.arpa/enabled): "true"
               +(nginx.ingress.kubernetes.io/auth-method): GET
               +(nginx.ingress.kubernetes.io/auth-url): http://[2001:67c:1be8::56]:40119/api/verify?auth=basic
               +(nginx.ingress.kubernetes.io/auth-response-headers): Remote-User,Remote-Groups
@@ -70,6 +72,7 @@ spec:
         patchStrategicMerge:
           metadata:
             annotations:
+              (auth-ak-fw.home.arpa/enabled): "true"
               +(nginx.ingress.kubernetes.io/auth-url): |-
                 http://ak-outpost-authentik-embedded-outpost.security.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
               +(nginx.ingress.kubernetes.io/auth-signin): |-
