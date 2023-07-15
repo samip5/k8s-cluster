@@ -29,10 +29,13 @@ spec:
     cleanupOnFail: true
   values:
     replicaCount: 1
+    image:
+      repository: ghcr.io/zitadel/zitadel
+      tag: v2.30.0
+      pullPolicy: IfNotPresent
     zitadel:
       masterkey: "MasterkeyNeedsToHave32Characters"
       configmapConfig:
-        ExternalSecure: true
         Database:
           cockroach:
             Host: "crdb.databases.svc.cluster.local"
@@ -43,30 +46,71 @@ spec:
                 SSL:
                   Mode: "disable"
 
-        TLS:
-          Enabled: true
-      secretConfig:
-        ExternalDomain: citadel.skylab.fi
-        Database:
-          cockroach:
-            User:
-              Password: a-zitadel-db-user-password
+      ExternalDomain: &host auth.skylab.fi
+      # specifies if ZITADEL is exposed externally through TLS
+      # this must be set to true even if TLS is not enabled on ZITADEL itself
+      # but TLS traffic is terminated on a reverse proxy
+      # !!! Changing this after initial setup breaks your system !!!
+      ExternalSecure: true
+      ExternalPort: 443
+      TLS:
+        # if enabled, ZITADEL will serve all traffic over TLS (HTTPS and gRPC)
+        # you must then also provide a private key and certificate to be used for the connection
+        # either directly or by a path to the corresponding file
+        Enabled: false
+      WebAuthNName: ZITADEL
+      # The Secret containing the root CA Certificate at key ca.crt needed for establishing secure database connections
+      dbSslRootCrtSecret:
+      # The Secret containing the client CA Certificate and key at tls.crt and tls.key needed for establishing secure database connections
+      dbSslClientCrtSecret:
 
-      dbSslRootCrtSecret: ""
-      dbSslClientCrtSecret: ""
+    service:
+      type: ClusterIP
+      port: 8080
+      protocol: http2
 
     ingress:
       enabled: true
       className: nginx
       hosts:
-        - host: "citadel.skylab.fi"
+        - host: "auth.skylab.fi"
           paths:
             - path: "/"
               pathType: Prefix
       tls:
         - hosts:
-            - "citadel.skylab.fi"
+            - "auth.skylab.fi"
           secretName: skylab.fi-tls
+
+    initJob:
+      # Once ZITADEL is installed, the initJob can be disabled.
+      enabled: true
+
+    readinessProbe:
+      enabled: true
+      initialDelaySeconds: 0
+      periodSeconds: 5
+      failureThreshold: 3
+
+    livenessProbe:
+      enabled: true
+      initialDelaySeconds: 0
+      periodSeconds: 5
+      failureThreshold: 3
+
+    startupProbe:
+      enabled: true
+      periodSeconds: 1
+      failureThreshold: 30
+
+    metrics:
+      enabled: true
+      serviceMonitor:
+        # If true, the chart creates a ServiceMonitor that is compatible with Prometheus Operator
+        # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.ServiceMonitor.
+        # The Prometheus community Helm chart installs this operator
+        # https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack#kube-prometheus-stack
+        enabled: true
 
     affinity:
       nodeAffinity:
