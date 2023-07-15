@@ -82,7 +82,7 @@ spec:
           - IPv4
           - IPv6
       publishService:
-        enabled: false
+        enabled: true
 
       metrics:
         enabled: true
