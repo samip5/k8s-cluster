@@ -3,5 +3,3 @@ kind: Kustomization
 resources:
   - custom-headers.yaml
   - helm-release.yaml
-#  - svc-private-v4.yaml
-#  - svc-global-dna-v6.yaml
