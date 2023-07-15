@@ -72,7 +72,7 @@ spec:
         enabled: true
         type: LoadBalancer
         annotations:
-          external-dns.alpha.kubernetes.io/target: "r.home.skym.fi"
+          external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
           io.cilium/lb-ipam-ips: "10.96.69.80,2001:14ba:16fd:961d::4443"
         #  metallb.universe.tf/loadBalancerIPs: "192.168.10.80,2001:14ba:16d6:a6ad::4443"
         #  metallb.universe.tf/address-pool: nginx
