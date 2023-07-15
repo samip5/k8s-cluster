@@ -1,0 +1,71 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: zitadel
+  namespace: security
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: zitadel
+      version: 5.0.0
+      sourceRef:
+        kind: HelmRepository
+        name: zitadel
+        namespace: flux-system
+      interval: 5m
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+      remediateLastFailure: true
+    cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    cleanupOnFail: true
+  values:
+    replicaCount: 1
+    zitadel:
+      masterkey: "MasterkeyNeedsToHave32Characters"
+      configmapConfig:
+        ExternalSecure: true
+        Database:
+          cockroach:
+            Host: "crdb.databases.svc.cluster.local"
+
+        TLS:
+          Enabled: true
+      secretConfig:
+        ExternalDomain: citadel.skylab.fi
+        Database:
+          cockroach:
+            User:
+              Password: a-zitadel-db-user-password
+
+    ingress:
+      enabled: true
+      className: nginx
+      hosts:
+        - host: "citadel.skylab.fi"
+          paths:
+            - path: "/"
+              pathType: Prefix
+      tls:
+        - hosts:
+            - "citadel.skylab.fi"
+          secretName: skylab.fi-tls
+
+    affinity:
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 50
+            preference:
+              matchExpressions:
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                    - amd64
