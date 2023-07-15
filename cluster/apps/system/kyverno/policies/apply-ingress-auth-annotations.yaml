@@ -10,7 +10,7 @@ metadata:
 spec:
   validationFailureAction: enforce
   mutateExistingOnPolicyUpdate: true
-  generateExistingOnPolicyUpdate: true
+  generateExisting: true
   rules:
     - name: auth-fi
       match:
