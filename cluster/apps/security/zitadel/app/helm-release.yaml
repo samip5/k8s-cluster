@@ -52,6 +52,9 @@ spec:
             User:
               Password: a-zitadel-db-user-password
 
+      dbSslRootCrtSecret: ""
+      dbSslClientCrtSecret: ""
+
     ingress:
       enabled: true
       className: nginx
