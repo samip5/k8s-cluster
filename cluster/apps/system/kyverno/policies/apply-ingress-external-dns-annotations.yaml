@@ -13,7 +13,7 @@ spec:
   rules:
     - name: external-dns-proxied-cf
       match:
-        any:
+        all:
           - resources:
               kinds:
                 - Ingress
@@ -30,7 +30,7 @@ spec:
 
     - name: external-dns
       match:
-        any:
+        all:
           - resources:
               kinds:
                 - Ingress
