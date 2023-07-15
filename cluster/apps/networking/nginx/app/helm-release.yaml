@@ -76,12 +76,12 @@ spec:
           io.cilium/lb-ipam-ips: "10.96.69.80,2001:14ba:16fd:961d::4443"
         #  metallb.universe.tf/loadBalancerIPs: "192.168.10.80,2001:14ba:16d6:a6ad::4443"
         #  metallb.universe.tf/address-pool: nginx
-        externalTrafficPolicy: Cluster
+        externalTrafficPolicy: Local
         ipFamilyPolicy: "PreferDualStack"
         ipFamilies:
           - IPv4
           - IPv6
-      publichService:
+      publishService:
         enabled: false
 
       metrics:
