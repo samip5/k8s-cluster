@@ -42,4 +42,4 @@ spec:
         patchStrategicMerge:
           metadata:
             annotations:
-              +(external-dns.alpha.kubernetes.io/target): r.home.skym.fi
+              +(external-dns.alpha.kubernetes.io/target): ingress.skylab.fi
