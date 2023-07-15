@@ -9,7 +9,7 @@ metadata:
 spec:
   validationFailureAction: enforce
   mutateExistingOnPolicyUpdate: true
-  generateExistingOnPolicyUpdate: true
+  generateExisting: true
   rules:
     - name: external-dns-proxied-cf
       match:
