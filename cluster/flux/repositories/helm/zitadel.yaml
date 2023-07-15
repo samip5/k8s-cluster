@@ -1,0 +1,10 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: zitadel
+  namespace: flux-system
+spec:
+  interval: 15m
+  url: https://charts.zitadel.com
+  timeout: 3m
