@@ -17,7 +17,8 @@ spec:
       interval: 5m
   values:
     fullnameOverride: crdb
-    single-node: true
+    conf:
+      single-node: true
     statefulset:
       replicas: 1
 
