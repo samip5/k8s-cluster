@@ -6,6 +6,7 @@ metadata:
   annotations:
     auth-fi.home.arpa/enabled: "true"
     external-dns-cf/is-dns-public: "true"
+    external-dns.target/enabled: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
   ingressClassName: nginx
