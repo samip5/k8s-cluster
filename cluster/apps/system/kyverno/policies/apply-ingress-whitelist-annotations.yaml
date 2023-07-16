@@ -68,6 +68,9 @@ spec:
                 - key: "{{ request.object.metadata.annotations }}"
                   operator: NotEquals
                   value: "external-dns.alpha.kubernetes.io/cloudflare-proxied: true"
+                - key: "{{ request.object.metadata.annotations }}"
+                  operator: NotEquals
+                  value: "external-dns-cf/is-public: true"
         patchStrategicMerge:
           metadata:
             annotations:
