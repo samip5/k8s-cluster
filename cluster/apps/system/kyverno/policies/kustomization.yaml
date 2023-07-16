@@ -3,5 +3,4 @@ kind: Kustomization
 resources:
   - apply-ingress-auth-annotations.yaml
   - apply-ingress-external-dns-annotations.yaml
-# Need to be fixed
-#  - apply-ingress-whitelist-annotations.yaml
+  - apply-ingress-whitelist-annotations.yaml
