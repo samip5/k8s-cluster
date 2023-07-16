@@ -45,6 +45,29 @@ spec:
         targets:
           - apiVersion: networking.k8s.io/v1
             kind: Ingress
+            preconditions:
+              any:
+                - key: "{{ request.object.metadata.namespace }}"
+                  operator: NotEquals
+                  value: search
+                - key: "{{ request.object.metadata.annotations }}"
+                  operator: NotEquals
+                  value:  "auth-fi.home.arpa/enabled: true"
+                - key: "{{ request.object.metadata.annotations }}"
+                  operator: NotEquals
+                  value: "auth-basic-fi.home.arpa/enabled: true"
+                - key: "{{ request.object.metadata.annotations }}"
+                  operator: NotEquals
+                  value: "auth-ak-fw.home.arpa/enabled: true"
+                - key: "{{ request.object.metadata.annotations }}"
+                  operator: NotEquals
+                  value: "external-dns.home.arpa/enabled: true"
+                - key: "{{ request.object.metadata.annotations }}"
+                  operator: NotEquals
+                  value: "external-dns.home.arpa/enabled: true"
+                - key: "{{ request.object.metadata.annotations }}"
+                  operator: NotEquals
+                  value: "external-dns.alpha.kubernetes.io/cloudflare-proxied: true"
         patchStrategicMerge:
           metadata:
             annotations:
