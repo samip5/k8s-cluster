@@ -1,0 +1,99 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app lidarr
+  namespace: media
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: youegraillot/lidarr-on-steroids
+      tag: 1.2.8
+    env:
+      TZ: "Europe/Helsinki"
+      AUTOCONFIG: true
+    #envFrom:
+    #  - secretRef:
+    #      name: *app
+    service:
+      main:
+        ports:
+          http:
+            port: 8686
+          dmix:
+            enabled: true
+            port: &portdmix 6595
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Accept-Encoding "";
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.skylab.fi/css/base/lidarr/plex.css"></head>';
+            sub_filter_once on;
+          hajimari.io/icon: mdi:headphones
+        hosts:
+          - host: &host "{{ .Release.Name }}.skylab.fi"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+      dmix:
+        enabled: true
+        ingressClassName: "nginx"
+        hosts:
+          - host: &hostdmix "dmix.skylab.fi"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  port: *portdmix
+        tls:
+          - hosts:
+              - *hostdmix
+    persistence:
+      config:
+        enabled: true
+        existingClaim: lidarr-config-2-v1
+      config-deemix:
+        enabled: true
+        existingClaim: lidarr-deemix-config-v1
+      media:
+        enabled: true
+        type: nfs
+        server: &nas "192.168.2.2"
+        path: /volume1/Media
+        mountPath: /media
+      backup:
+        enabled: true
+        type: nfs
+        server: *nas
+        path: /volume3/Backups/k8s/apps/lidarr
+        mountPath: /config/Backups
+    resources:
+      requests:
+        cpu: 10m
+        memory: 250Mi
+      limits:
+        memory: 5000Mi
