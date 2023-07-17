@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: immich-dev-configmap
+  namespace: default
+data:
+  DB_PORT: "5432"
+  DISABLE_REVERSE_GEOCODING: "true"
+  ENABLE_MAPBOX: "false"
+  LOG_LEVEL: debug
+  NODE_ENV: "development"
+  REDIS_PORT: "6379"
+  REDIS_DBINDEX: "0"
+  TYPESENSE_HOST: immich-dev-typesense.default.svc.cluster.local
+  TYPESENSE_PORT: "8108"
+  TYPESENSE_PROTOCOL: http
+  TYPESENSE_DATA_DIR: /config
+  IMMICH_WEB_URL: http://immich-dev-web.default.svc.cluster.local:3000
+  IMMICH_SERVER_URL: http://immich-dev-server.default.svc.cluster.local:3001
+  IMMICH_MACHINE_LEARNING_URL: http://immich-dev-machine-learning.default.svc.cluster.local:3003
