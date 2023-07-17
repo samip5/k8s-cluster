@@ -43,7 +43,7 @@ spec:
       RADARR__POSTGRES_USER: radarr_k8s
     envFrom:
       - secretRef:
-          name: radarr-secret
+          name: radarr
     service:
       main:
         ports:
