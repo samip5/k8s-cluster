@@ -41,7 +41,7 @@ spec:
       SONARR__LOG_LEVEL: info
     envFrom:
       - secretRef:
-          name: sonarr-secret
+          name: sonarr
     service:
       main:
         ports:
