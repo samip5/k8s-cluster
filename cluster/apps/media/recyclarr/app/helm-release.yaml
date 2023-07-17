@@ -35,7 +35,7 @@ spec:
       TZ: Europe/Helsinki
     envFrom:
       - secretRef:
-          name: recyclarr-secret
+          name: recyclarr
     hostAliases:
       - ip: "192.168.2.129"
         hostnames:
