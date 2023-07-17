@@ -19,3 +19,4 @@ data:
   IMMICH_WEB_URL: http://immich-dev-web.default.svc.cluster.local:3000
   IMMICH_SERVER_URL: http://immich-dev-server.default.svc.cluster.local:3001
   IMMICH_MACHINE_LEARNING_URL: http://immich-dev-machine-learning.default.svc.cluster.local:3003
+  REDIS_HOSTNAME: immich-dev-redis.default.svc.cluster.local
