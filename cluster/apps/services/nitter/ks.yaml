@@ -5,6 +5,8 @@ metadata:
   name: cluster-apps-services-nitter
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: cluster-apps-db-redis
   path: './cluster/apps/services/nitter/app/'
   prune: true
   sourceRef:
