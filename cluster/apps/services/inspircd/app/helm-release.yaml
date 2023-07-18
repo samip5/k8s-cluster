@@ -26,7 +26,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: docker.io/inspircd/inspircd-docker
-      tag: 3.16.1@sha256:e2bebc9a7c3be191a281470e474fa8e53de118e9c444095876a853628f705b02
+      tag: 3.16.1@sha256:f30bd8d89304e8e9e70ad4f1a9e8f0ac3492b363f2f2ebcb007eec9b0a05349c
     env:
       TZ: "Europe/Helsinki"
     service:
