@@ -5,4 +5,3 @@ namespace: databases
 resources:
   - configmap.yaml
   - helm-release.yaml
-#  - pvc.yaml
