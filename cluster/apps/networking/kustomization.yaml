@@ -5,6 +5,5 @@ resources:
   - nginx/ks.yaml
   - external-dns/ks.yaml
   - misc-ingresses
-  - unifi/ks.yaml
   - k8s-gateway/ks.yaml
   - netshoot.yaml
