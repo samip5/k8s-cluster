@@ -12,6 +12,6 @@ configMapGenerator:
       - ./config/motd.txt
       - ./config/opers.conf
       - ./config/server.conf
-#      - ./config/links.conf
+      - ./config/links.conf
 generatorOptions:
   disableNameSuffixHash: true
