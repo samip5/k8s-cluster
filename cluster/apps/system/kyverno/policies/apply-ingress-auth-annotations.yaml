@@ -10,7 +10,6 @@ metadata:
 spec:
   validationFailureAction: enforce
   mutateExistingOnPolicyUpdate: true
-  generateExisting: true
   rules:
     - name: auth-fi
       match:
@@ -25,6 +24,11 @@ spec:
         targets:
           - apiVersion: networking.k8s.io/v1
             kind: Ingress
+            preconditions:
+              any:
+                - key: '{{ target.metadata.annotations."auth-fi.home.arpa/enabled" }}'
+                  operator: Equals
+                  value: "true"
         patchStrategicMerge:
           metadata:
             annotations:
@@ -48,6 +52,11 @@ spec:
         targets:
           - apiVersion: networking.k8s.io/v1
             kind: Ingress
+            preconditions:
+              any:
+                - key: '{{ target.metadata.annotations."auth-basic-fi.home.arpa/enabled" }}'
+                  operator: Equals
+                  value: "true"
         patchStrategicMerge:
           metadata:
             annotations:
@@ -69,6 +78,11 @@ spec:
         targets:
           - apiVersion: networking.k8s.io/v1
             kind: Ingress
+            preconditions:
+              any:
+                - key: '{{ target.metadata.annotations."auth-ak-fw.home.arpa/enabled" }}'
+                  operator: Equals
+                  value: "true"
         patchStrategicMerge:
           metadata:
             annotations:
