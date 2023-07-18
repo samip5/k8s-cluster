@@ -102,6 +102,12 @@ spec:
     bgpControlPlane:
       enabled: true
 
+    ingressController:
+      enabled: true
+      loadbalancerMode: shared
+      secretsNamespace:
+        name: networking
+
     securityContext:
       privileged: true
 
