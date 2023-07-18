@@ -1,9 +1,17 @@
+#debug:
+#enabled: false
+#verbose: "datapath envoy policy"
 cni:
   exclusive: false
+bpf:
+  masquerade: true
+cluster:
+  name: home-cluster
+  id: 2
 autoDirectNodeRoutes: true
 localRedirectPolicy: true
 rollOutCiliumPods: true
-kubeProxyReplacement: false
+kubeProxyReplacement: strict
 kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
 ipv4NativeRoutingCIDR: "10.244.0.0/16"
 ipv6NativeRoutingCIDR: "fddf:f7bc:9670::/48"
@@ -12,9 +20,6 @@ k8sServicePort: 6443
 loadBalancer:
   algorithm: "maglev"
   mode: "dsr"
-
-
-l7Proxy: true
 
 tunnel: "disabled"
 ipam:
@@ -69,6 +74,10 @@ bgp:
 
 bgpControlPlane:
   enabled: true
+
+ingressController:
+  enabled: true
+  loadbalancerMode: shared
 
 securityContext:
   privileged: true
