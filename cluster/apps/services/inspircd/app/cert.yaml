@@ -1,0 +1,15 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/cert-manager.io/certificate_v1.json
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: irc-skylab-fi-tls
+  namespace: networking
+spec:
+  secretName: irc-skylab-fi-tls
+  issuerRef:
+    name: zerossl-production
+    kind: ClusterIssuer
+  commonName: irc.skylab.fi
+  dnsNames:
+    - "irc.skylab.fi"

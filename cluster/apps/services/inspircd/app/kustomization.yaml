@@ -1,0 +1,17 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: services
+resources:
+  - ./helm-release.yaml
+  - ./cert.yaml
+configMapGenerator:
+  - name: inspircd
+    files:
+      - ./config/inspircd.conf
+      - ./config/motd.txt
+      - ./config/opers.conf
+      - ./config/server.conf
+#      - ./config/links.conf
+generatorOptions:
+  disableNameSuffixHash: true

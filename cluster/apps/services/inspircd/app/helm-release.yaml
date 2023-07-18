@@ -1,0 +1,110 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app inspircd
+  namespace: services
+spec:
+  interval: 15m
+  timeout: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: docker.io/inspircd/inspircd-docker
+      tag: 3.16.1@sha256:e2bebc9a7c3be191a281470e474fa8e53de118e9c444095876a853628f705b02
+    env:
+      TZ: "Europe/Helsinki"
+    service:
+      main:
+        enabled: true
+        type: LoadBalancer
+        externalTrafficPolicy: Cluster
+        ipFamilyPolicy: "PreferDualStack"
+        ipFamilies:
+          - IPv4
+          - IPv6
+        annotations:
+          io.cilium/lb-ipam-ips: "10.96.69.30,2001:14ba:16fd:961d::30"
+        ports:
+          http:
+            enabled: false
+          server:
+            enabled: true
+            port: 7001
+            protocol: TCP
+          client:
+            enabled: true
+            port: 6697
+            protocol: TCP
+    persistence:
+      config:
+        enabled: true
+        type: configMap
+        name: *app
+        subPath: inspircd.conf
+        mountPath: /inspircd/conf/inspircd.conf
+        readOnly: true
+      config-server:
+        enabled: true
+        type: configMap
+        name: *app
+        subPath: server.conf
+        mountPath: /inspircd/conf/server.conf
+        readOnly: true
+      config-links:
+        enabled: true
+        type: configMap
+        name: *app
+        subPath: links.conf
+        mountPath: /inspircd/conf/links.conf
+        readOnly: true
+      config-opers:
+        enabled: true
+        type: configMap
+        name: *app
+        subPath: opers.conf
+        mountPath: /inspircd/conf/opers.conf
+        readOnly: true
+      config-motd:
+        enabled: true
+        type: configMap
+        name: *app
+        subPath: motd.txt
+        mountPath: /inspircd/conf/motd.txt
+        readOnly: true
+      tls-fullchain:
+        enabled: true
+        type: secret
+        name: irc-skylab-fi-tls
+        subPath: tls.crt
+        mountPath: /inspircd/ssl/tls.crt
+        readOnly: true
+      tls-privkey:
+        enabled: true
+        type: secret
+        name: irc-skylab-fi-tls
+        subPath: tls.key
+        mountPath: /inspircd/ssl/tls.key
+        readOnly: true
+
+    resources:
+      requests:
+        cpu: 10m
+        memory: 100Mi
+      limits:
+        memory: 750Mi
