@@ -52,12 +52,11 @@ spec:
       runAsGroup: 568
       fsGroup: 568
       fsGroupChangePolicy: OnRootMismatch
-    volumeClaimTemplates:
-      - name: config
-        mountPath: /config
-        accessMode: ReadWriteOnce
-        size: 1Gi
-        storageClass: local-path
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: thelounge-config-v1
     resources:
       requests:
         cpu: 10m
