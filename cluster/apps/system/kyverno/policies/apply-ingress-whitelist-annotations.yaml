@@ -46,7 +46,7 @@ spec:
             kind: Ingress
             preconditions:
               any:
-                - key: "{{ request.object.metadata.namespace }}"
+                - key: "{{ target.metadata.namespace }}"
                   operator: NotEquals
                   value: search
                 - key: '{{ target.metadata.annotations."external-dns.home.arpa/enabled" }}'
