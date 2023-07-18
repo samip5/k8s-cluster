@@ -9,7 +9,6 @@ metadata:
 spec:
   validationFailureAction: enforce
   mutateExistingOnPolicyUpdate: true
-  generateExisting: true
   rules:
     - name: external-dns-proxied-cf
       match:
@@ -23,10 +22,14 @@ spec:
         targets:
           - apiVersion: networking.k8s.io/v1
             kind: Ingress
+            preconditions:
+              any:
+                - key: '{{ target.metadata.annotations."external-dns-cf/is-cf-proxied" }}'
+                  operator: Equals
+                  value: "true"
         patchStrategicMerge:
           metadata:
             annotations:
-              (external-dns-cf/is-cf-proxied): "true"
               +(external-dns.alpha.kubernetes.io/cloudflare-proxied): "true"
 
     - name: external-dns
@@ -41,8 +44,12 @@ spec:
         targets:
            - apiVersion: networking.k8s.io/v1
              kind: Ingress
+             preconditions:
+               any:
+                 - key: '{{ target.metadata.annotations."external-dns.target/enabled:" }}'
+                   operator: Equals
+                   value: "true"
         patchStrategicMerge:
           metadata:
             annotations:
-              (external-dns.target/enabled): "true"
               +(external-dns.alpha.kubernetes.io/target): ingress.skylab.fi

@@ -10,7 +10,6 @@ metadata:
 spec:
   validationFailureAction: enforce
   mutateExistingOnPolicyUpdate: true
-  generateExisting: true
   rules:
     - name: whitelist
       match:
@@ -50,27 +49,24 @@ spec:
                 - key: "{{ request.object.metadata.namespace }}"
                   operator: NotEquals
                   value: search
-                - key: "{{ request.object.metadata.annotations }}"
+                - key: '{{ target.metadata.annotations."external-dns.home.arpa/enabled" }}'
                   operator: NotEquals
-                  value:  "auth-fi.home.arpa/enabled: true"
-                - key: "{{ request.object.metadata.annotations }}"
+                  value: "true"
+                - key: '{{ target.metadata.annotations."external-dns-cf/is-public" }}'
                   operator: NotEquals
-                  value: "auth-basic-fi.home.arpa/enabled: true"
-                - key: "{{ request.object.metadata.annotations }}"
+                  value: "true"
+                - key: '{{ target.metadata.annotations."external-dns.alpha.kubernetes.io/cloudflare-proxied }}'
                   operator: NotEquals
-                  value: "auth-ak-fw.home.arpa/enabled: true"
-                - key: "{{ request.object.metadata.annotations }}"
+                  value: "true"
+                - key: '{{ target.metadata.annotations."auth-ak-fw.home.arpa/enabled" }}'
                   operator: NotEquals
-                  value: "external-dns.home.arpa/enabled: true"
-                - key: "{{ request.object.metadata.annotations }}"
+                  value: "true"
+                - key: '{{ target.metadata.annotations."auth-basic-fi.home.arpa/enabled" }}'
                   operator: NotEquals
-                  value: "external-dns.home.arpa/enabled: true"
-                - key: "{{ request.object.metadata.annotations }}"
+                  value: "true"
+                - key: '{{ target.metadata.annotations."auth-fi.home.arpa/enabled" }}'
                   operator: NotEquals
-                  value: "external-dns.alpha.kubernetes.io/cloudflare-proxied: true"
-                - key: "{{ request.object.metadata.annotations }}"
-                  operator: NotEquals
-                  value: "external-dns-cf/is-public: true"
+                  value: "true"
         patchStrategicMerge:
           metadata:
             annotations:
