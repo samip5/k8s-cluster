@@ -18,7 +18,7 @@ spec:
   chart:
     spec:
       chart: cilium
-      version: 1.13.4
+      version: 1.14.0-rc.1
       sourceRef:
         kind: HelmRepository
         name: cilium-charts
@@ -30,6 +30,11 @@ spec:
       #verbose: "datapath envoy policy"
     cni:
       exclusive: false
+    bpf:
+      masquerade: true
+    cluster:
+      name: home-cluster
+      id: 2
     autoDirectNodeRoutes: true
     localRedirectPolicy: true
     rollOutCiliumPods: true
