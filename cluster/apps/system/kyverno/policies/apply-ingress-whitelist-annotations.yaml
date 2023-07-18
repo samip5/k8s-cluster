@@ -55,7 +55,7 @@ spec:
                 - key: '{{ target.metadata.annotations."external-dns-cf/is-public" }}'
                   operator: NotEquals
                   value: "true"
-                - key: '{{ target.metadata.annotations."external-dns.alpha.kubernetes.io/cloudflare-proxied }}'
+                - key: '{{ target.metadata.annotations."external-dns.alpha.kubernetes.io/cloudflare-proxied" }}'
                   operator: NotEquals
                   value: "true"
                 - key: '{{ target.metadata.annotations."auth-ak-fw.home.arpa/enabled" }}'
