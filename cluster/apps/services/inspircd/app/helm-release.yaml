@@ -57,14 +57,14 @@ spec:
         type: configMap
         name: *app
         subPath: inspircd.conf
-        mountPath: /conf/inspircd.conf
+        mountPath: /inspircd/conf/inspircd.conf
         readOnly: true
       config-server:
         enabled: true
         type: configMap
         name: *app
         subPath: server.conf
-        mountPath: /conf/server.conf
+        mountPath: /inspircd/conf/server.conf
         readOnly: true
       config-links:
         enabled: true
@@ -78,28 +78,28 @@ spec:
         type: configMap
         name: *app
         subPath: opers.conf
-        mountPath: /conf/opers.conf
+        mountPath: /inspircd/conf/opers.conf
         readOnly: true
       config-motd:
         enabled: true
         type: configMap
         name: *app
         subPath: motd.txt
-        mountPath: /conf/motd.txt
+        mountPath: /inspircd/conf/motd.txt
         readOnly: true
       tls-fullchain:
         enabled: true
         type: secret
         name: irc-skylab-fi-tls
         subPath: tls.crt
-        mountPath: /ssl/tls.crt
+        mountPath: /inspircd/ssl/tls.crt
         readOnly: true
       tls-privkey:
         enabled: true
         type: secret
         name: irc-skylab-fi-tls
         subPath: tls.key
-        mountPath: /ssl/tls.key
+        mountPath: /inspircd/ssl/tls.key
         readOnly: true
 
     resources:
