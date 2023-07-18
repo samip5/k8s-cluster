@@ -9,10 +9,10 @@ spec:
   chart:
     spec:
       chart: longhorn
-      version: 1.5.1
+      version: 1.5.1-rc1
       sourceRef:
         kind: HelmRepository
-        name: samipsolutions-charts
+        name: longhorn
         namespace: flux-system
       interval: 5m
   values:
