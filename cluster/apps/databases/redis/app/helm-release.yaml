@@ -5,9 +5,6 @@ metadata:
   name: &app redis
   namespace: databases
 spec:
-  dependsOn:
-    - name: longhorn
-      namespace: storage
   interval: 15m
   chart:
     spec:
