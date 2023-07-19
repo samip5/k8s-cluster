@@ -39,6 +39,8 @@ spec:
       main:
         enabled: true
         ingressClassName: cilium
+        annotations:
+          cert-manager.io/cluster-issuer: zerossl-production
         hosts:
           - host: &host "{{ .Release.Name }}.skylab.fi"
             paths:
@@ -47,6 +49,7 @@ spec:
         tls:
           - hosts:
               - *host
+            secretName: thelounge-tls
     #podSecurityContext:
     #  runAsUser: 568
     #  runAsGroup: 568
