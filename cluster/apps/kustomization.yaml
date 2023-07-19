@@ -20,6 +20,6 @@ resources:
 #  - search
 #  - tor
 #  - games
-#  - vpn
+  - vpn
   - downloads
   - federation
