@@ -30,7 +30,7 @@ spec:
       PLEX_CLAIM:
         valueFrom:
           secretKeyRef:
-            name: plex
+            name: plex-secret
             key: PLEX_CLAIM
 
     service:
