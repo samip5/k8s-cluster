@@ -33,7 +33,7 @@ spec:
         imagePullPolicy: IfNotPresent
         envFrom: &envFrom
           - secretRef:
-              name: prowlarr-secret
+              name: prowlarr
     controller:
       strategy: RollingUpdate
       annotations:
