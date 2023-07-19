@@ -49,6 +49,23 @@ spec:
           http:
             port: 32400
             protocol: TCP
+          # https://support.plex.tv/articles/200430283-network/
+          dm-1-udp:
+            enabled: true
+            port: 32410
+            protocol: UDP
+          gdm-2-udp:
+            enabled: true
+            port: 32412
+            protocol: UDP
+          gdm-3-udp:
+            enabled: true
+            port: 32413
+            protocol: UDP
+          gdm-4-udp:
+            enabled: true
+            port: 32414
+            protocol: UDP
 
     ingress:
       main:
