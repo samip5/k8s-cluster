@@ -46,9 +46,6 @@ spec:
       PROWLARR__PORT: &port 80
       PROWLARR__LOG_LEVEL: info
       PROWLARR__AUTHENTICATION_METHOD: External
-      PROWLARR__POSTGRES_HOST: 192.168.2.2
-      PROWLARR__POSTGRES_MAIN_DB: prowlarr_main
-      PROWLARR__POSTGRES_LOG_DB: prowlarr_log
     envFrom: *envFrom
     hostAliases:
       - ip: "192.168.2.129"
