@@ -1,3 +1,5 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/postgresql.cnpg.io/cluster_v1.json
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -10,13 +12,30 @@ spec:
   imageName: ghcr.io/cloudnative-pg/postgresql:14.8-7
   primaryUpdateStrategy: unsupervised
   storage:
-    size: 40Gi
-    storageClass: longhorn
+    size: 20Gi
+    storageClass: local-path
   superuserSecret:
     name: cloudnative-pg-secret
   postgresql:
     parameters:
       max_connections: "300"
       shared_buffers: 512MB
+
   monitoring:
     enablePodMonitor: true
+  backup:
+    retentionPolicy: 30d
+    barmanObjectStore:
+      wal:
+       compression: bzip2
+       maxParallel: 4
+      destinationPath: s3://cnpg-main/
+      endpointURL: https://s3.skym.fi
+      serverName: &currentCluster postgres-v1
+      s3Credentials:
+        accessKeyId:
+          name: cloudnative-pg-secret
+          key: aws-access-key-id
+        secretAccessKey:
+          name: cloudnative-pg-secret
+          key: aws-secret-access-key
