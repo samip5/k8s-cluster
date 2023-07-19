@@ -20,7 +20,6 @@ spec:
     parameters:
       max_connections: "300"
       shared_buffers: 512MB
-
   monitoring:
     enablePodMonitor: true
   backup:
