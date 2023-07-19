@@ -62,11 +62,11 @@ spec:
           # either directly or by a path to the corresponding file
           Enabled: false
         WebAuthNName: ZITADEL
-        # The Secret containing the root CA Certificate at key ca.crt needed for establishing secure database connections
-        dbSslRootCrtSecret:
-        # The Secret containing the client CA Certificate and key at tls.crt and tls.key needed for establishing secure database connections
-        dbSslClientCrtSecret:
-        masterkeySecretName: zitadel-secret
+      # The Secret containing the root CA Certificate at key ca.crt needed for establishing secure database connections
+      dbSslRootCrtSecret:
+      # The Secret containing the client CA Certificate and key at tls.crt and tls.key needed for establishing secure database connections
+      dbSslClientCrtSecret:
+      masterkeySecretName: zitadel-secret
 
     replicaCount: 1
     image:
