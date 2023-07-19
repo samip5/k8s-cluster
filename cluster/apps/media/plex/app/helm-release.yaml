@@ -27,6 +27,11 @@ spec:
       TZ: "Europe/Helsinki"
       ADVERTISE_IP: "https://192-168-10-20.03c2ecb1de9a447d910154f0324e522f.plex.direct:32400,https://{{ .Release.Name }}.skylab.fi:443"
       HOSTNAME: "plex"
+      PLEX_CLAIM:
+        valueFrom:
+          secretKeyRef:
+            name: plex
+            key: PLEX_CLAIM
 
     service:
       main:
