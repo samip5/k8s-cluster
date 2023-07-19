@@ -4,6 +4,8 @@ metadata:
   name: cluster-apps-radarr
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: cluster-apps-databases-cloudnative-pg-cluster
   path: ./cluster/apps/media/radarr/app
   prune: true
   sourceRef:
