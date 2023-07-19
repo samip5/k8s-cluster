@@ -30,7 +30,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/immich-app/immich-server
-      tag: pr-3171@sha256:51d01adb17447af0a4578c76206238d3fda9b58725fcce80b102b2c671d57873
+      tag: pr-3171@sha256:884a623b2c9d37ad34ddc6699bc906bcf22d3e22f6d7de23b46036548c35e1d4
     args: ["start-microservices.sh"]
     envFrom:
       - secretRef:
