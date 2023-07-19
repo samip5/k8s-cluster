@@ -4,13 +4,13 @@ kind: Kustomization
 resources:
  - ns.yaml
  - jellyseer
-# - plex/ks.yaml
-# - sonarr/ks.yaml
+ - plex/ks.yaml
+ - sonarr/ks.yaml
  - radarr/ks.yaml
-# - recyclarr/ks.yaml
+ - recyclarr/ks.yaml
  - prowlarr/ks.yaml
-# - unpackerr/ks.yaml
-# - lidarr/ks.yaml
+ - unpackerr/ks.yaml
+ - lidarr/ks.yaml
 # - autobrr/ks.yaml
 # - flaresolverr/ks.yaml
 # - netshoot.yaml
