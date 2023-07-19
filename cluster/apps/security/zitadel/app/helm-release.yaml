@@ -28,23 +28,26 @@ spec:
     recreate: true
     cleanupOnFail: true
   values:
-    replicaCount: 1
-    image:
-      repository: ghcr.io/zitadel/zitadel
-      tag: v2.30.0
-      pullPolicy: IfNotPresent
     zitadel:
-      masterkey: "MasterkeyNeedsToHave32Characters"
+      # The ZITADEL config under configmapConfig is written to a Kubernetes ConfigMap
+      # See all defaults here:
+      # https://github.com/zitadel/zitadel/blob/main/cmd/defaults.yaml
       configmapConfig:
+        Log:
+          Level: debug
+          Formatter:
+            Format: text
         Database:
-          cockroach:
-            Host: "crdb.databases.svc.cluster.local"
+          postgres:
+            Host: postgres-rw.databases.svc.cluster.local
+            Port: 5432
+            Database: zitadel
             User:
               SSL:
-                Mode: "disable"
-              Admin:
-                SSL:
-                  Mode: "disable"
+                Mode: disable
+            Admin:
+              SSL:
+                Mode: disable
 
       ExternalDomain: &host auth.skylab.fi
       # specifies if ZITADEL is exposed externally through TLS
@@ -63,6 +66,37 @@ spec:
       dbSslRootCrtSecret:
       # The Secret containing the client CA Certificate and key at tls.crt and tls.key needed for establishing secure database connections
       dbSslClientCrtSecret:
+      masterkeySecretName: zitadel-secret
+
+    replicaCount: 1
+    image:
+      repository: ghcr.io/zitadel/zitadel
+      tag: v2.30.0
+      pullPolicy: IfNotPresent
+
+    # Additional environment variables
+    env:
+      - name: ZITADEL_DATABASE_POSTGRES_USER_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: zitadel-secret
+            key: ZITADEL_DATABASE_POSTGRES_USER_USERNAME
+      - name: ZITADEL_DATABASE_POSTGRES_USER_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: zitadel-secret
+            key: ZITADEL_DATABASE_POSTGRES_USER_PASSWORD
+      - name: ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: zitadel-secret
+            key: ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME
+      - name: ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: zitadel-secret
+            key: ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD
+
 
     service:
       type: ClusterIP
