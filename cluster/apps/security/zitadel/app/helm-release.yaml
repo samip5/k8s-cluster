@@ -49,24 +49,24 @@ spec:
               SSL:
                 Mode: disable
 
-      ExternalDomain: &host auth.skylab.fi
-      # specifies if ZITADEL is exposed externally through TLS
-      # this must be set to true even if TLS is not enabled on ZITADEL itself
-      # but TLS traffic is terminated on a reverse proxy
-      # !!! Changing this after initial setup breaks your system !!!
-      ExternalSecure: true
-      ExternalPort: 443
-      TLS:
-        # if enabled, ZITADEL will serve all traffic over TLS (HTTPS and gRPC)
-        # you must then also provide a private key and certificate to be used for the connection
-        # either directly or by a path to the corresponding file
-        Enabled: false
-      WebAuthNName: ZITADEL
-      # The Secret containing the root CA Certificate at key ca.crt needed for establishing secure database connections
-      dbSslRootCrtSecret:
-      # The Secret containing the client CA Certificate and key at tls.crt and tls.key needed for establishing secure database connections
-      dbSslClientCrtSecret:
-      masterkeySecretName: zitadel-secret
+        ExternalDomain: &host auth.skylab.fi
+        # specifies if ZITADEL is exposed externally through TLS
+        # this must be set to true even if TLS is not enabled on ZITADEL itself
+        # but TLS traffic is terminated on a reverse proxy
+        # !!! Changing this after initial setup breaks your system !!!
+        ExternalSecure: true
+        ExternalPort: 443
+        TLS:
+          # if enabled, ZITADEL will serve all traffic over TLS (HTTPS and gRPC)
+          # you must then also provide a private key and certificate to be used for the connection
+          # either directly or by a path to the corresponding file
+          Enabled: false
+        WebAuthNName: ZITADEL
+        # The Secret containing the root CA Certificate at key ca.crt needed for establishing secure database connections
+        dbSslRootCrtSecret:
+        # The Secret containing the client CA Certificate and key at tls.crt and tls.key needed for establishing secure database connections
+        dbSslClientCrtSecret:
+        masterkeySecretName: zitadel-secret
 
     replicaCount: 1
     image:
