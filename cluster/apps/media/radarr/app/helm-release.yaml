@@ -37,13 +37,10 @@ spec:
       RADARR__PORT: &port 80
       RADARR__APPLICATION_URL: "https://{{ .Release.Name }}.skylab.fi"
       RADARR__LOG_LEVEL: info
-      RADARR__POSTGRES_HOST: 192.168.2.2
-      RADARR__POSTGRES_MAIN_DB: radarr_k8s_main
-      RADARR__POSTGRES_LOG_DB: radarr_k8s_log
-      RADARR__POSTGRES_USER: radarr_k8s
+
     envFrom:
       - secretRef:
-          name: radarr
+          name: radarr-secret
     service:
       main:
         ports:
