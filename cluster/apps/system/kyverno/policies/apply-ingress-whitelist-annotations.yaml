@@ -49,22 +49,22 @@ spec:
                 - key: "{{ target.metadata.namespace }}"
                   operator: NotEquals
                   value: search
-                - key: '{{ target.metadata.annotations."external-dns.home.arpa/enabled" }}'
+                - key: '{{ target.metadata.annotations."external-dns.home.arpa/enabled" || ''}}'
                   operator: NotEquals
                   value: "true"
-                - key: '{{ target.metadata.annotations."external-dns-cf/is-public" }}'
+                - key: '{{ target.metadata.annotations."external-dns-cf/is-public" || '' }}'
                   operator: NotEquals
                   value: "true"
-                - key: '{{ target.metadata.annotations."external-dns.alpha.kubernetes.io/cloudflare-proxied" }}'
+                - key: '{{ target.metadata.annotations."external-dns.alpha.kubernetes.io/cloudflare-proxied" || '' }}'
                   operator: NotEquals
                   value: "true"
-                - key: '{{ target.metadata.annotations."auth-ak-fw.home.arpa/enabled" }}'
+                - key: '{{ target.metadata.annotations."auth-ak-fw.home.arpa/enabled" || '' }}'
                   operator: NotEquals
                   value: "true"
-                - key: '{{ target.metadata.annotations."auth-basic-fi.home.arpa/enabled" }}'
+                - key: '{{ target.metadata.annotations."auth-basic-fi.home.arpa/enabled" || '' }}'
                   operator: NotEquals
                   value: "true"
-                - key: '{{ target.metadata.annotations."auth-fi.home.arpa/enabled" }}'
+                - key: '{{ target.metadata.annotations."auth-fi.home.arpa/enabled" || '' }}'
                   operator: NotEquals
                   value: "true"
         patchStrategicMerge:
