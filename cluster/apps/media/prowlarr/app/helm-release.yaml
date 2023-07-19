@@ -27,6 +27,13 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    initContainers:
+      01-init-db:
+        image: ghcr.io/onedr0p/postgres-init:14.8
+        imagePullPolicy: IfNotPresent
+        envFrom: &envFrom
+          - secretRef:
+              name: prowlarr-secret
     controller:
       strategy: RollingUpdate
       annotations:
@@ -42,9 +49,7 @@ spec:
       PROWLARR__POSTGRES_HOST: 192.168.2.2
       PROWLARR__POSTGRES_MAIN_DB: prowlarr_main
       PROWLARR__POSTGRES_LOG_DB: prowlarr_log
-    envFrom:
-      - secretRef:
-          name: prowlarr-secret
+    envFrom: *envFrom
     hostAliases:
       - ip: "192.168.2.129"
         hostnames:

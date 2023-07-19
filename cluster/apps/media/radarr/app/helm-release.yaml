@@ -25,6 +25,13 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    initContainers:
+      01-init-db:
+        image: ghcr.io/onedr0p/postgres-init:14.8
+        imagePullPolicy: IfNotPresent
+        envFrom: &envFrom
+          - secretRef:
+              name: radarr-secret
     controller:
       annotations:
         reloader.stakater.com/auto: "true"
@@ -38,9 +45,7 @@ spec:
       RADARR__APPLICATION_URL: "https://{{ .Release.Name }}.skylab.fi"
       RADARR__LOG_LEVEL: info
 
-    envFrom:
-      - secretRef:
-          name: radarr-secret
+    envFrom: *envFrom
     service:
       main:
         ports:
