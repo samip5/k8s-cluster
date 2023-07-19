@@ -41,7 +41,7 @@ spec:
     service:
       main:
         type: ClusterIP
-        externalTrafficPolicy: Cluster
+        #externalTrafficPolicy: Cluster
         ports:
           http:
             port: 8123
