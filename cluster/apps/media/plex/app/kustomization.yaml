@@ -5,6 +5,7 @@ namespace: media
 resources:
   - ./externalsecret-store.yaml
   - ./externalsecret.yaml
+  - externalsecret-plex.yaml
   - ./helm-release.yaml
   - ./pvc.yaml
 commonLabels:
