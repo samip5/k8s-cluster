@@ -7,7 +7,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cluster-apps-db-cockroachdb
+    - name: cluster-apps-databases-cloudnative-pg-cluster
   path: ./cluster/apps/security/zitadel/app
   prune: true
   sourceRef:
