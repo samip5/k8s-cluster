@@ -17,7 +17,8 @@ spec:
       interval: 30m
 
   values:
-    runnerScaleSetName: arc-runner-set-samipsolutions
+    # Cannot have nice things because of https://github.com/actions/actions-runner-controller/issues/2697
+    runnerScaleSetName: arc-sol
 
     githubConfigUrl: https://github.com/samipsolutions
 
