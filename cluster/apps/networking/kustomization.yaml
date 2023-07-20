@@ -4,6 +4,7 @@ resources:
   - ns.yaml
   - nginx/ks.yaml
   - external-dns/ks.yaml
+  - cloudflared/ks.yaml
   - misc-ingresses
   - k8s-gateway/ks.yaml
   - netshoot.yaml
