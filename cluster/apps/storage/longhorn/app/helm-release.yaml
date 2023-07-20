@@ -12,7 +12,7 @@ spec:
       version: 1.5.1
       sourceRef:
         kind: HelmRepository
-        name: samipsolutions-charts
+        name: longhorn
         namespace: flux-system
       interval: 5m
   values:
