@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - ns.yaml
   - thelounge/ks.yaml
-#  - matrix-synapse/ks.yaml
+  - matrix-synapse/ks.yaml
