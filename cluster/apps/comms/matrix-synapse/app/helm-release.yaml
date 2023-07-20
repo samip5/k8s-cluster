@@ -36,6 +36,14 @@ spec:
     workers:
       media_repository:
         enabled: false
+      federation_sender:
+        enabled: true
+      frontend_proxy:
+        enabled: true
+        csPaths:
+          - "/_matrix/client/(api/v1|r0|v3|unstable)/keys/upload"
+          - "/_matrix/client/(api/v1|r0|v3|unstable)/presence/[^/]+/status"
+
 
     extraConfig:
       email:
