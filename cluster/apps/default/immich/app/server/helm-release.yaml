@@ -24,18 +24,25 @@ spec:
   dependsOn:
     - name: immich-redis
   values:
+    initContainers:
+      01-init-db:
+        image: ghcr.io/onedr0p/postgres-init:14.8
+        imagePullPolicy: IfNotPresent
+        envFrom: &envFrom
+          - configMapRef:
+              name: &configMap immich-configmap
+          - secretRef:
+              name: &secret immich-secret
     controller:
+      replicas: 2
+      strategy: RollingUpdate
       annotations:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/immich-app/immich-server
       tag: v1.68.0
     args: ["start-server.sh"]
-    envFrom:
-      - secretRef:
-          name: immich-secret
-      - configMapRef:
-          name: immich-configmap
+    envFrom: *envFrom
     service:
       main:
         ports:
@@ -48,6 +55,7 @@ spec:
         mountPath: /usr/src/app/upload
     resources:
       requests:
+        cpu: 100m
         memory: 512M
       limits:
         memory: 1Gi
