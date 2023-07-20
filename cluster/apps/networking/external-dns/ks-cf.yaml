@@ -2,10 +2,10 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-external-dns-app
+  name: cluster-apps-external-dns-cf-app
   namespace: flux-system
 spec:
-  path: ./cluster/apps/networking/external-dns/app
+  path: ./cluster/apps/networking/external-dns/app-cf
   prune: true
   sourceRef:
     kind: GitRepository
@@ -13,7 +13,7 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: external-dns
+      name: external-dns-cf
       namespace: networking
   interval: 30m
   retryInterval: 1m
