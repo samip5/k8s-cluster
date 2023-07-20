@@ -5,6 +5,7 @@ namespace: databases
 resources:
   - cluster.yaml
   - prom-rule.yaml
+  - scheduledbackup.yaml
 labels:
   - pairs:
       app.kubernetes.io/name: cloudnative-pg-cluster
