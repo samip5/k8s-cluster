@@ -16,6 +16,13 @@ spec:
     storageClass: local-path
   superuserSecret:
     name: cloudnative-pg-secret
+  resources:
+    requests:
+      cpu: 100m
+      memory: 1Gi
+    limits:
+      cpu: 500m
+      memory: 2Gi
   postgresql:
     parameters:
       max_connections: "300"
