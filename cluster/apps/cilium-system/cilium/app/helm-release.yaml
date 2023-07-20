@@ -25,9 +25,9 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    #debug:
-      #enabled: false
-      #verbose: "datapath envoy policy"
+    debug:
+      enabled: true
+      verbose: "datapath"
     cni:
       exclusive: false
     bpf:
