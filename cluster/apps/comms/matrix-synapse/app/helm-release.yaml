@@ -101,6 +101,7 @@ spec:
     externalRedis:
       host: redis-sentinel.databases.svc.cluster.local
       port: 6379
+      password:
       dbid: 1
 
     redis:
