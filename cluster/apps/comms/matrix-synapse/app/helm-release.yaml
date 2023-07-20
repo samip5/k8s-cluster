@@ -81,10 +81,11 @@ spec:
       enabled: false
 
     externalPostgresql:
-      host: 192.168.2.2
+      host: postgres-rw.databases.svc.cluster.local
       port: 5432
       username: synapse
-      password: ${SECRET_MATRIX_POSTGRESQL_PASSWORD}
+      existingSecret: matrix-synapse-pg-creds
+      existingSecretPasswordKey: PASSWORD
       database: "synapse"
 
     redis:
