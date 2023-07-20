@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: arc-samip5-k8s-cluster
-  namespace: ci
+  namespace: gh-runners
 spec:
   interval: 30m
   chart:
@@ -17,11 +17,11 @@ spec:
       interval: 30m
 
   values:
-    runnerScaleSetName: arc-runner-set-samip5-k8s-cluster
+    runnerScaleSetName: arc-runner-set-home-ops
 
     githubConfigUrl: https://github.com/samip5/k8s-cluster
 
-    minRunners: 1
+    minRunners: 0
     maxRunners: 4
 
     containerMode:
@@ -35,14 +35,14 @@ spec:
 
   valuesFrom:
     - kind: Secret
-      name: actions-runner-controller-auth-secret
+      name: actions-runner-home-ops-secret
       valuesKey: github_app_id
       targetPath: githubConfigSecret.github_app_id
     - kind: Secret
-      name: actions-runner-controller-auth-secret
+      name: actions-runner-home-ops-secret
       valuesKey: github_app_installation_id
       targetPath: githubConfigSecret.github_app_installation_id
     - kind: Secret
-      name: actions-runner-controller-auth-secret
+      name: actions-runner-home-ops-secret
       valuesKey: github_app_private_key
       targetPath: githubConfigSecret.github_app_private_key
