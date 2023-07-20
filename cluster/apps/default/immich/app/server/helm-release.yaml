@@ -23,6 +23,7 @@ spec:
       retries: 3
   dependsOn:
     - name: immich-redis
+    - name: immich-typesense
   values:
     initContainers:
       01-init-db:
