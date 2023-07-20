@@ -101,14 +101,13 @@ spec:
     externalRedis:
       host: redis-sentinel.databases.svc.cluster.local
       port: 6379
-      password:
       dbid: 1
 
     redis:
       enabled: false
       auth:
-       enabled: true
-       password: ${SECRET_MATRIX_REDIS_PASSWORD}
+       enabled: false
+       #password: ${SECRET_MATRIX_REDIS_PASSWORD}
 
     signingkey:
       job:
