@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: piped
-      version: 2.7.1
+      version: 3.0.0
       sourceRef:
         kind: HelmRepository
         name: teampiped
@@ -33,6 +33,13 @@ spec:
         BACKEND_HOSTNAME: pipedapi.skylab.fi
 
     backend:
+      initContainers:
+        01-init-db:
+          image: ghcr.io/onedr0p/postgres-init:14.8
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - secretRef:
+                name: &secret piped-db-creds
       image:
         # Pull-though cache
         repository: registry.samipsolutions.fi/docker/1337kavin/piped
@@ -44,6 +51,9 @@ spec:
         NUM_WORKERS: 2
         PROXY_PART: https://ytproxy.skylab.fi
         DISABLE_REGISTRATION: true
+        database:
+          connection_url: jdbc:postgresql://postgres-rw.databases.svc.cluster.local/piped
+          secret: *secret
 
     ytproxy:
       image:
@@ -99,3 +109,5 @@ spec:
         tls:
           - hosts:
               - *proxy
+    postgresql:
+      enabled: false
