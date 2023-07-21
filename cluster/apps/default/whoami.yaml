@@ -33,15 +33,14 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: cilium
         hosts:
           - host: &host who.skylab.fi
             paths:
               - path: /
 
         tls:
-          - secretName: skylab.fi-tls
-            hosts:
+          - hosts:
             -  *host
 
       test:
