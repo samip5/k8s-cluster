@@ -105,6 +105,8 @@ spec:
     ingressController:
       enabled: true
       loadbalancerMode: shared
+      defaultSecretNamespace: networking
+      defaultSecretName: skylab.fi-tls
 
     securityContext:
       privileged: true
