@@ -34,12 +34,12 @@ spec:
 
     backend:
       initContainers:
-        01-init-db:
-          image: ghcr.io/onedr0p/postgres-init:14.8
-          imagePullPolicy: IfNotPresent
-          envFrom:
-            - secretRef:
-                name: &secret piped-db-creds
+       01-init-db:
+        image: ghcr.io/onedr0p/postgres-init:14.8
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: &secret piped-db-creds
       image:
         # Pull-though cache
         repository: registry.samipsolutions.fi/docker/1337kavin/piped
