@@ -70,7 +70,8 @@
         "kube-prometheus-stack",
         "authentik",
         "grafana",
-        "ghost"
+        "renovate",
+        "node-feature-discovery"
       ]
     }
   ]
