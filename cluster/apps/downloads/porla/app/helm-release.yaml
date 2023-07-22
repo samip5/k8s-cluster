@@ -34,7 +34,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/porla/porla
-      tag: beta-latest@sha256:483b08ade6a7086443a709cc62fd8bd1fd2aabec384f9ec1343ea04e2b406e53
+      tag: beta-latest@sha256:1cbdb3e4f7c45606d04be03c9b07db7b08d5c7e8a22d06483a288632c434922d
     env:
       PORLA_STATE_DIR: /config
       PORLA_CONFIG_FILE: /config/config.toml
