@@ -1,4 +1,3 @@
-secret_key = "vVzbav7B4I8H6SAFCHkNIAR80OYcVbXe"
 workflow_dir = "/config/workflows"
 
 listen_interfaces = [
