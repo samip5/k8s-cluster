@@ -188,10 +188,9 @@ spec:
             mountPath: /tmp/scratch
         extraVolumes:
           - name: rules
-            configMap:
-              name: loki-alerting-rules
+            emptyDir: {}
           - name: scratch
-            emptyDir: { }
+            emptyDir: {}
         persistence:
           size: 20Gi
           storageClass: longhorn
