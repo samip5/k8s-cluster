@@ -109,9 +109,8 @@ spec:
       fsGroup: 568
       fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
-        - 44
-        - 109
-        - 65539
+        - 44 # video
+        - 109 # render
 
     nodeSelector:
       intel.feature.node.kubernetes.io/gpu: "true"
