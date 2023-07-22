@@ -18,7 +18,7 @@ spec:
           restartPolicy: Never
           containers:
             - name: *app
-              image: docker.io/maxmindinc/geoipupdate:v6.0
+              image: ghcr.io/maxmind/geoipupdate:v6.0
               imagePullPolicy: IfNotPresent
               lifecycle:
                 preStop:
@@ -29,7 +29,7 @@ spec:
                       - rm -rf /usr/share/GeoIP/.geoipupdate.lock
               env:
                 - name: GEOIPUPDATE_EDITION_IDS
-                  value: GeoLite2-City
+                  value: "GeoLite2-City GeoLite2-Country"
                 - name: GEOIPUPDATE_FREQUENCY
                   value: "0"
                 - name: GEOIPUPDATE_VERBOSE
