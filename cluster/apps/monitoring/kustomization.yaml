@@ -5,9 +5,10 @@ resources:
   - metrics-server
   - node-problem-detector
   - prom-stack/ks.yaml
-#  - alert-manager
+  - loki/ks.yaml
   - grafana
   - tempo/ks.yaml
+  - vector
   - speedtest-exporter
   - vpa/ks.yaml
   - goldilocks/ks.yaml
