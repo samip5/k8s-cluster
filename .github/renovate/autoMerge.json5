@@ -41,7 +41,9 @@
       ignoreTests: true,
       matchUpdateTypes: ["minor", "patch"],
       matchPackageNames: [
-        "ghcr.io/koenkk/zigbee2mqtt"
+        "ghcr.io/koenkk/zigbee2mqtt",
+        "registry.samipsolutions.fi/docker/inspircd/inspircd-docker",
+        "inspircd/inspircd-docker"
       ]
     },
     {
