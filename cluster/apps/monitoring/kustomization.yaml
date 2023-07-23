@@ -9,4 +9,4 @@ resources:
   - speedtest-exporter
   - vpa/ks.yaml
   - goldilocks/ks.yaml
-  - victoriametrics/ks.yaml
+#  - victoriametrics/ks.yaml
