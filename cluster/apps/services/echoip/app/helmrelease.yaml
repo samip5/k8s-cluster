@@ -18,7 +18,7 @@ spec:
     image:
       repository: ghcr.io/samipsolutions/echoip
       tag: rolling
-    args: ["-H", "X-Envoy-External-Address", "-H", "X-Forwarded-For", "-p"]
+    args: ["-H", "X-Envoy-External-Address", "-H", "X-Forwarded-For", "-p", "-c", "/usr/share/GeoIP/GeoLite2-City.mmdb", "-f", "/usr/share/GeoIP/GeoLite2-Country.mmdb"]
     service:
       main:
         ports:
