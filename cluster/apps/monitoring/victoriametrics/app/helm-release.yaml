@@ -80,7 +80,7 @@ spec:
           enabled: true
           ingressClassName: cilium
           hosts:
-            - &hoststorage vmstorage.${SECRET_DOMAIN}
+            - &hoststorage vmstorage.skylab.fi
           tls:
             - hosts:
                 - *hoststorage
@@ -89,7 +89,7 @@ spec:
           enabled: true
           ingressClassName: cilium
           hosts:
-            - &hostselect vmselect.${SECRET_DOMAIN}
+            - &hostselect vmselect.skylab.fi
           tls:
             - hosts:
                 - *hostselect
@@ -98,7 +98,7 @@ spec:
           enabled: true
           ingressClassName: cilium
           hosts:
-            - &hostinsert vminsert.${SECRET_DOMAIN}
+            - &hostinsert vminsert.skylab.fi
           tls:
             - hosts:
                 - *hostinsert
@@ -118,7 +118,7 @@ spec:
         enabled: true
         ingressClassName: cilium
         hosts:
-          - &hostalert vmalert.${SECRET_DOMAIN}
+          - &hostalert vmalert.skylab.fi
         tls:
           - hosts:
               - *hostalert
@@ -129,15 +129,15 @@ spec:
       spec:
         replicaCount: 3
         scrapeInterval: "60s"
-        additionalScrapeConfigs:
-          name: vm-additional-scrape-configs
-          key: prometheus-additional.yaml
+        #additionalScrapeConfigs:
+        #  name: vm-additional-scrape-configs
+        #  key: prometheus-additional.yaml
 
       ingress:
         enabled: true
         ingressClassName: cilium
         hosts:
-          - &hostagent vmagent.${SECRET_DOMAIN}
+          - &hostagent vmagent.skylab.fi
         tls:
           - hosts:
               - *hostagent
@@ -191,7 +191,7 @@ spec:
         enabled: true
         ingressClassName: cilium
         hosts:
-          - &hostam alertmanager.${EXTERNAL_DOMAIN}
+          - &hostam alertmanager.skylab.fi
         tls:
           - hosts:
               - *hostam
@@ -202,15 +202,6 @@ spec:
         # this can be configured directly in chart but it can
         #   be a bit unweildy to manage
         configSecret: alertmanager-secret
-        # I needed this for talos using local-hostpath - YMMV
-        #
-        securityContext:
-          runAsGroup: 2000
-          runAsNonRoot: true
-          runAsUser: 1000
-          fsGroup: 2000
-          seccompProfile:
-            type: RuntimeDefault
 
         storage:
           volumeClaimTemplate:
