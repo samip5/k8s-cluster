@@ -4,13 +4,9 @@ resources:
   - namespace.yaml
   - metrics-server
   - node-problem-detector
-  - prom-stack/ks.yaml
-  - loki/ks.yaml
   - grafana
   - tempo/ks.yaml
-  - vector
   - speedtest-exporter
   - vpa/ks.yaml
   - goldilocks/ks.yaml
-#  - apprise/ks.yaml
-#  - loki/ks.yaml
+  - victoriametrics/ks.yaml

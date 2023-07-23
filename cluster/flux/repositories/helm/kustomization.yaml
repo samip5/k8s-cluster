@@ -49,4 +49,5 @@ resources:
   - renovate.yaml
   - zitadel.yaml
   - democratic-csi.yaml
+  - victoriametrics-charts.yaml
 
