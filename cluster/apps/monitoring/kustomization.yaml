@@ -5,7 +5,7 @@ resources:
   - metrics-server
   - node-problem-detector
   - grafana
-  - tempo/ks.yaml
+ # - tempo/ks.yaml
   - speedtest-exporter
   - vpa/ks.yaml
   - goldilocks/ks.yaml
