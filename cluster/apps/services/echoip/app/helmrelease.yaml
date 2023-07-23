@@ -1,0 +1,74 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app echoip
+  namespace: services
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      interval: 15m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  values:
+    initContainers:
+      01-geoip:
+        image: ghcr.io/maxmind/geoipupdate:v6.0
+        lifecycle:
+          preStop:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - rm -rf /usr/share/GeoIP/.geoipupdate.lock
+        env:
+          - name: GEOIPUPDATE_EDITION_IDS
+            value: "GeoLite2-City GeoLite2-Country"
+          - name: GEOIPUPDATE_FREQUENCY
+            value: "0"
+          - name: GEOIPUPDATE_VERBOSE
+            value: "true"
+        envFrom:
+          - secretRef:
+              name: geoip-secrets
+        volumeMounts:
+          - name: *app
+            mountPath: /usr/share/GeoIP
+        volumes:
+          - name: *app
+            persistentVolumeClaim:
+              claimName: geoip-v1
+    image:
+      repository: ghcr.io/samipsolutions/echoip
+      tag: rolling
+    args: ["-H", "X-Envoy-External-Address", "-H", "X-Forwarded-For", "-p"]
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: hammer-wrench
+        hosts:
+          - host: &host "ip.skylab.fi"
+            paths:
+              - path: /
+        tls:
+          - hosts:
+              - *host
+    persistence:
+      config:
+        enabled: false
+      geoip:
+        enabled: true
+        existingClaim: geoip-v1
+        mountPath: /usr/share/GeoIP
