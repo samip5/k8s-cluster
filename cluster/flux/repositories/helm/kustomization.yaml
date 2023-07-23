@@ -48,4 +48,5 @@ resources:
   - teampiped.yaml
   - renovate.yaml
   - zitadel.yaml
+  - democratic-csi.yaml
 
