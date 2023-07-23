@@ -7,3 +7,4 @@ resources:
 #  - i2p/ks.yaml
   - piped/ks.yaml
   - inspircd/ks.yaml
+  - echoip/ks.yaml
