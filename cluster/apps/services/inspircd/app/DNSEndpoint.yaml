@@ -1,0 +1,15 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.skylab.fi/externaldns.k8s.io/dnsendpoint_v1alpha1.json
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: inspircd
+  namespace: services
+spec:
+  endpoints:
+    - dnsName: "irc.skylab.fi"
+      recordType: AAAA
+      targets: ["2001:14ba:16fd:961d::30"]
+    - dnsName: "irc.skylab.fi"
+      recordType: A
+      targets: ["81.175.157.244"]
