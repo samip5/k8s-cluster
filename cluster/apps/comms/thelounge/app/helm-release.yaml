@@ -41,6 +41,7 @@ spec:
         ingressClassName: cilium
         annotations:
           cert-manager.io/cluster-issuer: zerossl-production
+          ingress.cilium.io/websocket: enabled
         hosts:
           - host: &host "{{ .Release.Name }}.skylab.fi"
             paths:
