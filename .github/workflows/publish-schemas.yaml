@@ -12,7 +12,7 @@ on:
 jobs:
   publish-manifests:
     name: Publish Manifests
-    runs-on: ["self-hosted"]
+    runs-on: ["arc-runner-set-home-ops"]
     steps:
       - name: Setup Flux
         uses: fluxcd/flux2/action@9b3162495ce1b99b1fcdf137c553f543eafe3ec7 # v2.0.1
@@ -123,4 +123,4 @@ jobs:
           cache-to: type=gha,mode=max
           labels: |
             org.opencontainers.image.source="${{ github.repositoryUrl }}"
-            org.opencontainers.image.authors="Devin Buhl <onedr0p@users.noreply.github.com>"
+            org.opencontainers.image.authors="Skyler Mäntysaari <samip5@users.noreply.github.com>"
