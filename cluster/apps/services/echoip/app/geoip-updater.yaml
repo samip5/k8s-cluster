@@ -36,7 +36,7 @@ spec:
                   value: "true"
               envFrom:
                 - secretRef:
-                    name: *app
+                    name: geoip-secrets
               volumeMounts:
                 - name: *app
                   mountPath: /usr/share/GeoIP
