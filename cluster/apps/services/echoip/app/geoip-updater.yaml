@@ -29,7 +29,7 @@ spec:
                       - rm -rf /usr/share/GeoIP/.geoipupdate.lock
               env:
                 - name: GEOIPUPDATE_EDITION_IDS
-                  value: "GeoLite2-Asn GeoLite2-City GeoLite2-Country"
+                  value: "GeoLite2-ASN GeoLite2-City GeoLite2-Country"
                 - name: GEOIPUPDATE_FREQUENCY
                   value: "0"
                 - name: GEOIPUPDATE_VERBOSE
