@@ -43,7 +43,7 @@ spec:
           cert-manager.io/cluster-issuer: zerossl-production
           ingress.cilium.io/websocket: enabled
         hosts:
-          - host: &host "{{ .Release.Name }}.skylab.fi"
+          - host: &host "tl.skylab.fi"
             paths:
               - path: /
                 pathType: Prefix
