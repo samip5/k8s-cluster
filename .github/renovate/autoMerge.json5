@@ -73,7 +73,9 @@
         "authentik",
         "grafana",
         "renovate",
-        "node-feature-discovery"
+        "node-feature-discovery",
+        "reloader",
+        "snapshot-controller"
       ]
     }
   ]
