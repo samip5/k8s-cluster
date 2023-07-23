@@ -4,4 +4,4 @@ resources:
   - ns.yaml
   - longhorn/ks.yaml
   - storage-classes
-#  - volsync/ks.yaml
+  - democratic-csi/ks.yaml
