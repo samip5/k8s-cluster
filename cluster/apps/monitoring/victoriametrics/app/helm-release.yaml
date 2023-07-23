@@ -51,7 +51,7 @@ spec:
           storage:
             volumeClaimTemplate:
               spec:
-                storageClassName: longhorn
+                storageClassName: local-hostpath
                 resources:
                   requests:
                     storage: 10Gi
@@ -65,7 +65,7 @@ spec:
           storage:
             volumeClaimTemplate:
               spec:
-                storageClassName: longhorn
+                storageClassName: local-hostpath
                 resources:
                   requests:
                     storage: 2Gi
@@ -116,7 +116,7 @@ spec:
                   app.kubernetes.io/name: victoria-metrics-k8s-stack
       ingress:
         enabled: true
-        ingressClassName: cilium
+        ingressClassName: local-hostpath
         hosts:
           - &hostalert vmalert.skylab.fi
         tls:
@@ -135,7 +135,7 @@ spec:
 
       ingress:
         enabled: true
-        ingressClassName: cilium
+        ingressClassName: local-hostpath
         hosts:
           - &hostagent vmagent.skylab.fi
         tls:
@@ -182,7 +182,7 @@ spec:
 
     # Prometheus alertmanager spinup
     # Wait, why are we using vmalert AND prometheus alertmanager???
-    # VMalert isnt fully featured and VM acknowledge its a favourite
+    # VMalert isn't fully featured and VM acknowledge it's a favourite
     # for example,
     alertmanager:
       enabled: true
@@ -198,15 +198,15 @@ spec:
       spec:
         externalURL: https://alertmanager.${EXTERNAL_DOMAIN}
         replicaCount: 3
-        # Import Alertmanager config from a existing secret
-        # this can be configured directly in chart but it can
-        #   be a bit unweildy to manage
+        # Import Alertmanager config from an existing secret
+        # this can be configured directly in chart, but it can
+        #   be a bit unwieldy to manage
         configSecret: alertmanager-secret
 
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: longhorn
+              storageClassName: local-hostpath
               resources:
                 requests:
                   storage: 50Mi
@@ -279,20 +279,20 @@ spec:
           - port: http-metrics
             scheme: http
 
-    # Enable deployment of kube state metrics contianers
-    # I chose to deploy these seperately and manage it myself
-    #   insetad of trusting the stack chart
+    # Enable deployment of kube state metrics containers
+    # I chose to deploy these separately and manage it myself
+    #   instead of trusting the stack chart
     kube-state-metrics:
       enabled: false
 
-    # Enable deployment of prom-note-exporter contianers
-    # I chose to deploy these seperately and manage it myself
-    #   insetad of trusting the stack chart
+    # Enable deployment of prom-note-exporter containers
+    # I chose to deploy these separately and manage it myself
+    #   instead of trusting the stack chart
     prometheus-node-exporter:
       enabled: false
 
     # Enable deployment of grafana
-    # I chose to deploy this seperately and manage it myself
-    #   insetad of trusting the stack chart
+    # I chose to deploy this separately and manage it myself
+    #   instead of trusting the stack chart
     grafana:
       enabled: false
