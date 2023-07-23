@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: geoip-v1
-  namespace: monitoring
+  namespace: services
 spec:
   accessModes:
     - ReadWriteMany
