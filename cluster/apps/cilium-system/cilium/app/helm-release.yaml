@@ -108,6 +108,9 @@ spec:
       defaultSecretNamespace: networking
       defaultSecretName: skylab.fi-tls
 
+    envoy:
+      enabled: true
+
     securityContext:
       privileged: true
 
