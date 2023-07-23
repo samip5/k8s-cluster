@@ -5,6 +5,8 @@ kind: DNSEndpoint
 metadata:
   name: inspircd
   namespace: services
+  annotations:
+   external-dns-cf/is-dns-public: "true"
 spec:
   endpoints:
     - dnsName: "irc.skylab.fi"
