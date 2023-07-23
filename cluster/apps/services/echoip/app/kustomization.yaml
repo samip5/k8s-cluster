@@ -5,3 +5,4 @@ resources:
   - externalsecret-store.yaml
   - helmrelease.yaml
   - pvc.yaml
+  - geoip-updater.yaml

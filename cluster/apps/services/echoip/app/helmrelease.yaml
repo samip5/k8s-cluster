@@ -15,26 +15,6 @@ spec:
         name: bjw-s-charts
         namespace: flux-system
   values:
-    initContainers:
-      01-geoip:
-        image: ghcr.io/maxmind/geoipupdate:v6.0
-        env:
-          - name: GEOIPUPDATE_EDITION_IDS
-            value: "GeoLite2-City GeoLite2-Country"
-          - name: GEOIPUPDATE_FREQUENCY
-            value: "0"
-          - name: GEOIPUPDATE_VERBOSE
-            value: "true"
-        envFrom:
-          - secretRef:
-              name: geoip-secrets
-        volumeMounts:
-          - name: *app
-            mountPath: /usr/share/GeoIP
-        volumes:
-          - name: *app
-            persistentVolumeClaim:
-              claimName: geoip-v1
     image:
       repository: ghcr.io/samipsolutions/echoip
       tag: rolling
