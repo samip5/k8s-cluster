@@ -184,13 +184,9 @@ spec:
         extraVolumeMounts:
           - name: rules
             mountPath: /rules
-          - name: scratch
-            mountPath: /tmp/scratch
         extraVolumes:
           - name: rules
-            emptyDir: {}
-          - name: scratch
-            emptyDir: {}
+            emptyDir: { }
         persistence:
           size: 20Gi
           storageClass: longhorn
