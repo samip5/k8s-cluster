@@ -1,0 +1,46 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: &app geoip
+  namespace: services
+spec:
+  schedule: "@daily"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 86400
+      template:
+        spec:
+          automountServiceAccountToken: false
+          restartPolicy: Never
+          containers:
+            - name: *app
+              image: ghcr.io/maxmind/geoipupdate:v6.0
+              imagePullPolicy: IfNotPresent
+              lifecycle:
+                preStop:
+                  exec:
+                    command:
+                      - /bin/sh
+                      - -c
+                      - rm -rf /usr/share/GeoIP/.geoipupdate.lock
+              env:
+                - name: GEOIPUPDATE_EDITION_IDS
+                  value: "GeoLite2-City GeoLite2-Country"
+                - name: GEOIPUPDATE_FREQUENCY
+                  value: "0"
+                - name: GEOIPUPDATE_VERBOSE
+                  value: "true"
+              envFrom:
+                - secretRef:
+                    name: *app
+              volumeMounts:
+                - name: *app
+                  mountPath: /usr/share/GeoIP
+          volumes:
+            - name: *app
+              persistentVolumeClaim:
+                claimName: geoip-v1
