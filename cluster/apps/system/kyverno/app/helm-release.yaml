@@ -60,17 +60,9 @@ spec:
     cleanupController:
       serviceMonitor:
         enabled: true
-      tracing:
-        enabled: true
-        address: tempo.monitoring
-        port: 4317
     reportsController:
       serviceMonitor:
         enabled: true
-      tracing:
-        enabled: true
-        address: tempo.monitoring
-        port: 4317
     admissionController:
         replicas: 3
         rbac:
@@ -87,10 +79,6 @@ spec:
                   - delete
         serviceMonitor:
           enabled: true
-        tracing:
-          enabled: true
-          address: tempo.monitoring
-          port: 4317
         topologySpreadConstraints:
           - maxSkew: 1
             topologyKey: kubernetes.io/hostname
