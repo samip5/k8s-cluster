@@ -62,6 +62,6 @@ spec:
       cache:
         enabled: true
         size: 5Gi
-        storageClass: longhorn
+        storageClass: local-hostpath
         accessMode: ReadWriteMany
         mountPath: /cache
