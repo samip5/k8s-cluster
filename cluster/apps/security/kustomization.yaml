@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
   - ns.yaml
   - authentik/ks.yaml
-  - zitadel/ks.yaml
