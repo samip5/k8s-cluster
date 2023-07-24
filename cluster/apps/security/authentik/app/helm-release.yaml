@@ -41,7 +41,7 @@ spec:
       pullPolicy: Always
 
     authentik:
-      log_level: trace
+      log_level: info
       secret_key: "${SECRET_AUTHENTIK_SECRET_KEY}"
       error_reporting:
         enabled: true
