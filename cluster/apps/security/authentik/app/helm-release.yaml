@@ -54,11 +54,9 @@ spec:
       redis:
         host: "redis.databases.svc.cluster.local"
       email:
-        host: "mailer.skylab.fi"
+        host: "smtp-relay.default.svc.cluster.local"
         port: 587
-        use_tls: true
-        username: "samipsolutions/authentik"
-        password: "${SECRET_AUHENTIK_POSTAL_PASSWORD}"
+        use_tls: false
         from: "no-reply@skylab.fi"
 
     ingress:
