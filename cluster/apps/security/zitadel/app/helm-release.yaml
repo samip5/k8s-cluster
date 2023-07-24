@@ -62,6 +62,11 @@ spec:
           # either directly or by a path to the corresponding file
           Enabled: false
         WebAuthNName: ZITADEL
+
+        FirstInstance:
+          Org:
+            Human:
+              Username: 'root'
       # The Secret containing the root CA Certificate at key ca.crt needed for establishing secure database connections
       dbSslRootCrtSecret:
       # The Secret containing the client CA Certificate and key at tls.crt and tls.key needed for establishing secure database connections
@@ -96,6 +101,11 @@ spec:
           secretKeyRef:
             name: zitadel-secret
             key: ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD
+      - name: ZITADEL_FIRSTINSTANCE_ORG_HUMAN_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: zitadel-secret
+            key: ZITADEL_FIRSTINSTANCE_ORG_HUMAN_PASSWORD
 
 
     service:
