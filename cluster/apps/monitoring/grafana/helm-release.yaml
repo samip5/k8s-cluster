@@ -67,9 +67,6 @@ spec:
       server:
         root_url: https://grafana.skylab.fi
 
-    imageRenderer:
-      enabled: true
-
     ingress:
       enabled: true
       ingressClassName: nginx
