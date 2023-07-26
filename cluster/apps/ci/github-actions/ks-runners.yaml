@@ -17,11 +17,11 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: arc-samipsolutions
+      name: arc-sol
       namespace: ci
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: arc-samip5-k8s-cluster
+      name: arc-cluster
       namespace: ci
   interval: 30m
   retryInterval: 1m
