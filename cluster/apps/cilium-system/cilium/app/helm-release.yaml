@@ -30,8 +30,9 @@ spec:
     #  verbose: "datapath"
     cni:
       exclusive: false
-    bpf:
-      masquerade: true
+    # Not supported on 1.13.4 with IPv6
+    #bpf:
+    #  masquerade: true
     cluster:
       name: home-cluster
       id: 2
