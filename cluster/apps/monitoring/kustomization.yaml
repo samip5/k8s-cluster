@@ -8,6 +8,7 @@ resources:
   - speedtest-exporter
   - blackbox-exporter/ks.yaml
   - prom-stack/ks.yaml
+  - alertmanager/ks.yaml
   - vpa/ks.yaml
   - goldilocks/ks.yaml
 #  - victoriametrics/ks.yaml
