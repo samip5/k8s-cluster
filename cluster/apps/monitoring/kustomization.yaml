@@ -5,8 +5,9 @@ resources:
   - metrics-server
   - node-problem-detector
   - grafana
- # - tempo/ks.yaml
   - speedtest-exporter
+  - blackbox-exporter/ks.yaml
+  - prom-stack/ks.yaml
   - vpa/ks.yaml
   - goldilocks/ks.yaml
 #  - victoriametrics/ks.yaml
