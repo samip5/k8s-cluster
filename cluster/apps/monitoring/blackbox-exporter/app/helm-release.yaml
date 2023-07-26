@@ -94,8 +94,8 @@ spec:
     securityContext:
       # IPv6 sockets will not work otherwise.
       # See https://github.com/prometheus/blackbox_exporter/issues/1023 for details
-      runAsUser: 0
-      runAsGroup: 0
+      runAsUser:
+      runAsGroup:
       runAsNonRoot: false
       readOnlyRootFilesystem: true
       allowPrivilegeEscalation: true
