@@ -92,8 +92,13 @@ spec:
     pspEnabled: false
 
     securityContext:
+      # IPv6 sockets will not work otherwise.
+      # See https://github.com/prometheus/blackbox_exporter/issues/1023 for details
+      runAsUser: 0
+      runAsGroup: 0
+      runAsNonRoot: false
       readOnlyRootFilesystem: true
-      allowPrivilegeEscalation: false
+      allowPrivilegeEscalation: true
       capabilities:
         add:
           - NET_ADMIN
