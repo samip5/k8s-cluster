@@ -34,12 +34,17 @@ spec:
           http:
             valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
             follow_redirects: true
-            preferred_ip_protocol: "ip6"
-        icmp:
+            preferred_ip_protocol: "ip4"
+        icmp4:
           prober: icmp
           timeout: 30s
           icmp:
             preferred_ip_protocol: "ip4"
+        icmp6:
+          prober: icmp
+          timeout: 30s
+          icmp:
+            preferred_ip_protocol: "ip6"
 
     ingress:
       enabled: true
@@ -101,19 +106,19 @@ spec:
         scrapeTimeout: 30s
       targets:
         # Other devices
-        - module: icmp
+        - module: icmp4
           name: zigbee-controller-icmp
           url: 192.168.2.112
 
-        - module: icmp
+        - module: icmp4
           name: nas-icmp
           url: 192.168.2.2
 
-        - module: icmp
+        - module: icmp4
           name: ping-cloudflare
           url: 1.1.1.1
           scrape_interval: 30s
-        - module: icmp
+        - module: icmp6
           name: ping6-aroot-fi
           url: 2001:708:10:53::53
           scrape_interval: 30s
