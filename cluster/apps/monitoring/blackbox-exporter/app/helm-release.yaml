@@ -43,7 +43,7 @@ spec:
 
     ingress:
       enabled: true
-      className: cilium
+      className: nginx
       hosts:
         - host: &host "blackbox-exporter.skylab.fi"
           paths:
