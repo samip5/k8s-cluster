@@ -3,7 +3,7 @@ apiVersion: "cilium.io/v2alpha1"
 kind: CiliumLoadBalancerIPPool
 metadata:
   name: main-pool
-  namespace: cilium
+  namespace: kube-system
 spec:
   cidrs:
     - cidr: 10.96.69.0/24
@@ -13,6 +13,7 @@ apiVersion: "cilium.io/v2alpha1"
 kind: CiliumLoadBalancerIPPool
 metadata:
   name: svc-pool
+  namespace: kube-system
 spec:
   cidrs:
     - cidr: 192.168.10.0/24

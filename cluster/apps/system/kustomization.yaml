@@ -11,5 +11,7 @@ resources:
   - intel-device-plugins/ks-gpu.yaml
   - kyverno/ks.yaml
   - kyverno/ks-policies.yaml
+  - cilium/ks.yaml
+  - cilium/ks-config.yaml
 #  - snapshot-controller/ks.yaml
 #  - multus/ks.yaml

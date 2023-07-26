@@ -38,3 +38,7 @@ spec:
              includingInitContainers: true
         LowNodeUtilization:
           enabled: true
+          params:
+            namespaces:
+              exclude:
+                - "security"
