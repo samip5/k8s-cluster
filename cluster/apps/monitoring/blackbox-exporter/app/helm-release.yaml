@@ -1,0 +1,119 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: blackbox-exporter
+  namespace: monitoring
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: prometheus-blackbox-exporter
+      version: 8.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: flux-system
+      interval: 30m
+  values:
+    fullnameOverride: blackbox-exporter
+
+    image:
+      registry: quay.io
+
+    podSecurityContext:
+      sysctls:
+        - name: net.ipv4.ping_group_range
+          value: "0 2147483647"
+
+    config:
+      modules:
+        http_2xx:
+          prober: http
+          timeout: 5s
+          http:
+            valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+            follow_redirects: true
+            preferred_ip_protocol: "ip6"
+        icmp:
+          prober: icmp
+          timeout: 30s
+          icmp:
+            preferred_ip_protocol: "ip4"
+
+    ingress:
+      enabled: true
+      className: cilium
+      hosts:
+        - host: &host "blackbox-exporter.skylab.fi"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - *host
+
+    prometheusRule:
+      enabled: true
+      additionalLabels:
+        app: prometheus-operator
+        release: prometheus
+      rules:
+        - alert: BlackboxSslCertificateWillExpireSoon
+          expr: probe_ssl_earliest_cert_expiry - time() < 86400 * 3
+          for: 15m
+          labels:
+            severity: critical
+          annotations:
+            description: |-
+              The SSL certificate for {{"{{ $labels.target }}"}} will expire in less than 3 days
+        - alert: BlackboxSslCertificateExpired
+          expr: probe_ssl_earliest_cert_expiry - time() <= 0
+          for: 15m
+          labels:
+            severity: critical
+          annotations:
+            description: |-
+              The SSL certificate for {{"{{ $labels.target }}"}} has expired
+        - alert: BlackboxProbeFailed
+          expr: probe_success == 0
+          for: 15m
+          labels:
+            severity: critical
+          annotations:
+            description: |-
+              The host {{"{{ $labels.target }}"}} is currently unreachable
+
+    pspEnabled: false
+
+    securityContext:
+      readOnlyRootFilesystem: true
+      allowPrivilegeEscalation: false
+      capabilities:
+        add: ["NET_RAW"]
+
+    serviceMonitor:
+      enabled: true
+      defaults:
+        labels:
+          release: prometheus
+        interval: 1m
+        scrapeTimeout: 30s
+      targets:
+        # Other devices
+        - module: icmp
+          name: zigbee-controller-icmp
+          url: 192.168.2.112
+
+        - module: icmp
+          name: nas-icmp
+          url: 192.168.2.2
+
+        - module: icmp
+          name: ping-cloudflare
+          url: 1.1.1.1
+          scrape_interval: 30s
+        - module: icmp
+          name: ping6-aroot-fi
+          url: 2001:708:10:53::53
+          scrape_interval: 30s
