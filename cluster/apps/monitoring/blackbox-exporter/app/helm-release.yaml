@@ -120,5 +120,5 @@ spec:
           scrape_interval: 30s
         - module: icmp6
           name: ping6-aroot-fi
-          url: 2001:708:10:53::53
+          url: a.fi
           scrape_interval: 30s
