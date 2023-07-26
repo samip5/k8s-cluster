@@ -1,10 +1,11 @@
 #debug:
-#enabled: false
-#verbose: "datapath envoy policy"
+#  enabled: true
+#  verbose: "datapath"
 cni:
   exclusive: false
-bpf:
-  masquerade: true
+# Not supported on 1.13.4 with IPv6
+#bpf:
+#  masquerade: true
 cluster:
   name: home-cluster
   id: 2
@@ -57,7 +58,7 @@ hubble:
     enabled: true
     rollOutPods: true
     ingress:
-      enabled: true
+      enabled: false
       annotations:
         cert-manager.io/cluster-issuer: zerossl-production
         kubernetes.io/ingress.class: nginx
@@ -78,6 +79,9 @@ bgpControlPlane:
 ingressController:
   enabled: true
   loadbalancerMode: shared
+  defaultSecretNamespace: networking
+  defaultSecretName: skylab.fi-tls
+
 
 securityContext:
   privileged: true

@@ -3,7 +3,7 @@ apiVersion: cilium.io/v2alpha1
 kind: CiliumBGPPeeringPolicy
 metadata:
   name: bgp-loadbalancer-ip-main
-  namespace: cilium
+  namespace: kube-system
 spec:
   nodeSelector:
     matchLabels:
