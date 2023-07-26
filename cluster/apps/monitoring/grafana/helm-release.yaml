@@ -18,40 +18,15 @@ spec:
       interval: 5m
   values:
     replicas: 1
-    env:
-      GF_EXPLORE_ENABLED: true
-      GF_PANELS_DISABLE_SANITIZE_HTML: true
-      GF_LOG_FILTERS: rendering:debug
-      GF_DATE_FORMATS_USE_BROWSER_LOCALE: true
-      GF_DATE_FORMATS_FULL_DATE: "MMM Do, YYYY hh:mm:ss a"
-      GF_DATE_FORMATS_INTERVAL_SECOND: "hh:mm:ss a"
-      GF_DATE_FORMATS_INTERVAL_MINUTE: "hh:mm a"
-      GF_DATE_FORMATS_INTERVAL_HOUR: "DD/MM hh:mm a"
-      GF_DATE_FORMATS_INTERVAL_DAY: "DD/MM"
-      GF_DATE_FORMATS_INTERVAL_MONTH: "MM-YYYY"
-      GF_DATE_FORMATS_INTERVAL_YEAR: "YYYY"
-      VAR_BLOCKY_URL: "http://blocky.networking.svc.cluster.local:4000"
-    adminPassword: "${SECRET_GRAFANA_PASSWORD}"
+    deploymentStrategy:
+      type: Recreate
+    #envFromSecret: grafana-secret
+
     grafana.ini:
-      orgs:
-        - id: 1
-          name: Main Org.
-        - id: 2
-          name: k8s
-      server:
-        root_url: "https://grafana.skylab.fi"
-      paths:
-        data: /var/lib/grafana/data
-        logs: /var/log/grafana
-        plugins: /var/lib/grafana/plugins
-        provisioning: /etc/grafana/provisioning
       analytics:
         check_for_updates: false
+        check_for_plugin_updates: false
         reporting_enabled: false
-      log:
-        mode: console
-      grafana_net:
-        url: https://grafana.net
       auth:
         signout_redirect_url: https://id.skylab.fi/application/o/grafana/end-session/
         disable_login_form: true
@@ -69,34 +44,128 @@ spec:
         auth_url: https://id.skylab.fi/application/o/authorize/
         token_url: https://id.skylab.fi/application/o/token/
         api_url: https://id.skylab.fi/application/o/userinfo/
-        # Optionally map user groups to Grafana roles
-        role_attribute_path: contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'
+      auth.generic_oauth.group_mapping:
+        org_id: 1
+        role_attribute_path: |
+          contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'
+      date_formats:
+        use_browser_locale: true
+      explore:
+        enabled: true
+      log:
+        mode: console
+      news:
+        news_feed_enabled: false
+      paths:
+        data: /var/lib/grafana/data
+        logs: /var/log/grafana
+        plugins: /var/lib/grafana/plugins
+        provisioning: /etc/grafana/provisioning
+        security:
+          allow_embedding: true
+          cookie_samesite: grafana
+      server:
+        root_url: https://grafana.skylab.fi
+
+    imageRenderer:
+      enabled: true
+
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      hosts:
+        - &host grafana.skylab.fi
+      tls:
+        - hosts:
+            - *host
+
+    persistence:
+      enabled: false
+
+    plugins:
+      - natel-discrete-panel
+      - pr0ps-trackmap-panel
+      - grafana-piechart-panel
+      - vonage-status-panel
+      - grafana-worldmap-panel
+      - grafana-clock-panel
+
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: grafana
+      secret.reloader.stakater.com/reload: grafana-secrets
+
+    rbac:
+      pspEnabled: false
+
+    resources:
+      limits:
+        memory: 219M
+      requests:
+        cpu: 23m
+        memory: 127M
+
+    serviceMonitor:
+      enabled: true
+
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
         providers:
-          - name: "default"
-            folder: "public"
-            type: file
+          - name: default
             disableDeletion: false
             editable: true
+            folder: ""
             options:
               path: /var/lib/grafana/dashboards/default
-          - name: "k8s"
-            folder: "k8s"
+            orgId: 1
             type: file
+          - name: node-exporter
             disableDeletion: false
             editable: true
+            folder: "node-exporter"
             options:
-              path: /var/lib/grafana/dashboards/k8s
+              path: /var/lib/grafana/dashboards/node-exporter
+            orgId: 1
+            type: file
+
+    dashboards:
+      default:
+        electricity:
+          url: https://raw.githubusercontent.com/samip5/k8s-cluster/main/cluster/apps/monitoring/grafana/dashboards/electricity_dash.json
+          datasource: InfluxDB
+        zigbee:
+          url: https://raw.githubusercontent.com/samip5/k8s-cluster/main/cluster/apps/monitoring/grafana/dashboards/zigbee_dash.json
+          datasource: InfluxDB
+        speedtest-exporter-hub:
+          gnetId: 13665
+          revision: 4
+          datasource:
+            - name: "DS_PROMETHEUS"
+              value: Prometheus
+        flux-cluster:
+          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/cluster.json
+          datasource: Prometheus
+        flux-control-plane:
+          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/control-plane.json
+          datasource: Prometheus
+      node-exporter:
+        # Ref: https://grafana.com/grafana/dashboards/1860-node-exporter-full/
+        node-exporter:
+          gnetId: 1860
+          revision: 29
+          datasource: Prometheus
+
     datasources:
+      enabled: true
+      labelValue: ""
+      searchNamespace: ALL
       datasources.yaml:
         apiVersion: 1
         datasources:
-          - name: Prometheus
-            type: prometheus
-            access: proxy
+          - access: proxy
             isDefault: true
+            name: Prometheus
+            type: prometheus
             url: http://prom-prometheus:9090/
           - name: InfluxDB
             type: influxdb
@@ -109,60 +178,28 @@ spec:
               organization: default
               defaultBucket: home_assistant
               tlsSkipVerify: true
-          - name: Loki
-            type: loki
+          - name: Alertmanager
+            type: alertmanager
             access: proxy
-            url: http://loki-gateway.monitoring.svc.cluster.local:80
-
-    dashboards:
-      default:
-        electricity:
-          url: https://raw.githubusercontent.com/samip5/k8s-cluster/main/cluster/apps/monitoring/grafana/dashboards/electricity_dash.json
-          datasource: InfluxDB
-        zigbee:
-          url: https://raw.githubusercontent.com/samip5/k8s-cluster/main/cluster/apps/monitoring/grafana/dashboards/zigbee_dash.json
-          datasource: InfluxDB
-        speedtest:
-          url: https://raw.githubusercontent.com/samip5/k8s-cluster/main/cluster/apps/monitoring/grafana/dashboards/speedtest_exporter.json
-          datasource: Prometheus
-      k8s:
-        #Ref: https://grafana.com/grafana/dashboards/2842
-        flux-cluster:
-          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/cluster.json
-          datasource: Prometheus
-        flux-control-plane:
-          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/control-plane.json
-          datasource: Prometheus
+            url: http://alertmanager.monitoring.svc.cluster.local:9093
+            jsonData:
+              implementation: prometheus
+        deleteDatasources:
+          - name: Loki
+            orgId: 1
+          - name: Alertmanager
+            orgId: 1
     sidecar:
       dashboards:
         enabled: true
+        labelValue: ""
+        label: grafana_dashboard
+        folderAnnotation: grafana_folder
         searchNamespace: ALL
-      datasources:
-        enabled: true
-        searchNamespace: ALL
-    plugins:
-      - natel-discrete-panel
-      - pr0ps-trackmap-panel
-      - grafana-piechart-panel
-      - vonage-status-panel
-      - grafana-worldmap-panel
-      - grafana-clock-panel
-      - alexanderzobnin-zabbix-app
-    serviceMonitor:
-      enabled: true
-    ingress:
-      enabled: true
-      ingressClassName: "nginx"
-      annotations:
-        external-dns.home.arpa/enabled: "true"
-        external-dns-cf/is-dns-public: "true"
-      hosts:
-        - "grafana.skylab.fi"
-      tls:
-        - hosts:
-            - "grafana.skylab.fi"
-    serviceAccount:
-      create: true
-      autoMount: true
-    persistence:
-      enabled: false
+        provider:
+          disableDelete: true
+          foldersFromFilesStructure: true
+      logLevel: INFO
+
+
+
