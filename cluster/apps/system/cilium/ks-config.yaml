@@ -6,7 +6,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-networking-cilium-app
-  path: ./cluster/apps/cilium-system/cilium/config
+  path: ./cluster/apps/system/cilium/config
   prune: false
   sourceRef:
     kind: GitRepository

@@ -4,7 +4,7 @@ metadata:
   name: cluster-apps-networking-cilium-app
   namespace: flux-system
 spec:
-  path: ./cluster/apps/cilium-system/cilium/app
+  path: ./cluster/apps/system/cilium/app
   prune: false
   sourceRef:
     kind: GitRepository
