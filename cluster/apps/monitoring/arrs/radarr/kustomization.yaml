@@ -1,7 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./radarr-svc.yaml
-  - ./radarr-svc-monitor.yaml
-  - ./radarr-exporter.yaml
   - ./radarr-secret.sops.yaml
+  - ./helmrelease.yaml
