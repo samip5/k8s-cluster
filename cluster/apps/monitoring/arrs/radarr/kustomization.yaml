@@ -5,7 +5,3 @@ resources:
   - ./radarr-svc-monitor.yaml
   - ./radarr-exporter.yaml
   - ./radarr-secret.sops.yaml
-  - ./sonarr-svc.yaml
-  - ./sonarr-svc-monitor.yaml
-  - ./sonarr-exporter.yaml
-  - ./sonarr-secret.sops.yaml

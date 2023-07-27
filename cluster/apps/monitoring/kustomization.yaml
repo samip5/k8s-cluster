@@ -11,4 +11,6 @@ resources:
   - alertmanager/ks.yaml
   - vpa/ks.yaml
   - goldilocks/ks.yaml
+  - arrs/ks-radarr.yaml
+  - arrs/ks-sonarr.yaml
 #  - victoriametrics/ks.yaml

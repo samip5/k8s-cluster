@@ -1,0 +1,7 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./sonarr-svc.yaml
+  - ./sonarr-svc-monitor.yaml
+  - ./sonarr-exporter.yaml
+  - ./sonarr-secret.sops.yaml
