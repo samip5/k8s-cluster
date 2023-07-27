@@ -26,7 +26,7 @@ spec:
   values:
     image:
       repository: dpage/pgadmin4
-      tag: "7.4"
+      tag: "7.5"
 
     controller:
       replicas: 1
