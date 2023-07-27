@@ -34,7 +34,7 @@ spec:
             - name: PORT
               value: "9707"
             - name: URL
-              value: "https://dh.${DEV_DOMAIN}/radarr"
+              value: "https://dh.skylab.fi/radarr"
             - name: APIKEY
               valueFrom:
                 secretKeyRef:
