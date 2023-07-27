@@ -39,7 +39,7 @@ spec:
         secret.reloader.stakater.com/reload: *secret
     image:
       repository: ghcr.io/immich-app/immich-server
-      tag: pr-3171@sha256:245c57f7519fa66ef9b3bb9b2873144033416a743e18932b84d70ecc18beffa8
+      tag: pr-3171@sha256:e1db6704e725cd44042c189ff695a538828d0c6198c35990431862da8a62906d
     args: ["start-server.sh"]
     envFrom: *envFrom
     service:
