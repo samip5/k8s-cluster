@@ -29,7 +29,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/immich-app/immich-web
-      tag: pr-3171@sha256:8e96cd3829b26b4b64c65369e2b811f22b120ac9d22dd9ff360a321d11ac5b98
+      tag: pr-3171@sha256:23bb5637a3099a5340990cbca4653c67cb71948a582cac6214c3ad86cbd58e21
     envFrom:
       - secretRef:
           name: immich-dev-secret
