@@ -4,3 +4,4 @@ resources:
   - ns.yaml
   - actual/ks.yaml
   - firefly/ks.yaml
+  - firefly/ks-importer.yaml
