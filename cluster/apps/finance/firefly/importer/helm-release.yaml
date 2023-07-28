@@ -65,7 +65,7 @@ spec:
       FIREFLY_III_ACCESS_TOKEN:
         valueFrom:
           secretKeyRef:
-            name: firefly-iii-secrets
+            name: firefly-secret
             key: IMPORTER
       NORDIGEN_ID:
         valueFrom:
