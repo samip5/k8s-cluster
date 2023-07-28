@@ -1,0 +1,67 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app firefly-iii-data-importer
+  namespace: finance
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+      interval: 30m
+
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+
+  values:
+    global:
+      nameOverride: *app
+    image:
+      repository: fireflyiii/data-importer
+      tag: version-1.3.0
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "foundation:page-export-csv"
+        hosts:
+          - host: &host "cash-data-importer.skylab.fi"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    dependsOn:
+      - name: firefly-iii
+        namespace: finance
+    envFrom:
+      - secretRef:
+          name: firefly-secret
+    env:
+      TRUSTED_PROXIES: "**"
+      FIREFLY_III_URL: "http://firefly-iii.finance.svc.cluster.local:8080"
+      VANITY_URL: "https://cash.skylab.fi"
+      FIREFLY_III_ACCESS_TOKEN:
+        valueFrom:
+          secretKeyRef:
+            name: firefly-iii-secrets
+            key: IMPORTER

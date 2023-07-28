@@ -1,12 +1,12 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-firefly
+  name: cluster-apps-firefly-importer
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cluster-apps-security-authentik
-  path: ./cluster/apps/finance/firefly/app
+    - name: cluster-apps-firefly
+  path: ./cluster/apps/finance/firefly/importer
   prune: true
   sourceRef:
     kind: GitRepository
@@ -14,7 +14,7 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: firefly-iii
+      name: firefly-iii-data-importer
       namespace: finance
   wait: false # no flux ks dependents
   interval: 30m
