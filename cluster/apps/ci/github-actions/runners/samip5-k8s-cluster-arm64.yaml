@@ -18,7 +18,6 @@ spec:
 
   values:
     runnerScaleSetName: arc-cluster-arm64
-    runnerGroup: default-arm64
 
     githubConfigUrl: https://github.com/samip5/k8s-cluster
 
