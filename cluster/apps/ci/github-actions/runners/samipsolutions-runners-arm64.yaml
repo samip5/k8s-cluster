@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: arc-sol
+  name: arc-sol-arm64
   namespace: ci
 spec:
   interval: 30m
@@ -18,7 +18,7 @@ spec:
 
   values:
     # Cannot have nice things because of https://github.com/actions/actions-runner-controller/issues/2697
-    runnerScaleSetName: arc-sol
+    runnerScaleSetName: arc-sol-arm64
 
     githubConfigUrl: https://github.com/samipsolutions
 
@@ -34,7 +34,7 @@ spec:
           - name: runner
             image: ghcr.io/bjw-s/github-actions-runner:2.305.0@sha256:af5d39b9eee1be431060da4be699b8432af302cd7e12cadccc9d494efd0450f1
         nodeSelector:
-          kubernetes.io/arch: amd64
+          kubernetes.io/arch: arm64
 
   valuesFrom:
     - kind: Secret
