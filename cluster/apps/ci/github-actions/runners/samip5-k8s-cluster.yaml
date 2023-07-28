@@ -17,7 +17,7 @@ spec:
       interval: 30m
 
   values:
-    runnerScaleSetName: arc-cluster-x64
+    runnerScaleSetName: arc-cluster
     runnerGroup: default
 
     githubConfigUrl: https://github.com/samip5/k8s-cluster
