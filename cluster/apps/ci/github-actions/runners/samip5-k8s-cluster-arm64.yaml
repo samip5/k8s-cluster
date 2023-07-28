@@ -17,12 +17,12 @@ spec:
       interval: 30m
 
   values:
-    runnerScaleSetName: arc-cluster-x64
-    runnerGroup: default
+    runnerScaleSetName: arc-cluster-arm64
+    runnerGroup: default-arm64
 
     githubConfigUrl: https://github.com/samip5/k8s-cluster
 
-    minRunners: 0
+    minRunners: 1
     maxRunners: 4
 
     containerMode:
@@ -34,7 +34,7 @@ spec:
           - name: runner
             image: ghcr.io/bjw-s/github-actions-runner:2.305.0@sha256:af5d39b9eee1be431060da4be699b8432af302cd7e12cadccc9d494efd0450f1
         nodeSelector:
-          kubernetes.io/arch: amd64
+          kubernetes.io/arch: arm64
 
   valuesFrom:
     - kind: Secret
