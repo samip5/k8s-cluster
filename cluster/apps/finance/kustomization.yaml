@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - ns.yaml
   - actual/ks.yaml
+  - firefly/ks.yaml

@@ -1,0 +1,89 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app firefly-iii
+  namespace: default
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    initContainers:
+      01-init-db:
+        image: ghcr.io/onedr0p/postgres-init:14.8
+        imagePullPolicy: IfNotPresent
+        envFrom: &envFrom
+          - secretRef:
+              name: firefly-secret
+    controller:
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: fireflyiii/core
+      tag: version-6.0.8
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+    env:
+      TZ: Europe/Helsinki
+      APP_URL: "https://cash.skylab.fi"
+      APP_ENV: "production"
+      DB_CONNECTION: "pgsql"
+      DB_HOST: postgres-rw.databases.svc.cluster.local
+      DB_PORT: "5432"
+      MAIL_MAILER: log
+      TRUSTED_PROXIES: "**" # TODO: This should be changed..
+      SEND_REGISTRATION_MAIL: false
+      SEND_ERROR_MESSAGE: false
+      SEND_LOGIN_NEW_IP_WARNING: false
+      COOKIE_DOMAIN: "cash.skylab.fi"
+      COOKIE_SECURE: "true"
+      COOKIE_SAMESITE: "lax"
+      AUTHENTICATION_GUARD: "remote_user_guard"
+      AUTHENTICATION_GUARD_HEADER: "X-authentik-uid"
+      AUTHENTICATION_GUARD_EMAIL: "X-authentik-email"
+    envFrom: *envFrom
+    persistence:
+      config:
+        enabled: true
+        existingClaim: firefly-config-v1
+        mountPath: /var/www/html/firefly-iii/storage/upload
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          hajimari.io/icon: mdi:cash
+          nginx.ingress.kubernetes.io/auth-signin: |-
+            https://cash.skylab.fi/outpost.goauthentik.io/start?rd=$escaped_request_uri
+        hosts:
+          - host: &host "cash.skylab.fi"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
