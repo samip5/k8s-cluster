@@ -7,3 +7,4 @@ resources:
   - externalsecret.yaml
   - samipsolutions-runners.yaml
   - samip5-k8s-cluster.yaml
+  - samip5-k8s-cluster-arm64.yaml
