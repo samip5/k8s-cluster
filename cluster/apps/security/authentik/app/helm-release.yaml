@@ -80,6 +80,13 @@ spec:
     redis:
       enabled: false
 
+    resources:
+      requests:
+        cpu: 48m
+        memory: 600M
+      limits:
+        memory: 1251M
+
     affinity:
       nodeAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
