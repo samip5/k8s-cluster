@@ -47,6 +47,16 @@
       ]
     },
     {
+     matchDatasources: ["docker"],
+     automerge: false,
+     automergeType: "branch",
+     ignoreTests: true,
+     matchPackageNames: [
+        "inspircd/inspircd-docker",
+        "ghcr.io/goauthentik/server"
+      ]
+    },
+    {
       matchDatasources: ["galaxy-collection"],
       automerge: true,
       automergeType: "branch",
@@ -70,7 +80,6 @@
       matchUpdateTypes: ["minor", "patch"],
       matchPackageNames: [
         "kube-prometheus-stack",
-        "authentik",
         "grafana",
         "renovate",
         "node-feature-discovery",
