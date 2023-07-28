@@ -42,6 +42,8 @@ spec:
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/icon: "foundation:page-export-csv"
+          nginx.ingress.kubernetes.io/whitelist-source-range: |-
+            10.0.0.0/8,192.168.0.0/16,2001:14ba:16fd:9600::/56
         hosts:
           - host: &host "cash-data-importer.skylab.fi"
             paths:
