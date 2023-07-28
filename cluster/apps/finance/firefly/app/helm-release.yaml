@@ -37,7 +37,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: fireflyiii/core
-      tag: version-6.0.8
+      tag: version-6.0.11
     service:
       main:
         ports:
