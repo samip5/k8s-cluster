@@ -35,7 +35,7 @@ spec:
     fullnameOverride: authentik
     image:
       repository: ghcr.io/goauthentik/server
-      tag: 2023.5.5
+      tag: 2023.6.1
       #repository: ghcr.io/goauthentik/dev-server
       #tag: gh-next
       pullPolicy: Always
@@ -87,13 +87,13 @@ spec:
       limits:
         memory: 1251M
 
-    affinity:
-      nodeAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 50
-            preference:
-              matchExpressions:
-                - key: kubernetes.io/arch
-                  operator: In
-                  values:
-                    - amd64
+#    affinity:
+#      nodeAffinity:
+#        preferredDuringSchedulingIgnoredDuringExecution:
+#          - weight: 50
+#            preference:
+#              matchExpressions:
+#                - key: kubernetes.io/arch
+#                  operator: In
+#                  values:
+#                    - amd64
