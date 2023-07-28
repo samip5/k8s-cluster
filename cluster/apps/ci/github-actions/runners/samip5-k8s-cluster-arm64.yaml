@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: arc-cluster-x64
+  name: arc-cluster-arm64
   namespace: gh-runners
 spec:
   interval: 30m
