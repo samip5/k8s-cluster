@@ -61,7 +61,7 @@ spec:
     env:
       TRUSTED_PROXIES: "**"
       FIREFLY_III_URL: "http://firefly-iii.finance.svc.cluster.local:8080"
-      VANITY_URL: "https://cash.skylab.fi"
+      VANITY_URL: *host
       FIREFLY_III_ACCESS_TOKEN:
         valueFrom:
           secretKeyRef:
