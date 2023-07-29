@@ -34,6 +34,8 @@ spec:
       replicaCount: 2
       priorityClassName: system-cluster-critical
       config:
+        proxy-body-size: 0
+        proxy-buffer-size: 16k
         hsts: false
         ssl-prefer-server-ciphers: false
         ssl-protocols: "TLSv1.3 TLSv1.2"
