@@ -22,7 +22,7 @@ spec:
 
     githubConfigUrl: https://github.com/samip5/k8s-cluster
 
-    minRunners: 0
+    minRunners: 1
     maxRunners: 4
 
     containerMode:
