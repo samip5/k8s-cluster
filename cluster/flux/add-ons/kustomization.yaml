@@ -8,4 +8,3 @@ resources:
   - external-secrets/ks.yaml
 # Not worky
 #  - external-secrets/ks-bw.yaml
-  - external-secrets/ks-doppler.yaml

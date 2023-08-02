@@ -4,7 +4,7 @@ metadata:
   name: cluster-apps-external-secrets-doppler
   namespace: flux-system
 spec:
-  path: ./cluster/flux/add-ons/external-secrets/doppler
+  path: ./cluster/apps/system/doppler
   prune: true
   sourceRef:
     kind: GitRepository
