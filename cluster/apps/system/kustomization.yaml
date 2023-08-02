@@ -13,5 +13,6 @@ resources:
   - kyverno/ks-policies.yaml
   - cilium/ks.yaml
   - cilium/ks-config.yaml
+  - ks-doppler.yaml
 #  - snapshot-controller/ks.yaml
 #  - multus/ks.yaml
