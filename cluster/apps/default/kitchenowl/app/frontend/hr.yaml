@@ -36,7 +36,7 @@ spec:
       repository: registry.samipsolutions.fi/docker/tombursch/kitchenowl-web
       tag: latest
     env:
-      BACK_URL: kitchenowl-backend.default.svc.cluster.local
+      BACK_URL: kitchenowl-backend.default.svc.cluster.local:80
     envFrom:
       - secretRef:
           name: kitchenowl-secret
