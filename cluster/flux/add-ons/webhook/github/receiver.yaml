@@ -20,4 +20,8 @@ spec:
       kind: Kustomization
       name: cluster
       namespace: flux-system
+    - apiVersion: kustomize.toolkit.fluxcd.io/v1
+      kind: Kustomization
+      name: apps
+      namespace: flux-system
 

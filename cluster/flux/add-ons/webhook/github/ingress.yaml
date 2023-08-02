@@ -13,7 +13,7 @@ metadata:
 spec:
   ingressClassName: "nginx"
   rules:
-    - host: "flux-webhook.skylab.fi"
+    - host: &host "flux-webhook.skylab.fi"
       http:
         paths:
           - path: /
@@ -25,4 +25,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - "flux-webhook.skylab.fi"
+        - *host
