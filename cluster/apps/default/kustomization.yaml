@@ -10,4 +10,5 @@ resources:
   - paperless/ks.yaml
   - kubernetes-schemas/ks.yaml
   - whoami.yaml
+  - matrix-login/ks.yaml
 #  - syncthing/ks.yaml
