@@ -51,6 +51,9 @@ spec:
         smtp_port: 587
         notif_from: "Your Friendly %(app)s homeserver <noreply@${SECRET_DOMAIN}>"
 
+      # Currently broken, see https://github.com/matrix-org/synapse/issues/16039
+      presence:
+        enabled: false
       enable_3pid_lookup: false
       account_threepid_delegates:
         msisdn: https://vector.im
