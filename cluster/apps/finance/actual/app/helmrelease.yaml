@@ -28,7 +28,7 @@ spec:
   values:
     image:
       repository: ghcr.io/actualbudget/actual-server
-      tag: 23.7.2
+      tag: 23.8.0
     env:
       TZ: "Europe/Helsinki"
     envFrom:
