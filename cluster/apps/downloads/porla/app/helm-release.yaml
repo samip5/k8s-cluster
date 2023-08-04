@@ -34,7 +34,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/porla/porla
-      tag: beta-latest@sha256:53e0d3d71492152c469ae755a08f4e36c325871c8da2365b91a0d8628ac3d0f0
+      tag: beta-latest@sha256:1e7dc145b35de3d44cf0d18185b416c3351c133e9bb6fa986a243b2e9e4b0364
     envFrom:
       - secretRef:
           name: porla-secrets
