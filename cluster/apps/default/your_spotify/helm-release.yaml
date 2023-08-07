@@ -1,0 +1,77 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: your_spotify
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: yooooomi/your_spotify_server
+      tag: latest
+    envFrom:
+      - secretRef:
+          name: your_spotify-secret
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+          front:
+            enabled: true
+            port: 3000
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        hosts:
+          - host: &your-spotify-server-host "api.spotify.skylab.fi"
+            paths:
+              - path: /
+
+        tls:
+          - hosts:
+              - *your-spotify-server-host
+            secretName: your-spotify-server-tls
+      front:
+        enabled: true
+        ingressClassName: "nginx"
+        hosts:
+          - host: &your-spotify-client-host "spotify.skylab.fi"
+            paths:
+              - path: /
+                service:
+                  name: your_spotify
+                  port: 3000
+
+            tls:
+              - hosts:
+                  - *your-spotify-client-host
+                secretName: your-spotify-client-tls
+
+    sidecars:
+      frontend:
+        image: yooooomi/your_spotify_client:latest
+        imagePullPolicy: IfNotPresent
+        env:
+          - { name: API_ENDPOINT, value: "https://api.spotify.skylab.fi" }
