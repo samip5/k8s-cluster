@@ -7,7 +7,6 @@ resources:
   - smtp-relay/ks.yaml
   - paperless/ks.yaml
   - kubernetes-schemas/ks.yaml
-  - kitchenowl/ks.yaml
   - whoami.yaml
   - matrix-login/ks.yaml
   - your_spotify/ks.yaml
