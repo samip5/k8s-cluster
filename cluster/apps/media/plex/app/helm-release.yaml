@@ -127,7 +127,7 @@ spec:
 
     sidecars:
       auto-languages:
-        image: docker.io/remirigal/plex-auto-languages:v1.2.2
+        image: docker.io/remirigal/plex-auto-languages:v1.2.3
         imagePullPolicy: IfNotPresent
         env:
           - { name: PLEX_URL, value: http://localhost:32400 }
