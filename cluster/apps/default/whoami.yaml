@@ -32,7 +32,7 @@ spec:
 
     ingress:
       main:
-        enabled: true
+        enabled: false
         ingressClassName: cilium
         hosts:
           - host: &host who.skylab.fi
