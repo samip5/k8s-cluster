@@ -64,10 +64,10 @@ spec:
                   name: your-spotify
                   port: 3000
 
-            tls:
-              - hosts:
-                  - *your-spotify-client-host
-                secretName: your-spotify-client-tls
+        tls:
+          - hosts:
+              - *your-spotify-client-host
+            secretName: your-spotify-client-tls
 
     sidecars:
       frontend:
