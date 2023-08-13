@@ -6,7 +6,7 @@ on: # yamllint disable-line rule:truthy
     branches:
       - main
     paths:
-      - "cluster/**.yaml"
+      - "k8s/**.yaml"
       - "provision/ansible/**.yml.j2"
 
 jobs:
