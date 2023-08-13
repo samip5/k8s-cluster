@@ -10,7 +10,7 @@ spec:
   dependsOn:
     - name: cluster-apps-ci-github-actions-controller
   path: ./cluster/apps/ci/github-actions/runners
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: cluster

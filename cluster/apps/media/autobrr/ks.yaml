@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: apps-vpn-downloads-gateway
   path: ./cluster/apps/media/autobrr/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: cluster

@@ -10,7 +10,7 @@ spec:
   dependsOn:
     - name: cluster-apps-system-kyverno
   path: ./cluster/apps/system/kyverno/policies
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: cluster

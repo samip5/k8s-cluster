@@ -9,7 +9,7 @@ spec:
   dependsOn:
     - name: cluster-apps-db-redis
   path: ./cluster/apps/security/authentik/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: cluster

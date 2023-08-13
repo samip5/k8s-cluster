@@ -10,7 +10,7 @@ spec:
   dependsOn:
     - name: cluster-apps-ci-drone-gitea-server
   path: ./cluster/apps/ci/drone-gitea/runners
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: cluster

@@ -9,7 +9,7 @@ metadata:
     substitution.flux.home.arpa/enabled: "true"
 spec:
   path: ./cluster/apps/default/theme-park/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: cluster

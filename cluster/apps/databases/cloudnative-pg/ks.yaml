@@ -7,7 +7,7 @@ spec:
   dependsOn:
     - name: cluster-apps-external-secrets-operator
   path: ./cluster/apps/databases/cloudnative-pg/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: cluster

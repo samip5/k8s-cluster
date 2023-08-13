@@ -9,7 +9,7 @@ spec:
     - name: cluster-apps-prowlarr
     - name: cluster-apps-databases-cloudnative-pg-cluster
   path: "./cluster/apps/media/sonarr/app"
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: cluster

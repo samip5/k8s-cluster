@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   path: './cluster/apps/monitoring/arrs/radarr/'
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: cluster

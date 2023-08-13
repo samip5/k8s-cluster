@@ -7,7 +7,7 @@ spec:
   dependsOn:
     - name: cluster-apps-databases-cloudnative-pg-cluster
   path: ./cluster/apps/media/radarr/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: cluster
