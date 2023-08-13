@@ -7,7 +7,7 @@ spec:
   dependsOn:
     - name: cluster-apps-security-authentik
   path: ./cluster/apps/finance/firefly/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: cluster

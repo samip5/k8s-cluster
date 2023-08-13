@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   path: ./cluster/apps/networking/external-dns/app-cf
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: cluster

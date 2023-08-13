@@ -10,7 +10,7 @@ spec:
     kind: GitRepository
     name: cluster
   interval: 10m
-  prune: true
+  prune: false
   wait: true
   dependsOn:
     - name: cluster-apps-cert-manager

@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   path: ./cluster/apps/monitoring/prom-stack/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: cluster

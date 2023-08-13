@@ -9,7 +9,7 @@ metadata:
 spec:
   interval: 10m
   path: ./cluster/apps/system/snapshot-controller/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: cluster

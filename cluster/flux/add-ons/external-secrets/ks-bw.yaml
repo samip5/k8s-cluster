@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   path: ./cluster/flux/add-ons/external-secrets/bitwarden
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: cluster

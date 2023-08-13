@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: cluster-apps-security-authentik
   path: ./cluster/apps/comms/matrix-synapse/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: cluster
