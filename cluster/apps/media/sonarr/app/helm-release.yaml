@@ -34,7 +34,7 @@ spec:
           - secretRef:
               name: sonarr
     controller:
-      strategy: RollingUpdate
+      strategy: Recreate
       annotations:
         reloader.stakater.com/auto: "true"
     image:
