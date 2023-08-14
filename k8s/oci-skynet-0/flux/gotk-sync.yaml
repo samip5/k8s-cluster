@@ -1,0 +1,154 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: flux-system
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  secretRef:
+    name: flux-system
+  url: https://github.com/samip5/k8s-cluster
+  ignore: |
+    # exclude all
+    /*
+    # include gitops dirs
+    !/k8s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: flux-deploy
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  path: ./k8s/clusters/oci-skynet-0/flux
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: rbac
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  path: ./k8s/rbac
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cluster-config
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  path: ./k8s/base/flux-system/cluster-config/overlays/nebula
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: flux-system
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  retryInterval: 2m0s
+  timeout: 5m
+  dependsOn:
+    - name: cluster-config
+  path: ./k8s/clusters/oci-skynet-0/definitions
+  prune: true
+  wait: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  postBuild:
+    substitute: {}
+    substituteFrom:
+      - kind: ConfigMap
+        name: global-cluster-config
+      - kind: Secret
+        name: global-cluster-secrets
+      - kind: ConfigMap
+        name: cluster-config
+      - kind: Secret
+        name: cluster-secrets
+  patches:
+    - patch: |-
+        apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+        kind: Kustomization
+        metadata:
+          name: not-used
+          namespace: not-used
+        spec:
+          interval: 10m0s
+          retryInterval: 2m0s
+          timeout: 5m
+          wait: true
+          sourceRef:
+            kind: GitRepository
+            name: flux-system
+          decryption:
+            provider: sops
+            secretRef:
+              name: sops-gpg
+          patches:
+            - patch: |-
+                apiVersion: helm.toolkit.fluxcd.io/v2beta1
+                kind: HelmRelease
+                metadata:
+                  name: not-used
+                  namespace: not-used
+                spec:
+                  interval: 10m
+                  timeout: 5m
+                  install:
+                    createNamespace: true
+                    remediation:
+                      retries: 5
+                  upgrade:
+                    remediation:
+                      retries: 5
+              target:
+                kind: HelmRelease
+                group: helm.toolkit.fluxcd.io
+                version: v2beta1
+                labelSelector: "component.skylab.fi/part-of=standard-helm-release"
+          postBuild:
+            substitute: {}
+            substituteFrom:
+              - kind: ConfigMap
+                name: global-cluster-config
+              - kind: Secret
+                name: global-cluster-secrets
+              - kind: ConfigMap
+                name: cluster-config
+              - kind: Secret
+                name: cluster-secrets
+      target:
+        kind: Kustomization
+        group: kustomize.toolkit.fluxcd.io
+        version: v1beta2
+        labelSelector: "component.skylab.fi/part-of=definitions"

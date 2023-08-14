@@ -1,0 +1,59 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: kube-system-namespace
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/kube-system"
+  prune: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: kube-system-metrics-server
+  namespace: flux-system
+  labels:
+    component.kutara.io/part-of: definitions
+spec:
+  path: "./k8s/base/kube-system/metrics-server"
+  prune: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: kube-system-cilium
+  namespace: flux-system
+  labels:
+    component.kutara.io/part-of: definitions
+spec:
+  path: "./k8s/base/kube-system/cilium"
+  prune: true
+  dependsOn:
+    - name: monitoring-kps-crds
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: kube-system-reloader
+  namespace: flux-system
+  labels:
+    component.kutara.io/part-of: definitions
+spec:
+  path: "./k8s/base/kube-system/reloader"
+  prune: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: kube-system-descheduler
+  namespace: flux-system
+  labels:
+    component.kutara.io/part-of: definitions
+spec:
+  path: "./k8s/base/kube-system/descheduler"
+  prune: true
+  dependsOn:
+    - name: monitoring-kps-crds
