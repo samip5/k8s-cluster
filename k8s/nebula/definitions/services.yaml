@@ -9,6 +9,10 @@ metadata:
 spec:
   path: "./k8s/base/services"
   prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -20,6 +24,10 @@ metadata:
 spec:
   path: "./k8s/base/services/echoip"
   prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -31,6 +39,10 @@ metadata:
 spec:
   path: "./k8s/base/services/nitter"
   prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -42,6 +54,10 @@ metadata:
 spec:
   path: "./k8s/base/services/piped"
   prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -53,3 +69,7 @@ metadata:
 spec:
   path: "./k8s/base/services/proxitok"
   prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s

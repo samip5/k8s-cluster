@@ -9,6 +9,10 @@ metadata:
 spec:
   path: "./k8s/base/networking"
   prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -20,6 +24,10 @@ metadata:
 spec:
   path: "./k8s/base/networking/external-dns"
   prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -33,6 +41,10 @@ spec:
   prune: true
   dependsOn:
     - name: cert-manager-issuers
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -44,6 +56,10 @@ metadata:
 spec:
   path: "./k8s/base/cert-manager"
   prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -55,6 +71,10 @@ metadata:
 spec:
   path: "./k8s/base/cert-manager/app"
   prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -68,6 +88,10 @@ spec:
   prune: true
   dependsOn:
     - name: cert-manager-app
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -81,3 +105,7 @@ spec:
   prune: false
   dependsOn:
     - name: cert-manager-issuers
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s

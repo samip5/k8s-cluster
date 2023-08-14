@@ -9,6 +9,10 @@ metadata:
 spec:
   path: "./k8s/base/storage"
   prune: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -20,6 +24,10 @@ metadata:
 spec:
   path: "./k8s/base/storage/longhorn"
   prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -31,6 +39,10 @@ metadata:
 spec:
   path: "./k8s/base/storage/democratic-csi/local-path"
   prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -42,3 +54,7 @@ metadata:
 spec:
   path: "./k8s/base/storage/storage-classes/nfs-client-provisioner"
   prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
