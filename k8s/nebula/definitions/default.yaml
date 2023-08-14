@@ -1,5 +1,5 @@
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: default-immich
@@ -10,7 +10,7 @@ spec:
   path: "./k8s/base/default/immich"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: default-kubernetes-schemas
@@ -21,7 +21,7 @@ spec:
   path: "./k8s/base/default/kubernetes-schemas"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: default-matrix-login
@@ -32,7 +32,7 @@ spec:
   path: "./k8s/base/default/matrix-login"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: default-paperless
@@ -43,7 +43,7 @@ spec:
   path: "./k8s/base/default/paperless"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: default-smtp-relay
@@ -54,7 +54,7 @@ spec:
   path: "./k8s/base/default/smtp-relay"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: default-themepark

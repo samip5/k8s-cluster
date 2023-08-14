@@ -1,5 +1,5 @@
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: databases-namespace
@@ -10,7 +10,7 @@ spec:
   path: "./k8s/base/databases"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: databases-cloudnative-pg
@@ -21,7 +21,7 @@ spec:
   path: "./k8s/base/databases/cloudnative-pg/operator"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: databases-cloudnative-pg-cluster
@@ -32,7 +32,7 @@ spec:
   path: "./k8s/base/databases/cloudnative-pg/cluster"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: databases-redis
@@ -43,7 +43,7 @@ spec:
   path: "./k8s/base/databases/redis"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: databases-redis-sentinel
