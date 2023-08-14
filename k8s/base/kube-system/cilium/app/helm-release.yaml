@@ -34,8 +34,8 @@ spec:
     #bpf:
     #  masquerade: true
     cluster:
-      name: home-cluster
-      id: 2
+      name: nebula
+      id: 1
     autoDirectNodeRoutes: true
     localRedirectPolicy: true
     rollOutCiliumPods: true

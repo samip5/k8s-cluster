@@ -1,5 +1,5 @@
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
   name: flux-system
@@ -15,7 +15,7 @@ spec:
     # include gitops dirs
     !/k8s
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: flux-deploy
@@ -29,7 +29,7 @@ spec:
     kind: GitRepository
     name: flux-system
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: rbac
@@ -43,7 +43,7 @@ spec:
     kind: GitRepository
     name: flux-system
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: cluster-config
@@ -61,7 +61,7 @@ spec:
     secretRef:
       name: sops-gpg
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: flux-system
@@ -95,7 +95,7 @@ spec:
         name: cluster-secrets
   patches:
     - patch: |-
-        apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+        apiVersion: kustomize.toolkit.fluxcd.io/v1
         kind: Kustomization
         metadata:
           name: not-used
