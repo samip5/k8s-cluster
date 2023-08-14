@@ -1,11 +1,3 @@
-## :open_file_folder:&nbsp; Repository structure
-
-The Git repository contains the following directories under `cluster` and are ordered below by how Flux will apply them.
-
-- **flux** directory is the entrypoint to Flux
-- **bootstrap** directory contains a simple Kustomize resource to deploy Flux to an empty cluster
-- **apps** directory is where my common applications (grouped by namespace) are placed.
-
 ```
 cluster
 ├── apps
