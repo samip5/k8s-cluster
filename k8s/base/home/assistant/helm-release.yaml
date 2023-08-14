@@ -30,16 +30,14 @@ spec:
     - name: csi-driver-nfs
       namespace: storage
   values:
+    priorityClassName: home-cluster-critical
     global:
       fullnameOverride: assistant
     image:
       repository: ghcr.io/home-assistant/home-assistant
       tag: 2023.8.2
 
-
-
     service:
-      priorityClassName: home-cluster-critical
       main:
         type: ClusterIP
         #externalTrafficPolicy: Cluster
