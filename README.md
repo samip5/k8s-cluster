@@ -1,10 +1,3 @@
-```
-cluster
-├── apps
-├── bootstrap
-└── flux
-```
-
 ### :wrench:&nbsp; Tools
 
 | Tool                                                               | Purpose                                                             |
