@@ -67,7 +67,7 @@ metadata:
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/home/home-assistant"
+  path: "./k8s/base/home/assistant"
   prune: true
   sourceRef:
     kind: GitRepository
