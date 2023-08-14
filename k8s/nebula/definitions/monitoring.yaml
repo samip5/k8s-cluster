@@ -28,3 +28,108 @@ spec:
     kind: GitRepository
     name: flux-system
   interval: 10m0s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: monitoring-grafana
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/monitoring/grafana"
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: monitoring-node-problem-detector
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/monitoring/node-problem-detector"
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: monitoring-prom-stack
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/monitoring/prom-stack"
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: monitoring-speedtest-exporter
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/monitoring/speedtest-exporter"
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: monitoring-blackbox
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/monitoring/blackbox-exporter"
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: monitoring-arrs-sonarr
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/monitoring/arrs/sonarr"
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: monitoring-arrs-radarr
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/monitoring/arrs/radarr"
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
