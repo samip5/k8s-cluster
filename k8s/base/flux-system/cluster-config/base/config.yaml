@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: flux-system
+  name: global-cluster-config
+data:
+  FOO_BAR: "this"
+  TZ: "Europe/Helsinki"

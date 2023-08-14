@@ -2,7 +2,7 @@
 version: "3"
 
 vars:
-  KUBERNETES_DIR: "{{.ROOT_DIR}}/cluster"
+  KUBERNETES_DIR: "{{.ROOT_DIR}}/k8s"
   ANSIBLE_DIR: "{{.ROOT_DIR}}provision/ansible"
 
 includes:

@@ -1,0 +1,91 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: mosquitto
+  namespace: home
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+      interval: 5m
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    # It's nfs-subdir-provisioner in disguise.
+    - name: csi-driver-nfs
+      namespace: storage
+  values:
+    priorityClassName: home-cluster-critical
+    image:
+      repository: public.ecr.aws/docker/library/eclipse-mosquitto
+      tag: 2.0.15
+      pullPolicy: Always
+
+    service:
+      main:
+        type: LoadBalancer
+        annotations:
+        #  metallb.universe.tf/loadBalancerIPs: "${SVC_MQTT_ADDR},2001:67c:1104:fc00::10"
+          io.cilium/lb-ipam-ips: "192.168.10.10,2001:14ba:16fd:961d::10"
+        externalTrafficPolicy: Cluster
+        ipFamilyPolicy: "PreferDualStack"
+        ipFamilies:
+          - IPv4
+          - IPv6
+        ports:
+          http:
+            enabled: false
+          mqtt:
+            enabled: true
+            port: 1883
+    configMaps:
+      config:
+        enabled: true
+        data:
+          mosquitto.conf: |
+            per_listener_settings false
+            listener 1883
+            allow_anonymous false
+            persistence true
+            persistence_location /data/mosquitto/
+            autosave_interval 1800
+            connection_messages true
+            autosave_interval 60
+            password_file /data/mosquitto/mosquitto_pwd
+    persistence:
+      data:
+        enabled: true
+        mountPath: /data
+        existingClaim: mosquitto-config-v1
+      config:
+        enabled: true
+        type: configMap
+        name: mosquitto-config
+        mountPath: /mosquitto/config/mosquitto.conf
+        subPath: mosquitto.conf
+    tolerations:
+      - key: "cm4"
+        operator: "Exists"
+        effect: "PreferNoSchedule"
+
+    resources:
+      requests:
+        memory: 64M
+      limits:
+        memory: 64M

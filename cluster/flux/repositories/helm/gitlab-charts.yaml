@@ -1,9 +1,0 @@
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
-metadata:
-  name: gitlab
-  namespace: flux-system
-spec:
-  interval: 15m
-  url: https://charts.gitlab.io
-  timeout: 3m

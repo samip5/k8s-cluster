@@ -27,22 +27,22 @@
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
   "suppressNotifications": ["prIgnoreNotification"],
   "rebaseWhen": "conflicted",
-  "ignorePaths": ["archive/**", "cluster/**/config/**"],
+  "ignorePaths": ["archive/**","**/archive/**", "k8s/**/config/**"],
   "flux": {
-    "fileMatch": ["cluster/.+\\.ya?ml$"]
+    "fileMatch": ["k8s/.+\\.ya?ml$"]
   },
   "helm-values": {
-    "fileMatch": ["cluster/.+\\.ya?ml$"]
+    "fileMatch": ["k8s/.+\\.ya?ml$"]
   },
   "kubernetes": {
-    "fileMatch": ["cluster/.+\\.ya?ml$"]
+    "fileMatch": ["k8s/.+\\.ya?ml$"]
   },
   "regexManagers": [
     {
       "description": "Process custom dependencies",
       "fileMatch": [
         "ansible/.+\\.ya?ml$",
-        "cluster/.+\\.ya?ml$"
+        "k8s/.+\\.ya?ml$"
       ],
       "matchStrings": [
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?\"(?<currentValue>.*)\"\n"
@@ -53,7 +53,7 @@
     {
       "description": "Process imageName values",
       "fileMatch": [
-        "cluster/.+\\.ya?ml$"
+        "k8s/.+\\.ya?ml$"
       ],
       "matchStrings": [
         "imageName: (?<depName>\\S+):(?<currentValue>.*\\-.*)"

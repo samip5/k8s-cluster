@@ -1,0 +1,105 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: assistant
+  namespace: home
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+      interval: 5m
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    - name: csi-driver-nfs
+      namespace: storage
+  values:
+    global:
+      fullnameOverride: assistant
+    image:
+      repository: ghcr.io/home-assistant/home-assistant
+      tag: 2023.8.2
+
+
+
+    service:
+      priorityClassName: home-cluster-critical
+      main:
+        type: ClusterIP
+        #externalTrafficPolicy: Cluster
+        ports:
+          http:
+            port: 8123
+          mdns-tcp:
+            enabled: true
+            port: 5353
+            protocol: TCP
+            targetPort: 5353
+          mdns-udp:
+            enabled: true
+            port: 5353
+            protocol: UDP
+            targetPort: 5353
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          external-dns.home.arpa/enabled: "true"
+          external-dns.target/enabled: "true"
+          external-dns-cf/is-dns-public: "true"
+          hajimari.io/icon: mdi:home-assistant
+        hosts:
+          - host: &host assistant.skylab.fi
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+
+    podAnnotations:
+      k8s.v1.cni.cncf.io/networks: hass-iot-static
+
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: assistant-config-v1
+
+    nodeSelector:
+      kubernetes.io/hostname: "w7"
+    tolerations:
+      - key: "cm4"
+        operator: "Exists"
+        effect: "PreferNoSchedule"
+
+    resources:
+      requests:
+        memory: 411M
+      limits:
+        memory: 712M

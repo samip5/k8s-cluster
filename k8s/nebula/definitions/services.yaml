@@ -1,0 +1,66 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: services
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/services"
+  prune: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: services-echoip
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/services/echoip"
+  prune: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: services-echoip
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/services/echoip"
+  prune: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: services-nitter
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/services/nitter"
+  prune: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: services-piped
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/services/piped"
+  prune: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: services-proxitok
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/services/proxitok"
+  prune: true
