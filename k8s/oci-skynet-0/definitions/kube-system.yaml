@@ -9,6 +9,10 @@ metadata:
 spec:
   path: "./k8s/base/kube-system"
   prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
@@ -20,6 +24,10 @@ metadata:
 spec:
   path: "./k8s/base/kube-system/metrics-server"
   prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
@@ -33,6 +41,10 @@ spec:
   prune: true
   dependsOn:
     - name: monitoring-kps-crds
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
@@ -44,3 +56,7 @@ metadata:
 spec:
   path: "./k8s/base/kube-system/reloader"
   prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
