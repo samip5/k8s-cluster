@@ -2,58 +2,82 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-namespace
+  name: networking
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/kube-system"
+  path: "./k8s/base/networking"
   prune: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-metrics-server
+  name: networking-external-dns
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/kube-system/metrics-server"
+  path: "./k8s/base/networking/external-dns"
   prune: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-cilium
+  name: networking-nginx
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/kube-system/cilium"
+  path: "./k8s/base/networking/nginx"
   prune: true
   dependsOn:
-    - name: monitoring-kps-crds
+    - name: cert-manager-issuers
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-reloader
+  name: cert-manager
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/kube-system/reloader"
+  path: "./k8s/base/cert-manager"
   prune: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-descheduler
+  name: cert-manager-app
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/kube-system/descheduler"
+  path: "./k8s/base/cert-manager/app"
+  prune: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cert-manager-issuers
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/cert-manager/issuers"
   prune: true
   dependsOn:
-    - name: monitoring-kps-crds
+    - name: cert-manager-app
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cert-manager-certificates
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/cert-manager/overlays/nebula"
+  prune: false
+  dependsOn:
+    - name: cert-manager-issuers

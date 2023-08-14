@@ -4,6 +4,8 @@ kind: HelmRelease
 metadata:
   name: cloudnative-pg
   namespace: databases
+  labels:
+    component.skylab.fi/part-of: standard-helm-release
 spec:
   interval: 15m
   chart:
@@ -14,20 +16,11 @@ spec:
         kind: HelmRepository
         name: cloudnative-pg
         namespace: flux-system
-  maxHistory: 3
-  install:
-    createNamespace: true
-    remediation:
-      retries: 3
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
-  uninstall:
-    keepHistory: false
   values:
     crds:
       create: true
     config:
       data:
         INHERITED_ANNOTATIONS: kyverno.io/ignore
+    nodeSelector:
+      kubernetes.io/arch: amd64

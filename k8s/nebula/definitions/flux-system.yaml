@@ -2,58 +2,43 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-namespace
+  name: flux-system-helm-chart-repos
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/kube-system"
+  path: "./k8s/base/flux-system/helm-chart-repos"
   prune: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-metrics-server
+  name: flux-system-webhook
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/kube-system/metrics-server"
+  path: "./k8s/base/flux-system/webhook"
   prune: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-cilium
+  name: flux-system-notifications
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/kube-system/cilium"
-  prune: true
-  dependsOn:
-    - name: monitoring-kps-crds
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: kube-system-reloader
-  namespace: flux-system
-  labels:
-    component.skylab.fi/part-of: definitions
-spec:
-  path: "./k8s/base/kube-system/reloader"
+  path: "./k8s/base/flux-system/notifications"
   prune: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-descheduler
+  name: flux-system-monitoring
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/kube-system/descheduler"
+  path: "./k8s/base/flux-system/monitoring"
   prune: true
-  dependsOn:
-    - name: monitoring-kps-crds

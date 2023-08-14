@@ -2,58 +2,54 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-namespace
+  name: databases-namespace
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/kube-system"
+  path: "./k8s/base/databases"
   prune: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-metrics-server
+  name: databases-cloudnative-pg
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/kube-system/metrics-server"
+  path: "./k8s/base/databases/cloudnative-pg/operator"
   prune: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-cilium
+  name: databases-cloudnative-pg-cluster
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/kube-system/cilium"
-  prune: true
-  dependsOn:
-    - name: monitoring-kps-crds
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: kube-system-reloader
-  namespace: flux-system
-  labels:
-    component.skylab.fi/part-of: definitions
-spec:
-  path: "./k8s/base/kube-system/reloader"
+  path: "./k8s/base/databases/cloudnative-pg/cluster"
   prune: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-descheduler
+  name: databases-redis
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/kube-system/descheduler"
+  path: "./k8s/base/databases/redis"
   prune: true
-  dependsOn:
-    - name: monitoring-kps-crds
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: databases-redis-sentinel
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/databases/redis/sentinel"
+  prune: true

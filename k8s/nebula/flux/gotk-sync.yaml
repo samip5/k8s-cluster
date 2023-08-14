@@ -24,7 +24,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./k8s/clusters/scr1-cluster-0/gotk/flux-system
+  path: ./k8s/clusters/nebula/flux
   prune: true
   wait: true
   sourceRef:
