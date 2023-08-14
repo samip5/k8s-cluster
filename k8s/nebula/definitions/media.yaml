@@ -1,5 +1,5 @@
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: media-namespace
@@ -10,7 +10,7 @@ spec:
   path: "./k8s/base/media"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: media-prowlarr
@@ -21,7 +21,7 @@ spec:
   path: "./k8s/base/media/prowlarr"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: media-radarr
@@ -32,7 +32,7 @@ spec:
   path: "./k8s/base/media/radarr"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: media-sonarr
@@ -43,7 +43,7 @@ spec:
   path: "./k8s/base/media/sonarr"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: media-plex
@@ -54,7 +54,7 @@ spec:
   path: "./k8s/base/media/plex"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: media-jellyseer
@@ -65,7 +65,7 @@ spec:
   path: "./k8s/base/media/jellyseer"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: media-recyclarr
@@ -77,7 +77,7 @@ spec:
   path: "./k8s/base/media/recyclarr"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: media-lidarr
@@ -88,7 +88,7 @@ spec:
   path: "./k8s/base/media/lidarr"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: media-unpackerr

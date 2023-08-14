@@ -1,5 +1,5 @@
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: kube-system-namespace
@@ -10,7 +10,7 @@ spec:
   path: "./k8s/base/kube-system"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: kube-system-metrics-server
@@ -21,7 +21,7 @@ spec:
   path: "./k8s/base/kube-system/metrics-server"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: kube-system-cilium
@@ -34,7 +34,20 @@ spec:
   dependsOn:
     - name: monitoring-kps-crds
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: kube-system-cilium-config
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/kube-system/cilium/config"
+  prune: true
+  dependsOn:
+    - name: kube-system-cilium
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: kube-system-reloader
@@ -45,7 +58,7 @@ spec:
   path: "./k8s/base/kube-system/reloader"
   prune: true
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: kube-system-descheduler
