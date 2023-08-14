@@ -8,8 +8,6 @@ spec:
   interval: 1m0s
   ref:
     branch: main
-  secretRef:
-    name: flux-system
   url: https://github.com/samip5/k8s-cluster
   ignore: |
     # exclude all
@@ -24,7 +22,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./k8s/clusters/nebula/flux
+  path: ./k8s/nebula/flux
   prune: true
   wait: true
   sourceRef:
@@ -74,7 +72,7 @@ spec:
   timeout: 5m
   dependsOn:
     - name: cluster-config
-  path: ./k8s/clusters/nebula/definitions
+  path: ./k8s/nebula/definitions
   prune: true
   wait: false
   sourceRef:
