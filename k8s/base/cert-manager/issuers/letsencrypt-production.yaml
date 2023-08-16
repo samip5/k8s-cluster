@@ -22,5 +22,4 @@ spec:
           - "${COMPANY_DOMAIN}"
           - "${MAIN_DOMAIN}"
           - "${MAIN_DOMAIN_2}"
-          - "${DEV_DOMAIN}"
           - "${SECRET_DOMAIN}"
