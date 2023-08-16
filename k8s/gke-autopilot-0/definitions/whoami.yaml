@@ -51,6 +51,7 @@ spec:
         tls:
           - hosts:
               - *host
+        secretName: gke-autopilot-0-skylab.fi-tls
     resources:
       requests:
         cpu: 10m
