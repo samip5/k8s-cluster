@@ -134,5 +134,5 @@ spec:
       target:
         kind: Kustomization
         group: kustomize.toolkit.fluxcd.io
-        version: v1beta2
+        version: v1
         labelSelector: "component.skylab.fi/part-of=definitions"
