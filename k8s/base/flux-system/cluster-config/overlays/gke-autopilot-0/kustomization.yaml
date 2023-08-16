@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
   - ../../base/config.yaml
   - ../../base/base-secrets.sops.yaml
+  - cluster-secrets.sops.yaml
   - cluster-config.yaml
