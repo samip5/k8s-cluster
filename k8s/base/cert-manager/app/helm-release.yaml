@@ -17,6 +17,9 @@ spec:
         name: jetstack-charts
         namespace: flux-system
   values:
+    global:
+      leaderElection:
+        namespace: cert-manager
     installCRDs: true
     webhook:
       enabled: true
