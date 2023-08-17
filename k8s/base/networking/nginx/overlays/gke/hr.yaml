@@ -33,6 +33,23 @@ spec:
     controller:
       replicaCount: 2
       priorityClassName: system-cluster-critical
+      admissionWebhooks:
+        createSecretJob:
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128M
+            limits:
+              cpu: 100m
+              memory: 128M
+        patchWebhookJob:
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128M
+            limits:
+              cpu: 100m
+              memory: 128M
       config:
         proxy-body-size: 0
         proxy-buffer-size: 16k
