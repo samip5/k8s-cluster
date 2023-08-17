@@ -28,18 +28,3 @@ spec:
     kind: GitRepository
     name: flux-system
   interval: 10m0s
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: monitoring-prom-stack-overlay
-  namespace: flux-system
-  labels:
-    component.skylab.fi/part-of: definitions
-spec:
-  path: "./k8s/base/monitoring/prom-stack/overlays/gke-autopilot-0"
-  prune: false
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  interval: 10m0s
