@@ -6,3 +6,4 @@ resources:
   - ../../base/base-secrets.sops.yaml
   - cluster-secrets.sops.yaml
   - cluster-config.yaml
+  - prio-classes.yaml
