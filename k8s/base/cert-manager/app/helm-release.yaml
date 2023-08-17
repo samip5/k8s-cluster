@@ -33,3 +33,10 @@ spec:
       nameservers:
       - "1.1.1.1"
       - "8.8.8.8"
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512M
+      limits:
+        cpu: 500m
+        memory: 512M
