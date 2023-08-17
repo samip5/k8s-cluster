@@ -6,8 +6,8 @@ metadata:
   namespace: flux-system
   annotations:
     cert-manager.io/cluster-issuer: zerossl-production
-    kubernetes.io/ingress.class: gce
 spec:
+  ingressClassName: nginx
   rules:
     - host: "flux-receiver-${CLUSTER_NAME}.skylab.fi"
       http:

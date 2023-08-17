@@ -39,8 +39,8 @@ spec:
     ingress:
       main:
         enabled: true
+        ingressClassName: nginx
         annotations:
-          kubernetes.io/ingress.class: gce
           hajimari.io/appName: "Who Am I?"
           hajimari.io/icon: mdi:id-card-outline
         hosts:
