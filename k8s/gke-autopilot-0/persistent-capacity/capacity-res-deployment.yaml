@@ -4,7 +4,7 @@ metadata:
   name: capacity-res-deploy
   namespace: default
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: reservation
@@ -22,5 +22,5 @@ spec:
           args: ["infinity"]
           resources:
             requests:
-              cpu: "2"
-              memory: "2Gi"
+              cpu: "4"
+              memory: 8Gi
