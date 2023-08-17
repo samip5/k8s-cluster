@@ -37,18 +37,19 @@ spec:
         createSecretJob:
           resources:
             requests:
-              cpu: 100m
+              # Minium requirement for AutoPilot
+              cpu: 500m
               memory: 128M
             limits:
-              cpu: 100m
+              cpu: 500m
               memory: 128M
         patchWebhookJob:
           resources:
             requests:
-              cpu: 100m
+              cpu: 500m
               memory: 128M
             limits:
-              cpu: 100m
+              cpu: 500m
               memory: 128M
       config:
         proxy-body-size: 0
