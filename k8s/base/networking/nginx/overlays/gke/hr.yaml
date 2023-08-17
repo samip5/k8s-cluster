@@ -39,10 +39,10 @@ spec:
             requests:
               # Minium requirement for AutoPilot
               cpu: 500m
-              memory: 128M
+              memory: 512M
             limits:
               cpu: 500m
-              memory: 128M
+              memory: 512M
         patchWebhookJob:
           resources:
             requests:
