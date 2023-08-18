@@ -35,11 +35,11 @@ spec:
       priorityClassName: system-cluster-critical
       resources:
         requests:
-          cpu: 500M
-          memory: 524M
+          cpu: "1"
+          memory: "1Gi"
         limits:
-          cpu: 500M
-          memory: 524M
+          cpu: "1"
+          memory: "1Gi"
       admissionWebhooks:
         createSecretJob:
           resources:
