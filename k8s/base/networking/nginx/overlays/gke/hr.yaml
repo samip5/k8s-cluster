@@ -33,13 +33,6 @@ spec:
     controller:
       replicaCount: 2
       priorityClassName: system-cluster-critical
-      resources:
-        requests:
-          cpu: "1"
-          memory: "1Gi"
-        limits:
-          cpu: "1"
-          memory: "1Gi"
       admissionWebhooks:
         createSecretJob:
           resources:
