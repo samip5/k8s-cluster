@@ -34,9 +34,9 @@ spec:
       replicaCount: 2
       resources:
         requests:
-          cpu: "1"
+          cpu: 500m
         limits:
-          cpu: "1"
+          cpu: 500m
       admissionWebhooks:
         createSecretJob:
           resources:
