@@ -136,21 +136,3 @@ spec:
         group: kustomize.toolkit.fluxcd.io
         version: v1
         labelSelector: "component.skylab.fi/part-of=definitions"
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: persistent-capacity-deployments
-  namespace: flux-system
-spec:
-  interval: 10m0s
-  retryInterval: 2m0s
-  timeout: 5m
-  dependsOn:
-    - name: cluster-config
-  path: ./k8s/gke-autopilot-0/persistent-capacity
-  prune: true
-  wait: false
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
