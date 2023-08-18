@@ -73,25 +73,6 @@ spec:
                    "path": "$uri", "request_query": "$args", "request_length": $request_length, "duration": $request_time,"method": "$request_method", "http_referrer": "$http_referer",
                    "http_user_agent": "$http_user_agent" }'
         addHeaders: "networking/nginx-custom"
-      podAntiAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                  - key: app.kubernetes.io/name
-                    operator: In
-                    values:
-                      - ingress-nginx
-                  - key: app.kubernetes.io/instance
-                    operator: In
-                    values:
-                      - ingress-nginx
-                  - key: app.kubernetes.io/component
-                    operator: In
-                    values:
-                      - controller
-              topologyKey: kubernetes.io/hostname
-            weight: 100
       use-forwarded-headers: "true"
       service:
         enabled: true
@@ -118,25 +99,5 @@ spec:
               app.kubernetes.io/component: controller
       extraArgs:
         default-ssl-certificate: "networking/gke-autopilot-0-skylab.fi-tls"
-      nodeSelector:
-        cloud.google.com/compute-class: "Balanced"
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                  - key: app.kubernetes.io/name
-                    operator: In
-                    values:
-                      - ingress-nginx
-                  - key: app.kubernetes.io/instance
-                    operator: In
-                    values:
-                      - ingress-nginx
-                  - key: app.kubernetes.io/component
-                    operator: In
-                    values:
-                      - controller
-              topologyKey: "kubernetes.io/hostname"
     defaultBackend:
       enabled: false
