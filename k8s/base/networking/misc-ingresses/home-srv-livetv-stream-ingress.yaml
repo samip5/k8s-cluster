@@ -6,7 +6,7 @@ metadata:
   annotations:
     auth-basic-fi.home.arpa/enabled: "true"
     nginx.ingress.kubernetes.io/auth-method: GET
-    nginx.ingress.kubernetes.io/auth-url: http://[2001:67c:1be8::56]:40119/api/verify?auth=basic
+    nginx.ingress.kubernetes.io/auth-url: http://wa-bs.n.kapsi.fi:40119/api/verify?auth=basic
     nginx.ingress.kubernetes.io/auth-response-headers: Remote-User,Remote-Groups
     nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Method $request_method;
     external-dns-cf/is-dns-public: "true"
