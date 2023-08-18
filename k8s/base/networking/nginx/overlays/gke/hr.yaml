@@ -32,7 +32,6 @@ spec:
   values:
     controller:
       replicaCount: 2
-      priorityClassName: system-cluster-critical
       resources:
         requests:
           cpu: "1"
