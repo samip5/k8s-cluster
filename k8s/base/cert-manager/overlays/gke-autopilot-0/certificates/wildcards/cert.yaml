@@ -16,6 +16,8 @@ spec:
   dnsNames:
     - "gke-autopilot-0.skylab.fi"
     - "*.gke-autopilot-0.skylab.fi"
+    - "${CLUSTER_DOMAIN}"
+    - "*.${CLUSTER_DOMAIN}"
   secretTemplate:
     annotations:
       reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
