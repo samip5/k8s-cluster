@@ -5,5 +5,5 @@ metadata:
   name: cluster-config
   namespace: flux-system
 data:
-  CLUSTER_NAME: "gke-autopilot-0"
+  CLUSTER_NAME: "gke"
   CLUSTER_ID: "3"
