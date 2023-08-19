@@ -58,5 +58,5 @@ spec:
       cache:
         enabled: true
         size: 5Gi
-        accessMode: ReadWriteMany
+        accessMode: ReadWriteOnce
         mountPath: /cache
