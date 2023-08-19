@@ -64,6 +64,24 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
+  name: private-apps
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  path: ./k8s/nebula/private-flux
+  prune: false
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
   name: flux-system
   namespace: flux-system
 spec:
@@ -150,3 +168,58 @@ spec:
         group: kustomize.toolkit.fluxcd.io
         version: v1
         labelSelector: "component.skylab.fi/part-of=definitions"
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: private-cluster-apps
+  namespace: flux-system
+spec:
+  interval: 30m
+  path: ./cluster/apps
+  prune: true
+  wait: false
+  sourceRef:
+    kind: GitRepository
+    name: private-cluster
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  postBuild:
+    substitute: {}
+    substituteFrom:
+      - kind: ConfigMap
+        name: global-cluster-config
+      - kind: Secret
+        name: global-cluster-secrets
+      - kind: ConfigMap
+        name: cluster-config
+      - kind: Secret
+        name: cluster-secrets
+  patches:
+    - patch: |-
+        apiVersion: kustomize.toolkit.fluxcd.io/v1
+        kind: Kustomization
+        metadata:
+          name: not-used
+        spec:
+          decryption:
+            provider: sops
+            secretRef:
+              name: sops-gpg
+           postBuild:
+            substitute: {}
+            substituteFrom:
+              - kind: ConfigMap
+                name: global-cluster-config
+              - kind: Secret
+                name: global-cluster-secrets
+              - kind: ConfigMap
+                name: cluster-config
+              - kind: Secret
+                name: cluster-secrets
+      target:
+        group: kustomize.toolkit.fluxcd.io
+        kind: Kustomization
+        labelSelector: substitution.flux.home.arpa/disabled notin (true)
