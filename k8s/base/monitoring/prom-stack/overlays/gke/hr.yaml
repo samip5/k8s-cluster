@@ -130,8 +130,11 @@ spec:
               action: drop
     kubeControllerManager:
       enabled: true
+      endpoints: &cp
+        - 172.16.0.2
     kubeScheduler:
       enabled: true
+      endpoints: *cp
       serviceMonitor:
         metricRelabelings:
           # Remove duplicate metrics
@@ -194,13 +197,13 @@ spec:
     prometheusOperator:
       resources:
         requests:
-          memory: 164M
+          memory: 300Mi
         limits:
-          memory: 300M
+          memory: 300Mi
       prometheusConfigReloader:
         resources:
           requests:
-            memory: 50Mi
+            memory: 100Mi
           limits:
             memory: 100Mi
     prometheus:
@@ -235,8 +238,8 @@ spec:
                   storage: 50Gi
         resources:
           requests:
-            memory: 2281M
+            memory: 3123Mi
           limits:
-            memory: 3123M
+            memory: 3123Mi
 
 
