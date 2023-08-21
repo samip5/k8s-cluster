@@ -3,5 +3,3 @@ kind: Kustomization
 resources:
   - ns.yaml
   - netpol.yaml
-  - qbit/ks.yaml
-  - porla/ks.yaml
