@@ -64,7 +64,7 @@ spec:
       supplementalGroups: [10000]
 
     podAnnotations:
-      setDownloadGateway: "true"
+      setGateway: "true"
 
     persistence:
       config:
