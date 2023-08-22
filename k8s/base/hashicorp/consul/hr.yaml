@@ -1,0 +1,56 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: consul
+  namespace: hashicorp
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://helm.releases.hashicorp.com
+      chart: consul
+      version: 1.1.1
+      sourceRef:
+        kind: HelmRepository
+        name: hashicorp-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+
+    global:
+      enabled: true
+      logLevel: debug
+
+      image: "registry.samipsolutions.fi/docker/hashicorp/consul:1.15.2"
+      imageK8S: "registry.samipsolutions.fi/docker/hashicorp/consul-k8s:0.26.0"
+      # Rate limiting be damned
+      # imagePullSecrets:
+      #  - name: regcred
+      datacenter: dc1
+
+      server:
+        enabled: "true"
+        replicas: 2
+      service:
+        enabled: true
+        type: loadBalancer
+        #annotations:
+        #  metallb.universe.tf/loadBalancerIPs: ${SVC_CONSUL_ADDR}
+      ports:
+        serflan:
+          port: 8301
+
+      storage: 50Gi
+      storageClass: longhorn
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        pathType: Prefix
+        hosts:
+          - host: consul.${CLUSTER_DOMAIN}
+            paths:
+              - /
+        tls:
+          - secretName: secret-consul-tls
+          - hosts:
+              - consul.${CLUSTER_DOMAIN}
