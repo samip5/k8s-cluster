@@ -87,7 +87,7 @@ spec:
         memory: 2Gi
     sidecars:
       reannounce:
-        image: ghcr.io/buroa/qbittools:latest@sha256:b03389ad9977fe3fac5f90e31e683901c3ee5493b965aa823b4478fa36b47c56
+        image: ghcr.io/buroa/qbittools:latest@sha256:205a125fa849efe0a48360e46c793d6babfd17dfb2167cb54a41589a5047cbd4
         imagePullPolicy: IfNotPresent
         args: [ "reannounce", "-s", "localhost", "-p", "80" ]
       vuetorrent:
