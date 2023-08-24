@@ -38,6 +38,9 @@ spec:
         enabled: false
       federation_sender:
         enabled: true
+      generic_worker:
+        enabled: true
+        replicaCount: 3
       frontend_proxy:
         enabled: true
         csPaths:
