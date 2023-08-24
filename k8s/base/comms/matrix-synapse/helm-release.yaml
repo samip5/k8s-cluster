@@ -82,6 +82,7 @@ spec:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: zerossl-production
+        nginx.ingress.kubernetes.io/use-regex: "true"
         external-dns-cf/is-public: "true"
         external-dns-cf/is-dns-public: "true"
         external-dns.target/enabled: "true"
