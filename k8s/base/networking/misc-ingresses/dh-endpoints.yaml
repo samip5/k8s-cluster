@@ -6,7 +6,6 @@ metadata:
 subsets:
   - addresses:
       - ip: 192.168.2.129
-      - ip: 2001:14ba:16fd:9610:a236:9fff:fe18:55fb
     ports:
       - name: https
         port: 443
