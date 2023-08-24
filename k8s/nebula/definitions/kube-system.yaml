@@ -8,7 +8,7 @@ metadata:
     component.skylab.fi/part-of: definitions
 spec:
   path: "./k8s/base/kube-system"
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: flux-system
