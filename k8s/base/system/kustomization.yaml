@@ -2,17 +2,3 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ns.yaml
-  - coredns
-  - descheduler
-  - node-feature-discovery/ks.yaml
-  - reloader
-  - reflector
-  - intel-device-plugins/ks.yaml
-  - intel-device-plugins/ks-gpu.yaml
-  - kyverno/ks.yaml
-  - kyverno/ks-policies.yaml
-  - cilium/ks.yaml
-  - cilium/ks-config.yaml
-  - ks-doppler.yaml
-#  - snapshot-controller/ks.yaml
-#  - multus/ks.yaml
