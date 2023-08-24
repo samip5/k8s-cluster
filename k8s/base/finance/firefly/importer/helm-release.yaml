@@ -67,13 +67,3 @@ spec:
           secretKeyRef:
             name: firefly-secret
             key: IMPORTER
-      NORDIGEN_ID:
-        valueFrom:
-          secretKeyRef:
-            name: actual-secret
-            key: ACTUAL_NORDIGEN_SECRET_ID
-      NORDIGEN_KEY:
-        valueFrom:
-          secretKeyRef:
-            name: actual-secret
-            key: ACTUAL_NORDIGEN_SECRET_KEY
