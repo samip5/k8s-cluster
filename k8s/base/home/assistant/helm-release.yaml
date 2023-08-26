@@ -73,8 +73,8 @@ spec:
           - hosts:
               - *host
 
-    podAnnotations:
-      k8s.v1.cni.cncf.io/networks: hass-iot-static
+    #podAnnotations:
+    #  k8s.v1.cni.cncf.io/networks: hass-iot-static
 
     probes:
       liveness:
@@ -89,8 +89,6 @@ spec:
         enabled: true
         existingClaim: assistant-config-v1
 
-    nodeSelector:
-      kubernetes.io/hostname: "w7"
     tolerations:
       - key: "cm4"
         operator: "Exists"
