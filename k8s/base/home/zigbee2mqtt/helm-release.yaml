@@ -72,8 +72,8 @@ spec:
         operator: "Exists"
         effect: "PreferNoSchedule"
 
-    nodeSelector:
-      kubernetes.io/hostname: "w7"
+    # nodeSelector:
+    #  kubernetes.io/hostname: "w7"
 
 #    resources:
 #      requests:
