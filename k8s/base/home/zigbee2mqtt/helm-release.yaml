@@ -32,6 +32,9 @@ spec:
     - name: csi-driver-nfs
       namespace: storage
   values:
+    controller:
+      replicas: 1
+      strategy: Recreate
     image:
       repository: ghcr.io/koenkk/zigbee2mqtt
       tag: 1.32.2
@@ -45,6 +48,15 @@ spec:
         ports:
           http:
             port: 8080
+    serviceMonitor:
+      main:
+        enabled: true
+        endpoints:
+          - port: metrics
+            scheme: http
+            path: /metrics
+            interval: 5m
+            scrapeTimeout: 10s
 
     ingress:
       main:

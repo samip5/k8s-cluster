@@ -30,6 +30,9 @@ spec:
     - name: csi-driver-nfs
       namespace: storage
   values:
+    controller:
+      replicas: 1
+      strategy: Recreate
     image:
       repository: esphome/esphome
       tag: 2023.8.2
