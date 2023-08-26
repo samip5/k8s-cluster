@@ -30,6 +30,9 @@ spec:
     - name: csi-driver-nfs
       namespace: storage
   values:
+    controller:
+      replicas: 1
+      strategy: Recreate
     priorityClassName: home-cluster-critical
     global:
       fullnameOverride: assistant
