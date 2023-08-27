@@ -60,3 +60,9 @@ spec:
         size: 5Gi
         accessMode: ReadWriteOnce
         mountPath: /cache
+
+    resources:
+      requests:
+        memory: 512Mi
+      limits:
+        memory: 512Mi
