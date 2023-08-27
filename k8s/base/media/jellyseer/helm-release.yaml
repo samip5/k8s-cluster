@@ -30,6 +30,8 @@ spec:
     - name: csi-driver-nfs
       namespace: storage
   values:
+    controller:
+      strategy: Recreate
     image:
       repository: docker.io/fallenbagel/jellyseerr
       tag: preview-pr184
