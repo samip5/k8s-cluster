@@ -77,20 +77,3 @@ spec:
     kind: GitRepository
     name: flux-system
   interval: 10m0s
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: kube-system-descheduler
-  namespace: flux-system
-  labels:
-    component.skylab.fi/part-of: definitions
-spec:
-  path: "./k8s/base/kube-system/descheduler"
-  prune: true
-  dependsOn:
-    - name: monitoring-kps-crds
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  interval: 10m0s
