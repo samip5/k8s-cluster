@@ -27,6 +27,7 @@ spec:
     keepHistory: false
   values:
     controller:
+      strategy: Recreate
       annotations:
         reloader.stakater.com/auto: "true"
     image:

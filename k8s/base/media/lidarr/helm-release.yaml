@@ -22,6 +22,7 @@ spec:
       retries: 5
   values:
     controller:
+      strategy: Recreate
       annotations:
         reloader.stakater.com/auto: "true"
     image:
