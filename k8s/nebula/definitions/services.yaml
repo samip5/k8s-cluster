@@ -71,7 +71,7 @@ metadata:
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/services/i2p"
+  path: "./k8s/base/services/i2pd"
   prune: true
   sourceRef:
     kind: GitRepository
