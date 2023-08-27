@@ -71,7 +71,7 @@ metadata:
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/services/proxitok"
+  path: "./k8s/base/services/proxitok/overlays/nebula"
   prune: true
   sourceRef:
     kind: GitRepository
