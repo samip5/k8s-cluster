@@ -244,8 +244,8 @@ spec:
                   storage: 50Gi
         resources:
           requests:
-            memory: 2281M
+            memory: 2821Mi
           limits:
-            memory: 3123M
+            memory: 4096Mi
 
 
