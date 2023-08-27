@@ -5,3 +5,9 @@ namespace: services
 resources:
   - config-pvc.yaml
   - helm-release.yaml
+configMapGenerator:
+  - name: i2pd-configmap
+    files:
+      - config/i2pd-docker.conf
+generatorOptions:
+  disableNameSuffixHash: true

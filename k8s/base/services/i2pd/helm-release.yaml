@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app i2p
+  name: &app i2pd
   namespace: services
 spec:
   interval: 15m
@@ -31,11 +31,12 @@ spec:
       strategy: RollingUpdate
     fullNameOverride: *app
     image:
-      repository: geti2p/i2p
+      repository: purplei2p/i2pd
       tag: latest
 
     env:
-      JVM_XMX: 512M
+      I2PD_HOME: /config
+
     service:
       main:
         enabled: true
@@ -54,11 +55,7 @@ spec:
       i2np:
         enabled: true
         type: LoadBalancer
-        externalTrafficPolicy: Local
-        annotations:
-         metallb.universe.tf/loadBalancerIPs: "10.96.69.4"
-        ipFamilies:
-          - IPv4
+        externalTrafficPolicy: Cluster
         ports:
           tcp:
             enabled: true
@@ -73,7 +70,7 @@ spec:
 
     ingress:
       main:
-        enabled: true
+        enabled: false
         ingressClassName: 'nginx'
         hosts:
           - host: &host 'i2p.${SECRET_DOMAIN}'
@@ -95,25 +92,18 @@ spec:
     persistence:
       config:
         enabled: true
-        mountPath: /i2p/.i2p
+        mountPath: /config
         existingClaim: i2p-config
-      data:
+      config-file:
         enabled: true
-        mountPath: /i2psnark
-        existingClaim: i2p-data
+        type: configMap
+        name: i2pd-configmap
+        subPath: config.conf
+        mountPath: /config/i2pd-docker.conf
+        readOnly: true
 
     resources:
       requests:
         memory: 512Mi
       limits:
         memory: 1Gi
-
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: kubernetes.io/arch
-                  operator: In
-                  values:
-                    - "amd64"
