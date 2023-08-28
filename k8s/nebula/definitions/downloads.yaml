@@ -1,0 +1,49 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: downloads-namespace
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/downloads"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: downloads-porla
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  dependsOn:
+    - name: vpn-gateway
+  path: "./k8s/base/downloads/porla"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: downloads-qbit
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  dependsOn:
+    - name: vpn-gateway
+  path: "./k8s/base/downloads/qbit"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
