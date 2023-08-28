@@ -86,7 +86,7 @@ spec:
       secret.reloader.stakater.com/reload: vpn-gateway-vpnconfig
 
 
-    DNS: 172.16.0.1
+    DNS: 172.16.1.1
     routed_namespaces:
       - downloads
       - media
@@ -94,7 +94,7 @@ spec:
     settings:
       VPN_INTERFACE: "wg0"
       VXLAN_ID: 44
-      #VXLAN_IP_NETWORK: 172.16.1
+      VXLAN_IP_NETWORK: 172.16.1
       #VXLAN_IPv6_NETWORK: fd60:ca7f:e5d8:42e8
       VXLAN_GATEWAY_FIRST_DYNAMIC_IP: 20
       VPN_BLOCK_OTHER_TRAFFIC: false
