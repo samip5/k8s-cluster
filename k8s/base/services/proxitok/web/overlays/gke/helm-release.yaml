@@ -39,7 +39,7 @@ spec:
       main:
         ports:
           http:
-            port: 80
+            port: 8080
     ingress:
       main:
         enabled: true
@@ -60,6 +60,13 @@ spec:
         size: 5Gi
         accessMode: ReadWriteOnce
         mountPath: /cache
+
+    # Container runs as user nobody which is that specified ID by default
+    podSecurityContext:
+      runAsUser: 65534
+      runAsGroup: 65534
+      fsGroup: 65534
+      fsGroupChangePolicy: "OnRootMismatch"
 
     resources:
       requests:
