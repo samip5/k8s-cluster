@@ -39,7 +39,7 @@ spec:
       main:
         ports:
           http:
-            port: 80
+            port: 8080
     probes:
       startup:
         enabled: false
@@ -68,3 +68,10 @@ spec:
         storageClass: local-hostpath
         accessMode: ReadWriteMany
         mountPath: /cache
+
+    # Container runs as user nobody which is that specified ID by default
+    podSecurityContext:
+      runAsUser: 65534
+      runAsGroup: 65534
+      fsGroup: 65534
+      fsGroupChangePolicy: "OnRootMismatch"
