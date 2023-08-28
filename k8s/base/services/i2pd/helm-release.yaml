@@ -28,7 +28,7 @@ spec:
     hostNetwork: true
     controller:
       replicas: 1
-      strategy: RollingUpdate
+      strategy: Recreate
     fullNameOverride: *app
     image:
       repository: purplei2p/i2pd
