@@ -16,6 +16,13 @@ spec:
     storageClass: local-path
   superuserSecret:
     name: cloudnative-pg-secret
+
+  #bootstrap:
+  #  recovery:
+  #    source: postgres-v1
+  #affinity:
+  #  nodeSelector:
+  #    kubernetes.io/arch: amd64
   resources:
     requests:
       cpu: 100m
@@ -46,19 +53,19 @@ spec:
           name: cloudnative-pg-secret
           key: aws-secret-access-key
 
-  externalClusters:
-    - name: postgres-v1
-      barmanObjectStore:
-        wal:
-          compression: bzip2
-          maxParallel: 4
-        destinationPath: s3://cnpg-main/
-        endpointURL: https://s3.skym.fi
-        serverName: &currentCluster postgres-v1
-        s3Credentials:
-          accessKeyId:
-            name: cloudnative-pg-secret
-            key: aws-access-key-id
-          secretAccessKey:
-            name: cloudnative-pg-secret
-            key: aws-secret-access-key
+  #externalClusters:
+  #  - name: postgres-v1
+  #    barmanObjectStore:
+  #      wal:
+  #        compression: bzip2
+  #        maxParallel: 4
+  #      destinationPath: s3://cnpg-main/
+  #      endpointURL: https://s3.skym.fi
+  #      serverName: &currentCluster postgres-v1
+  #      s3Credentials:
+  #        accessKeyId:
+  #          name: cloudnative-pg-secret
+  #          key: aws-access-key-id
+  #        secretAccessKey:
+  #          name: cloudnative-pg-secret
+  #          key: aws-secret-access-key
