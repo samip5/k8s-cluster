@@ -36,7 +36,7 @@ spec:
 
     env:
       TRUSTED_PROXIES: "**"
-      FIREFLY_III_URL: "http://fireflyiii.services.svc.cluster.local:8080"
+      FIREFLY_III_URL: "http://firefly-iii.services.svc.cluster.local:8080"
       VANITY_URL: "cash.skylab.fi"
       IMPORT_DIR_ALLOWLIST: "/import"
       WEB_SERVER: false
