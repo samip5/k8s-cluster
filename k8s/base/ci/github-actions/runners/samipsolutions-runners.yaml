@@ -32,7 +32,7 @@ spec:
       spec:
         containers:
           - name: runner
-            image: ghcr.io/bjw-s/github-actions-runner:2.305.0@sha256:af5d39b9eee1be431060da4be699b8432af302cd7e12cadccc9d494efd0450f1
+            image: ghcr.io/actions/actions-runner:2.308.0@sha256:4c59d23a4512076f64d34d2158b8bb7b306969c2ca0fa85f760c02ebbcbd5eb6
         nodeSelector:
           kubernetes.io/arch: amd64
 
