@@ -1,0 +1,57 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: firefly-import
+  namespace: services
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+
+  values:
+    controller:
+      type: cronjob
+      cronjob:
+        schedule: "0 17 * * *"
+        ttlSecondsAfterFinished: 86400
+
+
+    restartPolicy: OnFailure
+
+    image:
+      repository: fireflyiii/data-importer
+      tag: version-1.3.0
+
+    envFrom:
+      - secretRef:
+          name: firefly-importer-secret
+
+    env:
+      TRUSTED_PROXIES: "**"
+      FIREFLY_III_URL: "http://fireflyiii.services.svc.cluster.local:8080"
+      VANITY_URL: "cash.skylab.fi"
+      IMPORT_DIR_ALLOWLIST: "/import"
+      WEB_SERVER: false
+      FIREFLY_III_ACCESS_TOKEN:
+        valueFrom:
+          secretKeyRef:
+            name: firefly-importer-secret
+            key: IMPORTER
+
+    service:
+      main:
+        enabled: false
+
+    persistence:
+      import:
+        enabled: true
+        existingClaim: firefly-importer-imports-v1
+        mountPath: /import
