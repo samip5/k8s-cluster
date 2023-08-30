@@ -1,0 +1,14 @@
+[Unit]
+Description=Kill cgroup procs on shutdown for %i
+DefaultDependencies=false
+Before=shutdown.target umount.target
+[Service]
+# Instanced units are not part of system.slice for some reason
+# without this, the service isn't started at shutdown
+Slice=system.slice
+ExecStart=/bin/bash -c 'pids=$(cat /sys/fs/cgroup/system.slice/%i/cgroup.procs); echo $pids | xargs -r kill;'
+ExecStart=/bin/sleep 5
+ExecStart=/bin/bash -c 'pids=$(cat /sys/fs/cgroup/system.slice/%i/cgroup.procs); echo $pids | xargs -r kill -9;'
+Type=oneshot
+[Install]
+WantedBy=shutdown.target

@@ -1,0 +1,34 @@
+---
+#
+# Below vars are for the xanmanning.k3s role
+# ...see https://github.com/PyratLabs/ansible-role-k3s#globalcluster-variables
+#
+
+# Use a specific version of k3s
+k3s_release_version: "v1.26.3+k3s1"
+
+# Install using hard links rather than symbolic links.
+# ...if you are using the system-upgrade-controller you will need to use hard links rather than symbolic links as the controller will not be able to follow symbolic links.
+k3s_install_hard_links: true
+
+# Escalate user privileges for all tasks.
+k3s_become: true
+
+# Enable debugging
+k3s_debug: false
+
+# Enabled embedded etcd
+k3s_etcd_datastore: true
+
+# We are running unsupported config with one etcd member
+k3s_use_unsupported_config: true
+
+# Control Plane registration address
+# ...this is set to my kube-vip address
+k3s_registration_address: 192.168.2.129
+
+#
+# /var/lib/rancher/k3s/server/manifests
+#
+
+# Custom manifest files
