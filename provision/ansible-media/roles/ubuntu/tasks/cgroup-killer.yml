@@ -1,0 +1,10 @@
+---
+- name: Copy systemd service
+  copy:
+    src: "{{ role_path }}/files/cgroup-kill-on-shutdown.service"
+    dest: /etc/systemd/system/cgroup-kill-on-shutdown@.service
+    owner: root
+
+- name: Reload systemd
+  systemd:
+    daemon_reload: true

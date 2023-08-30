@@ -1,0 +1,32 @@
+---
+- name: Copy nut config /etc/nut/nut.conf
+  copy:
+    src: "{{ role_path }}/files/nut/nut.conf"
+    dest: /etc/nut/nut.conf
+    owner: nut
+
+- name: Copy /etc/nut/upssched.conf
+  copy:
+    src: "{{ role_path }}/files/nut/upssched.conf"
+    dest: /etc/nut/upssched.conf
+    backup: true
+
+- name: Copy /etc/nut/upssched-cmd
+  when: "'master' not in group_names"
+  copy:
+    src: "{{ role_path }}/files/nut/upssched-cmd"
+    dest: /etc/nut/upssched-cmd
+
+- name: Load encrypted vars
+  community.sops.load_vars:
+    file: "{{ role_path }}/files/nut/secrets.sops.yaml"
+
+- name: Copy nut main monitor config /etc/nut/upsmon.conf
+  template:
+    src: "{{ role_path }}/templates/upsmon.conf"
+    dest: /etc/nut/upsmon.conf
+
+- name: Restart nut-client
+  systemd:
+    name: nut-client
+    state: restarted
