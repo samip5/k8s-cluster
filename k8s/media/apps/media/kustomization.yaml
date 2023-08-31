@@ -6,3 +6,4 @@ resources:
   - sonarr/ks.yaml
   - tautulli/ks.yaml
   - media-index/ks.yaml
+  - qbit/ks.yaml
