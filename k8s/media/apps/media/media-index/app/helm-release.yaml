@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: radarr
+  name: index
   namespace: media
 spec:
   interval: 15m
@@ -29,35 +29,16 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     image:
-      repository: ghcr.io/onedr0p/radarr-develop
-      tag: 5.0.0.7952@sha256:f62b8d569fafe0068755c1e080c17646fba7829c19c860a34679e7a7a1178227
+      repository: samip537/fancyindex-darktheme
+      tag: latest
     env:
       TZ: Europe/Helsinki
-      RADARR__INSTANCE_NAME: Radarr
-      RADARR__PORT: &port 80
-      RADARR__APPLICATION_URL: "https://dh.skylab.fi/radarr/"
-      RADARR__LOG_LEVEL: info
 
     service:
       main:
         ports:
           http:
-            port: *port
-    probes:
-      liveness: &probes
-        enabled: true
-        custom: true
-        spec:
-          httpGet:
-            path: /ping
-            port: *port
-          initialDelaySeconds: 0
-          periodSeconds: 10
-          timeoutSeconds: 1
-          failureThreshold: 3
-      readiness: *probes
-      startup:
-        enabled: false
+            port: 80
     ingress:
       main:
         enabled: true
@@ -68,45 +49,39 @@ spec:
           nginx.ingress.kubernetes.io/auth-signin: https://sso.skylab.fi?rm=$request_method
           nginx.ingress.kubernetes.io/auth-response-headers: Remote-User,Remote-Groups
           nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Method $request_method;
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.skylab.fi/css/base/radarr/nord.css"></head>';
-            sub_filter_once on;
-          hajimari.io/icon: mdi:filmstrip
         hosts:
           - host: &host "dh.skylab.fi"
             paths:
-              - path: /radarr
+              - path: /
                 pathType: Prefix
         tls:
           - hosts:
               - *host
     podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
+      runAsUser: 112
+      runAsGroup: 100
+      fsGroup: 100
       fsGroupChangePolicy: OnRootMismatch
-      supplementalGroups: [10000]
 
     persistence:
-      config:
-        enabled: true
-        existingClaim: radarr-config-v1
-      movies-kids:
+      data:
         enabled: true
         type: hostPath
-        mountPath: /merge/movies_kids
-        hostPath: "/mnt/merge/library/Kid Movies"
-      movies:
+        mountPath: /share
+        hostPath: "/opt/docker/appdata/caddy_index/index"
+      library:
         enabled: true
         type: hostPath
-        mountPath: /merge/movies
-        hostPath: "/mnt/merge/library/Movies"
+        mountPath: /mnt/merge/library
+        hostPath: "/mnt/merge/library/"
+        readOnly: true
       downloads:
         enabled: true
         type: hostPath
         mountPath: /merge/downloads
         hostPath: "/mnt/merge/Downloads/"
+        readOnly: true
+
     resources:
       requests:
         cpu: 10m
