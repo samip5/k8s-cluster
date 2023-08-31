@@ -68,7 +68,7 @@ spec:
       media-downloads:
         enabled: true
         type: hostPath
-        mountPath: /media
+        mountPath: /mnt/merge/Downloads
         hostPath: "/mnt/merge/Downloads"
       library:
         enabled: true
