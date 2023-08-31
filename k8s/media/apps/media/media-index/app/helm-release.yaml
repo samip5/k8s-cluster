@@ -57,11 +57,6 @@ spec:
         tls:
           - hosts:
               - *host
-    podSecurityContext:
-      runAsUser: 112
-      runAsGroup: 100
-      fsGroup: 100
-      fsGroupChangePolicy: OnRootMismatch
 
     persistence:
       data:
