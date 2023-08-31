@@ -15,96 +15,107 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-values:
-  controller:
-    annotations:
-      reloader.stakater.com/auto: "true"
-
-  image:
-    repository: ghcr.io/onedr0p/qbittorrent
-    tag: 4.5.5@sha256:30dffe7ad04ea0e39db0b50c0bd5e79362f99f7ff6b250526d2f389b58d96f14
-
-  env:
-    TZ: Europe/Helsinki
-    QBITTORRENT__PORT: &port 80
-    QBITTORRENT__BT_PORT: &port-bt 57427
-
-  service:
-    main:
-      ports:
-        http:
-          port: *port
-
-  ingress:
-    main:
-      enabled: true
-      ingressClassName: nginx
+  maxHistory: 2
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controller:
       annotations:
-        nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,2001:14ba:16fd:9600::/56"
-      hosts:
-        - host: &host qb.media.skylab.fi
-          paths:
-              - path: /
-                pathType: Prefix
-          tls:
-            - hosts:
-                - *host
+        reloader.stakater.com/auto: "true"
 
-  persistence:
-    config:
-      enabled: true
-      existingClaim: qbit-config
-    media-downloads:
-      enabled: true
-      type: hostPath
-      mountPath: /media
-      hostPath: "/mnt/merge/Downloads"
-    library:
-      enabled: true
-      type: hostPath
-      mountPath: /mnt/merge/library
-      hostPath: "/mnt/merge/library"
+    image:
+      repository: ghcr.io/onedr0p/qbittorrent
+      tag: 4.5.5@sha256:30dffe7ad04ea0e39db0b50c0bd5e79362f99f7ff6b250526d2f389b58d96f14
 
-  resources:
-    requests:
-      cpu: 49m
-      memory: 1222Mi
-    limits:
-      memory: 1222Mi
+    env:
+      TZ: Europe/Helsinki
+      QBITTORRENT__PORT: &port 80
+      QBITTORRENT__BT_PORT: &port-bt 57427
 
-  securityContext:
-    runAsUser: 568
-    runAsGroup: 568
+    service:
+      main:
+        ports:
+          http:
+            port: *port
 
-  sidecars:
-    gluetun:
-      image: ghcr.io/qdm12/gluetun:latest@sha256:8d744532dc4a2394f9b6544637b1c1312be8e38903777df6081fd1511d5d1223
-      env:
-        - name: VPN_TYPE
-          value: wireguard
-        - name: VPN_SERVICE_PROVIDER
-          value: airvpn
-        - name: VPN_INTERFACE
-          value: wg0
-        - name: FIREWALL
-          value: "on"
-        - name: DOT
-          value: "off"
-        - name: FIREWALL_VPN_INPUT_PORTS
-          value: 1637,41909,57427
-        - name: WIREGUARD_MTU
-          value: 1320
-        # - name:  WIREGUARD_PRIVATE_KEY
-        #   value: set in secret
-        # - name:  WIREGUARD_ADDRESSES
-        #   value: set in secret
-        # - name:  SERVER_COUNTRIES
-        #   value: set in secret
-      envFrom:
-        - secretRef:
-            name: qbit-vpn-secret
-      securityContext:
-        capabilities:
-          add:
-            - NET_ADMIN
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,2001:14ba:16fd:9600::/56"
+        hosts:
+          - host: &host qb.media.skylab.fi
+            paths:
+                - path: /
+                  pathType: Prefix
+            tls:
+              - hosts:
+                  - *host
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: qbit-config
+      media-downloads:
+        enabled: true
+        type: hostPath
+        mountPath: /media
+        hostPath: "/mnt/merge/Downloads"
+      library:
+        enabled: true
+        type: hostPath
+        mountPath: /mnt/merge/library
+        hostPath: "/mnt/merge/library"
+
+    resources:
+      requests:
+        cpu: 49m
+        memory: 1222Mi
+      limits:
+        memory: 1222Mi
+
+    securityContext:
+      runAsUser: 568
+      runAsGroup: 568
+
+    sidecars:
+      gluetun:
+        image: ghcr.io/qdm12/gluetun:latest@sha256:8d744532dc4a2394f9b6544637b1c1312be8e38903777df6081fd1511d5d1223
+        env:
+          - name: VPN_TYPE
+            value: wireguard
+          - name: VPN_SERVICE_PROVIDER
+            value: airvpn
+          - name: VPN_INTERFACE
+            value: wg0
+          - name: FIREWALL
+            value: "on"
+          - name: DOT
+            value: "off"
+          - name: FIREWALL_VPN_INPUT_PORTS
+            value: 1637,41909,57427
+          - name: WIREGUARD_MTU
+            value: 1320
+          # - name:  WIREGUARD_PRIVATE_KEY
+          #   value: set in secret
+          # - name:  WIREGUARD_ADDRESSES
+          #   value: set in secret
+          # - name:  SERVER_COUNTRIES
+          #   value: set in secret
+        envFrom:
+          - secretRef:
+              name: qbit-vpn-secret
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
 
