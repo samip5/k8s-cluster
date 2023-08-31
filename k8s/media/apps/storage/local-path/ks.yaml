@@ -4,6 +4,8 @@ metadata:
   name: cluster-storage-local-path
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: cluster-storage-snapshot-controller
   path: ./k8s/media/apps/storage/local-path/app
   prune: true
   sourceRef:
