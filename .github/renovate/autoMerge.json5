@@ -7,7 +7,7 @@
       automerge: true,
       automergeType: "branch",
       ignoreTests: true,
-      matchUpdateTypes: ["digest", "minor", "patch"],
+      matchUpdateTypes: ["minor", "patch"],
       matchPackagePattern: ["ghcr.io/onedr0p"],
     },
     // enable auto-merge
@@ -53,7 +53,8 @@
      ignoreTests: true,
      matchPackageNames: [
         "inspircd/inspircd-docker",
-        "ghcr.io/goauthentik/server"
+        "ghcr.io/goauthentik/server",
+        "ghcr.io/onedr0p/qbittorrent"
       ]
     },
     {
