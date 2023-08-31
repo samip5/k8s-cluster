@@ -32,7 +32,8 @@ spec:
       repository: samip537/fancyindex-darktheme
       tag: latest
     env:
-      TZ: Europe/Helsinki
+      CONTAINER_TIMEZONE: Europe/Helsinki
+      DISABLE_AUTH: true
 
     service:
       main:
