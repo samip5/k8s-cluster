@@ -87,11 +87,21 @@ spec:
       config:
         enabled: true
         existingClaim: radarr-config-v1
-      media:
+      movies-kids:
         enabled: true
         type: hostPath
-        mountPath: /mnt/merge
-        hostPath: /mnt/merge
+        mountPath: /merge/movies_kids
+        hostPath: "/mnt/merge/library/Kid Movies"
+      movies:
+        enabled: true
+        type: hostPath
+        mountPath: /merge/movies
+        hostPath: "/mnt/merge/library/Movies"
+      downloads:
+        enabled: true
+        type: hostPath
+        mountPath: /merge/downloads
+        hostPath: "/mnt/merge/Downloads/"
     resources:
       requests:
         cpu: 10m
