@@ -68,7 +68,7 @@ spec:
         hostPath: "/opt/docker/appdata/tautulli"
       backup:
         enabled: true
-        existingClaim: tautulli-backup-v1
+        existingClaim: tautulli-backup-v2
         mountPath: /config/backups
       logs:
         enabled: true
