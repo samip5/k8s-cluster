@@ -4,3 +4,5 @@ resources:
   - ns.yaml
   - radarr/ks.yaml
   - sonarr/ks.yaml
+  - tautulli/ks.yaml
+  - media-index/ks.yaml
