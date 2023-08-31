@@ -4,6 +4,8 @@ metadata:
   name: cluster-apps-sonarr
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: cluster-storage-longhorn
   path: ./k8s/media/apps/media/sonarr/app
   prune: true
   sourceRef:
