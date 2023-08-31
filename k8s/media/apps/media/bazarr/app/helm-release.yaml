@@ -1,0 +1,122 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: bazarr
+  namespace: media
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: ghcr.io/onedr0p/bazarr
+      tag: 1.2.4@sha256:80fbe89f5806015d67aa78c60bf64c068998507d08db5ea05ac7b9916dabb880
+    env:
+      TZ: "Europe/Helsinki"
+
+    service:
+      main:
+        ports:
+          http:
+            port: 6767
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          nginx.ingress.kubernetes.io/auth-method: GET
+          nginx.ingress.kubernetes.io/auth-url: http://[2001:67c:1be8::56]:40118/api/verify
+          nginx.ingress.kubernetes.io/auth-signin: https://sso.skylab.fi?rm=$request_method
+          nginx.ingress.kubernetes.io/auth-response-headers: Remote-User,Remote-Groups
+          nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Method $request_method;
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Accept-Encoding "";
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.skylab.fi/css/base/bazarr/nord.css"></head>';
+            sub_filter_once on;
+          hajimari.io/icon: mdi:subtitles-outline
+        hosts:
+          - host: &host "dh.skylab.fi"
+            paths:
+              - path: /bazarr
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: OnRootMismatch
+      supplementalGroups:
+        - 100
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: bazarr-config-v1
+      add-ons:
+        enabled: true
+        type: emptyDir
+        mountPath: /add-ons
+      scripts:
+        enabled: true
+        type: configMap
+        name: bazarr-scripts # overriden by kustomizeconfig
+        defaultMode: 0775
+        readOnly: true
+      media-tv:
+        enabled: true
+        type: hostPath
+        mountPath: /merge/tv
+        hostPath: "/mnt/merge/library/TV Shows/"
+      media-anime:
+        enabled: true
+        type: hostPath
+        mountPath: /merge/anime
+        hostPath: "/mnt/merge/library/Anime/"
+      downloads:
+        enabled: true
+        type: hostPath
+        mountPath: /merge/downloads
+        hostPath: "/mnt/merge/Downloads/"
+
+    resources:
+      requests:
+        cpu: 500m
+        memory: 250Mi
+      limits:
+        cpu: 1000m
+        memory: 2000Mi
+    sidecars:
+      subcleaner:
+        image: registry.k8s.io/git-sync/git-sync:v4.0.0
+        imagePullPolicy: IfNotPresent
+        args:
+          - --repo=https://github.com/KBlixt/subcleaner
+          - --branch=master
+          - --wait=86400 # 1 day
+          - --root=/add-ons
+        volumeMounts:
+          - { name: add-ons, mountPath: /add-ons }
