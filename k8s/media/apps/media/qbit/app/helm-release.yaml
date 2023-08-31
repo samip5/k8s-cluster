@@ -103,6 +103,8 @@ spec:
             value: "off"
           - name: FIREWALL_VPN_INPUT_PORTS
             value: 1637,41909,57427
+          - name: FIREWALL_INPUT_PORTS
+            value: 80
           - name: WIREGUARD_MTU
             value: 1320
           # - name:  WIREGUARD_PRIVATE_KEY
