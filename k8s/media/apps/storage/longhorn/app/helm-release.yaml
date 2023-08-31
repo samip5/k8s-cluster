@@ -17,10 +17,10 @@ spec:
       interval: 5m
   values:
     persistence:
-      defaultClassReplicaCount: 2
+      defaultClassReplicaCount: 1
       defaultFsType: xfs
     defaultSettings:
-      defaultReplicaCount: 2
+      defaultReplicaCount: 1
       backupTarget: s3://longhorn@us-east-1/
       backupTargetCredentialSecret: minio-secret
       taintToleration:
