@@ -76,6 +76,10 @@ spec:
         mountPath: /mnt/merge/library
         hostPath: "/mnt/merge/library"
 
+    probes:
+      startup:
+        enabled: false
+
     resources:
       requests:
         cpu: 49m
