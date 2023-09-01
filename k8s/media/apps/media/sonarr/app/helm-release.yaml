@@ -106,7 +106,7 @@ spec:
       downloads:
         enabled: true
         type: hostPath
-        mountPath: /merge/downloads
+        mountPath: /mnt/merge/Downloads/
         hostPath: "/mnt/merge/Downloads/"
 
     resources:
