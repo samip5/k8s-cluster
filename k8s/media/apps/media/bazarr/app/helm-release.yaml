@@ -89,18 +89,13 @@ spec:
       media-tv:
         enabled: true
         type: hostPath
-        mountPath: /merge/tv
+        mountPath: "/mnt/merge/library/TV Shows/"
         hostPath: "/mnt/merge/library/TV Shows/"
       media-anime:
         enabled: true
         type: hostPath
-        mountPath: /merge/anime
+        mountPath: "/mnt/merge/library/Anime/"
         hostPath: "/mnt/merge/library/Anime/"
-      downloads:
-        enabled: true
-        type: hostPath
-        mountPath: /merge/downloads
-        hostPath: "/mnt/merge/Downloads/"
 
     resources:
       requests:
