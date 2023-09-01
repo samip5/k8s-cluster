@@ -141,7 +141,7 @@ spec:
           - secretRef:
               name: qbit-vpn-secret
         volumeMounts:
-          - { name: post-iptables, mountPath: /iptables/post-rules.txt }
+          - { name: post-iptables, mountPath: /iptables/ }
         securityContext:
           capabilities:
             add:
