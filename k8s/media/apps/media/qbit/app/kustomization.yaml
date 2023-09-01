@@ -6,3 +6,9 @@ resources:
   - ./pvc.yaml
   - ./secret.sops.yaml
   - ./helm-release.yaml
+configMapGenerator:
+  - name: qbittorrent-scripts
+    files:
+      - ./config/completed.sh
+generatorOptions:
+  disableNameSuffixHash: true
