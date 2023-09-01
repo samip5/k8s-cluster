@@ -87,7 +87,7 @@ spec:
         enabled: true
         type: configMap
         name: gluetun-iptables-post
-        mountPath: /iptables/
+        mountPath: /iptables/post-rules.txt
         subPath: post-rules.txt
         defaultMode: 0775
         readOnly: true
@@ -141,7 +141,7 @@ spec:
           - secretRef:
               name: qbit-vpn-secret
         volumeMounts:
-          - { name: post-iptables, mountPath: /iptables/ }
+          - { name: post-iptables, mountPath: /iptables/post-rules.txt }
         securityContext:
           capabilities:
             add:
