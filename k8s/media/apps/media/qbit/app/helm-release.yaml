@@ -86,7 +86,7 @@ spec:
       post-iptables:
         enabled: true
         type: configMap
-        name: iptables-post
+        name: gluetun-iptables-post
         mountPath: /iptables/
         subPath: post-rules.txt
         defaultMode: 0775
