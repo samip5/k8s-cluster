@@ -117,8 +117,6 @@ spec:
             value: 1637,41909,57427
           - name: FIREWALL_INPUT_PORTS
             value: 80
-          - name: FIREWALL_OUTBOUND_SUBNETS
-            value: 10.41.0.0/16
           - name: FIREWALL_DEBUG
             value: "on"
           - name: DNS_ADDRESS
@@ -134,6 +132,15 @@ spec:
         envFrom:
           - secretRef:
               name: qbit-vpn-secret
+        persistence:
+          post-iptables:
+            enabled: true
+            type: configMap
+            name: gluetun-iptables-post
+            mountPath: /iptables/post-rules.txt
+            subPath: post-rules-gluetun.txt
+            defaultMode: 0775
+            readOnly: true
         securityContext:
           capabilities:
             add:
