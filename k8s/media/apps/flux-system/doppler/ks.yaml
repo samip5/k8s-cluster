@@ -1,0 +1,17 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-config-doppler-token
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: infra-external-secrets-operator
+  path: ./k8s/media/apps/flux-system/doppler/app/
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
