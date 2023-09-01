@@ -91,6 +91,16 @@ spec:
         type: hostPath
         mountPath: "/mnt/merge/library/TV Shows/"
         hostPath: "/mnt/merge/library/TV Shows/"
+      media-movies:
+        enabled: true
+        type: hostPath
+        mountPath: "/mnt/merge/library/Movies/"
+        hostPath: "/mnt/merge/library/Movies/"
+      media-movies-kids:
+        enabled: true
+        type: hostPath
+        mountPath: "/mnt/merge/library/Kid Movies/"
+        hostPath: "/mnt/merge/library/Kid Movies/"
       media-anime:
         enabled: true
         type: hostPath
