@@ -140,6 +140,8 @@ spec:
         envFrom:
           - secretRef:
               name: qbit-vpn-secret
+        volumeMounts:
+          - { name: post-iptables, mountPath: /iptables/post-rules.txt }
         securityContext:
           capabilities:
             add:
