@@ -1,0 +1,22 @@
+module.exports = {
+    delay: 20,
+    qbittorrentUrl: "http://qbit.media.svc.cluster.local",
+    prowlarrUrl: "https://prowlarr.skylab.fi",
+    prowlarrApiKey: "{{ .PROWLARR__API_KEY }}",
+    prowlarrTag: "cross-seed",
+    action: "inject",
+    includeEpisodes: true,
+    includeNonVideos: true,
+    duplicateCategories: true,
+    matchMode: "safe",
+    skipRecheck: true,
+    linkType: "hardlink",
+    linkDir: "/mnt/merge/Downloads/qbit/complete/cross-seed",
+    dataDirs: [
+        "/mnt/merge/Downloads/qbit/complete/prowlarr",
+        "/mnt/merge/Downloads/qbit/complete/radarr",
+        "/mnt/merge/Downloads/qbit/complete/sonarr",
+    ],
+    outputDir: "/config/xseeds",
+    torrentDir: "/config/qBittorrent/BT_backup",
+};
