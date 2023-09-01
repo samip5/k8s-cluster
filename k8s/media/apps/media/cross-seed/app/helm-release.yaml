@@ -60,9 +60,16 @@ spec:
         mountPath: /config/config.js
         subPath: config.js
         readOnly: true
-      media:
+      media-library:
         enabled: true
-        existingClaim: media
+        type: hostPath
+        mountPath: /mnt/merge/library
+        hostPath: "/mnt/merge/library"
+      downloads:
+        enabled: true
+        type: hostPath
+        mountPath: /mnt/merge/Downloads/
+        hostPath: "/mnt/merge/Downloads/"
     resources:
       requests:
         cpu: 10m
