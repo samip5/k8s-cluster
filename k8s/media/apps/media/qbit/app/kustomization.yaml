@@ -10,7 +10,7 @@ configMapGenerator:
   - name: qbittorrent-scripts
     files:
       - ./config/completed.sh
-  - name: iptables-post
+  - name: gluetun-iptables-post
     files:
       - ./config/post-rules-gluetun.txt
 generatorOptions:
