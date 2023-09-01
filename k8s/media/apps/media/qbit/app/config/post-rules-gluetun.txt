@@ -1,0 +1,1 @@
+iptables -A OUTPUT -d 10.41.0.0/16 -j ACCEPT
