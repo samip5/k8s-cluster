@@ -52,7 +52,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: qbit-config
+        existingClaim: qbittorrent-config
       config-file:
         enabled: true
         type: secret
