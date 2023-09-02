@@ -83,14 +83,6 @@ spec:
         type: hostPath
         mountPath: /mnt/merge/library
         hostPath: "/mnt/merge/library"
-      post-iptables:
-        enabled: true
-        type: configMap
-        name: gluetun-iptables-post
-        mountPath: /iptables/post-rules.txt
-        subPath: post-rules.txt
-        defaultMode: 0775
-        readOnly: true
 
     probes:
       startup:
@@ -140,8 +132,6 @@ spec:
         envFrom:
           - secretRef:
               name: qbit-vpn-secret
-        volumeMounts:
-          - { name: post-iptables, mountPath: /iptables/post-rules.txt, subPath:  post-rules.txt }
         securityContext:
           capabilities:
             add:
