@@ -96,10 +96,6 @@ spec:
         mountPath: /mnt/merge/library
         hostPath: "/mnt/merge/library"
 
-    probes:
-      startup:
-        enabled: false
-
     resources:
       requests:
         cpu: 49m
@@ -110,38 +106,4 @@ spec:
     securityContext:
       runAsUser: 568
       runAsGroup: 568
-
-    sidecars:
-      gluetun:
-        image: ghcr.io/qdm12/gluetun:latest@sha256:8d744532dc4a2394f9b6544637b1c1312be8e38903777df6081fd1511d5d1223
-        env:
-          - name: VPN_TYPE
-            value: wireguard
-          - name: VPN_SERVICE_PROVIDER
-            value: airvpn
-          - name: VPN_INTERFACE
-            value: wg0
-          - name: FIREWALL
-            value: "on"
-          - name: DOT
-            value: "off"
-          - name: FIREWALL_VPN_INPUT_PORTS
-            value: 1637,41909,57427
-          - name: FIREWALL_INPUT_PORTS
-            value: 80
-          - name: WIREGUARD_MTU
-            value: 1320
-          # - name:  WIREGUARD_PRIVATE_KEY
-          #   value: set in secret
-          # - name:  WIREGUARD_ADDRESSES
-          #   value: set in secret
-          # - name:  SERVER_COUNTRIES
-          #   value: set in secret
-        envFrom:
-          - secretRef:
-              name: qbittorrent-vpn-secret
-        securityContext:
-          capabilities:
-            add:
-              - NET_ADMIN
 
