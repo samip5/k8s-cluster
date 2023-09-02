@@ -119,8 +119,8 @@ spec:
             value: 80
           - name: FIREWALL_DEBUG
             value: "on"
-          - name: DNS_ADDRESS
-            value: 10.41.0.10 # kube coredns
+          #- name: DNS_ADDRESS
+          #  value: 10.41.0.10 # kube coredns
           - name: WIREGUARD_MTU
             value: 1320
           # - name:  WIREGUARD_PRIVATE_KEY
