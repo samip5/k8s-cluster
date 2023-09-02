@@ -76,7 +76,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: qbit-config
+        existingClaim: qbittorrent-config
       completed-script:
         enabled: true
         type: configMap
