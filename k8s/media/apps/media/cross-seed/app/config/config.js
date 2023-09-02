@@ -14,8 +14,8 @@ module.exports = {
     linkDir: "/mnt/merge/Downloads/qbittorrent/complete/cross-seed",
     dataDirs: [
         "/mnt/merge/Downloads/qbittorrent/complete/prowlarr",
-        "/mnt/merge/Downloads/qbitttorrent/complete/radarr",
-        "/mnt/merge/Downloads/qbitttorrent/complete/sonarr",
+        "/mnt/merge/Downloads/qbittorrent/complete/radarr",
+        "/mnt/merge/Downloads/qbittorrent/complete/sonarr",
     ],
     outputDir: "/config/xseeds",
     torrentDir: "/config/qBittorrent/BT_backup",
