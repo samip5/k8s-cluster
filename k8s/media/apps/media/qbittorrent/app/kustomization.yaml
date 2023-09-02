@@ -4,14 +4,10 @@ kind: Kustomization
 namespace: media
 resources:
   - ./pvc.yaml
-  - ./secret.sops.yaml
   - ./helm-release.yaml
 configMapGenerator:
   - name: qbittorrent-scripts
     files:
       - ./config/completed.sh
-  - name: gluetun-iptables-post
-    files:
-      - ./config/post-rules-gluetun.txt
 generatorOptions:
   disableNameSuffixHash: true
