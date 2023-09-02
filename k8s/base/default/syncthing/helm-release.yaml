@@ -42,17 +42,18 @@ spec:
           http:
             port: 8384
 
-      transfer:
+      listdisc:
+        enabled: true
         type: LoadBalancer
         ports:
-          tcp-transfer:
+          discovery:
+            enabled: true
+            port: 21027
+            protocol: UDP
+          listen:
             enabled: true
             port: 22000
             protocol: TCP
-          quic-transfer:
-            enabled: true
-            port: 22000
-            protocol: UDP
 
     ingress:
       main:
