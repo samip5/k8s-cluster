@@ -1,6 +1,6 @@
 module.exports = {
     delay: 20,
-    qbittorrentUrl: "http://qbit.media.svc.cluster.local",
+    qbittorrentUrl: "http://qbittorrent.media.svc.cluster.local",
     prowlarrUrl: "https://prowlarr.skylab.fi",
     prowlarrApiKey: "{{ .PROWLARR__API_KEY }}",
     prowlarrTag: "cross-seed",

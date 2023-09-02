@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: qbit
+  name: qbittorrent
   namespace: media
 spec:
   interval: 30m
@@ -45,6 +45,18 @@ spec:
         ports:
           http:
             port: *port
+      bittorrent:
+        enabled: true
+        type: LoadBalancer
+        annotations:
+          io.cilium/lb-ipam-ips: 10.41.69.202,2001:14ba:16fd:962d::202
+        ports:
+          bittorrent:
+            enabled: true
+            port: *port-bt
+            protocol: TCP
+            targetPort: *port-bt
+        externalTrafficPolicy: Cluster
 
     ingress:
       main:
@@ -53,7 +65,7 @@ spec:
         annotations:
           nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,2001:14ba:16fd:9600::/56"
         hosts:
-          - host: &host qb-m.skylab.fi
+          - host: &host qbit.skylab.fi
             paths:
                 - path: /
                   pathType: Prefix
@@ -83,14 +95,6 @@ spec:
         type: hostPath
         mountPath: /mnt/merge/library
         hostPath: "/mnt/merge/library"
-      post-iptables:
-        enabled: true
-        type: configMap
-        name: gluetun-iptables-post
-        mountPath: /iptables/post-rules.txt
-        subPath: post-rules.txt
-        defaultMode: 0775
-        readOnly: true
 
     probes:
       startup:
@@ -125,10 +129,6 @@ spec:
             value: 1637,41909,57427
           - name: FIREWALL_INPUT_PORTS
             value: 80
-          - name: FIREWALL_DEBUG
-            value: "on"
-          - name: DNS_ADDRESS
-            value: 10.41.0.10 # kube coredns
           - name: WIREGUARD_MTU
             value: 1320
           # - name:  WIREGUARD_PRIVATE_KEY
@@ -139,9 +139,7 @@ spec:
           #   value: set in secret
         envFrom:
           - secretRef:
-              name: qbit-vpn-secret
-        volumeMounts:
-          - { name: post-iptables, mountPath: /iptables/post-rules.txt, subPath:  post-rules.txt }
+              name: qbittorrent-vpn-secret
         securityContext:
           capabilities:
             add:
