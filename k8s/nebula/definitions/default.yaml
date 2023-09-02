@@ -88,3 +88,18 @@ spec:
     kind: GitRepository
     name: flux-system
   interval: 10m0s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: default-syncthing
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/default/syncthing"
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
