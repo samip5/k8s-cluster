@@ -83,6 +83,14 @@ spec:
         type: hostPath
         mountPath: /mnt/merge/library
         hostPath: "/mnt/merge/library"
+      post-iptables:
+        enabled: true
+        type: configMap
+        name: gluetun-iptables-post
+        mountPath: /iptables/post-rules.txt
+        subPath: post-rules.txt
+        defaultMode: 0775
+        readOnly: true
 
     probes:
       startup:
@@ -119,8 +127,8 @@ spec:
             value: 80
           - name: FIREWALL_DEBUG
             value: "on"
-          #- name: DNS_ADDRESS
-          #  value: 10.41.0.10 # kube coredns
+          - name: DNS_ADDRESS
+            value: 10.41.0.10 # kube coredns
           - name: WIREGUARD_MTU
             value: 1320
           # - name:  WIREGUARD_PRIVATE_KEY
@@ -132,6 +140,8 @@ spec:
         envFrom:
           - secretRef:
               name: qbit-vpn-secret
+        volumeMounts:
+          - { name: post-iptables, mountPath: /iptables/post-rules.txt, subPath:  post-rules.txt }
         securityContext:
           capabilities:
             add:
