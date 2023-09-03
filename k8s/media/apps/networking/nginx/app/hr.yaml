@@ -30,6 +30,7 @@ spec:
     recreate: true
     cleanupOnFail: true
   values:
+    hostNetwork: true
     controller:
       replicaCount: 1
       priorityClassName: system-cluster-critical
@@ -52,7 +53,7 @@ spec:
         addHeaders: "networking/nginx-custom"
       use-forwarded-headers: "true"
       service:
-        enabled: true
+        enabled: false
         type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: "10.41.69.80,2001:14ba:16fd:962d::443"
@@ -62,7 +63,7 @@ spec:
           - IPv4
           - IPv6
       publishService:
-        enabled: true
+        enabled: false
 
       metrics:
         enabled: false
