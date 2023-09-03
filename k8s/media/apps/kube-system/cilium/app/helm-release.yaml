@@ -82,8 +82,6 @@ spec:
         rollOutPods: true
         prometheus:
           enabled: true
-      nodePort:
-        enabled: true
       ui:
         enabled: true
         rollOutPods: true
