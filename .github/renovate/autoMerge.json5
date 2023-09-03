@@ -7,7 +7,7 @@
       automerge: true,
       automergeType: "branch",
       ignoreTests: true,
-      matchUpdateTypes: ["minor", "patch"],
+      matchUpdateTypes: ["digest", "minor", "patch"],
       matchPackagePattern: ["ghcr.io/onedr0p"],
     },
     // enable auto-merge
@@ -41,9 +41,7 @@
       ignoreTests: true,
       matchUpdateTypes: ["minor", "patch"],
       matchPackageNames: [
-        "ghcr.io/koenkk/zigbee2mqtt",
-        "registry.samipsolutions.fi/docker/inspircd/inspircd-docker",
-        "inspircd/inspircd-docker"
+        "ghcr.io/koenkk/zigbee2mqtt"
       ]
     },
     {
