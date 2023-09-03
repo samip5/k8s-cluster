@@ -53,10 +53,9 @@ spec:
       use-forwarded-headers: "true"
       service:
         enabled: true
-        type: NodePort
-        #annotations:
-        #  io.cilium/lb-ipam-ips: "10.41.69.80,2001:14ba:16fd:962d::443"
-        #externalTrafficPolicy: Cluster
+        type: LoadBalancer
+        annotations:
+          io.cilium/lb-ipam-ips: "10.41.69.80,2001:14ba:16fd:962d::443"
         externalTrafficPolicy: Cluster
         ipFamilyPolicy: "PreferDualStack"
         ipFamilies:

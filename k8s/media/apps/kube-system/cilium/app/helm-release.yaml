@@ -42,12 +42,6 @@ spec:
     ipv6NativeRoutingCIDR: "fd94:9bde:1ebb::/48"
     k8sServiceHost: "192.168.2.129"
     k8sServicePort: 6443
-    loadBalancer:
-      algorithm: "hybrid"
-      mode: "native"
-
-    endpointRoutes:
-      enabled: true
 
     tunnel: "disabled"
     ipam:
