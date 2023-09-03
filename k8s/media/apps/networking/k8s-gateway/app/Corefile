@@ -7,7 +7,7 @@
   ready
   k8s_gateway media.skylab.fi {
     apex  k8s-gateway.network
-    resources Ingress Service
+    resources Ingress
     ttl 300
   }
   prometheus 0.0.0.0:9153
