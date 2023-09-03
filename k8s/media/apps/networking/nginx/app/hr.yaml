@@ -30,7 +30,6 @@ spec:
     recreate: true
     cleanupOnFail: true
   values:
-    hostNetwork: true
     controller:
       replicaCount: 1
       priorityClassName: system-cluster-critical
@@ -54,16 +53,17 @@ spec:
       use-forwarded-headers: "true"
       service:
         enabled: false
-        type: LoadBalancer
-        annotations:
-          io.cilium/lb-ipam-ips: "10.41.69.80,2001:14ba:16fd:962d::443"
+        type: NodePort
+        #annotations:
+        #  io.cilium/lb-ipam-ips: "10.41.69.80,2001:14ba:16fd:962d::443"
+        #externalTrafficPolicy: Cluster
         externalTrafficPolicy: Cluster
         ipFamilyPolicy: "PreferDualStack"
         ipFamilies:
           - IPv4
           - IPv6
       publishService:
-        enabled: false
+        enabled: true
 
       metrics:
         enabled: false
