@@ -83,10 +83,19 @@ spec:
         prometheus:
           enabled: true
       ui:
-        enabled: false
+        enabled: true
         rollOutPods: true
         ingress:
-          enabled: false
+          enabled: true
+          annotations:
+            cert-manager.io/cluster-issuer: zerossl-production
+            kubernetes.io/ingress.class: nginx
+          hosts:
+            - "hubble.media.skylab.fi"
+          tls:
+            - secretName: media.skylab.fi-tls
+              hosts:
+                - "hubble.media.skylab.fi"
     bgp:
       enabled: false
       announce:
