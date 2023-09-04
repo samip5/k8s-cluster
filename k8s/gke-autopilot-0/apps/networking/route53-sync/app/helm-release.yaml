@@ -33,6 +33,10 @@ spec:
       tag: latest
       imagePullPolicy: Always
 
+    service:
+      main:
+        enabled: false
+
     args:
       - --hosted-zone-id=$(AWS_HOSTED_ZONE_ID)
       - --hostname=$(HOSTNAME)
