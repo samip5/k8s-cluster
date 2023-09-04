@@ -27,8 +27,8 @@ spec:
       strategy: RollingUpdate
     fullNameOverride: *app
     image:
-      repository: docker.io/zedeus/nitter
-      tag: latest@sha256:c0275459df4de2331a1ceac61c42be30a8731e168f582851134b5ec25af75171
+      repository: registry.samipsolutions.fi/library/nitter
+      tag: guest-accounts
     service:
       main:
         ports:
