@@ -6,7 +6,7 @@ metadata:
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: ./k8s/gke-autopilot-0/apps/networking/r53-sync/app
+  path: ./k8s/gke-autopilot-0/apps/networking/route53-sync/app
   prune: true
   sourceRef:
     kind: GitRepository
