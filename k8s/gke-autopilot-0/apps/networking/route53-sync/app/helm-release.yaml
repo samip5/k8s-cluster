@@ -51,7 +51,7 @@ spec:
     persistence:
       aws-creds:
         enabled: true
-        type: Secret
+        type: secret
         name: r53-creds
         mountPath: /app/.aws/credentials
         readOnly: true
