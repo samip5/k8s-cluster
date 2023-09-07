@@ -61,6 +61,8 @@ spec:
       AUTHENTICATION_GUARD: "remote_user_guard"
       AUTHENTICATION_GUARD_HEADER: "X-authentik-uid"
       AUTHENTICATION_GUARD_EMAIL: "X-authentik-email"
+      # Requires version 6.0.21.
+      FIREFLY_III_LAYOUT: v2
     envFrom: *envFrom
     persistence:
       config:
