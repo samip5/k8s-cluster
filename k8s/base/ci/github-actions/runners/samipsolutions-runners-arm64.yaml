@@ -35,6 +35,10 @@ spec:
             image: ghcr.io/onedr0p/github-actions-runner:2.309.0
         nodeSelector:
           kubernetes.io/arch: arm64
+        tolerations:
+          - key: "cm4"
+            operator: "Exists"
+            effect: "PreferNoSchedule"
 
   valuesFrom:
     - kind: Secret
