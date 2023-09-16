@@ -20,9 +20,9 @@ spec:
   #bootstrap:
   #  recovery:
   #    source: postgres-v1
-  #affinity:
-  #  nodeSelector:
-  #    kubernetes.io/arch: amd64
+  affinity:
+    nodeSelector:
+      kubernetes.io/arch: amd64
   resources:
     requests:
       cpu: 100m
