@@ -21,8 +21,17 @@ spec:
   #  recovery:
   #    source: postgres-v1
   affinity:
-    nodeSelector:
-      kubernetes.io/arch: amd64
+    enablePodAntiAffinity: true
+    topologyKey: kubernetes.io/hostname
+    podAntiAffinityType: required
+    tolerations:
+      - key: "cm4"
+        operator: "Exists"
+        effect: "PreferNoSchedule"
+
+  #  nodeSelector:
+  #    kubernetes.io/arch: amd64
+
   resources:
     requests:
       cpu: 100m
