@@ -4,8 +4,8 @@ metadata:
   name: cluster-apps-zipline
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: databases-cloudnative-pg-cluster
+  #dependsOn:
+  #  - name: databases-cloudnative-pg-cluster
   path: ./k8s/nebula/apps/default/zipline/app
   prune: true
   sourceRef:
