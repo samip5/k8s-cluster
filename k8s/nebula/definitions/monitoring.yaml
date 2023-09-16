@@ -38,7 +38,7 @@ metadata:
     component.skylab.fi/part-of: definitions
 spec:
   path: "./k8s/base/monitoring/prom-stack/overlays/nebula"
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -53,7 +53,7 @@ metadata:
     component.skylab.fi/part-of: definitions
 spec:
   path: "./k8s/base/monitoring/grafana"
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -68,7 +68,7 @@ metadata:
     component.skylab.fi/part-of: definitions
 spec:
   path: "./k8s/base/monitoring/node-problem-detector"
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -83,7 +83,7 @@ metadata:
     component.skylab.fi/part-of: definitions
 spec:
   path: "./k8s/base/monitoring/prom-stack"
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -98,7 +98,7 @@ metadata:
     component.skylab.fi/part-of: definitions
 spec:
   path: "./k8s/base/monitoring/speedtest-exporter"
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -113,7 +113,7 @@ metadata:
     component.skylab.fi/part-of: definitions
 spec:
   path: "./k8s/base/monitoring/blackbox-exporter"
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -128,7 +128,7 @@ metadata:
     component.skylab.fi/part-of: definitions
 spec:
   path: "./k8s/base/monitoring/arrs/sonarr"
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -143,7 +143,7 @@ metadata:
     component.skylab.fi/part-of: definitions
 spec:
   path: "./k8s/base/monitoring/arrs/radarr"
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
