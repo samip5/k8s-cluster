@@ -90,7 +90,7 @@ spec:
   timeout: 5m
   dependsOn:
     - name: cluster-config
-  path: ./k8s/media/apps
+  path: ./k8s/nebula/apps
   prune: true
   wait: false
   sourceRef:
