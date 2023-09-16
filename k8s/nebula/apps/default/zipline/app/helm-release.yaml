@@ -1,0 +1,98 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app zipline
+  namespace: default
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        name: bjw-s
+        kind: HelmRepository
+        namespace: flux-system
+  values:
+    global:
+      fullnameOverride: *app
+    automountServiceAccountToken: false
+    controller:
+      type: deployment
+      replicas: 1
+    image:
+      repository: ghcr.io/diced/zipline
+      tag: 3.7.4@sha256:000d61f694d002d94a46b089b4d2617a72fe2cba3c1388ad149233e654625fe3
+    env:
+      DEBUG: "true"
+      TZ: "Europe/Helsinki"
+      DATASOURCE_S3_USE_SSL: "true"
+      CORE_RETURN_HTTPS: "true"
+      CORE_HTTPS: "true"
+      CORE_HOST: "0.0.0.0"
+      CORE_PORT: "3000"
+      CORE_COMPRESSION_ENABLED: "false"
+      EXIF_ENABLED: "false"
+      EXIF_REMOVE_GPS: "true"
+      FEATURES_INVITES: "false"
+      FEATURES_INVITES_LENGTH: "16"
+      FEATURES_OAUTH_REGISTRATION: "true"
+      FEATURES_USER_REGISTRATION: "false"
+      FEATURES_HEADLESS: "false"
+      RATELIMIT_USER: "5"
+      RATELIMIT_ADMIN: "1"
+      UPLOADER_DEFAULT_FORMAT: "DATE"
+      UPLOADER_ROUTE: &upload "/i"
+      UPLOADER_ADMIN_LIMIT: "100gb"
+      UPLOADER_USER_LIMIT: "500mb"
+      UPLOADER_DISABLED_EXTENSIONS: "ps1,bat,exe,sh,fish"
+      UPLOADER_FORMAT_DATE: "YYYY-MM-DD_HH-mm-ss"
+      UPLOADER_DEFAULT_EXPIRATION: ""
+      URLS_ROUTE: &shorten "/go"
+      URLS_LENGTH: "6"
+      WEBSITE_TITLE: "Zipline"
+      WEBSITE_SHOW_FILES_PER_USER: "false"
+      WEBSITE_EXTERNAL_LINKS: '[{"label":"Powered by Zipline","link":"https://github.com/diced/zipline"}]'
+      WEBSITE_SHOW_VERSION: "true"
+      WEBSITE_DISABLE_MEDIA_PREVIEW: "false"
+    envFrom:
+      - secretRef:
+          name: zipline-secret
+
+    service:
+      main:
+        ports:
+          http:
+            port: 3000
+    ingress:
+      main:
+        enabled: true
+        primary: true
+        ingressClassName: nginx
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
+        hosts:
+          - host: &host "z.skylab.fi"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+
+    resources:
+      requests:
+        cpu: 300m
+        memory: 512Mi
+      limits:
+        memory: 1000Mi
+    initContainers:
+      01-init-db:
+        image: ghcr.io/onedr0p/postgres-init:14.9@sha256:e54cfa670bfaad70a3286d3792a98091125e50e176c56e07492cf5d9849cae57
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: zipline-pg-superuser
+
+
