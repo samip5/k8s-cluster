@@ -64,20 +64,16 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
-          nginx.ingress.kubernetes.io/auth-method: GET
-          nginx.ingress.kubernetes.io/auth-url: http://[2001:67c:1be8::56]:40118/api/verify
-          nginx.ingress.kubernetes.io/auth-signin: https://sso.skylab.fi?rm=$request_method
-          nginx.ingress.kubernetes.io/auth-response-headers: Remote-User,Remote-Groups
-          nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Method $request_method;
+          nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8,192.168.0.0/16,158.101.199.148/32,2603:c022:c002:4800::10/128,2001:14ba:16fd:9600::/56"
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.skylab.fi/css/base/sonarr/nord.css"></head>';
             sub_filter_once on;
           hajimari.io/icon: mdi:television-classic
         hosts:
-          - host: &host "dh.skylab.fi"
+          - host: &host "sonarr.media.skylab.fi"
             paths:
-              - path: /sonarr
+              - path: /
                 pathType: Prefix
         tls:
           - hosts:
