@@ -21,7 +21,7 @@ spec:
       enabled: true
       logLevel: debug
 
-      image: "registry.samipsolutions.fi/docker/hashicorp/consul:1.16.1"
+      image: "registry.samipsolutions.fi/docker/hashicorp/consul:1.16.2"
       imageK8S: "registry.samipsolutions.fi/docker/hashicorp/consul-k8s:0.26.0"
       # Rate limiting be damned
       # imagePullSecrets:
