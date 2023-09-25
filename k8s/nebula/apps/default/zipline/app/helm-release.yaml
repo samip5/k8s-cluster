@@ -72,6 +72,7 @@ spec:
         ingressClassName: nginx
         annotations:
           external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
+          external-dns-cf/is-dns-public: "true"
         hosts:
           - host: &host "z.skylab.fi"
             paths:
