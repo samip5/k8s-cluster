@@ -69,7 +69,7 @@ metadata:
 spec:
   interval: 10m0s
   path: ./k8s/nebula/private-flux
-  prune: false
+  prune: true
   wait: true
   sourceRef:
     kind: GitRepository
