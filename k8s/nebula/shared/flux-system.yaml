@@ -2,12 +2,12 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: finance-namespace
+  name: flux-system-helm-chart-repos
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/finance"
+  path: "./k8s/base/flux-system/helm-chart-repos"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -17,37 +17,44 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: finance-firefly-app
+  name: flux-system-webhook
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/finance/firefly/app"
+  path: "./k8s/base/flux-system/webhook"
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   interval: 10m0s
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: firefly-iii
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: finance-firefly-importer
+  name: flux-system-webhook-overlay
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/finance/firefly/importer"
+  path: "./k8s/base/flux-system/webhook/overlays/nebula"
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   interval: 10m0s
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: firefly-iii-data-importer
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: flux-system-notifications
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/flux-system/notifications"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
