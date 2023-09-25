@@ -11,6 +11,11 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: zipline
+      namespace: default
   interval: 30m
   retryInterval: 1m
   timeout: 5m
