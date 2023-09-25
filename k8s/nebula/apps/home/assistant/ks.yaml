@@ -8,7 +8,7 @@ metadata:
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: ./k8s/nebula/apps/home/home-assistant/app
+  path: ./k8s/nebula/apps/home/assistant/app
   prune: true
   sourceRef:
     kind: GitRepository
