@@ -5,3 +5,4 @@ resources:
   - ns.yaml
   - ./nginx/ks.yaml
   - ./ks-misc.yaml
+  - ./cloudflared/ks.yaml
