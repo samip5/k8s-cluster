@@ -69,7 +69,7 @@ metadata:
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/cert-manager/overlays/media"
+  path: "./k8s/base/cert-manager/overlays/nebula"
   prune: false
   dependsOn:
     - name: cert-manager-issuers
