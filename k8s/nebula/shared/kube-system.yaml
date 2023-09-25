@@ -2,13 +2,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: vpn-namespace
+  name: kube-system-reloader
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/vpn"
-  prune: false
+  path: "./k8s/base/kube-system/reloader"
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -17,13 +17,13 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: vpn-gateway
+  name: kube-system-reflector
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: "./k8s/base/vpn/vpn-gateway"
-  prune: false
+  path: "./k8s/base/kube-system/reflector"
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
