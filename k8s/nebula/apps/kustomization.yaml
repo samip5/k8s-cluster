@@ -7,3 +7,4 @@ resources:
   - databases
   - security
   - system
+  - networking
