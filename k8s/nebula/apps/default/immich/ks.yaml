@@ -5,6 +5,8 @@ kind: Kustomization
 metadata:
   name: cluster-apps-immich
   namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
 spec:
   dependsOn:
     - name: databases-cloudnative-pg-cluster
