@@ -6,3 +6,4 @@ resources:
   - ./nginx/ks.yaml
   - ./ks-misc.yaml
   - ./cloudflared/ks.yaml
+  - ./external-dns/ks.yaml
