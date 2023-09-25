@@ -1,0 +1,127 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: matrix-synapse
+  namespace: comms
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://ananace.gitlab.io/charts
+      chart: matrix-synapse
+      version: 3.6.1
+      sourceRef:
+        kind: HelmRepository
+        name: ananace-charts
+        namespace: flux-system
+      interval: 5m
+  dependsOn:
+    - name: authentik
+      namespace: security
+    - name: longhorn
+      namespace: storage
+  values:
+    image:
+      repository: ghcr.io/matrix-org/synapse
+      tag: v1.92.3
+    serverName: skylab.fi
+    publicServerName: matrix.skylab.fi
+    wellknown:
+      enabled: true
+      image:
+        repository: ghcr.io/rtsp/docker-lighttpd
+        tag: 1.4.71
+
+    workers:
+      media_repository:
+        enabled: false
+      federation_sender:
+        enabled: true
+      generic_worker:
+        enabled: true
+        replicaCount: 3
+      frontend_proxy:
+        enabled: true
+        csPaths:
+          - "/_matrix/client/(api/v1|r0|v3|unstable)/keys/upload"
+          - "/_matrix/client/(api/v1|r0|v3|unstable)/presence/[^/]+/status"
+
+
+    extraConfig:
+      email:
+        smtp_host: smtp-relay.default.svc.cluster.local
+        smtp_port: 587
+        notif_from: "Your Friendly %(app)s homeserver <noreply@${SECRET_DOMAIN}>"
+
+      # Currently broken, see https://github.com/matrix-org/synapse/issues/16039
+      presence:
+        enabled: false
+      enable_3pid_lookup: false
+      account_threepid_delegates:
+        msisdn: https://vector.im
+
+      oidc_providers:
+        - idp_id: authentik
+          idp_name: Skylab SSO
+          discover: true
+          issuer: "https://id.skylab.fi/application/o/matrix/"
+          client_id: "matrix"
+          client_secret: ${SECRET_AUTHENTIK_MATRIX_CLIENT}
+          scopes:
+            - "openid"
+            - "profile"
+            - "email"
+          user_mapping_provider:
+            config:
+              localpart_template: "{{ user.nickname }}"
+              display_name_template: "{{ user.name | capitalize }}"
+
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: zerossl-production
+        nginx.ingress.kubernetes.io/use-regex: "true"
+        external-dns-cf/is-public: "true"
+        external-dns-cf/is-dns-public: "true"
+        external-dns.target/enabled: "true"
+        external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+        external-dns.alpha.kubernetes.io/target: "ingress-cf.skylab.fi"
+      tls:
+        - secretName: matrix-tls
+          hosts:
+            - skylab.fi
+            - matrix.skylab.fi
+
+    postgresql:
+      enabled: false
+
+    externalPostgresql:
+      host: postgres-rw.databases.svc.cluster.local
+      port: 5432
+      username: synapse
+      existingSecret: matrix-synapse-pg-creds
+      existingSecretPasswordKey: PASSWORD
+      database: "synapse"
+
+    # Will not want to work w/o pass
+    #externalRedis:
+    #  host: redis.databases.svc.cluster.local
+    #  port: 6379
+    #  dbid: 1
+
+    redis:
+      enabled: true
+      auth:
+       enabled: true
+       password: ${SECRET_MATRIX_REDIS_PASSWORD}
+
+    signingkey:
+      job:
+        enabled: false
+      existingSecret: matrix-synapse-signingkey
+
+    persistence:
+      enabled: true
+      existingClaim: synapse-data
