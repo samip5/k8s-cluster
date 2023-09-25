@@ -17,9 +17,9 @@ spec:
   superuserSecret:
     name: cloudnative-pg-secret
 
-  #bootstrap:
-  #  recovery:
-  #    source: postgres-v1
+  bootstrap:
+    recovery:
+      source: postgres-v2
   affinity:
     enablePodAntiAffinity: true
     topologyKey: kubernetes.io/hostname
@@ -29,8 +29,8 @@ spec:
         operator: "Exists"
         effect: "PreferNoSchedule"
 
-  #  nodeSelector:
-  #    kubernetes.io/arch: amd64
+    nodeSelector:
+      kubernetes.io/arch: amd64
 
   resources:
     requests:
@@ -53,7 +53,7 @@ spec:
        maxParallel: 4
       destinationPath: s3://cnpg-main/
       endpointURL: https://s3.skym.fi
-      serverName: &currentCluster postgres-v2
+      serverName: &currentCluster postgres-v3
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
@@ -62,19 +62,19 @@ spec:
           name: cloudnative-pg-secret
           key: aws-secret-access-key
 
-  #externalClusters:
-  #  - name: postgres-v1
-  #    barmanObjectStore:
-  #      wal:
-  #        compression: bzip2
-  #        maxParallel: 4
-  #      destinationPath: s3://cnpg-main/
-  #      endpointURL: https://s3.skym.fi
-  #      serverName: &currentCluster postgres-v1
-  #      s3Credentials:
-  #        accessKeyId:
-  #          name: cloudnative-pg-secret
-  #          key: aws-access-key-id
-  #        secretAccessKey:
-  #          name: cloudnative-pg-secret
-  #          key: aws-secret-access-key
+  externalClusters:
+    - name: postgres-v1
+      barmanObjectStore:
+        wal:
+          compression: bzip2
+          maxParallel: 4
+        destinationPath: s3://cnpg-main/
+        endpointURL: https://s3.skym.fi
+        serverName: &currentCluster postgres-v2
+        s3Credentials:
+          accessKeyId:
+            name: cloudnative-pg-secret
+            key: aws-access-key-id
+          secretAccessKey:
+            name: cloudnative-pg-secret
+            key: aws-secret-access-key
