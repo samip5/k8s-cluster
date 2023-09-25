@@ -1,0 +1,17 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-apps-smtp-relay
+  namespace: flux-system
+spec:
+  path: ./k8s/nebula/apps/default/smtp-relay/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  healthChecks:
+    - kind: HelmRelease
+      name: smtp-relay
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m

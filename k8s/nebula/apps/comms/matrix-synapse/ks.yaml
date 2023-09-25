@@ -1,0 +1,20 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-apps-synapse
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: databases-cloudnative-pg-cluster
+    - name: security-authentik
+  path: ./k8s/nebula/apps/comms/matrix-synapse/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  healthChecks:
+    - kind: HelmRelease
+      name: matrix-synapse
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
