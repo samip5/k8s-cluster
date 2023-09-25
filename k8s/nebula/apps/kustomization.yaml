@@ -4,3 +4,5 @@ resources:
   - default
   - comms
   - collab
+  - databases
+  - security
