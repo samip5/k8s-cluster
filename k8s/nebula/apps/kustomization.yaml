@@ -7,5 +7,6 @@ resources:
   - databases
   - security
   - system
+  - storage
   - networking
   - home
