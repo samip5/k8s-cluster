@@ -63,7 +63,7 @@ spec:
           key: aws-secret-access-key
 
   externalClusters:
-    - name: postgres-v1
+    - name: postgres-v2
       barmanObjectStore:
         wal:
           compression: bzip2
