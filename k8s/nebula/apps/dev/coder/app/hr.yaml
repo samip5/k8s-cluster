@@ -28,14 +28,14 @@ spec:
   values:
     podAnnotations:
       secret.reloader.stakater.com/reload: coder-secret
-    initContainers:
-       01-init-db:
-         image: ghcr.io/onedr0p/postgres-init:14.8
-         imagePullPolicy: IfNotPresent
-         envFrom:
+    coder:
+      initContainers:
+        01-init-db:
+          image: ghcr.io/onedr0p/postgres-init:14.8
+          imagePullPolicy: IfNotPresent
+          envFrom:
             - secretRef:
               name: coder-secret
-    coder:
       env:
         # DB
         - name: CODER_PG_CONNECTION_URL
