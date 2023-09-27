@@ -7,3 +7,4 @@ resources:
   - ./ks-misc.yaml
   - ./cloudflared/ks.yaml
   - ./external-dns/ks.yaml
+  - ./k8s-gateway/ks.yaml
