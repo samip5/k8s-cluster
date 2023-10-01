@@ -35,7 +35,7 @@ spec:
           imagePullPolicy: IfNotPresent
           envFrom:
             - secretRef:
-              name: coder-secret
+                name: coder-secret
       env:
         # DB
         - name: CODER_PG_CONNECTION_URL
