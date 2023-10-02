@@ -4,6 +4,14 @@ originRequest:
 
 # https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/ingress
 ingress:
+  - hostname: "d10.fi"
+    service: https://ingress-nginx-controller.networking.svc.cluster.local:443
+    originRequest:
+      originServerName: "ingress-cf.skylab.fi"
+  - hostname: "*.d10.fi"
+    service: https://ingress-nginx-controller.networking.svc.cluster.local:443
+    originRequest:
+      originServerName: "ingress-cf.skylab.fi"
   - hostname: "skylab.fi"
     service: https://ingress-nginx-controller.networking.svc.cluster.local:443
     originRequest:
