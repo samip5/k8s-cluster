@@ -35,7 +35,7 @@ spec:
       strategy: Recreate
     image:
       repository: esphome/esphome
-      tag: 2023.9.1
+      tag: 2023.9.2
 
     env:
       ESPHOME__INSTANCE_NAME: ESPHome
