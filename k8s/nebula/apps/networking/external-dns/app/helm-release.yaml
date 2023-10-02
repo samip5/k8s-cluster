@@ -27,6 +27,7 @@ spec:
       - --zone-id-filter=565f87a7bf0ab8ea9db9b83dca55bc54
       - --zone-id-filter=f85f6018759f99552ac2fe5340997cb4
       - --zone-id-filter=cd86551a0f95b977ba6b4d8d5686cb9f
+      - --zone-id-filter=dd9e6ee88492898e2b16e87c8387fa01
       - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
       - --crd-source-kind=DNSEndpoint
     interval: 5m
