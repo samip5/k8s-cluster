@@ -64,7 +64,7 @@ spec:
       - ingress
       - service
 
-    txtPrefix: "k8s."
+    txtPrefix: "k8s-nebula."
 
     postRenderers:
       - kustomize:
