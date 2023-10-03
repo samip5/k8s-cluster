@@ -6,7 +6,7 @@ metadata:
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: ./k8s/nebula/apps/networking/external-dns/internal
+  path: ./k8s/media/apps/networking/external-dns/internal
   prune: true
   wait: true
   sourceRef:
