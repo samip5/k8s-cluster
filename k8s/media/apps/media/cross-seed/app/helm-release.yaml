@@ -32,7 +32,7 @@ spec:
         secret.reloader.stakater.com/reload: cross-seed-secret
     image:
       repository: registry.samipsolutions.fi/library/cross-seed
-      tag: dev-310823T0101
+      tag: tighter-prowlarr@sha256:7b128d6cc0c23c9fc3c45e99ca488e92b06523a6ab3c3d0507ffa23fef45a1e0
       #repository: ghcr.io/cross-seed/cross-seed
       #tag: 5.4.2
     env:
