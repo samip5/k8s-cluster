@@ -77,7 +77,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: networking/media.skylab.fi-tls
+            secretName: media.skylab.fi-tls
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
