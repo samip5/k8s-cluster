@@ -38,7 +38,7 @@ spec:
       fullnameOverride: assistant
     image:
       repository: ghcr.io/home-assistant/home-assistant
-      tag: 2023.8.4
+      tag: 2023.10.0
 
     service:
       main:
