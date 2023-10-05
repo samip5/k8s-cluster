@@ -32,6 +32,7 @@ spec:
   values:
     controller:
       replicaCount: 1
+      allowSnippetAnnotations: true
       priorityClassName: system-cluster-critical
       config:
         proxy-body-size: 0
