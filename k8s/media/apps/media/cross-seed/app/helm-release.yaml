@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.0.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -27,52 +27,55 @@ spec:
     - name: qbit
       namespace: media
   values:
-    controller:
-      annotations:
-        secret.reloader.stakater.com/reload: cross-seed-secret
-    image:
-      repository: registry.samipsolutions.fi/library/cross-seed
-      tag: tighter-prowlarr@sha256:0dd503f7020565489e43925cd0813fa6c55f62d1b45be4ba1ca390df0b57a6fa
-      #repository: ghcr.io/cross-seed/cross-seed
-      #tag: 5.4.2
-    env:
-      TZ: Europe/Helsinki
-    args: ["daemon"]
+    controllers:
+      main:
+        annotations:
+          secret.reloader.stakater.com/reload: cross-seed-secret
+
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            fsGroup: 568
+            fsGroupChangePolicy: "OnRootMismatch"
+            supplementalGroups:
+              - 10000
+
+        containers:
+          main:
+            image:
+              repository: registry.samipsolutions.fi/library/cross-seed
+              tag: tighter-prowlarr@sha256:0dd503f7020565489e43925cd0813fa6c55f62d1b45be4ba1ca390df0b57a6fa
+            args:
+              - daemon
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+              limits:
+                memory: 256Mi
+
     service:
       main:
         ports:
           http:
             port: 2468
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
-      supplementalGroups: [10000]
+
     persistence:
       config:
-        enabled: true
         existingClaim: qbittorrent-config
+        globalMounts:
+          - path: /config
       config-file:
-        enabled: true
         type: secret
         name: cross-seed-secret
-        mountPath: /config/config.js
-        subPath: config.js
-        readOnly: true
-      media-library:
-        enabled: true
+        globalMounts:
+          - path: /config/config.js
+            subPath: config.js
+            readOnly: true
+      media:
         type: hostPath
-        mountPath: /mnt/merge/library
-        hostPath: "/mnt/merge/library"
-      downloads:
-        enabled: true
-        type: hostPath
-        mountPath: /mnt/merge/Downloads/
-        hostPath: "/mnt/merge/Downloads/"
-    resources:
-      requests:
-        cpu: 10m
-        memory: 250Mi
-      limits:
-        memory: 1000Mi
+        hostPath: "/mnt/merge"
+        globalMounts:
+          - path: /mnt/merge
+

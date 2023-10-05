@@ -9,5 +9,4 @@ resources:
   - media-index/ks.yaml
   - qbit/ks.yaml
   - qbittorrent/ks.yaml
-# Doesn't work atm
-#  - cross-seed/ks.yaml
+  - cross-seed/ks.yaml
