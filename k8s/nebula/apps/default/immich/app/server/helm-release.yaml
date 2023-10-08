@@ -25,15 +25,15 @@ spec:
     - name: immich-redis
     - name: immich-typesense
   values:
-    initContainers:
-      01-init-db:
-        image: ghcr.io/onedr0p/postgres-init:14.9
-        imagePullPolicy: IfNotPresent
-        envFrom: &envFrom
-          - configMapRef:
-              name: &configMap immich-configmap
-          - secretRef:
-              name: &secret immich-secret
+    #initContainers:
+    #  01-init-db:
+    #    image: ghcr.io/onedr0p/postgres-init:14.9
+    #    imagePullPolicy: IfNotPresent
+    #    envFrom: &envFrom
+    #      - configMapRef:
+    #          name: &configMap immich-configmap
+    #      - secretRef:
+    #          name: &secret immich-secret
     controller:
       replicas: 2
       strategy: RollingUpdate
