@@ -123,12 +123,12 @@ spec:
         memory: 512Mi
       limits:
         memory: 1000Mi
-    initContainers:
-      01-init-db:
-        image: ghcr.io/onedr0p/postgres-init:14.9@sha256:8d5134c75858d0e4672c5301cf225896be5347564cc3b79cab9dd38e37f0ea94
-        imagePullPolicy: IfNotPresent
-        envFrom:
-          - secretRef:
-              name: zipline-pg-superuser
+    #initContainers:
+    #  01-init-db:
+    #    image: ghcr.io/onedr0p/postgres-init:14.9@sha256:8d5134c75858d0e4672c5301cf225896be5347564cc3b79cab9dd38e37f0ea94
+    #    imagePullPolicy: IfNotPresent
+    #    envFrom:
+    #      - secretRef:
+    #          name: zipline-pg-superuser
 
 
