@@ -32,7 +32,7 @@ spec:
       spec:
         containers:
           - name: runner
-            image: ghcr.io/onedr0p/github-actions-runner:2.309.0
+            image: ghcr.io/onedr0p/github-actions-runner:2.310.0
         nodeSelector:
           kubernetes.io/arch: amd64
 
