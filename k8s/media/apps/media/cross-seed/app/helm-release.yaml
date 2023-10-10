@@ -60,6 +60,7 @@ spec:
 
     persistence:
       config:
+        enabled: true
         existingClaim: qbittorrent-config
         globalMounts:
           - path: /config
