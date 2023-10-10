@@ -44,8 +44,8 @@ spec:
         containers:
           main:
             image:
-              repository: registry.samipsolutions.fi/library/cross-seed
-              tag: tighter-prowlarr@sha256:4000613810c55976e462d5490ad293fc9e04bf2b0325e7048afc357717bef263
+              repository: ghcr.io/cross-seed/cross-seed
+              tag: 5.5.4
             args:
               - daemon
             resources:
