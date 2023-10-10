@@ -89,7 +89,8 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: sonarr-config-v1
+        mountPath: /config
+        hostPath: "/opt/docker/appdata/sonarr"
       media-tv:
         enabled: true
         type: hostPath
