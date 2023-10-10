@@ -23,9 +23,6 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  dependsOn:
-    - name: qbit
-      namespace: media
   values:
     controllers:
       main:
