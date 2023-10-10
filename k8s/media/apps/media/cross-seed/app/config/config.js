@@ -1,9 +1,14 @@
 module.exports = {
     delay: 20,
     qbittorrentUrl: "http://qbittorrent.media.svc.cluster.local",
-    prowlarrUrl: "https://prowlarr.skylab.fi",
-    prowlarrApiKey: "{{ .PROWLARR__API_KEY }}",
-    prowlarrTag: "cross-seed",
+    torznab: [
+      "https://prowlarr.skylab.fi/19/api?apikey={{ .PROWLARR__API_KEY }}", // ant
+      "https://prowlarr.skylab.fi/18/api?apikey={{ .PROWLARR__API_KEY }}", // st
+      "https://prowlarr.skylab.fi/17/api?apikey={{ .PROWLARR__API_KEY }}", // phd
+      "https://prowlarr.skylab.fi/16/api?apikey={{ .PROWLARR__API_KEY }}", // hdt
+      "https://prowlarr.skylab.fi/15/api?apikey={{ .PROWLARR__API_KEY }}", // fl
+      "https://prowlarr.skylab.fi/2/api?apikey={{ .PROWLARR__API_KEY }}", // ipt
+    ],
     action: "inject",
     includeEpisodes: true,
     includeNonVideos: true,
