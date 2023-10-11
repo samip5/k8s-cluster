@@ -15,3 +15,8 @@ spec:
   commonName: "dh.skylab.fi"
   dnsNames:
   - "dh.skylab.fi"
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+      reflector.v1.k8s.emberstack.com/reflection-enabled: "true"
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "media,default"

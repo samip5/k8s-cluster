@@ -68,7 +68,7 @@ spec:
       metrics:
         enabled: false
       extraArgs:
-        default-ssl-certificate: "networking/dh.skylab.fi-tls"
+        default-ssl-certificate: "networking/media.skylab.fi-tls"
 
       resources:
         requests:
