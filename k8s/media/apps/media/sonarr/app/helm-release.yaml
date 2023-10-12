@@ -89,6 +89,7 @@ spec:
     persistence:
       config:
         enabled: true
+        type: hostPath
         mountPath: /config
         hostPath: "/opt/docker/appdata/sonarr"
       media-tv:
