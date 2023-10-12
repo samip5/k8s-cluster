@@ -26,6 +26,13 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    initContainers:
+      01-init-db:
+        image: ghcr.io/onedr0p/postgres-init:14.9
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: sonarr
     controller:
       strategy: Recreate
       annotations:
@@ -35,10 +42,12 @@ spec:
       tag: 4.0.0.697@sha256:f0076a88ad0f8875eb2ea961a733c69039f38b99f77290158d684f0c50e99a7c
     env:
       TZ: Europe/Helsinki
-      PUSHOVER_DEBUG: "false"
       SONARR__INSTANCE_NAME: Sonarr
       SONARR__PORT: &port 80
       SONARR__LOG_LEVEL: info
+    envFrom:
+      - secretRef:
+          name: sonarr
     service:
       main:
         ports:
