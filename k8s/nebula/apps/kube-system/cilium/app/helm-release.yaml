@@ -18,7 +18,7 @@ spec:
   chart:
     spec:
       chart: cilium
-      version: 1.14.1
+      version: 1.13.4
       sourceRef:
         kind: HelmRepository
         name: cilium-charts
@@ -59,6 +59,12 @@ spec:
       rollOutPods: true
     hubble:
       enabled: true
+      tls:
+        auto:
+          enabled: true
+          method: cronJob
+          certValidityDuration: 1095 # 3 years
+          schedule: "0 0 1 */4 *"
       metrics:
         enabled:
           - dns:query
