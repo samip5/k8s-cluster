@@ -13,3 +13,4 @@ resources:
   - home
   - finance
   - media
+  - kube-system
