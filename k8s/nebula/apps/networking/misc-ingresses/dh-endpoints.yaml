@@ -5,7 +5,7 @@ metadata:
   namespace: networking
 subsets:
   - addresses:
-      - ip: 192.168.2.129
+      - ip: 10.41.69.80
     ports:
       - name: https
         port: 443
