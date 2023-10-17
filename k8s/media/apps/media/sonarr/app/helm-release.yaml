@@ -100,6 +100,11 @@ spec:
         type: hostPath
         mountPath: /config
         hostPath: "/opt/docker/appdata/sonarr"
+      scripts:
+        enabled: true
+        type: hostPath
+        mountPath: /config/scripts
+        hostPath: "/opt/docker/scripts/custom"
       media-tv:
         enabled: true
         type: hostPath
