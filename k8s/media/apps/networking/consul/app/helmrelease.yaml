@@ -20,6 +20,13 @@ spec:
     meshGateway:
       enabled: true
 
+    connectInject:
+      enabled: true
+      apiGateway:
+        manageExternalCRDs: true
+        managedGatewayClass:
+          serviceType: LoadBalancer
+
     global:
       enabled: true
       logLevel: debug
@@ -35,6 +42,7 @@ spec:
         enabled: true
       tls:
         enabled: true
+
 
 
       server:
