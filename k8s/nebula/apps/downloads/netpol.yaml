@@ -20,7 +20,7 @@ spec:
               protocol: UDP
     - fromEndpoints:
         - matchLabels:
-            k8s:app.kubernetes.io/instance: ingress-nginx
+            k8s:app.kubernetes.io/instance: internal-nginx
             io.kubernetes.pod.namespace: networking
   egress:
     - toEndpoints:
@@ -38,7 +38,7 @@ spec:
               - matchPattern: "*"
     - toEndpoints:
         - matchLabels:
-            k8s:app.kubernetes.io/instance: ingress-nginx
+            k8s:app.kubernetes.io/instance: internal-nginx
             io.kubernetes.pod.namespace: networking
       toPorts:
         - ports:

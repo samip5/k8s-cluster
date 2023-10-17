@@ -61,11 +61,8 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: external-nginx
         annotations:
-          external-dns.home.arpa/enabled: "true"
-          external-dns.target/enabled: "true"
-          external-dns-cf/is-dns-public: "true"
           hajimari.io/icon: mdi:home-assistant
         hosts:
           - host: &host assistant.skylab.fi

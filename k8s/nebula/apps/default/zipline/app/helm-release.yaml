@@ -70,10 +70,9 @@ spec:
       main:
         enabled: true
         primary: true
-        ingressClassName: nginx
+        ingressClassName: external-nginx
         annotations:
           external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
-          external-dns-cf/is-dns-public: "true"
         hosts:
           - host: &host "z.skylab.fi"
             paths:

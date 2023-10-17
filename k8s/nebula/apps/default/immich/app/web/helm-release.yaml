@@ -43,13 +43,10 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: external-nginx
         annotations:
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
           nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-          external-dns-cf/is-dns-public: "true"
-          external-dns-cf/is-public: "true"
-          external-dns.target/enabled: "true"
           nginx.ingress.kubernetes.io/configuration-snippet: |
               rewrite /api/(.*) /$1 break;
         hosts:
