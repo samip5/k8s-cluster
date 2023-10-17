@@ -22,8 +22,8 @@ spec:
       enabled: true
       logLevel: debug
 
-      image: "registry.samipsolutions.fi/docker/hashicorp/consul:1.15.2"
-      imageK8S: "registry.samipsolutions.fi/docker/hashicorp/consul-k8s:0.26.0"
+      image: "registry.samipsolutions.fi/docker/hashicorp/consul:1.17.0-rc1"
+      imageK8S: "registry.samipsolutions.fi/docker/hashicorp/consul-k8s-control-plane:1.3.0-rc1"
       # Rate limiting be damned
       # imagePullSecrets:
       #  - name: regcred
