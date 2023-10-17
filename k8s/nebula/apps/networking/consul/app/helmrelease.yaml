@@ -43,14 +43,14 @@ spec:
       storageClass: longhorn
       ingress:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: internal-nginx
         pathType: Prefix
         hosts:
-          - host: consul.${INTERNAL_DOMAIN}
+          - host: consul.nebula.skylab.fi
             paths:
               - /
         tls:
           - secretName: secret-consul-tls
           - hosts:
-              - consul.${INTERNAL_DOMAIN}
+              - consul.nebula.skylab.fi
       hostNetwork: true
