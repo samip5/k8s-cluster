@@ -62,7 +62,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: external-nginx
         annotations:
           external-dns.target/enabled: "true"
           nginx.ingress.kubernetes.io/configuration-snippet: |
@@ -78,6 +78,22 @@ spec:
         tls:
           - hosts:
               - *host
+      internal:
+        enabled: true
+        ingressClassName: internal-nginx
+        annotations:
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Accept-Encoding "";
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.skylab.fi/css/base/prowlarr/nord.css"></head>';
+            sub_filter_once on;
+        hosts:
+          - host: &host-int "{{ .Release.Name }}.int.skylab.fi"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host-int
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568

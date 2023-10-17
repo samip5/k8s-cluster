@@ -76,7 +76,7 @@ spec:
           external-dns.target/enabled: "true"
           external-dns-cf/is-public: "true"
           external-dns-cf/is-dns-public: "true"
-        ingressClassName: nginx
+        ingressClassName: external-nginx
         hosts:
           - host: &host plex.skylab.fi
             paths:

@@ -23,7 +23,7 @@ spec:
       repository: registry.k8s.io/external-dns/external-dns
       tag: v0.13.6
     extraArgs:
-      - --annotation-filter=external-dns-cf/is-dns-public in (true)
+      - --ingress-class=external-nginx
       - --zone-id-filter=565f87a7bf0ab8ea9db9b83dca55bc54
       - --zone-id-filter=f85f6018759f99552ac2fe5340997cb4
       - --zone-id-filter=cd86551a0f95b977ba6b4d8d5686cb9f

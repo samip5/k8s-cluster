@@ -79,7 +79,7 @@ spec:
 
     ingress:
       enabled: true
-      className: nginx
+      className: external-nginx
       annotations:
         cert-manager.io/cluster-issuer: zerossl-production
         nginx.ingress.kubernetes.io/use-regex: "true"

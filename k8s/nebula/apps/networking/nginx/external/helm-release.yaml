@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: ingress-nginx
+  name: nginx-external
   namespace: networking
 spec:
   interval: 5m
@@ -30,10 +30,24 @@ spec:
     recreate: true
     cleanupOnFail: true
   values:
+    fullnameOverride: nginx-external
     controller:
       replicaCount: 2
       allowSnippetAnnotations: true
+
       priorityClassName: system-cluster-critical
+      ingressClassResource:
+        name: external-nginx
+        default: false
+        controllerValue: k8s.io/ingress-nginx-external
+
+      admissionWebhooks:
+        objectSelector:
+          matchExpressions:
+            - key: ingress-class
+              operator: In
+              values:
+                - external-nginx
       config:
         proxy-body-size: 0
         proxy-buffer-size: 16k
@@ -92,18 +106,21 @@ spec:
 
       metrics:
         enabled: true
-        prometheusRule:
-          enabled: false
+        serviceMonitor:
+          enabled: true
+          namespace: networking
+          namespaceSelector:
+            any: true
+      extraArgs:
+        default-ssl-certificate: "networking/skylab.fi-tls"
       topologySpreadConstraints:
-        - maxSkew: 3
+        - maxSkew: 2
           topologyKey: kubernetes.io/hostname
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
-              app.kubernetes.io/instance: ingress-nginx
+              app.kubernetes.io/instance: nginx-external
               app.kubernetes.io/component: controller
-      extraArgs:
-        default-ssl-certificate: "networking/skylab.fi-tls"
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -125,8 +142,9 @@ spec:
 
       resources:
         requests:
-         memory: 524M
+         cpu: 99m
+         memory: 768M
         limits:
-          memory: 524M
+          memory: 768Mi
     defaultBackend:
       enabled: false

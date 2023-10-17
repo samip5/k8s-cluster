@@ -61,9 +61,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
-        annotations:
-          external-dns.target/enabled: "true"
+        ingressClassName: "internal-nginx"
         hosts:
           - host: "zigbee2mqtt.skylab.fi"
             paths:

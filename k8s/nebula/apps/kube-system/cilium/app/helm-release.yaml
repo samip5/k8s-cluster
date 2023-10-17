@@ -94,7 +94,7 @@ spec:
           enabled: true
           annotations:
             cert-manager.io/cluster-issuer: zerossl-production
-            kubernetes.io/ingress.class: nginx
+            kubernetes.io/ingress.class: internal-nginx
           hosts:
             - "hubble.skylab.fi"
           tls:

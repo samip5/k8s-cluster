@@ -1,0 +1,17 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/kustomization-kustomize-v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-apps-nginx-external
+  namespace: flux-system
+spec:
+  interval: 10m
+  path: "./k8s/nebula/apps/networking/nginx/external"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  wait: false
+  dependsOn:
+    - name: cluster-apps-nginx-shared
