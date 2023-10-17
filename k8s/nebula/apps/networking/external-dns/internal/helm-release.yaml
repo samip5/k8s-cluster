@@ -62,9 +62,10 @@ spec:
 
     sources:
       - ingress
-      - service
 
     txtPrefix: "k8s-nebula."
+    extraArgs:
+      - --ingress-class=internal-nginx
 
     postRenderers:
       - kustomize:
