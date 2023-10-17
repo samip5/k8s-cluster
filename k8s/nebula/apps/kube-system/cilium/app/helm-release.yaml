@@ -36,7 +36,6 @@ spec:
     cluster:
       name: nebula
       id: 1
-    autoDirectNodeRoutes: true
     localRedirectPolicy: true
     rollOutCiliumPods: true
     kubeProxyReplacement: strict
