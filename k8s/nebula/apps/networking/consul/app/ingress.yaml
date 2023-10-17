@@ -1,0 +1,23 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: consul
+  namespace: hashicorp
+spec:
+  ingressClassName: internal-nginx
+  rules:
+    - host: consul.skylab.fi
+      http:
+        paths:
+          - backend:
+              service:
+                name: consul-consul-ui
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - consul.skylab.fi
+    - secretName: consul-tls-internal
