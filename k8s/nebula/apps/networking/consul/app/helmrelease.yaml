@@ -69,4 +69,3 @@ spec:
           - secretName: secret-consul-tls
           - hosts:
               - consul.nebula.skylab.fi
-      hostNetwork: true
