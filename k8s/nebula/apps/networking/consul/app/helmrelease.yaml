@@ -18,6 +18,16 @@ spec:
       interval: 5m
   values:
 
+    meshGateway:
+      enabled: true
+
+    connectInject:
+      enabled: true
+      apiGateway:
+        manageExternalCRDs: true
+        managedGatewayClass:
+          serviceType: LoadBalancer
+
     global:
       enabled: true
       logLevel: debug
@@ -28,6 +38,12 @@ spec:
       # imagePullSecrets:
       #  - name: regcred
       datacenter: dc1
+
+      peering:
+        enabled: true
+      tls:
+        enabled: true
+
 
       server:
         enabled: "true"
