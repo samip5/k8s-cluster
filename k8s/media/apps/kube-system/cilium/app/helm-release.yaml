@@ -33,6 +33,7 @@ spec:
     cluster:
       name: media
       id: 3
+    autoDirectNodeRoutes: false
     localRedirectPolicy: true
     rollOutCiliumPods: true
     kubeProxyReplacement: strict
