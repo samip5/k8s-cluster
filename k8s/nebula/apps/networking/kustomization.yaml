@@ -12,4 +12,4 @@ resources:
   - ./external-dns/ks-external.yaml
   - ./external-dns/ks-internal.yaml
   - ./k8s-gateway/ks.yaml
-  - ./consul/ks.yaml
+#  - ./consul/ks.yaml
