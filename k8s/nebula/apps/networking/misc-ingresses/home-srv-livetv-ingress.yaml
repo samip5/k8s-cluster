@@ -14,7 +14,7 @@ metadata:
     external-dns.target/enabled: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
-  ingressClassName: nginx-external
+  ingressClassName: external-nginx
   rules:
     - host: "tv.${MAIN_DOMAIN}"
       http:

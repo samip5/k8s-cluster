@@ -13,7 +13,7 @@ metadata:
     external-dns-cf/is-dns-public: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
-  ingressClassName: nginx
+  ingressClassName: external-nginx
   rules:
     - host: "tv.${MAIN_DOMAIN}"
       http:
