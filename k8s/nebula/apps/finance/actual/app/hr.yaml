@@ -69,10 +69,12 @@ spec:
               - *host
     persistence:
       server-files:
-        type: pvc
-        mountPath: /app/server-files
+        enabled: true
+        globalMounts:
+          - path: /app/server-files
         existingClaim: actual-server-files-v1
       user-files:
-        type: pvc
-        mountPath: /app/user-files
+        enabled: true
+        globalMounts:
+          - path: /app/user-files
         existingClaim: actual-user-files-v1
