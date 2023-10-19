@@ -27,15 +27,6 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
 
-        deployment:
-          volumeClaimTemplates:
-            - name: data
-              accessMode: ReadWriteOnce
-              size: 2Gi
-              storageClass: longhorn
-              globalMounts:
-                - path: /data
-
         pod:
           enableServiceLinks: false
           securityContext:
@@ -76,3 +67,12 @@ spec:
         tls:
           - hosts:
               - *host
+    persistence:
+      server-files:
+        type: pvc
+        mountPath: /app/server-files
+        existingClaim: actual-server-files-v1
+      user-files:
+        type: pvc
+        mountPath: /app/user-files
+        existingClaim: actual-user-files-v1
