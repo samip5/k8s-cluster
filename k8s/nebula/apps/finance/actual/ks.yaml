@@ -10,5 +10,5 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: k8s-gitops-kubernetes
+    name: flux-system
   wait: false # no flux ks dependents
