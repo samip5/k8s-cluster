@@ -19,7 +19,7 @@ spec:
 
   bootstrap:
     recovery:
-      source: postgres-v3
+      source: postgres-v4
   affinity:
     enablePodAntiAffinity: true
     topologyKey: kubernetes.io/hostname
@@ -53,7 +53,7 @@ spec:
        maxParallel: 4
       destinationPath: s3://cnpg-main/
       endpointURL: https://s3.skym.fi
-      serverName: &currentCluster postgres-v4
+      serverName: &currentCluster postgres-v5
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
@@ -63,14 +63,14 @@ spec:
           key: aws-secret-access-key
 
   externalClusters:
-    - name: postgres-v3
+    - name: postgres-v4
       barmanObjectStore:
         wal:
           compression: bzip2
           maxParallel: 4
         destinationPath: s3://cnpg-main/
         endpointURL: https://s3.skym.fi
-        serverName: &currentCluster postgres-v3
+        serverName: &currentCluster postgres-v4
         s3Credentials:
           accessKeyId:
             name: cloudnative-pg-secret
