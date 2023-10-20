@@ -32,6 +32,8 @@ spec:
     replicaCount: 3
 
     service:
+      name: kube-dns
+      clusterIP: 10.96.0.10
       annotations:
         fix.coredns.template: "fnord"
 
