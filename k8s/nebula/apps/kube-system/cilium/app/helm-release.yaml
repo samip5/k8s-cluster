@@ -59,6 +59,7 @@ spec:
     hubble:
       enabled: true
       tls:
+        insecure: true
         auto:
           enabled: true
           method: cronJob
