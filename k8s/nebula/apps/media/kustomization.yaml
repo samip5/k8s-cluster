@@ -4,5 +4,3 @@ kind: Kustomization
 resources:
  - ns.yaml
  - ./prowlarr/ks.yaml
- - ./jellyseer/ks.yaml
- - ./autobrr/ks.yaml
