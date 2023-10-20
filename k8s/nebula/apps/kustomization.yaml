@@ -6,3 +6,4 @@ resources:
   - networking
   - system
   - home
+  - databases
