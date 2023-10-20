@@ -13,7 +13,9 @@ spec:
     # exclude all
     /*
     # include gitops dirs
-    !/k8s
+    !/k8s/nebula
+    !/k8s/base
+    !/k8s/rbac
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
