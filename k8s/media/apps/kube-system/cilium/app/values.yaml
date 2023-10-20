@@ -1,0 +1,85 @@
+cni:
+  exclusive: false
+# Not supported on 1.13.4 with IPv6
+#bpf:
+#  masquerade: true
+cluster:
+  name: media
+  id: 3
+autoDirectNodeRoutes: false
+localRedirectPolicy: true
+rollOutCiliumPods: true
+kubeProxyReplacement: strict
+kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
+ipv4NativeRoutingCIDR: "10.0.0.0/8"
+ipv6NativeRoutingCIDR: "fd94:9bde:1ebb::/48"
+k8sServiceHost: "192.168.2.129"
+k8sServicePort: 6443
+
+tunnel: "disabled"
+ipam:
+  mode: "kubernetes"
+ipv6:
+  enabled: true
+#enableIPv6Masquerade: false
+operator:
+  replicas: 1
+  rollOutPods: true
+hubble:
+  enabled: true
+  tls:
+    insecure: true
+    auto:
+      enabled: true
+      method: cronJob
+      certValidityDuration: 1095 # 3 years
+      schedule: "0 0 1 */4 *"
+  metrics:
+    enabled:
+      - dns:query
+      - drop
+      - tcp
+      - flow
+      - port-distribution
+      - icmp
+      - http
+    serviceMonitor:
+      enabled: false
+    dashboards:
+      enabled: false
+      label: grafana_dashboard
+      namespace: monitoring
+      labelValue: "1"
+      annotations: { }
+  relay:
+    enabled: true
+    rollOutPods: true
+    prometheus:
+      enabled: true
+  ui:
+    enabled: true
+    rollOutPods: true
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: zerossl-production
+        kubernetes.io/ingress.class: nginx
+      hosts:
+        - "hubble.media.skylab.fi"
+      tls:
+        - secretName: media.skylab.fi-tls
+          hosts:
+            - "hubble.media.skylab.fi"
+bgp:
+  enabled: false
+  announce:
+    loadbalancerIP: false
+
+bgpControlPlane:
+  enabled: true
+
+securityContext:
+  privileged: true
+
+prometheus:
+  enabled: false

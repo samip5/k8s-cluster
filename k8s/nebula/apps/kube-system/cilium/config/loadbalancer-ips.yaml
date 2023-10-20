@@ -17,4 +17,4 @@ metadata:
 spec:
   cidrs:
     - cidr: 192.168.10.0/24
-    - cidr: 2001:14ba:16fd:961d::e:0/112
+    - cidr: 2001:14ba:16eb:6f00::4b:0/112
