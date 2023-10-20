@@ -7,3 +7,4 @@ resources:
   - system
   - home
   - databases
+  - kube-system
