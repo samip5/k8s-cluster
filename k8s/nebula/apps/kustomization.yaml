@@ -8,3 +8,4 @@ resources:
   - home
   - databases
   - kube-system
+  - media
