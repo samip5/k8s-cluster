@@ -16,10 +16,6 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-
-    meshGateway:
-      enabled: true
-
     connectInject:
       enabled: true
       default: false
