@@ -22,6 +22,7 @@ spec:
 
     connectInject:
       enabled: true
+      default: false
       apiGateway:
         manageExternalCRDs: true
         managedGatewayClass:
