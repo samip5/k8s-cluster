@@ -4,5 +4,5 @@ resources:
   - nginx/ks.yaml
   - k8s-gateway/ks.yaml
   - external-dns/ks.yaml
-  - consul/ks.yaml
+#  - consul/ks.yaml
 
