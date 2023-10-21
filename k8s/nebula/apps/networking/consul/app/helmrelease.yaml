@@ -8,7 +8,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://helm.releases.hashicorp.com
       chart: consul
       version: 1.2.2
       sourceRef:
@@ -23,6 +22,7 @@ spec:
 
     connectInject:
       enabled: true
+      default: false
       apiGateway:
         manageExternalCRDs: true
 
@@ -53,17 +53,5 @@ spec:
         serflan:
           port: 8301
 
-      storage: 50Gi
-      storageClass: longhorn
-      ingress:
-        enabled: true
-        ingressClassName: internal-nginx
-        pathType: Prefix
-        hosts:
-          - host: consul.nebula.skylab.fi
-            paths:
-              - /
-        tls:
-          - secretName: secret-consul-tls
-          - hosts:
-              - consul.nebula.skylab.fi
+      storage: 20Gi
+      storageClass: local-path
