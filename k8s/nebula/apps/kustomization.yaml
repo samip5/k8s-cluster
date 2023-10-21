@@ -9,3 +9,4 @@ resources:
   - databases
   - kube-system
   - media
+  - vpn
