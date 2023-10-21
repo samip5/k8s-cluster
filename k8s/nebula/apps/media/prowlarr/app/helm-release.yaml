@@ -27,13 +27,13 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    initContainers:
-      01-init-db:
-        image: ghcr.io/onedr0p/postgres-init:14.9
-        imagePullPolicy: IfNotPresent
-        envFrom: &envFrom
-          - secretRef:
-              name: prowlarr
+    #initContainers:
+    #  01-init-db:
+    #    image: ghcr.io/onedr0p/postgres-init:14.9
+    #    imagePullPolicy: IfNotPresent
+    #    envFrom: &envFrom
+    #      - secretRef:
+    #          name: prowlarr
     controller:
       strategy: RollingUpdate
       annotations:
@@ -46,7 +46,9 @@ spec:
       PROWLARR__PORT: &port 80
       PROWLARR__LOG_LEVEL: info
       PROWLARR__AUTHENTICATION_METHOD: External
-    envFrom: *envFrom
+    envFrom:
+      - secretRef:
+          name: prowlarr
     service:
       main:
         ports:
