@@ -21,6 +21,10 @@ spec:
       namespace: ci
       image: registry.samipsolutions.fi/docker/jenkins/jenkins:2.414.3-lts
 
+      plugins:
+        - name: timestamper
+          version: 1.26
+
       backup:
         enabled: true
 
