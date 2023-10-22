@@ -79,6 +79,9 @@ spec:
           hajimari.io/icon: mdi:home-assistant
         hosts:
           - host: *host
+            paths:
+              - path: /
+                pathType: Prefix
         tls:
           - hosts:
               - *host
