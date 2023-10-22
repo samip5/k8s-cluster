@@ -23,7 +23,7 @@ spec:
 
       plugins:
         - name: timestamper
-          version: 1.26
+          version: "1.26"
 
       backup:
         enabled: true
