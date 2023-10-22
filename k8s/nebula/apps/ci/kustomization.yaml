@@ -5,4 +5,3 @@ resources:
   - ns.yaml
   - github-actions/ks.yaml
   - github-actions/ks-runners.yaml
-  - jenkins/ks.yaml
