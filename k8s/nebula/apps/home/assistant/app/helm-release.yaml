@@ -72,6 +72,16 @@ spec:
         tls:
           - hosts:
               - *host
+      internal:
+        enabled: true
+        ingressClassName: internal-nginx
+        annotations:
+          hajimari.io/icon: mdi:home-assistant
+        hosts:
+          - host: *host
+        tls:
+          - hosts:
+              - *host
 
     #podAnnotations:
     #  k8s.v1.cni.cncf.io/networks: hass-iot-static
