@@ -81,6 +81,17 @@ spec:
         tls:
           - hosts:
               - *host
+      internal:
+        enabled: true
+        ingressClassName: internal-nginx
+        hosts:
+          - host: *host
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
       short:
         enabled: true
         ingressClassName: external-nginx
