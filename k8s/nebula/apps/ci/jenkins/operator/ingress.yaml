@@ -1,0 +1,43 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jenkins-server
+  namespace: ci
+spec:
+  ingressClassName: external-nginx
+  rules:
+    - host: "jenkins.skylab.fi"
+      http:
+        paths:
+          - backend:
+              service:
+                name: jenkins-operator-http-jenkins
+                port:
+                  number: 9981
+            path: '/'
+            pathType: Prefix
+  tls:
+    - hosts:
+        - "jenkins.skylab.fi"
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jenkins-server
+  namespace: ci
+spec:
+  ingressClassName: internal-nginx
+  rules:
+    - host: "jenkins.skylab.fi"
+      http:
+        paths:
+          - backend:
+              service:
+                name: jenkins-operator-http-jenkins
+                port:
+                  number: 9981
+            path: '/'
+            pathType: Prefix
+  tls:
+    - hosts:
+        - "jenkins.skylab.fi"
