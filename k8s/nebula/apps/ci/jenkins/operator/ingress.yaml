@@ -13,7 +13,7 @@ spec:
               service:
                 name: jenkins-operator-http-jenkins
                 port:
-                  number: 9981
+                  number: 8080
             path: '/'
             pathType: Prefix
   tls:
@@ -35,7 +35,7 @@ spec:
               service:
                 name: jenkins-operator-http-jenkins
                 port:
-                  number: 9981
+                  number: 8080
             path: '/'
             pathType: Prefix
   tls:
