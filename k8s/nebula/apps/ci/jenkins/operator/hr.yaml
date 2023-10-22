@@ -19,7 +19,7 @@ spec:
     jenkins:
       enabled: true
       namespace: ci
-      image: registry.samipsolutions.fi/docker/jenkins/jenkins:2.414.1-lts
+      image: registry.samipsolutions.fi/docker/jenkins/jenkins:2.414.3-lts
 
       backup:
         enabled: true
