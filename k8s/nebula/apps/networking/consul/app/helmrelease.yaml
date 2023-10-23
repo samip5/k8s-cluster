@@ -39,5 +39,9 @@ spec:
       default: false
       apiGateway:
         manageExternalCRDs: true
+    cni:
+      enabled: true
+      multus: true
+      namespace: hashicorp
 
 
