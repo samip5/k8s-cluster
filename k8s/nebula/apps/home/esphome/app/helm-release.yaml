@@ -53,8 +53,7 @@ spec:
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: "${SVC_ESPHOME_ADDR}"
-        externalTrafficPolicy: Local
+        externalTrafficPolicy: Cluster
         ports:
           http:
             port: 6052
