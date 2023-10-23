@@ -4,6 +4,8 @@ kind: Ingress
 metadata:
   name: consul
   namespace: hashicorp
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   ingressClassName: internal-nginx
   rules:
@@ -14,7 +16,7 @@ spec:
               service:
                 name: consul-ui
                 port:
-                  number: 80
+                  number: 443
             path: /
             pathType: Prefix
   tls:
