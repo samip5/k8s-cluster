@@ -16,38 +16,28 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    global:
+      name: consul
+      datacenter: dc1
+      federation:
+        enabled: true
+        createFederationSecret: true
+      tls:
+        enabled: true
+      logLevel: debug
+      image: "registry.samipsolutions.fi/docker/hashicorp/consul:1.17.0-rc1"
+      imageK8S: "registry.samipsolutions.fi/docker/hashicorp/consul-k8s-control-plane:1.3.0-rc1"
+    server:
+      replicas: 1
+    ui:
+      enabled: true
+    meshGateway:
+      enabled: true
+      replicas: 1
     connectInject:
       enabled: true
       default: false
       apiGateway:
         manageExternalCRDs: true
 
-    global:
-      enabled: true
-      logLevel: debug
 
-      image: "registry.samipsolutions.fi/docker/hashicorp/consul:1.17.0-rc1"
-      imageK8S: "registry.samipsolutions.fi/docker/hashicorp/consul-k8s-control-plane:1.3.0-rc1"
-      # Rate limiting be damned
-      # imagePullSecrets:
-      #  - name: regcred
-      datacenter: dc1
-
-      peering:
-        enabled: true
-      tls:
-        enabled: true
-
-
-      server:
-        enabled: "true"
-        replicas: 3
-      service:
-        enabled: true
-        type: loadBalancer
-      ports:
-        serflan:
-          port: 8301
-
-      storage: 20Gi
-      storageClass: local-path
