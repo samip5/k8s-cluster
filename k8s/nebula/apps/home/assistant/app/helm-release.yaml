@@ -86,8 +86,11 @@ spec:
           - hosts:
               - *host
 
-    #podAnnotations:
-    #  k8s.v1.cni.cncf.io/networks: hass-iot-static
+    podAnnotations:
+      k8s.v1.cni.cncf.io/networks: hass-iot-static
+
+    nodeSelector:
+      kubernetes.io/hostname: "w7"
 
     probes:
       liveness:
