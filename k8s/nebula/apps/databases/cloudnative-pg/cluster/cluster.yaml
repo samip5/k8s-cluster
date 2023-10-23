@@ -7,6 +7,7 @@ metadata:
   namespace: databases
   annotations:
     kyverno.io/ignore: "true"
+    consul.hashicorp.com/connect-inject: "true"
 spec:
   instances: 2
   imageName: ghcr.io/cloudnative-pg/postgresql:14.9-15
@@ -31,7 +32,6 @@ spec:
 
     nodeSelector:
       kubernetes.io/arch: amd64
-
   resources:
     requests:
       cpu: 100m
