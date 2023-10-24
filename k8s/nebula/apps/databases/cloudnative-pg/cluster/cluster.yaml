@@ -7,9 +7,8 @@ metadata:
   namespace: databases
   annotations:
     kyverno.io/ignore: "true"
-    consul.hashicorp.com/connect-inject: "true"
 spec:
-  instances: 2
+  instances: 3
   imageName: ghcr.io/cloudnative-pg/postgresql:14.9-15
   primaryUpdateStrategy: unsupervised
   storage:
@@ -18,6 +17,9 @@ spec:
   superuserSecret:
     name: cloudnative-pg-secret
   enableSuperuserAccess: true
+  inheritedMetadata:
+    annotations:
+      'consul.hashicorp.com/connect-inject': 'true'
 
   bootstrap:
     recovery:
