@@ -17,6 +17,7 @@ spec:
     storageClass: local-path
   superuserSecret:
     name: cloudnative-pg-secret
+  enableSuperuserAccess: true
 
   bootstrap:
     recovery:
