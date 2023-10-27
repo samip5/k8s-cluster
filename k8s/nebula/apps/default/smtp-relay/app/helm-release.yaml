@@ -60,7 +60,7 @@ spec:
     persistence:
       spool:
         enabled: true
-        existingClaim: smtp-relay-postfix-spool
+        type: EmptyDir
         mountPath: /var/spool/postfix
 
     resources:
