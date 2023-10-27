@@ -83,6 +83,9 @@ spec:
       fsGroup: 568
       fsGroupChangePolicy: OnRootMismatch
       supplementalGroups: [10000]
+    podAnnotations:
+      consul.hashicorp.com/connect-inject: 'true'
+
 
     persistence:
       config:
