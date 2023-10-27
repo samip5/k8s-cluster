@@ -60,7 +60,7 @@ spec:
     persistence:
       spool:
         enabled: true
-        type: EmptyDir
+        type: emptyDir
         mountPath: /var/spool/postfix
 
     resources:
