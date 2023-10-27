@@ -6,7 +6,7 @@ metadata:
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: ./k8s/nebula/apps/media/flaresolverr/app
+  path: ./k8s/nebula/apps/media/recyclarr/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -14,7 +14,7 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: flaresolverr
+      name: recyclarr
       namespace: media
   interval: 30m
   retryInterval: 1m
