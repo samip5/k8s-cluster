@@ -93,6 +93,35 @@ spec:
             matchLabels:
               app.kubernetes.io/instance: nginx-internal
               app.kubernetes.io/component: controller
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/instance
+                    operator: In
+                    values:
+                      - nginx-internal
+                  - key: app.kubernetes.io/component
+                    operator: In
+                    values:
+                      - controller
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/instance
+                    operator: In
+                    values:
+                      - nginx-internal
+                  - key: app.kubernetes.io/component
+                    operator: In
+                    values:
+                      - controller
+              topologyKey: "kubernetes.io/hostname"
 
       resources:
         requests:

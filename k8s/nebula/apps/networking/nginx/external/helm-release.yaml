@@ -68,25 +68,6 @@ spec:
         # hardening
         hide-headers: Server,X-Powered-By
         block-user-agents: "GPTBot,~*GPTBot*,ChatGPT-User,~*ChatGPT-User*,Google-Extended,~*Google-Extended*,CCBot,~*CCBot*,Omgilibot,~*Omgilibot*,FacebookBot,~*FacebookBot*" # taken from https://github.com/superseriousbusiness/gotosocial/blob/main/internal/web/robots.go
-      podAntiAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                  - key: app.kubernetes.io/name
-                    operator: In
-                    values:
-                      - ingress-nginx
-                  - key: app.kubernetes.io/instance
-                    operator: In
-                    values:
-                      - ingress-nginx
-                  - key: app.kubernetes.io/component
-                    operator: In
-                    values:
-                      - controller
-              topologyKey: kubernetes.io/hostname
-            weight: 100
       use-forwarded-headers: "true"
       service:
         enabled: true
@@ -121,19 +102,30 @@ spec:
             matchLabels:
               app.kubernetes.io/instance: nginx-external
               app.kubernetes.io/component: controller
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/instance
+                    operator: In
+                    values:
+                      - nginx-external
+                  - key: app.kubernetes.io/component
+                    operator: In
+                    values:
+                      - controller
+              topologyKey: kubernetes.io/hostname
+            weight: 100
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
                 matchExpressions:
-                  - key: app.kubernetes.io/name
-                    operator: In
-                    values:
-                      - ingress-nginx
                   - key: app.kubernetes.io/instance
                     operator: In
                     values:
-                      - ingress-nginx
+                      - nginx-external
                   - key: app.kubernetes.io/component
                     operator: In
                     values:
