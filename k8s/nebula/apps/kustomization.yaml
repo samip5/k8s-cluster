@@ -6,6 +6,7 @@ resources:
   - security
   - networking
   - system
+  - storage
   - home
   - databases
   - kube-system
