@@ -8,7 +8,7 @@ metadata:
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  path: ./k8s/nebula/apps/rook-ceph/rook/operator
+  path: ./k8s/nebula/apps/storage/rook-ceph/rook/operator
   prune: true
   sourceRef:
     kind: GitRepository
