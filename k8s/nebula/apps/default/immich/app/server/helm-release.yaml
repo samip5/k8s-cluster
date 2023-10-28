@@ -40,8 +40,8 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     image:
-      repository: ghcr.io/immich-app/immich-server
-      tag: v1.83.0
+      repository: registry.samipsolutions.fi/library/immich-server-dev
+      tag: 1698508740
     args: ["start-server.sh"]
     envFrom:
       - configMapRef:

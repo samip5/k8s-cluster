@@ -12,7 +12,7 @@ metadata:
     helm.sh/chart: authentik-2023.10.1
     helm.toolkit.fluxcd.io/name: authentik
     helm.toolkit.fluxcd.io/namespace: security
-  name: authentik
+  name: authentik-int
   namespace: security
 spec:
   ingressClassName: internal-nginx
