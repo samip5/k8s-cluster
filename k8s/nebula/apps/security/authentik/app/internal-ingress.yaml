@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    meta.helm.sh/release-name: authentik
+    meta.helm.sh/release-namespace: security
+  labels:
+    app.kubernetes.io/instance: authentik
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: authentik
+    app.kubernetes.io/version: 2023.10.1
+    helm.sh/chart: authentik-2023.10.1
+    helm.toolkit.fluxcd.io/name: authentik
+    helm.toolkit.fluxcd.io/namespace: security
+  name: authentik
+  namespace: security
+spec:
+  ingressClassName: internal-nginx
+  rules:
+    - host: id.skylab.fi
+      http:
+        paths:
+          - backend:
+              service:
+                name: authentik
+                port:
+                  name: http
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - id.skylab.fi
+      secretName: skylab.fi-tls
