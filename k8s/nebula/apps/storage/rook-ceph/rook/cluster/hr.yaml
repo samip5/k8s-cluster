@@ -29,10 +29,8 @@ spec:
       resources:
         crashcollector:
           limits:
-            cpu: "100m"
             memory: "60m"
           requests:
-            cpu: "50m"
             memory: "60m"
         osd:
           limits:
