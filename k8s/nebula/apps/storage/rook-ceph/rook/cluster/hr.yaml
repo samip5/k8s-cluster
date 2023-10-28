@@ -57,7 +57,7 @@ spec:
             devices:
               - name: /dev/disk/by-id/nvme-SAMSUNG_MZ9LQ512HBLU-00BVL_S73XNX0T887767
         mon:
-          count: 2
+          count: 3
     cephBlockPoolsVolumeSnapshotClass:
       enabled: false
     cephBlockPools:
@@ -65,7 +65,7 @@ spec:
         spec:
           failureDomain: host
           replicated:
-            size: 2
+            size: 3
           deviceClass: ssd
         storageClass:
           enabled: true
@@ -89,7 +89,7 @@ spec:
           name: .mgr
           failureDomain: host
           replicated:
-            size: 2
+            size: 3
             requireSafeReplicaSize: true
           parameters:
             compression_mode: none
