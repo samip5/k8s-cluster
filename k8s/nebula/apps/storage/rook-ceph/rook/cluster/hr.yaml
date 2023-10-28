@@ -19,8 +19,8 @@ spec:
     - name: rook-ceph-operator
   values:
     toolbox:
-      enabled: false
-      image: quay.io/ceph/ceph:v18.2.0@sha256:7659ca2efbbc0c2e564a73da50387b6dddc17089322e15aba6d1b93b11ce9db1
+      enabled: true
+      image: quay.io/ceph/ceph:v17.2.6
     monitoring:
       enabled: true
     cephClusterSpec:
@@ -61,14 +61,14 @@ spec:
     cephBlockPoolsVolumeSnapshotClass:
       enabled: false
     cephBlockPools:
-      - name: fast-ceph-blockpool
+      - name: ceph-blockpool
         spec:
           failureDomain: host
           replicated:
             size: 3
         storageClass:
           enabled: true
-          name: fast-ceph-block
+          name: ceph-block
           isDefault: false
           reclaimPolicy: Delete
           allowVolumeExpansion: true
@@ -95,7 +95,7 @@ spec:
         storageClass:
           enabled: false
     cephFileSystems:
-      - name: fast-ceph-filesystem
+      - name: ceph-filesystem
         spec:
           metadataPool:
             replicated:
