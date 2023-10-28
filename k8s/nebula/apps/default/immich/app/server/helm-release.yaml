@@ -41,7 +41,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: registry.samipsolutions.fi/library/immich-server-dev
-      tag: 1698508740
+      tag: "1698508740"
     args: ["start-server.sh"]
     envFrom:
       - configMapRef:
