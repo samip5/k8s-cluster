@@ -1,0 +1,219 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: rook-ceph-cluster
+  namespace: rook-ceph
+spec:
+  interval: 30m
+  timeout: 15m
+  chart:
+    spec:
+      chart: rook-ceph-cluster
+      version: v1.12.3
+      sourceRef:
+        kind: HelmRepository
+        name: rook-ceph-charts
+        namespace: flux-system
+  dependsOn:
+    - name: rook-ceph
+  values:
+    toolbox:
+      enabled: false
+      image: quay.io/ceph/ceph:v18.2.0@sha256:7659ca2efbbc0c2e564a73da50387b6dddc17089322e15aba6d1b93b11ce9db1
+    monitoring:
+      enabled: true
+    configOverride: |
+      [global]
+      bdev_enable_discard = true
+      bdev_async_discard = true
+      osd_class_update_on_start = false
+    cephClusterSpec:
+      # This is a terrible hack (THANKS Anthony! :D)
+      # I need more resources.
+      resources:
+        osd:
+          limits:
+            cpu: "2000m"
+            memory: "4Gi"
+          requests:
+            cpu: "500m"
+            memory: "4Gi"
+      network:
+        provider: host
+      dashboard:
+        enabled: true
+        urlPrefix: /
+        ssl: false
+      storage:
+        useAllNodes: false
+        useAllDevices: false
+        config:
+          osdsPerDevice: "1"
+        nodes:
+          - name: m1
+            devices:
+              - name: /dev/disk/by-id/nvme-INTEL_SSDPEKKF256G7L_BTPY72150BFA256D
+          - name: w-amd-1
+            devices:
+              - name: /dev/disk/by-id/nvme-KINGSTON_SEDC1000BM8960G_50026B76860DDA63
+          - name: w-amd-3
+            devices:
+              - name: /dev/disk/by-id/nvme-SAMSUNG_MZ9LQ512HBLU-00BVL_S73XNX0T887767
+      placement:
+        mgr:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: node-role.kubernetes.io/control-plane
+                      operator: In
+                      values:
+                        - ""
+          tolerations:
+            - effect: NoSchedule
+              key: node-role.kubernetes.io/control-plane
+        mon:
+          count: 3
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: node-role.kubernetes.io/control-plane
+                      operator: In
+                      values:
+                        - ""
+          tolerations:
+            - effect: NoSchedule
+              key: node-role.kubernetes.io/control-plane
+    cephBlockPoolsVolumeSnapshotClass:
+      enabled: false
+    cephBlockPools:
+      - name: fast-ceph-blockpool
+        spec:
+          failureDomain: host
+          replicated:
+            size: 2
+          deviceClass: ssd
+        storageClass:
+          enabled: true
+          name: fast-ceph-block
+          isDefault: false
+          reclaimPolicy: Delete
+          allowVolumeExpansion: true
+          mountOptions: []
+          parameters:
+            imageFormat: "2"
+            imageFeatures: layering
+            csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
+            csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+            csi.storage.k8s.io/controller-expand-secret-name: rook-csi-rbd-provisioner
+            csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
+            csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node
+            csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
+            csi.storage.k8s.io/fstype: xfs
+      - name: builtin-mgr
+        spec:
+          name: .mgr
+          failureDomain: host
+          replicated:
+            size: 2
+            requireSafeReplicaSize: true
+          parameters:
+            compression_mode: none
+        storageClass:
+          enabled: false
+    cephFileSystems:
+      - name: fast-ceph-filesystem
+        spec:
+          metadataPool:
+            replicated:
+              size: 2
+          dataPools:
+            - failureDomain: host
+              replicated:
+                size: 2
+              name: fast-data0
+              deviceClass: ssd
+          metadataServer:
+            activeCount: 1
+            activeStandby: true
+            placement:
+              nodeAffinity:
+                requiredDuringSchedulingIgnoredDuringExecution:
+                  nodeSelectorTerms:
+                    - matchExpressions:
+                        - key: node-role.kubernetes.io/control-plane
+                          operator: In
+                          values:
+                            - ""
+              tolerations:
+                - key: node-role.kubernetes.io/control-plane
+                  operator: Exists
+            resources:
+              limits:
+                cpu: "2000m"
+                memory: "4Gi"
+              requests:
+                cpu: "1000m"
+                memory: "4Gi"
+            priorityClassName: system-cluster-critical
+        storageClass:
+          enabled: true
+          isDefault: true
+          name: fast-ceph-filesystem
+          pool: fast-data0
+          reclaimPolicy: Delete
+          allowVolumeExpansion: true
+          mountOptions: []
+          parameters:
+            csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
+            csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+            csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
+            csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
+            csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
+            csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
+            csi.storage.k8s.io/fstype: xfs
+    cephObjectStores:
+      - name: fast-ceph-objectstore
+        spec:
+           metadataPool:
+             failureDomain: host
+             replicated:
+               size: 3
+           dataPool:
+             failureDomain: host
+             deviceClass: ssd
+             erasureCoded:
+               dataChunks: 2
+               codingChunks: 1
+           preservePoolsOnDelete: true
+           gateway:
+             port: 80
+             resources:
+               limits:
+                 cpu: "2000m"
+                 memory: "2Gi"
+               requests:
+                 cpu: "1000m"
+                 memory: "1Gi"
+             instances: 1
+             priorityClassName: system-cluster-critical
+        storageClass:
+           enabled: true
+           name: fast-ceph-bucket
+           reclaimPolicy: Delete
+           parameters:
+             region: eu-north-1
+    ingress:
+      dashboard:
+        ingressClassName: "internal-nginx"
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        host:
+          name: "rook.skylab.fi"
+          path: "/"
+        tls:
+          - secretName: rook-tls
+            hosts:
+              - "rook.skylab.fi"
