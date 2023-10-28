@@ -27,6 +27,13 @@ spec:
       # This is a terrible hack (THANKS Anthony! :D)
       # I need more resources.
       resources:
+        crashcollector:
+          limits:
+            cpu: "100m"
+            memory: "60m"
+          requests:
+            cpu: "50m"
+            memory: "60m"
         osd:
           limits:
             cpu: "2000m"
