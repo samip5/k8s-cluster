@@ -16,7 +16,7 @@ spec:
         name: rook-ceph
         namespace: flux-system
   dependsOn:
-    - name: rook-ceph
+    - name: rook-ceph-operator
   values:
     toolbox:
       enabled: false
@@ -48,6 +48,7 @@ spec:
       storage:
         useAllNodes: false
         useAllDevices: false
+        encryptedDevice: true
         config:
           osdsPerDevice: "1"
         nodes:
