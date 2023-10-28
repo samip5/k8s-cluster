@@ -27,9 +27,6 @@ spec:
     # Force recreation due to Helm not properly patching Deployment with e.g. added port,
     # causing spurious drift detection
     force: true
-  dependsOn:
-    - name: csi-driver-nfs
-      namespace: storage
   postRenderers:
     - kustomize:
         patches:
@@ -194,7 +191,7 @@ spec:
           storage:
             volumeClaimTemplate:
               spec:
-                storageClass: "nfs-client"
+                storageClass: "fast-ceph-filesystem"
                 resources:
                   requests:
                     storage: 1Gi
@@ -238,7 +235,7 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: nfs-client
+              storageClassName: fast-ceph-filesystem
               resources:
                 requests:
                   storage: 50Gi

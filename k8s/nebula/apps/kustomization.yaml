@@ -4,6 +4,7 @@ resources:
   - ci
   - collab
   - security
+  - monitoring
   - networking
   - system
   - storage
