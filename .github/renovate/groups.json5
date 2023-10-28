@@ -2,6 +2,16 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "packageRules": [
     {
+      "description": "External Snapshotter charts",
+      "groupName": "External Snapshotter",
+      "matchPackageNames": ["snapshot-controller", "snapshot-validation-webhook"],
+      "matchDatasources": ["helm"],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
+      },
+      "separateMinorPatch": true
+    },
+    {
       "description": "Flux Group",
       "groupName": "Flux",
       "matchPackagePatterns": ["flux"],
@@ -10,6 +20,14 @@
       "group": {
         "commitMessageTopic": "{{{groupName}}} group"
       },
+      "separateMinorPatch": true
+    },
+    {
+      "description": "Rook-Ceph image and chart",
+      "groupName": "Rook-Ceph",
+      "matchPackagePatterns": ["rook.ceph"],
+      "matchDatasources": ["docker", "helm"],
+      "group": { "commitMessageTopic": "{{{groupName}}} group" },
       "separateMinorPatch": true
     },
     {
