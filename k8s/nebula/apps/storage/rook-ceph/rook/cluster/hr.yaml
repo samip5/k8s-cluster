@@ -61,32 +61,8 @@ spec:
           - name: w-amd-3
             devices:
               - name: /dev/disk/by-id/nvme-SAMSUNG_MZ9LQ512HBLU-00BVL_S73XNX0T887767
-      placement:
-        mgr:
-          nodeAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-                - matchExpressions:
-                    - key: node-role.kubernetes.io/control-plane
-                      operator: In
-                      values:
-                        - ""
-          tolerations:
-            - effect: NoSchedule
-              key: node-role.kubernetes.io/control-plane
         mon:
-          count: 3
-          nodeAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-                - matchExpressions:
-                    - key: node-role.kubernetes.io/control-plane
-                      operator: In
-                      values:
-                        - ""
-          tolerations:
-            - effect: NoSchedule
-              key: node-role.kubernetes.io/control-plane
+          count: 2
     cephBlockPoolsVolumeSnapshotClass:
       enabled: false
     cephBlockPools:
@@ -139,18 +115,6 @@ spec:
           metadataServer:
             activeCount: 1
             activeStandby: true
-            placement:
-              nodeAffinity:
-                requiredDuringSchedulingIgnoredDuringExecution:
-                  nodeSelectorTerms:
-                    - matchExpressions:
-                        - key: node-role.kubernetes.io/control-plane
-                          operator: In
-                          values:
-                            - ""
-              tolerations:
-                - key: node-role.kubernetes.io/control-plane
-                  operator: Exists
             resources:
               limits:
                 cpu: "2000m"
