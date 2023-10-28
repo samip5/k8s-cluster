@@ -79,6 +79,14 @@ spec:
 
     nodeSelector:
       kubernetes.io/hostname: "w7"
+    taintToleration:
+      - key: "cm4"
+        operator: "Exists"
+        effect: "NoExecute"
+      - key: "cm4"
+        operator: "Exists"
+        effect: "PreferNoSchedule"
+
 
     persistence:
       config:

@@ -80,6 +80,9 @@ spec:
     tolerations:
       - key: "cm4"
         operator: "Exists"
+        effect: "NoSchedule"
+      - key: "cm4"
+        operator: "Exists"
         effect: "PreferNoSchedule"
 
     # nodeSelector:
