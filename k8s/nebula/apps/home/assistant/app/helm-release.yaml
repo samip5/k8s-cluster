@@ -92,13 +92,13 @@ spec:
                 "-c",
                 'until nc -vz ${POSTGRES_HOST} 5432; do echo "Waiting for postgres..."; sleep 3; done;',
               ]
-            01-init-db:
-              image:
-               repository: ghcr.io/onedr0p/postgres-init
-               tag: 14.9
-              envFrom:
-                - secretRef:
-                    name: assistant-init
+          01-init-db:
+            image:
+             repository: ghcr.io/onedr0p/postgres-init
+             tag: 14.9
+            envFrom:
+              - secretRef:
+                  name: assistant-init
 
 
     service:
