@@ -2,14 +2,14 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: assistant
+  name: &app assistant
   namespace: home
 spec:
   interval: 5m
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.0.3
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -17,7 +17,6 @@ spec:
       interval: 5m
   maxHistory: 3
   install:
-    createNamespace: true
     remediation:
       retries: 3
   upgrade:
@@ -27,97 +26,155 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: csi-driver-nfs
-      namespace: storage
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   values:
-    controller:
-      replicas: 1
-      strategy: Recreate
-    priorityClassName: home-cluster-critical
-    global:
-      fullnameOverride: assistant
-    image:
-      repository: ghcr.io/home-assistant/home-assistant
-      tag: 2023.10.1
+    defaultPodOptions:
+      priorityClassName: home-cluster-critical
+      automountServiceAccountToken: false
+      securityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: "OnRootMismatch"
+        supplementalGroups:
+          - 100
+          - 1010
+
+    controllers:
+      main:
+        type: statefulset
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        containers:
+          main:
+            image:
+              repository: ghcr.io/onedr0p/home-assistant
+              tag: 2023.10.3
+            env:
+              TZ: "Europe/Helsinki"
+            envFrom:
+              - secretRef:
+                  name: *app
+            resources:
+              requests:
+                cpu: 48m
+                memory: 512M
+              limits:
+                memory: 800M
+          code:
+            image:
+              repository: ghcr.io/coder/code-server
+              tag: 4.7.1
+            env:
+              TZ: "Europe/Helsinki"
+            args:
+              - --auth
+              - "none"
+              - --user-data-dir
+              - "/config/.vscode"
+              - --extensions-dir
+              - "/config/.vscode"
+              - --port
+              - "8081"
+              - "/config"
+
+        initContainers:
+          wait-for-pg:
+            image: quay.io/prometheus/busybox
+            imagePullPolicy: IfNotPresent
+            command:
+              [
+                "sh",
+                "-c",
+                'until nc -vz ${POSTGRES_HOST} 5432; do echo "Waiting for postgres..."; sleep 3; done;',
+              ]
+            01-init-db:
+              image: ghcr.io/onedr0p/postgres-init:14.9
+              envFrom:
+                - secretRef:
+                    name: assistant-init
+
 
     service:
       main:
         type: ClusterIP
-        #externalTrafficPolicy: Cluster
         ports:
           http:
             port: 8123
-          mdns-tcp:
-            enabled: true
-            port: 5353
-            protocol: TCP
-            targetPort: 5353
-          mdns-udp:
-            enabled: true
-            port: 5353
-            protocol: UDP
-            targetPort: 5353
+      code:
+        type: ClusterIP
+        ports:
+          http:
+            port: 8081
 
     ingress:
       main:
         enabled: true
-        ingressClassName: external-nginx
+        primary: true
+        ingressClassName: "external-nginx"
         annotations:
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          external-dns.alpha.kubernetes.io/target: "r.home.skym.fi"
           hajimari.io/icon: mdi:home-assistant
+
         hosts:
-          - host: &host assistant.skylab.fi
+          - host: &host "hass.skylab.fi"
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
       internal:
         enabled: true
-        ingressClassName: internal-nginx
+        ingressClassName: "internal-nginx"
         annotations:
-          hajimari.io/icon: mdi:home-assistant
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
         hosts:
           - host: *host
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
+      internal-code:
+        enabled: true
+        ingressClassName: "internal-nginx"
+        annotations:
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        hosts:
+          - host: &host-code "hass-code.skylab.fi"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  name: code
+                  port: http
+        tls:
+          - hosts:
+              - *host-code
 
-    podAnnotations:
-      k8s.v1.cni.cncf.io/networks: hass-iot-static
-
-    nodeSelector:
-      kubernetes.io/hostname: "w7"
-    taintToleration:
-      - key: "cm4"
-        operator: "Exists"
-        effect: "NoSchedule"
-      - key: "cm4"
-        operator: "Exists"
-        effect: "PreferNoSchedule"
-    probes:
-      liveness:
-        enabled: false
-      readiness:
-        enabled: false
-      startup:
-        enabled: false
 
     persistence:
       config:
         enabled: true
-        existingClaim: assistant-config-v1
+        existingClaim: home-assistant-config-v1
+        globalMounts:
+          - path: /config
 
-    tolerations:
-      - key: "cm4"
-        operator: "Exists"
-        effect: "PreferNoSchedule"
-
-    resources:
-      requests:
-        memory: 411M
-      limits:
-        memory: 712M
+      backup:
+        enabled: true
+        type: nfs
+        server: nas.skylab.fi
+        path: /volume3/Backups/k8s/hass
+        globalMounts:
+          - path: /config/backups
