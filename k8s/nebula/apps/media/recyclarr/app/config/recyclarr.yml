@@ -1,5 +1,5 @@
 sonarr:
-  main:
+  main-sonarr:
     base_url: https://sonarr.media.skylab.fi
     api_key: !env_var SONARR2_API_KEY
     delete_old_custom_formats: true
@@ -8,9 +8,11 @@ sonarr:
       preferred_ratio: 0.5
     quality_profiles:
       - name: Web-720p
-        reset_unmatched_scores: true
+        reset_unmatched_scores:
+          enabled: true
       - name: Web-1080p
-        reset_unmatched_scores: true
+        reset_unmatched_scores:
+          enabled: true
     custom_formats:
       # Audio Advanced #1
       - trash_ids:
@@ -105,7 +107,7 @@ sonarr:
           - name: Web-1080p
 
 radarr:
-  main:
+  main-radarr:
     base_url: https://radarr.media.skylab.fi
     api_key: !env_var RADARR_API_KEY
     delete_old_custom_formats: true
