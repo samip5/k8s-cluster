@@ -83,7 +83,7 @@ spec:
         initContainers:
           wait-for-pg:
             image:
-             registry: quay.io/prometheus/busybox
+             repository: quay.io/prometheus/busybox
              tag: latest
             imagePullPolicy: IfNotPresent
             command:
@@ -94,7 +94,7 @@ spec:
               ]
             01-init-db:
               image:
-               registry: ghcr.io/onedr0p/postgres-init
+               repository: ghcr.io/onedr0p/postgres-init
                tag: 14.9
               envFrom:
                 - secretRef:
