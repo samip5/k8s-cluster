@@ -7,9 +7,6 @@ sonarr:
       type: series
       preferred_ratio: 0.5
     quality_profiles:
-      - name: HD
-      - name: Web-720p
-      - name: Web-1080p
       - name: Web 1080p
         reset_unmatched_scores:
           enabled: true
