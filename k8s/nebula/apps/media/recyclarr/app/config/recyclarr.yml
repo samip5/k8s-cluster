@@ -154,28 +154,27 @@ radarr:
     delete_old_custom_formats: true
     quality_definition:
       type: movie
+    quality_profiles:
+      - name: Remux/Web 1080p
+        reset_unmatched_scores: true
+        upgrade:
+          allowed: true
+          until_quality: Remux-1080p
+          until_score: 10000
+        min_format_score: 0
+        quality_sort: top
+        qualities:
+          - name: Remux-1080p
+          - name: Bluray-1080p
+            enabled: false
+          - name: Web-1080p
+            qualities:
+              - WEBDL-1080p
+              - WEBRip-1080p
+          - name: HDTV-1080p
     custom_formats:
       - trash_ids:
           - ff5bc9e8ce91d46c997ca3ac6994d6f8 # UHD FraMeSToR (set to 0, 1 or 3200)
-        quality_profiles:
-          - name: Remux/Web 1080p
-            reset_unmatched_scores:
-              enabled: true
-            upgrade:
-              allowed: true
-              until_quality: Remux-1080p
-              until_score: 10000
-            min_format_score: 0
-            quality_sort: top
-            qualities:
-              - name: Remux-1080p
-              - name: Bluray-1080p
-                enabled: false
-              - name: Web-1080p
-                qualities:
-                  - WEBDL-1080p
-                  - WEBRip-1080p
-              - name: HDTV-1080p
       - trash_ids:
           # Audio
           - 496f355514737f7d83bf7aa4d24f8169  # TrueHD Atmos
