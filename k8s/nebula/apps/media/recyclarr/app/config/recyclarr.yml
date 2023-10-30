@@ -156,7 +156,8 @@ radarr:
       type: movie
     quality_profiles:
       - name: Remux/Web 1080p
-        reset_unmatched_scores: true
+        reset_unmatched_scores:
+          enabled: true
         upgrade:
           allowed: true
           until_quality: Remux-1080p
