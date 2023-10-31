@@ -40,6 +40,14 @@ spec:
         supplementalGroups:
           - 100
           - 1010
+      annotations:
+        k8s.v1.cni.cncf.io/networks: hass-iot-static
+      nodeSelector:
+        kubernetes.io/hostname: "w7"
+      tolerations:
+        - key: "cm4"
+          operator: "Exists"
+          effect: ""
 
     controllers:
       main:
