@@ -23,11 +23,11 @@ spec:
       image: quay.io/ceph/ceph:v17.2.7
     monitoring:
       enabled: true
-    crashCollector:
-      disable: true
     cephClusterSpec:
       # This is a terrible hack (THANKS Anthony! :D)
       # I need more resources.
+      crashCollector:
+        disable: true
       resources:
         crashcollector:
           limits:
