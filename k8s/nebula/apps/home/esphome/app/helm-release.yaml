@@ -82,10 +82,7 @@ spec:
     taintToleration:
       - key: "cm4"
         operator: "Exists"
-        effect: "NoExecute"
-      - key: "cm4"
-        operator: "Exists"
-        effect: "PreferNoSchedule"
+        effect: ""
 
 
     persistence:
