@@ -64,7 +64,7 @@ spec:
       main:
         ports:
           http:
-            port: 8123
+            port: 6052
 
     ingress:
       main:
