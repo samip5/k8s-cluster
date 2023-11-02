@@ -43,6 +43,9 @@ spec:
             memory: "4Gi"
       network:
         provider: host
+        # Requires kernel 5.11
+        encryption:
+          enabled: true
       dashboard:
         enabled: true
         urlPrefix: /
