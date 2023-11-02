@@ -157,7 +157,7 @@ spec:
                 memory: 1Gi
               limits:
                 memory: 2Gi
-            instances: 2
+            instances: 1 # There simply is not enough CPU and MEMORY
           healthCheck:
             bucket:
               interval: 60s
