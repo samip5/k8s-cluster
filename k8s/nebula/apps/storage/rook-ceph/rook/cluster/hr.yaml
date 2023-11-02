@@ -64,8 +64,6 @@ spec:
               - name: /dev/disk/by-id/nvme-SAMSUNG_MZ9LQ512HBLU-00BVL_S73XNX0T887767
         mon:
           count: 3
-    cephBlockPoolsVolumeSnapshotClass:
-      enabled: false
     cephBlockPools:
       - name: ceph-blockpool
         spec:
