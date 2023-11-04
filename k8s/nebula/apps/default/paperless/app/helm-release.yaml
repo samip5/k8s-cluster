@@ -110,7 +110,7 @@ spec:
         env:
           - { name: DISABLE_GOOGLE_CHROME, value: "1" }
       redis:
-        image: public.ecr.aws/docker/library/redis:7.2.2
+        image: public.ecr.aws/docker/library/redis:7.2.3
         imagePullPolicy: IfNotPresent
       tika:
         image: ghcr.io/paperless-ngx/tika:2.9.0-full
