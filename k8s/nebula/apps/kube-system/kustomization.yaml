@@ -4,3 +4,4 @@ resources:
   - cilium/ks.yaml
   - cilium/ks-config.yaml
   - multus/ks.yaml
+  - snapshot-controller/ks.yaml
