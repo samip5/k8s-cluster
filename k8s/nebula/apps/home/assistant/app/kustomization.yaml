@@ -8,3 +8,4 @@ resources:
   - ./net-attach.yaml
   - ./helm-release.yaml
   - ./pdb.yaml
+  - ./volsync.yaml
