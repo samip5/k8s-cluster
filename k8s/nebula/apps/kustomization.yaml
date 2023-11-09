@@ -14,3 +14,4 @@ resources:
   - media
   - vpn
   - default
+  - volsync
