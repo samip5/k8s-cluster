@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: ./k8s/nebula/apps/system/snapshot-controller/app
+  path: ./k8s/nebula/apps/kube-system/snapshot-controller/app
   prune: true
   wait: false
   sourceRef:
