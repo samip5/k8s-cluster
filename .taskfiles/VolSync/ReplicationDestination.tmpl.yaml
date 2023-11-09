@@ -8,10 +8,10 @@ spec:
   trigger:
     manual: restore-once
   restic:
-    repository: "${rsrc}-restic-secret"
+    repository: "${rsrc}-restic"
     destinationPVC: "${claim}"
     copyMethod: Direct
-    storageClassName: ceph-block
+    storageClassName: fast-ceph-block
     # IMPORTANT NOTE:
     #   Set to the last X number of snapshots to restore from
     previous: ${previous}
