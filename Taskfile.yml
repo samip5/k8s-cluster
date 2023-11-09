@@ -2,6 +2,7 @@
 version: "3"
 
 vars:
+  PYTHON_BIN: python3
   KUBERNETES_DIR: "{{.ROOT_DIR}}/k8s"
   ANSIBLE_DIR: "{{.ROOT_DIR}}provision/ansible"
 
@@ -16,6 +17,7 @@ includes:
   externalsecrets:
     taskfile: .taskfiles/externalsecrets
     dir: .taskfiles/externalsecrets
+  volsync: .taskfiles/VolSync/Tasks.yaml
 
 tasks:
   default:
