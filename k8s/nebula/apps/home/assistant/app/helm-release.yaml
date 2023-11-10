@@ -59,7 +59,7 @@ spec:
           main:
             image:
               repository: ghcr.io/onedr0p/home-assistant
-              tag: 2023.11.1
+              tag: 2023.11.2
             env:
               TZ: "Europe/Helsinki"
             envFrom:
