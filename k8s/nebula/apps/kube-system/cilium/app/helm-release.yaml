@@ -18,7 +18,7 @@ spec:
   chart:
     spec:
       chart: cilium
-      version: 1.13.4
+      version: 1.14.3
       sourceRef:
         kind: HelmRepository
         name: cilium-charts
@@ -30,9 +30,8 @@ spec:
     #  verbose: "datapath"
     cni:
       exclusive: false
-    # Not supported on 1.13.4 with IPv6
-    #bpf:
-    #  masquerade: true
+    bpf:
+      masquerade: true
     cluster:
       name: nebula
       id: 1
