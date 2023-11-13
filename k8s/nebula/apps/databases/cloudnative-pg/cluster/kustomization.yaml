@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: databases
 resources:
   - cluster.yaml
+  - cluster16.yaml
   - prom-rule.yaml
   - scheduledbackup.yaml
 labels:

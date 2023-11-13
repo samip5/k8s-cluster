@@ -18,9 +18,9 @@ spec:
     name: cloudnative-pg-secret
   enableSuperuserAccess: true
 
-  bootstrap:
-    recovery:
-      source: postgres-v4
+  #bootstrap:
+  #  recovery:
+  #    source: postgres-v4
   affinity:
     enablePodAntiAffinity: true
     topologyKey: kubernetes.io/hostname
@@ -28,7 +28,7 @@ spec:
     tolerations:
       - key: "cm4"
         operator: "Exists"
-        effect: "NoSchedule"
+        effect: ""
 
     nodeSelector:
       kubernetes.io/arch: amd64
