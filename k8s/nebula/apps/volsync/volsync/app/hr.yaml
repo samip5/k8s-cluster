@@ -30,6 +30,8 @@ spec:
     manageCRDs: true
     metrics:
       disableAuth: true
+    nodeSelector:
+      kubernetes.io/arch: amd64
   postRenderers:
     - kustomize:
         patchesStrategicMerge:
