@@ -98,7 +98,7 @@ spec:
       enabled: false
 
     externalPostgresql:
-      host: postgres-rw.databases.svc.cluster.local
+      host: postgres16-rw.databases.svc.cluster.local
       port: 5432
       username: synapse
       existingSecret: matrix-synapse-pg-creds

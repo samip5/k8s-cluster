@@ -98,7 +98,7 @@ spec:
               [
                 "sh",
                 "-c",
-                'until nc -vz postgres-rw.databases.svc.cluster.local 5432; do echo "Waiting for postgres..."; sleep 3; done;',
+                'until nc -vz postgres16-rw.databases.svc.cluster.local 5432; do echo "Waiting for postgres..."; sleep 3; done;',
               ]
           01-init-db:
             image:

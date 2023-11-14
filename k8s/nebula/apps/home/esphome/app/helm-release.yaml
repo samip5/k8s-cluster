@@ -62,6 +62,7 @@ spec:
 
     service:
       main:
+        type: ClusterIP
         ports:
           http:
             port: 6052
