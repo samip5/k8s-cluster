@@ -11,14 +11,12 @@
 ## 💻 Nodes
 | Node                          | Hostname        | RAM  | Storage       | Function         | Operating System |
 |-------------------------------|-----------------|------|---------------|------------------|------------------|
-| Raspberry Pi 4 Model B        | w1              | 8GB  | 64GB SSD      | Kube Worker      | Ubuntu 22.10     |
-| Raspberry Pi 4 Model B        | w2              | 8GB  | 64GB SSD      | Kube Worker      | Ubuntu 22.10     |
-| Raspberry Pi Compute Module 4 | w7              | 8GB  | 32GB eMMC     | Kube Worker      | Ubuntu 22.10     |
+| Raspberry Pi 4 Model B        | w1              | 8GB  | 250GB SSD      | Kube Worker      | Debian 12        |
+| Raspberry Pi Compute Module 4 | w7              | 8GB  | 2TB SSD        | Kube Worker      | Debian 12        |
 | Lenovo ThinkCentre M910q Tiny | w-amd-1         | 8GB  | 256GB SSD x 2 | Kube Worker      | Debian 12        |
-| VM on Synology                | w-amd-2         | 8GB  | 150GB SSD     | Kube Worker      | Debian 12        |
 | VM on Synology                | w-amd-storage-1 | 4GB  | 400GB NVME    | Longhorn storage | Debian 12        |
-| HP EliteDesk 800 G2           | w-amd-3         | 32GB | 256GB SSD     | Kube Worker      | Ubuntu 22.10     |
-| Lenovo ThinkCentre M910q Tiny | m1              | 16GB | 256GB SSD x 2 | Kube Master      | Ubuntu 22.10     |
+| HP EliteDesk 800 G2           | w-amd-3         | 32GB | 256GB SSD     | Kube Worker      | Debian 12        |
+| Lenovo ThinkCentre M910q Tiny | m1              | 16GB | 256GB SSD x 2 | Kube Master      | Debian 12        |
 
 ## Storage
 | Node         | Hostname | RAM  | Storage                             | Function   | Operating System |
