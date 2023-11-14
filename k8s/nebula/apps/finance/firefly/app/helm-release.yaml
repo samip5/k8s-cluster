@@ -48,7 +48,7 @@ spec:
       APP_URL: "https://cash.skylab.fi"
       APP_ENV: "production"
       DB_CONNECTION: "pgsql"
-      DB_HOST: postgres-rw.databases.svc.cluster.local
+      DB_HOST: postgres16-rw.databases.svc.cluster.local
       DB_PORT: "5432"
       MAIL_MAILER: log
       TRUSTED_PROXIES: "**" # TODO: This should be changed..

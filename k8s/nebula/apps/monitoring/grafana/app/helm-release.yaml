@@ -71,7 +71,7 @@ spec:
 
     ingress:
       enabled: true
-      ingressClassName: nginx
+      ingressClassName: external-nginx
       hosts:
         - &host grafana.skylab.fi
       tls:
