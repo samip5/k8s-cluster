@@ -30,6 +30,8 @@ spec:
       - key: "cm4"
         operator: "Exists"
         effect: ""
+    nodeSelector:
+      kubernetes.io/arch: amd64
   postgresql:
     parameters:
       max_connections: "600"
