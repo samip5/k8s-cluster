@@ -5,3 +5,4 @@ resources:
   - pvc.yaml
   - net-attach.yaml
   - helm-release.yaml
+  - volsync.yaml
