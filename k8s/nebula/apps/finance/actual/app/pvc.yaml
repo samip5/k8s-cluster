@@ -9,7 +9,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn
+  storageClassName: fast-ceph-filesystem
   resources:
     requests:
       storage: 1Gi
@@ -25,7 +25,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn
+  storageClassName: fast-ceph-filesystem
   resources:
     requests:
       storage: 1Gi

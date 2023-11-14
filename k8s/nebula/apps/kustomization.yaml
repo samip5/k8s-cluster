@@ -15,3 +15,4 @@ resources:
   - vpn
   - default
   - volsync
+  - finance
