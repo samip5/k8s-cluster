@@ -42,6 +42,7 @@ spec:
     image:
       repository: ghcr.io/immich-app/immich-server
       tag: v1.86.0
+    args: ["start-server.sh"]
     envFrom:
       - configMapRef:
           name: &configMap immich-configmap
