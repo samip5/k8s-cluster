@@ -57,6 +57,9 @@ spec:
       WEBSITE_EXTERNAL_LINKS: '[{"label":"Powered by Zipline","link":"https://github.com/diced/zipline"}]'
       WEBSITE_SHOW_VERSION: "true"
       WEBSITE_DISABLE_MEDIA_PREVIEW: "false"
+      OAUTH_AUTHENTIK_AUTHORIZE_URL: "https://id.skylab.fi/application/o/authorize/"
+      OAUTH_AUTHENTIK_USERINFO_URL: "https://id.skylab.fi/application/o/userinfo/"
+      OAUTH_AUTHENTIK_TOKEN_URL=https: "https://id.skylab.fi/application/o/token/"
     envFrom:
       - secretRef:
           name: zipline-secret
