@@ -16,3 +16,4 @@ resources:
   - default
   - volsync
   - finance
+  - comms
