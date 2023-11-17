@@ -42,6 +42,8 @@ spec:
       wal:
         compression: bzip2
         maxParallel: 4
+      data:
+        compression: bzip2
       destinationPath: s3://cnpg-main/
       endpointURL: https://s3.skym.fi
       serverName: &currentCluster postgres16-v1
