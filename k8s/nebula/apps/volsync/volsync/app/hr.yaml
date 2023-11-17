@@ -30,8 +30,20 @@ spec:
     manageCRDs: true
     metrics:
       disableAuth: true
-    nodeSelector:
-      kubernetes.io/arch: amd64
+#    nodeSelector:
+#      kubernetes.io/arch: amd64
+    image:
+      repository: registry.samipsolutions.fi/docker/zimbres/volsync
+    rclone:
+      repository: registry.samipsolutions.fi/docker/zimbres/volsync
+    restic:
+      repository: registry.samipsolutions.fi/docker/zimbres/volsync
+    rsync:
+      repository: registry.samipsolutions.fi/docker/zimbres/volsync
+    rsync-tls:
+      repository: registry.samipsolutions.fi/docker/zimbres/volsync
+    syncthing:
+      repository: registry.samipsolutions.fi/docker/zimbres/volsync
   postRenderers:
     - kustomize:
         patchesStrategicMerge:
