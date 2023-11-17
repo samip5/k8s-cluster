@@ -19,8 +19,6 @@ spec:
   dependsOn:
     - name: authentik
       namespace: security
-    - name: longhorn
-      namespace: storage
   values:
     image:
       repository: ghcr.io/matrix-org/synapse

@@ -5,8 +5,8 @@ metadata:
   namespace: comms
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 50Gi
-  storageClassName: longhorn
+  storageClassName: fast-ceph-filesystem
