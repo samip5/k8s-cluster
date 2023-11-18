@@ -33,17 +33,11 @@ spec:
 #    nodeSelector:
 #      kubernetes.io/arch: amd64
     image:
-      repository: registry.samipsolutions.fi/library/volsync
-    rclone:
-      repository: registry.samipsolutions.fi/library/volsync
+      repository: &image ghcr.io/onedr0p/volsync
+      tag: &tag 0.8.0
     restic:
-      repository: registry.samipsolutions.fi/library/volsync
-    rsync:
-      repository: registry.samipsolutions.fi/library/volsync
-    rsync-tls:
-      repository: registry.samipsolutions.fi/library/volsync
-    syncthing:
-      repository: registry.samipsolutions.fi/library/volsync
+      repository: *image
+      tag: *tag
   postRenderers:
     - kustomize:
         patchesStrategicMerge:
