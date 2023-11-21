@@ -33,7 +33,7 @@ spec:
         schedule: "@daily"
     image:
       repository: ghcr.io/buroa/qbittools
-      tag: v0.10.0
+      tag: v0.10.1
     args: [
       "orphaned",
       "--exclude-pattern", "*/manual/*",
