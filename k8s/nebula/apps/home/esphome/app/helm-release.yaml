@@ -51,7 +51,7 @@ spec:
           main:
             image:
               repository: ghcr.io/esphome/esphome
-              tag: 2023.11.2
+              tag: 2023.11.3
             resources:
               requests:
                 cpu: 5m
