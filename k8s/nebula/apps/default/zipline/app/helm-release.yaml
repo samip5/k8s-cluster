@@ -59,7 +59,7 @@ spec:
       WEBSITE_DISABLE_MEDIA_PREVIEW: "false"
       OAUTH_AUTHENTIK_AUTHORIZE_URL: "https://id.skylab.fi/application/o/authorize/"
       OAUTH_AUTHENTIK_USERINFO_URL: "https://id.skylab.fi/application/o/userinfo/"
-      OAUTH_AUTHENTIK_TOKEN_URL=https: "https://id.skylab.fi/application/o/token/"
+      OAUTH_AUTHENTIK_TOKEN_URL: "https://id.skylab.fi/application/o/token/"
     envFrom:
       - secretRef:
           name: zipline-secret
