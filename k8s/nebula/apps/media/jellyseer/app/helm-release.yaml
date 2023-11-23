@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.2.0
       interval: 30m
       sourceRef:
         kind: HelmRepository
@@ -26,68 +26,80 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  dependsOn:
-    - name: csi-driver-nfs
-      namespace: storage
   values:
-    controller:
-      strategy: Recreate
-    image:
-      repository: docker.io/fallenbagel/jellyseerr
-      tag: preview-pr184
-      #tag: 1.3.0
+    defaultPodOptions:
+      automountServiceAccountToken: false
+      tolerations:
+        - key: "cm4"
+          operator: "Exists"
+          effect: ""
 
-    dnsConfig:
-      options:
-        - name: ndots
-          value: "1"
+    controllers:
+      main:
+        type: statefulset
+        annotations:
+          reloader.stakater.com/auto: "true"
 
-    env:
-      LOG_LEVEL: "info"
-      PORT: 80
+        containers:
+          main:
+            image:
+              repository: docker.io/fallenbagel/jellyseerr
+              tag: preview-OIDC
+            env:
+              LOG_LEVEL: "info"
+              PORT: 8080
 
     service:
       main:
+        type: ClusterIP
         ports:
           http:
-            port: 80
+            port: 8080
 
     ingress:
       main:
         enabled: true
+        primary: true
         ingressClassName: "external-nginx"
         annotations:
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          external-dns.alpha.kubernetes.io/target: "r.home.skym.fi"
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.skylab.fi/css/base/jellyseerr/nord.css"></head>';
             sub_filter_once on;
         hosts:
-          - host: &host "requests.skylab.fi"
+        - host: &host "requests.skylab.fi"
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: main
+                port: http
+        tls:
+          - hosts:
+              - *host
+      internal:
+        enabled: true
+        ingressClassName: "internal-nginx"
+        annotations:
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        hosts:
+          - host: *host
             paths:
               - path: /
+                pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
 
+
     persistence:
       config:
         enabled: true
-        existingClaim: jellyseerr-config
-        mountPath: /app/config
-
-    resources:
-      requests:
-        memory: 443M
-      limits:
-        memory: 536M
-
-    affinity:
-      nodeAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            preference:
-              matchExpressions:
-                - key: kubernetes.io/arch
-                  operator: In
-                  values:
-                    - amd64
+        existingClaim: jellyseerr-config-v1
+        globalMounts:
+          - path: /app/config
