@@ -33,6 +33,16 @@ spec:
         - key: "cm4"
           operator: "Exists"
           effect: ""
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              preference:
+                matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                      - amd64
 
     controllers:
       main:
@@ -48,6 +58,11 @@ spec:
             env:
               LOG_LEVEL: "info"
               PORT: 8080
+            resources:
+              requests:
+                memory: 443M
+              limits:
+                memory: 536M
 
     service:
       main:
