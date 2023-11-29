@@ -10,3 +10,14 @@ spec:
   schedule: "@daily"
   cluster:
     name: postgres16
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: daily-backup-vector
+  namespace: databases
+spec:
+  backupOwnerReference: self
+  schedule: "@daily"
+  cluster:
+    name: postgres16-vector
