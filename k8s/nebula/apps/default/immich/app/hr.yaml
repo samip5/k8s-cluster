@@ -162,6 +162,11 @@ spec:
         ports:
           http:
             port: 8108
+      redis:
+        controller: redis
+        ports:
+          http:
+            port: 6379
     ingress:
       main:
         enabled: true
