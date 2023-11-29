@@ -117,7 +117,7 @@ spec:
               limits:
                 memory: 1056M
       typesense:
-        type: statefulset
+        type: deployment
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -148,8 +148,7 @@ spec:
 
 
     service:
-      server:
-        controller: main
+      main:
         ports:
           http:
             port: 3001
@@ -173,7 +172,7 @@ spec:
                 - path: /
                   pathType: Prefix
                   service:
-                    name: server
+                    name: main
                     port: 3001
       int:
         enabled: true
@@ -184,7 +183,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: server
+                  name: main
                   port: 3001
 
 
