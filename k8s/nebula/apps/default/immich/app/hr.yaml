@@ -192,6 +192,9 @@ spec:
                   service:
                     name: main
                     port: 3001
+        tls:
+          - hosts:
+              - *host
       int:
         enabled: true
         className: internal-nginx
@@ -216,6 +219,9 @@ spec:
                 service:
                   name: main
                   port: 3001
+        tls:
+          - hosts:
+              - *host
 
 
     persistence:
