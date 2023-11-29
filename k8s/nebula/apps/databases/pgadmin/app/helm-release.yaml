@@ -41,7 +41,7 @@ spec:
               tag: 8.0
             env:
               PGADMIN_DEFAULT_EMAIL: sm@${SECRET_DOMAIN}
-              PGADMIN_DEFAULT_PASSWORD: ${PASSWORD}
+              PGADMIN_DEFAULT_PASSWORD: ${SECRET_PASSWORD}
             resources:
               requests:
                 memory: 164M
