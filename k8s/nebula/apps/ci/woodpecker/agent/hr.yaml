@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: woodpecker
-      version: 0.4.2
+      version: 1.0.1
       sourceRef:
         kind: HelmRepository
         name: woodpecker
