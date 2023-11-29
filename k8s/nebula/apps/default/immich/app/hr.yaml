@@ -171,6 +171,19 @@ spec:
       main:
         enabled: true
         className: external-nginx
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/upstream-hash-by: "$client_ip"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            set $forwarded_client_ip "";
+            if ($http_x_forwarded_for ~ "^([^,]+)") {
+              set $forwarded_client_ip $1;
+            }
+            set $client_ip $remote_addr;
+            if ($forwarded_client_ip != "") {
+             set $client_ip $forwarded_client_ip;
+            }
         hosts:
           - host: &host "photos.skylab.fi"
             paths:
@@ -182,6 +195,19 @@ spec:
       int:
         enabled: true
         className: internal-nginx
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/upstream-hash-by: "$client_ip"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            set $forwarded_client_ip "";
+            if ($http_x_forwarded_for ~ "^([^,]+)") {
+              set $forwarded_client_ip $1;
+            }
+            set $client_ip $remote_addr;
+            if ($forwarded_client_ip != "") {
+             set $client_ip $forwarded_client_ip;
+            }
         hosts:
           - host: *host
             paths:
