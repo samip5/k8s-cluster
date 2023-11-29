@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: databases
 resources:
   - cluster16.yaml
+  - pgvecto.rs-cluster.yaml
   - prom-rule.yaml
   - scheduledbackup.yaml
 labels:

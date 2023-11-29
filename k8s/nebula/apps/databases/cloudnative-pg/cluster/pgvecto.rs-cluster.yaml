@@ -1,0 +1,66 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres16-vector
+  namespace: databases
+spec:
+  instances: 1
+  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:16
+  primaryUpdateStrategy: unsupervised
+  storage:
+    size: 20Gi
+    storageClass: local-path
+  superuserSecret:
+    name: cloudnative-pg-secret
+  enableSuperuserAccess: true
+  bootstrap:
+    initdb:
+      import:
+        type: monolith
+        databases: ["immich"]
+        roles: ["immich"]
+        source:
+          externalCluster: postgres16-v1
+  affinity:
+    enablePodAntiAffinity: true
+    topologyKey: kubernetes.io/hostname
+    podAntiAffinityType: required
+    tolerations:
+      - key: "cm4"
+        operator: "Exists"
+        effect: ""
+  postgresql:
+    parameters:
+      max_connections: "600"
+      shared_buffers: 512MB
+  monitoring:
+    enablePodMonitor: true
+  backup:
+    retentionPolicy: "30d"
+    barmanObjectStore:
+      wal:
+        compression: bzip2
+        maxParallel: 4
+      data:
+        compression: bzip2
+      destinationPath: s3://cnpg-main/
+      endpointURL: https://s3.skym.fi
+      serverName: &currentCluster postgres-vector-v1
+      s3Credentials:
+        accessKeyId:
+          name: cloudnative-pg-secret
+          key: aws-access-key-id
+        secretAccessKey:
+          name: cloudnative-pg-secret
+          key: aws-secret-access-key
+  externalClusters:
+    - name: postgres16-v1
+      connectionParameters:
+        host: postgres16-rw.databases.svc.cluster.local
+        user: postgres
+        dbname: postgres
+        sslmode: require
+      password:
+        name: cloudnative-pg-secret
+        key: password
