@@ -50,7 +50,7 @@ spec:
           main:
             image:
               repository: ghcr.io/paperless-ngx/paperless-ngx
-              tag: 2.0.0
+              tag: 2.0.1
             env:
               PAPERLESS_URL: https://${HOSTNAME}
               PAPERLESS_PORT: "8000"
