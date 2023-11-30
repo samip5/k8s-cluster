@@ -1,0 +1,49 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: paperless-restic
+  namespace: default
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: volsync-restic-template
+  target:
+    name: paperless-restic-secret
+    creationPolicy: Owner
+    template:
+      engineVersion: v2
+      data:
+        RESTIC_REPOSITORY: '{{ .REPOSITORY_TEMPLATE }}/paperless'
+        RESTIC_PASSWORD: '{{ .RESTIC_PASSWORD }}'
+        AWS_ACCESS_KEY_ID: '{{ .AWS_ACCESS_KEY_ID }}'
+        AWS_SECRET_ACCESS_KEY: '{{ .AWS_SECRET_ACCESS_KEY }}'
+  dataFrom:
+    - find:
+        name:
+          regexp: .*
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: paperless
+  namespace: default
+spec:
+  sourcePVC: paperless
+  trigger:
+    schedule: "0 7 * * *"
+  restic:
+    copyMethod: Snapshot
+    pruneIntervalDays: 7
+    repository: paperless-restic-secret
+    cacheCapacity: 8Gi
+    cacheStorageClassName: local-path
+    cacheAccessModes: ["ReadWriteOnce"]
+    volumeSnapshotClassName: longhorn-snapclass
+    storageClassName: longhorn-snapshot
+    moverSecurityContext:
+      runAsUser: 1026
+      runAsGroup: 100
+      fsGroup: 100
+    retain:
+      daily: 7
+      within: "3d"
