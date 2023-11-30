@@ -42,3 +42,4 @@ spec:
           parameters:
             numberOfReplicas: "2"
             dataLocality: disabled
+            defaultFsType: xfs
