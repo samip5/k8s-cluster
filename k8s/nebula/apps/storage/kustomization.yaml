@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ./rook-ceph
   - ./longhorn/ks.yaml
+  - ./longhorn/ks-recurring-jobs.yaml
