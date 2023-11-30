@@ -119,7 +119,7 @@ spec:
           nginx.ingress.kubernetes.io/auth-snippet: |
             proxy_set_header X-Forwarded-Host $http_host;
         hosts:
-          - hosts: "${HOSTNAME}"
+          - host: "${HOSTNAME}"
             paths:
               - path: /
                 service:
