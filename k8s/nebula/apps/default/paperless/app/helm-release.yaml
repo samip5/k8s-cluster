@@ -26,6 +26,7 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+
   values:
     defaultPodOptions:
       automountServiceAccountToken: false
@@ -99,6 +100,18 @@ spec:
                 pullPolicy: IfNotPresent
               ports:
                 - containerPort: 9998
+            redis:
+              image:
+                repository: public.ecr.aws/docker/library/redis
+                tag: 7.2.3
+              ports:
+                - containerPort: 6379
+              env:
+                REDIS_REPLICATION_MODE: master
+              envFrom:
+                - secretRef:
+                    name: immich-secret
+              command: [ "redis-server" ]
     service:
       main:
         ports:
