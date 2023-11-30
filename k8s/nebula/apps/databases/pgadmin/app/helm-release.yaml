@@ -42,6 +42,11 @@ spec:
             env:
               PGADMIN_DEFAULT_EMAIL: sm@${SECRET_DOMAIN}
               PGADMIN_DEFAULT_PASSWORD: ${SECRET_PASSWORD}
+            securityContext:
+              runAsUser: 5050
+              runAsGroup: 0
+              fsGroup: 0
+              fsGroupChangePolicy: OnRootMismatch
             resources:
               requests:
                 memory: 164M
