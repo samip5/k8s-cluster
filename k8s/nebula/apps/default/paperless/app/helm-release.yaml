@@ -93,25 +93,25 @@ spec:
               - "gotenberg"
               - "--chromium-disable-javascript=true"
               - "--chromium-allow-list=file:///tmp/.*"
-            tika:
-              image:
-                repository: ghcr.io/paperless-ngx/tika
-                tag: 2.9.0-minimal
-                pullPolicy: IfNotPresent
-              ports:
-                - containerPort: 9998
-            redis:
-              image:
-                repository: public.ecr.aws/docker/library/redis
-                tag: 7.2.3
-              ports:
-                - containerPort: 6379
-              env:
-                REDIS_REPLICATION_MODE: master
-              envFrom:
-                - secretRef:
-                    name: immich-secret
-              command: [ "redis-server" ]
+          tika:
+            image:
+              repository: ghcr.io/paperless-ngx/tika
+              tag: 2.9.0-minimal
+              pullPolicy: IfNotPresent
+            ports:
+              - containerPort: 9998
+          redis:
+            image:
+              repository: public.ecr.aws/docker/library/redis
+              tag: 7.2.3
+            ports:
+              - containerPort: 6379
+            env:
+              REDIS_REPLICATION_MODE: master
+            envFrom:
+              - secretRef:
+                  name: immich-secret
+            command: [ "redis-server" ]
     service:
       main:
         ports:
