@@ -16,6 +16,7 @@ spec:
     !/k8s/nebula
     !/k8s/base
     !/k8s/rbac
+    !/k8s/templates
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
