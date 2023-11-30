@@ -49,6 +49,7 @@ spec:
 
         containers:
           main:
+            order: 2
             image:
               repository: ghcr.io/paperless-ngx/paperless-ngx
               tag: 2.0.0
@@ -101,6 +102,7 @@ spec:
             ports:
               - containerPort: 9998
           redis:
+            order: 1
             image:
               repository: public.ecr.aws/docker/library/redis
               tag: 7.2.3
