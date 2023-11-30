@@ -4,3 +4,4 @@ namespace: volsync
 resources:
   - ./hr.yaml
   - ./prom-rule.yaml
+  - ./external-secret.yaml
