@@ -73,7 +73,8 @@ spec:
               PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://localhost:3000
               PAPERLESS_TIKA_ENDPOINT: http://localhost:9998
               PAPERLESS_TIME_ZONE: Europe/Helsinki
-              USERMAP_GID: "65542"
+              USERMAP_UID: "1026"
+              USERMAP_GID: "100"
             envFrom:
               - secretRef:
                   name: paperless-secret

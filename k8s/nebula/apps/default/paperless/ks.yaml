@@ -26,8 +26,8 @@ spec:
     substitute:
       APP: *appname
       HOSTNAME: paperless.skylab.fi
-      APP_UID: "1026"
-      APP_GID: "0"
+      APP_UID: "1000"
+      APP_GID: "100"
       VOLSYNC_CLAIM: paperless-data
       VOLSYNC_CAPACITY: 15Gi
 
