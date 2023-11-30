@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.3.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -27,91 +27,125 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    defaultPodOptions:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsUser: ${APP_UID}
+        runAsGroup: ${APP_GID}
+        fsGroup: ${APP_GID}
+        fsGroupChangePolicy: OnRootMismatch
+
     controller:
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/paperless-ngx/paperless-ngx
-      tag: 1.17.4
-    env:
-      PAPERLESS_CONSUMER_POLLING: 60
-      PAPERLESS_CONSUMER_RECURSIVE: "true"
-      PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: "true"
-      PAPERLESS_CONSUMPTION_DIR: /data/nas/consume
-      PAPERLESS_DATA_DIR: /library/data
-      PAPERLESS_ENABLE_HTTP_REMOTE_USER: "true"
-      PAPERLESS_EXPORT_DIR: /data/nas/export
-      PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME: HTTP_REMOTE_USER
-      PAPERLESS_MEDIA_ROOT: /library/media
-      PAPERLESS_OCR_LANGUAGES: fin eng
-      PAPERLESS_OCR_LANGUAGE: fin+eng
-      PAPERLESS_PORT: &port 80
-      PAPERLESS_REDIS: redis://localhost:6379
-      PAPERLESS_TASK_WORKERS: 2
-      PAPERLESS_TIKA_ENABLED: 1
-      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://localhost:3000
-      PAPERLESS_TIKA_ENDPOINT: http://localhost:9998
-      PAPERLESS_TIME_ZONE: Europe/Helsinki
-      PAPERLESS_URL: https://paperless.skylab.fi
-      PAPERLESS_DBENGINE: postgresql
-      PAPERLESS_DBPORT: "5432"
-      PAPERLESS_DBNAME: paperless
-      PAPERLESS_DBHOST: 192.168.2.2
-      USERMAP_UID: 1026
-      USERMAP_GID: 100
-    envFrom:
-      - secretRef:
-          name: paperless-secret
+      main:
+        strategy: Recreate
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        pod:
+          securityContext:
+            supplementalGroups:
+              - 65542
+
+        containers:
+          main:
+            image:
+              repository: ghcr.io/paperless-ngx/paperless-ngx
+              tag: 2.0.0
+            env:
+              PAPERLESS_URL: https://${HOSTNAME}
+              PAPERLESS_PORT: "8000"
+              PAPERLESS_CONSUMER_POLLING: 60
+              PAPERLESS_CONSUMER_RECURSIVE: "true"
+              PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: "true"
+              PAPERLESS_CONSUMPTION_DIR: /data/nas/consume
+              PAPERLESS_DATA_DIR: /library/data
+              PAPERLESS_EXPORT_DIR: /data/nas/export
+              PAPERLESS_ENABLE_HTTP_REMOTE_USER: "true"
+              PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME: HTTP_X_AUTHENTIK_USERNAME
+              PAPERLESS_MEDIA_ROOT: /library/media
+              PAPERLESS_OCR_LANGUAGES: fin eng
+              PAPERLESS_OCR_LANGUAGE: fin+eng
+              PAPERLESS_REDIS: redis://localhost:6379
+              PAPERLESS_TASK_WORKERS: 2
+              PAPERLESS_TIKA_ENABLED: 1
+              PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://localhost:3000
+              PAPERLESS_TIKA_ENDPOINT: http://localhost:9998
+              PAPERLESS_TIME_ZONE: Europe/Helsinki
+              USERMAP_GID: "65542"
+            envFrom:
+              - secretRef:
+                  name: paperless-secret
+            resources:
+              requests:
+                memory: 0.5Gi
+                cpu: 50m
+              limits:
+                memory: 2Gi
+          gotenberg:
+            image:
+              repository: gotenberg/gotenberg
+              tag: 7.10.1
+              pullPolicy: IfNotPresent
+            ports:
+              - containerPort: 3000
+            command:
+              - "gotenberg"
+              - "--chromium-disable-javascript=true"
+              - "--chromium-allow-list=file:///tmp/.*"
+            tika:
+              image:
+                repository: ghcr.io/paperless-ngx/tika
+                tag: 2.9.0-minimal
+                pullPolicy: IfNotPresent
+              ports:
+                - containerPort: 9998
     service:
       main:
         ports:
           http:
-            port: *port
+            port: 8000
+
     ingress:
       main:
         enabled: true
-        ingressClassName: internal-nginx
+        className: "internal-nginx"
         annotations:
-          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+          nginx.ingress.kubernetes.io/auth-url: |-
+            ak-outpost-authentik-embedded-outpost.security.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
+          nginx.ingress.kubernetes.io/auth-signin: |-
+            /outpost.goauthentik.io/start?rd=$escaped_request_uri
+          nginx.ingress.kubernetes.io/auth-response-headers: |-
+            Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid
+          nginx.ingress.kubernetes.io/auth-snippet: |
+            proxy_set_header X-Forwarded-Host $http_host;
         hosts:
-          - host: &host "{{ .Release.Name }}.skylab.fi"
+          - hosts: "${HOSTNAME}"
             paths:
               - path: /
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
-              - *host
+              - "${HOSTNAME}"
+
     persistence:
       library:
         enabled: true
-        existingClaim: paperless
-        mountPath: /library
+        existingClaim: "${VOLSYNC_CLAIM}"
+        globalMounts:
+          - path: /library
       nas-consume:
         enabled: true
-        mountPath: /data/nas/consume
         type: nfs
         server: "192.168.2.2"
         path: /volume3/Backups/k8s/paperless/incoming
+        globalMounts:
+          - path: /data/nas/consume
       nas-export:
         enabled: true
-        mountPath: /data/nas/export
         type: nfs
         server: "192.168.2.2"
         path: /volume3/Backups/k8s/paperless/export
-    resources:
-      requests:
-        memory: 1000Mi
-      limits:
-        memory: 5000Mi
-    sidecars:
-      gotenburg:
-        image: thecodingmachine/gotenberg:7.10.1
-        imagePullPolicy: IfNotPresent
-        env:
-          - { name: DISABLE_GOOGLE_CHROME, value: "1" }
-      redis:
-        image: public.ecr.aws/docker/library/redis:7.2.3
-        imagePullPolicy: IfNotPresent
-      tika:
-        image: ghcr.io/paperless-ngx/tika:2.9.0-full
-        imagePullPolicy: IfNotPresent
+        globalMounts:
+          - path: /data/nas/export

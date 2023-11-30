@@ -4,4 +4,4 @@ resources:
   - ./pvc.yaml
   - ./helm-release.yaml
   - ./secret.yaml
-  - ./volsync.yaml
+  - ../../../../../templates/volsync
