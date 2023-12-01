@@ -37,7 +37,7 @@ spec:
       strategy: Recreate
     image:
       repository: ghcr.io/koenkk/zigbee2mqtt
-      tag: 1.33.1
+      tag: 1.34.0
 
     env:
       TZ: Europe/Helsinki
