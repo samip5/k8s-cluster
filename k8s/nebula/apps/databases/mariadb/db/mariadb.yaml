@@ -15,6 +15,8 @@ spec:
   image: mariadb:11.0.3
   port: 3306
   replicas: 2
+  podSecurityContext:
+    runAsUser: 0
 
   galera:
     enabled: true
