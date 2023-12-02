@@ -12,7 +12,7 @@ spec:
     name: mariadb
     key: password
 
-  image: mariadb:11.0.3
+  image: mariadb:11.2.2
   port: 3306
   replicas: 2
   podSecurityContext:
