@@ -1,0 +1,12 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: databases
+resources:
+  - ./externalsecret.yaml
+  - ./externalsecret-store.yaml
+  - ./mariadb.yaml
+labels:
+  - pairs:
+      app.kubernetes.io/name: mariadb
+      app.kubernetes.io/part-of: mariadb
