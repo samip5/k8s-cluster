@@ -3,47 +3,10 @@ kind: MariaDB
 metadata:
   name: mariadb
 spec:
-  galera:
-    enabled: true
-    primary:
-      podIndex: 0
-      automaticFailover: true
-    sst: mariabackup
-    replicaThreads: 1
-    agent:
-      image:
-        repository: ghcr.io/mariadb-operator/agent
-        tag: "v0.0.2"
-        pullPolicy: IfNotPresent
-      port: 5555
-      kubernetesAuth:
-        enabled: true
-      gracefulShutdownTimeout: 5s
-    recovery:
-      enabled: true
-      clusterHealthyTimeout: 3m
-      clusterBootstrapTimeout: 10m
-      podRecoveryTimeout: 5m
-      podSyncTimeout: 5m
-    initContainer:
-      image:
-        repository: ghcr.io/mariadb-operator/init
-        tag: "v0.0.5"
-        pullPolicy: IfNotPresent
-    volumeClaimTemplate:
-      resources:
-        requests:
-          storage: 300Mi
-      accessModes:
-        - ReadWriteOnce
-      storageClassName: ceph-block
   rootPasswordSecretKeyRef:
     name: mariadb
     key: password
-  image:
-    repository: mariadb
-    tag: "11.0.3"
-    pullPolicy: IfNotPresent
+  image: "mariadb/11.0.3"
   port: 3306
   volumeClaimTemplate:
     resources:
@@ -61,10 +24,7 @@ spec:
       memory: 512Mi
   metrics:
     exporter:
-      image:
-        repository: prom/mysqld-exporter
-        tag: "v0.14.0"
-        pullPolicy: IfNotPresent
+      image: "prom/mysqld-exporter:v0.14.0"
       resources:
         requests:
           cpu: 50m
