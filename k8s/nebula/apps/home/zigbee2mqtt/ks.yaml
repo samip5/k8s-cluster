@@ -3,13 +3,15 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-z2m
+  name: &appname zigbee2mqtt
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  dependsOn:
-    - name: cluster-apps-mosquitto
+  targetNamespace: home
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *appname
   path: ./k8s/nebula/apps/home/zigbee2mqtt/app
   prune: true
   sourceRef:
@@ -24,3 +26,11 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
+  postBuild:
+    substitute:
+      APP: *appname
+      APP_UID: "568"
+      APP_GID: "568"
+      HOSTNAME: z2m.skylab.fi
+      VOLSYNC_CLAIM: z2m-data
+      VOLSYNC_CAPACITY: 300Mi

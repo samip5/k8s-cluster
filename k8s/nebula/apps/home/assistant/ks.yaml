@@ -3,11 +3,15 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-ha
+  name: &app home-assistant
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
+  targetNamespace: home
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   path: ./k8s/nebula/apps/home/assistant/app
   prune: true
   sourceRef:
@@ -19,4 +23,8 @@ spec:
   timeout: 5m
   postBuild:
     substitute:
-      APP:
+      APP: *app
+      APP_UID: "568"
+      APP_GID: "568"
+      VOLSYNC_CAPACITY: 10Gi
+      VOLSYNC_CLAIM: hass-config

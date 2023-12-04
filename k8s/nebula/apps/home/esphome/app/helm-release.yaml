@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.0.3
+      version: 2.3.0
       interval: 30m
       sourceRef:
         kind: HelmRepository
@@ -33,6 +33,13 @@ spec:
     defaultPodOptions:
       priorityClassName: home-cluster-critical
       automountServiceAccountToken: false
+      securityContext:
+        runAsUser: ${APP_UID}
+        runAsGroup: ${APP_GID}
+        fsGroup: ${APP_GID}
+        fsGroupChangePolicy: "OnRootMismatch"
+        supplementalGroups:
+          - 100
       annotations:
         k8s.v1.cni.cncf.io/networks: esphome-iot-static
       nodeSelector:

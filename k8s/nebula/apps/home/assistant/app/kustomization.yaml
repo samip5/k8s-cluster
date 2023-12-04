@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - ./externalsecret-store.yaml
   - ./externalsecret.yaml
-  - ./config-pvc.yaml
   - ./net-attach.yaml
   - ./helm-release.yaml
   - ./pdb.yaml
