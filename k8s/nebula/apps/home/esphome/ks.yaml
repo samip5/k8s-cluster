@@ -27,4 +27,4 @@ spec:
       APP_UID: "568"
       APP_GID: "568"
       VOLSYNC_CAPACITY: 10Gi
-      VOLSYNC_CLAIM: hass-config
+      VOLSYNC_CLAIM: esph-config
