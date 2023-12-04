@@ -65,5 +65,7 @@ spec:
       data:
         enabled: true
         existingClaim: "${VOLSYNC_CLAIM}"
-        globalMounts:
-          - path: /app
+        advancedMounts:
+          main:
+            main:
+              - path: /app
