@@ -29,7 +29,7 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      APP_UID: "568"
-      APP_GID: "568"
+      APP_UID: "1883" # mosquitto user
+      APP_GID: "1883"
       VOLSYNC_CAPACITY: 100Mi
       VOLSYNC_CLAIM: mosquitto-data
