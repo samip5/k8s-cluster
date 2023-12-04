@@ -95,7 +95,7 @@ spec:
 
     persistence:
       config:
-        existingClaim: esph-config-v1
+        existingClaim: "${VOLSYNC_CLAIM}"
         globalMounts:
           - path: /config
       esphome-cache:
