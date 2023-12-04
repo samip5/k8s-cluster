@@ -33,9 +33,9 @@ spec:
       priorityClassName: home-cluster-critical
       automountServiceAccountToken: false
       securityContext:
-        runAsUser: 568
-        runAsGroup: 568
-        fsGroup: 568
+        runAsUser: ${APP_UID}
+        runAsGroup: ${APP_GID}
+        fsGroup: ${APP_GID}
         fsGroupChangePolicy: "OnRootMismatch"
         supplementalGroups:
           - 100
@@ -133,7 +133,7 @@ spec:
           hajimari.io/icon: mdi:home-assistant
 
         hosts:
-          - host: &host "hass.skylab.fi"
+          - host: "${HOSTNAME}"
             paths:
               - path: /
                 pathType: Prefix
@@ -142,14 +142,14 @@ spec:
                   port: http
         tls:
           - hosts:
-              - *host
+              - "${HOSTNAME}"
       internal:
         enabled: true
         ingressClassName: "internal-nginx"
         annotations:
           nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
         hosts:
-          - host: *host
+          - host: "${HOSTNAME}"
             paths:
               - path: /
                 pathType: Prefix
@@ -158,7 +158,7 @@ spec:
                   port: http
         tls:
           - hosts:
-              - *host
+              - "${HOSTNAME}"
       internal-code:
         enabled: true
         ingressClassName: "internal-nginx"
@@ -180,7 +180,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: assistant-config-v1
+        existingClaim: "${VOLSYNC_CLAIM}"
         globalMounts:
           - path: /config
 
