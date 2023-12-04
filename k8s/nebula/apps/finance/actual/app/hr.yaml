@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.0.3
+      version: 2.3.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -40,12 +40,6 @@ spec:
             image:
               repository: ghcr.io/actualbudget/actual-server
               tag: 23.12.0
-            resources:
-              requests:
-                cpu: 12m
-                memory: 128M
-              limits:
-                memory: 512M
 
     service:
       main:
