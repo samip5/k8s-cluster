@@ -26,5 +26,6 @@ spec:
       APP: *app
       APP_UID: "568"
       APP_GID: "568"
+      HOSTNAME: hass.skylab.fi
       VOLSYNC_CAPACITY: 10Gi
       VOLSYNC_CLAIM: hass-config
