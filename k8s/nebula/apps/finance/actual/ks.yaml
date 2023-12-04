@@ -2,7 +2,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-actual
+  name: &app actual
   namespace: flux-system
 spec:
   interval: 10m
@@ -12,3 +12,12 @@ spec:
     kind: GitRepository
     name: flux-system
   wait: false # no flux ks dependents
+  postBuild:
+    substitute:
+      APP: *app
+      HOSTNAME: actual.skylab.fi
+      APP_UID: "568"
+      APP_GID: "568"
+      VOLSYNC_CLAIM: actual-data
+      VOLSYNC_CAPACITY: 15Gi
+      VOLSYNC_STORAGECLASS: ceph-block
