@@ -4,6 +4,6 @@ resources:
   - ./ns.yaml
   - ./priority-class.yaml
   - ./mosquitto/ks.yaml
-  - ./esphome/ks.yaml
+#  - ./esphome/ks.yaml
   - ./zigbee2mqtt/ks.yaml
-  - ./assistant/ks.yaml
+#  - ./assistant/ks.yaml
