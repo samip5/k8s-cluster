@@ -21,3 +21,4 @@ spec:
       VOLSYNC_CLAIM: actual-data
       VOLSYNC_CAPACITY: 15Gi
       VOLSYNC_STORAGECLASS: ceph-block
+      VOLSYNC_SNAPSHOTCLASS: csi-ceph-blockpool
