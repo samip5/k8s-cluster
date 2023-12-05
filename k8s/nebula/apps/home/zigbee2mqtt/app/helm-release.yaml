@@ -81,6 +81,8 @@ spec:
               ZIGBEE2MQTT_CONFIG_MQTT_VERSION: 5
               ZIGBEE2MQTT_CONFIG_PERMIT_JOIN: "false"
               ZIGBEE2MQTT_CONFIG_SERIAL_PORT: tcp://192.168.2.112:6638
+              ZIGBEE2MQTT_CONFIG_DEVICES: devices.yaml
+              ZIGBEE2MQTT_CONFIG_GROUPS: groups.yaml
             envFrom:
               - secretRef:
                   name: z2m-secret
@@ -88,6 +90,22 @@ spec:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities: { drop: [ "ALL" ] }
+          code:
+            image:
+              repository: ghcr.io/coder/code-server
+              tag: 4.19.1
+            env:
+              TZ: "Europe/Helsinki"
+            args:
+              - --auth
+              - "none"
+              - --user-data-dir
+              - "/data/.vscode"
+              - --extensions-dir
+              - "/data/.vscode"
+              - --port
+              - "8081"
+              - "/data"
         pod:
           securityContext:
             runAsUser: ${APP_UID}
@@ -100,6 +118,12 @@ spec:
         ports:
           http:
             port: 8080
+      code:
+        type: ClusterIP
+        controller: main
+        ports:
+          http:
+            port: 8081
 
     ingress:
       main:
@@ -116,6 +140,20 @@ spec:
         tls:
           - hosts:
               - "${HOSTNAME}"
+      code:
+        enabled: true
+        ingressClassName: "internal-nginx"
+        hosts:
+          - host: &code-host "z2m-code.skylab.fi"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *code-host
 
     persistence:
       data:
