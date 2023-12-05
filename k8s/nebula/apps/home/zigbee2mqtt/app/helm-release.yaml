@@ -149,7 +149,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  name: code
                   port: http
         tls:
           - hosts:
