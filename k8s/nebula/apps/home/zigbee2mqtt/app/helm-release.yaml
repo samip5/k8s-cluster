@@ -70,6 +70,7 @@ spec:
               ZIGBEE2MQTT_CONFIG_DEVICE_OPTIONS_LEGACY: "false"
               ZIGBEE2MQTT_CONFIG_DEVICE_OPTIONS_RETAIN: "true"
               ZIGBEE2MQTT_CONFIG_EXPERIMENTAL_NEW_API: "true"
+              ZIGBEE2MQTT_CONFIG_FRONTEND: "false"
               ZIGBEE2MQTT_CONFIG_FRONTEND_PORT: &port 8080
               ZIGBEE2MQTT_CONFIG_FRONTEND_URL: https://${HOSTNAME}
               ZIGBEE2MQTT_CONFIG_HOMEASSISTANT: "true"
@@ -80,6 +81,9 @@ spec:
               ZIGBEE2MQTT_CONFIG_MQTT_VERSION: 5
               ZIGBEE2MQTT_CONFIG_PERMIT_JOIN: "false"
               ZIGBEE2MQTT_CONFIG_SERIAL_PORT: tcp://192.168.2.112:6638
+            envFrom:
+              - secretRef:
+                  name: z2m-secret
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
