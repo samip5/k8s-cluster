@@ -1,0 +1,10 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "packageRules": [
+    {
+      "description": "Pin qbittorrent on tracker allowed versions",
+      "matchDatasources": ["docker"],
+      "allowedVersions": "<=4.5.5",
+      "matchPackagePatterns": ["qbittorrent"]
+    }]
+}
