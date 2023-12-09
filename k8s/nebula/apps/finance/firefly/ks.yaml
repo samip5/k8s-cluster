@@ -6,6 +6,10 @@ metadata:
   labels:
     component.skylab.fi/part-of: definitions
 spec:
+  targetNamespace: finance
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   path: ./k8s/nebula/apps/finance/firefly/app
   prune: true
   sourceRef:
