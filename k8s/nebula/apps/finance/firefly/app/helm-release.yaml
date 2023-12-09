@@ -51,7 +51,7 @@ spec:
         containers:
           main:
             image:
-              repository: registry.samipsolutions.fi/dcoker/fireflyiii/core
+              repository: registry.samipsolutions.fi/docker/fireflyiii/core
               tag: version-6.0.30
             env:
               TZ: Europe/Helsinki
