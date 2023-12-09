@@ -84,29 +84,30 @@ spec:
                 memory: 17408Mi
 
 
-    #service:
-    #  main:
-    #    type: LoadBalancer
-    #    externalTrafficPolicy: Cluster
-    #    ipFamilyPolicy: RequireDualStack
-    #    annotations:
-    #      io.cilium/lb-ipam-ips: 192.168.10.11,2001:14ba:16eb:6f00::4b:11
-    #    ports:
-    #      http:
-    #        enabled: false
-    #      query:
-    #        enabled: true
-    #        port: 15777
-    #        protocol: UDP
-    #      beacon:
-    #        enabled: true
-    #        port: 15000
-    #        protocol: UDP
-    #      game:
-    #        enabled: true
-    #        primary: true
-    #        port: 7777
-    #        protocol: UDP
+    service:
+      main:
+        enabled: false
+        type: LoadBalancer
+        externalTrafficPolicy: Cluster
+        ipFamilyPolicy: RequireDualStack
+        annotations:
+          io.cilium/lb-ipam-ips: 192.168.10.11,2001:14ba:16eb:6f00::4b:11
+        ports:
+          http:
+            enabled: false
+          query:
+            enabled: true
+            port: 15777
+            protocol: UDP
+          beacon:
+            enabled: true
+            port: 15000
+            protocol: UDP
+          game:
+            enabled: true
+            primary: true
+            port: 7777
+            protocol: UDP
 
     ingress:
       main:
