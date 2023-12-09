@@ -27,8 +27,8 @@ spec:
     substitute:
       APP: *app
       HOSTNAME: cash.skylab.fi
-      APP_UID: "568"
-      APP_GID: "568"
+      APP_UID: "0" # Damn it
+      APP_GID: "0" # Damn it
       VOLSYNC_CLAIM: firefly-data
       VOLSYNC_CAPACITY: 5Gi
       VOLSYNC_STORAGECLASS: ceph-block
