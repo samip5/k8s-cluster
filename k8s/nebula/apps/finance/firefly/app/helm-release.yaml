@@ -118,4 +118,4 @@ spec:
         advancedMounts:
           main:
             main:
-              - path: /var/www/html/firefly-iii/storage/upload
+              - path: /var/www/html/storage
