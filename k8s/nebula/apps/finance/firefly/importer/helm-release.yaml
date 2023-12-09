@@ -9,36 +9,63 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.3.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      interval: 30m
-
+  maxHistory: 3
   install:
     createNamespace: true
     remediation:
-      retries: 5
+      retries: 3
   upgrade:
+    cleanupOnFail: true
     remediation:
-      retries: 5
-
+      retries: 3
+  uninstall:
+    keepHistory: false
   values:
-    global:
-      nameOverride: *app
-    image:
-      repository: fireflyiii/data-importer
-      tag: version-1.3.8
+    controllers:
+      main:
+        pod:
+          automountServiceAccountToken: false
+          enableServiceLinks: false
+          annotations:
+            reloader.stakater.com/auto: "true"
+
+        containers:
+          main:
+            image:
+              repository: registry.samipsolutions.fi/docker/fireflyiii/data-importer
+              tag: version-1.3.12
+            env:
+              TRUSTED_PROXIES: "**"
+              FIREFLY_III_URL: "http://firefly-iii.finance.svc.cluster.local:8080"
+              VANITY_URL: cash-data-importer.skylab.fi
+              FIREFLY_III_ACCESS_TOKEN:
+                valueFrom:
+                  secretKeyRef:
+                    name: firefly-importer-secret
+                    key: IMPORTER
+            envFrom:
+              - secretRef:
+                  name: firefly-secret
+            resources:
+              requests:
+                cpu: 100m
+                memory: 256Mi
+
     service:
       main:
         ports:
           http:
             port: 8080
+
     ingress:
       main:
         enabled: true
-        ingressClassName: "internal-nginx"
+        className: "internal-nginx"
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/icon: "foundation:page-export-csv"
@@ -47,21 +74,9 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
-    dependsOn:
-      - name: firefly-iii
-        namespace: finance
-    envFrom:
-      - secretRef:
-          name: firefly-secret
-    env:
-      TRUSTED_PROXIES: "**"
-      FIREFLY_III_URL: "http://firefly-iii.finance.svc.cluster.local:8080"
-      VANITY_URL: *host
-      FIREFLY_III_ACCESS_TOKEN:
-        valueFrom:
-          secretKeyRef:
-            name: firefly-importer-secret
-            key: IMPORTER
