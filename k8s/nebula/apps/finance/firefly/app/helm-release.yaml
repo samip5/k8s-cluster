@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.3.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -25,54 +25,70 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    initContainers:
-      01-init-db:
-        image: ghcr.io/onedr0p/postgres-init:15.5
-        imagePullPolicy: IfNotPresent
-        envFrom: &envFrom
-          - secretRef:
-              name: firefly-secret
-    controller:
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: fireflyiii/core
-      tag: version-6.0.23
+    controllers:
+      main:
+        pod:
+          automountServiceAccountToken: false
+          enableServiceLinks: false
+          securityContext:
+            runAsUser: ${APP_UID}
+            runAsGroup: ${APP_GID}
+            fsGroup: ${APP_GID}
+            fsGroupChangePolicy: "OnRootMismatch"
+          annotations:
+            reloader.stakater.com/auto: "true"
+
+        initContainers:
+          01-init-db:
+            image: ghcr.io/onedr0p/postgres-init:16.0
+            imagePullPolicy: IfNotPresent
+            envFrom:
+              - secretRef:
+                  name: firefly-init-secret
+
+        containers:
+          main:
+            image:
+              repository: registry.samipsolutions.fi/dcoker/fireflyiii/core
+              tag: version-6.0.30
+            env:
+              TZ: Europe/Helsinki
+              APP_URL: "https://${HOSTNAME}"
+              APP_ENV: "production"
+              DB_CONNECTION: "pgsql"
+              DB_HOST: postgres16-rw.databases.svc.cluster.local
+              DB_PORT: "5432"
+              MAIL_MAILER: log
+              TRUSTED_PROXIES: "**" # TODO: This should be changed..
+              SEND_REGISTRATION_MAIL: false
+              SEND_ERROR_MESSAGE: false
+              SEND_LOGIN_NEW_IP_WARNING: false
+              COOKIE_DOMAIN: "${HOSTNAME}"
+              COOKIE_SECURE: "true"
+              COOKIE_SAMESITE: "lax"
+              AUTHENTICATION_GUARD: "remote_user_guard"
+              AUTHENTICATION_GUARD_HEADER: "X-authentik-uid"
+              AUTHENTICATION_GUARD_EMAIL: "X-authentik-email"
+              # Requires version 6.0.21.
+              # FIREFLY_III_LAYOUT: v2
+            envFrom:
+              - secretRef:
+                  name: firefly-secret
+            resources:
+              requests:
+                cpu: 100m
+                memory: 256Mi
+
     service:
       main:
         ports:
           http:
             port: 8080
-    env:
-      TZ: Europe/Helsinki
-      APP_URL: "https://cash.skylab.fi"
-      APP_ENV: "production"
-      DB_CONNECTION: "pgsql"
-      DB_HOST: postgres16-rw.databases.svc.cluster.local
-      DB_PORT: "5432"
-      MAIL_MAILER: log
-      TRUSTED_PROXIES: "**" # TODO: This should be changed..
-      SEND_REGISTRATION_MAIL: false
-      SEND_ERROR_MESSAGE: false
-      SEND_LOGIN_NEW_IP_WARNING: false
-      COOKIE_DOMAIN: "cash.skylab.fi"
-      COOKIE_SECURE: "true"
-      COOKIE_SAMESITE: "lax"
-      AUTHENTICATION_GUARD: "remote_user_guard"
-      AUTHENTICATION_GUARD_HEADER: "X-authentik-uid"
-      AUTHENTICATION_GUARD_EMAIL: "X-authentik-email"
-      # Requires version 6.0.21.
-      # FIREFLY_III_LAYOUT: v2
-    envFrom: *envFrom
-    persistence:
-      config:
-        enabled: true
-        existingClaim: firefly-config-v1
-        mountPath: /var/www/html/firefly-iii/storage/upload
+
     ingress:
       main:
         enabled: true
-        ingressClassName: "internal-nginx"
+        className: "internal-nginx"
         annotations:
           hajimari.io/icon: mdi:cash
           nginx.ingress.kubernetes.io/auth-url: |-
@@ -84,14 +100,20 @@ spec:
           nginx.ingress.kubernetes.io/auth-snippet: |
             proxy_set_header X-Forwarded-Host $http_host;
         hosts:
-          - host: &host "cash.skylab.fi"
+          - host: "${HOSTNAME}"
             paths:
               - path: /
-                pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
-              - *host
-    resources:
-      requests:
-        cpu: 100m
-        memory: 256Mi
+              - "${HOSTNAME}"
+    persistence:
+      data:
+        enabled: true
+        existingClaim: "${VOLSYNC_CLAIM}"
+        advancedMounts:
+          main:
+            main:
+              - path: /var/www/html/firefly-iii/storage/upload
