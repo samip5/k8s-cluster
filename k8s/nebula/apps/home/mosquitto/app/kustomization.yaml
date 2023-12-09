@@ -4,7 +4,6 @@ namespace: home
 resources:
   - ./helm-release.yaml
 #  - ./secret.sops.yaml
-  - ../../../../../templates/volsync
 labels:
   - pairs:
       app.kubernetes.io/name: mosquitto
