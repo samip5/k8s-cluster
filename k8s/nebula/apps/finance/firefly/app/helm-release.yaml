@@ -40,7 +40,9 @@ spec:
 
         initContainers:
           01-init-db:
-            image: ghcr.io/onedr0p/postgres-init:16.0
+            image:
+             repository: ghcr.io/onedr0p/postgres-init
+             tag: 16.0
             imagePullPolicy: IfNotPresent
             envFrom:
               - secretRef:
