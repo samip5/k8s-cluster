@@ -2,10 +2,10 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: postgres16-vector
+  name: cluster16-vector
   namespace: databases
 spec:
-  instances: 1
+  instances: 2
   imageName: ghcr.io/bo0tzz/cnpgvecto.rs:16
   primaryUpdateStrategy: unsupervised
   storage:
@@ -14,14 +14,14 @@ spec:
   superuserSecret:
     name: cloudnative-pg-secret
   enableSuperuserAccess: true
-  #bootstrap:
-  #  initdb:
-  #    import:
-  #      type: monolith
-  #      databases: ["immich"]
-  #      roles: ["immich"]
-  #      source:
-  #        externalCluster: postgres16-v1
+  bootstrap:
+    initdb:
+      import:
+        type: monolith
+        databases: ["immich"]
+        roles: ["immich"]
+        source:
+          externalCluster: postgres16-v1
   affinity:
     enablePodAntiAffinity: true
     topologyKey: kubernetes.io/hostname
@@ -31,6 +31,8 @@ spec:
         operator: "Exists"
         effect: ""
   postgresql:
+    shared_preload_libraries:
+      - "vectors.so"
     parameters:
       max_connections: "600"
       shared_buffers: 512MB
@@ -54,13 +56,13 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-secret
           key: aws-secret-access-key
-  #externalClusters:
-  #  - name: postgres16-v1
-  #    connectionParameters:
-  #      host: postgres16-rw.databases.svc.cluster.local
-  #      user: postgres
-  #      dbname: postgres
-  #      sslmode: require
-  #    password:
-  #      name: cloudnative-pg-secret
-  #      key: password
+  externalClusters:
+    - name: postgres16-v1
+      connectionParameters:
+        host: postgres16-rw.databases.svc.cluster.local
+        user: postgres
+        dbname: postgres
+        sslmode: require
+      password:
+        name: cloudnative-pg-secret
+        key: password

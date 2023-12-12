@@ -9,4 +9,4 @@ spec:
   backupOwnerReference: self
   schedule: "@daily"
   cluster:
-    name: postgres16
+    name: postgres16-vector
