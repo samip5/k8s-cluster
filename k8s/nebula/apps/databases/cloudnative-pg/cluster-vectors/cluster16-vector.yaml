@@ -14,14 +14,14 @@ spec:
   superuserSecret:
     name: cloudnative-pg-secret
   enableSuperuserAccess: true
-  bootstrap:
-    initdb:
-      import:
-        type: monolith
-        databases: ["immich"]
-        roles: ["immich"]
-        source:
-          externalCluster: postgres16-v1
+  #bootstrap:
+  #  initdb:
+  #    import:
+  #      type: monolith
+  #      databases: ["immich"]
+  #      roles: ["immich"]
+  #      source:
+  #        externalCluster: postgres16-v1
   affinity:
     enablePodAntiAffinity: true
     topologyKey: kubernetes.io/hostname
@@ -56,13 +56,13 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-secret
           key: aws-secret-access-key
-  externalClusters:
-    - name: postgres16-v1
-      connectionParameters:
-        host: postgres16-rw.databases.svc.cluster.local
-        user: postgres
-        dbname: postgres
-        sslmode: require
-      password:
-        name: cloudnative-pg-secret
-        key: password
+  #externalClusters:
+  #  - name: postgres16-v1
+  #    connectionParameters:
+  #      host: postgres16-rw.databases.svc.cluster.local
+  #      user: postgres
+  #      dbname: postgres
+  #      sslmode: require
+  #    password:
+  #      name: cloudnative-pg-secret
+  #      key: password
