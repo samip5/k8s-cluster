@@ -33,7 +33,7 @@ spec:
       AVATAR_2X_URL: https://avatars.githubusercontent.com/u/1703002?v=4
       AVATAR_ALT: Skyler Mäntysaari
       NAME: Skyler Mäntysaari
-      BIO: "Hobbyist developer | Gamer | #ActuallyAutistic | I.T-student at Turku University of Applied Sciences. | AS213021 network operator"
+      BIO: "Hobbyist developer | Gamer | #ActuallyAutistic | I.T-student"
       BUTTON_ORDER: Website,GITHUB,GITLAB,GITEA,LINKED_IN,MATRIX,DISCORD,TELEGRAM
       GITHUB: https://github.com/samip5
       GITLAB: https://gitlab.com/samip5
