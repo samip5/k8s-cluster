@@ -12,9 +12,5 @@ data:
   NODE_ENV: "production"
   REDIS_PORT: "6379"
   REDIS_DBINDEX: "0"
-  TYPESENSE_HOST: immich-typesense.default.svc.cluster.local
-  TYPESENSE_PORT: "8108"
-  TYPESENSE_PROTOCOL: http
-  TYPESENSE_DATA_DIR: /config
   IMMICH_SERVER_URL: http://immich.default.svc.cluster.local:3001
   IMMICH_MACHINE_LEARNING_URL: http://immich-ml.default.svc.cluster.local:3003
