@@ -32,7 +32,7 @@ spec:
         containers:
           main:
             image:
-              repository: registy.samipsolutions.fi/docker/traefik/whoami
+              repository: registry.samipsolutions.fi/docker/traefik/whoami
               tag: v1.10.1
             resources:
               requests:
