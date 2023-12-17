@@ -127,9 +127,3 @@ spec:
           - path: /config/config
             subPath: config.cfg
             readOnly: true
-      secret:
-        enabled: true
-        type: secret
-        name: radicale-secret
-        globalMounts:
-          - path: /config/secret
