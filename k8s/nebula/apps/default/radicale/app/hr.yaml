@@ -38,7 +38,7 @@ spec:
           main:
             image:
               repository: registry.samipsolutions.fi/library/radicale
-              tag: 3.2.0.a3
+              tag: 3.2.0.a3@sha256:cfb8673ebc405247eedc4f85b2f3b9b144782df08ee9bfd27919a708f5244851
             resources:
               requests:
                 cpu: 15m
