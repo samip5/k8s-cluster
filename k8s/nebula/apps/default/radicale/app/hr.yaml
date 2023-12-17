@@ -110,6 +110,10 @@ spec:
 
             [auth]
             type = remote_user
+            
+            [logging]
+            level = debug
+            mask_passwords = True
 
             [storage]
             filesystem_folder = /data/collections
