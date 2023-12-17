@@ -10,7 +10,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *appname
-  path: ./k8s/nebula/apps/default/paperless/app
+  path: ./k8s/nebula/apps/default/radicale/app
   prune: true
   wait: false
   sourceRef:
