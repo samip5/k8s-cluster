@@ -1,0 +1,109 @@
+---
+# yaml-language-server: $schema=https://github.com/fluxcd-community/flux2-schemas/raw/main/helmrelease-helm-v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app whoami
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controllers:
+      main:
+        replicas: 2
+        containers:
+          main:
+            image:
+              repository: registy.samipsolutions.fi/docker/traefik/whoami
+              tag: v1.10.1
+            resources:
+              requests:
+                cpu: 10m
+                memory: 16Mi
+              limits:
+                cpu: 100m
+                memory: 32Mi
+        pod:
+          enableServiceLinks: false
+          topologySpreadConstraints:
+            - maxSkew: 1
+              topologyKey: kubernetes.io/hostname
+              whenUnsatisfiable: DoNotSchedule
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/name: *app
+
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+    ingress:
+      main:
+        enabled: true
+        className: external-nginx
+        annotations:
+          external-dns.alpha.kubernetes.io/target: r.home.skym.fi
+          hajimari.io/appName: "Who Am I?"
+          hajimari.io/icon: mdi:id-card-outline
+          nginx.ingress.kubernetes.io/auth-url: |-
+            http://ak-outpost-authentik-embedded-outpost.security.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
+          nginx.ingress.kubernetes.io/auth-signin: |-
+            https://who.skylab.fi/outpost.goauthentik.io/start?rd=$escaped_request_uri
+          nginx.ingress.kubernetes.io/auth-response-headers: |-
+            Set-Cookie,X-authentik-username,X-authentik-uid,X-authentik-email
+          nginx.ingress.kubernetes.io/auth-snippet: |
+            proxy_set_header X-Forwarded-Host $http_host;
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header HTTP_X_REMOTE_USER $http_x_authentik_username;
+        hosts:
+          - host: &host who.skylab.fi
+            paths:
+              - path: /
+                service:
+                  name: main
+        tls:
+          - hosts:
+              - *host
+      int:
+        enabled: true
+        className: internal-nginx
+        annotations:
+          hajimari.io/appName: "Who Am I?"
+          hajimari.io/icon: mdi:id-card-outline
+          nginx.ingress.kubernetes.io/auth-url: |-
+            http://ak-outpost-authentik-embedded-outpost.security.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
+          nginx.ingress.kubernetes.io/auth-signin: |-
+            https://who.skylab.fi/outpost.goauthentik.io/start?rd=$escaped_request_uri
+          nginx.ingress.kubernetes.io/auth-response-headers: |-
+            Set-Cookie,X-authentik-username,X-authentik-uid,X-authentik-email
+          nginx.ingress.kubernetes.io/auth-snippet: |
+            proxy_set_header X-Forwarded-Host $http_host;
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header HTTP_X_REMOTE_USER $http_x_authentik_username;
+        hosts:
+          - host: &host who.skylab.fi
+            paths:
+              - path: /
+                service:
+                  name: main
+        tls:
+          - hosts:
+              - *host

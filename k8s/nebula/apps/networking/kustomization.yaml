@@ -11,3 +11,4 @@ resources:
   - ./external-dns/ks-shared.yaml
   - ./external-dns/ks-external.yaml
   - ./external-dns/ks-internal.yaml
+  - ./whoami/ks.yaml
