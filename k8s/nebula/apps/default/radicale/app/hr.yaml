@@ -109,7 +109,7 @@ spec:
             hosts = 0.0.0.0:5232
 
             [auth]
-            type = http_x_remote_user
+            type = remote_user
 
             [storage]
             filesystem_folder = /data/collections
