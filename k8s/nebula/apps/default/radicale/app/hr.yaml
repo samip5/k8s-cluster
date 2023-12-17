@@ -113,7 +113,7 @@ spec:
             hosts = 0.0.0.0:5232
 
             [auth]
-            type = remote_user
+            type = http_x_remote_user
             
             [logging]
             level = debug
