@@ -72,8 +72,6 @@ spec:
             Set-Cookie,X-authentik-username,X-authentik-uid,X-authentik-email
           nginx.ingress.kubernetes.io/auth-snippet: |
             proxy_set_header X-Forwarded-Host $http_host;
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            proxy_set_header HTTP_X_REMOTE_USER $http_x_authentik_username;
         hosts:
           - host: &host who.skylab.fi
             paths:
