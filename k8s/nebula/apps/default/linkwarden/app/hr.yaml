@@ -40,7 +40,9 @@ spec:
             fsGroupChangePolicy: OnRootMismatch
         initContainers:
           01-init-db:
-            image: ghcr.io/onedr0p/postgres-init:16.1
+            image:
+             repository: ghcr.io/onedr0p/postgres-init
+             tag: 16.1
             envFrom:
               - secretRef:
                   name: linkwarden-init-secret
