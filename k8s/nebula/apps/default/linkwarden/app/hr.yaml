@@ -38,6 +38,8 @@ spec:
             runAsGroup: ${APP_GID}
             fsGroup: ${APP_GID}
             fsGroupChangePolicy: OnRootMismatch
+        annotations:
+          reloader.stakater.com/auto: "true"
         initContainers:
           01-init-db:
             image:
