@@ -212,7 +212,7 @@ spec:
       ingress:
         enabled: true
         pathType: Prefix
-        ingressClassName: "nginx"
+        ingressClassName: "internal-nginx"
         hosts:
           - "prom.skylab.fi"
         tls:
