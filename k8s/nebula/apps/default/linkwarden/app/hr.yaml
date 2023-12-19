@@ -61,7 +61,6 @@ spec:
                 memory: 1Gi
             env:
               NEXTAUTH_URL: https://${HOSTNAME}
-              STORAGE_FOLDER: "/config"
               NEXT_PUBLIC_AUTHENTIK_ENABLED: "true"
             envFrom:
               - secretRef:
@@ -102,8 +101,8 @@ spec:
           - hosts:
               - "${HOSTNAME}"
     persistence:
-      config:
+      data:
         enabled: true
         existingClaim: "${VOLSYNC_CLAIM}"
         globalMounts:
-          - path: /config
+          - path: /data
