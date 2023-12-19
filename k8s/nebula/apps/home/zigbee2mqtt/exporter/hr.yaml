@@ -40,7 +40,7 @@ spec:
               MQTT_TOPIC: "zigbee2mqtt/#"
               MQTT_V5_PROTOCOL: "true"
               PROMETHEUS_PORT: &port 3321
-              # PROMETHEUS_PREFIX: "mqtt_"
+              PROMETHEUS_PREFIX: "mqtt_"
               ZIGBEE2MQTT_AVAILABILITY: "True"
             resources:
               requests:
@@ -60,8 +60,8 @@ spec:
         type: ClusterIP
         externalTrafficPolicy: Cluster
         ipFamilyPolicy: PreferDualStack
-    # serviceMonitor:
-    #   main:
-    #     enabled: true
-    #     endpoints:
-    #       - port: metrics
+    serviceMonitor:
+       main:
+         enabled: true
+         endpoints:
+           - port: metrics
