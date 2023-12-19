@@ -61,7 +61,7 @@ spec:
                 memory: 1Gi
             env:
               NEXTAUTH_URL: https://${HOSTNAME}
-              STORAGE_FOLDER: "config"
+              STORAGE_FOLDER: "\"config\""
               NEXT_PUBLIC_AUTHENTIK_ENABLED: "true"
             envFrom:
               - secretRef:
