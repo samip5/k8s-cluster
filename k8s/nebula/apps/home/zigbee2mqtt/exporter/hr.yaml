@@ -4,6 +4,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: &app mqtt-exporter
+  namespace: home
 spec:
   interval: 30m
   chart:
@@ -58,8 +59,6 @@ spec:
             protocol: HTTP
             port: *port
         type: ClusterIP
-        externalTrafficPolicy: Cluster
-        ipFamilyPolicy: PreferDualStack
     serviceMonitor:
        main:
          enabled: true
