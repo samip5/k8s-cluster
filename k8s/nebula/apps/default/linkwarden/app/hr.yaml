@@ -107,3 +107,9 @@ spec:
         existingClaim: "${VOLSYNC_CLAIM}"
         globalMounts:
           - path: /config
+      next-cache:
+        enabled: true
+        type: emptyDir
+        globalMounts:
+          - path: /data/.next/cache
+
