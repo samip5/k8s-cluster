@@ -79,6 +79,19 @@ spec:
         tls:
           - hosts:
               - *host
+      int:
+        enabled: true
+        className: internal-nginx
+        hosts:
+          - host: &host "{{ .Release.Name }}.skylab.fi"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
     persistence:
       config-file:
         type: configMap
