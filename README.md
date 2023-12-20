@@ -8,6 +8,13 @@ _... managed with Flux, Renovate, and GitHub Actions_ 🤖
 
 </div>
 
+<div align="center">
+
+[![Kubernetes](https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsamip5%2Fk8s-cluster%2Fmain%2Fk8s%2Fbase%2Fsystem-upgrade%2Fsystem-upgrade-controller%2Fplans%2Fserver-plan.yaml&query=spec.version&style=for-the-badge&logo=kubernetes&logoColor=white&label=%20)](https://k3s.io/)&nbsp;&nbsp;
+[![Renovate](https://img.shields.io/github/actions/workflow/status/samip5/k8s-cluster/schedule-renovate.yaml?branch=main&label=&logo=renovatebot&style=for-the-badge&color=blue)](https://github.com/samip5/k8s-cluster/actions/workflows/schedule-renovate.yaml)
+
+</div>
+
 
 <div align="center">
 
@@ -58,6 +65,24 @@ _... managed with Flux, Renovate, and GitHub Actions_ 🤖
 
 All nodes are connected to a dual-stack network, with private IPv4 and public IPv6. 
 Kubernetes nodes are on their own VLAN which has access to the NAS.
+
+## ☁️ Cloud Dependencies
+
+While most of my infrastructure and workloads are self-hosted I do rely upon the cloud for certain key parts of my setup. This saves me from having to worry about two things. (1) Dealing with chicken/egg scenarios and (2) services I critically need whether my cluster is online or not.
+
+The alternative solution to these two problems would be to host a Kubernetes cluster in the cloud and deploy applications like [HCVault](https://www.vaultproject.io/), [Vaultwarden](https://github.com/dani-garcia/vaultwarden), [ntfy](https://ntfy.sh/), and [Gatus](https://gatus.io/). However, maintaining another cluster and monitoring another group of workloads is a lot more time and effort than I am willing to put in.
+
+| Service                                                               | Use                                                                | Cost           |
+|-----------------------------------------------------------------------|--------------------------------------------------------------------|----------------|
+| [Doppler](https://doppler.com/)                                       | Secrets with [External Secrets](https://external-secrets.io/)      | Free (student) |
+| [Cloudflare](https://www.cloudflare.com/)                             | Domain(s) and S3                                                   | ~$20/yr        |
+| [GCP](https://cloud.google.com/)                                      | Voice interactions with Home Assistant over Google Assistant       | Free           |
+| [GitHub](https://github.com/)                                         | Hosting this repository and continuous integration/deployments     | Free           |
+| [Fastmail](https://fastmail.com/)                                     | Email hosting                                                      | ~$99/yr        |
+| [NextDNS](https://nextdns.io/)                                        | My router DNS server which includes AdBlocking                     | ~$20/yr        |
+| [Kapsi internet-users association](https://www.kapsi.fi/english.html) | Hosts my off-site backup aka minio (S3), Bitwarden and own website | 40€/yr         |
+| [updown.io](https://updown.io)                                        | External monitoring (IPv4/IPv6)                                    | ~€5/yr         |
+|                                                                       |                                                                    | Total: ~$25/mo |
 
 ## Stargazers
 
