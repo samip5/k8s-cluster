@@ -6,6 +6,9 @@ metrics:
   - name: cluster_pod_count
     query: sum(kube_pod_status_phase{phase="Running"})
 
+  - name: cluster_avg_per_node_pod_count
+    query: floor(sum(kube_pod_status_phase{phase="Running"}) / count(kube_node_status_condition{condition="Ready", status="true"}))
+
   - name: cluster_cpu_usage
     query: round(avg(instance:node_cpu_utilisation:rate5m{kubernetes_node=~"w[1-7]|m[1-3]|w-amd-[1-3]|w-amd-storage-[1-3]"}) * 100, 0.1)
     suffix: "%"
@@ -24,7 +27,7 @@ metrics:
 
   - name: cluster_power_usage
     query: round(mqtt_power)
-    suffix: "w"
+    suffix: "W"
     colors:
       - { color: "green", min: 0, max: 400 }
       - { color: "orange", min: 401, max: 750 }
