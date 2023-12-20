@@ -50,18 +50,18 @@ _... managed with Flux, Renovate, and GitHub Actions_ 🤖
 | Lenovo ThinkCentre M910q Tiny | m1              | 16GB | 256GB SSD x 2                   | Kube Master      | Debian 12        |
 
 ## Storage
-| Node         | Hostname | RAM  | Storage                             | Function   | Operating System |
-|--------------|----------|------|-------------------------------------|------------|------------------|
-| Synology NAS | NAS      | 16GB | 2 x 3TB HDD, 2 x 8TB HDD, 1 TB NVME | NFS Server | DSM 7            |
+| Node         | Hostname | RAM  | Storage                                                                                  | Function   | Operating System |
+|--------------|----------|------|------------------------------------------------------------------------------------------|------------|------------------|
+| Synology NAS | NAS      | 16GB | 2 x 3TB HDD (SMR for backups), 2 x 8TB HDD, 1 TB NVME, 256GB NVME for storage pool cache | NFS Server | DSM 7            |
 
 ## Network
 
-| Vendor   | Model                            | Function                                                     |
-|----------|----------------------------------|--------------------------------------------------------------|
-| Juniper  | EX2200-48P-4g                    | Hallway switch with PoE and fiber uplinks to rack            |
-| Juniper  | EX3300-48P                       | Rack switch with PoE                                         |
-| Ubiquiti | Unifi USW-Flex-Mini              | Bedroom switching (gaming iTX system and Steam Deck)         |
-| Qotom    | TLSense C3758  (TekLager.se)     | Main router                                                  |
+| Vendor   | Model                            | Function                                                          |
+|----------|----------------------------------|-------------------------------------------------------------------|
+| Juniper  | EX2200-48P-4g                    | Hallway switch with PoE+ and fiber uplinks to rack                |
+| Juniper  | EX3300-48P                       | Rack switch with PoE++                                            |
+| Ubiquiti | Unifi USW-Flex-Mini              | Bedroom switching (gaming iTX system, Apple TV 4K and Steam Deck) |
+| Qotom    | TLSense C3758  (TekLager.se)     | Main router                                                       |
 
 All nodes are connected to a dual-stack network, with private IPv4 and public IPv6. 
 Kubernetes nodes are on their own VLAN which has access to the NAS.
