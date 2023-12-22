@@ -3,11 +3,11 @@ kind: Kustomization
 resources:
  # - ci
  # - dev
- # - collab
+  - collab
  # - security
- # - monitoring
- # - networking
- # - system
+  - monitoring
+  - networking
+  - system
   - storage
  # - home
  # - databases
