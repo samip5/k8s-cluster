@@ -9,7 +9,7 @@ metadata:
     component.skylab.fi/part-of: definitions
 spec:
   dependsOn:
-    - name: databases-cloudnative-pg-cluster
+    - name: cnpg-cluster
   path: ./k8s/nebula/apps/default/immich/app
   prune: true
   sourceRef:

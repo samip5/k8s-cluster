@@ -14,14 +14,9 @@ spec:
   superuserSecret:
     name: cloudnative-pg-secret
   enableSuperuserAccess: true
-  #bootstrap:
-  #  initdb:
-  #    import:
-  #      type: monolith
-  #      databases: ["*"]
-  #      roles: ["*"]
-  #      source:
-  #        externalCluster: postgres-v5
+  bootstrap:
+    recovery:
+      source: &previousCluster postgres16-v1
   affinity:
     enablePodAntiAffinity: true
     topologyKey: kubernetes.io/hostname
@@ -46,7 +41,7 @@ spec:
         compression: bzip2
       destinationPath: s3://cnpg-main/
       endpointURL: https://s3.skym.fi
-      serverName: &currentCluster postgres16-v1
+      serverName: &currentCluster postgres16-v2
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
@@ -54,13 +49,18 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-secret
           key: aws-secret-access-key
-  #externalClusters:
-  #  - name: postgres-v5
-  #    connectionParameters:
-  #      host: postgres16-rw.databases.svc.cluster.local
-  #      user: postgres
-  #      dbname: postgres
-  #      sslmode: require
-  #    password:
-  #      name: cloudnative-pg-secret
-  #      key: password
+  externalClusters:
+    - name: *previousCluster
+      barmanObjectStore:
+        wal:
+          compression: bzip2
+          maxParallel: 8
+        destinationPath: s3://cnpg-main/
+        endpointURL: https://s3.skym.fi
+        s3Credentials:
+          accessKeyId:
+            name: cloudnative-pg-secret
+            key: aws-access-key-id
+          secretAccessKey:
+            name: cloudnative-pg-secret
+            key: aws-secret-access-key

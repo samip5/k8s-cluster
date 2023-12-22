@@ -1,20 +1,20 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ci
-  - dev
-  - collab
-  - security
-  - monitoring
-  - networking
-  - system
+ # - ci
+ # - dev
+ # - collab
+ # - security
+ # - monitoring
+ # - networking
+ # - system
   - storage
-  - home
-  - databases
+ # - home
+ # - databases
   - kube-system
-  - media
-  - vpn
-  - default
+ # - media
+ # - vpn
+ # - default
   - volsync
-  - finance
-  - comms
+ # - finance
+ # - comms
