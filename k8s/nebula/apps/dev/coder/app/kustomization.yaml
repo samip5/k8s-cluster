@@ -5,4 +5,5 @@ namespace: dev
 resources:
   - ./externalsecret-store.yaml
   - ./externalsecret.yaml
+  - ./internal-ingress.yaml
   - ./hr.yaml
