@@ -86,7 +86,6 @@ spec:
             persistence_location /data/mosquitto/
             autosave_interval 1800
             connection_messages true
-            autosave_interval 60
     persistence:
       data:
         enabled: true
