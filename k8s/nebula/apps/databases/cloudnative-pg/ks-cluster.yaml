@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cluster-apps-cnpg-operator
+    - name: cnpg-operator
   path: ./k8s/nebula/apps/databases/cloudnative-pg/cluster
   prune: true
   sourceRef:
