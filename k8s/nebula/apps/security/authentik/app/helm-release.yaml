@@ -28,6 +28,11 @@ spec:
     timeout: 10m
     recreate: true
     cleanupOnFail: true
+  dependsOn:
+    - name: cnpg-cluster
+      namespace: databases
+    - name: redis
+      namespace: databases
   values:
     outposts:
       docker_image_base: ghcr.io/goauthentik/%(type)s
@@ -39,7 +44,6 @@ spec:
       #repository: ghcr.io/goauthentik/dev-server
       #tag: gh-next
       pullPolicy: Always
-
     authentik:
       log_level: info
       secret_key: "${SECRET_AUTHENTIK_SECRET_KEY}"
