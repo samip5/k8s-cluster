@@ -5,7 +5,7 @@ resources:
   - ./ns.yaml
   - ./externalsecret-store.yaml
   - ./externalsecret.yaml
-  - ./samipsolutions-runners.yaml
-  - ./samipsolutions-runners-arm64.yaml
-  - ./samip5-k8s-cluster-arm64.yaml
-  - ./samip5-k8s-cluster.yaml
+#  - ./samipsolutions-runners.yaml
+#  - ./samipsolutions-runners-arm64.yaml
+#  - ./samip5-k8s-cluster-arm64.yaml
+#  - ./samip5-k8s-cluster.yaml
