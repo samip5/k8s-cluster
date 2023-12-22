@@ -4,7 +4,7 @@ version: "3"
 vars:
   PYTHON_BIN: python3
   KUBERNETES_DIR: "{{.ROOT_DIR}}/k8s"
-  ANSIBLE_DIR: "{{.ROOT_DIR}}provision/ansible"
+  ANSIBLE_DIR: "{{.ROOT_DIR}}/provision/ansible"
 
 env:
   KUBECONFIG: "{{.KUBERNETES_DIR}}/k8s/nebula/kubeconfig:{{.KUBERNETES_DIR}}/k8s/media/kubeconfig"
