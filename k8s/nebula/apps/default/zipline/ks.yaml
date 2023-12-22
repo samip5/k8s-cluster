@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-zipline
+  name: zipline
   namespace: flux-system
 spec:
   dependsOn:
-    - name: databases-cloudnative-pg-cluster
+    - name: cnpg-cluster
   path: ./k8s/nebula/apps/default/zipline/app
   prune: true
   sourceRef:

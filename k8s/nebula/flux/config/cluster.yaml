@@ -1,0 +1,19 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: flux-system
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  url: https://github.com/samip5/k8s-cluster
+  ignore: |
+    # exclude all
+    /*
+    # include gitops dirs
+    !/k8s/nebula
+    !/k8s/base
+    !/k8s/rbac
+    !/k8s/templates
