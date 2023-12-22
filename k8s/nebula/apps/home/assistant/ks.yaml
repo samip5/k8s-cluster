@@ -29,3 +29,5 @@ spec:
       HOSTNAME: hass.skylab.fi
       VOLSYNC_CAPACITY: 10Gi
       VOLSYNC_CLAIM: hass-config
+      VOLSYNC_STORAGECLASS: ceph-block
+      VOLSYNC_SNAPSHOTCLASS: csi-ceph-blockpool

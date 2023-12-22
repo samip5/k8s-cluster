@@ -34,3 +34,5 @@ spec:
       HOSTNAME: z2m.skylab.fi
       VOLSYNC_CLAIM: z2m-data
       VOLSYNC_CAPACITY: 300Mi
+      VOLSYNC_STORAGECLASS: ceph-block
+      VOLSYNC_SNAPSHOTCLASS: csi-ceph-blockpool
