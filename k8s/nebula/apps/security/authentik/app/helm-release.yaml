@@ -29,8 +29,6 @@ spec:
     recreate: true
     cleanupOnFail: true
   dependsOn:
-    - name: cnpg-cluster
-      namespace: databases
     - name: redis
       namespace: databases
   values:
