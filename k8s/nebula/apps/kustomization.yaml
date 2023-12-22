@@ -4,13 +4,13 @@ resources:
  # - ci
  # - dev
   - collab
- # - security
+  - security
   - monitoring
   - networking
   - system
   - storage
  # - home
- # - databases
+  - databases
   - kube-system
  # - media
  # - vpn
