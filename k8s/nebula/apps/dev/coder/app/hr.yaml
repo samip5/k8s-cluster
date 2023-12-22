@@ -69,6 +69,8 @@ spec:
             secretKeyRef:
               name: coder-secret
               key: CODER_OIDC_CLIENT_SECRET
+        - name: CODER_BLOCK_DIRECT
+          value: enabled
       ingress:
         enable: true
         className: external-nginx
