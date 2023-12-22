@@ -1,16 +1,15 @@
 ---
 kubernetes:
   vars:
-    ansbiel_user: root
-    ansbile_become: true
+    ansible_user: root
+    ansible_become: true
   children:
     master:
       hosts:
         m1:
           ansible_host: 10.0.105.34
-      vars:
-        ansible_user: root
-        k3s_become: true
+          ceph_drives:
+            - /dev/disk/by-id/nvme-INTEL_SSDPEKKF256G7L_BTPY72150BFA256D
     worker:
       hosts:
         w1:
@@ -21,8 +20,9 @@ kubernetes:
           ansible_host: 10.0.105.43
         w-amd-3:
           ansible_host: 10.0.105.19
-          ceph_drivers:
+          ceph_drives:
             - /dev/disk/by-id/nvme-SAMSUNG_MZ9LQ512HBLU-00BVL_S73XNX0T887767
         w-amd-1:
           ansible_host: 10.0.105.25
+          ceph_drives:
             - /dev/disk/by-id/nvme-KINGSTON_SEDC1000BM8960G_50026B76860DDA63
