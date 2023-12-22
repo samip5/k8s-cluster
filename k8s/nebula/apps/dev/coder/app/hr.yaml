@@ -46,6 +46,8 @@ spec:
         # App
         - name: CODER_ACCESS_URL
           value: https://coder.skylab.fi
+        - name: CODER_WILDCARD_ACCESS_URL
+          value: https://*.coder.skylab.fi
         # OIDC
         - name: CODER_OIDC_SIGN_IN_TEXT
           value: "Sign in with Skylab SSO"
@@ -69,11 +71,14 @@ spec:
             secretKeyRef:
               name: coder-secret
               key: CODER_OIDC_CLIENT_SECRET
-        - name: CODER_BLOCK_DIRECT
-          value: enabled
       ingress:
         enable: true
         className: external-nginx
         annotations:
           external-dns.alpha.kubernetes.io/target: ingress.skylab.fi
         host: "coder.skylab.fi"
+        wildcardHost: "*.coder.skylab.fi"
+        tls:
+          enabled: true
+          secretName: "coder-tls"
+          wildcardSecretName: "coder-wild-tls"
