@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: home
 resources:
   - ./helm-release.yaml
+  - ../../../../../templates/volsync
 #  - ./secret.sops.yaml
 labels:
   - pairs:
