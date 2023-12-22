@@ -33,3 +33,5 @@ spec:
       APP_GID: "1883"
       VOLSYNC_CAPACITY: 100Mi
       VOLSYNC_CLAIM: mosquitto-data
+      VOLSYNC_STORAGECLASS: ceph-block
+      VOLSYNC_SNAPSHOTCLASS: csi-ceph-blockpool
