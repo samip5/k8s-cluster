@@ -2,6 +2,23 @@
 version: "3"
 
 tasks:
+  bootstrap:
+    desc: Bootstrap Flux into a Kubernetes cluster
+    summary: |
+      Args:
+        cluster: Cluster to run command against (required)
+    prompt: Bootstrap Flux into the '{{.cluster}}' cluster... continue?
+    cmds:
+      - kubectl --context {{.cluster}} apply --server-side --kustomize {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/flux
+      - sops --decrypt --in-place {{.KUBERNETES_DIR}}/base/flux-system/cluster-config/overlays/{{.cluster}}/cluster-secrets.sops.yaml
+      - kubectl --context {{.cluster}} apply --server-side --kustomize {{.KUBERNETES_DIR}}/base/flux-system/cluster-config/overlays/{{.cluster}}
+      - kubectl --context {{.cluster}} apply --server-side --kustomize {{.KUBERNETES_DIR}}/{{.cluster}}/flux/config
+      - defer: sops --encrypt --in-place {{.KUBERNETES_DIR}}/base/flux-system/cluster-config/overlays/{{.cluster}}/cluster-secrets.sops.yaml
+    preconditions:
+      - { msg: "Argument (cluster) is required", sh: "test -n {{.cluster}}" }
+      - { msg: "Cluster settings not found",     sh: "test -f {{.KUBERNETES_DIR}}/base/flux-system/cluster-config/overlays/{{.cluster}}" }
+      - { msg: "Cluster secrets not found",      sh: "test -f {{.KUBERNETES_DIR}}/base/flux-system/cluster-config/overlays/{{.cluster}}/cluster-secrets.sops.yaml" }
+      - { msg: "Unable to decrypt sops secret",  sh: "sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/flux/vars/cluster-secrets.secret.sops.env" }
   gr-sync:
     desc: Sync all Flux GitRepositories
     cmds:
