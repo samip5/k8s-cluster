@@ -32,7 +32,6 @@ k3s_server:
   #service-cidr: "2001:67c:1104:fdb::/112,10.96.0.0/16"
   kubelet-arg:
     - "feature-gates=GracefulNodeShutdown=true"
-    - "feature-gates=MixedProtocolLBService=true"
     - "node-status-update-frequency=4s"
   kube-controller-manager-arg:
   #  - "cluster-cidr=10.244.0.0/16,fddf:f7bc:9670::/48"
