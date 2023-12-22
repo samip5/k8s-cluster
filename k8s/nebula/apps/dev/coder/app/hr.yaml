@@ -47,7 +47,7 @@ spec:
         - name: CODER_ACCESS_URL
           value: https://coder.skylab.fi
         - name: CODER_WILDCARD_ACCESS_URL
-          value: https://*.coder.skylab.fi
+          value: "*.coder.skylab.fi"
         # OIDC
         - name: CODER_OIDC_SIGN_IN_TEXT
           value: "Sign in with Skylab SSO"
