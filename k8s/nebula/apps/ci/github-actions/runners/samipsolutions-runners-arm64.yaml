@@ -32,13 +32,13 @@ spec:
       spec:
         containers:
           - name: runner
-            image: ghcr.io/onedr0p/github-actions-runner:2.311.0
+            image: ghcr.io/actions/actions-runner:2.311.0
         nodeSelector:
           kubernetes.io/arch: arm64
         tolerations:
           - key: "cm4"
             operator: "Exists"
-            effect: "PreferNoSchedule"
+            effect: ""
 
   valuesFrom:
     - kind: Secret
