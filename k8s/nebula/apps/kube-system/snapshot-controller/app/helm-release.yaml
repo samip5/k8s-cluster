@@ -30,6 +30,8 @@ spec:
     - name: rook-ceph-operator
       namespace: rook-ceph
   values:
+    webhook:
+      enabled: false
     controller:
       volumeSnapshotClasses:
         - name: csi-ceph-blockpool
