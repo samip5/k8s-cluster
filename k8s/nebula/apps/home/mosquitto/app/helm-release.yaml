@@ -92,7 +92,7 @@ spec:
         enabled: true
         existingClaim: "${VOLSYNC_CLAIM}"
         globalMounts:
-          - path: /mosquitto/data
+          - path: /data/mosquitto/
       config:
         enabled: true
         type: configMap
