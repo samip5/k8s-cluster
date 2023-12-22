@@ -6,18 +6,15 @@ vars:
   KUBERNETES_DIR: "{{.ROOT_DIR}}/k8s"
   ANSIBLE_DIR: "{{.ROOT_DIR}}provision/ansible"
 
+env:
+  KUBECONFIG: "{{.KUBERNETES_DIR}}/k8s/nebula/kubeconfig:{{.KUBERNETES_DIR}}/k8s/media/kubeconfig"
+
 includes:
-  ansible: .taskfiles/AnsibleTasks.yml
-  flux:
-    dir: .taskfiles/flux
-    taskfile: .taskfiles/flux
-  k8s:
-    taskfile: .taskfiles/k8s
-    dir: .taskfiles/k8s
-  externalsecrets:
-    taskfile: .taskfiles/externalsecrets
-    dir: .taskfiles/externalsecrets
-  volsync: .taskfiles/VolSync/Tasks.yaml
+  ansible: .taskfiles/Ansible/Taskfile.yaml
+  external-secrets: .taskfiles/ExternalSecrets/Taskfile.yaml
+  flux: .taskfiles/Flux/Taskfile.yaml
+  kubernetes: .taskfiles/Kubernetes/Taskfile.yaml
+  volsync: .taskfiles/VolSync/Taskfile.yaml
 
 tasks:
   default:
