@@ -91,7 +91,7 @@ spec:
           code:
             image:
               repository: ghcr.io/coder/code-server
-              tag: 4.19.1
+              tag: 4.20.0
             env:
               TZ: "Europe/Helsinki"
             args:
