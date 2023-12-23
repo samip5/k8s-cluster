@@ -42,7 +42,6 @@ spec:
               tag: release-2.50.0
             env:
               TZ: "Europe/Helsinki"
-              I2PD_HOME: /config
             probes:
               startup:
                 enabled: false
@@ -88,17 +87,17 @@ spec:
 
 
     persistence:
-      config:
+      home:
         enabled: true
         existingClaim: "${VOLSYNC_CLAIM}"
         globalMounts:
-          - path: /config
+          - path: /home/i2pd/
       configfile:
         enabled: true
         type: configMap
         name: i2pd
         globalMounts:
-          - path: /config/i2pd.conf
+          - path: /home/i2pd/data/i2pd.conf
             subPath: i2pd.conf
             readOnly: true
 
