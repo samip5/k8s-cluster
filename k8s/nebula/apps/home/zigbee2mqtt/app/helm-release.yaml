@@ -161,3 +161,7 @@ spec:
         existingClaim: "${VOLSYNC_CLAIM}"
         globalMounts:
           - path: /data
+      serial:
+        enabled: true
+        type: hostPath
+        path: /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AL065A0U-if00-port0
