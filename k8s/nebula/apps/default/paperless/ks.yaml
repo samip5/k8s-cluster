@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *appname
   dependsOn:
-    - name: cluster-apps-rook-ceph-cluster
+    - name: rook-ceph-cluster
     - name: cluster-apps-volsync
   path: ./k8s/nebula/apps/default/paperless/app
   prune: true
