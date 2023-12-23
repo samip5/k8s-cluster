@@ -4,7 +4,7 @@ namespace: databases
 resources:
   - helm-release.yaml
 configMapGenerator:
-  - name: pgadmin-oauth-configmap
+  - name: pgadmin-local-config-configmap
     files:
       - config_local.py
 generatorOptions:

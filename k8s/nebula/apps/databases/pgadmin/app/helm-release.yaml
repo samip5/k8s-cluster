@@ -69,11 +69,13 @@ spec:
       oauthconfig:
         enabled: true
         type: configMap
-        name: pgadmin-oauth-configmap
+        name: pgadmin-local-config-configmap
         subPath: config_local.py
         readOnly: true
         globalMounts:
           - path: /pgadmin4/config_local.py
+            subPath: config_local.py
+            readOnly: true
 
     ingress:
       main:
