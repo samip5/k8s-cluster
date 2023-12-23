@@ -5,70 +5,88 @@ metadata:
   name: littlelink
   namespace: collab
 spec:
-  interval: 5m
+  interval: 30m
   releaseName: littlelink
   chart:
     spec:
       # renovate: registryUrl=https://bjw-s.github.io/helm-charts
       chart: app-template
-      version: 1.5.1
+      version: 2.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
       interval: 5m
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
   values:
-    image:
-      repository: ghcr.io/techno-tim/littlelink-server
-      tag: latest@sha256:825918090f65a2d72ce558c2a2bc82e2318aeb88a8ce310410802a99f643d9bd
-      pullPolicy: Always
-    env:
-      TZ: "Europe/Helsinki"
-      META_TITLE: Skyler Mäntysaari
-      META_DESCRIPTION: Skyler M Link Page
-      META_AUTHOR: Skyler Mäntysaari
-      THEME: Dark
-      FAVICON_URL: https://avatars.githubusercontent.com/u/1703002?v=4
-      AVATAR_URL: https://avatars.githubusercontent.com/u/1703002?v=4
-      AVATAR_2X_URL: https://avatars.githubusercontent.com/u/1703002?v=4
-      AVATAR_ALT: Skyler Mäntysaari
-      NAME: Skyler Mäntysaari
-      BIO: "Hobbyist developer | Gamer | #ActuallyAutistic | I.T-student"
-      BUTTON_ORDER: Website,GITHUB,GITLAB,GITEA,LINKED_IN,MATRIX,DISCORD,TELEGRAM
-      GITHUB: https://github.com/samip5
-      GITLAB: https://gitlab.com/samip5
-      GITEA: https://git.samip.fi
-      CUSTOM_BUTTON_ALT_TEXT: Donation link,Website link
-      CUSTOM_BUTTON_ICON: fas fa-donate,fa-solid fa-globe
-      CUSTOM_BUTTON_NAME: Donate,Website
-      CUSTOM_BUTTON_COLOR: "#ffffff,#ffffff"
-      CUSTOM_BUTTON_TEXT: Buy me a coffee,Main website
-      CUSTOM_BUTTON_TEXT_COLOR: "#ED2756,#00000"
-      CUSTOM_BUTTON_URL: https://www.buymeacoffee.com/skykrypt,https://skym.fi
-      BUTTON_TARGET: _blank
-      LINKED_IN: https://linkedin.com/in/samip537
-      TWITTER: https://twitter.com/mantysaaris
-      TELEGRAM: https://t.me/samip537
-      DISCORD: https://discord.com/users/157970669261422592
-      MATRIX: https://matrix.to/#/@sm:pikaviestin.fi
-      MATOMO_URL: https://skym.fi/matomo
-      MATOMO_SITE_ID: 8
-      TRAKT: https://trakt.tv/users/samip537
-      STEAM: https://steamcommunity.com/id/samip537
-      EMAIL: sm+me@skym.fi
-      EMAIL_TEXT: Email me!
-      FOOTER: Skyler Mäntysaari © 2022-2023
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/techno-tim/littlelink-server
+              tag: latest@sha256:825918090f65a2d72ce558c2a2bc82e2318aeb88a8ce310410802a99f643d9bd
+            env:
+              TZ: "Europe/Helsinki"
+              META_TITLE: Skyler Mäntysaari
+              META_DESCRIPTION: Skyler M Link Page
+              META_AUTHOR: Skyler Mäntysaari
+              THEME: Dark
+              FAVICON_URL: https://avatars.githubusercontent.com/u/1703002?v=4
+              AVATAR_URL: https://avatars.githubusercontent.com/u/1703002?v=4
+              AVATAR_2X_URL: https://avatars.githubusercontent.com/u/1703002?v=4
+              AVATAR_ALT: Skyler Mäntysaari
+              NAME: Skyler Mäntysaari
+              BIO: "Hobbyist developer | Gamer | #ActuallyAutistic | I.T-student"
+              BUTTON_ORDER: Website,GITHUB,GITLAB,GITEA,LINKED_IN,MATRIX,DISCORD,TELEGRAM
+              GITHUB: https://github.com/samip5
+              GITLAB: https://gitlab.com/samip5
+              GITEA: https://git.samipsolutions.fi
+              CUSTOM_BUTTON_ALT_TEXT: Donation link,Website link
+              CUSTOM_BUTTON_ICON: fas fa-donate,fa-solid fa-globe
+              CUSTOM_BUTTON_NAME: Donate,Website
+              CUSTOM_BUTTON_COLOR: "#ffffff,#ffffff"
+              CUSTOM_BUTTON_TEXT: Buy me a coffee,Main website
+              CUSTOM_BUTTON_TEXT_COLOR: "#ED2756,#00000"
+              CUSTOM_BUTTON_URL: https://www.buymeacoffee.com/skykrypt,https://skym.fi
+              BUTTON_TARGET: _blank
+              LINKED_IN: https://linkedin.com/in/samip537
+              TWITTER: https://twitter.com/mantysaaris
+              TELEGRAM: https://t.me/samip537
+              DISCORD: https://discord.com/users/157970669261422592
+              MATRIX: https://matrix.to/#/@sm:pikaviestin.fi
+              MATOMO_URL: https://skym.fi/matomo
+              MATOMO_SITE_ID: 8
+              TRAKT: https://trakt.tv/users/samip537
+              STEAM: https://steamcommunity.com/id/samip537
+              EMAIL: sm+me@skym.fi
+              EMAIL_TEXT: Email me!
+              FOOTER: Skyler Mäntysaari © 2022-2023
+            resources:
+              requests:
+                memory: 64M
+              limits:
+                memory: 100M
     service:
       main:
         ports:
           http:
-            enabled: true
-            port: 80
-            targetPort: 3000
+            port: 3000
     ingress:
       main:
         enabled: true
-        ingressClassName: "external-nginx"
+        className: "external-nginx"
         hosts:
           - host: "links.skylab.fi"
             paths:
@@ -77,8 +95,14 @@ spec:
         tls:
           - hosts:
               - "links.skylab.fi"
-    resources:
-      requests:
-        memory: 64M
-      limits:
-        memory: 95M
+      int:
+        enabled: true
+        className: "internal-nginx"
+        hosts:
+          - host: "links.skylab.fi"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "links.skylab.fi"
