@@ -40,6 +40,15 @@ spec:
               labelSelector:
                 matchLabels:
                   app.kubernetes.io/component: server
+        initContainers:
+          01-init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16.1
+              pullPolicy: IfNotPresent
+            envFrom:
+              - secretRef:
+                  name: immich-secret
 
         containers:
           main:
@@ -47,15 +56,6 @@ spec:
             image:
               repository: ghcr.io/immich-app/immich-server
               tag: v1.91.4
-            initContainers:
-              init-db:
-                image:
-                  repository: ghcr.io/onedr0p/postgres-init
-                  tag: 16.1
-                  pullPolicy: IfNotPresent
-                envFrom:
-                  - secretRef:
-                      name: immich-secret
             args: [ "start-server.sh" ]
             envFrom:
               - secretRef:
