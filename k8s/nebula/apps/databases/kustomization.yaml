@@ -6,5 +6,5 @@ resources:
   - redis/ks.yaml
   - cloudnative-pg/ks.yaml
   - cloudnative-pg/ks-cluster.yaml
-#  - cloudnative-pg/ks-cluster-vector.yaml # Backup is partial so non-recoverable :(
+  - cloudnative-pg/ks-cluster-vector.yaml
   - pgadmin/ks.yaml

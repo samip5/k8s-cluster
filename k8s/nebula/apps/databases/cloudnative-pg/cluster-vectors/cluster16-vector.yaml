@@ -15,8 +15,15 @@ spec:
     name: cloudnative-pg-secret
   enableSuperuserAccess: true
   bootstrap:
-    recovery:
-      source: &previousCluster postgres-vector-v1
+    initdb:
+      import:
+        type: monolith
+        databases: [ "immich" ]
+        roles: [ "immich" ]
+        source:
+          externalCluster: &previousCluster postgres16-v2
+    #recovery:
+    #  source: &previousCluster postgres-vector-v1
   affinity:
     enablePodAntiAffinity: true
     topologyKey: kubernetes.io/hostname
