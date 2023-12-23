@@ -111,9 +111,6 @@ spec:
               - containerPort: 6379
             env:
               REDIS_REPLICATION_MODE: master
-            envFrom:
-              - secretRef:
-                  name: immich-secret
             command: [ "redis-server" ]
     service:
       main:
