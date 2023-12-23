@@ -49,7 +49,7 @@ spec:
         enabled: true
         environment: "kryptonian"
       postgresql:
-        host: "192.168.2.2"
+        host: "postgres16-rw.databases.svc.cluster.local"
         name: "authentik"
         user: "authentik"
         password: "${SECRET_AUTHENTIK_POSTGRES_PASSWORD}"
