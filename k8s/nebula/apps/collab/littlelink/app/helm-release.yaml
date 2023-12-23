@@ -92,6 +92,9 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  name: main
+                  port: 3000
         tls:
           - hosts:
               - "links.skylab.fi"
@@ -103,6 +106,9 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  name: main
+                  port: 3000
         tls:
           - hosts:
               - "links.skylab.fi"
