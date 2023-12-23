@@ -91,7 +91,7 @@ spec:
         enabled: true
         existingClaim: "${VOLSYNC_CLAIM}"
         globalMounts:
-          - path: /home/i2pd/
+          - path: /home/i2pd/data
       configfile:
         enabled: true
         type: configMap
