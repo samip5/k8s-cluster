@@ -40,6 +40,15 @@ spec:
               labelSelector:
                 matchLabels:
                   app.kubernetes.io/component: server
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16.1
+              pullPolicy: IfNotPresent
+            envFrom:
+              - secretRef:
+                  name: immich-secret
 
         containers:
           main:
@@ -197,13 +206,7 @@ spec:
         globalMounts:
           - path: /usr/src/app/upload
       config:
-        enabled: true
-        existingClaim: immich-typesense
-        advancedMounts:
-          typesense:
-            main:
-              - path: /config
-
+        enabled: false
 
 
 
