@@ -1,0 +1,87 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: code-server
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    defaultPodOptions:
+      automountServiceAccountToken: false
+
+    controllers:
+      main:
+        type: deployment
+        replicas: 1
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        containers:
+          main:
+            image:
+              repository: ghcr.io/coder/code-server
+              tag: 4.20.0
+            env:
+              TZ: "Europe/Helsinki"
+            args:
+              - --auth
+              - "none"
+              - --user-data-dir
+              - "/data/.vscode"
+              - --extensions-dir
+              - "/data/.vscode"
+              - --port
+              - "8081"
+              - "/data"
+
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8081
+    ingress:
+      main:
+        enabled: true
+        className: internal-nginx
+        hosts:
+          - host: &host "code-server.skylab.fi"
+            paths:
+                - path: /
+                  pathType: Prefix
+                  service:
+                    name: main
+                    port: 3001
+        tls:
+          - hosts:
+              - *host
+
+
+    persistence:
+      data:
+        enabled: true
+        existingClaim: z2m-data
+        advancedMounts:
+          typesense:
+            main:
+              - path: /data
+
+
+
+
