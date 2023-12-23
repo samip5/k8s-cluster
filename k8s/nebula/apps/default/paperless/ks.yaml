@@ -30,4 +30,5 @@ spec:
       APP_GID: "100"
       VOLSYNC_CLAIM: paperless-data
       VOLSYNC_CAPACITY: 15Gi
-
+      VOLSYNC_STORAGECLASS: ceph-block
+      VOLSYNC_SNAPSHOTCLASS: csi-ceph-blockpool
