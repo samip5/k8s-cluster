@@ -77,10 +77,8 @@ spec:
       data:
         enabled: true
         existingClaim: z2m-data
-        advancedMounts:
-          typesense:
-            main:
-              - path: /data
+        globalMounts:
+          - path: /data
 
 
 
