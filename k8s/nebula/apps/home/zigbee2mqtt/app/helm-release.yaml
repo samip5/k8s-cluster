@@ -87,43 +87,45 @@ spec:
               - secretRef:
                   name: z2m-secret
             securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: [ "ALL" ] }
-          code:
-            image:
-              repository: ghcr.io/coder/code-server
-              tag: 4.20.0
-            env:
-              TZ: "Europe/Helsinki"
-            args:
-              - --auth
-              - "none"
-              - --user-data-dir
-              - "/data/.vscode"
-              - --extensions-dir
-              - "/data/.vscode"
-              - --port
-              - "8081"
-              - "/data"
-        pod:
-          securityContext:
-            runAsUser: ${APP_UID}
-            runAsGroup: ${APP_GID}
-            runAsNonRoot: true
-            fsGroup: ${APP_GID}
-            fsGroupChangePolicy: OnRootMismatch
+              privileged: true
+            #securityContext:
+            #  allowPrivilegeEscalation: false
+            #  readOnlyRootFilesystem: true
+            #  capabilities: { drop: [ "ALL" ] }
+          #code:
+          #  image:
+          #    repository: ghcr.io/coder/code-server
+          #    tag: 4.20.0
+          #  env:
+          #    TZ: "Europe/Helsinki"
+          #  args:
+          #    - --auth
+          #    - "none"
+          #    - --user-data-dir
+          #    - "/data/.vscode"
+          #    - --extensions-dir
+          #    - "/data/.vscode"
+          #    - --port
+          #    - "8081"
+          #    - "/data"
+        #pod:
+        #  securityContext:
+        #    runAsUser: ${APP_UID}
+        #    runAsGroup: ${APP_GID}
+        #    runAsNonRoot: true
+        #    fsGroup: ${APP_GID}
+        #    fsGroupChangePolicy: OnRootMismatch
     service:
       main:
         ports:
           http:
             port: 8080
-      code:
-        type: ClusterIP
-        controller: main
-        ports:
-          http:
-            port: 8081
+      #code:
+      #  type: ClusterIP
+      #  controller: main
+      #  ports:
+      #    http:
+      #      port: 8081
 
     ingress:
       main:
@@ -141,7 +143,7 @@ spec:
           - hosts:
               - "${HOSTNAME}"
       code:
-        enabled: true
+        enabled: false
         ingressClassName: "internal-nginx"
         hosts:
           - host: &code-host "z2m-code.skylab.fi"
