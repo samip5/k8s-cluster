@@ -7,3 +7,4 @@ resources:
  - ./flaresolverr/ks.yaml
  - ./recyclarr/ks.yaml
  - ./jellyseer/ks.yaml
+ - ./maintainerr/ks.yaml
