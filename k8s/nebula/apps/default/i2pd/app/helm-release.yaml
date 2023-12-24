@@ -61,7 +61,7 @@ spec:
     service:
       main:
         enabled: true
-        type: ClusterIP
+        type: hostPort
         ports:
           http:
             port: 7070
