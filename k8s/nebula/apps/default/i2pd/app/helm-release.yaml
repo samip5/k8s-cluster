@@ -61,7 +61,7 @@ spec:
     service:
       main:
         enabled: true
-        type: hostPort
+        type: NodePort
         ports:
           http:
             port: 7070
