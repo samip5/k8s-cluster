@@ -6,7 +6,7 @@ metadata:
   namespace: databases
 spec:
   instances: 2
-  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:16
+  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:16.1-v0.1.11
   primaryUpdateStrategy: unsupervised
   storage:
     size: 20Gi
