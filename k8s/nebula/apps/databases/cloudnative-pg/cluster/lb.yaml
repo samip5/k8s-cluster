@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cnpg.io/operatorVersion: 1.22.0
+    io.cilium/lb-ipam-ips: 10.96.69.198
+  labels:
+    cnpg.io/cluster: postgres16
+  name: postgres16-rw-lb
+  namespace: databases
+  ownerReferences:
+    - apiVersion: postgresql.cnpg.io/v1
+      controller: true
+      kind: Cluster
+      name: postgres16
+      uid: 0e9d1a14-e408-4121-a8cb-bcc7183e4a2a
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+    - name: postgres
+      port: 5432
+      protocol: TCP
+      targetPort: 5432
+  selector:
+    cnpg.io/cluster: postgres16
+    role: primary
+  sessionAffinity: None
+  type: LoadBalancer
