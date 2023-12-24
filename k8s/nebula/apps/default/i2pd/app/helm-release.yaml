@@ -22,6 +22,8 @@ spec:
       retries: 5
   values:
     defaultPodOptions:
+      dnsPolicy: ClusterFirstWithHostNet
+      hostNetwork: true # This is pain, but for some reason the container doesn't seem to reply though LB.
       automountServiceAccountToken: false
       enableServiceLinks: false
       securityContext:
@@ -59,7 +61,7 @@ spec:
     service:
       main:
         enabled: true
-        type: LoadBalancer
+        type: ClusterIP
         ports:
           http:
             port: 7070
