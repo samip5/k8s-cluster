@@ -39,7 +39,7 @@ spec:
               whenUnsatisfiable: DoNotSchedule
               labelSelector:
                 matchLabels:
-                  app.kubernetes.io/component: server
+                  app.kubernetes.io/component: main
         initContainers:
           01-init-db:
             image:
