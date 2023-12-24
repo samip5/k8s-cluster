@@ -30,6 +30,7 @@ spec:
     #  verbose: "datapath"
     cni:
       exclusive: false
+      chainingMode: portmap
     bpf:
       masquerade: true
     cluster:
