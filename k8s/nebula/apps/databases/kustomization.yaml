@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ns.yaml
   - mariadb/ks.yaml
-  - mariadb/ks-resources.yaml
+#  - mariadb/ks-resources.yaml
   - redis/ks.yaml
   - cloudnative-pg/ks.yaml
   - cloudnative-pg/ks-cluster.yaml
