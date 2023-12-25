@@ -86,9 +86,9 @@ spec:
   resources:
     requests:
       cpu: 300m
-      memory: 256Mi
-    limits:
       memory: 1Gi
+    limits:
+      memory: 2Gi
 
   # For Galera, Specifically
   podSecurityContext:
