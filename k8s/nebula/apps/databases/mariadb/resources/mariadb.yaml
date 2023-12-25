@@ -23,7 +23,7 @@ spec:
     - name: TZ
       value: Europe/Helsinki
 
-  replicas: 1
+  replicas: 3
 
   galera:
     enabled: true
