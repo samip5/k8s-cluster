@@ -1,7 +1,7 @@
 apiVersion: mariadb.mmontes.io/v1alpha1
 kind: MariaDB
 metadata:
-  name: mariadb
+  name: mariadb-galera
 spec:
   rootPasswordSecretKeyRef:
     name: mariadb
@@ -12,13 +12,18 @@ spec:
     name: mariadb
     key: password
 
-  image: mariadb:11.2.2
+  image: "mariadb:11.2.2"
+  imagePullPolicy: IfNotPresent
   port: 3306
-  replicas: 2
+
   nodeSelector:
     kubernetes.io/arch: amd64
-  podSecurityContext:
-    runAsUser: 0
+
+  env:
+    - name: TZ
+      value: Europe/Helsinki
+
+  replicas: 2
 
   galera:
     enabled: true
@@ -29,6 +34,7 @@ spec:
     replicaThreads: 1
     agent:
       image: ghcr.io/mariadb-operator/agent:v0.0.3
+      #pullPolicy: IfNotPresent
       port: 5555
       kubernetesAuth:
         enabled: true
@@ -41,36 +47,77 @@ spec:
       podSyncTimeout: 5m
     initContainer:
       image: ghcr.io/mariadb-operator/init:v0.0.6
+      #pullPolicy: IfNotPresent
     volumeClaimTemplate:
+      storageClassName: ceph-block
       resources:
         requests:
           storage: 300Mi
       accessModes:
         - ReadWriteOnce
-      storageClassName: ceph-block
 
   service:
     type: LoadBalancer
-  connection:
-    secretName: mariadb-conn
-    secretTemplate:
-      key: dsn
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: "mysql-lb.${SECRET_DOMAIN}"
 
   primaryService:
     type: LoadBalancer
-  primaryConnection:
-    secretName: mariadb-conn-primary
-    secretTemplate:
-      key: dsn
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: "mysql.${SECRET_DOMAIN}"
 
   secondaryService:
     type: LoadBalancer
-  secondaryConnection:
-    secretName: mariadb-conn-secondary
-    secretTemplate:
-      key: dsn
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: "mysql-ro.${SECRET_DOMAIN}"
+    #secondaryConnection:
+    #  secretName: mariadb-galera-conn-secondary
+    #  secretTemplate:
+    #    key: dsn
+
+  volumeClaimTemplate:
+    storageClassName: ceph-block
+    resources:
+      requests:
+        storage: 5Gi
+    accessModes:
+      - ReadWriteOnce
+
+  resources:
+    requests:
+      cpu: 300m
+      memory: 256Mi
+    limits:
+      memory: 1Gi
+
+  # For Galera, Specifically
+  podSecurityContext:
+    runAsUser: 0
+
+  securityContext:
+    allowPrivilegeEscalation: false
+
+  #podSecurityContext:
+  #  runAsUser: 568
+  #  runAsGroup: 568
+  #  fsGroup: 568
+  #  fsGroupChangePolicy: OnRootMismatch
+
+  #service:
+  #  type: LoadBalancer
+  #  annotations:
+  #    io.cilium/lb-ipam-ips: "${IPAM_MARIADB}"
+
 
   affinity:
+    #nodeAffinity:
+    #  requiredDuringSchedulingIgnoredDuringExecution:
+    #    nodeSelectorTerms:
+    #      - matchExpressions:
+    #        - key: database.mysql
+    #          operator: In
+    #          values:
+    #            - "yes"
     podAntiAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
         - topologyKey: "kubernetes.io/hostname"
@@ -93,18 +140,3 @@ spec:
     binlog_format=row
     innodb_autoinc_lock_mode=2
     max_allowed_packet=256M
-
-  resources:
-    requests:
-      cpu: 300m
-      memory: 256Mi
-    limits:
-      memory: 1Gi
-
-  volumeClaimTemplate:
-    resources:
-      requests:
-        storage: 20Gi
-    accessModes:
-      - ReadWriteOnce
-    storageClassName: ceph-block

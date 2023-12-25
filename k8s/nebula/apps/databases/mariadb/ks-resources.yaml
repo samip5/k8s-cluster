@@ -6,7 +6,7 @@ metadata:
 spec:
   dependsOn:
     - name: mariadb-operator
-  path: ./k8s/nebula/apps/databases/mariadb/db
+  path: ./k8s/nebula/apps/databases/mariadb/resources
   prune: true
   sourceRef:
     kind: GitRepository
