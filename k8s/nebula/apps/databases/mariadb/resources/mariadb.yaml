@@ -140,3 +140,5 @@ spec:
     binlog_format=row
     innodb_autoinc_lock_mode=2
     max_allowed_packet=256M
+    max_threads=10
+    read_buffer_size=0
