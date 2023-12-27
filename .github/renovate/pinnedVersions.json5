@@ -6,5 +6,11 @@
       "matchDatasources": ["docker"],
       "allowedVersions": "<=4.5.5",
       "matchPackagePatterns": ["qbittorrent"]
+    },
+    {
+     "description": "Pin csi-provisioner",
+      "matchDatasources": ["docker"],
+      "allowedVersions": "<=3.6.1",
+      "matchPackagePatterns": ["csi-provisioner"]
     }]
 }
