@@ -27,7 +27,7 @@ spec:
   values:
     adminUser:
       create: true
-      createSecret: false
+      createSecret: true
       username: admin
     ingress:
       enabled: true
@@ -47,4 +47,4 @@ spec:
     rbac:
       create: true
     podAnnotations:
-      secret.reloader.stakater.com/reload: cluster-user-auth,oidc-auth
+      secret.reloader.stakater.com/reload: oidc-auth
