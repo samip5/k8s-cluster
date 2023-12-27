@@ -3,6 +3,8 @@ kind: Kustomization
 metadata:
   name: &app weave-gitops
   namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
 spec:
   targetNamespace: flux-system
   commonMetadata:
