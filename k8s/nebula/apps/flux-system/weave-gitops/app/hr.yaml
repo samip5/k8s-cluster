@@ -28,7 +28,7 @@ spec:
     adminUser:
       create: true
       createSecret: false
-      username: sky
+      username: admin
     ingress:
       enabled: true
       className: internal-nginx
