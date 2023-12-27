@@ -19,6 +19,11 @@ spec:
     persistence:
       defaultClassReplicaCount: 1
       defaultFsType: xfs
+    csi:
+      attacherReplicaCount: 1
+      provisionerReplicaCount: 1
+      resizerReplicaCount: 1
+      snapshotterReplicaCount: 1
     defaultSettings:
       defaultReplicaCount: 1
       backupTarget: s3://longhorn@us-east-1/
