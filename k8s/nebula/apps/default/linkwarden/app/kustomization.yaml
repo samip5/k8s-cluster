@@ -4,4 +4,4 @@ resources:
   - hr.yaml
   - externalsecret-store.yaml
   - externalsecret.yaml
-  - ../../../../../k8s/templates/volsync
+  - ../../../../../templates/volsync
