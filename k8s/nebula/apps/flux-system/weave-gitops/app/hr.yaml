@@ -32,7 +32,7 @@ spec:
       enabled: true
       className: internal-nginx
       hosts:
-        - host: &host "gitops.${SECRET_DOMAIN}"
+        - host: &host "gitops.skylab.fi"
           paths:
             - path: /
               pathType: Prefix
