@@ -4,3 +4,4 @@ resources:
   - ./flux.yaml
   - ./cluster.yaml
   - ./shared.yaml
+  - ./private-apps.yaml
