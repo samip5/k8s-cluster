@@ -47,8 +47,3 @@ spec:
       create: true
     podAnnotations:
       secret.reloader.stakater.com/reload: oidc-auth
-  valuesFrom:
-    - kind: Secret
-      name: cluster-user-auth
-      valuesKey: adminPasswordHash
-      targetPath: adminUser.passwordHash
