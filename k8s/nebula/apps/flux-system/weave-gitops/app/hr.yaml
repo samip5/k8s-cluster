@@ -45,5 +45,7 @@ spec:
       enabled: true
     rbac:
       create: true
+      impersonationResourceNames: [ "wego-admin", "wego-team-a-admin", "wego-readonly" ]
+      impersonationResources: [ "groups" ]
     podAnnotations:
       secret.reloader.stakater.com/reload: oidc-auth
