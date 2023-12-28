@@ -52,8 +52,8 @@ spec:
         containers:
           main:
             image:
-              repository: registry.samipsolutions.fi/library/linkwarden
-              tag: 18122023T0444-dev
+              repository: ghcr.io/linkwarden/linkwarden
+              tag: v2.4.1
             resources:
               requests:
                 memory: 512Mi
@@ -61,7 +61,7 @@ spec:
                 memory: 1Gi
             env:
               NEXTAUTH_URL: https://${HOSTNAME}
-              STORAGE_FOLDER: "\"config\""
+              STORAGE_FOLDER: "config"
               NEXT_PUBLIC_AUTHENTIK_ENABLED: "true"
             envFrom:
               - secretRef:
