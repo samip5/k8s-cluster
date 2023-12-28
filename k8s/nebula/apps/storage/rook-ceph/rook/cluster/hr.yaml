@@ -21,31 +21,19 @@ spec:
     toolbox:
       enabled: true
       image: quay.io/ceph/ceph:v17.2.7
+    monitoring:
+      enabled: true
     cephClusterSpec:
+      # This is a terrible hack (THANKS Anthony! :D)
+      # I need more resources.
       crashCollector:
         disable: true
       resources:
-        mgr:
-          requests:
-            cpu: "150m"
-            memory: "512Mi"
+        crashcollector:
           limits:
-            cpu: "2000m"
-            memory: "4Gi"
-        mgr-sidecar:
+            memory: "60m"
           requests:
-            cpu: "100m"
-            memory: "100Mi"
-          limits:
-            cpu: "8000m"
-            memory: "500Mi"
-        mon:
-          requests:
-            cpu: "100m"
-            memory: "500Mi"
-          limits:
-            cpu: "2000m"
-            memory: "4Gi"
+            memory: "60m"
         osd:
           limits:
             cpu: "2000m"
@@ -53,31 +41,6 @@ spec:
           requests:
             cpu: "500m"
             memory: "4Gi"
-        crashcollector:
-          requests:
-            cpu: "15m"
-            memory: "60m"
-          limits:
-            memory: "60m"
-        logcollector:
-          requests:
-            cpu: "50m"
-            memory: "100Mi"
-          limits:
-            memory: "1Gi"
-        cleanup:
-          requests:
-            cpu: "250m"
-            memory: "100Mi"
-          limits:
-            memory: "1Gi"
-        exporter:
-          requests:
-            cpu: "50m"
-            memory: "50Mi"
-          limits:
-            cpu: "250m"
-            memory: "128Mi"
       network:
         provider: host
         connections:
@@ -106,33 +69,22 @@ spec:
               - name: /dev/disk/by-id/nvme-SAMSUNG_MZ9LQ512HBLU-00BVL_S73XNX0T887767
         mon:
           count: 3
-          allowMultiplePerNode: false
-        mgr:
-          count: 2
-          allowMultiplePerNode: false
-          modules:
-            - name: "pg_autoscaler"
-              enabled: true
     cephBlockPools:
       - name: ceph-blockpool
         spec:
           failureDomain: host
           replicated:
             size: 3
-          parameters:
-            min_size: "2"
-            compression_mode: "aggressive"
-            compression_algorithm: "lz4"
         storageClass:
           enabled: true
           name: ceph-block
           isDefault: false
           reclaimPolicy: Delete
           allowVolumeExpansion: true
-          mountOptions: ["discard"]
+          mountOptions: []
           parameters:
             imageFormat: "2"
-            imageFeatures: "layering,exclusive-lock,object-map,fast-diff,deep-flatten" # https://docs.ceph.com/en/quincy/rbd/rbd-config-ref/#image-features
+            imageFeatures: layering
             csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
             csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
             csi.storage.k8s.io/controller-expand-secret-name: rook-csi-rbd-provisioner
@@ -145,11 +97,10 @@ spec:
           name: .mgr
           failureDomain: host
           replicated:
-            size: 3 # https://github.com/rook/rook/discussions/13178
+            size: 3
             requireSafeReplicaSize: true
           parameters:
-            min_size: "2"
-            compression_mode: "none"
+            compression_mode: none
         storageClass:
           enabled: false
     cephFileSystems:
@@ -159,23 +110,20 @@ spec:
             replicated:
               size: 3
           dataPools:
-            - name: fast-data0
-              failureDomain: host
+            - failureDomain: host
               replicated:
                 size: 3
-              parameters:
-                compression_mode: "aggressive"
-                compression_algorithm: "zstd"
+              name: fast-data0
           metadataServer:
             activeCount: 1
             activeStandby: true
             resources:
-              requests:
-                cpu: 100m
-                memory: 2Gi
               limits:
-                cpu: 2000m # 2 cores
-                memory: 2Gi
+                cpu: "1000m"
+                memory: "1Gi"
+              requests:
+                cpu: "35m"
+                memory: "512Mi"
             priorityClassName: system-cluster-critical
         storageClass:
           enabled: true
@@ -194,9 +142,6 @@ spec:
             csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
             csi.storage.k8s.io/fstype: xfs
     cephObjectStores: []
-    monitoring:
-      enabled: true
-      createPrometheusRules: true
     ingress:
       dashboard:
         ingressClassName: "internal-nginx"
