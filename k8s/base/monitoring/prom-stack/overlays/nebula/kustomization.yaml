@@ -6,6 +6,6 @@ resources:
 configMapGenerator:
   - name: kube-state-metrics-configmap
     files:
-      - kube-state-metrics.yaml=../../resources/kube-state-metrics.yaml
+      - kube-state-metrics.yaml=./resources/kube-state-metrics.yaml
 generatorOptions:
   disableNameSuffixHash: true
