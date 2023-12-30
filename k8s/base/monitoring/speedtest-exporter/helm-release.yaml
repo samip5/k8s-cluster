@@ -1,57 +1,54 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+# yaml-language-server: $schema=https://github.com/fluxcd-community/flux2-schemas/raw/main/helmrelease-helm-v2beta2.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: speedtest-exporter
   namespace: monitoring
 spec:
-  interval: 5m
+  interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      interval: 5m
+  maxHistory: 2
   install:
     remediation:
-      retries: 5
+      retries: 3
   upgrade:
+    cleanupOnFail: true
     remediation:
-      retries: 5
-      remediateLastFailure: true
-    cleanupOnFail: true
-  rollback:
-    timeout: 10m
-    recreate: true
-    cleanupOnFail: true
+      retries: 3
+  uninstall:
+    keepHistory: false
   values:
-    image:
-      repository: ghcr.io/miguelndecarvalho/speedtest-exporter
-      tag: v3.5.4
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: ghcr.io/miguelndecarvalho/speedtest-exporter
+              tag: v3.5.4
+            env:
+              TZ: "Europe/Helsinki"
+            resources:
+              requests:
+                cpu: 10m
+                memory: 32Mi
+              limits:
+                cpu: 100m
+                memory: 100Mi
     service:
       main:
-        ports:
-          http:
-            enabled: false
-          metrics:
-            enabled: true
-            protocol: TCP
-            port: 9798
-    serviceMonitor:
-      main:
+        enabled: false
+      metrics:
         enabled: true
-        endpoints:
-          - interval: 60m
-            path: /metrics
-            port: metrics
-            scrapeTimeout: 1m
-    resources:
-      requests:
-        memory: 128M
-      limits:
-        memory: 512M
-
-
+        controller: main
+        ipFamilyPolicy: PreferDualStack
+        ports:
+          metrics:
+            port: 9798
