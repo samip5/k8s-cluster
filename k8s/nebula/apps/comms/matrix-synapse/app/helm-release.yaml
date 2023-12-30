@@ -21,7 +21,7 @@ spec:
       namespace: security
   values:
     image:
-      repository: ghcr.io/matrix-org/synapse
+      repository: ghcr.io/element-hq/synapse
       tag: v1.98.0
     serverName: skylab.fi
     publicServerName: matrix.skylab.fi
@@ -32,6 +32,14 @@ spec:
         tag: 1.4.71
 
     workers:
+      default:
+        resources:
+          limits:
+            cpu: 1000m # One CPU core
+            memory: 1Gi
+          requests:
+            cpu: 500m # 0.5 of core
+            memory: 512Mi
       media_repository:
         enabled: false
       federation_sender:
@@ -44,6 +52,7 @@ spec:
         csPaths:
           - "/_matrix/client/(api/v1|r0|v3|unstable)/keys/upload"
           - "/_matrix/client/(api/v1|r0|v3|unstable)/presence/[^/]+/status"
+
 
 
     extraConfig:
@@ -114,6 +123,17 @@ spec:
       auth:
        enabled: true
        password: ${SECRET_MATRIX_REDIS_PASSWORD}
+
+    synapse:
+      resources:
+        requests:
+          cpu: 1000m
+          memory: 2500Mi
+        limits:
+          cpu: 1000m
+          memory: 2500Mi
+
+
 
     signingkey:
       job:
