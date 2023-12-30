@@ -4,6 +4,7 @@ resources:
   - ci
   - dev
   - collab
+  - comms
   - security
   - monitoring
   - networking
@@ -19,4 +20,3 @@ resources:
   - volsync
   - finance
   - flux-system
- # - comms
