@@ -58,6 +58,7 @@ spec:
             k8s.v1.cni.cncf.io/networks: |
               [{
                 "name":"multus-iot",
+                "interface": "eth1",
                 "namespace": "kube-system",
                 "ips": ["10.0.50.36/24"]
               }]
