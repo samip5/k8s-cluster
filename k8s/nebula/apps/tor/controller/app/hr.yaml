@@ -1,0 +1,26 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: tor-controller
+  namespace: tor
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: tor-controller
+      version: 0.1.15
+      sourceRef:
+        kind: HelmRepository
+        name: bugfest-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    fullnameOverride: tor
