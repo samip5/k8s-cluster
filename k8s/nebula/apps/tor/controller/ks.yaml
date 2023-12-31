@@ -4,6 +4,7 @@ metadata:
   name: tor-controller
   namespace: flux-system
 spec:
+  targetNamespace: tor
   path: ./k8s/nebula/apps/tor/controller/app
   prune: true
   sourceRef:

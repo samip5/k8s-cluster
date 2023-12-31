@@ -24,3 +24,11 @@ spec:
       retries: 3
   values:
     fullnameOverride: tor
+    namespaced: true
+    resources:
+      limits:
+        cpu: 250m
+        memory: 512Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
