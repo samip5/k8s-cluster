@@ -41,9 +41,10 @@ spec:
           - 100
           - 1010
       annotations:
-        k8s.v1.cni.cncf.io/networks: '[{
-                     { "name": "hass-iot-static", "interface": "eth1" }
-        ]'
+        k8s.v1.cni.cncf.io/networks: '[
+                    { "name" : "hass-iot-static",
+                      "interface": "eth1" },
+            ]'
       nodeSelector:
         kubernetes.io/hostname: "w7"
       tolerations:
