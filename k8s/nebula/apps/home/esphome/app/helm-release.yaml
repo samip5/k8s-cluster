@@ -40,8 +40,6 @@ spec:
         fsGroupChangePolicy: "OnRootMismatch"
         supplementalGroups:
           - 100
-      annotations:
-        k8s.v1.cni.cncf.io/networks: esphome-iot-static
       nodeSelector:
         kubernetes.io/hostname: "w7"
       tolerations:
@@ -53,6 +51,15 @@ spec:
     controllers:
       main:
         type: statefulset
+
+        pod:
+          annotations:
+            k8s.v1.cni.cncf.io/networks: |
+              [{
+                "name":"multus-iot",
+                "namespace": "kube-system",
+                "ips": ["10.0.50.35/24"]
+              }]
 
         containers:
           main:
