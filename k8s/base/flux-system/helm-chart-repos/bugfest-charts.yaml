@@ -1,0 +1,10 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: bugfest-charts
+  namespace: flux-system
+spec:
+  interval: 2h
+  url: https://bugfest.github.io/tor-controller
+  timeout: 3m
