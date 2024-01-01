@@ -31,6 +31,8 @@ spec:
   values:
     defaultPodOptions:
       priorityClassName: home-cluster-critical
+      dnsPolicy: ClusterFirstWithHostNet
+      hostNetwork: true
       automountServiceAccountToken: false
       securityContext:
         runAsUser: ${APP_UID}
@@ -68,7 +70,6 @@ spec:
             image:
               repository: ghcr.io/onedr0p/home-assistant
               tag: 2023.12.4
-            hostNetwork: true
             env:
               TZ: "Europe/Helsinki"
             envFrom:
