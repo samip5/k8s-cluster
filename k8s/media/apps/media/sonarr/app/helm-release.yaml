@@ -39,7 +39,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/onedr0p/sonarr
-      tag: 4.0.0.741
+      tag: 4.0.0.748
     env:
       TZ: Europe/Helsinki
       SONARR__INSTANCE_NAME: Sonarr
