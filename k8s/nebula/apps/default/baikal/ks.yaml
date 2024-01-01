@@ -24,8 +24,8 @@ spec:
     substitute:
       APP: *appname
       HOSTNAME: dav.skylab.fi
-      APP_UID: "568"
-      APP_GID: "568"
+      APP_UID: "0"
+      APP_GID: "0"
       VOLSYNC_CLAIM: baikal-data
       VOLSYNC_CAPACITY: 1Gi
       VOLSYNC_STORAGECLASS: ceph-block
