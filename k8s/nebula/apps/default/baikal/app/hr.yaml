@@ -42,6 +42,12 @@ spec:
             image:
               repository: ckulka/baikal
               tag: 0.9.4-nginx-php8.0
+            env:
+              MSMTPRC: |
+                defaults
+                account        default
+                host           smtp-relay.default.svc.cluster.local
+                port           25
             resources:
               limits:
                 memory: 512Mi
