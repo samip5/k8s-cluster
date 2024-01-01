@@ -30,24 +30,30 @@ spec:
       interval: 5m
   values:
     defaultPodOptions:
+      automountServiceAccountToken: false
       annotations:
         setGateway: "true"
-      controllers:
-        main:
-          controllerType: deployment
-          containers:
-            main:
-              image:
-                repository: ghcr.io/flaresolverr/flaresolverr
-                tag: v3.3.12
-              env:
-                LOG_LEVEL: debug
-              resources:
-                requests:
-                  cpu: 500m
-                  memory: 256Mi
-                limits:
-                  memory: 512Mi
+
+    controllers:
+      main:
+        type: deployment
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        containers:
+          main:
+            image:
+              repository: ghcr.io/flaresolverr/flaresolverr
+              tag: v3.3.12
+            env:
+              TZ: "Europe/Helsinki"
+              LOG_LEVEL: debug
+            resources:
+              requests:
+                cpu: 100m
+                memory: 512M
+              limits:
+                memory: 800M
       service:
         main:
           ports:
