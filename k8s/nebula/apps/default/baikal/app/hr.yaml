@@ -7,11 +7,11 @@ metadata:
 spec:
   interval: 5m
   install:
-    timeout: 15m
+    timeout: 5m
     remediation:
       retries: 5
   upgrade:
-    timeout: 15m
+    timeout: 5m
     remediation:
       retries: 5
       remediateLastFailure: true
