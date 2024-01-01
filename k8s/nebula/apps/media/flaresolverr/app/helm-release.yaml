@@ -32,6 +32,8 @@ spec:
     image:
       repository: ghcr.io/flaresolverr/flaresolverr
       tag: v3.3.12
+    env:
+      LOG_LEVEL: debug
 
     service:
       main:
@@ -40,6 +42,6 @@ spec:
             port: 8191
     resources:
       requests:
-        memory: 105Mi
+        memory: 256Mi
       limits:
-        memory: 292Mi
+        memory: 512Mi
