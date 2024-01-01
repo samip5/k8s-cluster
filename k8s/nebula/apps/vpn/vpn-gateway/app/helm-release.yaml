@@ -70,9 +70,13 @@ spec:
             - to:
                 - ipBlock:
                     cidr: 0.0.0.0/0
+                - ipBlock:
+                    cidr: ::/0 # Allow IPv6 to VPN servers
               ports:
                 # VPN traffic
                 - port: 51820
+                  protocol: UDP
+                - port: 1637
                   protocol: UDP
             - to:
                 - namespaceSelector: {}
