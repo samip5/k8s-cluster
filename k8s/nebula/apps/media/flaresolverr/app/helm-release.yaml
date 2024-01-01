@@ -54,8 +54,8 @@ spec:
                 memory: 512M
               limits:
                 memory: 800M
-      service:
-        main:
-          ports:
-            http:
-              port: 8191
+    service:
+      main:
+        ports:
+          http:
+            port: 8191
