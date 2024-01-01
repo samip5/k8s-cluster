@@ -80,7 +80,6 @@ spec:
                   protocol: UDP
                 - port: 53
                   protocol: UDP
-                - protocol: ICMPv6
             - to:
                 - namespaceSelector: {}
 
