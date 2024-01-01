@@ -8,6 +8,7 @@ resources:
   - smtp-relay/ks.yaml
   - theme-park/ks.yaml
   - linkwarden/ks.yaml
+  - baikal/ks.yaml
 #  - i2pd/ks.yaml
 #  - code-server/ks.yaml
 #  - satisfactory/ks.yaml
