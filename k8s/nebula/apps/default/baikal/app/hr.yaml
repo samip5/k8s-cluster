@@ -42,8 +42,6 @@ spec:
             image:
               repository: ckulka/baikal
               tag: 0.9.4-nginx-php8.0
-            env:
-              BAIKAL_SKIP_CHOWN: y
             resources:
               limits:
                 memory: 512Mi
