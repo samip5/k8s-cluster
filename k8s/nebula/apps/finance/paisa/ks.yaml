@@ -1,0 +1,30 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app paisa
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  targetNamespace: finance
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  path: ./k8s/nebula/apps/finance/paisa/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
+  postBuild:
+    substitute:
+      APP: *app
+      HOSTNAME: ledger.skylab.fi
+      APP_UID: "568"
+      APP_GID: "568"
+      VOLSYNC_CLAIM: paisa-data
+      VOLSYNC_CAPACITY: 2Gi
+      VOLSYNC_STORAGECLASS: ceph-block
+      VOLSYNC_SNAPSHOTCLASS: csi-ceph-blockpool
