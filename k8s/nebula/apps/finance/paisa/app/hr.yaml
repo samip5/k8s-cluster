@@ -38,7 +38,7 @@ spec:
           main:
             image:
               repository: registry.samipsolutions.fi/library/paisa
-              tag: 0.6.2
+              tag: 0.6.2@sha256:1948b16f807a34faac71273b9127ac56d0355712e180fecfc2751e9a2a61e4fb'
             env:
               TZ: Europe/Helsinki
             resources:
