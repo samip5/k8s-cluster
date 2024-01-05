@@ -87,7 +87,7 @@ spec:
       data:
         enabled: true
         type: nfs
-        server:
-        path: /backup/data/k8s/syncthing
+        server: 192.168.2.2
+        path: /volume1/Storage_HDD/k8s/syncthing
         globalMounts:
           - path: /var/syncthing

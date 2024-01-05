@@ -9,6 +9,7 @@ resources:
   - theme-park/ks.yaml
   - linkwarden/ks.yaml
   - baikal/ks.yaml
+  - syncthing/ks.yaml
 #  - i2pd/ks.yaml
 #  - code-server/ks.yaml
 #  - satisfactory/ks.yaml
