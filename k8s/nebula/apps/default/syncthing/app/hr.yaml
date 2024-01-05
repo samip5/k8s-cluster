@@ -1,0 +1,93 @@
+---
+# yaml-language-server: $schema=https://github.com/fluxcd-community/flux2-schemas/raw/main/helmrelease-helm-v2beta2.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: syncthing
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: syncthing/syncthing
+              tag: 1.27.2
+            resources:
+              requests:
+                cpu: 15m
+                memory: 64M
+              limits:
+                cpu: 100m
+                memory: 128M
+    service:
+      main:
+        ipFamilyPolicy: PreferDualStack
+        ports:
+          http:
+            port: 8384
+      listen:
+        controller: main
+        type: LoadBalancer
+        externalTrafficPolicy: Local
+        ipFamilyPolicy: PreferDualStack
+        ports:
+          listen:
+            enabled: true
+            port: 22000
+            protocol: TCP
+            targetPort: 22000
+      discovery:
+        controller: main
+        type: LoadBalancer
+        externalTrafficPolicy: Local
+        ipFamilyPolicy: PreferDualStack
+        ports:
+          discovery:
+            enabled: true
+            port: 21027
+            protocol: UDP
+            targetPort: 21027
+    ingress:
+      main:
+        enabled: true
+        className: internal-nginx
+        annotations:
+          hajimari.io/icon: "cloud"
+        hosts:
+          - host: &host syncthing.${CLUSTER_DOMAIN}
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
+    persistence:
+      data:
+        enabled: true
+        type: nfs
+        server:
+        path: /backup/data/k8s/syncthing
+        globalMounts:
+          - path: /var/syncthing
