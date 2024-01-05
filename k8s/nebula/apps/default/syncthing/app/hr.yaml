@@ -74,7 +74,7 @@ spec:
         annotations:
           hajimari.io/icon: "cloud"
         hosts:
-          - host: &host syncthing.${CLUSTER_DOMAIN}
+          - host: "${HOSTNAME}"
             paths:
               - path: /
                 service:
@@ -82,12 +82,10 @@ spec:
                   port: http
         tls:
           - hosts:
-              - *host
+              - "${HOSTNAME}"
     persistence:
       data:
         enabled: true
-        type: nfs
-        server: 192.168.2.2
-        path: /volume1/Storage_HDD/k8s/syncthing
+        existingClaim: "${VOLSYNC_CLAIM}"
         globalMounts:
           - path: /var/syncthing
