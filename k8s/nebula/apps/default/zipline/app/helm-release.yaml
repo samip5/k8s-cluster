@@ -23,7 +23,7 @@ spec:
       replicas: 1
     image:
       repository: ghcr.io/diced/zipline
-      tag: trunk@sha256:4e0d5d9bf51424787262a507dc480b1ffe21714a792586c4dd3905e738cd13e7
+      tag: trunk@sha256:f00bc446c0b6ae504597c8706b5c85b24d4617e4278903d1fdc74e67ddf8a0fa
     env:
       TZ: "Europe/Helsinki"
       DATASOURCE_S3_USE_SSL: "true"
