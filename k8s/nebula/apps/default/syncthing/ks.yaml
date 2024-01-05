@@ -3,13 +3,16 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app syncthing
+  name: &appname syncthing
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: rook-ceph-cluster
+    - name: cluster-apps-volsync
   targetNamespace: default
   commonMetadata:
     labels:
-      app.kubernetes.io/name: *app
+      app.kubernetes.io/name: *appname
   path: ./k8s/nebula/apps/default/syncthing/app
   prune: true
   sourceRef:
@@ -19,3 +22,13 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
+  postBuild:
+    substitute:
+      APP: *appname
+      HOSTNAME: syncthing.skylab.fi
+      APP_UID: "568"
+      APP_GID: "568"
+      VOLSYNC_CLAIM: syncthing-data
+      VOLSYNC_CAPACITY: 50Gi
+      VOLSYNC_STORAGECLASS: ceph-block
+      VOLSYNC_SNAPSHOTCLASS: csi-ceph-blockpool
