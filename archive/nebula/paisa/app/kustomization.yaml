@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: finance
 resources:
   - hr.yaml
-  - ../../../../../templates/volsync
+  - ../../../../k8s/templates/volsync
