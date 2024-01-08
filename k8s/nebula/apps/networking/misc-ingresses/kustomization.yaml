@@ -6,8 +6,8 @@ resources:
   - dh-service.yaml
   - dh-endpoints.yaml
   - dh-endpoints-plex.yaml
-  - home-srv-endpoints.yaml
-  - home-srv-svc.yaml
-  - home-srv-livetv-ingress.yaml
-  - home-srv-livetv-stream-ingress.yaml
-  - home-srv-livetv-dvr-ingress.yaml
+#  - home-srv-endpoints.yaml
+#  - home-srv-svc.yaml
+#  - home-srv-livetv-ingress.yaml
+#  - home-srv-livetv-stream-ingress.yaml
+#  - home-srv-livetv-dvr-ingress.yaml
