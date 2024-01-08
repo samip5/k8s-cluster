@@ -12,4 +12,4 @@ resources:
   - ./external-dns/ks-external.yaml
   - ./external-dns/ks-internal.yaml
   - ./whoami/ks.yaml
-  - ./unimus/ks.yaml
+#  - ./unimus/ks.yaml
