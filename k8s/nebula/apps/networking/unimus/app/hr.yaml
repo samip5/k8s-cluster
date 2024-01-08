@@ -32,10 +32,20 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
 
+#        pod:
+#          annotations:
+#            k8s.v1.cni.cncf.io/networks: |
+#              [{
+#                "name":"multus-mgt",
+#                "interface": "eth1",
+#                "namespace": "kube-system",
+#                "ips": ["192.168.99.20/24"]
+#              }]
+
         containers:
           main:
             image:
-              repository: registry.samipsolutions.fi/croc/unimus
+              repository: registry.samipsolutions.fi/docker/croc/unimus # Pull-though cache
               tag: latest@sha256:4e35756cec1a5628e4a6530de06ac7ce064f526b058e971f5793895e4c6bd10a
             env:
               TZ: "Europe/Helsinki"
