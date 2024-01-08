@@ -50,8 +50,11 @@ spec:
             env:
               TZ: "Europe/Helsinki"
               JAVA_OPTS: "-Xms256M -Xmx1024M -Dunimus.core.connect-timeout=20000 -Dunimus.core.inter-connection-delay=1000 -Dunimus.core.cli-expect-timeout=30000"
-
-
+            resources:
+              requests:
+                memory: 256Mi
+              limits:
+                memory: 1Gi
     service:
       main:
         ports:
