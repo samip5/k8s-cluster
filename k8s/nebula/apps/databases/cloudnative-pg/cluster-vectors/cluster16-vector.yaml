@@ -33,6 +33,10 @@ spec:
       shared_buffers: 512MB
   monitoring:
     enablePodMonitor: true
+    # https://github.com/cloudnative-pg/cloudnative-pg/issues/2501
+    podMonitorMetricRelabelings:
+        - { sourceLabels: [ "cluster" ], targetLabel: cnpg_cluster, action: replace }
+        - { regex: cluster, action: labeldrop }
   backup:
     retentionPolicy: "30d"
     barmanObjectStore:
