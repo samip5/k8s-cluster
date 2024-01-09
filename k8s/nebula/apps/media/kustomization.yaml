@@ -5,6 +5,5 @@ resources:
  - ns.yaml
  - ./prowlarr/ks.yaml
  - ./flaresolverr/ks.yaml
- - ./recyclarr/ks.yaml
  - ./jellyseer/ks.yaml
  - ./maintainerr/ks.yaml
