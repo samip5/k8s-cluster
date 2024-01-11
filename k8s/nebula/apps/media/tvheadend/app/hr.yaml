@@ -43,8 +43,7 @@ spec:
             image:
               repository: registry.samipsolutions.fi/library/tvheadend
               tag: 4.3.10042
-            args:
-              - "--noacl"
+            command: "--noacl"
             env:
               TZ: "Europe/Helsinki"
 
