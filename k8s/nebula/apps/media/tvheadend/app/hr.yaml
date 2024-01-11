@@ -1,0 +1,126 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app tvheadend
+  namespace: media
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      interval: 15m
+  values:
+    defaultPodOptions:
+      securityContext:
+        runAsUser: ${APP_UID}
+        runAsGroup: ${APP_GID}
+        fsGroup: ${APP_GID}
+        fsGroupChangePolicy: "OnRootMismatch"
+        supplementalGroups:
+          - 44
+          - 109
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: hauppauge.feature.node.kubernetes.io/tuner
+                    operator: In
+                    values:
+                      - "true"
+
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: registry.samipsolutions.fi/library/tvheadend:4.3.10042
+              tag: 4.3.10042
+            env:
+              TZ: "Europe/Helsinki"
+
+    service:
+      main:
+        ports:
+          http:
+            port: 9981
+          htsp:
+            port: 9982
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "external-nginx"
+        annotations:
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            send_timeout 100m;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "Upgrade";
+        hosts:
+          - host: "${HOSTNAME}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  name: main
+                  port: http
+        tls:
+            hosts:
+              - "${HOSTNAME}"
+      int:
+        enabled: true
+        ingressClassName: "internal-nginx"
+        annotations:
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            send_timeout 100m;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "Upgrade";
+        hosts:
+          - host: "${HOSTNAME}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  name: main
+                  port: http
+        tls:
+          hosts:
+            - "${HOSTNAME}"
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: "${VOLSYNC_CLAIM}"
+        globalMounts:
+          - path: /config
+      recordings:
+        enabled: true
+        type: nfs
+        path: /volume1/recordings
+        globalMounts:
+          - path: /recordings
+      timeshift:
+        enabled: true
+        type: emptyDir
+        globalMounts:
+          - path: /timeshift
+    resources:
+      requests:
+        # gpu.intel.com/i915: 1
+        cpu: 100m
+        memory: 20Mi
+      limits:
+        # gpu.intel.com/i915: 1
+        cpu: 1000m
+        memory: 1096Mi
