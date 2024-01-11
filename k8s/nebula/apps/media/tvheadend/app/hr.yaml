@@ -24,6 +24,7 @@ spec:
         fsGroupChangePolicy: "OnRootMismatch"
         supplementalGroups:
           - 44
+          - 212
           - 109
       affinity:
         nodeAffinity:
