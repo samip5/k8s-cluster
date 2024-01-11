@@ -25,7 +25,8 @@ spec:
     defaultPodOptions:
       automountServiceAccountToken: false
     nodeSelector:
-      kubernetes.io/arch: amd64
+      kubernetes.io/hostname: "w-amd-2"
+
 
     controllers:
       main:
@@ -34,15 +35,15 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
 
-#        pod:
-#          annotations:
-#            k8s.v1.cni.cncf.io/networks: |
-#              [{
-#                "name":"multus-mgt",
-#                "interface": "eth1",
-#                "namespace": "kube-system",
-#                "ips": ["192.168.99.20/24"]
-#              }]
+        pod:
+          annotations:
+            k8s.v1.cni.cncf.io/networks: |
+              [{
+                "name":"multus-mgt",
+                "interface": "eth1",
+                "namespace": "kube-system",
+                "ips": ["192.168.99.20/24"]
+              }]
 
         containers:
           main:
