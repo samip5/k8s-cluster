@@ -18,6 +18,10 @@ spec:
   install:
     createNamespace: true
   values:
+    image:
+      repository: registry.k8s.io/node-problem-detector/node-problem-detector
+      # See https://github.com/kubernetes/node-problem-detector/issues/827
+      tag: v0.8.15
     metrics:
       enabled: true
       serviceMonitor:
