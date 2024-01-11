@@ -40,7 +40,7 @@ spec:
         containers:
           main:
             image:
-              repository: registry.samipsolutions.fi/library/tvheadend:4.3.10042
+              repository: registry.samipsolutions.fi/library/tvheadend
               tag: 4.3.10042
             env:
               TZ: "Europe/Helsinki"
