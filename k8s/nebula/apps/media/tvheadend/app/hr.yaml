@@ -107,6 +107,7 @@ spec:
       recordings:
         enabled: true
         type: nfs
+        server: 192.168.2.2
         path: /volume1/recordings
         globalMounts:
           - path: /recordings
