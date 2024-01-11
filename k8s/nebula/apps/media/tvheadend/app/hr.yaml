@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: &app tvheadend
+  name: tvheadend
   namespace: media
 spec:
   interval: 5m
@@ -73,7 +73,7 @@ spec:
                   name: main
                   port: http
         tls:
-            hosts:
+          - hosts:
               - "${HOSTNAME}"
       int:
         enabled: true
@@ -95,8 +95,8 @@ spec:
                   name: main
                   port: http
         tls:
-          hosts:
-            - "${HOSTNAME}"
+          - hosts:
+              - "${HOSTNAME}"
 
     persistence:
       config:
