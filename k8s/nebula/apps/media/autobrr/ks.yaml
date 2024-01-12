@@ -1,21 +1,30 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-autobrr
+  name: &appname "autobrr"
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
 spec:
+  targetNamespace: media
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *appname
   path: ./k8s/nebula/apps/media/autobrr/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: autobrr
-      namespace: media
   interval: 30m
   retryInterval: 1m
   timeout: 5m
+  postBuild:
+    substitute:
+      APP: *appname
+      HOSTNAME: autobrr.skylab.fi
+      APP_UID: "568"
+      APP_GID: "568"
+      VOLSYNC_CLAIM: autobrr-data
+      VOLSYNC_CAPACITY: 1Gi
+      VOLSYNC_STORAGECLASS: ceph-block
+      VOLSYNC_SNAPSHOTCLASS: csi-ceph-blockpool
