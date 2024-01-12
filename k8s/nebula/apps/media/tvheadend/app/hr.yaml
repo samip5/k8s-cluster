@@ -22,6 +22,7 @@ spec:
         runAsGroup: ${APP_GID}
         fsGroup: ${APP_GID}
         fsGroupChangePolicy: "OnRootMismatch"
+
         supplementalGroups:
           - 44
           - 212
@@ -43,7 +44,7 @@ spec:
             image:
               repository: registry.samipsolutions.fi/library/tvheadend
               tag: 4.3.10042
-            command: "--noacl"
+            args: ["--noacl"]
             env:
               TZ: "Europe/Helsinki"
 
