@@ -7,4 +7,4 @@ resources:
  - ./flaresolverr/ks.yaml
  - ./jellyseer/ks.yaml
  - ./maintainerr/ks.yaml
- - ./tvheadend/ks.yaml
+# - ./tvheadend/ks.yaml
