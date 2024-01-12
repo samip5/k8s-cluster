@@ -125,12 +125,12 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /timeshift
-      tuner:
+      dev:
         enabled: true
         type: hostPath
-        hostPath: /dev/dvb
+        hostPath: /dev/
         globalMounts:
-          - path: /dev/dvb
+          - path: /dev/
     resources:
       requests:
         # gpu.intel.com/i915: 1
