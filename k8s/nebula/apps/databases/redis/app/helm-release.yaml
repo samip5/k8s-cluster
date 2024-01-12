@@ -1,89 +1,56 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: &app redis
+  name: redis
   namespace: databases
 spec:
   interval: 15m
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      interval: 15m
+  maxHistory: 3
   install:
     createNamespace: true
     remediation:
-      retries: 5
+      retries: 3
   upgrade:
+    cleanupOnFail: true
     remediation:
-      retries: 5
+      retries: 3
+  uninstall:
+    keepHistory: false
   values:
-    global:
-      nameOverride: *app
-    image:
-      repository: redis
-      tag: 7.2.4-alpine
-    controller:
-      type: deployment
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: public.ecr.aws/docker/library/redis
+              tag: 7.2.4
+            env:
+              REDIS_REPLICATION_MODE: master
+            resources:
+              requests:
+                cpu: 10m
+                memory: 10Mi
+              limits:
+                memory: 100Mi
     service:
       main:
         ports:
           http:
+            enabled: false
+          redis:
+            enabled: true
             port: 6379
-    command:
-      - sh
-    args:
-      - -c
-      - >-
-        redis-server
-    persistence:
-      healthcheck:
-        enabled: true
-        type: custom
-        mountPath: /health
-        volumeSpec:
-          configMap:
-            name: redis-healthcheck
-            defaultMode: 0755
-    probes:
-      liveness:
-        enabled: true
-        custom: true
-        spec:
-          exec:
-            command:
-              - sh
-              - -c
-              - /health/ping_liveness.sh 5
-          initialDelaySeconds: 5
-          timeoutSeconds: 6
-          periodSeconds: 5
-          successThreshold: 1
-          failureThreshold: 5
-      readiness:
-        enabled: true
-        custom: true
-        spec:
-          exec:
-            command:
-              - sh
-              - -c
-              - /health/ping_readiness.sh 1
-          initialDelaySeconds: 5
-          timeoutSeconds: 2
-          periodSeconds: 5
-          successThreshold: 1
-          failureThreshold: 5
-    resources:
-      requests:
-        memory: 204Mi
-      limits:
-        memory: 241Mi
-    env:
-      REDIS_PORT: "6379"
-
+    ingress:
+      main:
+        enabled: false
