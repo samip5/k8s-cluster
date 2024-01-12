@@ -45,7 +45,7 @@ spec:
               repository: registry.samipsolutions.fi/library/tvheadend
               tag: 4.3.10042
             command: "/entrypoint.sh"
-            args: ["--noacl", "--stderr", "--debug all"]
+            args: ["--noacl", "--stderr", "--debug"]
             env:
               TZ: "Europe/Helsinki"
 
