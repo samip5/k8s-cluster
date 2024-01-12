@@ -26,10 +26,9 @@ spec:
     enablePodAntiAffinity: true
     topologyKey: kubernetes.io/hostname
     podAntiAffinityType: required
-    tolerations:
-      - key: "cm4"
-        operator: "Exists"
-        effect: ""
+    nodeSelector:
+      kubernetes.io/arch: amd64
+
   postgresql:
     shared_preload_libraries:
       - "vectors.so"
