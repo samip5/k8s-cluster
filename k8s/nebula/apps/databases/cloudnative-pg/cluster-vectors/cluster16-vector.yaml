@@ -9,8 +9,8 @@ spec:
   imageName: ghcr.io/bo0tzz/cnpgvecto.rs:16.1-v0.1.11
   primaryUpdateStrategy: unsupervised
   storage:
-    size: 20Gi
-    storageClass: local-path
+    size: 15Gi
+    storageClass: ceph-block
   superuserSecret:
     name: cloudnative-pg-secret
   enableSuperuserAccess: true
@@ -19,9 +19,9 @@ spec:
       memory: 1Gi
     limits:
       memory: 2Gi
-  # bootstrap:
-    #recovery:
-    #  source: &previousCluster postgres-vector-v1
+  bootstrap:
+    recovery:
+      source: &previousCluster postgres-vector-v2
   affinity:
     enablePodAntiAffinity: true
     topologyKey: kubernetes.io/hostname
@@ -51,7 +51,7 @@ spec:
         compression: bzip2
       destinationPath: s3://cnpg-main/
       endpointURL: https://s3.skym.fi
-      serverName: &currentCluster postgres-vector-v2
+      serverName: &currentCluster postgres-vector-v3
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
@@ -59,18 +59,18 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-secret
           key: aws-secret-access-key
-  #externalClusters:
-  #  - name: *previousCluster
-  #    barmanObjectStore:
-  #      wal:
-  #        compression: bzip2
-  #        maxParallel: 8
-  #      destinationPath: s3://cnpg-main/
-  #      endpointURL: https://s3.skym.fi
-  #      s3Credentials:
-  #        accessKeyId:
-  #          name: cloudnative-pg-secret
-  #          key: aws-access-key-id
-  #        secretAccessKey:
-  #          name: cloudnative-pg-secret
-  #          key: aws-secret-access-key
+  externalClusters:
+    - name: *previousCluster
+      barmanObjectStore:
+        wal:
+          compression: bzip2
+          maxParallel: 8
+        destinationPath: s3://cnpg-main/
+        endpointURL: https://s3.skym.fi
+        s3Credentials:
+          accessKeyId:
+            name: cloudnative-pg-secret
+            key: aws-access-key-id
+          secretAccessKey:
+            name: cloudnative-pg-secret
+            key: aws-secret-access-key
