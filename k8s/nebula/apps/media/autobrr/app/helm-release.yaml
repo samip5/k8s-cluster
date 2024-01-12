@@ -1,83 +1,106 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta2.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: autobrr
-  namespace: media
 spec:
   interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.4.0
+      interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  maxHistory: 3
-  install:
-    createNamespace: true
-    remediation:
-      retries: 3
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
-  uninstall:
-    keepHistory: false
   values:
-    controller:
-      strategy: Recreate
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/autobrr/autobrr
-      tag: v1.34.1
-    env:
-      TZ: "Europe/Helsinki"
+    defaultPodOptions:
+      securityContext:
+        runAsUser: ${APP_UID}
+        runAsGroup: ${APP_GID}
+        runAsNonRoot: true
+    controllers:
+      main:
+        annotations:
+          secret.reloader.stakater.com/reload: autobrr-secret,autobrr-init-secret
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+            envFrom:
+              - secretRef:
+                  name: autobrr-init-secret
+
+        containers:
+          main:
+            image:
+              repository: ghcr.io/autobrr/autobrr
+              tag: v1.34.1
+            env:
+              AUTOBRR__CHECK_FOR_UPDATES: "false"
+              AUTOBRR__HOST: 0.0.0.0
+              AUTOBRR__PORT: &port 7474
+              AUTOBRR__LOG_LEVEL: DEBUG
+              AUTOBRR__DATABASE_TYPE: postgres
+              AUTOBRR__POSTGRES_HOST:
+                valueFrom:
+                  secretKeyRef:
+                    name: "autobrr-secret"
+                    key: dbhost
+              AUTOBRR__POSTGRES_PORT: "5432"
+              AUTOBRR__POSTGRES_USER:
+                valueFrom:
+                  secretKeyRef:
+                    name: "autobrr-secret"
+                    key: user
+              AUTOBRR__POSTGRES_PASS:
+                valueFrom:
+                  secretKeyRef:
+                    name: "autobrr-secret"
+                    key: password
+              AUTOBRR__POSTGRES_DATABASE:
+                valueFrom:
+                  secretKeyRef:
+                    name: "autobrr-secret"
+                    key: dbname
+              AUTOBRR__SESSION_SECRET:
+                valueFrom:
+                  secretKeyRef:
+                    name: autobrr-secret
+                    key: session_secret
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+              limits:
+                memory: 256Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
+
     service:
       main:
         ports:
           http:
-            port: 7474
+            port: *port
+
     ingress:
       main:
         enabled: true
-        ingressClassName: internal-nginx
-        annotations:
-          hajimari.io/icon: mdi:bunny
+        className: internal-nginx
         hosts:
-          - host: &host autobrr.skylab.fi
+          - host: "${HOSTNAME}"
             paths:
               - path: /
-                pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
-              - *host
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
-      supplementalGroups: [10000]
-
-    podAnnotations:
-      setDownloadGateway: "true"
-
-    persistence:
-      config:
-        enabled: true
-        existingClaim: autobrr-config
-      config-file:
-        enabled: true
-        type: configMap
-        name: autobrr-configmap
-        mountPath: /config/config.toml
-        subPath: config.toml
-        readOnly: true
-    resources:
-      requests:
-        memory: 250Mi
-        cpu: 10m
-      limits:
-        memory: 500Mi
+              - "${HOSTNAME}"
