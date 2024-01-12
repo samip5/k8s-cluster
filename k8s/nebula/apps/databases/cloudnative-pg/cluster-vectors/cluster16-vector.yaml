@@ -21,7 +21,7 @@ spec:
       memory: 2Gi
   bootstrap:
     recovery:
-      source: &previousCluster postgres-vector-v2
+      source: &previousCluster postgres-vector-v1
   affinity:
     enablePodAntiAffinity: true
     topologyKey: kubernetes.io/hostname
