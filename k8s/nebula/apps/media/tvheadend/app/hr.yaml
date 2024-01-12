@@ -42,12 +42,11 @@ spec:
         containers:
           main:
             image:
-              repository: registry.samipsolutions.fi/library/tvheadend
-              tag: 4.3.10042
-            command: "/entrypoint.sh"
-            args: ["--noacl", "--stderr"]
+              repository: lscr.io/linuxserver/tvheadend
+              tag: latest
             env:
               TZ: "Europe/Helsinki"
+              RUN_OPTS: "--noacl --stderr"
 
     service:
       main:
