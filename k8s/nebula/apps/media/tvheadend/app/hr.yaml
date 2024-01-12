@@ -44,8 +44,10 @@ spec:
             image:
               repository: registry.samipsolutions.fi/library/tvheadend
               tag: 4.3.10042
-            command: "/entrypoint.sh"
-            args: ["--noacl", "--stderr", "--debug"]
+            #command: "/entrypoint.sh"
+            #args: ["--noacl", "--stderr", "--debug"]
+            command: "/bin/sleep"
+            args: ["infinity"]
             env:
               TZ: "Europe/Helsinki"
 
