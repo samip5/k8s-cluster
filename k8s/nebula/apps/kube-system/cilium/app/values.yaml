@@ -27,9 +27,6 @@ loadBalancer:
   algorithm: "maglev"
   mode: "dsr"
 
-bandwidthManager:
-  enabled: true
-  bbr: true
 bpf:
   masquerade: true
   tproxy: true
