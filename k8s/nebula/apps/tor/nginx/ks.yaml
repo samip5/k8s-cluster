@@ -6,6 +6,7 @@ metadata:
   name: tor-nginx
   namespace: flux-system
 spec:
+  targetNamespace: tor
   interval: 10m
   path: "./k8s/nebula/apps/tor/nginx/app"
   prune: true
