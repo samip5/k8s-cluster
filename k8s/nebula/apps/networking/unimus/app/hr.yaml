@@ -24,8 +24,8 @@ spec:
   values:
     defaultPodOptions:
       automountServiceAccountToken: false
-    nodeSelector:
-      kubernetes.io/hostname: "w-amd-2"
+      nodeSelector:
+        kubernetes.io/hostname: "w-amd-2"
 
 
     controllers:
