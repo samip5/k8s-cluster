@@ -64,6 +64,7 @@ spec:
         annotations:
           io.cilium/lb-ipam-ips: "192.168.10.10"
         externalTrafficPolicy: Cluster
+        ipFamilyPolicy: SingleStack
         ipFamilies:
           - IPv4
         ports:
