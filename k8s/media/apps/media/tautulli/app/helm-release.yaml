@@ -2,14 +2,14 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: tautulli
+  name: &app tautulli
   namespace: media
 spec:
   interval: 15m
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -26,61 +26,108 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    controller:
-      strategy: Recreate
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/onedr0p/tautulli
-      tag: 2.13.4@sha256:7682cdcf98dbdd236a21d1a7b7b380928dbd67283dce9a76398a7c1461b0f802
-    env:
-      TZ: Europe/Helsinki
-    service:
+    controllers:
       main:
-        ports:
-          http:
-            port: 8181
-
+        containers:
+          main:
+            image:
+              repository: ghcr.io/onedr0p/tautulli
+              tag: 2.13.4@sha256:7682cdcf98dbdd236a21d1a7b7b380928dbd67283dce9a76398a7c1461b0f802
+            env:
+              TZ: "Europe/Helsinki"
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: &path /status
+                    port: &port 8181
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 512Mi
+            securityContext: &securityContext
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
+          jbops:
+            image:
+              repository: registry.k8s.io/git-sync/git-sync
+              tag: v4.1.0@sha256:fd9722fd02e3a559fd6bb4427417c53892068f588fc8372aa553fbf2f05f9902
+            env:
+              GITSYNC_REPO: https://github.com/blacktwin/JBOPS
+              GITSYNC_REF: master
+              GITSYNC_PERIOD: 86400s # 1 day
+              GITSYNC_ROOT: /add-ons
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 128Mi
+            securityContext: *securityContext
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            runAsNonRoot: true
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        className: nginx
+        annotations:
+          gatus.io/enabled: "true"
+          gatus.io/path: *path
+          hajimari.io/icon: mdi:chart-bar
         hosts:
           - host: &host "tautulli.media.skylab.fi"
             paths:
               - path: /
-                pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
-            secretName: media.skylab.fi-tls
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
-      supplementalGroups: [10000]
-
     persistence:
+      add-ons:
+        type: emptyDir
+        globalMounts:
+          - path: /add-ons
       config:
         enabled: true
         type: hostPath
-        mountPath: /config
-        hostPath: "/opt/docker/appdata/tautulli"
+        hostPat: "/opt/docker/appdata/tautulli"
+        globalMounts:
+          - path: /config
       backup:
         enabled: true
         existingClaim: tautulli-backup-v2
-        mountPath: /config/backups
+        globalMounts:
+          - path: /config/backups
       logs:
         enabled: true
         type: hostPath
-        mountPath: /logs
         hostPath: "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Logs"
+        globalMounts:
+          - path: /logs
 
-    resources:
-      requests:
-        cpu: 12m
-        memory: 64Mi
-      limits:
-        cpu: 500m
-        memory: 200Mi
+      tmp:
+        type: emptyDir
+    service:
+      main:
+        ports:
+          http:
+            port: *port
