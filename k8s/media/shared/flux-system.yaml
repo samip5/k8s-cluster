@@ -4,8 +4,6 @@ kind: Kustomization
 metadata:
   name: flux-system-helm-chart-repos
   namespace: flux-system
-  labels:
-    component.skylab.fi/part-of: definitions
 spec:
   path: "./k8s/base/flux-system/helm-chart-repos"
   prune: true
