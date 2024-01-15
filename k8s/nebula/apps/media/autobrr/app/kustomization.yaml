@@ -5,9 +5,3 @@ namespace: media
   - ./externalsecret-store.yaml
   - ./externalsecret.yaml
   - ./helm-release.yaml
-generatorOptions:
-  disableNameSuffixHash: true
-labels:
-  - pairs:
-      app.kubernetes.io/name: autobrr
-      app.kubernetes.io/instance: autobrr
