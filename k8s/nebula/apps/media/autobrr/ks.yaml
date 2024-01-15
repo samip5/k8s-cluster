@@ -3,8 +3,6 @@ kind: Kustomization
 metadata:
   name: &appname "autobrr"
   namespace: flux-system
-  labels:
-    component.skylab.fi/part-of: definitions
 spec:
   targetNamespace: media
   commonMetadata:
