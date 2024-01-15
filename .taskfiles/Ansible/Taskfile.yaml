@@ -20,6 +20,21 @@ tasks:
     cmds:
       - task: .venv
 
+  console:
+    desc: Run ansible console
+    summary: |
+      Args:
+        cluster: Cluster to run command against (required)
+    prompt: Run Ansible console  against the '{{.cluster}}' cluster... continue?
+    deps: ["deps"]
+    cmd: |
+      .venv/bin/ansible-console \
+        --inventory {{.ANSIBLE_DIR}}/{{.cluster}}/inventory/hosts.yaml {{.CLI_ARGS}}
+    preconditions:
+      - { msg: "Argument (cluster) is required",  sh: "test -n {{.cluster}}" }
+      - { msg: "Venv not found",                  sh: "test -d {{.ROOT_DIR}}/.venv" }
+      - { msg: "Inventory not found",             sh: "test -f {{.ANSIBLE_DIR}}/{{.cluster}}/inventory/hosts.yaml" }
+
   run:
     desc: Run an Ansible playbook for configuring a cluster
     summary: |
