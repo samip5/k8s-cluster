@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -26,14 +26,54 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    controller:
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/onedr0p/bazarr
-      tag: 1.4.0@sha256:c81c4d9cbec093d5a999cfa3cd1af01d3f00d6292d6f5c33608510cef0ed83c7
-    env:
-      TZ: "Europe/Helsinki"
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+        supplementalGroups:
+          - 100
+
+    controllers:
+      main:
+        type: statefulset
+        annotations:
+          reloader.stakater.com/auto: "true"
+        initContainers:
+          image:
+            repository: ghcr.io/onedr0p/postgres-init
+            tag: 16
+            pullPolicy: IfNotPresent
+          envFrom:
+            - secretRef:
+                name: bazarr-init-secret
+        containers:
+          main:
+            image:
+              repository: ghcr.io/onedr0p/bazarr
+              tag: 1.4.0@sha256:c81c4d9cbec093d5a999cfa3cd1af01d3f00d6292d6f5c33608510cef0ed83c7
+            env:
+              TZ: "Europe/Helsinki"
+            envFrom:
+              - secretRef:
+                  name: bazarr-secret
+            resources:
+              requests:
+                cpu: 23m
+                memory: 512M
+              limits:
+                memory: 1Gi
+          subcleaner:
+            image:
+              repository: registry.k8s.io/git-sync/git-sync
+              tag: v4.1.0
+              pullPolicy: IfNotPresent
+              args:
+                - --repo=https://github.com/KBlixt/subcleaner
+                - --branch=master
+                - --wait=86400 # 1 day
+                - --root=/add-ons
 
     service:
       main:
@@ -44,7 +84,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        className: nginx
         annotations:
           nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8,192.168.0.0/16,158.101.199.148/32,2603:c022:c002:4800::10/128,2001:14ba:16fd:9600::/56"
           nginx.ingress.kubernetes.io/configuration-snippet: |
@@ -60,35 +100,7 @@ spec:
         tls:
           - hosts:
               - *host
-      secondary:
-        enabled: true
-        ingressClassName: nginx
-        annotations:
-          nginx.ingress.kubernetes.io/auth-method: GET
-          nginx.ingress.kubernetes.io/auth-url: http://[2001:67c:1be8::56]:40118/api/verify
-          nginx.ingress.kubernetes.io/auth-signin: https://sso.skylab.fi?rm=$request_method
-          nginx.ingress.kubernetes.io/auth-response-headers: Remote-User,Remote-Groups
-          nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Method $request_method;
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.skylab.fi/css/base/bazarr/nord.css"></head>';
-            sub_filter_once on;
-          hajimari.io/icon: mdi:subtitles-outline
-        hosts:
-          - host: &host2 "dh.skylab.fi"
-            paths:
-              - path: /bazarr
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host2
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
-      supplementalGroups:
-        - 100
+
 
     persistence:
       config:
@@ -104,26 +116,32 @@ spec:
         name: bazarr-scripts # overriden by kustomizeconfig
         defaultMode: 0775
         readOnly: true
+        globalMounts:
+          - path: /scripts
       media-tv:
         enabled: true
         type: hostPath
-        mountPath: "/mnt/merge/library/TV Shows/"
         hostPath: "/mnt/merge/library/TV Shows/"
+        globalMounts:
+          - path: "/mnt/merge/library/TV Shows/"
       media-movies:
         enabled: true
         type: hostPath
-        mountPath: "/mnt/merge/library/Movies/"
         hostPath: "/mnt/merge/library/Movies/"
+        globalMounts:
+          - path: "/mnt/merge/library/Movies/"
       media-movies-kids:
         enabled: true
         type: hostPath
-        mountPath: "/mnt/merge/library/Kid Movies/"
         hostPath: "/mnt/merge/library/Kid Movies/"
+        globalMounts:
+          - path: "/mnt/merge/library/Kid Movies/"
       media-anime:
         enabled: true
         type: hostPath
-        mountPath: "/mnt/merge/library/Anime/"
         hostPath: "/mnt/merge/library/Anime/"
+        globalMounts:
+          - path: "/mnt/merge/library/Anime/"
 
     resources:
       requests:
