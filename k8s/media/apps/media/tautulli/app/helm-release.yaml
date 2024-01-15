@@ -109,7 +109,7 @@ spec:
       config:
         enabled: true
         type: hostPath
-        hostPat: "/opt/docker/appdata/tautulli"
+        hostPath: "/opt/docker/appdata/tautulli"
         globalMounts:
           - path: /config
       backup:
