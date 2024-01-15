@@ -25,15 +25,25 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    controller:
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: samip537/fancyindex-darktheme
-      tag: latest
-    env:
-      CONTAINER_TIMEZONE: Europe/Helsinki
-      DISABLE_AUTH: true
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        containers:
+          main:
+            image:
+              repository: samip537/fancyindex-darktheme
+              tag: latest
+            env:
+              CONTAINER_TIMEZONE: Europe/Helsinki
+              DISABLE_AUTH: true
+            resources:
+              requests:
+                cpu: 10m
+                memory: 250Mi
+              limits:
+                memory: 2000Mi
 
     service:
       main:
@@ -55,6 +65,10 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  name: main
+                  port: http
+
         tls:
           - hosts:
               - *host
@@ -64,24 +78,20 @@ spec:
       data:
         enabled: true
         type: hostPath
-        mountPath: /share
         hostPath: "/opt/docker/appdata/caddy_index/index"
+        globalMounts:
+          - path: /share
       library:
         enabled: true
         type: hostPath
-        mountPath: /mnt/merge/library
         hostPath: "/mnt/merge/library/"
         readOnly: true
+        globalMounts:
+          - path: /mnt/merge/library
       downloads:
         enabled: true
         type: hostPath
-        mountPath: /mnt/merge/Downloads/
         hostPath: "/mnt/merge/Downloads/"
         readOnly: true
-
-    resources:
-      requests:
-        cpu: 10m
-        memory: 250Mi
-      limits:
-        memory: 2000Mi
+        globalMounts:
+          - path: /mnt/merge/Downloads/
