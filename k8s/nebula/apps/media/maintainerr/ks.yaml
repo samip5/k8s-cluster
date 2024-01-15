@@ -23,8 +23,10 @@ spec:
     substitute:
       APP: *appname
       HOSTNAME: maintainerr.skylab.fi
-      APP_UID: "1000"
-      APP_GID: "1000"
+      #APP_UID: "1000"
+      #APP_GID: "1000"
+      APP_UID: "0"
+      APP_GID: "0"
       VOLSYNC_CLAIM: maintainerr-data
       VOLSYNC_CAPACITY: 2Gi
       VOLSYNC_STORAGECLASS: ceph-block
