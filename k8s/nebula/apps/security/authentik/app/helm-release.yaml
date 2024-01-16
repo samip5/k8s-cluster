@@ -64,6 +64,8 @@ spec:
     ingress:
       enabled: true
       ingressClassName: "external-nginx"
+      annotations:
+        external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
       hosts:
       - host: "id.skylab.fi"
         paths:
