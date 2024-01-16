@@ -30,23 +30,23 @@ spec:
         metadata:
           name: not-used
         spec:
-            infra:
-              replicas: 1
-              nodePlacement:
-                nodeSelector:
-                  node-role.kubernetes.io/master: "true"
-            workloads:
-              nodePlacement:
-                nodeSelector:
-                  kubernetes.io/arch: "amd64"
-          
-            configuration:
-              vmStateStorageClass: "fast-ceph-filesystem"
-              developerConfiguration:
-                featureGates:
-                  - VMPersistentState
-                  - DataVolumes
-                  - AutoResourceLimitsGate
+          infra:
+            replicas: 1
+            nodePlacement:
+              nodeSelector:
+                node-role.kubernetes.io/master: "true"
+          workloads:
+            nodePlacement:
+              nodeSelector:
+                kubernetes.io/arch: "amd64"
+        
+          configuration:
+            vmStateStorageClass: "fast-ceph-filesystem"
+            developerConfiguration:
+              featureGates:
+                - VMPersistentState
+                - DataVolumes
+                - AutoResourceLimitsGate
       target:
         group: kubevirt.io
         kind: KubeVirt
