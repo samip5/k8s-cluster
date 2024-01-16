@@ -87,6 +87,9 @@ spec:
       main:
         enabled: true
         className: "external-nginx"
+        annotations:
+          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+          external-dns.alpha.kubernetes.io/target: "ingress-cf.skylab.fi"
         hosts:
           - host: "links.skylab.fi"
             paths:
