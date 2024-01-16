@@ -4,5 +4,5 @@ resources:
   - ./flux.yaml
   - ./cluster.yaml
   - ./shared.yaml
-  - ../../vm/_kubevirt
+  - ./vm.yaml
   - ./private-flux-system.yaml
