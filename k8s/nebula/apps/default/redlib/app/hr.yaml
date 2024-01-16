@@ -1,0 +1,91 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: redlib
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    defaultPodOptions:
+      automountServiceAccountToken: false
+      enableServiceLinks: false
+      securityContext:
+        runAsUser: ${APP_UID}
+        runAsGroup: ${APP_GID}
+        fsGroup: ${APP_GID}
+        fsGroupChangePolicy: "OnRootMismatch"
+
+
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: quay.io/redlib/redlib
+              tag: latest@sha256:5637b7b9be05ba47416ff3c9b07c6ef7e69555156516f08f06b04f960f63cb41
+            env:
+              TZ: "Europe/Helsinki"
+              REDLIB_ROBOTS_DISABLE_INDEXING: "on"
+            probes:
+              startup:
+                enabled: false
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: &path /settings
+                    port: &port 8080
+                  initialDelaySeconds: 0
+                  periodSeconds: 60
+                  timeoutSeconds: 3
+                  failureThreshold: 3
+              readiness: *probes
+            resources:
+              requests:
+                memory: 256Mi
+              limits:
+                memory: 512Mi
+
+
+
+    ingress:
+      main:
+        enabled: true
+        className: external-nginx
+        hosts:
+          - host: "${HOSTNAME}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - "${HOSTNAME}"
+      int:
+        enabled: true
+        className: internal-nginx
+        hosts:
+          - host: "${HOSTNAME}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+
