@@ -10,6 +10,7 @@ resources:
   - linkwarden/ks.yaml
   - baikal/ks.yaml
   - syncthing/ks.yaml
+  - redlib/ks.yaml
 #  - i2pd/ks.yaml
 #  - code-server/ks.yaml
 #  - satisfactory/ks.yaml
