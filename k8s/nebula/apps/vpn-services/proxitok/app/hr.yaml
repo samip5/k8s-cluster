@@ -63,24 +63,16 @@ spec:
                 memory: 512M
               limits:
                 memory: 600Mi
-      redis:
-        type: deployment
-        containers:
-          main:
+          redis:
             order: 1
             image:
               repository: public.ecr.aws/docker/library/redis
               tag: 7.2.4
-            env:
-              REDIS_REPLICATION_MODE: master
-            command: ["redis-server", "--save", "50 1", "--loglevel", "notice"]
-
-      signer:
-        annotations:
-          reloader.stakater.com/auto: "true"
-
-        containers:
-          main:
+              env:
+                REDIS_REPLICATION_MODE: master
+              command: [ "redis-server", "--save", "50 1", "--loglevel", "notice" ]
+          signer:
+            order: 3
             image:
               repository: ghcr.io/pablouser1/signtok
               tag: master
@@ -93,18 +85,17 @@ spec:
                 memory: 512M
 
 
+
     service:
       main:
         ports:
           http:
             port: 8080
       signer:
-        controller: signer
         ports:
           http:
             port: 8081
       redis:
-        controller: redis
         ports:
           http:
             port: 6379
@@ -152,7 +143,7 @@ spec:
         accessMode: ReadWriteOnce
         storageClass: ceph-block
         advancedMounts:
-          redis:
+          main:
             redis:
               - path: /data
 
