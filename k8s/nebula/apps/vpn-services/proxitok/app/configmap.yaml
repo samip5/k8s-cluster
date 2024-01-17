@@ -7,6 +7,8 @@ metadata:
 data:
   LATTE_CACHE: /cache
   API_CACHE: redis
+  REDIS_HOST: localhost
+  REDIS_PORT: "6379"
   API_SIGNER: remote
   API_SIGNER_URL: http://localhost:8081/signature
   API_FORCE_LEGACY: "1"
