@@ -84,7 +84,7 @@ spec:
       main:
         enabled: true
         primary: true
-        ingressClassName: external-nginx
+        className: external-nginx
         annotations:
           external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
         hosts:
@@ -100,7 +100,7 @@ spec:
               - *host
       internal:
         enabled: true
-        ingressClassName: internal-nginx
+        className: internal-nginx
         hosts:
           - host: *host
             paths:
@@ -115,7 +115,7 @@ spec:
               - *host
       short:
         enabled: true
-        ingressClassName: external-nginx
+        className: external-nginx
         annotations:
           external-dns.alpha.kubernetes.io/target: "ingress-cf.skylab.fi"
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
@@ -134,7 +134,7 @@ spec:
 
       short-rewrite:
         enabled: true
-        ingressClassName: external-nginx
+        className: external-nginx
         annotations:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "ingress-cf.skylab.fi"
