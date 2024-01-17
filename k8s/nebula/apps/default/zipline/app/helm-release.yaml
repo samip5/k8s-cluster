@@ -2,14 +2,14 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app zipline
+  name: zipline
   namespace: default
 spec:
   interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 2.4.0
+      version: 2.5.0
       sourceRef:
         name: bjw-s
         kind: HelmRepository
@@ -49,7 +49,7 @@ spec:
               RATELIMIT_USER: "5"
               RATELIMIT_ADMIN: "1"
               UPLOADER_DEFAULT_FORMAT: "DATE"
-              UPLOADER_ROUTE: &upload "/i"
+              UPLOADER_ROUTE: "/i"
               UPLOADER_ADMIN_LIMIT: "100gb"
               UPLOADER_USER_LIMIT: "500mb"
               UPLOADER_DISABLED_EXTENSIONS: "ps1,bat,exe,sh,fish"
