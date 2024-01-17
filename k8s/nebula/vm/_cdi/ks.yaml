@@ -1,0 +1,26 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cdi-app
+  namespace: flux-system
+spec:
+  interval: 5m
+  prune: true
+  wait: true
+  path: "./deploy"
+  sourceRef:
+    kind: GitRepository
+    name: kubevirt-flux-cdi
+  dependsOn: []
+  patches:
+    # namespace is managed separately by main ks, no need for this ks to also manage it, KubeVirt bundles namespace into kubevirt-operator.yaml
+    - patch: |
+        $patch: delete
+        apiVersion: v1
+        kind: Namespace
+        metadata:
+          name: cdi
+      target:
+        kind: Namespace
+        name: cdi
