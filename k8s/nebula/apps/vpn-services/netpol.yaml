@@ -20,7 +20,7 @@ spec:
               protocol: UDP
     - fromEndpoints:
         - matchLabels:
-            k8s:app.kubernetes.io/instance: internal-nginx
+            k8s:app.kubernetes.io/instance: nginx-internal
             io.kubernetes.pod.namespace: networking
         - matchLabels:
             k8s:app.kubernetes.io/instance: external-nginx
@@ -41,7 +41,7 @@ spec:
               - matchPattern: "*"
     - toEndpoints:
         - matchLabels:
-            k8s:app.kubernetes.io/instance: internal-nginx
+            k8s:app.kubernetes.io/instance: nginx-internal
             io.kubernetes.pod.namespace: networking
         - matchLabels:
             k8s:app.kubernetes.io/instance: external-nginx
