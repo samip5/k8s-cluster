@@ -92,6 +92,7 @@ spec:
     routed_namespaces:
       - downloads
       - media
+      - vpn-services
 
     settings:
       VPN_INTERFACE: "wg0"
