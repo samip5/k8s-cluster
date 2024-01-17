@@ -92,10 +92,12 @@ spec:
           http:
             port: 8080
       signer:
+        controller: main
         ports:
           http:
             port: 8081
       redis:
+        controller: main
         ports:
           http:
             port: 6379
