@@ -24,3 +24,22 @@ spec:
       target:
         kind: Namespace
         name: cdi
+    - patch: |
+        apiVersion: cdi.kubevirt.io/v1beta1
+        kind: CDI
+        metadata:
+          name: not-used
+        spec:
+          config:
+            podResourceRequirements:
+              limits:
+                memory: 1Gi
+          infra:
+            nodeSelector:
+              kubernetes.io/arch: "amd64"
+          workload:
+            nodeSelector:
+              kubernetes.io/arch: "amd64"
+      target:
+        group: cdi.kubevirt.io
+        kind: CDI
