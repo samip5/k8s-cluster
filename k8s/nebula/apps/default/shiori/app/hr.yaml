@@ -44,11 +44,9 @@ spec:
               tag: v1.5.5
             resources:
               limits:
-                memory: 2Gi
                 cpu: 100m
               requests:
                 cpu: 60m
-                memory: 1Gi
     service:
       main:
         ports:
