@@ -35,6 +35,6 @@ spec:
     substitute:
       APP: vm-freepbx-1
       VOLSYNC_CLAIM: vm-freepbx-1-data
-      VOLSYNC_CAPACITY: "40Gi"
+      VOLSYNC_CAPACITY: "52Gi"
       VOLSYNC_STORAGECLASS: ceph-block
       VOLSYNC_SNAPSHOTCLASS: csi-ceph-blockpool
