@@ -21,7 +21,7 @@ metadata:
   name: kubevirt-vm-freepbx-1-pvc
   namespace: flux-system
 spec:
-  path: "./k8s/templates/volsync"
+  path: "./k8s/templates/volsync-minio"
   targetNamespace: kubevirt
   dependsOn:
     - name: rook-ceph-cluster
