@@ -1,0 +1,40 @@
+---
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: vm-freepbx-1
+spec:
+  preference:
+    kind: "VirtualMachinePreference"
+    name: "freepbx"
+  instancetype:
+    kind: "VirtualMachineInstancetype"
+    name: "freepbx"
+  runStrategy: "Always"
+  template:
+    metadata:
+      labels:
+        vm.home.arpa/os: "freepbx"
+    spec:
+      hostname: "freepbx"
+      networks:
+        - name: "main"
+          pod: {}
+          multus:
+            networkName: "vm-pbx"
+      volumes:
+        - name: "rootdisk"
+          persistentVolumeClaim:
+            claimName: "vm-freepbx-1"
+      domain:
+        devices:
+          disks:
+            - name: "rootdisk"
+              disk: {}
+          interfaces:
+            - name: "main"
+              masquerade: {}
+        firmware:
+          bootloader:
+            bios:
+              useSerial: true

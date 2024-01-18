@@ -1,0 +1,10 @@
+---
+apiVersion: instancetype.kubevirt.io/v1beta1
+kind: VirtualMachineInstancetype
+metadata:
+  name: "freepbx"
+spec:
+  cpu:
+    guest: 2
+  memory:
+    guest: 4096Mi
