@@ -1,0 +1,43 @@
+---
+apiVersion: instancetype.kubevirt.io/v1beta1
+kind: VirtualMachinePreference
+metadata:
+  name: freepbx
+spec:
+  preferredSubdomain: "vm-pbx"
+  requirements:
+    cpu:
+      guest: 2
+    memory:
+      guest: 4096Mi
+  clock:
+    preferredClockOffset:
+      timezone: "Europe/Helsinki"
+    preferredTimer:
+      hpet:
+        present: false
+      pit:
+        tickPolicy: delay
+      rtc:
+        tickPolicy: catchup
+  cpu:
+    preferredCPUTopology: preferSockets
+  devices:
+    preferredDiskBus: virtio
+    preferredInterfaceModel: virtio
+    preferredTPM: {}
+    preferredAutoattachMemBalloon: false
+    preferredAutoattachGraphicsDevice: true
+    preferredAutoattachSerialConsole: true
+    preferredAutoattachPodInterface: true
+  features:
+    preferredAcpi: {}
+    preferredApic: {}
+    preferredSmm: {}
+  firmware:
+    preferredUseBios: true
+  volumes:
+    preferredStorageClassName: "fast-ceph-filesystem"
+  preferredTerminationGracePeriodSeconds: 180
+  machine:
+    preferredMachineType: "pc-q35-rhel9.2.0"
