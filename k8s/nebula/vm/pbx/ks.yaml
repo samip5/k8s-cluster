@@ -33,7 +33,7 @@ spec:
     name: flux-system
   postBuild:
     substitute:
-      VOLSYNC_CLAIM: "vm-freepbx-1"
+      VOLSYNC_CLAIM: vm-freepbx-1
       VOLSYNC_CAPACITY: "40Gi"
       VOLSYNC_STORAGECLASS: ceph-block
       VOLSYNC_SNAPSHOTCLASS: csi-ceph-blockpool
