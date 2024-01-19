@@ -27,7 +27,7 @@ spec:
     - name: rook-ceph-cluster
     - name: cluster-apps-volsync
   interval: 5m
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
