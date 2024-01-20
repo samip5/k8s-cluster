@@ -37,7 +37,7 @@ spec:
           main:
             image:
               repository: quay.io/redlib/redlib
-              tag: latest@sha256:5637b7b9be05ba47416ff3c9b07c6ef7e69555156516f08f06b04f960f63cb41
+              tag: latest@sha256:cd09d07725e27b5d8c8a6192a554f08f823a6ebacb510b6670a08e6e332f474d
             env:
               TZ: "Europe/Helsinki"
               REDLIB_ROBOTS_DISABLE_INDEXING: "on"
