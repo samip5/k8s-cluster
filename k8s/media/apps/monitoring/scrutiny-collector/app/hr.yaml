@@ -33,7 +33,6 @@ spec:
       main:
         pod:
           securityContext:
-            privileged: true
             capabilities:
               add: [ "SYS_RAWIO" ] # allow access to smartctl
 
