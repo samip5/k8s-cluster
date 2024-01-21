@@ -6,6 +6,9 @@ resources:
   - dh-service.yaml
   - dh-endpoints.yaml
   - dh-endpoints-plex.yaml
+  - genpi-minio-endpoints.yaml
+  - genpi-minio-svc.yaml
+  - genpi-minio-ingress.yaml
 #  - home-srv-endpoints.yaml
 #  - home-srv-svc.yaml
 #  - home-srv-livetv-ingress.yaml
