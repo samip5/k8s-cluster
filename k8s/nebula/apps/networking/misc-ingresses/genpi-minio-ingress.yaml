@@ -22,3 +22,25 @@ spec:
   tls:
     - hosts:
         - *host
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: genpi-minio
+  namespace: networking
+spec:
+  ingressClassName: internal-nginx
+  rules:
+    - host: &host "console-s3-genpi.skylab.fi"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: genpi-minio
+                port:
+                  name: http
+  tls:
+    - hosts:
+        - *host
