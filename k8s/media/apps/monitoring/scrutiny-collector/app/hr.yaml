@@ -25,6 +25,11 @@ spec:
   values:
     defaultPodOptions:
       automountServiceAccountToken: false
+      hostAliases:
+        - ip: "192.168.10.3"
+          hostnames:
+            - "scrutiny.skylab.fi"
+
       securityContext:
         privileged: true
         # capabilities:
