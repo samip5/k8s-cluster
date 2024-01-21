@@ -7,4 +7,4 @@ resources:
   - storage
   - media
   - monitoring
-  - databases
+#   - databases
