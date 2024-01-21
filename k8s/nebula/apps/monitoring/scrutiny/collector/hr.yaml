@@ -48,6 +48,8 @@ spec:
                 valueFrom:
                   fieldRef:
                     fieldPath: spec.nodeName
+              - name: TZ
+                value: "Europe/Helsinki"
             resources:
               requests:
                 cpu: 100m
@@ -74,11 +76,4 @@ spec:
         readOnly: true
         globalMounts:
           - path: /run/udev
-      sda:
-        enabled: true
-        type: hostPath
-        hostPath: /dev/sda
-        readOnly: true
-        globalMounts:
-          - path: /dev/sda
 
