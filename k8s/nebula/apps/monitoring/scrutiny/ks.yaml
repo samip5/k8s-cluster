@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &appname scuritiny
+  name: &appname scrutiny
   namespace: flux-system
 spec:
   targetNamespace: monitoring
@@ -11,7 +11,7 @@ spec:
   dependsOn:
     - name: rook-ceph-cluster
     - name: cluster-apps-volsync
-  path: ./k8s/nebula/apps/monitoring/scuritiny/scuritiny
+  path: ./k8s/nebula/apps/monitoring/scrutiny/scrutiny
   prune: true
   wait: false
   sourceRef:
