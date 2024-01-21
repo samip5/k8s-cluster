@@ -31,8 +31,6 @@ spec:
             - "scrutiny.skylab.fi"
     controllers:
       main:
-        type: daemonset
-
         pod:
           securityContext:
             privileged: true
