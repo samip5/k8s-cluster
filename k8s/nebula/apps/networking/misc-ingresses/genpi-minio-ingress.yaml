@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: genpi-minio
+  namespace: networking
+  annotations:
+    external-dns-cf/is-dns-public: "true"
+    external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
+spec:
+  ingressClassName: external-nginx
+  rules:
+    - host: &host "console-s3-genpi.skylab.fi"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: genpi-minio
+                port:
+                  name: http
+  tls:
+    - hosts:
+        - *host
