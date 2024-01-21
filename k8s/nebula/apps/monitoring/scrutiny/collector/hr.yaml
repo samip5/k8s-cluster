@@ -55,6 +55,10 @@ spec:
               limits:
                 memory: 128Mi
 
+    service:
+      main:
+        enabled: false
+
 
 
     persistence:
