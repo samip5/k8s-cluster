@@ -29,13 +29,15 @@ spec:
         - ip: "192.168.10.3"
           hostnames:
             - "scrutiny.skylab.fi"
-      securityContext:
-        privileged: true
-        capabilities:
-           add: ["SYS_RAWIO"] # allow access to smartctl
     controllers:
       main:
         type: daemonset
+
+        pod:
+          securityContext:
+            privileged: true
+            capabilities:
+              add: [ "SYS_RAWIO" ] # allow access to smartctl
 
         containers:
           main:
