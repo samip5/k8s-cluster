@@ -6,4 +6,5 @@ resources:
   - networking
   - storage
   - media
+  - monitoring
   - databases
