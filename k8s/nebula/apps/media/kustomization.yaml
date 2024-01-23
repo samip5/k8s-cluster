@@ -8,5 +8,5 @@ resources:
  - ./flaresolverr/ks.yaml
  - ./jellyseer/ks.yaml
  - ./maintainerr/ks.yaml
- - ./wizarr/ks.yaml
+#  - ./wizarr/ks.yaml
 # - ./tvheadend/ks.yaml
