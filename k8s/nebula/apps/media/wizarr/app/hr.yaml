@@ -74,6 +74,20 @@ spec:
         tls:
           - hosts:
               - *host
+      int:
+        enabled: true
+        className: internal-nginx
+        hosts:
+          - host: *host
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
     persistence:
       config:
         enabled: true
