@@ -83,7 +83,8 @@ The alternative solution to these two problems would be to host a Kubernetes clu
 | [NextDNS](https://nextdns.io/)                                        | My router DNS server which includes AdBlocking                     | ~$20/yr        |
 | [Kapsi internet-users association](https://www.kapsi.fi/english.html) | Hosts my off-site backup aka minio (S3), Bitwarden and own website | 40€/yr         |
 | [updown.io](https://updown.io)                                        | External monitoring (IPv4/IPv6)                                    | ~€5/yr         |
-|                                                                       |                                                                    | Total: ~$25/mo |
+| [Bilance](https://www.bilanceapp.com)                                 | Budgeting app for iOS and Android                                  | ~30€/yr        |                                                    
+|                                                                       |                                                                    | Total: ~40€/mo |
 
 ## Stargazers
 
