@@ -100,7 +100,7 @@ spec:
             ingressClassName: nginx-external
             enabled: true
             hosts:
-              - name: &host "minecraft.${SECRET_DOMAIN}"
+              - name: &host "minecraft.skylab.fi"
                 path: /
             tls:
               - secretName: *host
