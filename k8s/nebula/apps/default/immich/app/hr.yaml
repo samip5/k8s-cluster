@@ -23,6 +23,7 @@ spec:
       retries: 3
   values:
     defaultPodOptions:
+      priorityClassName: home-cluster-critical
       automountServiceAccountToken: false
 
     controllers:
