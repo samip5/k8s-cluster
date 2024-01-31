@@ -24,11 +24,6 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  dependsOn:
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
-    - name: volsync
-      namespace: storage
   values:
     deploymentAnnotations:
       secret.reloader.stakater.com/reload: &secret minecraft
