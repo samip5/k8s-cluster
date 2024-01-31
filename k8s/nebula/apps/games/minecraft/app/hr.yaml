@@ -47,7 +47,7 @@ spec:
       enabled: false
     extraEnv:
       TZ: "Europe/Helsinki"
-      ENABLE_AUTOPAUSE: TRUE
+      ENABLE_AUTOPAUSE: FALSE # Doesn't work in Kubes
     persistence:
       dataDir:
         enabled: true
