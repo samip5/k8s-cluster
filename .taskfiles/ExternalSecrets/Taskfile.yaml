@@ -16,5 +16,5 @@ tasks:
         {{else}}
           kubectl -n {{.namespace}} annotate externalsecret.external-secrets.io {{.secret}} force-sync=$(date +%s) --overwrite
         {{end}}
-    preconditions:
-      - kubectl -n {{.namespace}} get es {{.secret}}
+    #preconditions:
+    # - kubectl -n {{.namespace}} get es {{.secret}}
