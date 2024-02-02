@@ -34,6 +34,7 @@ spec:
   postBuild:
     substitute:
       APP: vm-freepbx-1
+      VOLSYNC_ACCESSMODES: ReadWriteMany
       VOLSYNC_CLAIM: vm-freepbx-1-data
       VOLSYNC_CAPACITY: "52Gi"
       VOLSYNC_STORAGECLASS: ceph-block
