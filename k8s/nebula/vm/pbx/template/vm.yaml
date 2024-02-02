@@ -20,8 +20,6 @@ spec:
       networks:
         - name: "main"
           pod: {}
-          multus:
-            networkName: "vm-pbx"
       volumes:
         - name: "rootdisk"
           persistentVolumeClaim:
