@@ -45,7 +45,7 @@ _... managed with Flux, Renovate, and GitHub Actions_ 🤖
 | Raspberry Pi 4 Model B        | w1              | 8GB  | 250GB SSD                                          | Kube Worker      | Debian 12        |
 | Raspberry Pi Compute Module 4 | w7              | 8GB  | 2TB SSD                                            | Kube Worker      | Debian 12        |
 | Lenovo ThinkCentre M910q Tiny | w-amd-1         | 32GB | 1TB Kingston DC SSD + 256GB SSD                    | Kube Worker      | Debian 12        |
-| Custom Haswell mATX system (DEAD, R.I.P)   | w-amd-2         | 32GB | 480GB Transcend SSD, 275GB Crucial SSD + 320GB HDD | Kube Worker      | Debian 12        |
+| Custom Haswell mATX system    | w-amd-2         | 32GB | 480GB Transcend SSD, 275GB Crucial SSD + 320GB HDD | Kube Worker      | Debian 12        |
 | VM on Synology                | w-amd-storage-1 | 4GB  | 400GB NVME                                         | Longhorn storage | Debian 12        |
 | HP EliteDesk 800 G2           | w-amd-3         | 32GB | 256GB SSD                                          | Kube Worker      | Debian 12        |
 | Lenovo ThinkCentre M910q Tiny | m1              | 16GB | 256GB SSD x 2                                      | Kube Master      | Debian 12        |
