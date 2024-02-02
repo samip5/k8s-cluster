@@ -20,6 +20,9 @@ spec:
       networks:
         - name: "main"
           pod: {}
+        - name: "lan"
+          multus:
+            networkName: "multus-lan"
       volumes:
         - name: "rootdisk"
           persistentVolumeClaim:
@@ -31,7 +34,7 @@ spec:
               disk: {}
           interfaces:
             - name: "main"
-              masquerade: {}
+            - name: "lan"
         firmware:
           bootloader:
             bios:
