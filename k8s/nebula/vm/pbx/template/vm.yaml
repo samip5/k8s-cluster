@@ -23,7 +23,7 @@ spec:
       volumes:
         - name: "rootdisk"
           persistentVolumeClaim:
-            claimName: "vm-freepbx-1"
+            claimName: "vm-freepbx-1-data"
       domain:
         devices:
           disks:
