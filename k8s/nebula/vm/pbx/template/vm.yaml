@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         vm.home.arpa/os: "freepbx"
+        freepbx: "true"
     spec:
       hostname: "freepbx"
       networks:
@@ -31,6 +32,16 @@ spec:
               disk: {}
           interfaces:
             - name: "main"
+              masquerade: {}
+              ports:
+                - port: 5060
+                  protocol: TCP
+                - port: 5060
+                  protocol: UDP
+                - port: 5061
+                  protocol: TCP
+                - port: 5061
+                  protocol: UDP
         firmware:
           bootloader:
             bios:
