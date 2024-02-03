@@ -42,6 +42,10 @@ spec:
                   protocol: TCP
                 - port: 5061
                   protocol: UDP
+                - port: 443
+                  protocol: TCP
+                - port: 80
+                  protocol: TCP
         firmware:
           bootloader:
             bios:
