@@ -8,7 +8,8 @@ spec:
     freepbx: "true"
     vm.home.arpa/os: freepbx
   ports:
-    - port: 22
+    - name: ssh
+      port: 22
       protocol: TCP
       targetPort: 22
 
