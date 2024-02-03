@@ -7,7 +7,7 @@ spec:
   preferredSubdomain: "vm-pbx"
   requirements:
     cpu:
-      guest: 2
+      guest: 4
     memory:
       guest: 4096Mi
   clock:
