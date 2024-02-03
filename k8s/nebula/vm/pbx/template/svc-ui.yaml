@@ -4,6 +4,7 @@ metadata:
   name: freepbx-ui
   namespace: kubevirt
 spec:
+  type: LoadBalancer
   selector:
     freepbx: "true"
     vm.home.arpa/os: freepbx
