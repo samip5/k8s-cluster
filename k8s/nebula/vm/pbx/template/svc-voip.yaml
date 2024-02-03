@@ -4,6 +4,7 @@ metadata:
   name: freepbx-voip
   namespace: kubevirt
 spec:
+  type: LoadBalancer
   ipFamilyPolicy: PreferDualStack
   selector:
     freepbx: "true"
