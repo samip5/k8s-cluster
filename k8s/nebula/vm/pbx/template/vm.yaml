@@ -46,6 +46,8 @@ spec:
                   protocol: TCP
                 - port: 80
                   protocol: TCP
+                - port: 22
+                  protocol: TCP
         firmware:
           bootloader:
             bios:
