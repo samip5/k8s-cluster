@@ -36,6 +36,8 @@ spec:
       APP: vm-freepbx-1
       VOLSYNC_CLAIM: vm-freepbx-1-data
       VOLSYNC_CAPACITY: "52Gi"
+      VOLSYNC_STORAGECLASS: fast-ceph-filesystem
+      VOLSYNC_SNAPSHOTCLASS: csi-ceph-filesystem
 #---
 #apiVersion: kustomize.toolkit.fluxcd.io/v1
 #kind: Kustomization
