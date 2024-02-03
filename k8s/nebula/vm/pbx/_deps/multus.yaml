@@ -13,11 +13,8 @@ spec:
           "type": "macvlan",
           "master": "vlan10",
           "mode": "bridge",
-          "capabilities": {
-            "ips": true
-          },
           "ipam": {
-            "type": "static"
+            "type": "dhcp"
           }
         }
       ]
