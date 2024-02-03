@@ -8,6 +8,7 @@ spec:
     freepbx: "true"
     vm.home.arpa/os: freepbx
   ports:
-    - port: 443
+    - name: https
+      port: 443
       protocol: TCP
       targetPort: 443

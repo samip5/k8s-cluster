@@ -9,16 +9,20 @@ spec:
     freepbx: "true"
     vm.home.arpa/os: freepbx
   ports:
-    - port: 5060
+    - name: voip-tcp
+      port: 5060
       protocol: TCP
       targetPort: 5060
-    - port: 5060
+    - name: voip-udp
+      port: 5060
       protocol: UDP
       targetPort: 5060
-    - port: 5061
+    - name: voip-encrypted-tcp
+      port: 5061
       protocol: TCP
       targetPort: 5061
-    - port: 5061
+    - name: voip-encrypted-udp
+      port: 5061
       protocol: UDP
       targetPort: 5061
 
