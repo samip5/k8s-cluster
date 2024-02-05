@@ -1,0 +1,15 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  packageRules: [
+    {
+      description: "Separate PRs for nebula cluster",
+      matchFileNames: ["**/k8s/nebula/**"],
+      additionalBranchPrefix: "nebula-",
+    },
+    {
+      description: "Separate PRs for media cluster",
+      matchFileNames: ["**/k8s/media/**"],
+      additionalBranchPrefix: "media-",
+    },
+  ],
+}
