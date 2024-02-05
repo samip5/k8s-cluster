@@ -25,6 +25,7 @@ env:
   LOG_LEVEL: debug
   RENOVATE_DRY_RUN: false
   RENOVATE_CONFIG_FILE: .github/renovate.json5
+  RENOVATE_REPOSITORIES: "samip5/k8s-cluster"
 
 jobs:
   renovate:
