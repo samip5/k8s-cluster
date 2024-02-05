@@ -19,5 +19,4 @@ spec:
             key: cloudflare-token
       selector:
         dnsZones:
-          - "${MAIN_DOMAIN}"
           - "${SECRET_DOMAIN}"
