@@ -2,29 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "packageRules": [
     {
-      description: "Auto merge container digests",
-      matchDatasources: ["docker"],
-      automerge: true,
-      automergeType: "branch",
-      ignoreTests: true,
-      matchUpdateTypes: ["digest", "minor", "patch"],
-      matchPackagePattern: ["ghcr.io/onedr0p"],
-    },
-    // enable auto-merge
-    {
-      matchDatasources: ["docker"],
-      automerge: true,
-      automergeType: "branch",
-      ignoreTests: true,
-      matchUpdateTypes: ["minor", "patch", "digest"],
-      matchPackageNames: [
-        "k8s.gcr.io/descheduler/descheduler",
-        "ghcr.io/techno-tim/littlelink-server",
-        "ghcr.io/sct/overseerr",
-        "ghost"
-      ],
-    },
-    {
       matchDatasources: ["docker"],
       automerge: true,
       automergeType: "branch",
@@ -61,15 +38,6 @@
       automerge: true,
       automergeType: "branch",
       ignoreTests: true,
-      matchUpdateTypes: ["minor", "patch"]
-    },
-    {
-      description: "Auto merge GitHub Actions",
-      matchManagers: ["github-actions"],
-      matchDatasources: ["github-tags"],
-      automerge: true,
-      ignoreTests: true,
-      automergeType: "branch",
       matchUpdateTypes: ["minor", "patch"]
     },
     {

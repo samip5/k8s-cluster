@@ -1,6 +1,0 @@
-{
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "username": "samip5-bot[bot]",
-  "gitAuthor": "samip5-bot[bot] <118629685+samip5-bot@users.noreply.github.com>",
-  "repositories": ["samip5/k8s-cluster"]
-}
