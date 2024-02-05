@@ -1,5 +1,13 @@
 ---
 area/ci:
-  - ".github/**/*"
+  - changed-files:
+      - any-glob-to-any-file: ".github/**/*"
 area/kubernetes:
-  - "cluster/**/*"
+  - changed-files:
+      - any-glob-to-any-file: "k8s/**/*"
+cluster/nebula:
+  - changed-files:
+      - any-glob-to-any-file: k8s/nebula/**/*
+cluster/media:
+  - changed-files:
+      - any-glob-to-any-file: k8s/media/**/*
