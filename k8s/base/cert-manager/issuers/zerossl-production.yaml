@@ -22,7 +22,3 @@ spec:
           apiTokenSecretRef:
             name: cloudflare-token-secret
             key: cloudflare-token
-      selector:
-        dnsZones:
-          - "${MAIN_DOMAIN}"
-          - "skylab.fi"
