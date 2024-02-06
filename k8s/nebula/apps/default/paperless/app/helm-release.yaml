@@ -81,10 +81,10 @@ spec:
                   name: paperless-secret
             resources:
               requests:
-                memory: 0.5Gi
-                cpu: 50m
-              limits:
                 memory: 2Gi
+                cpu: 100m
+              limits:
+                memory: 4Gi
           gotenberg:
             image:
               repository: gotenberg/gotenberg
