@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - ns.yaml
   - github-actions/ks.yaml
-  - github-actions/ks-runners.yaml
+#  - github-actions/ks-runners.yaml
