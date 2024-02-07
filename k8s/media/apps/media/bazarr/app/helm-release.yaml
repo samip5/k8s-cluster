@@ -67,7 +67,7 @@ spec:
           subcleaner:
             image:
               repository: registry.k8s.io/git-sync/git-sync
-              tag: v4.2.0
+              tag: v4.2.1
               pullPolicy: IfNotPresent
               args:
                 - --repo=https://github.com/KBlixt/subcleaner
@@ -152,7 +152,7 @@ spec:
         memory: 2000Mi
     sidecars:
       subcleaner:
-        image: registry.k8s.io/git-sync/git-sync:v4.2.0
+        image: registry.k8s.io/git-sync/git-sync:v4.2.1
         imagePullPolicy: IfNotPresent
         args:
           - --repo=https://github.com/KBlixt/subcleaner
