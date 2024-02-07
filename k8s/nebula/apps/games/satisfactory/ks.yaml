@@ -10,7 +10,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./k8s/nebula/apps/default/satisfactory/app
+  path: ./k8s/nebula/apps/games/satisfactory/app
   prune: true
   sourceRef:
     kind: GitRepository
