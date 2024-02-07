@@ -99,7 +99,7 @@ spec:
           tika:
             image:
               repository: ghcr.io/paperless-ngx/tika
-              tag: 2.9.0-minimal
+              tag: 2.9.1-minimal
               pullPolicy: IfNotPresent
             ports:
               - containerPort: 9998
