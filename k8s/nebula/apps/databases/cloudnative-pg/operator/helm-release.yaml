@@ -24,3 +24,8 @@ spec:
         INHERITED_ANNOTATIONS: kyverno.io/ignore
     nodeSelector:
       kubernetes.io/arch: amd64
+    monitoring:
+      podMonitorEnabled: true
+      grafanaDashboard:
+        create: true
+
