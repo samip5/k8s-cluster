@@ -14,8 +14,10 @@ spec:
         namespace: flux-system
   interval: 10m0s
   values:
+    global:
+      imageRegistry: "registry.samipsolutions.fi/docker/"
     image:
-      repository: registry.samipsolutions.fi/bitnami/mongodb
+      repository: bitnami/mongodb
       tag: '7.0'
       pullPolicy: IfNotPresent
     strategy:
