@@ -17,5 +17,5 @@ spec:
       neighbors:
         - peerAddress: "10.0.105.1/32" # unlike bgp-config ConfigMap, peerAddress needs to be in CIDR notation
           peerASN: 213021
-        - peerAddress: "fd9d:7a72:44eb:c::1/128" # This dynamic iPv6 address is annoying, but oh well. I would recommend to use ULA instead for BGP.
+        - peerAddress: "fd9d:7a72:44eb:c::1/128" # Got tired of the dynamic IPv6 address changing... My nodes still have global as well as ULA.
           peerASN: 213021
