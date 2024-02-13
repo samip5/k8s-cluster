@@ -54,6 +54,13 @@ spec:
         ports:
           http:
             port: 17442
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
     ingress:
       main:
         enabled: true
