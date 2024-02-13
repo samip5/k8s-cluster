@@ -26,8 +26,8 @@ spec:
     substitute:
       APP: *appname
       HOSTNAME: ytdl.skylab.fi
-      APP_UID: "568"
-      APP_GID: "568"
+      APP_UID: "1000"
+      APP_GID: "1000"
       VOLSYNC_CLAIM: ytdl-data
       VOLSYNC_CAPACITY: 50Gi
       VOLSYNC_STORAGECLASS: ceph-block
