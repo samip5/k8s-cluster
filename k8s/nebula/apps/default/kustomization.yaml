@@ -12,5 +12,6 @@ resources:
   - syncthing/ks.yaml
   - shiori/ks.yaml
   - redlib/ks.yaml
+  - ytdl-material/ks.yaml
 #  - i2pd/ks.yaml
 #  - satisfactory/ks.yaml
