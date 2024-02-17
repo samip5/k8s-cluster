@@ -1,0 +1,69 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: bisq
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.6.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    defaultPodOptions:
+      automountServiceAccountToken: false
+      enableServiceLinks: false
+      securityContext:
+        runAsUser: ${APP_UID}
+        runAsGroup: ${APP_GID}
+        fsGroup: ${APP_GID}
+      annotations:
+        reloader.stakater.com/auto: "true"
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: registry.samipsolutions.fi/docker/fflo/bisq-on-docker
+              tag: 1.9.8
+            env:
+              TZ: Europe/Helsinki
+              BISQ_USER: bisq
+            resources:
+              requests:
+                cpu: 500m # 0.5 core
+                memory: 2Gi
+              limits:
+                memory: 4Gi
+
+    service:
+      main:
+        type: LoadBalancer
+        ports:
+          ssh:
+            port: 22
+          vnc:
+            port: 3389
+
+    persistence:
+      data:
+        enabled: true
+        existingClaim: "${VOLSYNC_CLAIM}"
+        advancedMounts:
+          main:
+            main:
+              - path: /bisq
