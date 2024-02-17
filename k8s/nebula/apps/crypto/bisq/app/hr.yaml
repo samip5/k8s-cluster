@@ -56,8 +56,6 @@ spec:
         ports:
           vnc:
             port: 3389
-          ssh:
-            port: 22
           http:
             enabled: false
 
