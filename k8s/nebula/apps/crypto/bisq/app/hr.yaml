@@ -54,10 +54,10 @@ spec:
       main:
         type: LoadBalancer
         ports:
-          ssh:
-            port: 22
           vnc:
             port: 3389
+          ssh:
+            port: 22
           http:
             enabled: false
 
