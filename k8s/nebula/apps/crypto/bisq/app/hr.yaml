@@ -58,6 +58,8 @@ spec:
             port: 22
           vnc:
             port: 3389
+          http:
+            enabled: false
 
     persistence:
       data:
