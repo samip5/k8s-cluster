@@ -94,3 +94,8 @@ spec:
             subpath: subscriptions
           - path: /app/users
             subpath: users
+      cache:
+        enabled: true
+        type: emptyDir
+        globalMounts:
+          - path: /app/pm2
