@@ -45,7 +45,7 @@ spec:
               BISQ_USER: bisq
             resources:
               requests:
-                cpu: 500m # 0.5 core
+                cpu: 1000m # 1 full core
                 memory: 2Gi
               limits:
                 memory: 4Gi
