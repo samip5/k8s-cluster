@@ -49,7 +49,7 @@ spec:
               ytdl_use_local_db: 'false'
               ytdl_mongodb_connection_string: 'mongodb://mongodb.databases.svc.cluster.local:27017'
               write_ytdl_config: 'true'
-            command: "npm start"
+            command: "/bin/sleep infinity"
     service:
       main:
         ports:
