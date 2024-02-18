@@ -47,9 +47,6 @@ spec:
               tag: 1.4.1@sha256:4a9584435db5881306fa477115363db0ff79a3c70c7f67b5fe0c2e62978252a5
             env:
               TZ: "Europe/Helsinki"
-            envFrom:
-              - secretRef:
-                  name: bazarr-secret
             resources:
               requests:
                 cpu: 23m
