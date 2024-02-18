@@ -93,7 +93,11 @@ spec:
           - host: &host "radarr.media.skylab.fi"
             paths:
               - path: /
-                pathType: Prefix
+                service:
+                  name: main
+                  port: http
+
+
         tls:
           - hosts:
               - *host
