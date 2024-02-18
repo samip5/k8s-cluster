@@ -1,19 +1,22 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta2.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: radarr
   namespace: media
 spec:
-  interval: 15m
+  interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.6.0
+      interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  maxHistory: 2
+  maxHistory: 3
   install:
     createNamespace: true
     remediation:
@@ -25,39 +28,57 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    controller:
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+        supplementalGroups: [ 10000 ]
       annotations:
         reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/onedr0p/radarr-develop
-      tag: 5.3.5.8592@sha256:60d0a8a04a062654e27be6f1d8d780be2e821bd0e7815201f4bb32df8090b00b
-    env:
-      TZ: Europe/Helsinki
-      RADARR__INSTANCE_NAME: Radarr
-      RADARR__PORT: &port 80
-      RADARR__APPLICATION_URL: "https://dh.skylab.fi/radarr/"
-      RADARR__LOG_LEVEL: info
+
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: ghcr.io/onedr0p/radarr-develop
+              tag: 5.3.5.8592@sha256:60d0a8a04a062654e27be6f1d8d780be2e821bd0e7815201f4bb32df8090b00b
+            env:
+              TZ: Europe/Helsinki
+              RADARR__INSTANCE_NAME: Radarr
+              RADARR__PORT: &port 80
+              RADARR__APPLICATION_URL: "https://radarr.media.skylab.fi"
+              RADARR__LOG_LEVEL: info
+            resources:
+              requests:
+                cpu: 10m
+                memory: 250Mi
+              limits:
+                memory: 2000Mi
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /ping
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
 
     service:
       main:
         ports:
           http:
             port: *port
-    probes:
-      liveness: &probes
-        enabled: true
-        custom: true
-        spec:
-          httpGet:
-            path: /ping
-            port: *port
-          initialDelaySeconds: 0
-          periodSeconds: 10
-          timeoutSeconds: 1
-          failureThreshold: 3
-      readiness: *probes
-      startup:
-        enabled: false
+
     ingress:
       main:
         enabled: true
@@ -77,36 +98,28 @@ spec:
           - hosts:
               - *host
             secretName: media.skylab.fi-tls
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
-      supplementalGroups: [10000]
-
 
     persistence:
       config:
         enabled: true
         existingClaim: radarr-config-v1
+        globalMounts:
+          - path: /config
       movies-kids:
         enabled: true
         type: hostPath
-        mountPath: /merge/movies_kids
         hostPath: "/mnt/merge/library/Kid Movies"
+        globalMounts:
+          - path: /merge/movies_kids
       movies:
         enabled: true
         type: hostPath
-        mountPath: /merge/movies
         hostPath: "/mnt/merge/library/Movies"
+        globalMounts:
+          - path: /merge/movies
       downloads:
         enabled: true
         type: hostPath
-        mountPath: /mnt/merge/Downloads/
         hostPath: "/mnt/merge/Downloads/"
-    resources:
-      requests:
-        cpu: 10m
-        memory: 250Mi
-      limits:
-        memory: 2000Mi
+        globalMounts:
+          - path: /mnt/merge/Downloads/
