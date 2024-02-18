@@ -134,22 +134,3 @@ spec:
         hostPath: "/mnt/merge/library/Anime/"
         globalMounts:
           - path: "/mnt/merge/library/Anime/"
-
-    resources:
-      requests:
-        cpu: 500m
-        memory: 250Mi
-      limits:
-        cpu: 1000m
-        memory: 2000Mi
-    sidecars:
-      subcleaner:
-        image: registry.k8s.io/git-sync/git-sync:v4.2.1
-        imagePullPolicy: IfNotPresent
-        args:
-          - --repo=https://github.com/KBlixt/subcleaner
-          - --branch=master
-          - --wait=86400 # 1 day
-          - --root=/add-ons
-        volumeMounts:
-          - { name: add-ons, mountPath: /add-ons }
