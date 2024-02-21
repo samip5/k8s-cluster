@@ -8,9 +8,8 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://charts.goauthentik.io
       chart: authentik
-      version: 2023.10.7
+      version: 2024.2.0
       sourceRef:
         kind: HelmRepository
         name: authentik-charts
@@ -32,22 +31,19 @@ spec:
     - name: redis
       namespace: databases
   values:
-    outposts:
-      docker_image_base: ghcr.io/goauthentik/%(type)s
-      #docker_image_base: ghcr.io/goauthentik/dev-%(type)s:gh-next
-    fullnameOverride: authentik
-    image:
-      repository: ghcr.io/goauthentik/server
-      tag: 2024.2.0
-      #repository: ghcr.io/goauthentik/dev-server
-      #tag: gh-next
-      pullPolicy: Always
+    global:
+      image:
+        repository: ghcr.io/goauthentik/server
+        tag: 2024.2.0
+      fullnameOverride: authentik
     authentik:
       log_level: info
       secret_key: "${SECRET_AUTHENTIK_SECRET_KEY}"
       error_reporting:
         enabled: true
         environment: "kryptonian"
+      outposts:
+        container_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
       postgresql:
         host: "postgres16-rw.databases.svc.cluster.local"
         name: "authentik"
@@ -61,39 +57,43 @@ spec:
         use_tls: false
         from: "no-reply@skylab.fi"
 
-    ingress:
-      enabled: true
-      ingressClassName: "external-nginx"
-      annotations:
-        external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
-      hosts:
-      - host: "id.skylab.fi"
-        paths:
-        - path: "/"
-          pathType: Prefix
-      tls:
-      - hosts:
-        - "id.skylab.fi"
-        secretName: skylab.fi-tls
+    server:
+      pdb:
+        enabled: true
+        minAvailable: 1
+        maxUnavailable: 1
+      ingress:
+        enabled: true
+        ingressClassName: "external-nginx"
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
+        hosts:
+        - host: "id.skylab.fi"
+          paths:
+          - path: "/"
+            pathType: Prefix
+        tls:
+        - hosts:
+          - "id.skylab.fi"
+          secretName: skylab.fi-tls
+      metrics:
+        serviceMonitor:
+          enabled: true
+      resources:
+        requests:
+          cpu: 100m
+          memory: 512Mi
+        limits:
+          memory: 2Gi
+    worker:
+      resources:
+        requests:
+          cpu: 50m
+          memory: 512Mi
+        limits:
+          memory: 1Gi
+
     postgresql:
       enabled: false
     redis:
       enabled: false
-
-    resources:
-      requests:
-        cpu: 48m
-        memory: 600M
-      limits:
-        memory: 1251M
-
-#    affinity:
-#      nodeAffinity:
-#        preferredDuringSchedulingIgnoredDuringExecution:
-#          - weight: 50
-#            preference:
-#              matchExpressions:
-#                - key: kubernetes.io/arch
-#                  operator: In
-#                  values:
-#                    - amd64
