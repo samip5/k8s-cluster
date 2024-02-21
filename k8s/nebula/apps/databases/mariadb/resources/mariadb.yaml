@@ -12,7 +12,7 @@ spec:
     name: mariadb
     key: password
 
-  image: "mariadb:11.2.3"
+  image: "mariadb:11.3.2"
   imagePullPolicy: IfNotPresent
   port: 3306
 
