@@ -54,7 +54,7 @@ spec:
     fullnameOverride: prom
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
-      enabled: false
+      enabled: true
       ingress:
         enabled: true
         pathType: Prefix
@@ -71,7 +71,7 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: local-hostpath
+              storageClassName: ceph-block
               resources:
                 requests:
                   storage: 1Gi
