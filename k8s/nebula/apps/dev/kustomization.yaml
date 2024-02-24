@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - ./ns.yaml
   - ./coder/ks.yaml
+  - ./oidc-test/ks.yaml
