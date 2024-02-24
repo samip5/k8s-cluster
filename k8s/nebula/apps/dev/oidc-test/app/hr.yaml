@@ -47,6 +47,7 @@ spec:
               OIDC_ROOT_URL: https://test-oidc.skylab.fi
               OIDC_CLIENT_ID: "testingoidc"
               OIDC_CLIENT_SECRET: ""
+              OIDC_PROVIDER: https://auth.protu.fi/application/o/test-oidc
 
     service:
       main:
