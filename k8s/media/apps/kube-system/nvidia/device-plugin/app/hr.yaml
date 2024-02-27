@@ -22,3 +22,16 @@ spec:
       repository: nvcr.io/nvidia/k8s-device-plugin
       tag: v0.14.4
     runtimeClassName: nvidia
+    config:
+      map:
+        default: |-
+          version: v1
+          flags:
+            migStrategy: none
+          sharing:
+            timeSlicing:
+              renameByDefault: false
+              failRequestsGreaterThanOne: false
+              resources:
+                - name: nvidia.com/gpu
+                  replicas: 6
