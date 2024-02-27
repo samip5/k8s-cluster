@@ -23,6 +23,13 @@ spec:
                 name: dh
                 port:
                   number: 443
+          - path: "/jellyfin/"
+            pathType: Prefix
+            backend:
+              service:
+                name: dh
+                port:
+                  number: 443
   tls:
     - hosts:
         - "dh.skylab.fi"
