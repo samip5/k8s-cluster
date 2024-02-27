@@ -53,7 +53,7 @@ spec:
           main:
             image:
               repository: registry.samipsolutions.fi/docker/wolveix/satisfactory-server
-              tag: v1.6.1
+              tag: v1.6.2
             env:
               TZ: "Europe/Helsinki"
               AUTOPAUSE: "true"
