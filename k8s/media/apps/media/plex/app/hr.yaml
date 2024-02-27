@@ -43,7 +43,7 @@ spec:
           main:
             image:
               repository: ghcr.io/onedr0p/plex
-              tag: 1.32.8.7639-fb6452ebf
+              tag: 1.40.0.7998-c29d4c0c8
               # https://hub.docker.com/r/plexinc/pms-docker/
               # repository: docker.io/plexinc/pms-docker
               # tag: plexpass
