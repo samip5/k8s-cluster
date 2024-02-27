@@ -65,7 +65,7 @@ spec:
     ingress:
       main:
         enabled: true
-        className: external-nginx
+        className: nginx
         annotations:
           external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
         hosts:
@@ -75,13 +75,6 @@ spec:
                 service:
                   name: main
                   port: http
-        tls:
-          - hosts:
-              - *host1
-      int:
-        enabled: true
-        className: internal-nginx
-        hosts:
           - host: &host2 jelly.media.skylab.fi
             paths:
               - path: /
@@ -90,6 +83,7 @@ spec:
                   port: http
         tls:
           - hosts:
+              - *host1
               - *host2
 
     persistence:
