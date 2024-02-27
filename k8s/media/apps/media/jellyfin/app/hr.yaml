@@ -47,7 +47,6 @@ spec:
               NVIDIA_DRIVER_CAPABILITIES: all
             resources:
               requests:
-                cpu: 100m
                 memory: 9248M
                 nvidia.com/gpu: 1
               limits:
