@@ -5,7 +5,7 @@ metadata:
   name: nvidia-device-plugin
   namespace: flux-system
 spec:
-  path: ./k8s/media/apps//apps/kube-system/nvidia/device-plugin/app
+  path: ./k8s/media/apps/kube-system/nvidia/device-plugin/app
   prune: true
   sourceRef:
     kind: GitRepository
