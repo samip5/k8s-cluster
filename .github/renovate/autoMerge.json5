@@ -16,7 +16,7 @@
       automerge: true,
       automergeType: "branch",
       ignoreTests: true,
-      matchUpdateTypes: ["patch"]
+      matchUpdateTypes: ["minor","patch", "digest"]
     },
     {
       matchDatasources: ["docker"],
