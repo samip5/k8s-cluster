@@ -70,8 +70,18 @@ spec:
           - name: w-amd-storage-1
             devices:
               - name: /dev/disk/by-id/scsi-360014058eff9536d15e0d4049d9eb0dd
-        mon:
-          count: 3
+      mon:
+        count: 3
+        allowMultiplePerNode: false
+      mgr:
+        count: 2
+        modules:
+          - name: pg_autoscaler
+            enabled: true
+      priorityClassNames:
+        mon: system-node-critical
+        osd: system-node-critical
+        mgr: system-cluster-critical
     cephBlockPools:
       - name: ceph-blockpool
         spec:
