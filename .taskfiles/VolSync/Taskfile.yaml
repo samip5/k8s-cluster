@@ -1,158 +1,215 @@
 ---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: "3"
 
-x-task-vars: &task-vars
-  rsrc: '{{.rsrc}}'
-  controller: '{{.controller}}'
-  ns: '{{.ns}}'
-  claim: '{{.claim}}'
-  ts: '{{.ts}}'
-  ks: '{{.ks}}'
-  previous: '{{.previous}}'
+# This taskfile is used to manage certain VolSync tasks for a given application, limitations are described below.
+#   1. Fluxtomization, HelmRelease, PVC, ReplicationSource all have the same name (e.g. plex)
+#   2. ReplicationSource and ReplicationDestination are a Restic repository
+#   3. Applications are deployed as either a Kubernetes Deployment or StatefulSet
+#   4. Each application only has one PVC that is being replicated
+
+x-env: &env
+  app: "{{.app}}"
+  claim: "{{.claim}}"
+  controller: "{{.controller}}"
+  job: "{{.job}}"
+  ns: "{{.ns}}"
+  pgid: "{{.pgid}}"
+  previous: "{{.previous}}"
+  puid: "{{.puid}}"
 
 vars:
-  destinationTemplate: "{{.ROOT_DIR}}/.taskfiles/VolSync/ReplicationDestination.tmpl.yaml"
-  wipeJobTemplate: "{{.ROOT_DIR}}/.taskfiles/VolSync/WipeJob.tmpl.yaml"
-  waitForJobScript: "{{.ROOT_DIR}}/.taskfiles/VolSync/wait-for-job.sh"
-  listJobTemplate: "{{.ROOT_DIR}}/.taskfiles/VolSync/ListJob.tmpl.yaml"
-  unlockJobTemplate: "{{.ROOT_DIR}}/.taskfiles/VolSync/UnlockJob.tmpl.yaml"
-  ts: '{{now | date "150405"}}'
+  VOLSYNC_SCRIPTS_DIR: "{{.ROOT_DIR}}/.taskfiles/VolSync/scripts"
+  VOLSYNC_TEMPLATES_DIR: "{{.ROOT_DIR}}/.taskfiles/VolSync/templates"
 
 tasks:
 
-  list:
-    desc: List all snapshots taken by restic for a given ReplicationSource (ex. task volsync:list rsrc=plex [ns=default])
-    silent: true
+  suspend-controller:
+    desc: Suspends Volsync
+    summary: |
+      Args:
+        cluster: Cluster to run command against (required)
     cmds:
-      - envsubst < <(cat {{.listJobTemplate}}) | kubectl apply -f -
-      - bash {{.waitForJobScript}} list-{{.rsrc}}-{{.ts}} {{.ns}}
-      - kubectl -n {{.ns}} wait job/list-{{.rsrc}}-{{.ts}} --for condition=complete --timeout=1m
-      - kubectl -n {{.ns}} logs job/list-{{.rsrc}}-{{.ts}} --container list
-      - kubectl -n {{.ns}} delete job list-{{.rsrc}}-{{.ts}}
+      - flux --context {{.cluster}} suspend ks volsync
+      - flux --context {{.cluster}} suspend hr -n volsync-system volsync
+      - kubectl --context {{.cluster}} -n volsync-system scale deployment volsync --replicas 0
+    env: *env
+    requires:
+      vars: ["cluster"]
+
+  list:
+    desc: List snapshots for an application
+    summary: |
+      Args:
+        cluster: Cluster to run command against (required)
+        ns: Namespace the PVC is in (default: default)
+        app: Application to list snapshots for (required)
+    cmds:
+      - envsubst < <(cat {{.VOLSYNC_TEMPLATES_DIR}}/list.tmpl.yaml) | kubectl --context {{.cluster}} apply -f -
+      - bash {{.VOLSYNC_SCRIPTS_DIR}}/wait-for-job.sh {{.job}} {{.ns}} {{.cluster}}
+      - kubectl --context {{.cluster}} -n {{.ns}} wait job/{{.job}} --for condition=complete --timeout=1m
+      - kubectl --context {{.cluster}} -n {{.ns}} logs job/{{.job}} --container main
+      - kubectl --context {{.cluster}} -n {{.ns}} delete job {{.job}}
+    env: *env
+    requires:
+      vars: ["cluster", "app"]
     vars:
-      rsrc: '{{ or .rsrc (fail "ReplicationSource `rsrc` is required") }}'
       ns: '{{.ns | default "default"}}'
-    env: *task-vars
+      job: volsync-list-{{.app}}
     preconditions:
-      - sh: test -f {{.waitForJobScript}}
-      - sh: test -f {{.listJobTemplate}}
+      - test -f {{.VOLSYNC_SCRIPTS_DIR}}/wait-for-job.sh
+      - test -f {{.VOLSYNC_TEMPLATES_DIR}}/list.tmpl.yaml
+    silent: true
 
   unlock:
-    desc: Unlocks restic repository for a given ReplicationSource (ex. task volsync:unlock rsrc=plex [ns=default])
-    silent: true
+    desc: Unlock a Restic repository for an application
+    summary: |
+      Args:
+        cluster: Cluster to run command against (required)
+        ns: Namespace the PVC is in (default: default)
+        app: Application to unlock (required)
     cmds:
-      - envsubst < <(cat {{.unlockJobTemplate}}) | kubectl apply -f -
-      - bash {{.waitForJobScript}} unlock-{{.rsrc}}-{{.ts}} {{.ns}}
-      - kubectl -n {{.ns}} wait job/unlock-{{.rsrc}}-{{.ts}} --for condition=complete --timeout=1m
-      - kubectl -n {{.ns}} logs job/unlock-{{.rsrc}}-{{.ts}} --container unlock
-      - kubectl -n {{.ns}} delete job unlock-{{.rsrc}}-{{.ts}}
+      - envsubst < <(cat {{.VOLSYNC_TEMPLATES_DIR}}/unlock.tmpl.yaml) | kubectl --context {{.cluster}} apply -f -
+      - bash {{.VOLSYNC_SCRIPTS_DIR}}/wait-for-job.sh {{.job}} {{.ns}} {{.cluster}}
+      - kubectl --context {{.cluster}} -n {{.ns}} wait job/{{.job}} --for condition=complete --timeout=1m
+      - kubectl --context {{.cluster}} -n {{.ns}} logs job/{{.job}} --container minio
+      - kubectl --context {{.cluster}} -n {{.ns}} logs job/{{.job}} --container r2
+      - kubectl --context {{.cluster}} -n {{.ns}} delete job {{.job}}
+    env: *env
+    requires:
+      vars: ["cluster", "app"]
     vars:
-      rsrc: '{{ or .rsrc (fail "ReplicationSource `rsrc` is required") }}'
       ns: '{{.ns | default "default"}}'
-    env: *task-vars
+      job: volsync-unlock-{{.app}}
     preconditions:
-      - sh: test -f {{.waitForJobScript}}
-      - sh: test -f {{.unlockJobTemplate}}
+      - test -f {{.VOLSYNC_SCRIPTS_DIR}}/wait-for-job.sh
+      - test -f {{.VOLSYNC_TEMPLATES_DIR}}/unlock.tmpl.yaml
+    silent: true
 
   # To run backup jobs in parallel for all replicationsources:
-  #  - kubectl get replicationsources --all-namespaces --no-headers | awk '{print $2, $1}' | xargs --max-procs=4 -l bash -c 'task volsync:snapshot rsrc=$0 ns=$1'
-  #
+  #   - kubectl get replicationsources --all-namespaces --no-headers | awk '{print $2, $1}' | xargs --max-procs=4 -l bash -c 'task volsync:snapshot app=$0 ns=$1'
   snapshot:
-    desc: Trigger a Restic ReplicationSource snapshot (ex. task volsync:snapshot rsrc=plex [ns=default])
+    desc: Snapshot a PVC for an application
+    summary: |
+      Args:
+        cluster: Cluster to run command against (required)
+        ns: Namespace the PVC is in (default: default)
+        app: Application to snapshot (required)
     cmds:
-      - kubectl -n {{.ns}} patch replicationsources {{.rsrc}} --type merge -p '{"spec":{"trigger":{"manual":"{{.ts}}"}}}'
-      - bash {{.waitForJobScript}} volsync-src-{{.rsrc}} {{.ns}}
-      - kubectl -n {{.ns}} wait job/volsync-src-{{.rsrc}} --for condition=complete --timeout=120m
-      # TODO: Find a way to output logs
-      # Error from server (NotFound): jobs.batch "volsync-src-zzztest" not found
-      # - kubectl -n {{.ns}} logs job/volsync-src-{{.rsrc}}
+      - kubectl --context {{.cluster}} -n {{.ns}} patch replicationsources {{.app}} --type merge -p '{"spec":{"trigger":{"manual":"{{.now}}"}}}'
+      - bash {{.VOLSYNC_SCRIPTS_DIR}}/wait-for-job.sh {{.job}} {{.ns}} {{.cluster}}
+      - kubectl --context {{.cluster}} -n {{.ns}} wait job/{{.job}} --for condition=complete --timeout=120m
+    env: *env
+    requires:
+      vars: ["cluster", "app"]
     vars:
-      rsrc: '{{ or .rsrc (fail "ReplicationSource `rsrc` is required") }}'
+      now: '{{now | date "150405"}}'
       ns: '{{.ns | default "default"}}'
-    env: *task-vars
+      job: volsync-src-{{.app}}
+      controller:
+        sh: true && {{.VOLSYNC_SCRIPTS_DIR}}/which-controller.sh {{.app}} {{.ns}} {{.cluster}}
     preconditions:
-      - sh: test -f {{.waitForJobScript}}
-      - sh: kubectl -n {{.ns}} get replicationsources {{.rsrc}}
-        msg: "ReplicationSource '{{.rsrc}}' not found in namespace '{{.ns}}'"
+      - test -f {{.VOLSYNC_SCRIPTS_DIR}}/which-controller.sh
+      - test -f {{.VOLSYNC_SCRIPTS_DIR}}/wait-for-job.sh
+      - kubectl --context {{.cluster}} -n {{.ns}} get replicationsources {{.app}}
 
   # To run restore jobs in parallel for all replicationdestinations:
-  #   - kubectl get replicationsources --all-namespaces --no-headers | awk '{print $2, $1}' | xargs --max-procs=2 -l bash -c 'task volsync:restore rsrc=$0 ns=$1'
-  #
+  #    - kubectl get replicationsources --all-namespaces --no-headers | awk '{print $2, $1}' | xargs --max-procs=4 -l bash -c 'task volsync:restore app=$0 ns=$1'
   restore:
-    desc: Trigger a Restic ReplicationSource restore (ex. task volsync:restore rsrc=plex [ns=default])
+    desc: Restore a PVC for an application
+    summary: |
+      Args:
+        cluster: Cluster to run command against (required)
+        ns: Namespace the PVC is in (default: default)
+        app: Application to restore (required)
+        previous: Previous number of snapshots to restore (default: 2)
     cmds:
-      - task: suspend-task
-        vars: *task-vars
-      - task: wipe-task
-        vars: *task-vars
-      - task: restore-task
-        vars: *task-vars
-      - task: resume-task
-        vars: *task-vars
+      - { task: .suspend, vars: *env }
+      - { task: .wipe, vars: *env }
+      - { task: .restore, vars: *env }
+      - { task: .resume, vars: *env }
+    env: *env
+    requires:
+      vars: ["cluster", "app"]
     vars:
-      rsrc: '{{ or .rsrc (fail "Variable `rsrc` is required") }}'
       ns: '{{.ns | default "default"}}'
-      # 1) Query to find the Flux Kustomization associated with the ReplicationSource (rsrc)
-      kustomization:
-        sh: |
-          kubectl -n {{.ns}} get replicationsource {{.rsrc}} \
-            -o jsonpath="{.metadata.labels.kustomize\.toolkit\.fluxcd\.io/name}"
-      # 2) Query to find the Claim associated with the ReplicationSource (rsrc)
-      claim:
-        sh: |
-          kubectl -n {{.ns}} get replicationsource {{.rsrc}} \
-            -o jsonpath="{.spec.sourcePVC}"
-      # 3) Query to find the controller associated with the PersistentVolumeClaim (claim)
+      previous: '{{.previous | default 2}}'
       controller:
-        sh: |
-          app=$(kubectl -n {{.ns}} get persistentvolumeclaim {{.claim}} -o jsonpath="{.metadata.labels.app\.kubernetes\.io/name}")
-          if kubectl -n {{ .ns }} get deployment.apps/$app >/dev/null 2>&1 ; then
-            echo "deployment.apps/$app"
-          else
-            echo "statefulset.apps/$app"
-          fi
-      previous: "{{.previous | default 2}}"
-    env: *task-vars
+        sh: "{{.VOLSYNC_SCRIPTS_DIR}}/which-controller.sh {{.app}} {{.ns}}"
+      claim:
+        sh: kubectl --context {{.cluster}} -n {{.ns}} get replicationsources/{{.app}} -o jsonpath="{.spec.sourcePVC}"
+      puid:
+        sh: kubectl --context {{.cluster}} -n {{.ns}} get replicationsources/{{.app}} -o jsonpath="{.spec.restic.moverSecurityContext.runAsUser}"
+      pgid:
+        sh: kubectl --context {{.cluster}} -n {{.ns}} get replicationsources/{{.app}} -o jsonpath="{.spec.restic.moverSecurityContext.runAsGroup}"
     preconditions:
-      - sh: test -f {{.wipeJobTemplate}}
-      - sh: test -f {{.destinationTemplate}}
-      - sh: test -f {{.waitForJobScript}}
+      - test -f {{.VOLSYNC_SCRIPTS_DIR}}/which-controller.sh
+      - test -f {{.VOLSYNC_SCRIPTS_DIR}}/wait-for-job.sh
+      - test -f {{.VOLSYNC_TEMPLATES_DIR}}/replicationdestination.tmpl.yaml
+      - test -f {{.VOLSYNC_TEMPLATES_DIR}}/wipe.tmpl.yaml
+
+  cleanup:
+    desc: Delete volume populator PVCs in all namespaces
+    summary: |
+      Args:
+        cluster: Cluster to run command against (required)
+    cmds:
+      - for: { var: dest }
+        cmd: |
+          {{- $items := (split "/" .ITEM) }}
+          kubectl --context {{.cluster}} delete pvc -n {{ $items._0 }} {{ $items._1 }}
+      - for: { var: cache }
+        cmd: |
+          {{- $items := (split "/" .ITEM) }}
+          kubectl --context {{.cluster}} delete pvc -n {{ $items._0 }} {{ $items._1 }}
+    env: *env
+    requires:
+      vars: ["cluster"]
+    vars:
+      dest:
+        sh: kubectl --context {{.cluster}} get pvc --all-namespaces --no-headers | grep "dst-dest" | awk '{print $1 "/" $2}'
+      cache:
+        sh: kubectl --context {{.cluster}} get pvc --all-namespaces --no-headers | grep "dst-cache" | awk '{print $1 "/" $2}'
 
   # Suspend the Flux ks and hr
-  suspend-task:
+  .suspend:
     internal: true
     cmds:
-      - flux -n flux-system suspend kustomization {{.ks}}
-      - flux -n {{.ns}} suspend helmrelease {{.rsrc}}
-      - kubectl -n {{.ns}} scale {{.controller}} --replicas 0
-      - kubectl -n {{.ns}} wait pod --for delete --selector="app.kubernetes.io/name={{.rsrc}}" --timeout=2m
-    env: *task-vars
+      - flux --context {{.cluster}} -n flux-system suspend kustomization {{.app}}
+      - flux --context {{.cluster}} -n {{.ns}} suspend helmrelease {{.app}}
+      - kubectl --context {{.cluster}} -n {{.ns}} scale {{.controller}} --replicas 0
+      - kubectl --context {{.cluster}} -n {{.ns}} wait pod --for delete --selector="app.kubernetes.io/name={{.app}}" --timeout=2m
+    env: *env
 
   # Wipe the PVC of all data
-  wipe-task:
+  .wipe:
     internal: true
     cmds:
-      - envsubst < <(cat {{.wipeJobTemplate}}) | kubectl apply -f -
-      - bash {{.waitForJobScript}} wipe-{{.rsrc}}-{{.claim}}-{{.ts}} {{.ns}}
-      - kubectl -n {{.ns}} wait job/wipe-{{.rsrc}}-{{.claim}}-{{.ts}} --for condition=complete --timeout=120m
-      - kubectl -n {{.ns}} logs job/wipe-{{.rsrc}}-{{.claim}}-{{.ts}} --container wipe
-      - kubectl -n {{.ns}} delete job wipe-{{.rsrc}}-{{.claim}}-{{.ts}}
-    env: *task-vars
+      - envsubst < <(cat {{.VOLSYNC_TEMPLATES_DIR}}/wipe.tmpl.yaml) | kubectl --context {{.cluster}} apply -f -
+      - bash {{.VOLSYNC_SCRIPTS_DIR}}/wait-for-job.sh {{.job}} {{.ns}} {{.cluster}}
+      - kubectl --context {{.cluster}} -n {{.ns}} wait job/{{.job}} --for condition=complete --timeout=120m
+      - kubectl --context {{.cluster}} -n {{.ns}} logs job/{{.job}} --container main
+      - kubectl --context {{.cluster}} -n {{.ns}} delete job {{.job}}
+    env: *env
+    vars:
+      job: volsync-wipe-{{.app}}
 
   # Create VolSync replicationdestination CR to restore data
-  restore-task:
+  .restore:
     internal: true
     cmds:
-      - envsubst < <(cat {{.destinationTemplate}}) | kubectl apply -f -
-      - bash {{.waitForJobScript}} volsync-dst-{{.rsrc}}-{{.claim}}-{{.ts}} {{.ns}}
-      - kubectl -n {{.ns}} wait job/volsync-dst-{{.rsrc}}-{{.claim}}-{{.ts}} --for condition=complete --timeout=120m
-      - kubectl -n {{.ns}} delete replicationdestination {{.rsrc}}-{{.claim}}-{{.ts}}
-    env: *task-vars
+      - envsubst < <(cat {{.VOLSYNC_TEMPLATES_DIR}}/replicationdestination.tmpl.yaml) | kubectl --context {{.cluster}} apply -f -
+      - bash {{.VOLSYNC_SCRIPTS_DIR}}/wait-for-job.sh {{.job}} {{.ns}} {{.cluster}}
+      - kubectl --context {{.cluster}} -n {{.ns}} wait job/{{.job}} --for condition=complete --timeout=120m
+      - kubectl --context {{.cluster}} -n {{.ns}} delete replicationdestination {{.job}}
+    env: *env
+    vars:
+      job: volsync-dst-{{.app}}
 
   # Resume Flux ks and hr
-  resume-task:
+  .resume:
     internal: true
     cmds:
-      - flux -n {{.ns}} resume helmrelease {{.rsrc}}
-      - flux -n flux-system resume kustomization {{.ks}}
-    env: *task-vars
+      - flux --context {{.cluster}} -n {{.ns}} resume helmrelease {{.app}}
+      - flux --context {{.cluster}} -n flux-system resume kustomization {{.app}}
+    env: *env
