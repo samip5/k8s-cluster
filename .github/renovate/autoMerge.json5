@@ -13,6 +13,13 @@
     },
     {
       matchDatasources: ["docker"],
+      automerge: true,
+      automergeType: "branch",
+      ignoreTests: true,
+      matchUpdateTypes: ["patch"]
+    },
+    {
+      matchDatasources: ["docker"],
       automerge: false,
       automergeType: "branch",
       ignoreTests: true,
