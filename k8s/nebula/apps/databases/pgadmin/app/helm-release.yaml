@@ -42,16 +42,16 @@ spec:
         containers:
           main:
             image:
-              repository: dpage/pgadmin4
-              tag: 8.0
+              repository: registry.samipsolutions.fi/docker/dpage/pgadmin4
+              tag: 8.4
             env:
               PGADMIN_DEFAULT_EMAIL: sm@${SECRET_DOMAIN}
               PGADMIN_DEFAULT_PASSWORD: ${SECRET_PASSWORD}
             resources:
               requests:
-                memory: 164M
+                memory: 300Mi
               limits:
-                memory: 236M
+                memory: 1Gi
 
     service:
       main:
