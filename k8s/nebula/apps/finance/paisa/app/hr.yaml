@@ -41,8 +41,10 @@ spec:
         containers:
           paisa:
             image:
-              repository: registry.samipsolutions.fi/library/paisa
-              tag: 0.6.6@sha256:0771b63e53ab98898585d46ae248932482f3fce34b7a2297a4e07f78489a4007
+              repository: alpine
+              tag: 1.18
+              #repository: registry.samipsolutions.fi/library/paisa
+              #tag: 0.6.6@sha256:0771b63e53ab98898585d46ae248932482f3fce34b7a2297a4e07f78489a4007
             env:
               TZ: Europe/Helsinki
 
