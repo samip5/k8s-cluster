@@ -42,8 +42,8 @@ spec:
           paisa:
             image:
               repository: registry.samipsolutions.fi/library/paisa
-              tag: 0.6.6@sha256:0771b63e53ab98898585d46ae248932482f3fce34b7a2297a4e07f78489a4007
-            command: ["/bin/sleep", "infinity"]
+              tag: 160324-0.6.6@sha256:136bf72ce3b49affe3d5e2286738268cd0aa042cbd794a9da660fdc6f396acdd
+            #command: ["/bin/sleep", "infinity"]
             env:
               TZ: Europe/Helsinki
 
