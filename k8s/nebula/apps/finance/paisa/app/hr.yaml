@@ -84,4 +84,5 @@ spec:
         advancedMounts:
           main:
             main:
-              - path: /app/Documents/paisa/
+              - path: /app/Documents/
+              - path: /root/Documents/
