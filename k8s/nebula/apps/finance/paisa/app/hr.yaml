@@ -83,6 +83,6 @@ spec:
         existingClaim: "${VOLSYNC_CLAIM}"
         advancedMounts:
           main:
-            main:
+            paisa:
               - path: /app/Documents/
               - path: /root/Documents/
