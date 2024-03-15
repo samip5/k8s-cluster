@@ -1,14 +1,14 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: &app paisa
+  name: paisa
   namespace: finance
 spec:
   interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 2.4.0
+      version: 3.0.3
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -25,29 +25,36 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    defaultPodOptions:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsUser: ${APP_UID}
+        runAsGroup: ${APP_GID}
+        fsGroup: ${APP_GID}
+        fsGroupChangePolicy: "OnRootMismatch"
+      annotations:
+        reloader.stakater.com/auto: "true"
+
     controllers:
       main:
-        pod:
-          automountServiceAccountToken: false
-          enableServiceLinks: false
-          annotations:
-            reloader.stakater.com/auto: "true"
-
-
         containers:
-          main:
+          paisa:
             image:
               repository: registry.samipsolutions.fi/library/paisa
-              tag: 0.6.2@sha256:1948b16f807a34faac71273b9127ac56d0355712e180fecfc2751e9a2a61e4fb
+              tag: 0.6.6@sha256:0771b63e53ab98898585d46ae248932482f3fce34b7a2297a4e07f78489a4007
             env:
               TZ: Europe/Helsinki
+
             resources:
               requests:
+                cpu: 50m
+                memory: 512Mi
+              limits:
                 cpu: 100m
-                memory: 256Mi
+                memory: 1Gi
 
     service:
-      main:
+      paisa:
         ports:
           http:
             port: 7500
@@ -63,7 +70,7 @@ spec:
             paths:
               - path: /
                 service:
-                  name: main
+                  name: paisa
                   port: http
         tls:
           - hosts:
@@ -75,4 +82,4 @@ spec:
         advancedMounts:
           main:
             main:
-              - path: /root/Documents/paisa/
+              - path: /app/Documents/paisa/
