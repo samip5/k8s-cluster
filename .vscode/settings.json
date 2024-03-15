@@ -27,7 +27,8 @@
     "yaml.schemaStore.enable": true,
     "yaml.schemas": {
       "ansible": "provision/ansible/**/*.yaml",
-      "kubernetes": "cluster/**/*.yaml"
+      "kubernetes": "k8s/**/*.yaml",
+      "https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.0.3/charts/library/common/values.schema.json": "file:///Users/sm/code/personal/github.com/samip5/k8s-cluster/k8s/nebula/apps/finance/paisa/app/hr.yaml"
     },
     "editor.fontFamily": "FiraCode Nerd Font",
     "editor.fontLigatures": true,
