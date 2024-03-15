@@ -83,5 +83,4 @@ spec:
         enabled: true
         existingClaim: "${VOLSYNC_CLAIM}"
         globalMounts:
-          - path: /app/Documents/
-          - path: /root/Documents/
+          - path: /home/kah/Documents
