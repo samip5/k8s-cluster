@@ -81,8 +81,6 @@ spec:
       data:
         enabled: true
         existingClaim: "${VOLSYNC_CLAIM}"
-        advancedMounts:
-          main:
-            paisa:
-              - path: /app/Documents/
-              - path: /root/Documents/
+        globalMounts:
+          - path: /app/Documents/
+          - path: /root/Documents/
