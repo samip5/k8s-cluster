@@ -1,1 +1,5 @@
 provision/kubeconfig
+.venv
+.dea
+.vscode
+.task
