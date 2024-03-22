@@ -35,21 +35,6 @@ spec:
               disk: {}
           interfaces:
             - name: "lan"
-              ports:
-                - port: 5060
-                  protocol: TCP
-                - port: 5060
-                  protocol: UDP
-                - port: 5061
-                  protocol: TCP
-                - port: 5061
-                  protocol: UDP
-                - port: 443
-                  protocol: TCP
-                - port: 80
-                  protocol: TCP
-                - port: 22
-                  protocol: TCP
             - name: "main"
               ports:
                 - port: 443
