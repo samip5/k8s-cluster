@@ -33,17 +33,6 @@ spec:
               disk: {}
           interfaces:
             - name: "lan"
-              ports:
-                - port: 5060
-                  protocol: TCP
-                - port: 5060
-                  protocol: UDP
-                - port: 443
-                  protocol: TCP
-                - port: 80
-                  protocol: TCP
-                - port: 22
-                  protocol: TCP
         firmware:
           bootloader:
             bios: {}
