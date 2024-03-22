@@ -19,8 +19,6 @@ spec:
     spec:
       hostname: "freepbx"
       networks:
-        - name: "main"
-          pod: {}
         - name: "lan"
           multus:
             networkName: kubevirt/multus-lan
@@ -35,8 +33,11 @@ spec:
               disk: {}
           interfaces:
             - name: "lan"
-            - name: "main"
               ports:
+                - port: 5060
+                  protocol: TCP
+                - port: 5060
+                  protocol: UDP
                 - port: 443
                   protocol: TCP
                 - port: 80
