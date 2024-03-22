@@ -101,7 +101,7 @@ spec:
 
     sidecars:
       gluetun:
-        image: ghcr.io/qdm12/gluetun:latest@sha256:f3a71b8c2835192952e93a48ee14f2ca9d8d0410f25949d9d602dcb9565906da
+        image: ghcr.io/qdm12/gluetun:latest@sha256:0996fa99fd56b156f7f3afd9051ca1b7b770814806fef3d4cccf962e75e920a0
         env:
           - name: VPN_TYPE
             value: wireguard
