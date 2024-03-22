@@ -31,8 +31,6 @@ spec:
           disks:
             - name: "rootdisk"
               disk: {}
-          interfaces:
-            - name: "lan"
         firmware:
           bootloader:
             bios: {}

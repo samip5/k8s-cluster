@@ -21,7 +21,7 @@ spec:
       rtc:
         tickPolicy: catchup
   cpu:
-    preferredCPUTopology: preferSockets
+    preferredCPUTopology: preferCores
   devices:
     preferredDiskBus: virtio
     preferredInterfaceModel: virtio
