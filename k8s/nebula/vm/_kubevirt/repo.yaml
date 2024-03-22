@@ -7,7 +7,7 @@ spec:
   interval: 10m0s
   url: https://github.com/JJGadgets/kubevirt-flux.git
   ref:
-    branch: v1.1.1
+    branch: v1.2.0
   ignore: |
     # exclude all to whitelist
     /*

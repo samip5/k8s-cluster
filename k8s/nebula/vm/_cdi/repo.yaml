@@ -7,7 +7,7 @@ spec:
   interval: 10m0s
   url: https://github.com/samip5/kubevirt-flux.git
   ref:
-    branch: cdi-v1.58.0
+    branch: cdi-v1.58.3
   ignore: |
     # exclude all to whitelist
     /*
