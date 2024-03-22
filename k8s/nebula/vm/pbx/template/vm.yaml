@@ -20,7 +20,8 @@ spec:
       hostname: "freepbx"
       networks:
         - name: "main"
-          pod: {}
+          multus:
+            networkName: multus-lan
       volumes:
         - name: "rootdisk"
           persistentVolumeClaim:
