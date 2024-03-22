@@ -20,9 +20,10 @@ spec:
       hostname: "freepbx"
       networks:
         - name: "main"
+          pod: {}
+        - name: "lan"
           multus:
             networkName: kubevirt/multus-lan
-            default: true
       volumes:
         - name: "rootdisk"
           persistentVolumeClaim:
@@ -33,7 +34,7 @@ spec:
             - name: "rootdisk"
               disk: {}
           interfaces:
-            - name: "main"
+            - name: "lan"
               ports:
                 - port: 5060
                   protocol: TCP
@@ -49,7 +50,14 @@ spec:
                   protocol: TCP
                 - port: 22
                   protocol: TCP
+            - name: "main"
+              ports:
+                - port: 443
+                  protocol: TCP
+                - port: 80
+                  protocol: TCP
+                - port: 22
+                  protocol: TCP
         firmware:
           bootloader:
-            bios:
-              useSerial: true
+            bios: {}
