@@ -5,6 +5,6 @@ metadata:
   name: "freepbx"
 spec:
   cpu:
-    guest: 2
+    guest: 4
   memory:
     guest: 4096Mi
