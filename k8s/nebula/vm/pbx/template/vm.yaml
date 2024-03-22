@@ -33,7 +33,6 @@ spec:
               disk: {}
           interfaces:
             - name: "main"
-              masquerade: {}
               ports:
                 - port: 5060
                   protocol: TCP
