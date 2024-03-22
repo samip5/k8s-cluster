@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  url: https://github.com/samip5/kubevirt-flux.git
+  url: https://github.com/JJGadgets/kubevirt-flux.git
   ref:
     branch: cdi-v1.58.3
   ignore: |
