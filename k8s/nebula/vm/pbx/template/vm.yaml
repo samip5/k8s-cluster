@@ -22,6 +22,7 @@ spec:
         - name: "main"
           multus:
             networkName: multus-lan
+            default: true
       volumes:
         - name: "rootdisk"
           persistentVolumeClaim:

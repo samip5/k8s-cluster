@@ -14,7 +14,10 @@ spec:
           "master": "vlan10",
           "mode": "bridge",
           "ipam": {
-            "type": "dhcp"
+            "type": "static",
+            "addresses": [
+              { "address": "192.168.299", "gateway": "192.168.2.1" }
+            ]
           }
         }
       ]
