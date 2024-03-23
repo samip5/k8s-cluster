@@ -37,7 +37,7 @@ spec:
         containers:
           main:
             image:
-              repository: ghcr.io/onedr0p/jellyfin
+              repository: registry.samipsolutions.fi/docker/jellyfin/jellyfin
               tag: 10.8.11
             env:
               DOTNET_SYSTEM_IO_DISABLEFILELOCKING: "true"
