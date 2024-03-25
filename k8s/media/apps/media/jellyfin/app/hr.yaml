@@ -25,6 +25,7 @@ spec:
 
         pod:
           enableServiceLinks: false
+          runtimeClassName: nvidia
           securityContext:
             runAsUser: 568
             runAsGroup: 568

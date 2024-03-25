@@ -3,10 +3,10 @@ kind: Kustomization
 resources:
   - zipline/ks.yaml
 #  - immich/ks.yaml
-  - matrix-login/ks.yaml
+#  - matrix-login/ks.yaml
   - paperless/ks.yaml
-  - smtp-relay/ks.yaml
-  - theme-park/ks.yaml
+ # - smtp-relay/ks.yaml
+ # - theme-park/ks.yaml
   - linkwarden/ks.yaml
   - baikal/ks.yaml
   - syncthing/ks.yaml
