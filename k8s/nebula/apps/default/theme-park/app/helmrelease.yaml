@@ -63,6 +63,8 @@ spec:
       internal:
         enabled: true
         className: "internal-nginx"
+        annotations:
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
         hosts:
           - host: *host
             paths:
