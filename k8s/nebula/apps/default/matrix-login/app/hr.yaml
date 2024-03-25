@@ -28,7 +28,7 @@ spec:
     keepHistory: false
   values:
     controllers:
-      matrix-login:
+      main:
         strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
@@ -44,7 +44,7 @@ spec:
 
 
     service:
-      matrix-login:
+      app:
         controller: matrix-login
         ports:
           http:
@@ -61,7 +61,7 @@ spec:
             paths:
               - path: /
                 service:
-                  identifier: matrix-login
+                  name: app
                   port: 8080
         tls:
           - hosts:
@@ -76,7 +76,7 @@ spec:
             paths:
               - path: /
                 service:
-                  identifier: matrix-login
+                  name: app
                   port: 8080
         tls:
           - hosts:
