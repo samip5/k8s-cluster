@@ -59,6 +59,9 @@ spec:
           - host: &host "{{ .Release.Name }}.skylab.fi"
             paths:
               - path: /
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
@@ -71,6 +74,9 @@ spec:
           - host: *host
             paths:
               - path: /
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
