@@ -61,7 +61,7 @@ spec:
             paths:
               - path: /
                 service:
-                  name: app
+                  identifier: app
                   port: 8080
         tls:
           - hosts:
@@ -76,7 +76,7 @@ spec:
             paths:
               - path: /
                 service:
-                  name: app
+                  identifier: app
                   port: 8080
         tls:
           - hosts:
