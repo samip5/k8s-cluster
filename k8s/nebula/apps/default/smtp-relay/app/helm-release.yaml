@@ -58,8 +58,8 @@ spec:
     service:
       main:
         type: LoadBalancer
-        #annotations:
-        #  metallb.universe.tf/loadBalancerIPs: "192.168.10.11,2001:67c:1104:fc00::11"
+        annotations:
+          io.cilium/lb-ipam-ips: 10.96.69.207,fded:687e:c3bf::6ed
         ipFamilyPolicy: RequireDualStack
         ports:
           http:
