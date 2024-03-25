@@ -27,15 +27,22 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    controller:
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: registry.samipsolutions.fi/library/matrix-login
-      tag: latest
-    envFrom:
-      - secretRef:
-          name: matrix-login-secret
+    controllers:
+      main:
+        strategy: RollingUpdate
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          matrix-login:
+            image:
+              repository: registry.samipsolutions.fi/library/matrix-login
+              tag: latest
+            envFrom:
+              - secretRef:
+                  name: matrix-login-secret
+
+
+
     service:
       main:
         ports:
@@ -44,12 +51,24 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: external-nginx
+        className: external-nginx
         annotations:
           nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
           external-dns.alpha.kubernetes.io/target: ingress.skylab.fi
         hosts:
           - host: &host "{{ .Release.Name }}.skylab.fi"
+            paths:
+              - path: /
+        tls:
+          - hosts:
+              - *host
+      int:
+        enabled: true
+        className: internal-nginx
+        annotations:
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        hosts:
+          - host: *host
             paths:
               - path: /
         tls:
