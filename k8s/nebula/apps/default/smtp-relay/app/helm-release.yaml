@@ -24,21 +24,36 @@ spec:
       retries: 3
     cleanupOnFail: true
   values:
-    image:
-      # Pull-though Cache for Docker Hub
-      repository: registry.samipsolutions.fi/docker/boky/postfix
-      tag: latest
-
-    podAnnotations:
-      kyverno-no-tz: "true"
-
-
-    env:
-      RELAYHOST: smtp.dnainternet.fi
-      ALLOWED_SENDER_DOMAINS: skylab.fi,pbx.samipsolutions.fi,samipsolutions.fi
-      POSTFIX_myhostname: mailer.k8s.skylab.fi
-      POSTFIX_mynetworks: 10.244.0.0/16 [fddf:f7bc:9670::]/48 192.168.2.0/24 [2001:14ba:16fd:9600::]/56 10.0.105.0/24 10.0.50.0/24
-      POSTFIX_inet_protocols: all
+    controllers:
+      main:
+        strategy: RollingUpdate
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: registry.samipsolutions.fi/docker/boky/postfix
+              tag: latest
+            env:
+              RELAYHOST: smtp.dnainternet.fi
+              ALLOWED_SENDER_DOMAINS: skylab.fi,pbx.samipsolutions.fi,samipsolutions.fi
+              POSTFIX_myhostname: mailer.k8s.skylab.fi
+              POSTFIX_mynetworks: 10.244.0.0/16 [fddf:f7bc:9670::]/48 192.168.2.0/24 [2001:14ba:16fd:9600::]/56 10.0.105.0/24 10.0.50.0/24
+              POSTFIX_inet_protocols: all
+            resources:
+              requests:
+                cpu: 15m
+                memory: 64M
+              limits:
+                cpu: 15m
+                memory: 64M
+            probes:
+              liveness:
+                enabled: false
+              startup:
+                enabled: false
+              readiness:
+                enabled: false
 
     service:
       main:
@@ -50,23 +65,9 @@ spec:
           http:
             port: 587
 
-    probes:
-      liveness:
-        enabled: false
-      startup:
-        enabled: false
-      readiness:
-        enabled: false
     persistence:
       spool:
         enabled: true
         type: emptyDir
-        mountPath: /var/spool/postfix
-
-    resources:
-      requests:
-        cpu: 15m
-        memory: 64M
-      limits:
-        cpu: 15m
-        memory: 64M
+        globalMounts:
+          - path: /var/spool/postfix
