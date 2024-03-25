@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - ./_kubevirt
   - ./_cdi
-  - ./pbx/ks.yaml
+#  - ./pbx/ks.yaml
