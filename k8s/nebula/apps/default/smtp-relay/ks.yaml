@@ -1,9 +1,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: smtp-relay
+  name: &appname smtp-relay
   namespace: flux-system
 spec:
+  targetNamespace: default
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *appname
   path: ./k8s/nebula/apps/default/smtp-relay/app
   prune: true
   sourceRef:
