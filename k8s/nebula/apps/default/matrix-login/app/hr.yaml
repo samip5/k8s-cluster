@@ -28,12 +28,12 @@ spec:
     keepHistory: false
   values:
     controllers:
-      main:
+      matrix-login:
         strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          matrix-login:
+          app:
             image:
               repository: registry.samipsolutions.fi/library/matrix-login
               tag: latest
@@ -44,8 +44,8 @@ spec:
 
 
     service:
-      main:
-        controller: main
+      matrix-login:
+        controller: matrix-login
         ports:
           http:
             port: 8080
@@ -61,7 +61,7 @@ spec:
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: matrix-login
                   port: 8080
         tls:
           - hosts:
@@ -76,7 +76,7 @@ spec:
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: matrix-login
                   port: 8080
         tls:
           - hosts:
