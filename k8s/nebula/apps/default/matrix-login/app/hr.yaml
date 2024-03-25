@@ -45,7 +45,7 @@ spec:
 
     service:
       app:
-        controller: matrix-login
+        controller: main
         ports:
           http:
             port: 8080
