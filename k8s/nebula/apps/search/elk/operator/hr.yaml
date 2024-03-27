@@ -19,5 +19,5 @@ spec:
   values:
     image:
       repository: docker.elastic.co/eck/eck-operator
-      tag: 2.12.0
+      tag: 2.12.1
       pullPolicy: IfNotPresent
