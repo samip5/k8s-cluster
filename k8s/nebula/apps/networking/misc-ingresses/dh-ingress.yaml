@@ -61,6 +61,7 @@ spec:
   tls:
     - hosts:
         - "dh.skylab.fi"
+      secretName: plex-dh-tls
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -117,4 +118,4 @@ spec:
   tls:
     - hosts:
         - "jelly.dh.skylab.fi"
-      secretName: jelly-dh-tls
+      secretName: plex-dh-tls
