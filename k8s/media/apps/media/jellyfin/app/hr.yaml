@@ -67,9 +67,9 @@ spec:
         enabled: true
         className: nginx
         hosts:
-          - host: &host1 dh.skylab.fi
+          - host: &host1 jelly.media.skylab.fi
             paths:
-              - path: /jellyfin/
+              - path: /
                 service:
                   name: main
                   port: http
