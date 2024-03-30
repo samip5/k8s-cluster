@@ -88,3 +88,33 @@ spec:
     - hosts:
         - "plex.dh.skylab.fi"
       secretName: plex-dh-tls
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dh-jellyfin
+  namespace: networking
+  annotations:
+    external-dns-cf/is-dns-public: "true"
+    external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/server-snippet: |
+      proxy_ssl_name dh.skylab.fi;
+      proxy_ssl_server_name on;
+spec:
+  ingressClassName: external-nginx
+  rules:
+    - host: "jelly.dh.skylab.fi"
+      http:
+        paths:
+          - backend:
+              service:
+                name: dh
+                port:
+                  name: https
+            pathType: Prefix
+            path: "/"
+  tls:
+    - hosts:
+        - "jelly.dh.skylab.fi"
+      secretName: jelly-dh-tls
