@@ -41,7 +41,7 @@ spec:
           main:
             image:
               repository: ghcr.io/go-shiori/shiori
-              tag: v1.6.0
+              tag: v1.6.1
             env:
               SHIORI_DIR: /config
               HTTP_ROOT_PATH: "/"
