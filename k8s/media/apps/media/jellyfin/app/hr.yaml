@@ -73,16 +73,9 @@ spec:
                 service:
                   name: main
                   port: http
-          - host: &host2 jelly.media.skylab.fi
-            paths:
-              - path: /
-                service:
-                  name: main
-                  port: http
         tls:
           - hosts:
               - *host1
-              - *host2
 
     persistence:
       config:
