@@ -99,7 +99,7 @@ metadata:
     external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     nginx.ingress.kubernetes.io/server-snippet: |
-      proxy_ssl_name dh.skylab.fi;
+      proxy_ssl_name jelly.media.skylab.fi;
       proxy_ssl_server_name on;
 spec:
   ingressClassName: external-nginx
