@@ -5,11 +5,13 @@ metadata:
     meta.helm.sh/release-name: authentik
     meta.helm.sh/release-namespace: security
   labels:
+    app.kubernetes.io/component: server
     app.kubernetes.io/instance: authentik
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: authentik
-    app.kubernetes.io/version: 2023.10.1
-    helm.sh/chart: authentik-2023.10.1
+    app.kubernetes.io/part-of: authentik
+    app.kubernetes.io/version: 2024.2.2
+    helm.sh/chart: authentik-2024.2.2
     helm.toolkit.fluxcd.io/name: authentik
     helm.toolkit.fluxcd.io/namespace: security
   name: authentik-int
@@ -22,9 +24,9 @@ spec:
         paths:
           - backend:
               service:
-                name: authentik
+                name: authentik-server
                 port:
-                  name: http
+                  number: 80
             path: /
             pathType: Prefix
   tls:
