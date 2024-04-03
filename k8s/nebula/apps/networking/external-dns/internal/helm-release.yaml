@@ -62,6 +62,7 @@ spec:
 
     sources:
       - ingress
+      - crd
 
     txtPrefix: "k8s-nebula."
     extraArgs:
