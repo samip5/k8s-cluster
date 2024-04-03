@@ -1,6 +1,6 @@
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helmrelease_v2beta1.json
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: prowlarr
@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.0.4
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -23,34 +23,58 @@ spec:
   upgrade:
     cleanupOnFail: true
     remediation:
+      strategy: uninstall
       retries: 3
   uninstall:
     keepHistory: false
   values:
-    #initContainers:
-    #  01-init-db:
-    #    image: ghcr.io/onedr0p/postgres-init:14.9
-    #    imagePullPolicy: IfNotPresent
-    #    envFrom: &envFrom
-    #      - secretRef:
-    #          name: prowlarr
-    controller:
-      strategy: RollingUpdate
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/onedr0p/prowlarr-develop
-      tag: 1.15.0.4361@sha256:833d7ca0c25e6ad28b48c0624fc54947bdaa724bba1a25c85b21d8484a96db3c
-    env:
-      PROWLARR__INSTANCE_NAME: Prowlarr
-      PROWLARR__PORT: &port 80
-      PROWLARR__LOG_LEVEL: info
-      PROWLARR__AUTHENTICATION_METHOD: External
-    envFrom:
-      - secretRef:
-          name: prowlarr
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 568 # ${APP_UID}
+        runAsGroup: 568 # ${APP_GID}
+        fsGroup: 568 # ${APP_GID}
+        fsGroupChangePolicy: "OnRootMismatch"
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          prowlarr:
+            image:
+              repository: ghcr.io/onedr0p/prowlarr-develop
+              tag: 1.15.0.4361@sha256:833d7ca0c25e6ad28b48c0624fc54947bdaa724bba1a25c85b21d8484a96db3c
+            env:
+              PROWLARR__INSTANCE_NAME: Prowlarr
+              PROWLARR__PORT: &port 80
+              PROWLARR__LOG_LEVEL: info
+              PROWLARR__AUTHENTICATION_METHOD: External
+            envFrom:
+              - secretRef:
+                  name: prowlarr
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /ping
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+            resources:
+              requests:
+                memory: 127Mi
+              limits:
+                memory: 300Mi
+
     service:
       main:
+        controller: main
         ports:
           http:
             port: *port
@@ -70,6 +94,9 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  identifier: prowlarr
+                  port: http
         tls:
           - hosts:
               - *host
@@ -86,24 +113,20 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  identifier: prowlarr
+                  port: http
         tls:
           - hosts:
               - *host-int
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
     persistence:
       config:
         enabled: true
         existingClaim: prowlarr-config-v1
+        globalMounts:
+          - path: /config
       backup:
         enabled: false
         existingClaim: prowlarr-backup-v1
-        mountPath: /config/Backups
-    resources:
-      requests:
-        memory: 127Mi
-      limits:
-        memory: 300Mi
+        globalMounts:
+        - path: /config/Backups
