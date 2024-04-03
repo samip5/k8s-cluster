@@ -38,9 +38,16 @@ spec:
       fullnameOverride: authentik
     authentik:
       log_level: info
+      avatars: "initials"
+      email:
+        host: "smtp-relay.default.svc.cluster.local"
+        port: 587
+        use_tls: false
+        from: "no-reply@skylab.fi"
       secret_key: "${SECRET_AUTHENTIK_SECRET_KEY}"
       error_reporting:
-        enabled: true
+        enable: false
+        send_pii: false
         environment: "kryptonian"
       outposts:
         container_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
@@ -51,31 +58,28 @@ spec:
         password: "${SECRET_AUTHENTIK_POSTGRES_PASSWORD}"
       redis:
         host: "redis.databases.svc.cluster.local"
-      email:
-        host: "smtp-relay.default.svc.cluster.local"
-        port: 587
-        use_tls: false
-        from: "no-reply@skylab.fi"
 
     server:
+      replicas: 1
+      autoscaling:
+        enabled: true
       pdb:
         enabled: true
         minAvailable: 1
         maxUnavailable: 1
       ingress:
         enabled: true
-        ingressClassName: "external-nginx"
+        ingressClassName: external-nginx
         annotations:
-          external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
+          external-dns.alpha.kubernetes.io/target: ingress.skylab.fi
         hosts:
-        - host: "id.skylab.fi"
-          paths:
-          - path: "/"
-            pathType: Prefix
+          - &host "id.skylab.fi"
+        paths:
+          - /
         tls:
-        - hosts:
-          - "id.skylab.fi"
-          secretName: skylab.fi-tls
+          - hosts:
+              - *host
+            secretName: skylab.fi-tls
       metrics:
         serviceMonitor:
           enabled: true
@@ -86,12 +90,18 @@ spec:
         limits:
           memory: 2Gi
     worker:
+      replicas: 1
+      autoscaling:
+        enabled: true
       resources:
         requests:
           cpu: 50m
           memory: 512Mi
         limits:
           memory: 1Gi
+    prometheus:
+      rules:
+        enabled: true
 
     postgresql:
       enabled: false
