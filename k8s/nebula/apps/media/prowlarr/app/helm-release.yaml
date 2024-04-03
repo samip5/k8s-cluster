@@ -81,7 +81,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: external-nginx
+        className: external-nginx
         annotations:
           external-dns.target/enabled: "true"
           nginx.ingress.kubernetes.io/configuration-snippet: |
@@ -102,7 +102,7 @@ spec:
               - *host
       internal:
         enabled: true
-        ingressClassName: internal-nginx
+        className: internal-nginx
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
