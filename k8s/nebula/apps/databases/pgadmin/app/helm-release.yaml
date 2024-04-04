@@ -43,7 +43,7 @@ spec:
           main:
             image:
               repository: registry.samipsolutions.fi/docker/dpage/pgadmin4
-              tag: 8.4
+              tag: 8.5
             env:
               PGADMIN_DEFAULT_EMAIL: sm@${SECRET_DOMAIN}
               PGADMIN_DEFAULT_PASSWORD: ${SECRET_PASSWORD}
