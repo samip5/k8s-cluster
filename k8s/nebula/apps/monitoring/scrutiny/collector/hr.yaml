@@ -40,7 +40,7 @@ spec:
           main:
             image:
               repository: ghcr.io/analogj/scrutiny
-              tag: master-collector
+              tag: v0.8.0-collector
             env:
               - name: COLLECTOR_API_ENDPOINT
                 value: http://scrutiny.monitoring.svc.cluster.local:8080
@@ -53,9 +53,9 @@ spec:
             resources:
               requests:
                 cpu: 100m
-                memory: 128Mi
+                memory: 256Mi
               limits:
-                memory: 128Mi
+                memory: 256Mi
 
     service:
       main:

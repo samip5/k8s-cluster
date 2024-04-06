@@ -35,7 +35,7 @@ spec:
           main:
             image:
               repository: ghcr.io/analogj/scrutiny
-              tag: master-web
+              tag: v0.8.0-web
             env:
              TZ: "Europe/Helsinki"
              SCRUTINY_WEB_INFLUXDB_HOST: influx.databases.svc.cluster.local
