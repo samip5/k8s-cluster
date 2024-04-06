@@ -7,6 +7,7 @@ spec:
   targetNamespace: gh-actions
   dependsOn:
     - name: cluster-apps-ci-gh-operator
+      namespace: flux-system
   path: ./k8s/nebula/apps/ci/github-actions/app/runners
   prune: true
   sourceRef:
