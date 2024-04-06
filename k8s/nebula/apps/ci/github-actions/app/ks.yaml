@@ -4,7 +4,8 @@ metadata:
   name: cluster-apps-ci-gh-operator
   namespace: flux-system
 spec:
-  path: ./k8s/nebula/apps/ci/github-actions/operator
+  targetNamespace: gh-actions
+  path: ./k8s/nebula/apps/ci/github-actions/app/operator
   prune: true
   sourceRef:
     kind: GitRepository

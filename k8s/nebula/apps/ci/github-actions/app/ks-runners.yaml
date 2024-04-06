@@ -4,9 +4,10 @@ metadata:
   name: cluster-apps-ci-gh-runners
   namespace: flux-system
 spec:
+  targetNamespace: gh-actions
   dependsOn:
     - name: cluster-apps-ci-gh-operator
-  path: ./k8s/nebula/apps/ci/github-actions/runners
+  path: ./k8s/nebula/apps/ci/github-actions/app/runners
   prune: true
   sourceRef:
     kind: GitRepository
