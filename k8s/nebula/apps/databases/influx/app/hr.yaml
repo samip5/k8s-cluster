@@ -45,10 +45,10 @@ spec:
               tag: 2.7-alpine
             resources:
               requests:
-                cpu: 100m
-                memory: 128M
+                cpu: 150m
+                memory: 512M
               limits:
-                memory: 384M
+                memory: 1Gi
         probes:
           liveness: &health
             enabled: true
