@@ -33,6 +33,9 @@ spec:
             env:
               UN_SONARR_0_PATHS_0: /mnt/merge/Downloads/
               UN_SONARR_0_URL: http://sonarr:80
+            envFrom:
+              - secretRef:
+                  name: unpackerr
             image:
               repository: ghcr.io/onedr0p/unpackerr
               tag: 0.12.0@sha256:8bbf35be449b89041f07fc069812f79b4eadf56e1c7c7720935fe166016376ef
@@ -55,9 +58,6 @@ spec:
         runAsUser: 568
         supplementalGroups:
           - 10000
-    envFrom:
-      - secretRef:
-          name: unpackerr
     persistence:
       downloads:
         globalMounts:
