@@ -51,9 +51,9 @@ spec:
               tag: v0.11.0
             probes:
               liveness:
-                enabled: 1
+                enabled: true
               readiness:
-                enabled: 1
+                enabled: true
             resources:
               limits:
                 memory: 500Mi
