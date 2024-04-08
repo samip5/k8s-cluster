@@ -76,6 +76,7 @@ spec:
 
     service:
       main:
+        controller: main
         ports:
           http:
             port: *port
@@ -83,7 +84,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        className: nginx
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
@@ -96,7 +97,7 @@ spec:
               - path: /
                 service:
                   name: main
-                  port: http
+                  port: *port
 
 
         tls:
