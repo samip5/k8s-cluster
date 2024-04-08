@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 3.0.4
+      version: 3.1.0
   dependsOn:
     - name: qbittorrent
       namespace: media
@@ -44,9 +44,9 @@ spec:
               tag: v0.11.0
             probes:
               liveness:
-                enabled: 1
+                enabled: true
               readiness:
-                enabled: 1
+                enabled: true
             resources:
               limits:
                 memory: 500Mi
