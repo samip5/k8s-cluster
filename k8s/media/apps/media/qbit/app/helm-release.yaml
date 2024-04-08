@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 3.0.4
+      version: 3.1.0
   install:
     createNamespace: true
     remediation:
@@ -44,9 +44,9 @@ spec:
               tag: 4.5.5
             probes:
               liveness:
-                enabled: 1
+                enabled: true
               readiness:
-                enabled: 1
+                enabled: true
             resources:
               limits:
                 memory: 1222Mi
@@ -77,7 +77,9 @@ spec:
             envFrom:
               - secretRef:
                   name: qbit-vpn-secret
-            image: ghcr.io/qdm12/gluetun:latest@sha256:4e152816dd900e2bee14f2a686987933392a969d11557ed70900da67bd8d303e
+            image:
+              repository: ghcr.io/qdm12/gluetun
+              tag: latest@sha256:4e152816dd900e2bee14f2a686987933392a969d11557ed70900da67bd8d303e
             securityContext:
               capabilities:
                 add:
