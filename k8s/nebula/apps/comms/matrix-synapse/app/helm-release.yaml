@@ -67,8 +67,6 @@ spec:
       presence:
         enabled: true
       enable_3pid_lookup: false
-      account_threepid_delegates:
-        msisdn: https://vector.im
 
       oidc_providers:
         - idp_id: authentik
