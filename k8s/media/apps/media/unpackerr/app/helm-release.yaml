@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 3.0.4
+      version: 3.1.0
   install:
     remediation:
       retries: 3
@@ -38,9 +38,9 @@ spec:
               tag: 0.12.0@sha256:8bbf35be449b89041f07fc069812f79b4eadf56e1c7c7720935fe166016376ef
             probes:
               liveness:
-                enabled: 1
+                enabled: true
               readiness:
-                enabled: 1
+                enabled: true
             resources:
               limits:
                 memory: 750Mi
