@@ -5,125 +5,116 @@ metadata:
   name: sonarr
   namespace: media
 spec:
-  interval: 15m
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  maxHistory: 2
+      version: 3.0.4
   install:
     createNamespace: true
     remediation:
       retries: 3
+  interval: 15m
+  maxHistory: 2
+  uninstall:
+    keepHistory: false
   upgrade:
     cleanupOnFail: true
     remediation:
+      strategy: uninstall
       retries: 3
-  uninstall:
-    keepHistory: false
   values:
-    #initContainers:
-    #  01-init-db:
-    #    image: ghcr.io/onedr0p/postgres-init:14.9
-    #    imagePullPolicy: IfNotPresent
-    #    envFrom:
-    #      - secretRef:
-    #          name: sonarr
     controller:
-      strategy: Recreate
       annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/onedr0p/sonarr
-      tag: 4.0.3.1413
-    env:
-      TZ: Europe/Helsinki
-      SONARR__INSTANCE_NAME: Sonarr
-      SONARR__PORT: &port 80
-      SONARR__LOG_LEVEL: info
+        reloader.stakater.com/auto: 'true'
+      strategy: Recreate
+    controllers:
+      sonarr:
+        containers:
+          app:
+            env:
+              SONARR__INSTANCE_NAME: Sonarr
+              SONARR__LOG_LEVEL: info
+              SONARR__PORT: 80
+              TZ: Europe/Helsinki
+            image:
+              repository: ghcr.io/onedr0p/sonarr
+              tag: 4.0.3.1413
+            probes:
+              liveness:
+                enabled: 1
+              readiness:
+                enabled: 1
+            resources:
+              limits:
+                memory: 2000Mi
+              requests:
+                cpu: 10m
+                memory: 250Mi
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 568
+        runAsUser: 568
+        supplementalGroups:
+          - 10000
     envFrom:
       - secretRef:
           name: sonarr
-    service:
-      main:
-        ports:
-          http:
-            port: *port
-    probes:
-      liveness: &probes
-        enabled: true
-        custom: true
-        spec:
-          httpGet:
-            path: /ping
-            port: *port
-          initialDelaySeconds: 0
-          periodSeconds: 10
-          timeoutSeconds: 1
-          failureThreshold: 3
-      readiness: *probes
-      startup:
-        enabled: false
     ingress:
-      main:
-        enabled: true
-        ingressClassName: nginx
+      app:
         annotations:
+          hajimari.io/icon: mdi:television-classic
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.skylab.fi/css/base/sonarr/nord.css"></head>';
             sub_filter_once on;
-          hajimari.io/icon: mdi:television-classic
+        className: nginx
         hosts:
-          - host: &host "sonarr.media.skylab.fi"
+          - host: sonarr.media.skylab.fi
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  identifier: app
+                  port: http
         tls:
           - hosts:
-              - *host
+              - sonarr.media.skylab.fi
             secretName: media.skylab.fi-tls
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
-      supplementalGroups: [10000]
-
     persistence:
       config:
-        enabled: true
+        globalMounts:
+          - path: /config
+        hostPath: /opt/docker/appdata/sonarr
         type: hostPath
-        mountPath: /config
-        hostPath: "/opt/docker/appdata/sonarr"
-      scripts:
-        enabled: true
-        type: hostPath
-        mountPath: /config/scripts
-        hostPath: "/opt/docker/scripts/custom"
-      media-tv:
-        enabled: true
-        type: hostPath
-        mountPath: /merge/tv
-        hostPath: "/mnt/merge/library/TV Shows/"
-      media-anime:
-        enabled: true
-        type: hostPath
-        mountPath: /merge/anime
-        hostPath: "/mnt/merge/library/Anime/"
       downloads:
-        enabled: true
+        globalMounts:
+          - path: /mnt/merge/Downloads/
+        hostPath: /mnt/merge/Downloads/
         type: hostPath
-        mountPath: /mnt/merge/Downloads/
-        hostPath: "/mnt/merge/Downloads/"
-
-    resources:
-      requests:
-        cpu: 10m
-        memory: 250Mi
-      limits:
-        memory: 2000Mi
+      media-anime:
+        globalMounts:
+          - path: /merge/anime
+        hostPath: /mnt/merge/library/Anime/
+        type: hostPath
+      media-tv:
+        globalMounts:
+          - path: /merge/tv
+        hostPath: /mnt/merge/library/TV Shows/
+        type: hostPath
+      scripts:
+        globalMounts:
+          - path: /config/scripts
+        hostPath: /opt/docker/scripts/custom
+        type: hostPath
+    service:
+      app:
+        controller: sonarr
+        ports:
+          http:
+            port: 80
