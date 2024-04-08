@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 3.0.4
+      version: 3.1.0
   install:
     createNamespace: true
     remediation:
@@ -44,9 +44,9 @@ spec:
               tag: 4.5.5
             probes:
               liveness:
-                enabled: 1
+                enabled: true
               readiness:
-                enabled: 1
+                enabled: true
             resources:
               limits:
                 memory: 3Gi
@@ -84,7 +84,6 @@ spec:
           - path: /scripts/completed.sh
             subPath: completed.sh
         name: qbittorrent-scripts
-        readOnly: true
         type: configMap
       config:
         existingClaim: qbittorrent-config
@@ -105,6 +104,7 @@ spec:
           http:
             port: 80
       bittorrent:
+        controller: qbittorrent
         annotations:
           io.cilium/lb-ipam-ips: 10.41.69.202,2001:14ba:16fd:962d::202
         enabled: true
