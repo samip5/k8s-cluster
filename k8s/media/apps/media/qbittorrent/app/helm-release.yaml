@@ -72,7 +72,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  identifier: main
+                  identifier: qbittorrent
                   port: http
         tls:
           - hosts:
@@ -98,7 +98,7 @@ spec:
         hostPath: /mnt/merge/Downloads
         type: hostPath
     service:
-      main:
+      qbittorrent:
         controller: qbittorrent
         ports:
           http:
