@@ -61,9 +61,11 @@ spec:
         smtp_port: 587
         notif_from: "Your Friendly %(app)s homeserver <noreply@${SECRET_DOMAIN}>"
 
-      # Currently broken, see https://github.com/matrix-org/synapse/issues/16039
+      trusted_key_servers:
+        - server_name: "kapsi.fi"
+        - server_name: "pikaviestin.fi"
       presence:
-        enabled: false
+        enabled: true
       enable_3pid_lookup: false
       account_threepid_delegates:
         msisdn: https://vector.im
