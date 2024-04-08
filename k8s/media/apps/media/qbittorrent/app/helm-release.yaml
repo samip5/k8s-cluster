@@ -98,7 +98,7 @@ spec:
         hostPath: /mnt/merge/Downloads
         type: hostPath
     service:
-      app:
+      main:
         controller: qbittorrent
         ports:
           http:
