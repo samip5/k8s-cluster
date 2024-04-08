@@ -95,7 +95,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  identifier: app
+                  identifier: qbit
                   port: http
         tls:
           - hosts:
@@ -121,7 +121,7 @@ spec:
         hostPath: /mnt/merge/Downloads
         type: hostPath
     service:
-      app:
+      qbit:
         controller: qbit
         ports:
           http:
