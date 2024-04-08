@@ -125,6 +125,8 @@ spec:
        password: ${SECRET_MATRIX_REDIS_PASSWORD}
 
     synapse:
+      strategy:
+        type: Recreate
       resources:
         requests:
           cpu: 1000m
