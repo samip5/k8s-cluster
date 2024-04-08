@@ -107,7 +107,6 @@ spec:
           - path: /scripts/completed.sh
             subPath: completed.sh
         name: qbittorrent-scripts
-        readOnly: true
         type: configMap
       config:
         existingClaim: qbit-config
