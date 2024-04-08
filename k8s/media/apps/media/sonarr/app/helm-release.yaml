@@ -45,9 +45,9 @@ spec:
               tag: 4.0.3.1413
             probes:
               liveness:
-                enabled: 1
+                enabled: true
               readiness:
-                enabled: 1
+                enabled: true
             resources:
               limits:
                 memory: 2000Mi
