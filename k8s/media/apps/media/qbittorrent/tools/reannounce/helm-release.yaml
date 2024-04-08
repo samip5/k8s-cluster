@@ -4,47 +4,60 @@ metadata:
   name: qbittorrent-reannounce
   namespace: default
 spec:
-  interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  maxHistory: 2
-  install:
-    remediation:
-      retries: 3
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
-  uninstall:
-    keepHistory: false
+      version: 3.0.4
   dependsOn:
     - name: qbittorrent
       namespace: media
+  install:
+    remediation:
+      retries: 3
+  interval: 30m
+  maxHistory: 2
+  uninstall:
+    keepHistory: false
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: uninstall
+      retries: 3
   values:
-    image:
-      repository: ghcr.io/buroa/qbittools
-      tag: v0.11.0
-    args: [
-      "reannounce",
-      "--process-seeding",
-      "--server", "qbittorrent.media.svc.cluster.local",
-      "--port", "80"
-    ]
+    controllers:
+      qbittorrent-reannounce:
+        containers:
+          app:
+            args:
+              - reannounce
+              - --process-seeding
+              - --server
+              - qbittorrent.media.svc.cluster.local
+              - --port
+              - '80'
+            image:
+              repository: ghcr.io/buroa/qbittools
+              tag: v0.11.0
+            probes:
+              liveness:
+                enabled: 1
+              readiness:
+                enabled: 1
+            resources:
+              limits:
+                memory: 500Mi
+              requests:
+                cpu: 25m
+                memory: 250Mi
+    defaultPodOptions:
+      securityContext:
+        runAsGroup: 568
+        runAsUser: 568
     service:
-      main:
+      app:
+        controller: qbittorrent-reannounce
         enabled: false
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-    resources:
-      requests:
-        memory: 250Mi
-        cpu: 25m
-      limits:
-        memory: 500Mi

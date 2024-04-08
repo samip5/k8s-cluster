@@ -4,62 +4,77 @@ metadata:
   name: qbittorrent-orphaned
   namespace: default
 spec:
-  interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  maxHistory: 2
-  install:
-    remediation:
-      retries: 3
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
-  uninstall:
-    keepHistory: false
+      version: 3.0.4
   dependsOn:
     - name: qbittorrent
       namespace: media
+  install:
+    remediation:
+      retries: 3
+  interval: 30m
+  maxHistory: 2
+  uninstall:
+    keepHistory: false
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: uninstall
+      retries: 3
   values:
     controller:
-      type: cronjob
       cronjob:
-        schedule: "@daily"
-    image:
-      repository: ghcr.io/buroa/qbittools
-      tag: v0.11.0
-    args: [
-      "orphaned",
-      "--exclude-pattern", "*/manual/*",
-      "--exclude-pattern", "*_unpackerred",
-      # "--dry-run",
-      "--server", "qbittorrent.media.svc.cluster.local",
-      "--port", "80"
-    ]
-    service:
-      main:
-        enabled: false
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
-      supplementalGroups: [10000]
+        schedule: '@daily'
+      type: cronjob
+    controllers:
+      qbittorrent-orphaned:
+        containers:
+          app:
+            args:
+              - orphaned
+              - --exclude-pattern
+              - '*/manual/*'
+              - --exclude-pattern
+              - '*_unpackerred'
+              - --server
+              - qbittorrent.media.svc.cluster.local
+              - --port
+              - '80'
+            image:
+              repository: ghcr.io/buroa/qbittools
+              tag: v0.11.0
+            probes:
+              liveness:
+                enabled: 1
+              readiness:
+                enabled: 1
+            resources:
+              limits:
+                memory: 500Mi
+              requests:
+                cpu: 25m
+                memory: 250Mi
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 568
+        runAsUser: 568
+        supplementalGroups:
+          - 10000
     persistence:
       media-downloads:
-        enabled: true
+        globalMounts:
+          - path: /mnt/merge/Downloads
+        hostPath: /mnt/merge/Downloads
         type: hostPath
-        mountPath: /mnt/merge/Downloads
-        hostPath: "/mnt/merge/Downloads"
-    resources:
-      requests:
-        memory: 250Mi
-        cpu: 25m
-      limits:
-        memory: 500Mi
+    service:
+      app:
+        controller: qbittorrent-orphaned
+        enabled: false

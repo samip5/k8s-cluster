@@ -5,131 +5,123 @@ metadata:
   name: qbit
   namespace: media
 spec:
-  interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
       interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  maxHistory: 2
+      version: 3.0.4
   install:
     createNamespace: true
     remediation:
       retries: 3
+  interval: 30m
+  maxHistory: 2
+  uninstall:
+    keepHistory: false
   upgrade:
     cleanupOnFail: true
     remediation:
+      strategy: uninstall
       retries: 3
-  uninstall:
-    keepHistory: false
   values:
     controller:
       annotations:
-        reloader.stakater.com/auto: "true"
-
-    image:
-      repository: ghcr.io/onedr0p/qbittorrent
-      tag: 4.5.5
-
-    env:
-      TZ: Europe/Helsinki
-      QBITTORRENT__PORT: &port 80
-      QBITTORRENT__BT_PORT: &port-bt 57427
-
-    service:
-      main:
-        ports:
-          http:
-            port: *port
-
+        reloader.stakater.com/auto: 'true'
+    controllers:
+      qbit:
+        containers:
+          app:
+            env:
+              QBITTORRENT__BT_PORT: 57427
+              QBITTORRENT__PORT: 80
+              TZ: Europe/Helsinki
+            image:
+              repository: ghcr.io/onedr0p/qbittorrent
+              tag: 4.5.5
+            probes:
+              liveness:
+                enabled: 1
+              readiness:
+                enabled: 1
+            resources:
+              limits:
+                memory: 1222Mi
+              requests:
+                cpu: 49m
+                memory: 1222Mi
+            securityContext:
+              runAsGroup: 568
+              runAsUser: 568
+          gluetun:
+            env:
+              - name: VPN_TYPE
+                value: wireguard
+              - name: VPN_SERVICE_PROVIDER
+                value: airvpn
+              - name: VPN_INTERFACE
+                value: wg0
+              - name: FIREWALL
+                value: on
+              - name: DOT
+                value: off
+              - name: FIREWALL_VPN_INPUT_PORTS
+                value: 1637,41909,57427
+              - name: FIREWALL_INPUT_PORTS
+                value: 80
+              - name: WIREGUARD_MTU
+                value: 1320
+            envFrom:
+              - secretRef:
+                  name: qbit-vpn-secret
+            image: ghcr.io/qdm12/gluetun:latest@sha256:4e152816dd900e2bee14f2a686987933392a969d11557ed70900da67bd8d303e
+            securityContext:
+              capabilities:
+                add:
+                  - NET_ADMIN
     ingress:
-      main:
-        enabled: true
-        ingressClassName: nginx
+      app:
         annotations:
-          nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,2001:14ba:16fd:9600::/56"
+          nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,2001:14ba:16fd:9600::/56
+        className: nginx
         hosts:
-          - host: &host qb.media.skylab.fi
+          - host: qb.media.skylab.fi
             paths:
-                - path: /
-                  pathType: Prefix
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: http
         tls:
           - hosts:
-              - *host
-
+              - qb.media.skylab.fi
     persistence:
-      config:
-        enabled: true
-        existingClaim: qbit-config
       completed-script:
-        enabled: true
-        type: configMap
-        name: qbittorrent-scripts
-        mountPath: /scripts/completed.sh
-        subPath: completed.sh
         defaultMode: 0775
+        globalMounts:
+          - path: /scripts/completed.sh
+            subPath: completed.sh
+        name: qbittorrent-scripts
         readOnly: true
-      media-downloads:
-        enabled: true
-        type: hostPath
-        mountPath: /mnt/merge/Downloads
-        hostPath: "/mnt/merge/Downloads"
+        type: configMap
+      config:
+        existingClaim: qbit-config
       library:
-        enabled: true
+        globalMounts:
+          - path: /mnt/merge/library
+        hostPath: /mnt/merge/library
         type: hostPath
-        mountPath: /mnt/merge/library
-        hostPath: "/mnt/merge/library"
-
-    probes:
-      startup:
-        enabled: false
-
-    resources:
-      requests:
-        cpu: 49m
-        memory: 1222Mi
-      limits:
-        memory: 1222Mi
-
-    securityContext:
-      runAsUser: 568
-      runAsGroup: 568
-
-    sidecars:
-      gluetun:
-        image: ghcr.io/qdm12/gluetun:latest@sha256:4e152816dd900e2bee14f2a686987933392a969d11557ed70900da67bd8d303e
-        env:
-          - name: VPN_TYPE
-            value: wireguard
-          - name: VPN_SERVICE_PROVIDER
-            value: airvpn
-          - name: VPN_INTERFACE
-            value: wg0
-          - name: FIREWALL
-            value: "on"
-          - name: DOT
-            value: "off"
-          - name: FIREWALL_VPN_INPUT_PORTS
-            value: 1637,41909,57427
-          - name: FIREWALL_INPUT_PORTS
-            value: 80
-          - name: WIREGUARD_MTU
-            value: 1320
-          # - name:  WIREGUARD_PRIVATE_KEY
-          #   value: set in secret
-          # - name:  WIREGUARD_ADDRESSES
-          #   value: set in secret
-          # - name:  SERVER_COUNTRIES
-          #   value: set in secret
-        envFrom:
-          - secretRef:
-              name: qbit-vpn-secret
-        securityContext:
-          capabilities:
-            add:
-              - NET_ADMIN
-
+      media-downloads:
+        globalMounts:
+          - path: /mnt/merge/Downloads
+        hostPath: /mnt/merge/Downloads
+        type: hostPath
+    service:
+      app:
+        controller: qbit
+        ports:
+          http:
+            port: 80
