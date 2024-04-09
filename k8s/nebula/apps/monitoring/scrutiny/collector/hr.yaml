@@ -40,7 +40,7 @@ spec:
           main:
             image:
               repository: ghcr.io/analogj/scrutiny
-              tag: v0.8.0-collector
+              tag: v0.8.1-collector
             env:
               - name: COLLECTOR_API_ENDPOINT
                 value: http://scrutiny.monitoring.svc.cluster.local:8080
