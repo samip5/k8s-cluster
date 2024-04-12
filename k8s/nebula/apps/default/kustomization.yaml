@@ -9,7 +9,7 @@ resources:
   - linkwarden/ks.yaml
   - syncthing/ks.yaml
   - shiori/ks.yaml
-  - radicale/ks.yaml
+#  - radicale/ks.yaml
   - redlib/ks.yaml
   - ytdl-material/ks.yaml
 #  - i2pd/ks.yaml
