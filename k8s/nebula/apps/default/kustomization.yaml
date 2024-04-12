@@ -7,9 +7,9 @@ resources:
   - smtp-relay/ks.yaml
   - theme-park/ks.yaml
   - linkwarden/ks.yaml
-  - baikal/ks.yaml
   - syncthing/ks.yaml
   - shiori/ks.yaml
+  - radicale/ks.yaml
   - redlib/ks.yaml
   - ytdl-material/ks.yaml
 #  - i2pd/ks.yaml
