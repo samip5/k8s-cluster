@@ -113,7 +113,7 @@ spec:
       config:
         enabled: true
         type: configMap
-        name: radicale-config
+        name: radicale-configmap
         globalMounts:
           - path: /config/config
             subPath: config.cfg
