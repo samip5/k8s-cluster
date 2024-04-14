@@ -4,3 +4,4 @@ resources:
   - local-path/ks.yaml
   - longhorn/ks.yaml
   - snapshot-controller/ks.yaml
+  - rook-ceph
