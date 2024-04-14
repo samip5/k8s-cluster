@@ -68,6 +68,8 @@ spec:
                 enabled: false
               readiness:
                 enabled: false
+              startup:
+                enabled: false
             resources:
               limits:
                 memory: 500Mi
