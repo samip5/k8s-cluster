@@ -4,8 +4,6 @@ metadata:
   name: cluster-apps-tautulli
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: cluster-storage-longhorn
   path: ./k8s/media/apps/media/tautulli/app
   prune: true
   sourceRef:

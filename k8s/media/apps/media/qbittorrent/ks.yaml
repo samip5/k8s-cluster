@@ -6,8 +6,6 @@ metadata:
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  dependsOn:
-    - name: cluster-storage-longhorn
   path: ./k8s/media/apps/media/qbittorrent/app
   prune: true
   sourceRef:
