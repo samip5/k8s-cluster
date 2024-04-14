@@ -4,7 +4,7 @@ metadata:
   name: radarr-config-v1
   namespace: media
 spec:
-  storageClassName: local-hostpath
+  storageClassName: ceph-block
   accessModes:
     - ReadWriteOnce
   resources:
