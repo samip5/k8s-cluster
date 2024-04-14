@@ -114,7 +114,7 @@ spec:
         globalMounts:
           - path: /config
       backup:
-        enabled: true
+        enabled: false
         existingClaim: tautulli-backup-v2
         globalMounts:
           - path: /config/backups
