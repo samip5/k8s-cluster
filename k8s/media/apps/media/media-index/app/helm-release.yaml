@@ -73,7 +73,7 @@ spec:
         tls:
           - hosts:
               - *host
-        secretName: dh.skylab.fi-tls
+        secretName: "dh.skylab.fi-tls"
 
     persistence:
       data:
