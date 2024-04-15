@@ -86,13 +86,11 @@ spec:
         enabled: true
         type: hostPath
         hostPath: "/mnt/merge/library/"
-        readOnly: true
         globalMounts:
           - path: /mnt/merge/library
       downloads:
         enabled: true
         type: hostPath
         hostPath: "/mnt/merge/Downloads/"
-        readOnly: true
         globalMounts:
           - path: /mnt/merge/Downloads/
