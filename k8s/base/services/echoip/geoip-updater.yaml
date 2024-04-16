@@ -18,7 +18,7 @@ spec:
           restartPolicy: Never
           containers:
             - name: *app
-              image: ghcr.io/maxmind/geoipupdate:v6.1
+              image: ghcr.io/maxmind/geoipupdate:v7.0
               imagePullPolicy: IfNotPresent
               lifecycle:
                 preStop:
