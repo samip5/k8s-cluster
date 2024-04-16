@@ -31,21 +31,16 @@ spec:
           mon:
             disabled: false
             interval: 45s
-
-      cephBlockPools: []
-      cephFileSystems: []
-      cephObjectStores: []
-      resources:
-        crashcollector:
-          limits:
-            memory: "60m"
-          requests:
-            memory: "60m"
-
       network:
         provider: host
         connections:
           # Requires kernel 5.11
           encryption:
             enabled: true
+
+    cephBlockPools: {}
+    cephFileSystems: {}
+    cephObjectStores: { }
+
+
 
