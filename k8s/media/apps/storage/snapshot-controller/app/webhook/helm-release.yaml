@@ -21,6 +21,7 @@ spec:
   upgrade:
     crds: Skip
     remediation:
+      strategy: uninstall
       retries: 3
   dependsOn:
     - name: snapshot-controller
