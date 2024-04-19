@@ -22,6 +22,7 @@ metadata:
   name: cluster-apps-qbittorrent-tools
   namespace: flux-system
 spec:
+  targetNamespace: media
   path: ./k8s/media/apps/media/qbittorrent/tools
   prune: true
   sourceRef:
