@@ -33,6 +33,8 @@ spec:
             env:
               UN_SONARR_0_PATHS_0: /mnt/merge/Downloads/
               UN_SONARR_0_URL: http://sonarr:80
+              UN_RADARR_0_PATHS_0: /mnt/merge/Downloads
+              UN_RADARR_0_URL: http://radarr:80
             envFrom:
               - secretRef:
                   name: unpackerr
