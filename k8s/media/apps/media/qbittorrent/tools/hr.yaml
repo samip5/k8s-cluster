@@ -1,0 +1,147 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: qbtools
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  dependsOn:
+    - name: qbittorrent
+      namespace: media
+  values:
+    controllers:
+      tagging:
+        type: cronjob
+        cronjob: &cronJobSpec
+          schedule: "@hourly"
+          timeZone: &timeZone Europe/Helsinki
+          concurrencyPolicy: Forbid
+          successfulJobsHistory: 1
+          failedJobsHistory: 1
+        initContainers:
+          tagging:
+            image: &image
+              repository: ghcr.io/buroa/qbtools
+              tag: v0.15.2@sha256:6bf689ff6269e27293e1bf1cec03a965cd0c3d89d9c193e4b0b9275687fc9d63
+            env: &env
+              TZ: *timeZone
+              POD_NAMESPACE:
+                valueFrom:
+                  fieldRef:
+                    fieldPath: metadata.namespace
+            args: [
+              "tagging",
+              "--added-on",
+              "--expired",
+              "--last-activity",
+              "--sites",
+              "--unregistered",
+              "--server", "qbittorrent.$(POD_NAMESPACE).svc.cluster.local",
+              "--port", "80",
+              "--config", "/config/config.yaml"
+            ]
+            resources: &resources
+              requests:
+                cpu: 25m
+              limits:
+                memory: 256M
+        containers:
+          unregistered:
+            image: *image
+            env: *env
+            args: [
+              "prune",
+              "--exclude-category", "manual",
+              "--include-tag", "unregistered",
+              # "--dry-run",
+              "--server", "qbittorrent.$(POD_NAMESPACE).svc.cluster.local",
+              "--port", "80"
+            ]
+            resources: *resources
+          expired:
+            image: *image
+            env: *env
+            args: [
+              "prune",
+              "--exclude-category", "manual",
+              "--exclude-category", "overlord",
+              "--include-tag", "expired", # defined in config.yaml
+              "--include-tag", "added:7d",
+              # "--dry-run",
+              "--server", "qbittorrent.$(POD_NAMESPACE).svc.cluster.local",
+              "--port", "80"
+            ]
+            resources: *resources
+        pod:
+          restartPolicy: OnFailure
+      orphaned:
+        type: cronjob
+        cronjob:
+          <<: *cronJobSpec
+          schedule: "@daily"
+        containers:
+          app:
+            image: *image
+            env: *env
+            args: [
+              "orphaned",
+              "--exclude-pattern", "*_unpackerred*",
+              "--exclude-pattern", "*/cross-seed/*",
+              "--exclude-pattern", "*/manual/*",
+              # "--dry-run",
+              "--server", "qbittorrent.$(POD_NAMESPACE).svc.cluster.local",
+              "--port", "80"
+            ]
+            resources: *resources
+        pod:
+          restartPolicy: OnFailure
+      reannounce:
+        containers:
+          app:
+            image: *image
+            env: *env
+            args: [
+              "reannounce",
+              "--process-seeding",
+              "--server", "qbittorrent.$(POD_NAMESPACE).svc.cluster.local",
+              "--port", "80"
+            ]
+            resources: *resources
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 568
+        runAsGroup: 568
+        seccompProfile: { type: RuntimeDefault }
+    persistence:
+      secret-file:
+        type: secret
+        name: qbtools-secret
+        globalMounts:
+          - path: /config/config.yaml
+            subPath: config.yaml
+            readOnly: true
+      media:
+        type: hostPath
+        hostPath: /mnt/merge/Downloads
+        advancedMounts:
+          orphaned:
+            app:
+              - path: /mnt/merge/Downloads
