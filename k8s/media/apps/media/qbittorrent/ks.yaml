@@ -21,6 +21,8 @@ kind: Kustomization
 metadata:
   name: cluster-apps-qbittorrent-tools
   namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
 spec:
   targetNamespace: media
   path: ./k8s/media/apps/media/qbittorrent/tools
