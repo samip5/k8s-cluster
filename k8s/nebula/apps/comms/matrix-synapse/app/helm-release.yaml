@@ -45,7 +45,7 @@ spec:
       federation_sender:
         enabled: true
       generic_worker:
-        enabled: true
+        enabled: false
         generic: true
         replicaCount: 3
         listeners: [client]
