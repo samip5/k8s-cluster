@@ -39,6 +39,18 @@
       "commitMessageTopic": "{{{groupName}}} group"
     },
     "separateMinorPatch": true
+    },
+    {
+      "description": "Firefly-iii images",
+      "groupName": "Firefly-iii",
+      "matchPackagePatterns": ["fireflyiii/core","fireflyiii/data-importer"],
+      "matchDatasources": ["docker"],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
+      },
+      "separateMinorPatch": true
+    },
+    {
     }
   ]
 }
