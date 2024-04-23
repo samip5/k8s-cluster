@@ -47,7 +47,7 @@ spec:
           main:
             image:
               repository: registry.samipsolutions.fi/docker/fireflyiii/core
-              tag: version-6.1.14
+              tag: version-6.1.15
             env:
               TZ: Europe/Helsinki
               APP_URL: "https://${HOSTNAME}"
