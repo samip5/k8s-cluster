@@ -61,6 +61,7 @@ spec:
               WEBSITE_SHOW_FILES_PER_USER: "false"
               WEBSITE_SHOW_VERSION: "true"
               WEBSITE_DISABLE_MEDIA_PREVIEW: "false"
+              OAUTH_AUTHENTIK_CLIENT_ID: "XGyLZHRJ992IMgBaN4M9eXnYZvqi011x1k9wiMNi"
               OAUTH_AUTHENTIK_AUTHORIZE_URL: "https://id.skylab.fi/application/o/authorize/"
               OAUTH_AUTHENTIK_USERINFO_URL: "https://id.skylab.fi/application/o/userinfo/"
               OAUTH_AUTHENTIK_TOKEN_URL: "https://id.skylab.fi/application/o/token/"
