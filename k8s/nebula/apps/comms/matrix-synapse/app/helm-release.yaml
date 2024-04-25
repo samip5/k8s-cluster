@@ -42,7 +42,8 @@ spec:
             memory: 512Mi
       media_repository:
         enabled: true
-        strategy: Recreate
+        strategy:
+          type: Recreate
       federation_sender:
         enabled: true
       generic_worker:
