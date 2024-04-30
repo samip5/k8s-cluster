@@ -43,7 +43,7 @@ spec:
           main:
             image:
               repository: ghcr.io/wizarrrr/wizarr
-              tag: 3.5.1
+              tag: 4.0.0
             env:
               TZ: "Europe/Helsinki"
             resources:
