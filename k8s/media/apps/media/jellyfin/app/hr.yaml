@@ -49,9 +49,9 @@ spec:
             resources:
               requests:
                 memory: 9248M
-                nvidia.com/gpu: 1
+                #nvidia.com/gpu: 1
               limits:
-                nvidia.com/gpu: 1
+                #nvidia.com/gpu: 1
                 memory: 9248M
 
     service:
