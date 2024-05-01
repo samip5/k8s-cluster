@@ -1,8 +1,10 @@
 cni:
   exclusive: false
-# Not supported on 1.13.4 with IPv6
-#bpf:
-#  masquerade: true
+bpf:
+  masquerade: true
+  tproxy: true
+
+l7Proxy: true
 cluster:
   name: media
   id: 3
@@ -11,7 +13,7 @@ localRedirectPolicy: true
 rollOutCiliumPods: true
 kubeProxyReplacement: strict
 kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
-ipv4NativeRoutingCIDR: "10.0.0.0/8"
+ipv4NativeRoutingCIDR: "10.40.0.0/16"
 ipv6NativeRoutingCIDR: "fd94:9bde:1ebb::/48"
 k8sServiceHost: "192.168.2.129"
 k8sServicePort: 6443

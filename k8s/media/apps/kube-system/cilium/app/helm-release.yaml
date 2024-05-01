@@ -27,9 +27,11 @@ spec:
   values:
     cni:
       exclusive: false
-    # Not supported on 1.13.4 with IPv6
-    #bpf:
-    #  masquerade: true
+    bpf:
+      masquerade: true
+      tproxy: true
+
+    l7Proxy: true
     cluster:
       name: media
       id: 3
