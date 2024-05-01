@@ -32,7 +32,7 @@ bpf:
   tproxy: true
 
 l7Proxy: true
-
+routing-mode: "native"
 ipam:
   mode: "kubernetes"
 
@@ -48,7 +48,6 @@ operator:
 ipv4NativeRoutingCIDR: "10.244.0.0/16"
 ipv6NativeRoutingCIDR: "fddf:f7bc:9670::/48"
 
-routingMode: native
 ipv6:
   enabled: true
 hubble:
