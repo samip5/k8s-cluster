@@ -22,7 +22,7 @@ localRedirectPolicy: true
 
 kubeProxyReplacement: true
 kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
-
+autoDirectNodeRoutes: true
 loadBalancer:
   algorithm: "maglev"
   mode: "dsr"
@@ -32,7 +32,7 @@ bpf:
   tproxy: true
 
 l7Proxy: true
-routing-mode: "native"
+routingMode: "native"
 ipam:
   mode: "kubernetes"
 
