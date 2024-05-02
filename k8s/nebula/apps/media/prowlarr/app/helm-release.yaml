@@ -45,7 +45,7 @@ spec:
             env:
               PROWLARR__INSTANCE_NAME: Prowlarr
               PROWLARR__PORT: &port 80
-              PROWLARR__LOG_LEVEL: info
+              PROWLARR__LOG_LEVEL: debug
               PROWLARR__AUTHENTICATION_METHOD: External
             envFrom:
               - secretRef:
