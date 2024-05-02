@@ -27,11 +27,7 @@ spec:
   values:
     cni:
       exclusive: false
-    bpf:
-      masquerade: true
-      tproxy: true
 
-    l7Proxy: true
     cluster:
       name: media
       id: 3
