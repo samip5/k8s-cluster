@@ -44,19 +44,6 @@ spec:
           serviceMonitor:
             enabled: true
 
-      ui:
-        ingress:
-          enabled: true
-          className: "internal-nginx"
-          annotations:
-            cert-manager.io/cluster-issuer: zerossl-production
-          hosts:
-            -  &host "hubble.skylab.fi"
-          tls:
-            - hosts:
-                - *host
-              secretName: hubble-tls
-
       prometheus:
         serviceMonitor:
           enabled: true

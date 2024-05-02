@@ -86,3 +86,12 @@ hubble:
     rollOutPods: true
     ingress:
       enabled: true
+      className: "internal-nginx"
+      annotations:
+        cert-manager.io/cluster-issuer: zerossl-production
+      hosts:
+        - &host "hubble.skylab.fi"
+      tls:
+        - hosts:
+            - *host
+          secretName: hubble-tls
