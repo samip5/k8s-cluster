@@ -35,7 +35,7 @@ spec:
           main:
             image:
               repository: ghcr.io/techno-tim/littlelink-server
-              tag: latest@sha256:9f370046b050de8840d720419d4616e84573e9a199631e534210cb4f6424b5ba
+              tag: latest@sha256:4619be51887c48d5618d566a5b5b7f0a7ed8d82dc04a6b14644470c9b49938c5
             env:
               TZ: "Europe/Helsinki"
               META_TITLE: Skyler Mäntysaari
