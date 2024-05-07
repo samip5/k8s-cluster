@@ -7,7 +7,9 @@ k3s_control_node: true
 
 # k3s settings for all control-plane nodes
 k3s_server:
-  node-ip: "{{ ansible_host }},{{ ansible_default_ipv6.address }}"
+  node-ip: "{{ ansible_host }},{{ ansible_all_ipv6_addresses | select('match', '^fd[9a-fA-F]{1}') | 
+        select('match', '^fd[0-9a-fA-F]{2}(:[0-9a-fA-F]{0,4}){0,7}$') | reject('match', '^fddf:') | list}}"
+  node-external-ip: "{{ ansible_default_ipv6.address }}"
   #node-ip: "{{ ansible_default_ipv6.address }},{{ ansible_host }}"
   tls-san:
     - "{{ k3s_registration_address }}"
