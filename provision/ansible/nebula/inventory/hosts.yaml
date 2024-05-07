@@ -22,8 +22,8 @@ kubernetes:
           ansible_host: 10.0.105.19
           ceph_drives:
             - /dev/disk/by-id/nvme-SAMSUNG_MZ9LQ512HBLU-00BVL_S73XNX0T887767
-        w-amd-2:
-          ansible_host: 10.0.105.33
+        #w-amd-2:
+        #  ansible_host: 10.0.105.33
         w-amd-1:
           ansible_host: 10.0.105.25
           ceph_drives:

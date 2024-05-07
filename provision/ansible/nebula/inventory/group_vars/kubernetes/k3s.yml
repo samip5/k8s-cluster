@@ -27,6 +27,8 @@ k3s_use_unsupported_config: true
 # ...this is set to my kube-vip address
 k3s_registration_address: 10.0.105.34
 
+node_ula_address: "{{ ansible_all_ipv6_addresses | select('match', '^fd[9a-fA-F]{1}') | select('match', '^fd[0-9a-fA-F]{2}(:[0-9a-fA-F]{0,4}){0,7}$') | reject('match', '^fddf:') | first}}"
+
 #
 # /var/lib/rancher/k3s/server/manifests
 #
