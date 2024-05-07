@@ -11,16 +11,16 @@ resources:
   - networking
   - system
   - storage
-  - search
+#  - search
   - home
   - databases
   - kube-system
   - media
   - vpn
-  - vpn-services
+#  - vpn-services
   - default
   - volsync
   - finance
   - flux-system
-  - tor
+#  - tor
   - games
