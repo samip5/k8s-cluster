@@ -11,7 +11,6 @@ resources:
   - networking
   - system
   - storage
-#  - search
   - home
   - databases
   - kube-system
