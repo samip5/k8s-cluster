@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 data:
   CLUSTER_NAME: "media"
-  CLUSTER_ID: "3"
+  CLUSTER_ID: "2"
   CLUSTER_POD_CIDR: "10.40.0.0/16"
   CLUSTER_SERVICE_CIDR: "10.40.0.0/16"
   NATIVE_CIDR: "192.168.2.0/24"
