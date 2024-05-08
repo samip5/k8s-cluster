@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    cnpg.io/operatorVersion: 1.22.0
+    cnpg.io/operatorVersion: 1.23.1
     io.cilium/lb-ipam-ips: 10.96.69.198
   labels:
     cnpg.io/cluster: postgres16
@@ -13,7 +13,7 @@ metadata:
       controller: true
       kind: Cluster
       name: postgres16
-      uid: 0e9d1a14-e408-4121-a8cb-bcc7183e4a2a
+      uid: 8bd09f00-2248-4c47-9673-b13b1f9c17b4
 spec:
   internalTrafficPolicy: Cluster
   ipFamilies:
