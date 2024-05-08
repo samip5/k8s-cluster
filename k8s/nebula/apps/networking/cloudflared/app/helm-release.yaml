@@ -87,6 +87,7 @@ spec:
     serviceMonitor:
       main:
         enabled: true
+        serviceName: app
         endpoints:
         - interval: 1m
           path: /metrics
