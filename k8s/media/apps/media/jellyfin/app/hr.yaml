@@ -25,7 +25,6 @@ spec:
 
         pod:
           enableServiceLinks: false
-          runtimeClassName: nvidia
           securityContext:
             runAsUser: 568
             runAsGroup: 568
@@ -44,8 +43,8 @@ spec:
               DOTNET_SYSTEM_IO_DISABLEFILELOCKING: "true"
               JELLYFIN_FFmpeg__probesize: 50000000
               JELLYFIN_FFmpeg__analyzeduration: 500000000
-              NVIDIA_VISIBLE_DEVICES: all
-              NVIDIA_DRIVER_CAPABILITIES: all
+              #NVIDIA_VISIBLE_DEVICES: all
+              #NVIDIA_DRIVER_CAPABILITIES: all
             resources:
               requests:
                 memory: 9248M
