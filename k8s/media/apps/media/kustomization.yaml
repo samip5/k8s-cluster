@@ -4,12 +4,12 @@ resources:
   - ns.yaml
   - runtimeclassNvidia.yaml
   - bazarr/ks.yaml
-  - radarr/ks.yaml
+#  - radarr/ks.yaml
   - sonarr/ks.yaml
   - tautulli/ks.yaml
   - media-index/ks.yaml
   - qbit/ks.yaml
   - qbittorrent/ks.yaml
   - cross-seed/ks.yaml
-  - unpackerr/ks.yaml
+#  - unpackerr/ks.yaml
   - jellyfin/ks.yaml
