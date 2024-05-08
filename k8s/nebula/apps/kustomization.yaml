@@ -20,5 +20,5 @@ resources:
   - volsync
   - finance
   - flux-system
-#  - tor
+  - tor
   - games
