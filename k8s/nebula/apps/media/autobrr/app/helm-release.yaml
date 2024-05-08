@@ -25,14 +25,14 @@ spec:
       main:
         annotations:
           secret.reloader.stakater.com/reload: autobrr-secret,autobrr-init-secret
-        initContainers:
-          init-db:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 16
-            envFrom:
-              - secretRef:
-                  name: autobrr-init-secret
+        #initContainers:
+        #  init-db:
+        #    image:
+        #      repository: ghcr.io/onedr0p/postgres-init
+        #      tag: 16
+        #    envFrom:
+        #      - secretRef:
+        #          name: autobrr-init-secret
 
         containers:
           main:
