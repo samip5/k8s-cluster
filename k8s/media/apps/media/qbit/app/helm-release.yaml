@@ -99,13 +99,6 @@ spec:
           - hosts:
               - qb.media.skylab.fi
     persistence:
-      completed-script:
-        defaultMode: 0775
-        globalMounts:
-          - path: /scripts/completed.sh
-            subPath: completed.sh
-        name: qbittorrent-scripts
-        type: configMap
       config:
         existingClaim: qbit-config
       library:
