@@ -7,11 +7,12 @@ k3s_control_node: true
 
 # k3s settings for all control-plane nodes
 k3s_server:
-  node-ip: "{{ ansible_host }},{{ ansible_default_ipv6.address }}"
+  node-ip: "{{ ansible_host }},{{ node_ula_address }}"
   #node-ip: "{{ ansible_default_ipv6.address }},{{ ansible_host }}"
   tls-san:
     - "{{ k3s_registration_address }}"
     - "{{ ansible_default_ipv6.address }}"
+    - "{{ node_ula_address }}"
   docker: false
   flannel-backend: "none" # This needs to be in quotes
   disable:
@@ -30,7 +31,6 @@ k3s_server:
   service-cidr: "10.41.0.0/16,2001:14ba:16fd:9622::1:0/112"
   kubelet-arg:
     - "feature-gates=GracefulNodeShutdown=true"
-    - "feature-gates=MixedProtocolLBService=true"
     - "node-status-update-frequency=4s"
   kube-controller-manager-arg:
     - "bind-address=0.0.0.0"

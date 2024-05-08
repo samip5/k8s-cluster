@@ -7,9 +7,8 @@ k3s_control_node: false
 
 # k3s settings for all worker nodes
 k3s_agent:
-  node-ip: "{{ ansible_host }},{{ ansible_all_ipv6_addresses | select('match', '^fd[9a-fA-F]{1}') | 
-        select('match', '^fd[0-9a-fA-F]{2}(:[0-9a-fA-F]{0,4}){0,7}$') | reject('match', '^fddf:') | list}}"
-  node-external-ip: "{{ ansible_default_ipv6.address }}"
+  node-ip: "{{ ansible_host }},{{ node_ula_address }}"
+  #node-external-ip: "{{ ansible_default_ipv6.address }}"
   #node-ip: "{{ ansible_host }},{{ ansible_default_ipv6.address }}"
   #node-ip: "{{ ansible_default_ipv6.address }}"
   #node-ip: "{{ ansible_default_ipv6.address }},{{ ansible_host }}"

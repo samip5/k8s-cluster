@@ -5,7 +5,7 @@
 #
 
 # Use a specific version of k3s
-k3s_release_version: "v1.26.3+k3s1"
+k3s_release_version: "v1.29.0+k3s1"
 
 # Install using hard links rather than symbolic links.
 # ...if you are using the system-upgrade-controller you will need to use hard links rather than symbolic links as the controller will not be able to follow symbolic links.
@@ -26,6 +26,8 @@ k3s_use_unsupported_config: true
 # Control Plane registration address
 # ...this is set to my kube-vip address
 k3s_registration_address: 192.168.2.129
+
+node_ula_address: "{{ ansible_all_ipv6_addresses | select('match', '^fd[9a-fA-F]{1}') | select('match', '^fd[0-9a-fA-F]{2}(:[0-9a-fA-F]{0,4}){0,7}$') | reject('match', '^fddf:') | first}}"
 
 #
 # /var/lib/rancher/k3s/server/manifests
