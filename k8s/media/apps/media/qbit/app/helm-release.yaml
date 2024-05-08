@@ -33,6 +33,13 @@ spec:
         reloader.stakater.com/auto: 'true'
     controllers:
       qbit:
+        pod:
+          securityContext:
+            fsGroup: 568
+            fsGroupChangePolicy: "OnRootMismatch"
+            supplementalGroups:
+              - 100
+
         containers:
           app:
             env:
@@ -41,7 +48,7 @@ spec:
               TZ: Europe/Helsinki
             image:
               repository: ghcr.io/onedr0p/qbittorrent
-              tag: 4.5@sha256:f4a1a5eece13beed61e579172d2a54b1fc2e7ff2bbdbd7ef22a4d9f6fc36e198
+              tag: 4.6.4@sha256:b9af0f2173572a69d2c02eab8f701ef7b04f61689efe1c5338b96445d528dec4
             probes:
               liveness:
                 enabled: false
@@ -56,12 +63,14 @@ spec:
                 cpu: 49m
                 memory: 1222Mi
             securityContext:
-              fsGroup: 568
-              fsGroupChangePolicy: OnRootMismatch
-              runAsGroup: 568
               runAsUser: 568
-              supplementalGroups:
-                - 100
+              runAsGroup: 568
+              runAsNonRoot: true
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
           gluetun:
             env:
               - name: VPN_TYPE
@@ -90,6 +99,7 @@ spec:
               capabilities:
                 add:
                   - NET_ADMIN
+              allowPrivilegeEscalation: false
     ingress:
       app:
         className: nginx
