@@ -1,0 +1,14 @@
+---
+- hosts:
+    - master
+    - worker
+  become: true
+  gather_facts: true
+  tasks:
+    #- name: Debug Node IPs
+    #  debug:
+    #    msg: "Node IP: {{ ansible_default_ipv4.address }}"
+    - name: Debug IPv6 IPs
+      debug:
+        msg: "Node IPv6: {{ ansible_all_ipv6_addresses | select('match', '^fd[9a-fA-F]{1}') | 
+        select('match', '^fd[0-9a-fA-F]{2}(:[0-9a-fA-F]{0,4}){0,7}$') | reject('match', '^fddf:') | list}}"
