@@ -69,9 +69,9 @@ hubble:
       - icmp
       - http
     serviceMonitor:
-      enabled: true
+      enabled: false
     dashboards:
-      enabled: true
+      enabled: false
       label: grafana_dashboard
       namespace: monitoring
       labelValue: "1"
