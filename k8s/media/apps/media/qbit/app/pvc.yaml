@@ -4,8 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: qbit-config
 spec:
-  accessModes: ["ReadWriteMany"]
+  accessModes: ["ReadWriteOnce"]
   resources:
     requests:
       storage: 2Gi
-  storageClassName: ceph-fs
+  storageClassName: cephfs

@@ -6,8 +6,8 @@ metadata:
   namespace: media
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 2Gi
-  storageClassName: local-hostpath
+  storageClassName: cephfs
