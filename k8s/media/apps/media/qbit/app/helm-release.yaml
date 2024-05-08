@@ -101,6 +101,8 @@ spec:
     persistence:
       config:
         existingClaim: qbit-config
+        globalMounts:
+          - path: /config
       library:
         globalMounts:
           - path: /mnt/merge/library
