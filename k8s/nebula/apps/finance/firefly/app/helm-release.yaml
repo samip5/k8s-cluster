@@ -33,15 +33,15 @@ spec:
           annotations:
             reloader.stakater.com/auto: "true"
 
-        initContainers:
-          01-init-db:
-            image:
-             repository: ghcr.io/onedr0p/postgres-init
-             tag: 16.0
-            imagePullPolicy: IfNotPresent
-            envFrom:
-              - secretRef:
-                  name: firefly-init-secret
+        #initContainers:
+        #  01-init-db:
+        #    image:
+        #     repository: ghcr.io/onedr0p/postgres-init
+        #     tag: 16.0
+        #    imagePullPolicy: IfNotPresent
+        #    envFrom:
+        #      - secretRef:
+        #          name: firefly-init-secret
 
         containers:
           main:
