@@ -55,6 +55,13 @@ spec:
               requests:
                 cpu: 49m
                 memory: 1222Mi
+            securityContext:
+              fsGroup: 568
+              fsGroupChangePolicy: OnRootMismatch
+              runAsGroup: 568
+              runAsUser: 568
+              supplementalGroups:
+                - 100
           gluetun:
             env:
               - name: VPN_TYPE
