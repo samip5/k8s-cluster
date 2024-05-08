@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ns.yaml
   - authentik/ks.yaml
+  - external-secrets/ks.yaml
