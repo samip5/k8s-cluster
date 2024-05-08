@@ -35,6 +35,9 @@ spec:
           app:
             env:
               TZ: Europe/Helsinki
+            envFrom:
+              - secretRef:
+                  name: recyclarr
             image:
               repository: ghcr.io/recyclarr/recyclarr
               tag: 6.0.2
@@ -55,9 +58,6 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
         runAsGroup: 568
         runAsUser: 568
-    envFrom:
-      - secretRef:
-          name: recyclarr
     persistence:
       config:
         existingClaim: recyclarr-config-v2
