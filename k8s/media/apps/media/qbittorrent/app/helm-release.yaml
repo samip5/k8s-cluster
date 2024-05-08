@@ -63,8 +63,6 @@ spec:
           - 100
     ingress:
       app:
-        annotations:
-          nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,2001:14ba:7475:4900::/56
         className: nginx
         hosts:
           - host: qbittorrent.media.skylab.fi
