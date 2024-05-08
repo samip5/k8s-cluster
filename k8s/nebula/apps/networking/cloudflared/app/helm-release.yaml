@@ -86,7 +86,7 @@ spec:
             port: 8080
     serviceMonitor:
       main:
-        enabled: true
+        enabled: false
         serviceName: app
         endpoints:
         - interval: 1m
