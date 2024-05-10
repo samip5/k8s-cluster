@@ -39,7 +39,7 @@ spec:
           main:
             image:
               repository: registry.samipsolutions.fi/docker/fflo/bisq-on-docker
-              tag: 1.9.14
+              tag: 1.9.15
             env:
               TZ: Europe/Helsinki
               BISQ_USER: bisq
