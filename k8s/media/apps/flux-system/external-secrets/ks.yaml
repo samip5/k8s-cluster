@@ -7,7 +7,7 @@ metadata:
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  targetNamespace: security
+  targetNamespace: flux-system
   commonMetadata:
     labels:
       app.kubernetes.io/name: *appname
