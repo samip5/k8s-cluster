@@ -48,7 +48,7 @@ spec:
             env:
               TZ: "Europe/Helsinki"
             envFrom:
-              - secret: bazarr-db-secret
+              - secret: bazarr-secret
             resources:
               requests:
                 cpu: 23m
