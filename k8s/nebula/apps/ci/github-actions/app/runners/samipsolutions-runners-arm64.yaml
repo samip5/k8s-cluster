@@ -20,7 +20,7 @@ spec:
     # Cannot have nice things because of https://github.com/actions/actions-runner-controller/issues/2697
     runnerScaleSetName: arc-sol-arm64
 
-    githubConfigUrl: https://github.com/samipsolutions
+    githubConfigUrl: https://github.com/skyssolutions
 
     minRunners: 5
     maxRunners: 10
