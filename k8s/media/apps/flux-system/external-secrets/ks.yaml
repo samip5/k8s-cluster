@@ -12,11 +12,11 @@ spec:
     labels:
       app.kubernetes.io/name: *appname
   interval: 10m
-  path: "./k8s/nebula/apps/security/external-secrets/stores"
+  path: "./k8s/media/apps/flux-system/external-secrets/stores"
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-ops-kubernetes
+    name: flux-system
   wait: true
   dependsOn:
     - name: infra-external-secrets-operator
