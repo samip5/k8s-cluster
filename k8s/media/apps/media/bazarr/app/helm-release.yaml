@@ -62,7 +62,7 @@ spec:
             args:
               - --repo=https://github.com/KBlixt/subcleaner
               - --ref=master
-              - --period=86400 # 1 day
+              - --period=86400s # 1 day
               - --root=/add-ons
             resources:
               requests:
