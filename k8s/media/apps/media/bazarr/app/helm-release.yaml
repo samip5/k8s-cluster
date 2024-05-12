@@ -61,8 +61,8 @@ spec:
               tag: v4.2.3
             args:
               - --repo=https://github.com/KBlixt/subcleaner
-              - --branch=master
-              - --wait=86400 # 1 day
+              - --ref=master
+              - --period=86400 # 1 day
               - --root=/add-ons
             resources:
               requests:
