@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30m
-  url: ssh://git@git.samipsolutions.fi:222/kryptonian/k3s-cluster.git
+  url: ssh://git@git.skysolutions.fi:222/kryptonian/k3s-cluster.git
   secretRef:
     name: private-cluster-ssh-credentials
   ref:
