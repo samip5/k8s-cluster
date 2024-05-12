@@ -4,6 +4,7 @@ metadata:
   name: cluster-apps-bazarr
   namespace: flux-system
 spec:
+  targetNamespace: media
   path: ./k8s/media/apps/media/bazarr/app
   prune: true
   sourceRef:
