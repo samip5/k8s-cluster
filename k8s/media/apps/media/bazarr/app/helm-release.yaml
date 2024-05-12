@@ -47,6 +47,8 @@ spec:
               tag: 1.4.2@sha256:62558b2f9210b288f01e96753c99699dc2fab7c27f9e678f994bd0068bc6d41e
             env:
               TZ: "Europe/Helsinki"
+            envFrom:
+              - secret: bazarr-db-secret
             resources:
               requests:
                 cpu: 23m
