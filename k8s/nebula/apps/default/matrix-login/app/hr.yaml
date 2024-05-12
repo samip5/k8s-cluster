@@ -35,7 +35,7 @@ spec:
         containers:
           app:
             image:
-              repository: registry.samipsolutions.fi/library/matrix-login
+              repository: registry.skysolutions.fi/library/matrix-login
               tag: latest
             envFrom:
               - secretRef:

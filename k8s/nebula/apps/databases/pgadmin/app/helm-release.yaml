@@ -42,7 +42,7 @@ spec:
         containers:
           main:
             image:
-              repository: registry.samipsolutions.fi/docker/dpage/pgadmin4
+              repository: registry.skysolutions.fi/docker.io/dpage/pgadmin4
               tag: 8.6
             env:
               PGADMIN_DEFAULT_EMAIL: sm@${SECRET_DOMAIN}

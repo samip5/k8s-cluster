@@ -43,7 +43,7 @@ spec:
         containers:
           main:
             image:
-              repository: registry.samipsolutions.fi/docker/tzahi12345/youtubedl-material
+              repository: registry.skysolutions.fi/docker.io/tzahi12345/youtubedl-material
               tag: latest
             env:
               ytdl_use_local_db: 'false'

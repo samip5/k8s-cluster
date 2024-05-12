@@ -40,7 +40,7 @@ spec:
         containers:
           main:
             image:
-              repository: registry.samipsolutions.fi/docker/purplei2p/i2pd
+              repository: registry.skysolutions.fi/docker.io/purplei2p/i2pd
               tag: release-2.50.0
             env:
               TZ: "Europe/Helsinki"

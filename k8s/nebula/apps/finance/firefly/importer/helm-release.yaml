@@ -37,7 +37,7 @@ spec:
         containers:
           main:
             image:
-              repository: registry.samipsolutions.fi/docker/fireflyiii/data-importer
+              repository: registry.skysolutions.fi/docker.io/fireflyiii/data-importer
               tag: version-1.5.2
             env:
               TRUSTED_PROXIES: "**"

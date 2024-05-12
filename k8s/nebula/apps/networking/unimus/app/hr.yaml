@@ -48,7 +48,7 @@ spec:
         containers:
           main:
             image:
-              repository: registry.samipsolutions.fi/docker/croc/unimus # Pull-though cache
+              repository: registry.skysolutions.fi/docker.io/croc/unimus # Pull-though cache
               tag: 2.4.3
             env:
               TZ: "Europe/Helsinki"
