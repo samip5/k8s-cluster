@@ -27,7 +27,7 @@ spec:
       strategy: RollingUpdate
     fullNameOverride: *app
     image:
-      repository: registry.samipsolutions.fi/library/nitter
+      repository: registry.skysolutions.fi/library/nitter
       tag: guest-accounts
     service:
       main:

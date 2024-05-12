@@ -41,7 +41,7 @@ spec:
         containers:
           paisa:
             image:
-              repository: registry.samipsolutions.fi/library/paisa
+              repository: registry.skysolutions.fi/library/paisa
               tag: 160324-0.6.6@sha256:136bf72ce3b49affe3d5e2286738268cd0aa042cbd794a9da660fdc6f396acdd
             #command: ["/bin/sleep", "infinity"]
             env:

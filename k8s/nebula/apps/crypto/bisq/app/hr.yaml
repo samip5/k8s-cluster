@@ -38,7 +38,7 @@ spec:
         containers:
           main:
             image:
-              repository: registry.samipsolutions.fi/docker/fflo/bisq-on-docker
+              repository: registry.skysolutions.fi/docker.io/fflo/bisq-on-docker
               tag: 1.9.15
             env:
               TZ: Europe/Helsinki

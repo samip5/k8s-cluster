@@ -34,7 +34,7 @@ spec:
         enabled: true
         type: gluetun
         image:
-          repository: registry.samipsolutions.fi/library/gluetun
+          repository: registry.skysolutions.fi/library/gluetun
           tag: 1688394520
         env:
           - name: LOG_LEVEL

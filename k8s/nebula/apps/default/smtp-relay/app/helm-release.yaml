@@ -32,7 +32,7 @@ spec:
         containers:
           main:
             image:
-              repository: registry.samipsolutions.fi/docker/boky/postfix
+              repository: registry.skysolutions.fi/docker.io/boky/postfix
               tag: latest
             env:
               RELAYHOST: smtp.dnainternet.fi
