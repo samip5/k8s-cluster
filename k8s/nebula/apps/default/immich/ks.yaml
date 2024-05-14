@@ -19,3 +19,11 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
+  postBuild:
+    substitute:
+      APP: "immich"
+      VOLSYNC_CLAIM: "immich-data"
+      VOLSYNC_CAPACITY: "200Gi"
+      VOLSYNC_STORAGECLASS: "fast-ceph-filesystem"
+      VOLSYNC_SNAPSHOTCLASS: "csi-ceph-filesystem"
+      VOLSYNC_ACCESSMODES: "ReadWriteMany"

@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: "immich-misc"
+  namespace: default
+spec:
+  storageClassName: fast-ceph-filesystem
+  accessModes: [ "ReadWriteMany" ]
+  resources:
+    requests:
+      storage: "100Gi"
