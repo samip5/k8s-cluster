@@ -29,11 +29,9 @@ spec:
     nodeSelector:
       kubernetes.io/arch: amd64
   postgresql:
-
     parameters:
       max_connections: "600"
       shared_buffers: 512MB
-      datestyle: iso, dmy, mdy
 
   monitoring:
     enablePodMonitor: true
