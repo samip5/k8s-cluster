@@ -71,7 +71,7 @@ spec:
             prom.home.arpa/kps: allow
           securityContext:
             runAsNonRoot: true
-            runAsUser: &uid "568"
+            runAsUser: &uid 568
             runAsGroup: *uid
             fsGroup: *uid
             fsGroupChangePolicy: Always
@@ -230,7 +230,7 @@ spec:
       enableServiceLinks: false
       securityContext:
         runAsNonRoot: true
-        runAsUser: &uid 568
+        runAsUser: *uid
         runAsGroup: *uid
         fsGroup: *uid
         fsGroupChangePolicy: Always
