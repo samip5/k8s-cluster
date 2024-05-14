@@ -32,7 +32,7 @@ spec:
     parameters:
       max_connections: "600"
       shared_buffers: 512MB
-      datastyle: "ISO, DMY, MDY"
+      datestyle: "ISO, DMY, MDY"
 
   monitoring:
     enablePodMonitor: true
