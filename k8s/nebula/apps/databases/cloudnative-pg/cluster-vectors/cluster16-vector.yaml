@@ -6,7 +6,7 @@ metadata:
   namespace: databases
 spec:
   instances: 2
-  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:16.1-v0.1.11
+  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:16.2-v0.2.1
   primaryUpdateStrategy: unsupervised
   storage:
     size: 15Gi
@@ -20,8 +20,13 @@ spec:
     limits:
       memory: 2Gi
   bootstrap:
-    recovery:
-      source: &previousCluster postgres-vector-v3
+    initdb:
+      postInitSQL:
+        - ALTER SYSTEM SET search_path TO "$user", public, vectors;
+        - CREATE EXTENSION IF NOT EXISTS "vectors";
+  #bootstrap:
+  #  recovery:
+  #    source: &previousCluster postgres-vector-v3
   affinity:
     enablePodAntiAffinity: true
     topologyKey: kubernetes.io/hostname
@@ -51,7 +56,7 @@ spec:
         compression: bzip2
       destinationPath: s3://cnpg-main/
       endpointURL: https://s3.skym.fi
-      serverName: &currentCluster postgres-vector-v4
+      serverName: &currentCluster postgres-vector-v10
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
@@ -59,18 +64,18 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-secret
           key: aws-secret-access-key
-  externalClusters:
-    - name: *previousCluster
-      barmanObjectStore:
-        wal:
-          compression: bzip2
-          maxParallel: 8
-        destinationPath: s3://cnpg-main/
-        endpointURL: https://s3.skym.fi
-        s3Credentials:
-          accessKeyId:
-            name: cloudnative-pg-secret
-            key: aws-access-key-id
-          secretAccessKey:
-            name: cloudnative-pg-secret
-            key: aws-secret-access-key
+#  externalClusters:
+#    - name: *previousCluster
+#      barmanObjectStore:
+#        wal:
+#          compression: bzip2
+#          maxParallel: 8
+#        destinationPath: s3://cnpg-main/
+#        endpointURL: https://s3.skym.fi
+#        s3Credentials:
+#          accessKeyId:
+#            name: cloudnative-pg-secret
+#            key: aws-access-key-id
+#          secretAccessKey:
+#            name: cloudnative-pg-secret
+#            key: aws-secret-access-key
