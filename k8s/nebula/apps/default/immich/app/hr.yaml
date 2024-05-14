@@ -46,7 +46,7 @@ spec:
               REDIS_PORT: "6379"
             envFrom: &ef
               - secretRef:
-                  name: immich-secrets
+                  name: immich-secret
             securityContext: &sc
               readOnlyRootFilesystem: true
               allowPrivilegeEscalation: false
