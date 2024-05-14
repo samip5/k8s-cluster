@@ -10,6 +10,7 @@ metadata:
 spec:
   dependsOn:
     - name: postgres16-vector
+  targetNamespace: default
   path: ./k8s/nebula/apps/default/immich/app
   prune: true
   sourceRef:
