@@ -93,6 +93,7 @@ spec:
             command: *cmd
             args: [ "microservices" ]
             env: *env
+            envFrom: *ef
             securityContext: *sc
             resources:
               requests:
