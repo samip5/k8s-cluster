@@ -42,7 +42,7 @@ spec:
               IMMICH_METRICS: "true"
               IMMICH_SERVER_URL: http://immich.default.svc.cluster.local:3001
               IMMICH_MACHINE_LEARNING_URL: http://immich-ml.default.svc.cluster.local:3003
-              REDIS_HOSTNAME: immich-redis.default.svc.cluster.local
+              REDIS_HOSTNAME: redis.databases.svc.cluster.local
               REDIS_PORT: "6379"
             envFrom: &ef
               - secretRef:
@@ -137,23 +137,6 @@ spec:
               accessMode: ReadWriteOnce
               globalMounts:
                 - path: /cache
-      redis:
-        type: deployment
-        replicas: 1
-        containers:
-          redis:
-            image:
-              repository: "public.ecr.aws/docker/library/redis"
-              tag: "7.2.4"
-            command: [ "redis-server", "--save", "300 1", "--appendonly", "yes" ] # save and appendonly options forcibly disable RDB and AOF persistence entirely
-            securityContext: *sc
-            resources:
-              requests:
-                cpu: "10m"
-                memory: "32Mi"
-              limits:
-                cpu: "1000m"
-                memory: "512Mi"
     service:
       immich:
         controller: immich
