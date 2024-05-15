@@ -51,6 +51,13 @@
       "separateMinorPatch": true
     },
     {
+      "description": "intel-device-plugin images",
+      "groupName": "intel-device-plugins",
+      "matchPackagePatterns": ["intel-device-plugins-operator","intel-device-plugins-gpu"],
+      "matchDatasources": ["helm"],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
+      }
     }
   ]
 }
