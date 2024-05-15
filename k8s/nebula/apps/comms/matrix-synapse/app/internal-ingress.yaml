@@ -1,0 +1,147 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: zerossl-production
+    external-dns-cf/is-dns-public: "true"
+    external-dns-cf/is-public: "true"
+    external-dns.target/enabled: "true"
+    meta.helm.sh/release-name: matrix-synapse
+    meta.helm.sh/release-namespace: comms
+    nginx.ingress.kubernetes.io/use-regex: "true"
+  labels:
+    app.kubernetes.io/instance: matrix-synapse
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: matrix-synapse
+    app.kubernetes.io/version: 1.107.0
+    helm.sh/chart: matrix-synapse-3.9.4
+    helm.toolkit.fluxcd.io/name: matrix-synapse
+    helm.toolkit.fluxcd.io/namespace: comms
+  name: matrix-synapse-int
+  namespace: comms
+spec:
+  ingressClassName: internal-nginx
+  rules:
+    - host: skylab.fi
+      http:
+        paths:
+          - backend:
+              service:
+                name: matrix-synapse-media-repository
+                port:
+                  number: 8083
+            path: /_matrix/media/.*
+            pathType: ImplementationSpecific
+          - backend:
+              service:
+                name: matrix-synapse
+                port:
+                  number: 8008
+            path: /_matrix
+            pathType: Prefix
+          - backend:
+              service:
+                name: matrix-synapse-wellknown-lighttpd
+                port:
+                  number: 80
+            path: /.well-known/matrix
+            pathType: Prefix
+    - host: matrix.skylab.fi
+      http:
+        paths:
+          - backend:
+              service:
+                name: matrix-synapse-media-repository
+                port:
+                  number: 8083
+            path: /_matrix/media/.*
+            pathType: ImplementationSpecific
+          - backend:
+              service:
+                name: matrix-synapse-media-repository
+                port:
+                  number: 8083
+            path: /_synapse/admin/v1/purge_media_cache$
+            pathType: ImplementationSpecific
+          - backend:
+              service:
+                name: matrix-synapse-media-repository
+                port:
+                  number: 8083
+            path: /_synapse/admin/v1/room/.*/media
+            pathType: ImplementationSpecific
+          - backend:
+              service:
+                name: matrix-synapse-media-repository
+                port:
+                  number: 8083
+            path: /_synapse/admin/v1/user/.*/media
+            pathType: ImplementationSpecific
+          - backend:
+              service:
+                name: matrix-synapse-media-repository
+                port:
+                  number: 8083
+            path: /_synapse/admin/v1/media/
+            pathType: ImplementationSpecific
+          - backend:
+              service:
+                name: matrix-synapse-media-repository
+                port:
+                  number: 8083
+            path: /_synapse/admin/v1/quarantine_media/
+            pathType: ImplementationSpecific
+          - backend:
+              service:
+                name: matrix-synapse-media-repository
+                port:
+                  number: 8083
+            path: /_synapse/admin/v1/users/.*/media$
+            pathType: ImplementationSpecific
+          - backend:
+              service:
+                name: matrix-synapse-synchrotron
+                port:
+                  number: 8083
+            path: /_matrix/client/(v2_alpha|r0|v3)/sync$
+            pathType: ImplementationSpecific
+          - backend:
+              service:
+                name: matrix-synapse-synchrotron
+                port:
+                  number: 8083
+            path: /_matrix/client/(api/v1|v2_alpha|r0|v3)/events$
+            pathType: ImplementationSpecific
+          - backend:
+              service:
+                name: matrix-synapse-synchrotron
+                port:
+                  number: 8083
+            path: /_matrix/client/(api/v1|r0|v3)/initialSync$
+            pathType: ImplementationSpecific
+          - backend:
+              service:
+                name: matrix-synapse-synchrotron
+                port:
+                  number: 8083
+            path: /_matrix/client/(api/v1|r0|v3)/rooms/[^/]+/initialSync$
+            pathType: ImplementationSpecific
+          - backend:
+              service:
+                name: matrix-synapse
+                port:
+                  number: 8008
+            path: /_matrix
+            pathType: Prefix
+          - backend:
+              service:
+                name: matrix-synapse
+                port:
+                  number: 8008
+            path: /_synapse
+            pathType: Prefix
+  tls:
+    - hosts:
+        - skylab.fi
+        - matrix.skylab.fi
+      secretName: matrix-tls
