@@ -30,7 +30,7 @@ spec:
           main:
             image: &img
               repository: ghcr.io/immich-app/immich-server
-              tag: v1.104.0
+              tag: v1.105.1
             command: &cmd [ "tini", "--", "node", "/usr/src/app/dist/main" ]
             args: [ "immich" ]
             env: &env
@@ -121,7 +121,7 @@ spec:
           main:
             image:
               repository: ghcr.io/immich-app/immich-machine-learning
-              tag: v1.104.0
+              tag: v1.105.1
             env: *env
             securityContext: *sc
             resources:
