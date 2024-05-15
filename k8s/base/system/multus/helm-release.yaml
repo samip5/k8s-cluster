@@ -32,8 +32,8 @@ spec:
 
     cni:
       image:
-        repository: ghcr.io/onedr0p/cni-plugins
-        tag: 1.4.0
+        repository: ghcr.io/skyssolutions/cni-plugins
+        tag: 1.4.1
 
       paths:
         config: /etc/cni/net.d
