@@ -5,3 +5,4 @@ resources:
   - externalsecret.yaml
   - helm-release.yaml
   - matrix-signing-key.sops.yaml
+  - internal-ingress.yaml
