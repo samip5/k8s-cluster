@@ -77,6 +77,7 @@ spec:
               USERMAP_GID: "100"
               PAPERLESS_ACCOUNT_ALLOW_SIGNUPS: "false"
               PAPERLESS_SOCIALACCOUNT_ALLOW_SIGNUPS: "false"
+              PAPERLESS_DISABLE_REGULAR_LOGIN: "true"
             envFrom:
               - secretRef:
                   name: paperless-secret
