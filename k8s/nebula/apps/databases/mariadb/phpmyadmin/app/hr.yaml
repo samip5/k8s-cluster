@@ -31,7 +31,7 @@ spec:
           reloader.stakater.com/auto: "true"
 
         containers:
-          wordpress:
+          phpmyadmin:
             image:
               repository: registry.skysolutions.fi/docker.io/phpmyadmin
               tag: 5.2.1-apache
@@ -60,7 +60,7 @@ spec:
               - path: "/"
                 pathType: Prefix
                 service:
-                  identifier: wordpress
+                  identifier: phpmyadmin
                   port: 80
         tls:
           - hosts:
