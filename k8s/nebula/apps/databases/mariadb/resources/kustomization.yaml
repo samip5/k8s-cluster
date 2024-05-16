@@ -5,6 +5,7 @@ namespace: databases
 resources:
   - ./externalsecret.yaml
   - ./mariadb.yaml
+  - ./provisions
 labels:
   - pairs:
       app.kubernetes.io/name: mariadb
