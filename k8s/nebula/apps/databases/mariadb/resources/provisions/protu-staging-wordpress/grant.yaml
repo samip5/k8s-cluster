@@ -2,12 +2,12 @@
 apiVersion: k8s.mariadb.com/v1alpha1
 kind: Grant
 metadata:
-  name: protu_wordpress
+  name: protu-wordpress
 spec:
   mariaDbRef:
     name: mariadb-galera
   privileges:
     - 'ALL'
-  database: 'protu_wordpress'
+  database: 'protu-wordpress'
   table: '*'
-  username: protu_wp
+  username: protu-wp
