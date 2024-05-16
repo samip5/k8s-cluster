@@ -57,7 +57,7 @@ spec:
             port: 9000
     ingress:
       main:
-        enabled: false
+        enabled: true
         className: "internal-nginx"
         annotations:
           nginx.ingress.kubernetes.io/use-regex: "true"
