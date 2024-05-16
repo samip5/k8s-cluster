@@ -52,6 +52,7 @@ spec:
               WORDPRESS_DB_NAME: "protu-wordpress"
               WORDPRESS_DB_USER: "protu-wp"
               WORDPRESS_DB_HOST: "mariadb-galera-maxscale.databases.svc.cluster.local"
+              WORDPRESS_DEBUG: "1"
             envFrom:
               - secret: protu-wp-secrets
 
