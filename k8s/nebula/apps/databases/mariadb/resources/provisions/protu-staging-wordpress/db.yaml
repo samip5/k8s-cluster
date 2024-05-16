@@ -2,7 +2,7 @@
 apiVersion: k8s.mariadb.com/v1alpha1
 kind: Database
 metadata:
-  name: protu_wordpress
+  name: protu-wordpress
 spec:
   mariaDbRef:
     name: mariadb-galera
