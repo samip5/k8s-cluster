@@ -50,7 +50,7 @@ spec:
                 memory: 8Gi
 
     service:
-      app:
+      wordpress:
         controller: wordpress
         ports:
           http:
