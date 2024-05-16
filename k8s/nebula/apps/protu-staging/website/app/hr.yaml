@@ -63,7 +63,7 @@ spec:
           nginx.ingress.kubernetes.io/use-regex: "true"
           nginx.ingress.kubernetes.io/backend-protocol: "FCGI"
           nginx.ingress.kubernetes.io/fastcgi-index: "index.php"
-          nginx.ingress.kubernetes.io/fastcgi-params-configmap: "ingress-nginx-fastcgi"
+          nginx.ingress.kubernetes.io/fastcgi-params-configmap: "protu-staging-wp-ingress-nginx-fastcgi"
         hosts:
           - host: "protu-staging.skylab.fi"
             paths:
