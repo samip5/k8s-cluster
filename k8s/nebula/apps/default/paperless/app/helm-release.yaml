@@ -98,6 +98,11 @@ spec:
               - "gotenberg"
               - "--chromium-disable-javascript=true"
               - "--chromium-allow-list=file:///tmp/.*"
+            resources:
+              limits:
+                memory: 512Mi
+              requests:
+                cpu: 10m
           tika:
             image:
               repository: ghcr.io/paperless-ngx/tika
@@ -105,6 +110,11 @@ spec:
               pullPolicy: IfNotPresent
             ports:
               - containerPort: 9998
+            resources:
+              limits:
+                memory: 512Mi
+              requests:
+                cpu: 10m
           redis:
             order: 1
             image:
