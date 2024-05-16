@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.1.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -34,9 +34,9 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
 
     controllers:
-      main:
+      syncthing:
         containers:
-          main:
+          syncthing:
             image:
               repository: syncthing/syncthing
               tag: 1.27.7
@@ -48,14 +48,15 @@ spec:
                 cpu: 100m
                 memory: 128M
     service:
-      main:
+      syncthing:
+        controller: syncthing
         ports:
           http:
             port: 8384
       listen:
         enabled: true
         type: LoadBalancer
-        controller: main
+        controller: syncthing
         annotations:
           io.cilium/lb-ipam-ips: "10.96.69.230"
         ports:
@@ -82,7 +83,7 @@ spec:
             paths:
               - path: /
                 service:
-                  name: main
+                  name: syncthing
                   port: http
         tls:
           - hosts:

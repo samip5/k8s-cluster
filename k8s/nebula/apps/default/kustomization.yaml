@@ -8,9 +8,4 @@ resources:
   - theme-park/ks.yaml
   - linkwarden/ks.yaml
   - immich/ks.yaml
-#  - syncthing/ks.yaml
-#  - radicale/ks.yaml
-#  - redlib/ks.yaml
-#  - ytdl-material/ks.yaml
-#  - i2pd/ks.yaml
-#  - satisfactory/ks.yaml
+  - syncthing/ks.yaml
