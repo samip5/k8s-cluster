@@ -56,6 +56,7 @@ spec:
               tag: 2.8.6
             env:
               PAPERLESS_URL: https://${HOSTNAME}
+              PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
               PAPERLESS_PORT: "8000"
               PAPERLESS_CONSUMER_POLLING: 60
               PAPERLESS_CONSUMER_RECURSIVE: "true"
@@ -76,6 +77,8 @@ spec:
               PAPERLESS_TIME_ZONE: Europe/Helsinki
               USERMAP_UID: "1026"
               USERMAP_GID: "100"
+              PAPERLESS_ACCOUNT_ALLOW_SIGNUPS: "false"
+              PAPERLESS_SOCIALACCOUNT_ALLOW_SIGNUPS: "false"
             envFrom:
               - secretRef:
                   name: paperless-secret
@@ -123,15 +126,6 @@ spec:
       main:
         enabled: true
         className: "internal-nginx"
-        annotations:
-          nginx.ingress.kubernetes.io/auth-url: |-
-            http://ak-outpost-authentik-embedded-outpost.security.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
-          nginx.ingress.kubernetes.io/auth-signin: |-
-            https://paperless.skylab.fi/outpost.goauthentik.io/start?rd=$escaped_request_uri
-          nginx.ingress.kubernetes.io/auth-response-headers: |-
-            Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid
-          nginx.ingress.kubernetes.io/auth-snippet: |
-            proxy_set_header X-Forwarded-Host $http_host;
         hosts:
           - host: "${HOSTNAME}"
             paths:
