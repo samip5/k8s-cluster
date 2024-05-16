@@ -2,7 +2,7 @@
 apiVersion: k8s.mariadb.com/v1alpha1
 kind: Database
 metadata:
-  name: protuW
+  name: protu
 spec:
   mariaDbRef:
     name: mariadb-galera
