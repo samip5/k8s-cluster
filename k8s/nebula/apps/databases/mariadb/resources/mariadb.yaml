@@ -1,137 +1,59 @@
-apiVersion: mariadb.mmontes.io/v1alpha1
+apiVersion: k8s.mariadb.com/v1alpha1
 kind: MariaDB
 metadata:
   name: mariadb-galera
 spec:
   rootPasswordSecretKeyRef:
-    name: mariadb
+    name: mariadb-secret
     key: password
-  database: mariadb
-  username: mariadb
-  passwordSecretKeyRef:
-    name: mariadb
-    key: password
+    generate: false
 
-  image: "mariadb:11.3.2"
-  imagePullPolicy: IfNotPresent
-  port: 3306
+  storage:
+    size: 5Gi
+    storageClassName: ceph-block
 
-  nodeSelector:
-    kubernetes.io/arch: amd64
+  replicas: 2
 
-  env:
-    - name: TZ
-      value: Europe/Helsinki
+  maxScale:
+    enabled: true
 
-  replicas: 3
+    kubernetesService:
+      type: LoadBalancer
+      metadata:
+        annotations:
+          io.cilium/lb-ipam-ips: 10.96.69.240
+
+    guiKubernetesService:
+      type: LoadBalancer
+      metadata:
+        annotations:
+          io.cilium/lb-ipam-ips: 10.96.69.241
+
+    connection:
+      secretName: mxs-galera-conn
+      port: 3306
+
 
   galera:
     enabled: true
-    primary:
-      podIndex: 0
-      automaticFailover: true
-    sst: mariabackup
-    replicaThreads: 1
-    agent:
-      image: ghcr.io/mariadb-operator/agent:v0.0.3
-      #pullPolicy: IfNotPresent
-      port: 5555
-      kubernetesAuth:
-        enabled: true
-      gracefulShutdownTimeout: 5s
-    recovery:
-      enabled: true
-      clusterHealthyTimeout: 3m
-      clusterBootstrapTimeout: 10m
-      podRecoveryTimeout: 5m
-      podSyncTimeout: 5m
-    initContainer:
-      image: ghcr.io/mariadb-operator/init:v0.0.6
-      #pullPolicy: IfNotPresent
-    volumeClaimTemplate:
-      storageClassName: ceph-block
-      resources:
-        requests:
-          storage: 300Mi
-      accessModes:
-        - ReadWriteOnce
 
   service:
     type: LoadBalancer
-    annotations:
-      external-dns.alpha.kubernetes.io/hostname: "mysql-lb.${SECRET_DOMAIN}"
+    metadata:
+      annotations:
+        io.cilium/lb-ipam-ips: 10.96.69.150
 
   primaryService:
     type: LoadBalancer
-    annotations:
-      external-dns.alpha.kubernetes.io/hostname: "mysql.${SECRET_DOMAIN}"
+    metadata:
+      annotations:
+        io.cilium/lb-ipam-ips: 10.96.69.160
 
   secondaryService:
     type: LoadBalancer
-    annotations:
-      external-dns.alpha.kubernetes.io/hostname: "mysql-ro.${SECRET_DOMAIN}"
-    #secondaryConnection:
-    #  secretName: mariadb-galera-conn-secondary
-    #  secretTemplate:
-    #    key: dsn
-
-  volumeClaimTemplate:
-    storageClassName: ceph-block
-    resources:
-      requests:
-        storage: 5Gi
-    accessModes:
-      - ReadWriteOnce
-
-  resources:
-    requests:
-      cpu: 300m
-      memory: 1Gi
-    limits:
-      memory: 2Gi
-
-  # For Galera, Specifically
-  podSecurityContext:
-    runAsUser: 0
-
-  securityContext:
-    allowPrivilegeEscalation: false
-
-  #podSecurityContext:
-  #  runAsUser: 568
-  #  runAsGroup: 568
-  #  fsGroup: 568
-  #  fsGroupChangePolicy: OnRootMismatch
-
-  #service:
-  #  type: LoadBalancer
-  #  annotations:
-  #    io.cilium/lb-ipam-ips: "${IPAM_MARIADB}"
-
-
-  affinity:
-    #nodeAffinity:
-    #  requiredDuringSchedulingIgnoredDuringExecution:
-    #    nodeSelectorTerms:
-    #      - matchExpressions:
-    #        - key: database.mysql
-    #          operator: In
-    #          values:
-    #            - "yes"
-    podAntiAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        - topologyKey: "kubernetes.io/hostname"
-
-  tolerations:
-    - key: "mariadb.mmontes.io/ha"
-      operator: "Exists"
-      effect: "NoSchedule"
-
-  podDisruptionBudget:
-    maxUnavailable: 66%
-
-  updateStrategy:
-    type: RollingUpdate
+    metadata:
+      annotations:
+        io.cilium/lb-ipam-ips: 10.96.69.161
 
   myCnf: |
     [mariadb]
@@ -140,5 +62,23 @@ spec:
     binlog_format=row
     innodb_autoinc_lock_mode=2
     max_allowed_packet=256M
-    max_threads=10
-    read_buffer_size=0
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 512Mi
+    limits:
+      memory: 2Gi
+
+#  livenessProbe:
+#    initialDelaySeconds: 20
+#    periodSeconds: 10
+#    timeoutSeconds: 10
+#
+#  readinessProbe:
+#    initialDelaySeconds: 20
+#    periodSeconds: 10
+#    timeoutSeconds: 10
+
+  metrics:
+    enabled: true
