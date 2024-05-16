@@ -72,6 +72,9 @@ spec:
                 service:
                   identifier: wordpress
                   port: 9000
+        tls:
+           - hosts:
+                - "protu-staging.skylab.fi"
     configMaps:
       ingress-nginx-fastcgi:
         enabled: true
