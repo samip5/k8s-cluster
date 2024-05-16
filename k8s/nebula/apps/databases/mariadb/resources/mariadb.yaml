@@ -18,7 +18,11 @@ spec:
     enabled: true
 
     auth:
-      generate: true
+      adminUsername: root
+      adminPasswordSecretKeyRef:
+        name: mariadb-secret
+        key: maxscale_password
+      deleteDefaultAdmin: true
 
     kubernetesService:
       type: LoadBalancer
