@@ -13,9 +13,14 @@ spec:
     storageClassName: ceph-block
 
   replicas: 2
+  image: "mariadb:11.2.2"
+  imagePullPolicy: IfNotPresent
 
   maxScale:
     enabled: true
+
+    auth:
+      generate: true
 
     kubernetesService:
       type: LoadBalancer
