@@ -1,0 +1,29 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &appname protu-staging-wordpress
+  namespace: flux-system
+spec:
+  targetNamespace: protu
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *appname
+  path: ./k8s/nebula/apps/protu-staging/website/app
+  prune: true
+  wait: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
+  postBuild:
+    substitute:
+      APP: *appname
+      APP_UID: "568"
+      APP_GID: "568"
+      VOLSYNC_CLAIM: protu-website-data
+      VOLSYNC_CAPACITY: 30Gi
+      VOLSYNC_STORAGECLASS: ceph-block
+      VOLSYNC_SNAPSHOTCLASS: csi-ceph-blockpool
+
