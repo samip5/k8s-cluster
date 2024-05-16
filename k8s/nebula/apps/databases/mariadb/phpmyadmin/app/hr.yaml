@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: protu-staging-wp
+  name: phpmyadmin
 spec:
   interval: 30m
   chart:
