@@ -64,8 +64,6 @@ spec:
               PAPERLESS_CONSUMPTION_DIR: /data/nas/consume
               PAPERLESS_DATA_DIR: /library/data
               PAPERLESS_EXPORT_DIR: /data/nas/export
-              PAPERLESS_ENABLE_HTTP_REMOTE_USER: "true"
-              PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME: HTTP_X_AUTHENTIK_USERNAME
               PAPERLESS_MEDIA_ROOT: /library/media
               PAPERLESS_OCR_LANGUAGES: fin eng
               PAPERLESS_OCR_LANGUAGE: fin+eng
