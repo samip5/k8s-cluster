@@ -55,8 +55,6 @@ spec:
         ports:
           http:
             port: 80
-          fpm:
-            port: 9000
     ingress:
       main:
         enabled: true
@@ -72,25 +70,6 @@ spec:
         tls:
           - hosts:
               - "protu-staging.skylab.fi"
-      fpm:
-        enabled: true
-        className: "internal-nginx"
-        annotations:
-          nginx.ingress.kubernetes.io/use-regex: "true"
-          nginx.ingress.kubernetes.io/backend-protocol: "FCGI"
-          nginx.ingress.kubernetes.io/fastcgi-index: "index.php"
-          nginx.ingress.kubernetes.io/fastcgi-params-configmap: "protu-staging-wp-ingress-nginx-fastcgi"
-        hosts:
-          - host: "protu-staging.skylab.fi"
-            paths:
-              - path: "/.*\\.php(/|$)(.*)"
-                pathType: ImplementationSpecific
-                service:
-                  identifier: wordpress
-                  port: 9000
-        tls:
-           - hosts:
-                - "protu-staging.skylab.fi"
     configMaps:
       ingress-nginx-fastcgi:
         enabled: true
