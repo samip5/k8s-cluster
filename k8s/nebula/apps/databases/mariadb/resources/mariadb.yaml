@@ -70,7 +70,14 @@ spec:
     limits:
       memory: 2Gi
 
-#  livenessProbe:
+  podSecurityContext:
+    runAsUser: 568
+    runAsGroup: 568
+    fsGroup: 568
+    fsGroupChangePolicy: OnRootMismatch
+
+
+  #  livenessProbe:
 #    initialDelaySeconds: 20
 #    periodSeconds: 10
 #    timeoutSeconds: 10
