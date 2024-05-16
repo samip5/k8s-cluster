@@ -49,7 +49,7 @@ spec:
               limits:
                 memory: 8Gi
             env:
-              WORDPRESS_DB_NAME: "protu-wordpress"
+              WORDPRESS_DB_NAME: "protuW"
               WORDPRESS_DB_USER: "protu-wp"
               WORDPRESS_DB_HOST: "mariadb-galera-maxscale.databases.svc.cluster.local"
               WORDPRESS_DEBUG: "1"
