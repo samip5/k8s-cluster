@@ -48,6 +48,12 @@ spec:
                 memory: 4Gi
               limits:
                 memory: 8Gi
+            env:
+              WORDPRESS_DB_NAME: "protu-wordpress"
+              WORDPRESS_DB_USER: "protu-wp"
+              WORDPRESS_DB_HOST: "mariadb-galera-maxscale.databases.svc.cluster.local"
+            envFrom:
+              - secret: protu-wp-secrets
 
     service:
       wordpress:
@@ -85,4 +91,7 @@ spec:
         enabled: true
         existingClaim: "${VOLSYNC_CLAIM}"
         globalMounts:
-          - path: /var/www/html/wp-content/
+          - path: /var/www/html/wp-content/themes
+            subPath: themes
+          - path: /var/www/html/wp-content/plugins
+            subPath: plugins
