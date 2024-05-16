@@ -83,8 +83,8 @@ spec:
             paths:
               - path: /
                 service:
-                  name: syncthing
-                  port: http
+                  identifier: syncthing
+                  port: 8384
         tls:
           - hosts:
               - "${HOSTNAME}"
