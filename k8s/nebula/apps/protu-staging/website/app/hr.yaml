@@ -41,7 +41,7 @@ spec:
           wordpress:
             image:
               repository: registry.skysolutions.fi/docker.io/wordpress
-              tag: 6.5.3-php8.3-fpm
+              tag: 6.5.3-php8.3-apache
             resources:
               requests:
                 cpu: 100m
@@ -54,9 +54,25 @@ spec:
         controller: wordpress
         ports:
           http:
+            port: 80
+          fpm:
             port: 9000
     ingress:
       main:
+        enabled: true
+        className: "internal-nginx"
+        hosts:
+          - host: "protu-staging.skylab.fi"
+            paths:
+              - path: "/"
+                pathType: Prefix
+                service:
+                  identifier: wordpress
+                  port: 80
+        tls:
+          - hosts:
+              - "protu-staging.skylab.fi"
+      fpm:
         enabled: true
         className: "internal-nginx"
         annotations:
@@ -67,7 +83,7 @@ spec:
         hosts:
           - host: "protu-staging.skylab.fi"
             paths:
-              - path: /
+              - path: "/.*\\.php(/|$)(.*)"
                 pathType: ImplementationSpecific
                 service:
                   identifier: wordpress
