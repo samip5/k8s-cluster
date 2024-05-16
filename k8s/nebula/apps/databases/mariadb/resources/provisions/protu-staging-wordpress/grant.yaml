@@ -8,6 +8,6 @@ spec:
     name: mariadb-galera
   privileges:
     - 'ALL'
-  database: 'protu-wordpress'
+  database: 'protuW'
   table: '*'
   username: protu-wp
