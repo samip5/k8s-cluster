@@ -7,4 +7,4 @@ resources:
   - ./esphome/ks.yaml
   - ./zigbee2mqtt/ks.yaml
   - ./zigbee2mqtt/ks-exporter.yaml
-#  - ./assistant/ks.yaml
+  - ./assistant/ks.yaml
