@@ -193,6 +193,11 @@ spec:
         existingClaim: "${VOLSYNC_CLAIM}"
         globalMounts:
           - path: /config
+      dockerenv:
+        enabled: true
+        type: emptyDir
+        globalMounts:
+          - path: /.dockerenv
 
       backup:
         enabled: true
