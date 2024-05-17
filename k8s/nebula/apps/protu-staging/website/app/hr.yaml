@@ -41,7 +41,7 @@ spec:
           wordpress:
             image:
               repository: registry.skysolutions.fi/docker.io/wordpress
-              tag: 6.5.3-php8.3-apache
+              tag: 6.5.3-php8.1-apache
             resources:
               requests:
                 cpu: 100m
@@ -77,14 +77,6 @@ spec:
         tls:
           - hosts:
               - "protu-staging.skylab.fi"
-    configMaps:
-      ingress-nginx-fastcgi:
-        enabled: true
-        data:
-          SCRIPT_FILENAME: "/var/www/html/$fastcgi_script_name"
-          PATH_INFO: "$fastcgi_path_info"
-          modHeadersAvailable: "true"
-          front_controller_active: "true"
 
 
     persistence:
