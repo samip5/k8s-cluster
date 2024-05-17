@@ -1,70 +1,89 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: qbittorrent
-  namespace: downloads
+  namespace: media
 spec:
-  interval: 15m
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  maxHistory: 3
+      version: 3.1.0
   install:
     createNamespace: true
     remediation:
       retries: 3
+  interval: 30m
+  maxHistory: 2
+  uninstall:
+    keepHistory: false
   upgrade:
     cleanupOnFail: true
     remediation:
+      strategy: uninstall
       retries: 3
-  uninstall:
-    keepHistory: false
   values:
-    global:
-      fullnameOverride: qbittorrent
-    hostname: qbittorrent
-    controller:
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/onedr0p/qbittorrent
-      tag: 4.5.5@sha256:f4a1a5eece13beed61e579172d2a54b1fc2e7ff2bbdbd7ef22a4d9f6fc36e198
-    env:
-      QBITTORRENT__PORT: &port 80
-      QBITTORRENT__BT_PORT: &port-bt 55633
-    service:
-      main:
-        ports:
-          http:
-            port: *port
+    controllers:
+      qbittorrent:
+        podSecurityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          fsGroup: 568
+          fsGroupChangePolicy: OnRootMismatch
+          supplementalGroups: [ 10000 ]
+
+        podAnnotations:
+          setGateway: "true"
+        annotations:
+          reloader.stakater.com/auto: 'true'
+        containers:
+          app:
+            env:
+              QBITTORRENT__BT_PORT: 57427
+              QBITTORRENT__PORT: 80
+              TZ: Europe/Helsinki
+            image:
+              repository: ghcr.io/onedr0p/qbittorrent
+              tag: 4.5.5
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+            resources:
+              limits:
+                memory: 3Gi
+              requests:
+                cpu: 49m
+                memory: 1222Mi
     ingress:
-      main:
-        enabled: true
-        ingressClassName: internal-nginx
+      app:
+        className: nginx
         hosts:
           - host: &host qb.skylab.fi
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  identifier: qbittorrent
+                  port: http
         tls:
           - hosts:
               - *host
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
-      supplementalGroups: [10000]
-
-    podAnnotations:
-      setGateway: "true"
 
     persistence:
+      completed-script:
+        defaultMode: 0775
+        globalMounts:
+          - path: /scripts/completed.sh
+            subPath: completed.sh
+        name: qbittorrent-scripts
+        type: configMap
       config:
         enabled: true
         existingClaim: qbittorrent-config-v1
@@ -77,26 +96,20 @@ spec:
       add-ons:
         enabled: true
         type: emptyDir
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"
-    resources:
-      requests:
-        cpu: 10m
-        memory: 250Mi
-      limits:
-        memory: 2Gi
-    sidecars:
-      reannounce:
-        image: ghcr.io/buroa/qbittools:latest@sha256:b7b867a87257a5add56824d0a0c2f3c3bd2c77f9253859561be3eb7cdcb5bc1b
-        imagePullPolicy: IfNotPresent
-        args: [ "reannounce", "-s", "localhost", "-p", "80" ]
-      vuetorrent:
-        image: registry.k8s.io/git-sync/git-sync:v4.2.3
-        imagePullPolicy: IfNotPresent
-        args:
-          - --repo=https://github.com/WDaan/VueTorrent
-          - --branch=latest-release
-          - --wait=86400 # 1 day
-          - --root=/add-ons
-        volumeMounts:
-          - { name: add-ons, mountPath: /add-ons }
+    service:
+      qbittorrent:
+        controller: qbittorrent
+        ports:
+          http:
+            port: 80
+      bittorrent:
+        controller: qbittorrent
+        enabled: true
+        externalTrafficPolicy: Cluster
+        ports:
+          bittorrent:
+            enabled: true
+            port: 57427
+            protocol: TCP
+            targetPort: 57427
+        type: LoadBalancer
