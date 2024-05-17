@@ -37,7 +37,8 @@
         "inspircd/inspircd-docker",
         "ghcr.io/goauthentik/server",
         "ghcr.io/onedr0p/qbittorrent",
-        "ghcr.io/home-assistant/home-assistant"
+        "ghcr.io/home-assistant/home-assistant",
+        "wordpress"
       ]
     },
     {
