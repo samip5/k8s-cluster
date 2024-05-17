@@ -32,7 +32,7 @@ spec:
 
     cni:
       image:
-        repository: ghcr.io/samipsolutions/cni-plugins
+        repository: ghcr.io/skyssolutions/cni-plugins
         tag: 1.4.1
 
       paths:
