@@ -4,6 +4,8 @@ kind: Kustomization
 namespace: databases
 resources:
   - ./externalsecret.yaml
+  - ./externalsecret-backups.yaml
+  - ./backup.yaml
   - ./mariadb.yaml
   - ./provisions
 labels:

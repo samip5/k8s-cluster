@@ -1,0 +1,25 @@
+---
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Backup
+metadata:
+  name: mariadb-galera-6th-hr
+spec:
+  mariaDbRef:
+    name: mariadb-galera
+
+  schedule:
+    cron: "0 */6 * * *"
+
+  storage:
+    s3:
+      bucket: backups-mariadb
+      endpoint: s3.skym.fi
+
+      accessKeyIdSecretKeyRef:
+        name: mariadb-galera-s3-secret
+        key: access-key-id
+
+      secretAccessKeySecretKeyRef:
+        name: mariadb-galera-s3-secret
+        key: secret-access-key
+
