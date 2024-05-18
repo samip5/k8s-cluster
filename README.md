@@ -76,7 +76,6 @@ The alternative solution to these two problems would be to host a Kubernetes clu
 
 | Service                                                               | Use                                                                | Cost           |
 |-----------------------------------------------------------------------|--------------------------------------------------------------------|----------------|
-| [Doppler](https://doppler.com/)                                       | Secrets with [External Secrets](https://external-secrets.io/)      | Free (student) |
 | [Cloudflare](https://www.cloudflare.com/)                             | Domain(s) and S3                                                   | ~$20/yr        |
 | [GCP](https://cloud.google.com/)                                      | Voice interactions with Home Assistant over Google Assistant       | Free           |
 | [GitHub](https://github.com/)                                         | Hosting this repository and continuous integration/deployments     | Free           |
@@ -84,7 +83,8 @@ The alternative solution to these two problems would be to host a Kubernetes clu
 | [NextDNS](https://nextdns.io/)                                        | My router DNS server which includes AdBlocking                     | ~$20/yr        |
 | [Kapsi internet-users association](https://www.kapsi.fi/english.html) | Hosts my off-site backup aka minio (S3), Bitwarden and own website | 40€/yr         |
 | [updown.io](https://updown.io)                                        | External monitoring (IPv4/IPv6)                                    | ~€5/yr         |
-| [Bilance](https://www.bilanceapp.com)                                 | Budgeting app for iOS and Android                                  | ~30€/yr        |                                                    
+| [Bilance](https://www.bilanceapp.com)                                 | Budgeting app for iOS and Android                                  | ~30€/yr        |
+| [1Password](https://1password.eu)                                     | External Secrets and secret management                             | Free for the moment |
 |                                                                       |                                                                    | Total: ~40€/mo |
 
 ## Stargazers
