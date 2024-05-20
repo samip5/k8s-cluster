@@ -12,6 +12,7 @@ spec:
 
   storage:
     s3:
+      prefix: nebula-galera
       bucket: backups-mariadb
       endpoint: s3.skym.fi
 
