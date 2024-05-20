@@ -2,13 +2,13 @@
 apiVersion: k8s.mariadb.com/v1alpha1
 kind: Backup
 metadata:
-  name: mariadb-galera-6th-hr
+  name: mariadb-galera-weekly
 spec:
   mariaDbRef:
     name: mariadb-galera
 
   schedule:
-    cron: "0 */6 * * *"
+    cron: "0 0 * * 0"
 
   storage:
     s3:
