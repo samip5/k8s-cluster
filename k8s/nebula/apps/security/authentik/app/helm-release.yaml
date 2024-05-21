@@ -63,6 +63,7 @@ spec:
       replicas: 1
       autoscaling:
         enabled: true
+        minReplicas: 2
       pdb:
         enabled: true
         minAvailable: 1
@@ -93,6 +94,8 @@ spec:
       replicas: 1
       autoscaling:
         enabled: true
+        minReplicas: 2
+        maxReplicas: 3
       resources:
         requests:
           cpu: 50m
