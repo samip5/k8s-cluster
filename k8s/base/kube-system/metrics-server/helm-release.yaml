@@ -5,7 +5,7 @@ metadata:
   name: metrics-server
   namespace: kube-system
   labels:
-    component.kutara.io/part-of: standard-helm-release
+    component.skylab.fi/part-of: standard-helm-release
 spec:
   interval: 5m
   chart:
@@ -17,13 +17,6 @@ spec:
         name: metrics-server-charts
         namespace: flux-system
       interval: 5m
-  install:
-    createNamespace: true
-    remediation:
-      retries: 5
-  upgrade:
-    remediation:
-      retries: 5
   values:
     args:
       - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
