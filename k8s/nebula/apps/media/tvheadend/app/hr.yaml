@@ -43,7 +43,7 @@ spec:
             image:
               repository: registry.skysolutions.fi/library/tvheadend
               tag: 4.3.10042
-            #command: "/entrypoint.sh"
+            command: "/entrypoint.sh"
             args: ["--noacl", "-d"]
             env:
               TZ: "Europe/Helsinki"
