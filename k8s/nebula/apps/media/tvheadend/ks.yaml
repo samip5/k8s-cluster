@@ -22,7 +22,7 @@ spec:
   postBuild:
     substitute:
       APP: *appname
-      HOSTNAME: tv.samip.fi
+      HOSTNAME: tv.skylab.fi
       APP_UID: "0"
       APP_GID: "0"
       VOLSYNC_CLAIM: tvheadend-config-v1
