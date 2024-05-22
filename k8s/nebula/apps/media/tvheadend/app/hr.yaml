@@ -22,7 +22,6 @@ spec:
         runAsGroup: ${APP_GID}
         fsGroup: ${APP_GID}
         fsGroupChangePolicy: "OnRootMismatch"
-        privileged: true # I would love to know how to expose the tuner w/o this..
         supplementalGroups:
           - 44
           - 212
