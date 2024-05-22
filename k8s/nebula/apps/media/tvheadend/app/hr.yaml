@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.1.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -38,9 +38,9 @@ spec:
                       - "true"
 
     controllers:
-      main:
+      tvheadend:
         containers:
-          main:
+          tvheadend:
             image:
               repository: registry.skysolutions.fi/library/tvheadend
               tag: 4.3.10042
@@ -50,7 +50,8 @@ spec:
               TZ: "Europe/Helsinki"
 
     service:
-      main:
+      tvheadend:
+        controller: tvheadend
         ports:
           http:
             port: 9981
@@ -79,8 +80,8 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
-                  port: http
+                  identifier: tvheadend
+                  port: 9981
         tls:
           - hosts:
               - "${HOSTNAME}"
@@ -101,8 +102,8 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
-                  port: http
+                  identifier: tvheadend
+                  port: 9981
         tls:
           - hosts:
               - "${HOSTNAME}"
@@ -133,10 +134,10 @@ spec:
           - path: /dev/
     resources:
       requests:
-        # gpu.intel.com/i915: 1
+        gpu.intel.com/i915: 1
         cpu: 100m
         memory: 20Mi
       limits:
-        # gpu.intel.com/i915: 1
+        gpu.intel.com/i915: 1
         cpu: 1000m
         memory: 1096Mi
