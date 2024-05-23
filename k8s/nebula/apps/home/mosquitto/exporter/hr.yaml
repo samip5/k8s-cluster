@@ -64,4 +64,4 @@ spec:
          enabled: true
          serviceName: mqtt-exporter
          endpoints:
-           - port: metrics
+           - port: *port
