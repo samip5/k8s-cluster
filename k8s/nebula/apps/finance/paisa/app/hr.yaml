@@ -49,10 +49,10 @@ spec:
 
             resources:
               requests:
-                cpu: 50m
+                cpu: 100m
                 memory: 512Mi
               limits:
-                cpu: 100m
+                cpu: 150m
                 memory: 1Gi
 
     service:
