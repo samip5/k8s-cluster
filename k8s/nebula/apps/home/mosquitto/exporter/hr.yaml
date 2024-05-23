@@ -1,0 +1,66 @@
+---
+# yaml-language-server: $schema=https://github.com/fluxcd-community/flux2-schemas/raw/main/helmrelease-helm-v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mqtt-exporter-tasmota-1
+  namespace: home
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controllers:
+      mqtt-exporter:
+        containers:
+          app:
+            image:
+              repository: registry.skysolutions.fi/docker.io/kpetrem/mqtt-exporter # Pull-though cache
+              tag: latest
+            env:
+              TZ: "Europe/Helsinki"
+              # LOG_LEVEL: DEBUG
+              # LOG_MQTT_MESSAGE: "true"
+              MQTT_ADDRESS: mosquitto.home
+              MQTT_TOPIC: "tele/tasmota_8F498A/SENSOR"
+              MQTT_V5_PROTOCOL: "true"
+              PROMETHEUS_PORT: &port 3321
+              PROMETHEUS_PREFIX: "mqtt_tasmota_8F498A_"
+            resources:
+              requests:
+                cpu: 10m
+                memory: 50Mi
+              limits:
+                memory: 200Mi
+    service:
+      mqtt-exporter:
+        controller: mqtt-exporter
+        ports:
+          http:
+            enabled: false
+          metrics:
+            enabled: true
+            protocol: HTTP
+            port: *port
+        type: ClusterIP
+    serviceMonitor:
+       main:
+         enabled: true
+         endpoints:
+           - port: metrics
