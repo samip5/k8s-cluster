@@ -53,9 +53,12 @@ spec:
               containers:
                 - name: manager
                   resources:
+                    requests:
+                      cpu: 100m
+                      memory: 128Mi
                     limits:
                       cpu: 2000m
-                      memory: 4Gi
+                      memory: 2Gi
       target:
         kind: Deployment
         name: "(kustomize-controller|helm-controller|source-controller)"
