@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 3.1.0
+      version: 2.6.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -49,17 +49,17 @@ spec:
               limits:
                 memory: 200Mi
     service:
-      mqtt-exporter:
-        controller: mqtt-exporter
+      main:
         ports:
+          http:
+            enabled: false
           metrics:
             enabled: true
             protocol: HTTP
             port: *port
         type: ClusterIP
     serviceMonitor:
-       main:
-         enabled: true
-         serviceName: mqtt-exporter
-         endpoints:
-           - port: "3321"
+      main:
+        enabled: true
+        endpoints:
+          - port: metrics
