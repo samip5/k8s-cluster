@@ -26,7 +26,7 @@ metrics:
       - { color: red, min: 76, max: 9999 }
 
   - name: cluster_power_usage
-    query: round(mqtt_power)
+    query: round(sum(mqtt_tasmota_8F498A_ENERGY_Power)+sum(mqtt_power))
     suffix: "W"
     colors:
       - { color: "green", min: 0, max: 400 }
