@@ -6,6 +6,7 @@ resources:
   - cluster16.yaml
   - prom-rule.yaml
   - scheduledbackup.yaml
+  - lb.yaml
 labels:
   - pairs:
       app.kubernetes.io/name: cloudnative-pg-cluster
