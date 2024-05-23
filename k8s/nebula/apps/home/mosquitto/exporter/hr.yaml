@@ -52,8 +52,6 @@ spec:
       mqtt-exporter:
         controller: mqtt-exporter
         ports:
-          http:
-            enabled: false
           metrics:
             enabled: true
             protocol: HTTP
