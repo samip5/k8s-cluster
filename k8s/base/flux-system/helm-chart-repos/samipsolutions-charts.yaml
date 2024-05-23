@@ -7,5 +7,5 @@ metadata:
   namespace: flux-system
 spec:
   interval: 15m
-  url: https://helm.samipsolutions.fi/
+  url: https://helm.skysolutions.fi/
   timeout: 3m
