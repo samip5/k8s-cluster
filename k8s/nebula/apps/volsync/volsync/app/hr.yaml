@@ -1,4 +1,4 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: volsync
@@ -40,21 +40,22 @@ spec:
       tag: *tag
   postRenderers:
     - kustomize:
-        patchesStrategicMerge:
-          - apiVersion: apps/v1
-            kind: Deployment
-            metadata:
-              name: volsync
-            spec:
-              template:
-                spec:
-                  containers:
-                    - name: manager
-                      volumeMounts:
-                        - name: tz-config
-                          mountPath: /etc/localtime
-                  volumes:
-                    - name: tz-config
-                      hostPath:
-                        path: /usr/share/zoneinfo/Europe/Helsinki
-                        type: File
+        patches:
+          - patch: |
+              apiVersion: apps/v1
+              kind: Deployment
+              metadata:
+                name: volsync
+              spec:
+                template:
+                  spec:
+                    containers:
+                      - name: manager
+                        volumeMounts:
+                          - name: tz-config
+                            mountPath: /etc/localtime
+                    volumes:
+                      - name: tz-config
+                        hostPath:
+                          path: /usr/share/zoneinfo/Europe/Helsinki
+                          type: File
