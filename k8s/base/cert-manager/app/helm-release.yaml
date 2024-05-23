@@ -21,22 +21,15 @@ spec:
       leaderElection:
         namespace: cert-manager
     installCRDs: true
-    webhook:
-      enabled: true
-    extraArgs:
-    - --dns01-recursive-nameservers=1.1.1.1:53,8.8.8.8:53
-    - --dns01-recursive-nameservers-only
-    cainjector:
-      replicaCount: 1
-    podDnsPolicy: "None"
+    dns01RecursiveNameserver: 1.1.1.1:53,9.9.9.9:53
+    dns01RecursiveNameserverOnly: true
+    podDnsPolicy: None
     podDnsConfig:
       nameservers:
-      - "1.1.1.1"
-      - "8.8.8.8"
-    resources:
-      requests:
-        cpu: 500m
-        memory: 512M
-      limits:
-        cpu: 500m
-        memory: 512M
+        - 1.1.1.1
+        - 9.9.9.9
+    prometheus:
+      enabled: true
+      servicemonitor:
+        enabled: true
+
