@@ -95,4 +95,4 @@ spec:
       transcode:
         type: emptyDir
         globalMounts:
-          - path: /transcode
+          - path: /config/transcodes
