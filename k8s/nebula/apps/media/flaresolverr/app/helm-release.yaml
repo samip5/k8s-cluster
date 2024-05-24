@@ -44,7 +44,7 @@ spec:
           main:
             image:
               repository: ghcr.io/flaresolverr/flaresolverr
-              tag: v3.3.18
+              tag: v3.3.19
             env:
               TZ: "Europe/Helsinki"
               LOG_LEVEL: debug
