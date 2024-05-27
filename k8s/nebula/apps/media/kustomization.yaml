@@ -11,4 +11,4 @@ resources:
  - ./wizarr/ks.yaml
  - ./recyclarr/ks.yaml
  - ./tvheadend/ks.yaml
-# - ./tdarr/ks.yaml
+ - ./tdarr/ks.yaml
