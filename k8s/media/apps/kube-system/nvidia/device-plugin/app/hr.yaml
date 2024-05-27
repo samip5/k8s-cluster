@@ -17,6 +17,15 @@ spec:
         namespace: flux-system
       interval: 15m
   # https://github.com/NVIDIA/k8s-device-plugin/blob/main/deployments/helm/nvidia-device-plugin/values.yaml
+  install:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
   values:
     image:
       repository: nvcr.io/nvidia/k8s-device-plugin
