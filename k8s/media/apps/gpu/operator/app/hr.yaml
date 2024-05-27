@@ -30,11 +30,11 @@ spec:
     nfd:
       enabled: true
     driver:
-      enabled: true
+      enabled: false
     psa:
       enabled: true
     toolkit:
-      enabled: true
+      enabled: false
       env:
         - name: CONTAINERD_CONFIG
           value: /var/lib/rancher/k3s/agent/etc/containerd/config.toml
