@@ -48,10 +48,10 @@ spec:
               AVATAR_ALT: Skyler Mäntysaari
               NAME: Skyler Mäntysaari
               BIO: "Hobbyist developer | Gamer | #ActuallyAutistic | I.T-student"
-              BUTTON_ORDER: Website,GITHUB,GITLAB,GITEA,LINKED_IN,MATRIX,DISCORD,TELEGRAM
+              BUTTON_ORDER: Website,GITHUB,GITLAB,FORGEJO,LINKED_IN,MATRIX,DISCORD,TELEGRAM
               GITHUB: https://github.com/samip5
               GITLAB: https://gitlab.com/samip5
-              GITEA: https://git.samipsolutions.fi
+              FORGEJO: https://git.skysolutions.fi
               CUSTOM_BUTTON_ALT_TEXT: Donation link,Website link
               CUSTOM_BUTTON_ICON: fas fa-donate,fa-solid fa-globe
               CUSTOM_BUTTON_NAME: Donate,Website
@@ -71,7 +71,7 @@ spec:
               STEAM: https://steamcommunity.com/id/samip537
               EMAIL: sm+me@skym.fi
               EMAIL_TEXT: Email me!
-              FOOTER: Skyler Mäntysaari © 2022-2023
+              FOOTER: Skyler Mäntysaari © 2022-2024
             resources:
               requests:
                 memory: 64M
