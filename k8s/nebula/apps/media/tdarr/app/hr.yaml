@@ -26,76 +26,63 @@ spec:
   values:
     defaultPodOptions:
       securityContext:
-        fsGroup: 1000
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 100
         fsGroupChangePolicy: "OnRootMismatch"
+        supplementalGroups:
+          - 44 # video
+          - 125 # render
+          - 105 # render
     controllers:
       tdarr:
         containers:
-          app:
-            image:
-              repository: haveagitgat/tdarr
-              tag: 2.19.01@sha256:7ab5059f9e47237b872b9b9936542869d1d1a63fed754a4452a35f3d5ac761d2
           node:
             image:
-              repository: haveagitgat/tdarr_node
-              tag: 2.19.01@sha256:1ef70ed89e78040ca68fa23670c39f7e103330e1a4a55b7c6cabd34680f7175f
+              repository: ghcr.io/haveagitgat/tdarr_acc
+              tag: 2.19.01
+              pullPolicy: IfNotPresent
             env:
               - name: nodeID
                 valueFrom:
                   fieldRef:
                     fieldPath: spec.nodeName
               - name: serverIP
-                value: localhost
+                value: 192.168.2.129
               - name: serverPort
                 value: 8266
             resources:
               requests:
                 memory: 600Mi
                 cpu: 1000m
-    service:
-      app:
-        controller: *app
-        ports:
-          http:
-            port: 8265
-      server:
-        controller: *app
-        type: LoadBalancer
-        ports:
-          server:
-            enabled: true
-            protocol: TCP
-            port: 8266
-    ingress:
-      app:
-        enabled: true
-        className: internal-nginx
-        annotations:
-          hajimari.io/icon: material-symbols:switch-video-outline
-        hosts:
-          - host: &host "{{ .Release.Name }}.skylab.fi"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
-        tls:
-          - hosts:
-              - *host
+
     persistence:
       config:
         enabled: true
         existingClaim: *app
         advancedMounts:
           tdarr:
-            app:
-              - path: /app/configs
-                subPath: config
-              - path: /app/server
-                subPath: server
             node:
               - path: /app/configs
                 subPath: config
-              - path: /app/server
-                subPath: server
+      media:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            path: &mediaPath /mnt/merge
+            server: 192.168.2.129
+        globalMounts:
+          - path: *mediaPath
+            readOnly: true
+      cache:
+        enabled: true
+        type: nfs
+        server: nas.skylab.fi
+        path: /volume1/Media/tdarr-cache
+        globalMounts:
+          - path: /cache
+
+
+
 
