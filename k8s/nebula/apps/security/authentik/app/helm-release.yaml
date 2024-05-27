@@ -60,7 +60,6 @@ spec:
         host: "redis.databases.svc.cluster.local"
 
     server:
-      replicas: 1
       autoscaling:
         enabled: true
         minReplicas: 2
@@ -91,7 +90,6 @@ spec:
         limits:
           memory: 2Gi
     worker:
-      replicas: 1
       autoscaling:
         enabled: true
         minReplicas: 2
