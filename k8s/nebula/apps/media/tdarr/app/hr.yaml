@@ -39,7 +39,7 @@ spec:
         containers:
           node:
             image:
-              repository: ghcr.io/haveagitgat/tdarr_acc
+              repository: ghcr.io/haveagitgat/tdarr_node
               tag: 2.19.01
               pullPolicy: IfNotPresent
             env:
