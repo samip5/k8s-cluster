@@ -42,6 +42,12 @@ spec:
             image:
               repository: ghcr.io/haveagitgat/tdarr
               tag: 2.19.01
+            env:
+              TZ: Europe/Helsinki
+            resources:
+              requests:
+                memory: 1.5Gi
+
           node:
             image:
               repository: ghcr.io/haveagitgat/tdarr_node
@@ -58,10 +64,11 @@ spec:
                 value: 8266
             resources:
               requests:
-                memory: 600Mi
+                memory: 1Gi
                 cpu: 1000m
                 nvidia.com/gpu: 1
               limits:
+                memory: 2Gi
                 nvidia.com/gpu: 1
     service:
       app:
