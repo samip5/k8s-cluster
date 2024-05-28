@@ -17,23 +17,23 @@ spec:
         namespace: flux-system
   interval: 30m
   values:
+    defaultPodOptions:
+      runtimeClassName: nvidia
+      enableServiceLinks: false
+      securityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: "OnRootMismatch"
+        supplementalGroups:
+          - 44
+          - 109
+      annotations:
+        reloader.stakater.com/auto: "true"
+
     controllers:
       main:
         type: statefulset
-        annotations:
-          reloader.stakater.com/auto: "true"
-
-        pod:
-          enableServiceLinks: false
-          securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            fsGroup: 568
-            fsGroupChangePolicy: "OnRootMismatch"
-            supplementalGroups:
-              - 44
-              - 109
-          runtimeClass: nvidia
 
         containers:
           main:
