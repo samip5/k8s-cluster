@@ -62,7 +62,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: *app
+        type: emptyDir
         advancedMounts:
           tdarr:
             node:
