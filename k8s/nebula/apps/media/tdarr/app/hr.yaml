@@ -48,13 +48,16 @@ spec:
                   fieldRef:
                     fieldPath: spec.nodeName
               - name: serverIP
-                value: 192.168.2.129
+                value: 10.41.69.55
               - name: serverPort
                 value: 8266
             resources:
               requests:
                 memory: 600Mi
                 cpu: 1000m
+                gpu.intel.com/i915: 1
+              limits:
+                gpu.intel.com/i915: 1
 
     persistence:
       config:
