@@ -37,6 +37,7 @@ spec:
           - 568
     controllers:
       tdarr:
+        replicas: 3
         containers:
           node:
             image:

@@ -116,7 +116,7 @@ spec:
         hostPath: &mediaPath /mnt/merge/library/
         globalMounts:
           - path: *mediaPath
-            readOnly: true
+            readOnly: false
 
       cache:
         enabled: true
