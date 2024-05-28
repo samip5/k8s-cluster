@@ -92,7 +92,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: *app
+        existingClaim: tdarr
         advancedMounts:
           tdarr:
             app:
