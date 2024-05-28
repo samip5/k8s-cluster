@@ -33,6 +33,7 @@ spec:
             supplementalGroups:
               - 44
               - 109
+          runtimeClass: nvidia
 
         containers:
           main:
