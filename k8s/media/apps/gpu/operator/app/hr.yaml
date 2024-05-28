@@ -1,3 +1,13 @@
+# Decoding requires these packages on Ubuntu 22.04
+# libnvidia-decode-550-server libnvidia-encode-550-server
+# As well as the normal nvidia drivers, runtime, toolkit and
+# if using k3s, runtime class for it.
+#############################################################
+# Ended up with the following packages before it would work:
+# cuda-drivers-fabricmanager-550 nvidia-compute-utils-550-server nvidia-container-runtime nvidia-container-toolkit
+# nvidia-container-toolkit-base nvidia-dkms-550-server nvidia-fabricmanager-550 nvidia-firmware-550-server-550.54.15
+# nvidia-headless-550-server nvidia-headless-no-dkms-550-server nvidia-kernel-common-550-server nvidia-kernel-source-550-server
+# nvidia-utils-550-server
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
