@@ -6,6 +6,7 @@ resources:
   - radarr/ks.yaml
   - sonarr/ks.yaml
   - tautulli/ks.yaml
+  - tdarr/ks.yaml
   - media-index/ks.yaml
   - qbit/ks.yaml
   - qbittorrent/ks.yaml

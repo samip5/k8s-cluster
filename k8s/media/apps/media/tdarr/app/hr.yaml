@@ -1,0 +1,122 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app tdarr
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 3
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    defaultPodOptions:
+      runtimeClassName: nvidia
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 100
+        fsGroupChangePolicy: "OnRootMismatch"
+        supplementalGroups:
+          - 44 # video
+          - 125 # render
+          - 105 # render
+    controllers:
+      tdarr:
+        containers:
+          app:
+            image:
+              repository: ghcr.io/haveagitgat/tdarr
+              tag: 2.19.01
+          node:
+            image:
+              repository: ghcr.io/haveagitgat/tdarr_node
+              tag: 2.19.01
+              pullPolicy: IfNotPresent
+            env:
+              - name: nodeID
+                valueFrom:
+                  fieldRef:
+                    fieldPath: spec.nodeName
+              - name: serverIP
+                value: localhost
+              - name: serverPort
+                value: 8266
+            resources:
+              requests:
+                memory: 600Mi
+                cpu: 1000m
+                nvidia.com/gpu: 1
+              limits:
+                nvidia.com/gpu: 1
+    service:
+      app:
+        controller: tdarr
+        ports:
+          http:
+            port: 8265
+          server:
+            enabled: true
+            protocol: TCP
+            port: 8266
+
+    ingress:
+      app:
+        className: nginx
+        hosts:
+          - host: &hostName tdarr.media.skylab.fi
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts:
+              - *hostName
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: *app
+        advancedMounts:
+          tdarr:
+            app:
+              - path: /app/server
+                subPath: server
+            node:
+              - path: /app/configs
+                subPath: config
+      media:
+        enabled: true
+        type: hostPath
+        hostPath: &mediaPath /mnt/merge/library/
+        globalMounts:
+          - path: *mediaPath
+            readOnly: true
+
+      cache:
+        enabled: true
+        type: nfs
+        server: nas.skylab.fi
+        path: /volume1/Media/tdarr-cache
+        globalMounts:
+          - path: /cache
+
+
+
+
