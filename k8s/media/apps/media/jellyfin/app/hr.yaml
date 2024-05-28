@@ -21,8 +21,8 @@ spec:
       runtimeClassName: nvidia
       enableServiceLinks: false
       securityContext:
-        runAsUser: 568
-        runAsGroup: 568
+        runAsUser: 0
+        runAsGroup: 0
         fsGroup: 568
         fsGroupChangePolicy: "OnRootMismatch"
         supplementalGroups:
