@@ -78,7 +78,7 @@ spec:
             server: 192.168.2.129
         globalMounts:
           - path: *mediaPath
-            readOnly: true
+            readOnly: false
       cache:
         enabled: true
         type: nfs
