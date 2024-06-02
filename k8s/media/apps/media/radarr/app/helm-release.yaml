@@ -52,6 +52,7 @@ spec:
               RADARR__PORT: &port 80
               RADARR__APPLICATION_URL: "https://radarr.media.skylab.fi"
               RADARR__LOG_LEVEL: info
+              SONARR__LOG__DBENABLED: false
             resources:
               requests:
                 cpu: 10m
