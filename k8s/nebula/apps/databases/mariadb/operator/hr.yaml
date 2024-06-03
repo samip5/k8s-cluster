@@ -14,6 +14,7 @@ spec:
       version: "0.28.1"
   interval: 1h0m0s
   values:
+    logLevel: debug
     image:
       repository: ghcr.io/mariadb-operator/mariadb-operator
       pullPolicy: IfNotPresent
