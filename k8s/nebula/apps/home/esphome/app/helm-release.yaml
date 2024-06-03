@@ -67,6 +67,10 @@ spec:
             image:
               repository: ghcr.io/esphome/esphome
               tag: 2024.5.4
+            env:
+              PLATFORMIO_CORE_DIR: /cache/platformio
+              PLATFORMIO_GLOBALLIB_DIR: /cache/platformio/lib
+              PLATFORMIO_SETTING_ENABLE_TELEMETRY: No
             resources:
               requests:
                 cpu: 5m
@@ -112,4 +116,6 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /config/.esphome
+          - path: /cache
+            subPath: cache
 
