@@ -10,6 +10,7 @@ resources:
   - genpi-minio-endpoints.yaml
   - genpi-minio-svc.yaml
   - genpi-minio-ingress.yaml
+  - nas-ingress-and-service.yaml
 #  - home-srv-endpoints.yaml
 #  - home-srv-svc.yaml
 #  - home-srv-livetv-ingress.yaml
