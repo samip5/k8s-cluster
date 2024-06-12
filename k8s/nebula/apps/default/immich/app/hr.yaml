@@ -31,20 +31,16 @@ spec:
             image: &img
               repository: ghcr.io/immich-app/immich-server
               tag: v1.106.2
-            command: &cmd [ "tini", "--", "node", "/usr/src/app/dist/main" ]
-            args: [ "immich" ]
-            env: &env
-              TZ: "Europe/Helsinki"
-              LD_PRELOAD: /usr/lib/x86_64-linux-gnu/libmimalloc.so.2
-              NODE_ENV: production
-              LOG_LEVEL: verbose
-              IMMICH_MEDIA_LOCATION: &pvc /data
-              IMMICH_METRICS: "true"
-              IMMICH_SERVER_URL: http://immich.default.svc.cluster.local:3001
-              IMMICH_MACHINE_LEARNING_URL: http://immich-ml.default.svc.cluster.local:3003
-              REDIS_HOSTNAME: redis.databases.svc.cluster.local
-              REDIS_PORT: "6379"
-              REDIS_DBINDEX: 9
+            env:
+              <<: &env-common
+                TZ: "Europe/Helsinki"
+                IMMICH_MEDIA_LOCATION: &pvc /data
+                IMMICH_METRICS: "true"
+                IMMICH_MACHINE_LEARNING_URL: http://immich-ml.default.svc.cluster.local:3003
+                REDIS_HOSTNAME: redis.databases.svc.cluster.local
+                REDIS_PORT: "6379"
+                REDIS_DBINDEX: 9
+              IMMICH_WORKERS_INCLUDE: &server-include 'api'
             envFrom: &ef
               - secretRef:
                   name: immich-secret
@@ -54,12 +50,11 @@ spec:
               capabilities:
                 drop: [ "ALL" ]
             resources:
-              requests:
-                cpu: "10m"
-                memory: "128Mi"
               limits:
-                cpu: "3000m"
-                memory: "2Gi"
+                memory: 300Mi
+              requests:
+                cpu: 65m
+                memory: 300Mi
       microservices:
         type: deployment
         replicas: 3
@@ -90,19 +85,18 @@ spec:
         containers:
           main:
             image: *img
-            command: *cmd
-            args: [ "microservices" ]
-            env: *env
+            env:
+              <<: *env-common
+              IMMICH_WORKERS_EXCLUDE: *server-include
             envFrom: *ef
             securityContext: *sc
             resources:
-              requests:
-                cpu: "100m"
-                memory: "300Mi"
-                gpu.intel.com/i915: "1"
               limits:
-                cpu: "1000m" # my machine will actually die
-                memory: "2Gi"
+                memory: 1Gi
+                gpu.intel.com/i915: "1"
+              requests:
+                cpu: 50m
+                memory: 850Mi
                 gpu.intel.com/i915: "1"
       ml:
         type: statefulset
@@ -122,15 +116,16 @@ spec:
             image:
               repository: ghcr.io/immich-app/immich-machine-learning
               tag: v1.106.2
-            env: *env
+            env:
+              <<: *env-common
+              MPLCONFIGDIR: /tmp/matplotlib
             securityContext: *sc
             resources:
-              requests:
-                cpu: "10m"
-                memory: "1Gi"
               limits:
-                cpu: "1000m"
-                memory: "4Gi"
+                memory: 1860Mi
+              requests:
+                cpu: 70m
+                memory: 1860Mi
         statefulset:
           volumeClaimTemplates:
             - name: data
