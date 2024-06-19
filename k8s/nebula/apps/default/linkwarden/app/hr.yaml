@@ -58,7 +58,7 @@ spec:
               requests:
                 memory: 512Mi
               limits:
-                memory: 1Gi
+                memory: 600Mi
             env:
               NEXTAUTH_URL: https://${HOSTNAME}/api/v1/auth
               STORAGE_FOLDER: "config" # Will always end up as /data/STOREAGE_FOLDER so eg /data/config
