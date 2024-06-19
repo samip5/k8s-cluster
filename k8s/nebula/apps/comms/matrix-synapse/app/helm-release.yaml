@@ -35,10 +35,10 @@ spec:
       default:
         resources:
           limits:
-            cpu: 1000m # One CPU core
+      #      cpu: 1000m # One CPU core
             memory: 1Gi
           requests:
-            cpu: 400m # 0.4 of core
+      #      cpu: 400m # 0.4 of core
             memory: 512Mi
       media_repository:
         enabled: true
