@@ -38,7 +38,7 @@ spec:
             cpu: 1000m # One CPU core
             memory: 1Gi
           requests:
-            cpu: 500m # 0.5 of core
+            cpu: 400m # 0.4 of core
             memory: 512Mi
       media_repository:
         enabled: true
@@ -46,10 +46,11 @@ spec:
           type: Recreate
       federation_sender:
         enabled: true
+        replicaCount: 2
       generic_worker:
         enabled: false
         generic: true
-        replicaCount: 3
+        replicaCount: 2
         listeners: [client]
         csPaths:
           ## Client API requests
