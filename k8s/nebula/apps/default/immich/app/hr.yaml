@@ -57,7 +57,7 @@ spec:
                 memory: 300Mi
       microservices:
         type: deployment
-        replicas: 3
+        replicas: 2
         strategy: RollingUpdate
         rollingUpdate:
           unavailable: "90%"
@@ -100,7 +100,7 @@ spec:
                 gpu.intel.com/i915: "1"
       ml:
         type: statefulset
-        replicas: 3
+        replicas: 1
         pod:
           topologySpreadConstraints:
             - maxSkew: 1
