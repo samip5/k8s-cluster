@@ -51,10 +51,10 @@ spec:
                 drop: [ "ALL" ]
             resources:
               limits:
-                memory: 300Mi
+                memory: 2Gi
               requests:
-                cpu: 65m
-                memory: 300Mi
+                cpu: 500m
+                memory: 2Gi
       microservices:
         type: deployment
         replicas: 2
