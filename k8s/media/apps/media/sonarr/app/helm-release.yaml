@@ -47,7 +47,7 @@ spec:
               TZ: Europe/Helsinki
             image:
               repository: ghcr.io/onedr0p/sonarr-develop
-              tag: 4.0.5.1778
+              tag: 4.0.5.1782
             probes:
               liveness:
                 enabled: true
