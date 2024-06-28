@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 3.0.4
+      version: 3.2.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -23,30 +23,36 @@ spec:
   upgrade:
     cleanupOnFail: true
     remediation:
+      strategy: rollback
       retries: 3
   uninstall:
     keepHistory: false
   values:
     defaultPodOptions:
       securityContext:
+        runAsNonRoot: true
         runAsUser: 568 # ${APP_UID}
         runAsGroup: 568 # ${APP_GID}
         fsGroup: 568 # ${APP_GID}
         fsGroupChangePolicy: "OnRootMismatch"
+        seccompProfile: { type: RuntimeDefault }
     controllers:
-      main:
+      prowlarr:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
           prowlarr:
             image:
               repository: ghcr.io/onedr0p/prowlarr-develop
-              tag: 1.19.0.4568@sha256:59a1b3f3f5df0f0d112a338d8b155737736ae506aaf2f227fa8bdf54b1bd634d
+              tag: 1.19.0.4568
             env:
               PROWLARR__INSTANCE_NAME: Prowlarr
               PROWLARR__PORT: &port 80
-              PROWLARR__LOG_LEVEL: debug
+              PROWLARR__LOG_LEVEL: info
               PROWLARR__AUTHENTICATION_METHOD: External
+              PROWLARR__AUTH__REQUIRED: DisabledForLocalAddresses
+              PROWLARR__LOG__DBENABLED: "False"
+              TZ: Europe/Helsinki
             envFrom:
               - secretRef:
                   name: prowlarr
@@ -65,15 +71,20 @@ spec:
               readiness: *probes
               startup:
                 enabled: false
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: [ "ALL" ] }
             resources:
               requests:
                 memory: 127Mi
               limits:
                 memory: 300Mi
 
+
     service:
-      main:
-        controller: main
+      prowlarr:
+        controller: prowlarr
         ports:
           http:
             port: *port
@@ -120,12 +131,6 @@ spec:
               - *host-int
     persistence:
       config:
-        enabled: true
-        existingClaim: prowlarr-config-v1
-        globalMounts:
-          - path: /config
-      backup:
-        enabled: false
-        existingClaim: prowlarr-backup-v1
-        globalMounts:
-        - path: /config/Backups
+        type: emptyDir
+      tmp:
+        type: emptyDir
