@@ -46,6 +46,8 @@ spec:
   galera:
     enabled: true
 
+    podRecoveryTimeout: 15m
+
   service:
     type: LoadBalancer
     metadata:
@@ -80,9 +82,9 @@ spec:
       memory: 2Gi
 
   podSecurityContext:
-    runAsUser: 568
-    runAsGroup: 568
-    fsGroup: 568
+    runAsUser: 999
+    runAsGroup: 999
+    fsGroup: 999
     fsGroupChangePolicy: OnRootMismatch
 
 
