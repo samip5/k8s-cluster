@@ -94,7 +94,7 @@ spec:
                   name: qbit-vpn-secret
             image:
               repository: ghcr.io/qdm12/gluetun
-              tag: latest@sha256:5d1352406735f4a47ecd69e166971465a595d66bd21b7d1f6351be27145441e7
+              tag: latest@sha256:58e8264a44f698287178891dc3c389af8b797a09fc88014e5e448e21c19cc4ac
             securityContext:
               capabilities:
                 add:
