@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - local-path/ks.yaml
   - snapshot-controller/ks.yaml
-  - rook-ceph
+#  - rook-ceph
