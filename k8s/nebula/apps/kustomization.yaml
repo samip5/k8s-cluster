@@ -5,7 +5,7 @@ resources:
   - dev
 #  - crypto
   - collab
-  - comms
+#  - comms
   - security
   - monitoring
   - networking
@@ -19,7 +19,7 @@ resources:
 #  - vpn-services
   - default
   - volsync
-  - finance
+#  - finance
   - flux-system
 #  - tor
   - games
