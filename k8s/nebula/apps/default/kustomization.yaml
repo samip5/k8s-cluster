@@ -1,10 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-resources:
+resources: []
 #  - zipline/ks.yaml
 #  - matrix-login/ks.yaml
 #  - paperless/ks.yaml
-  - smtp-relay/ks.yaml
+#  - smtp-relay/ks.yaml
 #  - theme-park/ks.yaml
 #  - linkwarden/ks.yaml
 #  - immich/ks.yaml
