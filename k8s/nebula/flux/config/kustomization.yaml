@@ -5,4 +5,4 @@ resources:
   - ./cluster.yaml
   - ./shared.yaml
 #  - ./vm.yaml
-  - ./private-flux-system.yaml
+#  - ./private-flux-system.yaml
