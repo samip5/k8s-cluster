@@ -7,8 +7,8 @@ resources:
  - ./prowlarr/ks.yaml
  - ./flaresolverr/ks.yaml
  - ./jellyseer/ks.yaml
- - ./maintainerr/ks.yaml
- - ./wizarr/ks.yaml
- - ./recyclarr/ks.yaml
- - ./tvheadend/ks.yaml
- - ./tdarr/ks.yaml
+# - ./maintainerr/ks.yaml
+# - ./wizarr/ks.yaml
+# - ./recyclarr/ks.yaml
+# - ./tvheadend/ks.yaml
+# - ./tdarr/ks.yaml
