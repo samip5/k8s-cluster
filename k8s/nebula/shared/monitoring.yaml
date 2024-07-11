@@ -1,84 +1,84 @@
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: monitoring-namespace
-  namespace: flux-system
-  labels:
-    component.skylab.fi/part-of: definitions
-spec:
-  path: "./k8s/base/monitoring"
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  interval: 10m0s
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: monitoring-kps-crds
-  namespace: flux-system
-  labels:
-    component.skylab.fi/part-of: definitions
-spec:
-  path: "./k8s/base/monitoring/prom-stack/crds"
-  prune: false
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  interval: 10m0s
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: monitoring-prom-stack
-  namespace: flux-system
-  labels:
-    component.skylab.fi/part-of: definitions
-spec:
-  path: "./k8s/base/monitoring/prom-stack/overlays/nebula"
-  prune: false
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  interval: 10m0s
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: monitoring-node-problem-detector
-  namespace: flux-system
-spec:
-  path: "./k8s/base/monitoring/node-problem-detector"
-  prune: false
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  interval: 10m0s
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: monitoring-blackbox
-  namespace: flux-system
-spec:
-  path: "./k8s/base/monitoring/blackbox-exporter"
-  prune: false
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  interval: 10m0s
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: monitoring-speedtest
-  namespace: flux-system
-spec:
-  path: "./k8s/base/monitoring/speedtest-exporter"
-  prune: false
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  interval: 10m0s
+#---
+#apiVersion: kustomize.toolkit.fluxcd.io/v1
+#kind: Kustomization
+#metadata:
+#  name: monitoring-namespace
+#  namespace: flux-system
+#  labels:
+#    component.skylab.fi/part-of: definitions
+#spec:
+#  path: "./k8s/base/monitoring"
+#  prune: true
+#  sourceRef:
+#    kind: GitRepository
+#    name: flux-system
+#  interval: 10m0s
+#---
+#apiVersion: kustomize.toolkit.fluxcd.io/v1
+#kind: Kustomization
+#metadata:
+#  name: monitoring-kps-crds
+#  namespace: flux-system
+#  labels:
+#    component.skylab.fi/part-of: definitions
+#spec:
+#  path: "./k8s/base/monitoring/prom-stack/crds"
+#  prune: false
+#  sourceRef:
+#    kind: GitRepository
+#    name: flux-system
+#  interval: 10m0s
+#---
+#apiVersion: kustomize.toolkit.fluxcd.io/v1
+#kind: Kustomization
+#metadata:
+#  name: monitoring-prom-stack
+#  namespace: flux-system
+#  labels:
+#    component.skylab.fi/part-of: definitions
+#spec:
+#  path: "./k8s/base/monitoring/prom-stack/overlays/nebula"
+#  prune: false
+#  sourceRef:
+#    kind: GitRepository
+#    name: flux-system
+#  interval: 10m0s
+#---
+#apiVersion: kustomize.toolkit.fluxcd.io/v1
+#kind: Kustomization
+#metadata:
+#  name: monitoring-node-problem-detector
+#  namespace: flux-system
+#spec:
+#  path: "./k8s/base/monitoring/node-problem-detector"
+#  prune: false
+#  sourceRef:
+#    kind: GitRepository
+#    name: flux-system
+#  interval: 10m0s
+#---
+#apiVersion: kustomize.toolkit.fluxcd.io/v1
+#kind: Kustomization
+#metadata:
+#  name: monitoring-blackbox
+#  namespace: flux-system
+#spec:
+#  path: "./k8s/base/monitoring/blackbox-exporter"
+#  prune: false
+#  sourceRef:
+#    kind: GitRepository
+#    name: flux-system
+#  interval: 10m0s
+#---
+#apiVersion: kustomize.toolkit.fluxcd.io/v1
+#kind: Kustomization
+#metadata:
+#  name: monitoring-speedtest
+#  namespace: flux-system
+#spec:
+#  path: "./k8s/base/monitoring/speedtest-exporter"
+#  prune: false
+#  sourceRef:
+#    kind: GitRepository
+#    name: flux-system
+#  interval: 10m0s
