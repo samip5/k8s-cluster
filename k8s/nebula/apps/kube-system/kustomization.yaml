@@ -6,5 +6,5 @@ resources:
   - multus/ks.yaml
   - multus/ks-config.yaml
   - snapshot-controller/ks.yaml
-  - node-feature-discovery/ks.yaml
-  - descheduler/ks.yaml
+#  - node-feature-discovery/ks.yaml
+#  - descheduler/ks.yaml
