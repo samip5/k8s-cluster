@@ -6,21 +6,21 @@ resources:
 #  - crypto
   - collab
 #  - comms
-  - security
+#  - security
   - monitoring
   - networking
   - system
   - storage
-  - home
-  - databases
+#  - home
+#  - databases
   - kube-system
-  - media
-  - vpn
+#  - media
+#  - vpn
 #  - vpn-services
   - default
   - volsync
 #  - finance
   - flux-system
 #  - tor
-  - games
-  - protu-staging
+#  - games
+#  - protu-staging
