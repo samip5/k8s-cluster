@@ -12,7 +12,7 @@ resources:
 #  - system
   - storage
 #  - home
-#  - databases
+  - databases
   - kube-system
 #  - media
 #  - vpn
