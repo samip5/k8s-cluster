@@ -34,22 +34,19 @@ _... managed with Flux, Renovate, and GitHub Actions_ 🤖
 
 | Tool                                                               | Purpose                                                             |
 |--------------------------------------------------------------------|---------------------------------------------------------------------|
-| [ansible](https://www.ansible.com)                                 | Preparing Ubuntu for Kubernetes and installing k3s                  |
 | [flux](https://toolkit.fluxcd.io/)                                 | Operator that manages your k8s cluster based on your Git repository |
 | [go-task](https://github.com/go-task/task)                         | A task runner / simpler Make alternative written in Go              |
 | [sops](https://github.com/mozilla/sops)                            | Encrypts k8s secrets with GnuPG                                     |
 
 
 ## 💻 Nodes
-| Node                          | Hostname        | RAM  | Storage                                            | Function         | Operating System |
-|-------------------------------|-----------------|------|----------------------------------------------------|------------------|------------------|
-| Raspberry Pi 4 Model B        | w1              | 8GB  | 250GB SSD                                          | Kube Worker      | Debian 12        |
-| Raspberry Pi Compute Module 4 | w7              | 8GB  | 2TB SSD                                            | Kube Worker      | Debian 12        |
-| Lenovo ThinkCentre M910q Tiny | w-amd-1         | 32GB | 1TB Kingston DC SSD + 256GB SSD                    | Kube Worker      | Debian 12        |
-| Custom Haswell mATX system    | w-amd-2         | 32GB | 480GB Transcend SSD, 275GB Crucial SSD + 320GB HDD | Kube Worker      | Debian 12        |
-| VM on Synology                | w-amd-storage-1 | 4GB  | 400GB NVME                                         | Longhorn storage | Debian 12        |
-| HP EliteDesk 800 G2           | w-amd-3         | 32GB | 256GB SSD                                          | Kube Worker      | Debian 12        |
-| Lenovo ThinkCentre M910q Tiny | m1              | 16GB | 256GB SSD x 2                                      | Kube Master      | Debian 12        |
+| Node                          | Hostname | RAM  | Storage                                            | Function    | Operating System |
+|-------------------------------|----------|------|----------------------------------------------------|-------------|------------------|
+| Raspberry Pi Compute Module 4 | w7       | 8GB  | 2TB SSD                                            | Kube Worker | Debian 12        |
+| Lenovo ThinkCentre M910q Tiny | w-amd-1  | 32GB | 1TB Kingston DC SSD + 256GB SSD                    | Kube Worker | Talos 1.7.5      |
+| Custom Haswell mATX system    | w-amd-2  | 32GB | 480GB Transcend SSD, 275GB Crucial SSD + 320GB HDD | Kube Worker | Talos 1.7.5      |
+| HP EliteDesk 800 G2           | w-amd-3  | 32GB | 256GB SSD                                          | Kube Worker | Talos 1.7.5      |
+| Lenovo ThinkCentre M910q Tiny | m1       | 16GB | 256GB SSD x 2                                      | Kube Master | Talos 1.7.5      |
 
 ## Storage
 | Node         | Hostname | RAM  | Storage                                                                                  | Function   | Operating System |
