@@ -4,8 +4,8 @@ kind: Kustomization
 resources:
  - ns.yaml
 # - ./autobrr/ks.yaml
-# - ./prowlarr/ks.yaml
-# - ./flaresolverr/ks.yaml
+ - ./prowlarr/ks.yaml
+ - ./flaresolverr/ks.yaml
 # - ./jellyseer/ks.yaml
 # - ./maintainerr/ks.yaml
 # - ./wizarr/ks.yaml
