@@ -1,79 +1,79 @@
-#---
-#apiVersion: kustomize.toolkit.fluxcd.io/v1
-#kind: Kustomization
-#metadata:
-#  name: networking-namespace
-#  namespace: flux-system
-#  labels:
-#    component.skylab.fi/part-of: definitions
-#spec:
-#  path: "./k8s/base/networking"
-#  prune: true
-#  sourceRef:
-#    kind: GitRepository
-#    name: flux-system
-#  interval: 10m0s
-#---
-#apiVersion: kustomize.toolkit.fluxcd.io/v1
-#kind: Kustomization
-#metadata:
-#  name: cert-manager
-#  namespace: flux-system
-#  labels:
-#    component.skylab.fi/part-of: definitions
-#spec:
-#  path: "./k8s/base/cert-manager"
-#  prune: true
-#  sourceRef:
-#    kind: GitRepository
-#    name: flux-system
-#  interval: 10m0s
-#---
-#apiVersion: kustomize.toolkit.fluxcd.io/v1
-#kind: Kustomization
-#metadata:
-#  name: cert-manager-app
-#  namespace: flux-system
-#  labels:
-#    component.skylab.fi/part-of: definitions
-#spec:
-#  path: "./k8s/base/cert-manager/app"
-#  prune: true
-#  sourceRef:
-#    kind: GitRepository
-#    name: flux-system
-#  interval: 10m0s
-#---
-#apiVersion: kustomize.toolkit.fluxcd.io/v1
-#kind: Kustomization
-#metadata:
-#  name: cert-manager-issuers
-#  namespace: flux-system
-#  labels:
-#    component.skylab.fi/part-of: definitions
-#spec:
-#  path: "./k8s/base/cert-manager/issuers"
-#  prune: true
-#  dependsOn:
-#    - name: cert-manager-app
-#  sourceRef:
-#    kind: GitRepository
-#    name: flux-system
-#  interval: 10m0s
-#---
-#apiVersion: kustomize.toolkit.fluxcd.io/v1
-#kind: Kustomization
-#metadata:
-#  name: cert-manager-certificates
-#  namespace: flux-system
-#  labels:
-#    component.skylab.fi/part-of: definitions
-#spec:
-#  path: "./k8s/base/cert-manager/overlays/nebula"
-#  prune: false
-#  dependsOn:
-#    - name: cert-manager-issuers
-#  sourceRef:
-#    kind: GitRepository
-#    name: flux-system
-#  interval: 10m0s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: networking-namespace
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/networking"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cert-manager
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/cert-manager"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cert-manager-app
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/cert-manager/app"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cert-manager-issuers
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/cert-manager/issuers"
+  prune: true
+  dependsOn:
+    - name: cert-manager-app
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cert-manager-certificates
+  namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
+spec:
+  path: "./k8s/base/cert-manager/overlays/nebula"
+  prune: false
+  dependsOn:
+    - name: cert-manager-issuers
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
