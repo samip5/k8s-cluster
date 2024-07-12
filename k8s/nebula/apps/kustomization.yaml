@@ -9,7 +9,7 @@ resources:
   - security
   - monitoring
   - networking
-#  - system
+  - system
   - storage
 #  - home
   - databases
