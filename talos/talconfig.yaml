@@ -47,6 +47,13 @@ nodes:
       - deviceSelector:
           hardwareAddr: 6c:4b:90:2d:a8:07
         dhcp: true
+  - hostname: w-amd-2
+    ipAddress: 10.0.105.33
+    controlPlane: false
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: d8:cb:8a:1d:a0:d2
+        dhcp: true
   - hostname: w-amd-3
     ipAddress: 10.0.105.19
     controlPlane: false
