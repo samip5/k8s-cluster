@@ -61,13 +61,13 @@ spec:
       driver:
         extraVolumeMounts:
           - name: local-hostpath
-            mountPath: /usr/local/data/k3s/
+            mountPath: /var/lib/local-hostpath
             mountPropagation: Bidirectional
 
       extraVolumes:
         - name: local-hostpath
           hostPath:
-            path: /usr/local/data/k3s/
+            path: /var/lib/local-hostpath
             type: DirectoryOrCreate
 
     driver:
