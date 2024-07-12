@@ -21,6 +21,6 @@ spec:
       fsGroup: ${APP_GID:-568}
     pruneIntervalDays: 7
     retain:
-      hourly: 24
+      hourly: 12
       daily: 7
-      weekly: 5
+      weekly: 4
