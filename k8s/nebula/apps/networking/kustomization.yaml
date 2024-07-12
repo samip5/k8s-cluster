@@ -6,8 +6,8 @@ resources:
   - ./nginx/ks-shared.yaml
   - ./nginx/ks-internal.yaml
   - ./nginx/ks-external.yaml
-#  - ./ks-misc.yaml
-#  - ./cloudflared/ks.yaml
+  - ./ks-misc.yaml
+  - ./cloudflared/ks.yaml
 #  - ./external-dns/ks-shared.yaml
 #  - ./external-dns/ks-external.yaml
 #  - ./external-dns/ks-internal.yaml
