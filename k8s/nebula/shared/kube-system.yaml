@@ -28,16 +28,16 @@ spec:
     kind: GitRepository
     name: flux-system
   interval: 10m0s
-#---
-#apiVersion: kustomize.toolkit.fluxcd.io/v1
-#kind: Kustomization
-#metadata:
-#  name: nfd
-#  namespace: flux-system
-#spec:
-#  path: "./k8s/base/kube-system/node-feature-discovery"
-#  prune: true
-#  sourceRef:
-#    kind: GitRepository
-#    name: flux-system
-#  interval: 10m0s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: nfd
+  namespace: flux-system
+spec:
+  path: "./k8s/base/kube-system/node-feature-discovery"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 10m0s
