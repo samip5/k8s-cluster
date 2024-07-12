@@ -10,6 +10,6 @@ resources:
   - ./cloudflared/ks.yaml
   - ./external-dns/ks-shared.yaml
 #  - ./external-dns/ks-external.yaml
-#  - ./external-dns/ks-internal.yaml
+  - ./external-dns/ks-internal.yaml
 #  - ./whoami/ks.yaml
 #  - ./unimus/ks.yaml
