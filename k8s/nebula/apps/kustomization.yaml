@@ -8,7 +8,7 @@ resources:
 #  - comms
 #  - security
 #  - monitoring
-#  - networking
+  - networking
 #  - system
 #  - storage
 #  - home
