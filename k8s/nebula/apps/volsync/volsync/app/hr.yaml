@@ -38,24 +38,24 @@ spec:
     restic:
       repository: *image
       tag: *tag
-  postRenderers:
-    - kustomize:
-        patches:
-          - patch: |
-              apiVersion: apps/v1
-              kind: Deployment
-              metadata:
-                name: volsync
-              spec:
-                template:
-                  spec:
-                    containers:
-                      - name: manager
-                        volumeMounts:
-                          - name: tz-config
-                            mountPath: /etc/localtime
-                    volumes:
-                      - name: tz-config
-                        hostPath:
-                          path: /usr/share/zoneinfo/Europe/Helsinki
-                          type: File
+#  postRenderers:
+#    - kustomize:
+#        patches:
+#          - patch: |
+#              apiVersion: apps/v1
+#              kind: Deployment
+#              metadata:
+#                name: volsync
+#              spec:
+#                template:
+#                  spec:
+#                    containers:
+#                      - name: manager
+#                        volumeMounts:
+#                          - name: tz-config
+#                            mountPath: /etc/localtime
+#                    volumes:
+#                      - name: tz-config
+#                        hostPath:
+#                          path: /usr/share/zoneinfo/Europe/Helsinki
+#                          type: File
