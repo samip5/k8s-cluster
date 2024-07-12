@@ -1,64 +1,70 @@
 ---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: "3"
 
+vars:
+  CLUSTER_SECRET_SOPS_FILE: "{{.KUBERNETES_DIR}}/flux/vars/cluster-secrets.sops.yaml"
+  CLUSTER_SETTINGS_FILE: "{{.KUBERNETES_DIR}}/flux/vars/cluster-settings.yaml"
+  GITHUB_DEPLOY_KEY_FILE: "{{.KUBERNETES_DIR}}/bootstrap/flux/github-deploy-key.sops.yaml"
+
 tasks:
+
   bootstrap:
     desc: Bootstrap Flux into a Kubernetes cluster
+    cmds:
+      - kubectl apply --kubeconfig {{.KUBECONFIG_FILE}} --server-side --kustomize {{.KUBERNETES_DIR}}/bootstrap/flux
+      - cat {{.AGE_FILE}} | kubectl --kubeconfig {{.KUBECONFIG_FILE}} -n flux-system create secret generic sops-age --from-file=age.agekey=/dev/stdin
+      - sops --decrypt {{.CLUSTER_SECRET_SOPS_FILE}} | kubectl apply --kubeconfig {{.KUBECONFIG_FILE}} --server-side --filename -
+      - kubectl apply --kubeconfig {{.KUBECONFIG_FILE}} --server-side --filename {{.CLUSTER_SETTINGS_FILE}}
+      - kubectl apply --kubeconfig {{.KUBECONFIG_FILE}} --server-side --kustomize {{.KUBERNETES_DIR}}/flux/config
+    preconditions:
+      - msg: Missing kubeconfig
+        sh: test -f {{.KUBECONFIG_FILE}}
+      - msg: Missing Sops Age key file
+        sh: test -f {{.AGE_FILE}}
+
+  apply:
+    desc: Apply a Flux Kustomization resource for a cluster
     summary: |
       Args:
-        cluster: Cluster to run command against (required)
-    prompt: Bootstrap Flux into the '{{.cluster}}' cluster... continue?
-    cmds:
-      - kubectl --context {{.cluster}} apply --server-side --kustomize {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/flux
-      - sops --decrypt --in-place {{.KUBERNETES_DIR}}/base/flux-system/cluster-config/overlays/{{.cluster}}/cluster-secrets.sops.yaml
-      - kubectl --context {{.cluster}} apply --server-side --kustomize {{.KUBERNETES_DIR}}/base/flux-system/cluster-config/overlays/{{.cluster}}
-      - kubectl --context {{.cluster}} apply --server-side --kustomize {{.KUBERNETES_DIR}}/{{.cluster}}/flux/config
-      - defer: sops --encrypt --in-place {{.KUBERNETES_DIR}}/base/flux-system/cluster-config/overlays/{{.cluster}}/cluster-secrets.sops.yaml
+        path: Path under apps containing the Flux Kustomization resource (ks.yaml) (required)
+        ns: Namespace the Flux Kustomization exists in (default: flux-system)
+    cmd: |
+      flux --kubeconfig {{.KUBECONFIG_FILE}} build ks $(basename {{.path}}) \
+          --namespace {{.ns}} \
+          --kustomization-file {{.KUBERNETES_DIR}}/apps/{{.path}}/ks.yaml \
+          --path {{.KUBERNETES_DIR}}/apps/{{.path}} \
+          {{- if contains "not found" .ks }}--dry-run \{{ end }}
+      | \
+      kubectl apply --kubeconfig {{.KUBECONFIG_FILE}} --server-side \
+          --field-manager=kustomize-controller -f -
+    requires:
+      vars: ["path"]
+    vars:
+      ns: '{{.ns | default "flux-system"}}'
+      ks:
+        sh: flux --kubeconfig {{.KUBECONFIG_FILE}} --namespace {{.ns}} get kustomizations $(basename {{.path}}) 2>&1
     preconditions:
-      - { msg: "Argument (cluster) is required", sh: "test -n {{.cluster}}" }
-      - { msg: "Cluster settings not found",     sh: "test -f {{.KUBERNETES_DIR}}/base/flux-system/cluster-config/overlays/{{.cluster}}" }
-      - { msg: "Cluster secrets not found",      sh: "test -f {{.KUBERNETES_DIR}}/base/flux-system/cluster-config/overlays/{{.cluster}}/cluster-secrets.sops.yaml" }
-      - { msg: "Unable to decrypt sops secret",  sh: "sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/flux/vars/cluster-secrets.secret.sops.env" }
-  gr-sync:
-    desc: Sync all Flux GitRepositories
-    cmds:
-      - |
-        kubectl get gitrepositories --all-namespaces --no-headers | awk '{print $1, $2}' \
-          | xargs -P 4 -L 1 bash -c \
-            'kubectl -n $0 annotate gitrepository/$1 reconcile.fluxcd.io/requestedAt=$(date +%s) --field-manager=flux-client-side-apply --overwrite'
+      - msg: Missing kubeconfig
+        sh: test -f {{.KUBECONFIG_FILE}}
+      - msg: Missing Flux Kustomization for app {{.path}}
+        sh: test -f {{.KUBERNETES_DIR}}/apps/{{.path}}/ks.yaml
 
-  ks-sync:
-    desc: Sync all Flux Kustomizations
-    cmds:
-      - |
-        kubectl get kustomization --all-namespaces --no-headers | awk '{print $1, $2}' \
-          | xargs -P 4 -L 1 bash -c \
-            'kubectl -n $0 annotate kustomization/$1 reconcile.fluxcd.io/requestedAt="$(date +%s)" --field-manager=flux-client-side-apply --overwrite'
+  reconcile:
+    desc: Force update Flux to pull in changes from your Git repository
+    cmd: flux --kubeconfig {{.KUBECONFIG_FILE}} reconcile --namespace flux-system kustomization cluster --with-source
+    preconditions:
+      - msg: Missing kubeconfig
+        sh: test -f {{.KUBECONFIG_FILE}}
 
-  hr-sync:
-    desc: Sync all Flux HelmReleases
+  github-deploy-key:
     cmds:
-      - |
-        kubectl get helmreleases --all-namespaces --no-headers | awk '{print $1, $2}' \
-          | xargs -P 4 -L 1 bash -c \
-            'kubectl -n $0 annotate helmrelease/$1 reconcile.fluxcd.io/requestedAt="$(date +%s)" --overwrite'
-
-  tf-sync:
-    desc: Sync Flux Terraforms
-    cmds:
-      - |
-        kubectl get terraforms --all-namespaces --no-headers | awk '{print $1, $2}' \
-          | xargs -P 4 -L 1 bash -c \
-            'kubectl -n $0 annotate terraform/$1 reconcile.fluxcd.io/requestedAt="$(date +%s)" --overwrite'
-  hr-suspend:
-    desc: Suspend all Flux HelmReleases
-    cmds:
-      - |
-        flux get helmrelease --all-namespaces --no-header | awk '{print $1, $2}' \
-          | xargs -L 1 bash -c 'flux -n $0 suspend helmrelease $1'
-  hr-resume:
-    desc: Resume all Flux HelmReleases
-    cmds:
-      - |
-        flux get helmrelease --all-namespaces --no-header | awk '{print $1, $2}' \
-          | xargs -L 1 bash -c 'flux -n $0 resume helmrelease $1'
+      - kubectl create namespace flux-system --dry-run=client -o yaml | kubectl --kubeconfig {{.KUBECONFIG_FILE}} apply --filename -
+      - sops --decrypt {{.GITHUB_DEPLOY_KEY_FILE}} | kubectl apply --kubeconfig {{.KUBECONFIG_FILE}} --server-side --filename -
+    preconditions:
+      - msg: Missing kubeconfig
+        sh: test -f {{.KUBECONFIG_FILE}}
+      - msg: Missing Sops Age key file
+        sh: test -f {{.AGE_FILE}}
+      - msg: Missing Github deploy key file
+        sh: test -f {{.GITHUB_DEPLOY_KEY_FILE}}
