@@ -1,4 +1,8 @@
 ---
+cgroup:
+  automount:
+    enabled: false
+  hostRoot: /sys/fs/cgroup
 cluster:
   name: nebula
   id: 1
@@ -14,8 +18,8 @@ bgp:
 bgpControlPlane:
   enabled: true
 
-k8sServiceHost: "10.0.105.34"
-k8sServicePort: 6443
+k8sServiceHost: "127.0.0.1"
+k8sServicePort: 7445
 
 rollOutCiliumPods: true
 localRedirectPolicy: true
@@ -95,3 +99,21 @@ hubble:
         - hosts:
             - *host
           secretName: hubble-tls
+securityContext:
+  capabilities:
+    ciliumAgent:
+      - CHOWN
+      - KILL
+      - NET_ADMIN
+      - NET_RAW
+      - IPC_LOCK
+      - SYS_ADMIN
+      - SYS_RESOURCE
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
+    cleanCiliumState:
+      - NET_ADMIN
+      - SYS_ADMIN
+      - SYS_RESOURCE
