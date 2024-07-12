@@ -33,10 +33,23 @@ spec:
           app:
             image:
               repository: ghcr.io/kashalls/kromgo
-              tag: 0.3.1@sha256:5ba40b2fda00ab7adb039c0be955161b84febfe9e9e7816d5f1f87d9ab41f173
+              tag: 0.3.1
             env:
               PROMETHEUS_URL: http://prom-prometheus.monitoring.svc.nebula.local:9090
               PORT: &port 80
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /-/ready
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
