@@ -63,6 +63,7 @@ spec:
           capabilities:
             add:
               - NET_ADMIN
+              - SYS_MODULE
 
         networkPolicy:
           enabled: true
