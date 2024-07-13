@@ -1,0 +1,9 @@
+machine:
+  kubelet:
+    extraArgs:
+      rotate-server-certificates: "true"
+    extraConfig:
+      maxPods: 150
+    nodeIP:
+      validSubnets:
+        - 10.0.105.0/24
