@@ -17,7 +17,7 @@ resources:
   - media
 #  - vpn
 #  - vpn-services
-#  - default
+  - default
   - volsync
 #  - finance
   - flux-system
