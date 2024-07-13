@@ -7,5 +7,5 @@ resources:
   - smtp-relay/ks.yaml
   - theme-park/ks.yaml
   - linkwarden/ks.yaml
-  - immich/ks.yaml
+#  - immich/ks.yaml
 #  - syncthing/ks.yaml
