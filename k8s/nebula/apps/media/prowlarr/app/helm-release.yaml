@@ -46,10 +46,10 @@ spec:
               repository: ghcr.io/onedr0p/prowlarr-develop
               tag: 1.20.1.4603
             env:
-              PROWLARR__INSTANCE_NAME: Prowlarr
-              PROWLARR__PORT: &port 9696
+              PROWLARR__APP__INSTANCENAME: Prowlarr
+              PROWLARR__SERVER__PORT: &port 80
               PROWLARR__LOG_LEVEL: info
-              PROWLARR__AUTHENTICATION_METHOD: External
+              PROWLARR__AUTH__METHOD: External
               PROWLARR__AUTH__REQUIRED: DisabledForLocalAddresses
               PROWLARR__LOG__DBENABLED: "False"
               TZ: Europe/Helsinki
