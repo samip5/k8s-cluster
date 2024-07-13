@@ -48,8 +48,11 @@ nodes:
           hardwareAddr: 6c:4b:90:2d:a8:07
         dhcp: true
   - hostname: w-amd-2
-    ipAddress: 10.0.105.33
+    ipAddress: 10.0.105.28
     controlPlane: false
+    installDiskSelector:
+      size: "<= 300GB"
+      busPath: /pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: d8:cb:8a:1d:a0:d2
@@ -63,6 +66,18 @@ nodes:
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: ec:8e:b5:7b:ef:aa
+        dhcp: true
+    install:
+      image:
+  - hostname: w7
+    ipAddress: 10.0.105.29
+    controlPlane: false
+    installDiskSelector:
+      wwid: naa.5002538f4173a3bc
+    disableSearchDomain: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: d8:3a:dd:d8:70:bc
         dhcp: true
 
 controlPlane:
