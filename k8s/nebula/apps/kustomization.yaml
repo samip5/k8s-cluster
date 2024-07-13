@@ -14,7 +14,7 @@ resources:
 #  - home
   - databases
   - kube-system
-#  - media
+  - media
 #  - vpn
 #  - vpn-services
 #  - default
