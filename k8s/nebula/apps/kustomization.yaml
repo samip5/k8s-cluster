@@ -15,7 +15,7 @@ resources:
   - databases
   - kube-system
 #  - media
-  - vpn
+#  - vpn
 #  - vpn-services
 #  - default
   - volsync
