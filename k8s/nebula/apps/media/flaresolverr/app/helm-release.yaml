@@ -5,9 +5,9 @@ metadata:
   name: flaresolverr
   namespace: media
 spec:
-  dependsOn:
-    - name: vpn-gateway
-      namespace: vpn
+#  dependsOn:
+#    - name: vpn-gateway
+#      namespace: vpn
   interval: 5m
   install:
     timeout: 15m
