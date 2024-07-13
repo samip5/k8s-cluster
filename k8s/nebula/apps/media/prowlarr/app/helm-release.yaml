@@ -105,7 +105,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  identifier: main
+                  identifier: prowlarr
                   port: http
         tls:
           - hosts:
@@ -124,7 +124,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  identifier: main
+                  identifier: prowlarr
                   port: http
         tls:
           - hosts:
