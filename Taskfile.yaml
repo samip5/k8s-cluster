@@ -32,6 +32,7 @@ includes:
   sops: .taskfiles/Sops
   workstation: .taskfiles/Workstation
   externalsecrets: .taskfiles/ExternalSecrets
+  volsync: .taskfiles/VolSync
   user:
     taskfile: .taskfiles/User
     optional: true
