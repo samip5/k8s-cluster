@@ -32,9 +32,19 @@ spec:
 
     cni:
       image:
-        repository: ghcr.io/skyssolutions/cni-plugins
-        tag: 1.4.1
+        repository: ghcr.io/angelnu/cni-plugins
+        tag: 1.5.1
 
       paths:
         config: /etc/cni/net.d
         bin: /opt/cni/bin
+
+    resources:
+      requests:
+        cpu: 5m
+        memory: 96Mi
+      limits:
+        memory: 96Mi
+
+    hostPaths:
+      netns: /var/run/netns
