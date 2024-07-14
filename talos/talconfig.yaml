@@ -53,6 +53,8 @@ nodes:
     installDiskSelector:
       size: "<= 300GB"
       busPath: /pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/
+    install:
+      image: registry.skysolutions.fi/library/installer:v1.8.0-alpha.1-1
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: d8:cb:8a:1d:a0:d2
@@ -74,6 +76,7 @@ nodes:
     controlPlane: false
     installDiskSelector:
       wwid: naa.5002538f4173a3bc
+    talosImageURL: registry.skysolutions.fi/library/installer:v1.8.0-alpha.1-1
     disableSearchDomain: true
     networkInterfaces:
       - deviceSelector:
