@@ -5,7 +5,7 @@ resources:
 #  - dev
 #  - crypto
   - collab
-#  - comms
+  - comms
   - security
   - monitoring
   - networking
