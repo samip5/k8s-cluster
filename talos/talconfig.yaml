@@ -1,7 +1,7 @@
 ---
 clusterName: nebula
 # renovate: depName=ghcr.io/siderolabs/installer datasource=docker
-talosVersion: v1.7.5
+talosVersion: 1.8.0-alpha.1
 # renovate: depName=ghcr.io/siderolabs/kubelet datasource=docker
 kubernetesVersion: v1.30.2
 
@@ -30,6 +30,14 @@ nodes:
     controlPlane: true
     installDiskSelector:
       busPath: /pci0000:00/0000:00:17.0/ata1/host0/target0:0:0/0:0:0:0/
+    schematic: &amd-schematic
+      customization:
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/i915-ucode
+            - siderolabs/intel-ucode
+            - siderolabs/iscsi-tools
+            - siderolabs/util-linux-tools
     disableSearchDomain: true
     networkInterfaces:
       - deviceSelector:
@@ -42,6 +50,7 @@ nodes:
     controlPlane: false
     installDiskSelector:
       busPath: /pci0000:00/0000:00:17.0/ata1/host0/target0:0:0/0:0:0:0/
+    schematic: *amd-schematic
     disableSearchDomain: true
     networkInterfaces:
       - deviceSelector:
@@ -55,33 +64,65 @@ nodes:
       busPath: /pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/
     install:
       image: registry.skysolutions.fi/library/installer:v1.8.0-alpha.1-1
+    schematic: *amd-schematic
     networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: d8:cb:8a:1d:a0:d2
+      - interface: bond0
+        bond:
+          mode: active-backup
+          interfaces:
+           - enp2s0
         dhcp: true
+        vlans:
+          - vlanId: 50
+            mtu: 1500
+            addresses: [ "10.0.50.10/24"]
+            routes:
+              - network: "10.0.50.0/24"
+                gateway: "10.0.50.1"
+                metric: 4097
+          - vlanId: 99
+            mtu: 1500
+            addresses: [ "192.168.99.10/24" ]
+            routes:
+              - network: "192.168.99.0/24"
+                gateway: "192.168.99.1"
+                metric: 4096
   - hostname: w-amd-3
     ipAddress: 10.0.105.19
     controlPlane: false
     installDiskSelector:
       busPath: /pci0000:00/0000:00:17.0/ata1/host0/target0:0:0/0:0:0:0/
+    schematic: *amd-schematic
     disableSearchDomain: true
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: ec:8e:b5:7b:ef:aa
         dhcp: true
-    install:
-      image:
   - hostname: w7
     ipAddress: 10.0.105.29
     controlPlane: false
     installDiskSelector:
       wwid: naa.5002538f4173a3bc
-    talosImageURL: registry.skysolutions.fi/library/installer:v1.8.0-alpha.1-1
+    noSchematicValidate: true
+    schematic:
+      overlay:
+        name: sbc-raspberrypi
+        image: registry.skysolutions.fi/library/sbc-raspberrypi:alpha.1-1@sha256:f5734630fbae0647daf6e490ff91cd5f95220c3fc34e64364b2f245cde502a43
     disableSearchDomain: true
     networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: d8:3a:dd:d8:70:bc
+      - interface: bond0
+        bond:
+          mode: active-backup
+          interfaces:
+            - enxd83addd870bc
         dhcp: true
+        vlans:
+          - vlanId: 50
+            mtu: 1500
+            dhcp: true
+            dhcpOptions:
+              routeMetric: 4096
+
 
 patches:
   - "@./patches/global/cluster-discovery.yaml"
