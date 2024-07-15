@@ -64,9 +64,6 @@ spec:
           - name: w-amd-1
             devices:
               - name: /dev/disk/by-id/nvme-KINGSTON_SEDC1000BM8960G_50026B76860DDA63
-          - name: w-amd-2
-            devices:
-              - name: /dev/disk/by-id/ata-TS480GMTS820S_H735850357
           - name: w-amd-3
             devices:
               - name: /dev/disk/by-id/nvme-SAMSUNG_MZ9LQ512HBLU-00BVL_S73XNX0T887767
