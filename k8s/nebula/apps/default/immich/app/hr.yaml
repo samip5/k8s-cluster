@@ -20,6 +20,7 @@ spec:
       retries: 3
   upgrade:
     remediation:
+      strategy: uninstall
       retries: 3
   values:
     controllers:
