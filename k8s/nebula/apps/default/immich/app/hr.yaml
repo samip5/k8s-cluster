@@ -130,7 +130,7 @@ spec:
           volumeClaimTemplates:
             - name: data
               size: 10Gi
-              storageClass: local-path
+              storageClass: local-hostpath
               accessMode: ReadWriteOnce
               globalMounts:
                 - path: /cache
