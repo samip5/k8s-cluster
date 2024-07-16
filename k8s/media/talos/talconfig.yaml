@@ -1,0 +1,90 @@
+---
+clusterName: media
+# renovate: depName=ghcr.io/siderolabs/installer datasource=docker
+talosVersion: 1.8.0-alpha.1
+# renovate: depName=ghcr.io/siderolabs/kubelet datasource=docker
+kubernetesVersion: v1.30.2
+
+cniConfig:
+  name: none
+
+endpoint: https://192.168.2.129:6443
+domain: media.local
+allowSchedulingOnMasters: true
+additionalMachineCertSans:
+  - "127.0.0.1"
+  - "192.168.2.8"
+additionalApiServerCertSans:
+  - media.local
+  - cluster.local
+clusterPodNets:
+  - 10.40.0.0/16
+  - fd94:9bde:1ebb::/48
+clusterSvcNets:
+  - 10.41.0.0/16
+  - 2001:14ba:16fd:9622::1:0/112
+
+
+nodes:
+  - hostname: plex-srv
+    extensionServices:
+      - name: mergerfs
+        configFiles:
+          - content: |-
+              [mount]
+              path = /var/mnt/merged
+              fstype = fuse.mergerfs
+              options = defaults,allow_other,use_ino,nonempty,minfreespace=50G,category.create=mfs,moveonenospc=true,fsname=mergerFS
+
+              [paths]
+              source = /var/mnt/disk*
+            mountPath: /usr/local/etc/mergerfs/config.ini
+    ipAddress: 192.168.2.129
+    controlPlane: true
+    installDiskSelector:
+      type: ssd
+    disableSearchDomain: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: a0:36:9f:18:55:fb
+        dhcp: true
+    kernelModules:
+      - name: btrfs
+    machineDisks:
+      - device: /dev/sdb
+        partitions:
+          - mountpoint: /var/mnt/disk2
+      - device: /dev/sdc
+        partitions:
+          - mountpoint: /var/mnt/disk3
+      - device: /dev/sdd
+        partitions:
+          - mountpoint: /var/mnt/disk4
+      - device: /dev/sde
+        partitions:
+          - mountpoint: /var/mnt/disk5
+      - device: /dev/sdf
+        partitions:
+          - mountpoint: /var/mnt/disk6
+      - device: /dev/sdg
+        partitions:
+          - mountpoint: /var/mnt/disk7
+
+
+patches:
+  - "@./patches/global/cluster-discovery.yaml"
+  - "@./patches/global/containerd.yaml"
+  - "@./patches/global/disable-search-domain.yaml"
+  - "@./patches/global/kubelet.yaml"
+  - "@./patches/global/nfs.yaml"
+  - "@./patches/global/sysctl.yaml"
+  - "@./patches/global/udev.yaml"
+
+controlPlane:
+  patches:
+    - "@./patches/controller/api-access.yaml"
+    - "@./patches/controller/cluster.yaml"
+    - "@./patches/controller/disable-admission-controller.yaml"
+    - "@./patches/controller/kube-prism.yaml"
+
+
