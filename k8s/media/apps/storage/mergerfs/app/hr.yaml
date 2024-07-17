@@ -24,6 +24,7 @@ spec:
             image:
               repository: registry.skysolutions.fi/library/mergerfs
               tag: "17072024"
+            command: ["/sbin/tini", "--"]
             probes:
               liveness:
                 enabled: false
