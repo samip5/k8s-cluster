@@ -74,7 +74,7 @@ spec:
             paths:
               - path: /
                 service:
-                  identifier: main
+                  identifier: jellyfin
                   port: http
         tls:
           - hosts:
