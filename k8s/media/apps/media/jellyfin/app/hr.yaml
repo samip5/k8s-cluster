@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.2.0
       interval: 30m
       sourceRef:
         kind: HelmRepository
@@ -18,7 +18,7 @@ spec:
   interval: 30m
   values:
     defaultPodOptions:
-      runtimeClassName: nvidia
+#      runtimeClassName: nvidia
       enableServiceLinks: false
       securityContext:
         runAsUser: 568
@@ -32,11 +32,11 @@ spec:
         reloader.stakater.com/auto: "true"
 
     controllers:
-      main:
+      jellyfin:
         type: statefulset
 
         containers:
-          main:
+          app:
             image:
               repository: registry.skysolutions.fi/docker.io/jellyfin/jellyfin
               tag: 10.9.7
@@ -58,7 +58,8 @@ spec:
                 memory: 9248M
 
     service:
-      main:
+      jellyfin:
+        controller: jellyfin
         type: LoadBalancer
         externalTrafficPolicy: Cluster
         ports:
@@ -66,15 +67,14 @@ spec:
             port: 8096
 
     ingress:
-      main:
-        enabled: true
+      app:
         className: nginx
         hosts:
           - host: &host1 jelly.media.skylab.fi
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: main
                   port: http
         tls:
           - hosts:
