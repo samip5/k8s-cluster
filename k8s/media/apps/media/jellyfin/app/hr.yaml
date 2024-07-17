@@ -83,8 +83,7 @@ spec:
     persistence:
       config:
         enabled: true
-        type: hostPath
-        hostPath: "/opt/docker/appdata/jellyfin/config"
+        existingClaim: "jellyfin-config-v1"
         advancedMounts:
           main:
             main:
@@ -92,7 +91,7 @@ spec:
       library:
         enabled: true
         type: hostPath
-        hostPath: "/mnt/merge/library/"
+        hostPath: "/var/mnt/merged/library/"
         globalMounts:
           - path: /media
 
