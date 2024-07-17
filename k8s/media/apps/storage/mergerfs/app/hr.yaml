@@ -1,0 +1,50 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mergerfs
+  namespace: storage
+spec:
+  chart:
+    spec:
+      chart: app-template
+      version: 3.2.0
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  interval: 30m
+  values:
+    controllers:
+      sonarr:
+        containers:
+          app:
+            image:
+              repository: registry.skysolutions.fi/library/mergerfs
+              tag: 17072024
+            probes:
+              liveness:
+                enabled: false
+              readiness:
+                enabled: false
+    defaultPodOptions:
+      securityContext:
+       privileged: true
+    persistence:
+      devices:
+        globalMounts:
+          - path: /dev
+        hostPath: /dev
+        type: hostPath
+      udev:
+        globalMounts:
+          - path: /run/udev
+        hostPath: /run/udev
+        type: hostPath
+      disks:
+        globalMounts:
+          - path: /var/mnt
+        hostPath: /var/mnt
+        type: hostPath
