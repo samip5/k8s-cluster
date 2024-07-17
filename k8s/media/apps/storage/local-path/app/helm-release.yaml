@@ -61,13 +61,13 @@ spec:
       driver:
         extraVolumeMounts:
           - name: local-hostpath
-            mountPath: /usr/local/data/k3s/csi-local-path
+            mountPath: /var/mnt/csi-local-path
             mountPropagation: Bidirectional
 
       extraVolumes:
         - name: local-hostpath
           hostPath:
-            path: /usr/local/data/k3s/csi-local-path
+            path: /var/mnt/csi-local-path
             type: DirectoryOrCreate
 
     driver:
@@ -75,8 +75,8 @@ spec:
         driver: local-hostpath
         instance_id:
         local-hostpath:
-          shareBasePath: "/usr/local/data/k3s/csi-local-path"
-          controllerBasePath: "/usr/local/data/k3s/csi-local-path"
+          shareBasePath: "/var/mnt/csi-local-path"
+          controllerBasePath: "/var/mnt/csi-local-path"
           dirPermissionsMode: "0770"
           dirPermissionsUser: 0
           dirPermissionsGroup: 0
