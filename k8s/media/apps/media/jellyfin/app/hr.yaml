@@ -47,14 +47,14 @@ spec:
               # Decoding requires these packages on Ubuntu 22.04
               # libnvidia-decode-550-server libnvidia-encode-550-server
               # As well as the normal nvidia drivers, runtime AND toolkit (later of which is handled by the nvidia GPU operator)
-              NVIDIA_VISIBLE_DEVICES: all
-              NVIDIA_DRIVER_CAPABILITIES: all
+#              NVIDIA_VISIBLE_DEVICES: all
+#              NVIDIA_DRIVER_CAPABILITIES: all
             resources:
               requests:
                 memory: 9248M
-                nvidia.com/gpu: 1
+#                nvidia.com/gpu: 1
               limits:
-                nvidia.com/gpu: 1
+#                nvidia.com/gpu: 1
                 memory: 9248M
 
     service:
