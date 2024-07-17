@@ -25,9 +25,7 @@ spec:
           app:
             image:
               repository: registry.skysolutions.fi/library/mergerfs
-              tag: "17072024"
-            command: ["/sbin/tini", "--"]
-            args: ["/usr/local/bin/mount_mergerfs.sh"]
+              tag: "17072024@sha256:4c77e037e1efa75389109766efc573b84634affdd1f4bed970b31ec4e1545406"
             probes:
               liveness:
                 enabled: false
