@@ -4,3 +4,4 @@ resources:
   - local-path/ks.yaml
   - snapshot-controller/ks.yaml
   - rook-ceph
+  - mergerfs/ks.yaml
