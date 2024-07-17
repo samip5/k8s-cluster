@@ -55,18 +55,23 @@ nodes:
         partitions:
           - mountpoint: /var/mnt/disk2
       - device: /dev/sdc
+        deviceFileSystem: ext4
         partitions:
           - mountpoint: /var/mnt/disk3
       - device: /dev/sdd
+        deviceFileSystem: ext4
         partitions:
           - mountpoint: /var/mnt/disk4
       - device: /dev/sde
+        deviceFileSystem: btrfs
         partitions:
           - mountpoint: /var/mnt/disk5
       - device: /dev/sdf
+        deviceFileSystem: btrfs
         partitions:
           - mountpoint: /var/mnt/disk6
       - device: /dev/sdg
+        deviceFileSystem: btrfs
         partitions:
           - mountpoint: /var/mnt/disk7
 
