@@ -48,3 +48,8 @@ spec:
           - path: /var/mnt
         hostPath: /var/mnt
         type: hostPath
+      sys:
+        globalMounts:
+          - path: /sys
+        hostPath: /sys
+        type: hostPath
