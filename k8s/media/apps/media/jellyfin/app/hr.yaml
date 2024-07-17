@@ -85,8 +85,8 @@ spec:
         enabled: true
         existingClaim: "jellyfin-config-v1"
         advancedMounts:
-          main:
-            main:
+          jellyfin:
+            app:
               - path: /config
       library:
         enabled: true
