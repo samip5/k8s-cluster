@@ -17,8 +17,11 @@ spec:
         namespace: flux-system
   interval: 30m
   values:
+    defaultPodOptions:
+      securityContext:
+        privileged: true
     controllers:
-      sonarr:
+      mergerfs:
         containers:
           app:
             image:
@@ -29,9 +32,6 @@ spec:
                 enabled: false
               readiness:
                 enabled: false
-    defaultPodOptions:
-      securityContext:
-       privileged: true
     persistence:
       devices:
         globalMounts:
