@@ -23,7 +23,7 @@ spec:
           app:
             image:
               repository: registry.skysolutions.fi/library/mergerfs
-              tag: 17072024
+              tag: "17072024"
             probes:
               liveness:
                 enabled: false
