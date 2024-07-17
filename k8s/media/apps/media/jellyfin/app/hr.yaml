@@ -31,6 +31,7 @@ spec:
         supplementalGroups:
           - 44
           - 109
+          - 100
       annotations:
         reloader.stakater.com/auto: "true"
 
