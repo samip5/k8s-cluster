@@ -86,7 +86,7 @@ spec:
       library:
         enabled: true
         type: hostPath
-        hostPath: "/mnt/merge/library/"
+        hostPath: "/var/mnt/merged/library/"
         globalMounts:
           - path: /mnt/merge/library
       downloads:
