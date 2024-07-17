@@ -25,6 +25,7 @@ spec:
               repository: registry.skysolutions.fi/library/mergerfs
               tag: "17072024"
             command: ["/sbin/tini", "--"]
+            args: ["/usr/local/bin/mount_mergerfs.sh"]
             probes:
               liveness:
                 enabled: false
