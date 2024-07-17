@@ -23,8 +23,7 @@ spec:
     defaultPodOptions:
 #      runtimeClassName: nvidia
       enableServiceLinks: false
-      securityContext:
-        privileged: true
+#      securityContext:
 #        runAsUser: 568
 #        runAsGroup: 568
 #        fsGroup: 568
@@ -61,6 +60,8 @@ spec:
               limits:
 #                nvidia.com/gpu: 1
                 memory: 9248M
+            securityContext:
+              privileged: true
 
     service:
       jellyfin:
