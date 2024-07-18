@@ -45,6 +45,9 @@ spec:
               SONARR__SERVER__PORT: &port 80
               SONARR__UPDATE__BRANCH: develop
               TZ: Europe/Helsinki
+            envFrom:
+              - secretRef:
+                  name: sonarr
             image:
               repository: ghcr.io/onedr0p/sonarr-develop
               tag: 4.0.8.1893
@@ -67,9 +70,6 @@ spec:
         runAsUser: 568
         supplementalGroups:
           - 10000
-    envFrom:
-      - secretRef:
-          name: sonarr
     ingress:
       app:
         annotations:
