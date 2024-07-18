@@ -89,10 +89,9 @@ spec:
             secretName: media.skylab.fi-tls
     persistence:
       config:
+        existingClaim: sonarr-config-v1
         globalMounts:
           - path: /config
-        hostPath: /opt/docker/appdata/sonarr
-        type: hostPath
       downloads:
         globalMounts:
           - path: /mnt/merge/Downloads/

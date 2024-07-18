@@ -6,7 +6,7 @@ resources:
   - ./externalsecret-store.yaml
   - ./externalsecret.yaml
   - ./helm-release.yaml
-#  - ./pvc.yaml
+  - ./pvc.yaml
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
