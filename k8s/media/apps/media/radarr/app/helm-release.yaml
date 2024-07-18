@@ -49,10 +49,13 @@ spec:
             env:
               TZ: Europe/Helsinki
               RADARR__INSTANCE_NAME: Radarr
-              RADARR__PORT: &port 80
+              RADARR__APP__THEME: dark
+              RADARR__SERVER__PORT: &port 80
               RADARR__APPLICATION_URL: "https://radarr.media.skylab.fi"
               RADARR__LOG_LEVEL: info
               RADARR__LOG__DBENABLED: false
+              RADARR__AUTH__METHOD: External
+              RADARR__AUTH__REQUIRED: DisabledForLocalAddresses
             resources:
               requests:
                 cpu: 10m
