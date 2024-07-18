@@ -23,15 +23,15 @@ spec:
     defaultPodOptions:
 #      runtimeClassName: nvidia
       enableServiceLinks: false
-#      securityContext:
-#        runAsUser: 568
-#        runAsGroup: 568
-#        fsGroup: 568
-#        fsGroupChangePolicy: "OnRootMismatch"
-#        supplementalGroups:
-#          - 44
-#          - 109
-#          - 100
+      securityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: "OnRootMismatch"
+        supplementalGroups:
+          - 44
+          - 109
+          - 100
       annotations:
         reloader.stakater.com/auto: "true"
 
@@ -60,8 +60,6 @@ spec:
               limits:
 #                nvidia.com/gpu: 1
                 memory: 9248M
-            securityContext:
-              privileged: true
 
     service:
       jellyfin:
