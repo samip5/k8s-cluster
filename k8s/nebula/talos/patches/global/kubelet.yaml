@@ -7,3 +7,5 @@ machine:
     nodeIP:
       validSubnets:
         - 10.0.105.0/24
+        - 2001:14ba:7424:8f05::/64
+        - fd9d:7a72:44eb:c::/64
