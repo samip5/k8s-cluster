@@ -158,7 +158,7 @@ spec:
       enabled: false
 
     externalPostgresql:
-      host: postgres16-rw.databases.svc.cluster.local
+      host: postgres16-rw.databases.svc.nebula.local
       port: 5432
       username: synapse
       existingSecret: matrix-synapse-pg-creds
