@@ -88,18 +88,16 @@ spec:
 
     persistence:
       config:
-        enabled: true
         existingClaim: "jellyfin-config-v1"
         advancedMounts:
           jellyfin:
             app:
               - path: /config
       library:
-        enabled: true
         type: hostPath
         hostPath: "/var/mnt/merged/library/"
         globalMounts:
-          - path: /media
+          - path: /var/mnt/merged/library/
 
       transcode:
         type: emptyDir
