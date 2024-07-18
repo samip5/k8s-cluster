@@ -87,13 +87,13 @@ spec:
         existingClaim: qbittorrent-config
       library:
         globalMounts:
-          - path: /mnt/merge/library
-        hostPath: /mnt/merge/library
+          - path: /var/mnt/merged/library
+        hostPath: /var/mnt/merged/library
         type: hostPath
       media-downloads:
         globalMounts:
-          - path: /mnt/merge/Downloads
-        hostPath: /mnt/merge/Downloads
+          - path: /var/mnt/merged/Downloads
+        hostPath: /var/mnt/merged/Downloads
         type: hostPath
     service:
       qbittorrent:

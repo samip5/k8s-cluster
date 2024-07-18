@@ -94,23 +94,18 @@ spec:
           - path: /config
       downloads:
         globalMounts:
-          - path: /mnt/merge/Downloads/
-        hostPath: /mnt/merge/Downloads/
+          - path: /var/mnt/merged/Downloads/
+        hostPath: /var/mnt/merged/Downloads/
         type: hostPath
       media-anime:
         globalMounts:
           - path: /merge/anime
-        hostPath: /mnt/merge/library/Anime/
+        hostPath: /var/mnt/merged/library/Anime/
         type: hostPath
       media-tv:
         globalMounts:
           - path: /merge/tv
-        hostPath: /mnt/merge/library/TV Shows/
-        type: hostPath
-      scripts:
-        globalMounts:
-          - path: /config/scripts
-        hostPath: /opt/docker/scripts/custom
+        hostPath: /var/mnt/merged/library/TV Shows/
         type: hostPath
     service:
       app:

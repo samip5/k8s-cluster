@@ -121,7 +121,7 @@ spec:
           - path: /config
       library:
         globalMounts:
-          - path: /mnt/merge/library
+          - path: /var/mnt/merged/library
         hostPath: /var/mnt/merged/library
         type: hostPath
       media-downloads:
