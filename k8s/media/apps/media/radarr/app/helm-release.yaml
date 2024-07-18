@@ -35,7 +35,7 @@ spec:
         runAsGroup: 568
         fsGroup: 568
         fsGroupChangePolicy: OnRootMismatch
-        supplementalGroups: [ 10000 ]
+        supplementalGroups: [ 100 ]
       annotations:
         reloader.stakater.com/auto: "true"
 
@@ -118,18 +118,18 @@ spec:
       movies-kids:
         enabled: true
         type: hostPath
-        hostPath: "/mnt/merge/library/Kid Movies"
+        hostPath: "/var/mnt/merged/library/Kid Movies"
         globalMounts:
           - path: /merge/movies_kids
       movies:
         enabled: true
         type: hostPath
-        hostPath: "/mnt/merge/library/Movies"
+        hostPath: "/var/mnt/merged/library/Movies"
         globalMounts:
           - path: /merge/movies
       downloads:
         enabled: true
         type: hostPath
-        hostPath: "/mnt/merge/Downloads/"
+        hostPath: "/var/mnt/merged/Downloads/"
         globalMounts:
-          - path: /mnt/merge/Downloads/
+          - path: /var/mnt/merged/Downloads/
