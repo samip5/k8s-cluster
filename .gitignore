@@ -1,4 +1,5 @@
 provision/kubeconfig
+provision/kubeconfig-k3s
 .venv
 .dea
 .vscode
