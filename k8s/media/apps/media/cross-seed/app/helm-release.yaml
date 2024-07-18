@@ -73,7 +73,7 @@ spec:
             readOnly: true
       media:
         type: hostPath
-        hostPath: "/mnt/merge"
+        hostPath: "/var/mnt/merged/"
         globalMounts:
-          - path: /mnt/merge
+          - path: /var/mnt/merged/
 
