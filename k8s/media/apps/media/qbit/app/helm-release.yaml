@@ -58,10 +58,10 @@ spec:
                 enabled: false
             resources:
               limits:
-                memory: 1222Mi
+                memory: 3Gi
               requests:
                 cpu: 49m
-                memory: 1222Mi
+                memory: 2Gi
             securityContext:
               runAsUser: 568
               runAsGroup: 568
