@@ -24,9 +24,9 @@ spec:
 #      postInitSQL:
 #        - ALTER SYSTEM SET search_path TO "$user", public, vectors;
 #        - CREATE EXTENSION IF NOT EXISTS "vectors";
-  bootstrap:
-    recovery:
-      source: &previousCluster postgres-vector-v10
+#  bootstrap:
+#    recovery:
+#      source: &previousCluster postgres-vector-v10
   affinity:
     enablePodAntiAffinity: true
     topologyKey: kubernetes.io/hostname
@@ -65,18 +65,18 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-secret
           key: aws-secret-access-key
-  externalClusters:
-    - name: *previousCluster
-      barmanObjectStore:
-        wal:
-          compression: bzip2
-          maxParallel: 8
-        destinationPath: s3://cnpg-main/
-        endpointURL: https://s3.skym.fi
-        s3Credentials:
-          accessKeyId:
-            name: cloudnative-pg-secret
-            key: aws-access-key-id
-          secretAccessKey:
-            name: cloudnative-pg-secret
-            key: aws-secret-access-key
+#  externalClusters:
+#    - name: *previousCluster
+#      barmanObjectStore:
+#        wal:
+#          compression: bzip2
+#          maxParallel: 8
+#        destinationPath: s3://cnpg-main/
+#        endpointURL: https://s3.skym.fi
+#        s3Credentials:
+#          accessKeyId:
+#            name: cloudnative-pg-secret
+#            key: aws-access-key-id
+#          secretAccessKey:
+#            name: cloudnative-pg-secret
+#            key: aws-secret-access-key
