@@ -34,7 +34,7 @@ spec:
         configmap.reloader.stakater.com/reload: node-feature-discovery-worker-conf
       config:
         core:
-          sources:
+          labelSources:
             - custom
             - pci
             - system
