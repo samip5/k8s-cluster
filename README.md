@@ -10,7 +10,8 @@ _... managed with Flux, Renovate, and GitHub Actions_ 🤖
 
 <div align="center">
 
-[![Kubernetes](https://img.shields.io/badge/dynamic/yaml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsamip5%2Fk8s-cluster%2Fmain%2Fk8s%2Fbase%2Fsystem-upgrade%2Fsystem-upgrade-controller%2Fplans%2Fserver-plan.yaml&query=spec.version&style=for-the-badge&logo=kubernetes&logoColor=white&label=%20)](https://k3s.io/)&nbsp;&nbsp;
+[![Talos](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.skylab.fi%2Fquery%3Fformat%3Dendpoint%26metric%3Dtalos_version&style=for-the-badge&logo=talos&logoColor=white&label=%20&color=blue)](https://talos.dev)&nbsp;&nbsp;
+![Kubernetes](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.skylab.fi%2Fquery%3Fformat%3Dendpoint%26metric%3Dkubernetes_version&style=for-the-badge&logo=kubernetes&logoColor=white&label=%20&color=blue)
 [![Renovate](https://img.shields.io/github/actions/workflow/status/samip5/k8s-cluster/schedule-renovate.yaml?branch=main&label=&logo=renovatebot&style=for-the-badge&color=blue)](https://github.com/samip5/k8s-cluster/actions/workflows/schedule-renovate.yaml)
 
 </div>
@@ -40,13 +41,13 @@ _... managed with Flux, Renovate, and GitHub Actions_ 🤖
 
 
 ## 💻 Nodes
-| Node                          | Hostname | RAM  | Storage                                            | Function    | Operating System |
-|-------------------------------|----------|------|----------------------------------------------------|-------------|------------------|
-| Raspberry Pi Compute Module 4 | w7       | 8GB  | 2TB SSD                                            | Kube Worker | Debian 12        |
-| Lenovo ThinkCentre M910q Tiny | w-amd-1  | 32GB | 1TB Kingston DC SSD + 256GB SSD                    | Kube Worker | Talos 1.7.5      |
-| Custom Haswell mATX system    | w-amd-2  | 32GB | 480GB Transcend SSD, 275GB Crucial SSD + 320GB HDD | Kube Worker | Talos 1.7.5      |
-| HP EliteDesk 800 G2           | w-amd-3  | 32GB | 256GB SSD                                          | Kube Worker | Talos 1.7.5      |
-| Lenovo ThinkCentre M910q Tiny | m1       | 16GB | 256GB SSD x 2                                      | Kube Master | Talos 1.7.5      |
+| Node                          | Hostname | RAM  | Storage                                            | Function    | Operating System    |
+|-------------------------------|----------|------|----------------------------------------------------|-------------|---------------------|
+| Raspberry Pi Compute Module 4 | w7       | 8GB  | 2TB SSD                                            | Kube Worker | Talos 1.8.0-alpha.1 |
+| Lenovo ThinkCentre M910q Tiny | w-amd-1  | 32GB | 1TB Kingston DC SSD + 256GB SSD                    | Kube Worker | Talos 1.8.0-alpha.1 |
+| Custom Haswell mATX system    | w-amd-2  | 32GB | 480GB Transcend SSD, 275GB Crucial SSD + 320GB HDD | Kube Worker | Talos 1.8.0-alpha.1 |
+| HP EliteDesk 800 G2           | w-amd-3  | 32GB | 256GB SSD                                          | Kube Worker | Talos 1.8.0-alpha.1 |
+| Lenovo ThinkCentre M910q Tiny | m1       | 16GB | 256GB SSD x 2                                      | Kube Master | Talos 1.8.0-alpha.1 |
 
 ## Storage
 | Node         | Hostname | RAM  | Storage                                                                                  | Function   | Operating System |
