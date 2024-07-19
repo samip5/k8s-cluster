@@ -37,3 +37,5 @@ spec:
           sources:
             - custom
             - pci
+            - system
+            - usb
