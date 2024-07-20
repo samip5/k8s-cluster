@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 3.1.0
+      version: 3.2.0
   install:
     remediation:
       retries: 3
@@ -31,9 +31,9 @@ spec:
         containers:
           app:
             env:
-              UN_SONARR_0_PATHS_0: /mnt/merge/Downloads/
+              UN_SONARR_0_PATHS_0: /var/mnt/merged/Downloads/
               UN_SONARR_0_URL: http://sonarr:80
-              UN_RADARR_0_PATHS_0: /mnt/merge/Downloads
+              UN_RADARR_0_PATHS_0: /var/mnt/merged/Downloads
               UN_RADARR_0_URL: http://radarr:80
             envFrom:
               - secretRef:
@@ -63,18 +63,18 @@ spec:
     persistence:
       downloads:
         globalMounts:
-          - path: /mnt/merge/Downloads/
-        hostPath: /mnt/merge/Downloads/
+          - path: /var/mnt/merged/Downloads/
+        hostPath: /var/mnt/merged/Downloads/
         type: hostPath
       media-anime:
         globalMounts:
           - path: /merge/anime
-        hostPath: /mnt/merge/library/Anime/
+        hostPath: /var/mnt/merged/library/Anime/
         type: hostPath
       media-tv:
         globalMounts:
           - path: /merge/tv
-        hostPath: /mnt/merge/library/TV Shows/
+        hostPath: /var/mnt/merged/library/TV Shows/
         type: hostPath
     podAnnotations:
       secret.reloader.stakater.com/reload: unpackerr
