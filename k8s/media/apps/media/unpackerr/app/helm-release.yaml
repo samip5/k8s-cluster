@@ -31,6 +31,10 @@ spec:
         containers:
           app:
             env:
+              TZ: Europe/Helsinki
+              UN_WEBSERVER_METRICS: true
+              UN_WEBSERVER_LOG_FILE: /logs/webserver.log
+              UN_ACTIVITY: true
               UN_SONARR_0_PATHS_0: /var/mnt/merged/Downloads/
               UN_SONARR_0_URL: http://sonarr:80
               UN_RADARR_0_PATHS_0: /var/mnt/merged/Downloads
@@ -39,13 +43,13 @@ spec:
               - secretRef:
                   name: unpackerr
             image:
-              repository: ghcr.io/onedr0p/unpackerr
-              tag: 0.12.0@sha256:8bbf35be449b89041f07fc069812f79b4eadf56e1c7c7720935fe166016376ef
+              repository: ghcr.io/unpackerr/unpackerr
+              tag:  0.14.0
             probes:
               liveness:
-                enabled: false
+                enabled: true
               readiness:
-                enabled: false
+                enabled: true
             resources:
               limits:
                 memory: 750Mi
@@ -54,13 +58,17 @@ spec:
                 memory: 250Mi
     defaultPodOptions:
       securityContext:
+        runAsNonRoot: true
         fsGroup: 568
         fsGroupChangePolicy: OnRootMismatch
         runAsGroup: 568
         runAsUser: 568
         supplementalGroups:
           - 10000
+        seccompProfile: { type: RuntimeDefault }
     persistence:
+      logs:
+        type: emptyDir
       downloads:
         globalMounts:
           - path: /var/mnt/merged/Downloads/
@@ -81,4 +89,6 @@ spec:
     service:
       app:
         controller: unpackerr
-        enabled: false
+        ports:
+          http:
+            port: 5656
