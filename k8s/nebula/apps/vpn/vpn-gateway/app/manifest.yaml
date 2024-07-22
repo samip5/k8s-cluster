@@ -236,7 +236,6 @@ spec:
             - -c
             - sleep infinity
           image: ghcr.io/nicolaka/netshoot:v0.11
-          imagePullPolicy:
           name: netshoot
           securityContext:
             capabilities:
