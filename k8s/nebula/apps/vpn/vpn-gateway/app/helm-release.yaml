@@ -114,3 +114,8 @@ spec:
       gatewayAnnotation: setGateway
       namespaceSelector:
         label: "vpn-routed-gateway"
+
+    persistence:
+      tun:
+        hostPath: /dev/net/tun
+        type: hostPath
