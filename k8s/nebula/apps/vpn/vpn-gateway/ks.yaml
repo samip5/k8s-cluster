@@ -6,6 +6,7 @@ metadata:
   labels:
     component.skylab.fi/part-of: definitions
 spec:
+  targetNamespace: vpn
   path: ./k8s/nebula/apps/vpn/vpn-gateway/app
   prune: true
   sourceRef:
