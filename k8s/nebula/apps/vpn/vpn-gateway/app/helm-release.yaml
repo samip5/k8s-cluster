@@ -66,7 +66,7 @@ spec:
             add:
               - NET_ADMIN
         volumeMounts:
-          - { name: tun, mountPath: /dev/net/tun }
+          - { name: dev, mountPath: /dev/ }
 
         networkPolicy:
           enabled: true
@@ -118,8 +118,8 @@ spec:
         label: "vpn-routed-gateway"
 
     persistence:
-      tun:
+      dev:
         enabled: true
-        hostPath: /dev/net/tun
-        mountPath: /dev/net/tun
+        hostPath: /dev/
+        mountPath: /dev/
         type: hostPath
