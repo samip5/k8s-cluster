@@ -123,3 +123,16 @@ spec:
         hostPath: /dev/
         mountPath: /dev/
         type: hostPath
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              version: v1
+              kind: Deployment
+              name: pod-gateway
+            patch: |
+              - op: add
+                path: /spec/template/spec/containers/1/volumeMounts/-
+                value:
+                   name: dev
+                   mountPath: /dev/
