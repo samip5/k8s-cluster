@@ -65,6 +65,8 @@ spec:
           capabilities:
             add:
               - NET_ADMIN
+        volumeMounts:
+          - { name: tun, mountPath: /dev/net/tun }
 
         networkPolicy:
           enabled: true
