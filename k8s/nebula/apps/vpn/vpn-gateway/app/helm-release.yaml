@@ -62,11 +62,10 @@ spec:
           - secretRef:
               name: vpn-gateway-vpnconfig
         securityContext:
-          capabilities:
-            add:
-              - NET_ADMIN
-        volumeMounts:
-          - { name: dev, mountPath: /dev/ }
+          privileged: true
+#          capabilities:
+#            add:
+#              - NET_ADMIN
 
         networkPolicy:
           enabled: true
@@ -119,20 +118,7 @@ spec:
 
     persistence:
       dev:
-        enabled: true
+        enabled: false
         hostPath: /dev/
         mountPath: /dev/
         type: hostPath
-  postRenderers:
-    - kustomize:
-        patches:
-          - target:
-              version: v1
-              kind: Deployment
-              name: pod-gateway
-            patch: |
-              - op: add
-                path: /spec/template/spec/containers/1/volumeMounts/-
-                value:
-                   name: dev
-                   mountPath: /dev/
