@@ -117,5 +117,7 @@ spec:
 
     persistence:
       tun:
+        enabled: true
         hostPath: /dev/net/tun
+        mountPath: /dev/net/tun
         type: hostPath
