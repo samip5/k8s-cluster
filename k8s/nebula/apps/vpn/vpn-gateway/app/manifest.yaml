@@ -171,8 +171,6 @@ spec:
             - name: config
               mountPath: /config
               readOnly: true
-            - name: tun
-              mountPath: /dev/net/tun
         - env:
             - name: VPN_TYPE
               value: wireguard
@@ -191,15 +189,13 @@ spec:
           envFrom:
             - secretRef:
                 name: vpn-gateway-vpnconfig
-          volumeMounts:
-            - name: tun
-              mountPath: /dev/net/tun
           image: docker.io/qmcgaw/gluetun:v3.34.3
           name: gluetun
           securityContext:
-            capabilities:
-              add:
-                - NET_ADMIN
+            privileged: true
+#            capabilities:
+#              add:
+#                - NET_ADMIN
         - command:
             - /bin/sh
             - -c
@@ -215,9 +211,6 @@ spec:
           configMap:
             defaultMode: 365
             name: pod-gateway
-        - name: tun
-          hostPath:
-            path: /dev/net/tun
 ---
 # Source: pod-gateway/templates/webhook-deployment.yaml
 apiVersion: apps/v1
