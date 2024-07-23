@@ -200,7 +200,7 @@ spec:
             - /bin/sh
             - -c
             - sleep infinity
-          image: ghcr.io/nicolaka/netshoot:v0.11
+          image: ghcr.io/nicolaka/netshoot:v0.13
           name: netshoot
           securityContext:
             capabilities:
