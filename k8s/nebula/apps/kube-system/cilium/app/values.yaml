@@ -26,7 +26,6 @@ localRedirectPolicy: true
 
 kubeProxyReplacement: true
 kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
-autoDirectNodeRoutes: true
 loadBalancer:
   algorithm: "maglev"
   mode: "dsr"
