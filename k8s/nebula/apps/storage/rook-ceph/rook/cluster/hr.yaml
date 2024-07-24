@@ -20,7 +20,7 @@ spec:
   values:
     toolbox:
       enabled: true
-      image: quay.io/ceph/ceph:v18.2.2
+      image: quay.io/ceph/ceph:v18.2.4
     monitoring:
       enabled: true
     cephClusterSpec:
