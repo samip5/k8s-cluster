@@ -3,6 +3,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ./ns.yaml
+  - ./skysolutions-runners.yaml
+  - ./skysolutions-runners-arm64.yaml
 #  - ./externalsecret.yaml
 #  - ./samip5-k8s-cluster-arm64.yaml
 #  - ./samip5-k8s-cluster.yaml
