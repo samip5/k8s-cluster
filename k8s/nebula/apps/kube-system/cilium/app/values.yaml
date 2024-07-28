@@ -18,8 +18,8 @@ bgp:
 bgpControlPlane:
   enabled: true
 
-k8sServiceHost: "127.0.0.1"
-k8sServicePort: 7445
+k8sServiceHost: "10.0.105.34"
+k8sServicePort: 6443
 
 rollOutCiliumPods: true
 localRedirectPolicy: true
