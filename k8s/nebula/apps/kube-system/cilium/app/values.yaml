@@ -23,6 +23,7 @@ k8sServicePort: 7445
 
 rollOutCiliumPods: true
 localRedirectPolicy: true
+autoDirectNodeRoutes: true
 
 kubeProxyReplacement: true
 kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
