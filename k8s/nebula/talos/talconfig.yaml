@@ -13,6 +13,7 @@ domain: nebula.local
 allowSchedulingOnMasters: true
 additionalMachineCertSans:
   - "127.0.0.1"
+  - "10.0.105.34"
 additionalApiServerCertSans:
   - nebula.local
   - cluster.local
@@ -42,6 +43,18 @@ nodes:
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: 6c:4b:90:2d:a7:dd
+        dhcp: true
+        vip:
+          ip: 10.0.105.10
+  - hostname: m2
+    ipAddress: 10.0.105.30
+    controlPlane: true
+    installDiskSelector:
+      size: ">=80GB"
+    disableSearchDomain: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: 02:11:32:24:32:e5
         dhcp: true
         vip:
           ip: 10.0.105.10
@@ -132,6 +145,7 @@ patches:
   - "@./patches/global/nfs.yaml"
   - "@./patches/global/sysctl.yaml"
   - "@./patches/global/udev.yaml"
+  - "@./patches/global/disable-kexec.yaml"
 
 controlPlane:
   patches:
