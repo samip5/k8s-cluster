@@ -1,7 +1,7 @@
 machine:
   kubelet:
-    extraArgs:
-      rotate-server-certificates: "true"
+#    extraArgs:
+#      rotate-server-certificates: "true"
     extraConfig:
       maxPods: 150
     nodeIP:
