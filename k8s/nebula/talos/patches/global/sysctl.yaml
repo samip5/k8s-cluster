@@ -5,3 +5,5 @@ machine:
     fs.inotify.max_user_watches: "524288"
     net.core.rmem_max: "2500000"
     net.core.wmem_max: "2500000"
+    # Painful: https://github.com/siderolabs/talos/issues/5632
+    net.ipv6.conf.bond0.accept_ra: '2'
