@@ -44,7 +44,7 @@ spec:
                   name: unpackerr
             image:
               repository: ghcr.io/unpackerr/unpackerr
-              tag:  0.14.2
+              tag:  0.14.5
             probes:
               liveness:
                 enabled: true
