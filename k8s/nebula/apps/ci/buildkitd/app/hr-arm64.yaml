@@ -1,0 +1,61 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: buildkitd-arm64
+spec:
+  chart:
+    spec:
+      chart: app-template
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      version: 3.3.2
+  values:
+    controllers:
+      buildkitd-arm64:
+        containers:
+          app:
+            args:
+              - --root
+              - /cache
+              - --addr
+              - unix:///run/buildkit/buildkitd.sock
+              - --addr
+              - tcp://0.0.0.0:1234
+            image:
+              repository: ghcr.io/vaskozl/buildkit
+              tag: 0.15.1@sha256:183e4f7e434ac5ea0fef2ce4dd2d0b968c6c2c1264fe86c98e4bf3df73e99829
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+            resources:
+              limits:
+                cpu: 2
+                memory: 1.6Gi
+              requests:
+                cpu: 200m
+                ephemeral-storage: 10Gi
+                memory: 1.6Gi
+            securityContext:
+              privileged: true
+    defaultPodOptions:
+      nodeSelector:
+        kubernetes.io/arch: arm64
+        node-role.kubernetes.io/control-plane: ''
+      tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/control-plane
+    persistence:
+      cache:
+        type: emptyDir
+    service:
+      app:
+        controller: buildkitd-arm64
+        ports:
+          mtls:
+            enabled: true
+            port: 1234
