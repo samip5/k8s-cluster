@@ -42,8 +42,6 @@ spec:
         supplementalGroups:
           - 100
           - 1010
-      nodeSelector:
-        kubernetes.io/hostname: "w7"
       tolerations:
         - key: "cm4"
           operator: "Exists"
