@@ -40,8 +40,6 @@ spec:
         fsGroupChangePolicy: "OnRootMismatch"
         supplementalGroups:
           - 100
-      nodeSelector:
-        kubernetes.io/hostname: "w7"
       tolerations:
         - key: "cm4"
           operator: "Exists"
