@@ -4,6 +4,7 @@ kind: HelmRelease
 metadata:
   name: buildkitd-arm64
 spec:
+  interval: 30m
   chart:
     spec:
       chart: app-template
@@ -12,6 +13,19 @@ spec:
         name: bjw-s
         namespace: flux-system
       version: 3.3.2
+  maxHistory: 2
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
   values:
     controllers:
       buildkitd-arm64:
