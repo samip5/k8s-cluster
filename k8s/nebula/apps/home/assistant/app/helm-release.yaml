@@ -32,7 +32,7 @@ spec:
     defaultPodOptions:
       priorityClassName: home-cluster-critical
       dnsPolicy: ClusterFirstWithHostNet
-      hostNetwork: true
+      # hostNetwork: true
       automountServiceAccountToken: false
       securityContext:
         runAsUser: ${APP_UID}
@@ -110,8 +110,8 @@ spec:
               ]
           01-init-db:
             image:
-             repository: ghcr.io/onedr0p/postgres-init
-             tag: 16.3
+             repository: registry.skysolutions.fi/ghcr.io/onedr0p/postgres-init
+             tag: 16
             envFrom:
               - secretRef:
                   name: assistant-init
