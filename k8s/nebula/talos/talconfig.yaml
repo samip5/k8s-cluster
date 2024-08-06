@@ -51,6 +51,14 @@ nodes:
           - network: "::/0"
             gateway: "fd9d:7a72:44eb:c::1"
             metric: 1
+        vlans:
+          - vlanId: 50
+            mtu: 1500
+            addresses: [ "10.0.50.13/24" ]
+            routes:
+              - network: "10.0.50.0/24"
+                gateway: "10.0.50.1"
+                metric: 4097
         dhcpOptions:
           routeMetric: 4000
         vip:
@@ -94,6 +102,14 @@ nodes:
           - network: "::/0"
             gateway: "fd9d:7a72:44eb:c::1"
             metric: 1
+        vlans:
+          - vlanId: 50
+            mtu: 1500
+            addresses: [ "10.0.50.12/24" ]
+            routes:
+              - network: "10.0.50.0/24"
+                gateway: "10.0.50.1"
+                metric: 4097
         dhcpOptions:
           routeMetric: 4000
   - hostname: w-amd-2
@@ -151,6 +167,14 @@ nodes:
           - network: "::/0"
             gateway: "fd9d:7a72:44eb:c::1"
             metric: 1
+        vlans:
+          - vlanId: 50
+            mtu: 1500
+            addresses: [ "10.0.50.11/24" ]
+            routes:
+              - network: "10.0.50.0/24"
+                gateway: "10.0.50.1"
+                metric: 4097
         dhcpOptions:
           routeMetric: 4000
   - hostname: w7
