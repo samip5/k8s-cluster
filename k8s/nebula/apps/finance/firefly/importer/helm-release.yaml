@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.3.2
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -57,6 +57,7 @@ spec:
 
     service:
       main:
+        controller: main
         ports:
           http:
             port: 8080
@@ -74,7 +75,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: main
                   port: http
         tls:
           - hosts:
