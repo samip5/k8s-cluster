@@ -44,6 +44,7 @@ _... managed with Flux, Renovate, and GitHub Actions_ 🤖
 | Node                          | Hostname | RAM  | Storage                                            | Function    | Operating System    |
 |-------------------------------|----------|------|----------------------------------------------------|-------------|---------------------|
 | Raspberry Pi Compute Module 4 | w7       | 8GB  | 2TB SSD                                            | Kube Worker | Talos 1.8.0-alpha.1 |
+| Raspberry Pi Compute Module 4 | cm4-1    | 8GB  | 32GB eMMC                                          | Kube Worker | Talos 1.8.0-alpha.1 |
 | Lenovo ThinkCentre M910q Tiny | w-amd-1  | 32GB | 1TB Kingston DC SSD + 256GB SSD                    | Kube Worker | Talos 1.8.0-alpha.1 |
 | Custom Haswell mATX system    | w-amd-2  | 32GB | 480GB Transcend SSD, 275GB Crucial SSD + 320GB HDD | Kube Worker | Talos 1.8.0-alpha.1 |
 | HP EliteDesk 800 G2           | w-amd-3  | 32GB | 256GB SSD                                          | Kube Worker | Talos 1.8.0-alpha.1 |
@@ -64,7 +65,7 @@ _... managed with Flux, Renovate, and GitHub Actions_ 🤖
 | Qotom    | TLSense C3758  (TekLager.se) | Main router                                                       |
 
 All nodes are connected to a dual-stack network, with private IPv4 and public IPv6. 
-Kubernetes nodes are on their own VLAN which has access to the NAS.
+Kubernetes' nodes are on their own VLAN which has access to the NAS.
 
 ## ☁️ Cloud Dependencies
 

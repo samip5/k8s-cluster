@@ -207,6 +207,30 @@ nodes:
             dhcp: true
             dhcpOptions:
               routeMetric: 4096
+  - hostname: cm4-1
+    ipAddress: 10.0.105.32
+    installDiskSelector:
+      size: '>=30GB'
+    controlPlane: false
+    noSchematicValidate: true
+    schematic:
+      overlay:
+        name: sbc-raspberrypi
+        image: registry.skysolutions.fi/library/sbc-raspberrypi:alpha.1-1@sha256:f5734630fbae0647daf6e490ff91cd5f95220c3fc34e64364b2f245cde502a43
+    talosImageURL: registry.skysolutions.fi/library/talos/installer
+    networkInterfaces:
+      - interface: bond0
+        bond:
+          mode: active-backup
+          interfaces:
+            - enxe45f012e06ac
+        dhcp: true
+        routes:
+          - network: "::/0"
+            gateway: "fd9d:7a72:44eb:d::1"
+            metric: 1
+        dhcpOptions:
+          routeMetric: 4000
 
 
 patches:
