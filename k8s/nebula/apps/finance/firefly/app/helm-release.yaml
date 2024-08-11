@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.3.2
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -47,13 +47,13 @@ spec:
           main:
             image:
               repository: registry.skysolutions.fi/docker.io/fireflyiii/core
-              tag: version-6.1.15
+              tag: version-6.1.19
             env:
               TZ: Europe/Helsinki
               APP_URL: "https://${HOSTNAME}"
               APP_ENV: "production"
               DB_CONNECTION: "pgsql"
-              DB_HOST: postgres16-rw.databases.svc.cluster.local
+              DB_HOST: postgres16-rw.databases.svc.nebula.local
               DB_PORT: "5432"
               MAIL_MAILER: log
               TRUSTED_PROXIES: "**" # TODO: This should be changed..
@@ -92,7 +92,7 @@ spec:
         annotations:
           hajimari.io/icon: mdi:cash
           nginx.ingress.kubernetes.io/auth-url: |-
-            http://ak-outpost-authentik-embedded-outpost.security.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
+            http://ak-outpost-authentik-embedded-outpost.security.svc.nebula.local:9000/outpost.goauthentik.io/auth/nginx
           nginx.ingress.kubernetes.io/auth-signin: |-
             https://cash.skylab.fi/outpost.goauthentik.io/start?rd=$escaped_request_uri
           nginx.ingress.kubernetes.io/auth-response-headers: |-
@@ -104,7 +104,7 @@ spec:
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: main
                   port: http
         tls:
           - hosts:
