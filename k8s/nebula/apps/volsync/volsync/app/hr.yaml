@@ -34,7 +34,7 @@ spec:
 #      kubernetes.io/arch: amd64
     image:
       repository: &image ghcr.io/onedr0p/volsync
-      tag: &tag 0.10.0@sha256:104fa2bca5f00125a15d3f19d4cd5b25f6fb3ac69b57bfbff8431c8e6ab6b27c
+      tag: &tag 0.10.0@sha256:b1c1769d4e228caffb6a324b4fabbaef165223f1310c1219fb2b3d25a0adc625
     restic:
       repository: *image
       tag: *tag
