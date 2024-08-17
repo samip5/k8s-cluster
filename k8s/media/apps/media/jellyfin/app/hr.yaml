@@ -83,6 +83,18 @@ spec:
         tls:
           - hosts:
               - *host1
+      external:
+        className: nginx
+        hosts:
+          - host: &host2 jelly.dh.skylab.fi
+            paths:
+              - path: /
+                service:
+                  identifier: jellyfin
+                  port: http
+        tls:
+          - hosts:
+              - *host2
 
     persistence:
       config:
