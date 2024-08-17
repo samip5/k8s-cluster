@@ -33,7 +33,7 @@ spec:
           app:
             image:
               repository: ghcr.io/kashalls/kromgo
-              tag: v0.4.0
+              tag: v0.4.1
             env:
               PROMETHEUS_URL: http://prom-prometheus.monitoring.svc.nebula.local:9090
               PORT: &port 80
