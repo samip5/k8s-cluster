@@ -65,6 +65,7 @@ spec:
                "path": "$uri", "request_query": "$args", "request_length": $request_length, "duration": $request_time,"method": "$request_method", "http_referrer": "$http_referer",
                "http_user_agent": "$http_user_agent" }'
         addHeaders: "networking/nginx-custom"
+        proxy-set-headers: "networking/custom-headers"
         # hardening
         hide-headers: Server,X-Powered-By
         block-user-agents: "GPTBot,~*GPTBot*,ChatGPT-User,~*ChatGPT-User*,Google-Extended,~*Google-Extended*,CCBot,~*CCBot*,Omgilibot,~*Omgilibot*,FacebookBot,~*FacebookBot*" # taken from https://github.com/superseriousbusiness/gotosocial/blob/main/internal/web/robots.go
