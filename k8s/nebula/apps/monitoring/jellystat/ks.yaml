@@ -4,6 +4,8 @@ kind: Kustomization
 metadata:
   name: monitoring-jellystat
   namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
 spec:
   targetNamespace: monitoring
   path: ./k8s/nebula/apps/monitoring/jellystat/app
