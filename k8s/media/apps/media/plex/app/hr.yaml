@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.2.0
       interval: 15m
       sourceRef:
         kind: HelmRepository
@@ -29,18 +29,24 @@ spec:
   values:
     defaultPodOptions:
       runtimeClassName: nvidia
+      enableServiceLinks: false
       securityContext:
         runAsUser: 568
         runAsGroup: 568
         fsGroup: 568
-        fsGroupChangePolicy: OnRootMismatch
+        fsGroupChangePolicy: "OnRootMismatch"
+        supplementalGroups:
+          - 44
+          - 109
+          - 100
+      annotations:
+        reloader.stakater.com/auto: "true"
     controllers:
-      main:
+      plex:
         type: statefulset
-        annotations:
-          reloader.stakater.com/auto: "true"
+
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/onedr0p/plex
               tag: 1.40.5.8854-f36c552fd
@@ -69,20 +75,24 @@ spec:
               requests:
                 cpu: 4000m
                 memory: 4Gi
+                nvidia.com/gpu: 1
                 # Transcoding: https://support.plex.tv/articles/115002178853-using-hardware-accelerated-streaming/
                 # nvidia: https://github.com/NVIDIA/k8s-device-plugin
               limits:
                 memory: 10Gi
+                nvidia.com/gpu: 1
     # Ports: https://support.plex.tv/articles/201543147-what-network-ports-do-i-need-to-allow-through-my-firewall/
     service:
-      main:
+      plex:
+        controller: plex
         type: LoadBalancer
         externalTrafficPolicy: Cluster
         ports:
           http:
             port: &port 32400
+
     ingress:
-      main:
+      app:
         enabled: true
         className: external-nginx
         annotations:
@@ -93,7 +103,7 @@ spec:
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: plex
                   port: http
         tls:
           - hosts:
@@ -108,27 +118,26 @@ spec:
           paths:
             - path: /
               service:
-                name: main
+                identifier: plex
                 port: http
       tls:
         - hosts:
             - *host
+
     persistence:
       config:
         enabled: true
-        existingClaim: plex-config
+        existingClaim: plex-config-v1
         advancedMounts:
           main:
             main:
               - path: /config
                 subPath: plex
-      media:
-        enabled: true
-        type: nfs
-        server: ${NFS_SERVER_IP}
-        path: ${NFS_POOL}
+      library:
+        type: hostPath
+        hostPath: "/var/mnt/merged/"
         globalMounts:
-          - path: ${PATH_MEDIA}
+          - path: /var/mnt/merged/
       # https://support.plex.tv/articles/200250347-transcoder/
       transcode:
         enabled: true
