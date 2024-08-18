@@ -40,7 +40,7 @@ spec:
           reloader.stakater.com/auto: "true"
 
         initContainers:
-          init-db:
+          01-init-db:
             image:
               repository: ghcr.io/onedr0p/postgres-init
               tag: 16
@@ -71,7 +71,7 @@ spec:
 
     ingress:
       main:
-        className: internal
+        className: internal-nginx
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/appName: "Jellyfin Stats"
