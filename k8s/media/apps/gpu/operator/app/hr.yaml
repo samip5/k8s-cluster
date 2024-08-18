@@ -40,7 +40,7 @@ spec:
     nfd:
       enabled: true
     driver:
-      enabled: true
+      enabled: false
       repository: registry.skysolutions.fi/library/nvidia
       version: 550.90.07
     toolkit:
