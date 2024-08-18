@@ -11,8 +11,3 @@ resources:
   - genpi-minio-svc.yaml
   - genpi-minio-ingress.yaml
   - nas-ingress-and-service.yaml
-#  - home-srv-endpoints.yaml
-#  - home-srv-svc.yaml
-#  - home-srv-livetv-ingress.yaml
-#  - home-srv-livetv-stream-ingress.yaml
-#  - home-srv-livetv-dvr-ingress.yaml
