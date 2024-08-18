@@ -1,0 +1,96 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.thesteamedcrab.com/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app jellystat
+  namespace: monitoring
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+
+  maxHistory: 3
+
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+
+  uninstall:
+    keepHistory: false
+
+  values:
+    controllers:
+      main:
+        type: statefulset
+
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+
+            envFrom: &envFrom
+              - secretRef:
+                  name: *app
+
+        containers:
+          main:
+            image:
+              repository: docker.io/cyfershepard/jellystat
+              tag: unstable@sha256:b4f24eb883db8aab735e6097ee74d6ebb757dc5bf7e7f3e67cfb76bca3bf04d9
+
+            env:
+              TZ: "Europe/Helsinki"
+
+            envFrom:
+              - secretRef:
+                  name: *app
+
+    service:
+      main:
+        controller: main
+        ports:
+          http:
+            port: &httpPort 3000
+
+    ingress:
+      main:
+        className: internal
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/appName: "Jellyfin Stats"
+          hajimari.io/icon: simple-icons:jellyfin
+          hajimari.io/group: "media"
+          hajimari.io/instance: "admin"
+        hosts:
+          - host: &host "jellystat.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: main
+                  port: *httpPort
+
+    persistence:
+      backup:
+        type: emptyDir
+        advancedMounts:
+          main:
+            main:
+              - path: /app/backend/backup-data

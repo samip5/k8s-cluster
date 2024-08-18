@@ -1,0 +1,35 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.thesteamedcrab.com/external-secrets.io/externalsecret_v1beta1.json
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: jellystat
+  namespace: monitoring
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: onepassword-connect
+  target:
+    name: jellystat
+    creationPolicy: Owner
+    template:
+      data:
+        # App
+        JWT_SECRET: "{{ .JWT_SECRET }}"
+        POSTGRES_IP: &dbHost postgres16-rw.databases.svc.nebula.local
+        POSTGRES_PORT: "5432"
+        POSTGRES_DB: &dbName jfstat
+        POSTGRES_USER: &dbUser "{{ .POSTGRES_USER }}"
+        POSTGRES_PASSWORD: &dbPass "{{ .POSTGRES_PASS }}"
+
+        # Postgres Init
+        INIT_POSTGRES_DBNAME: *dbName
+        INIT_POSTGRES_HOST: *dbHost
+        INIT_POSTGRES_USER: *dbUser
+        INIT_POSTGRES_PASS: *dbPass
+        INIT_POSTGRES_SUPER_PASS: "{{ .POSTGRES_SUPER_PASS }}"
+  dataFrom:
+    - extract:
+        key: jellystat
+    - extract:
+        key: cloudnative-pg
