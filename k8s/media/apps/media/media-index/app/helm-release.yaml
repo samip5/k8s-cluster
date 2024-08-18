@@ -78,7 +78,7 @@ spec:
 
     persistence:
       data:
-        enabled: true
+        enabled: false
         type: hostPath
         hostPath: "/opt/docker/appdata/caddy_index/index"
         globalMounts:
@@ -88,10 +88,10 @@ spec:
         type: hostPath
         hostPath: "/var/mnt/merged/library/"
         globalMounts:
-          - path: /mnt/merge/library
+          - path: /var/mnt/merged/library
       downloads:
         enabled: true
         type: hostPath
-        hostPath: "/mnt/merge/Downloads/"
+        hostPath: "/var/mnt/merged/Downloads/"
         globalMounts:
-          - path: /mnt/merge/Downloads/
+          - path: /var/mnt/merged/Downloads/
