@@ -23,13 +23,6 @@ spec:
                 name: dh
                 port:
                   number: 443
-          - path: "/jellyfin/"
-            pathType: Prefix
-            backend:
-              service:
-                name: dh
-                port:
-                  number: 443
   tls:
     - hosts:
         - "dh.skylab.fi"
@@ -105,7 +98,7 @@ metadata:
 spec:
   ingressClassName: external-nginx
   rules:
-    - host: "jelly.dh.skylab.fi"
+    - host: "jelly.media.skylab.fi"
       http:
         paths:
           - backend:
@@ -117,5 +110,5 @@ spec:
             path: "/"
   tls:
     - hosts:
-        - "jelly.dh.skylab.fi"
+        - "jelly.media.skylab.fi"
       secretName: plex-dh-tls

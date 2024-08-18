@@ -5,8 +5,11 @@ metadata:
   namespace: networking
 subsets:
   - addresses:
-      - ip: 10.41.69.80
+      - ip: 2001:14ba:16fd:962d::443
     ports:
+      - name: http
+        port: 80
+        protocol: TCP
       - name: https
         port: 443
         protocol: TCP
