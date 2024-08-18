@@ -41,6 +41,8 @@ spec:
       enabled: true
     driver:
       enabled: true
+      repository: registry.skysolutions.fi/library/nvidia
+      version: 550.90.07
     toolkit:
       enabled: true
       env:
