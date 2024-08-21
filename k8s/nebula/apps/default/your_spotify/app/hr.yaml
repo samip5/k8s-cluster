@@ -1,0 +1,86 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: your-spotify
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-charts
+
+  driftDetection:
+    mode: enabled
+  maxHistory: 3
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    controller:
+      server:
+        strategy: &strat RollingUpdate
+        rollingUpdate: &ru
+          unavailable: 0
+
+        pod: &pod
+          annotations:
+            reloader.stakater.com/auto: 'true'
+
+        containers:
+          app:
+            image:
+              repository: yooooomi/your_spotify_server
+              tag: 1.10.1
+            env:
+              TIMEZONE: ${TIMEZONE}
+
+              API_ENDPOINT: &api_endpoint https://api.spotify.skylab.fi
+              CLIENT_ENDPOINT: &client https://spotify.skylab.fi
+              CORS: i-want-a-security-vulnerability-and-want-to-allow-all-origins
+              MONGO_ENDPOINT: mongodb://your-spotify-mongodb:27017/your_spotify
+
+            envFrom:
+              - secretRef:
+                  name: your-spotify-secret
+
+            probes: &probes
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
+
+            securityContext: &securityContext
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: false
+              capabilities: { drop: [ 'ALL' ] }
+
+          web:
+            strategy: *strat
+            rollingUpdate: *ru
+            pod: *pod
+
+            containers:
+              app:
+                image:
+                  repository: yooooomi/your_spotify_client
+                  tag: 1.10.1
+
+                env:
+                  TIMEZONE: ${TIMEZONE}
+                  API_ENDPOINT: *api_endpoint
+                probes: *probes
+                securityContext: *securityContext
+
