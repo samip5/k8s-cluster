@@ -6,6 +6,7 @@ resources:
   - paperless/ks.yaml
   - smtp-relay/ks.yaml
   - theme-park/ks.yaml
+  - your_spotify/ks.yaml
 #  - linkwarden/ks.yaml
   - immich/ks.yaml
 #  - syncthing/ks.yaml
