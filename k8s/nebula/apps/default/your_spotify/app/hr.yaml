@@ -77,34 +77,34 @@ spec:
               readOnlyRootFilesystem: false
               capabilities: { drop: [ 'ALL' ] }
 
-    web:
-      strategy: *strat
-      rollingUpdate: *ru
-      pod: *pod
+      web:
+        strategy: *strat
+        rollingUpdate: *ru
+        pod: *pod
 
-      containers:
-        app:
-          image:
-            repository: yooooomi/your_spotify_client
-            tag: 1.10.1
-          env:
-            TIMEZONE: "Europe/Helsinki"
-            API_ENDPOINT: *api_endpoint
-          probes: *probes
-          securityContext: *securityContext
-    mongodb:
-      type: statefulset
-      # default, but there's a bug where statefulset is null by default
-      # so statefulset.podManagementPolicy reference fails
-      rollingUpdate: *ru
-      statefulset:
-        podManagementPolicy: OrderedReady
-      containers:
-        main:
-          image:
-            repository: docker.io/library/mongo
-            tag: 6.0.4-focal
-          probes: *probes
+        containers:
+          app:
+            image:
+              repository: yooooomi/your_spotify_client
+              tag: 1.10.1
+            env:
+              TIMEZONE: "Europe/Helsinki"
+              API_ENDPOINT: *api_endpoint
+            probes: *probes
+            securityContext: *securityContext
+      mongodb:
+        type: statefulset
+        # default, but there's a bug where statefulset is null by default
+        # so statefulset.podManagementPolicy reference fails
+        rollingUpdate: *ru
+        statefulset:
+          podManagementPolicy: OrderedReady
+        containers:
+          main:
+            image:
+              repository: docker.io/library/mongo
+              tag: 6.0.4-focal
+            probes: *probes
     service:
       main:
         controller: main
