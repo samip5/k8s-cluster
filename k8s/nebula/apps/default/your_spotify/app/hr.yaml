@@ -54,7 +54,7 @@ spec:
               TIMEZONE: "Europe/Helsinki"
 
               # Caveat if it includes Spotify in name: https://github.com/Yooooomi/your_spotify/pull/254
-              API_ENDPOINT: &api_endpoint https://s-api.skylab.fi
+              API_ENDPOINT: &api_endpoint https://s-api.skylab.fi:443
               CLIENT_ENDPOINT: &client https://s.skylab.fi
               CORS: *client
               MONGO_ENDPOINT: mongodb://your-spotify-mongodb:27017/your_spotify
