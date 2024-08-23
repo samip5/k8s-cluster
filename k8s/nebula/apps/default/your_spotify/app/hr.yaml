@@ -158,3 +158,9 @@ spec:
           mongodb:
             app:
               - path: /data/db
+      web-tmp:
+        type: emptyDir
+        advancedMounts:
+          web:
+            app:
+              - path: /app/apps/client/
