@@ -27,6 +27,15 @@ spec:
       strategy: rollback
       retries: 3
   values:
+    defaultPodOptions:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsUser: ${APP_UID}
+        runAsGroup: ${APP_GID}
+        fsGroup: ${APP_GID}
+        fsGroupChangePolicy: OnRootMismatch
+      nodeSelector:
+        kubernetes.io/arch: amd64
     controller:
       server:
         strategy: &strat RollingUpdate
@@ -37,15 +46,16 @@ spec:
           annotations:
             reloader.stakater.com/auto: 'true'
 
+
         containers:
           app:
             image:
               repository: yooooomi/your_spotify_server
               tag: 1.10.1
             env:
-              TIMEZONE: ${TIMEZONE}
+              TIMEZONE: "Europe/Helsinki"
 
-              API_ENDPOINT: &api_endpoint https://api.spotify.skylab.fi
+              API_ENDPOINT: &api_endpoint https://spotify-api.skylab.fi
               CLIENT_ENDPOINT: &client https://spotify.skylab.fi
               CORS: i-want-a-security-vulnerability-and-want-to-allow-all-origins
               MONGO_ENDPOINT: mongodb://your-spotify-mongodb:27017/your_spotify
@@ -67,20 +77,58 @@ spec:
               readOnlyRootFilesystem: false
               capabilities: { drop: [ 'ALL' ] }
 
-          web:
-            strategy: *strat
-            rollingUpdate: *ru
-            pod: *pod
+    web:
+      strategy: *strat
+      rollingUpdate: *ru
+      pod: *pod
 
-            containers:
-              app:
-                image:
-                  repository: yooooomi/your_spotify_client
-                  tag: 1.10.1
+      containers:
+        app:
+          image:
+            repository: yooooomi/your_spotify_client
+            tag: 1.10.1
+          env:
+            TIMEZONE: "Europe/Helsinki"
+            API_ENDPOINT: *api_endpoint
+          probes: *probes
+          securityContext: *securityContext
+    mongodb:
+      type: statefulset
+      # default, but there's a bug where statefulset is null by default
+      # so statefulset.podManagementPolicy reference fails
+      rollingUpdate: *ru
+      statefulset:
+        podManagementPolicy: OrderedReady
+      containers:
+        main:
+          image:
+            repository: docker.io/library/mongo
+            tag: 6.0.4-focal
+          probes: *probes
+    service:
+      main:
+        controller: main
+        primary: true
+        ports:
+          http:
+            port: 8080
+      web:
+        controller: web
+        ports:
+          http:
+            port: 3000
+      mongodb:
+        controller: mongodb
+        ports:
+          http:
+            port: 27017
 
-                env:
-                  TIMEZONE: ${TIMEZONE}
-                  API_ENDPOINT: *api_endpoint
-                probes: *probes
-                securityContext: *securityContext
+    persistence:
+      mongo:
+        enabled: true
+        existingClaim: "${VOLSYNC_CLAIM}"
+        advancedMounts:
+          mongodb:
+            main:
+              - path: /data/db
 

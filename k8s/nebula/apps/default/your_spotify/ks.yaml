@@ -1,0 +1,31 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &appname your-spotify
+  namespace: flux-system
+spec:
+  targetNamespace: default
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *appname
+  dependsOn:
+    - name: rook-ceph-cluster
+    - name: cluster-apps-volsync
+  path: ./k8s/nebula/apps/default/your_spotify/app
+  prune: true
+  wait: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
+  postBuild:
+    substitute:
+      APP: *appname
+      APP_UID: "1000"
+      APP_GID: "100"
+      VOLSYNC_CLAIM: your-spotify-data
+      VOLSYNC_CAPACITY: 15Gi
+      VOLSYNC_STORAGECLASS: ceph-block
+      VOLSYNC_SNAPSHOTCLASS: csi-ceph-blockpool
