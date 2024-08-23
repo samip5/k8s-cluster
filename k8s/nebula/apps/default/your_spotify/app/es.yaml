@@ -1,0 +1,21 @@
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: your-spotify
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: onepassword-connect
+  target:
+    name: your-spotify-secret
+    creationPolicy: Owner
+    template:
+      engineVersion: v2
+      data:
+        SPOTIFY_PUBLIC: "{{ .SPOTIFY_PUBLIC }}"
+        SPOTIFY_SECRET: "{{ .SPOTIFY_SECRET }}"
+
+  dataFrom:
+    - extract:
+        key: your-spotify
