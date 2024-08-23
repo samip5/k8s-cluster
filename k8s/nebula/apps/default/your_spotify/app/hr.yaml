@@ -27,11 +27,11 @@ spec:
   values:
     defaultPodOptions:
       automountServiceAccountToken: false
-      securityContext:
-        runAsUser: ${APP_UID}
-        runAsGroup: ${APP_GID}
-        fsGroup: ${APP_GID}
-        fsGroupChangePolicy: OnRootMismatch
+#      securityContext:
+#        runAsUser: ${APP_UID}
+#        runAsGroup: ${APP_GID}
+#        fsGroup: ${APP_GID}
+#        fsGroupChangePolicy: OnRootMismatch
       nodeSelector:
         kubernetes.io/arch: amd64
     controllers:
@@ -158,9 +158,3 @@ spec:
           mongodb:
             app:
               - path: /data/db
-      web-tmp:
-        type: emptyDir
-        advancedMounts:
-          web:
-            app:
-              - path: /app/apps/client/
