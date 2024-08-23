@@ -53,8 +53,9 @@ spec:
             env:
               TIMEZONE: "Europe/Helsinki"
 
-              API_ENDPOINT: &api_endpoint https://spotify-api.skylab.fi
-              CLIENT_ENDPOINT: &client https://spotify.skylab.fi
+              # Caveat if it includes Spotify in name: https://github.com/Yooooomi/your_spotify/pull/254
+              API_ENDPOINT: &api_endpoint https://s-api.skylab.fi
+              CLIENT_ENDPOINT: &client https://s.skylab.fi
               CORS: *client
               MONGO_ENDPOINT: mongodb://your-spotify-mongodb:27017/your_spotify
 
@@ -131,7 +132,7 @@ spec:
       server-int:
         className: internal-nginx
         hosts:
-          - host: spotify-api.skylab.fi
+          - host: s-api.skylab.fi
             paths:
               - path: /
                 pathType: Prefix
@@ -142,7 +143,7 @@ spec:
       web-int:
         className: internal-nginx
         hosts:
-          - host: spotify.skylab.fi
+          - host: s.skylab.fi
             paths:
               - path: /
                 pathType: Prefix
