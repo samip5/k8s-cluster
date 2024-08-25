@@ -53,7 +53,7 @@ spec:
           main:
             image:
               repository: docker.io/cyfershepard/jellystat
-              tag: unstable@sha256:661d5865ce0422ffecf28cad107053741620ba9af2d1e335f82df899e14fc105
+              tag: unstable@sha256:3a5a18fb28efd7f50c3102dac019321e43d6a46a8019e2d50d0d78016aa86a9e
 
             env:
               TZ: "Europe/Helsinki"
