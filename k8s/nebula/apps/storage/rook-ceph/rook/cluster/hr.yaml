@@ -41,6 +41,11 @@ spec:
           requests:
 #            cpu: "500m"
             memory: "4Gi"
+        mgr:
+          limits:
+            memory: "2Gi"
+          requests:
+            memory: "1Gi"
       network:
         provider: host
         connections:
