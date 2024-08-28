@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -31,31 +31,31 @@ spec:
   values:
     defaultPodOptions:
       dnsPolicy: ClusterFirstWithHostNet
-      hostNetwork: true # This is pain, but for some reason the container doesn't seem to reply though LB.
+      #hostNetwork: true # This is pain, but for some reason the container doesn't seem to reply though LB.
       automountServiceAccountToken: false
       enableServiceLinks: false
       securityContext:
-        runAsUser: 0
-        runAsGroup: ${APP_GID}
-        fsGroup: ${APP_GID}
-        fsGroupChangePolicy: "OnRootMismatch"
-        supplementalGroups:
-          - 100
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 6
+        fsGroupChangePolicy: OnRootMismatch
       nodeSelector:
         kubernetes.io/arch: amd64
 
 
     controllers:
-      main:
+      satisfactory:
         type: statefulset
 
         containers:
-          main:
+          app:
             image:
-              repository: registry.skysolutions.fi/docker.io/wolveix/satisfactory-server
+              repository: registry.skysolutions.fi/ghcr.io/wolveix/satisfactory-server
               tag: v1.6.2
             env:
               TZ: "Europe/Helsinki"
+              ROOTLESS: "true"
               AUTOPAUSE: "true"
               AUTOSAVEINTERVAL: "60"
               AUTOSAVENUM: "60"
@@ -64,10 +64,13 @@ spec:
               MAXPLAYERS: "4"
               MAXTICKRATE: "120" # default is a low 30
               NETWORKQUALITY: "3" # 0-3, 3 is Ultra (default)
-              PGID: ${APP_UID}
-              PUID: ${APP_GID}
               TIMEOUT: "300"
-              SERVERIP: ""
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: false
+              capabilities:
+                drop:
+                  - ALL
             probes:
               startup:
                 enabled: false
@@ -77,22 +80,20 @@ spec:
                 enabled: false
             resources:
               requests:
-                cpu: 200m
-                memory: 6740Mi
+                memory: 4Gi
               limits:
-                cpu: 3000m
-                memory: 17408Mi
+                memory: 8Gi
+
 
 
     service:
-      main:
-        enabled: false
+      app:
+        enabled: true
+        controller: *app
         type: LoadBalancer
         externalTrafficPolicy: Cluster
         ipFamilyPolicy: RequireDualStack
         ports:
-          http:
-            enabled: false
           query:
             enabled: true
             port: 15777
