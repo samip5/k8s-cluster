@@ -22,5 +22,5 @@ resources:
   - finance
   - flux-system
 #  - tor
-#  - games
+  - games
 #  - protu-staging
