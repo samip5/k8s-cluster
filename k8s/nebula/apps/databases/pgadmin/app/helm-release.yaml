@@ -62,7 +62,7 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: fast-ceph-filesystem
+        storageClass: ceph-block
         size: 1Gi
         globalMounts:
           - path: /var/lib/pgadmin
