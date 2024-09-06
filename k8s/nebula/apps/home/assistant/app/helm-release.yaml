@@ -96,25 +96,25 @@ spec:
               - "8081"
               - "/config"
 
-        initContainers:
-          wait-for-pg:
-            image:
-             repository: quay.io/prometheus/busybox
-             tag: latest
-            imagePullPolicy: IfNotPresent
-            command:
-              [
-                "sh",
-                "-c",
-                'until nc -vz postgres16-rw.databases.svc.cluster.local 5432; do echo "Waiting for postgres..."; sleep 3; done;',
-              ]
-          01-init-db:
-            image:
-             repository: registry.skysolutions.fi/ghcr.io/onedr0p/postgres-init
-             tag: 16
-            envFrom:
-              - secretRef:
-                  name: assistant-init
+#        initContainers:
+#          wait-for-pg:
+#            image:
+#             repository: quay.io/prometheus/busybox
+#             tag: latest
+#            imagePullPolicy: IfNotPresent
+#            command:
+#              [
+#                "sh",
+#                "-c",
+#                'until nc -vz postgres16-rw.databases.svc.cluster.local 5432; do echo "Waiting for postgres..."; sleep 3; done;',
+#              ]
+#          01-init-db:
+#            image:
+#             repository: registry.skysolutions.fi/ghcr.io/onedr0p/postgres-init
+#             tag: 16
+#            envFrom:
+#              - secretRef:
+#                  name: assistant-init
 
 
     service:
