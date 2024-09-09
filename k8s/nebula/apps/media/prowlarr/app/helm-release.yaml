@@ -77,9 +77,9 @@ spec:
               capabilities: { drop: [ "ALL" ] }
             resources:
               requests:
-                memory: 127Mi
+                memory: 320Mi
               limits:
-                memory: 300Mi
+                memory: 800Mi
 
 
     service:
