@@ -22,3 +22,9 @@ spec:
           apiTokenSecretRef:
             name: cloudflare-token-secret
             key: cloudflare-token
+    - http01:
+        ingress:
+          ingressClassName: external-nginx
+      selector:
+        dnsNames:
+          - sky.iki.fi
