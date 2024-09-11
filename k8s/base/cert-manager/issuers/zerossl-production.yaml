@@ -22,6 +22,11 @@ spec:
           apiTokenSecretRef:
             name: cloudflare-token-secret
             key: cloudflare-token
+      selector:
+        - dnsNames:
+            - skylab.fi
+            - y2k.fi
+            - d10.fi
     - http01:
         ingress:
           ingressClassName: external-nginx
