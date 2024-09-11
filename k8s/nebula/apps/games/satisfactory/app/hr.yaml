@@ -94,19 +94,15 @@ spec:
         externalTrafficPolicy: Cluster
         ipFamilyPolicy: RequireDualStack
         ports:
-          query:
-            enabled: true
-            port: 15777
-            protocol: UDP
-          beacon:
-            enabled: true
-            port: 15000
-            protocol: UDP
-          game:
+          game-udp:
             enabled: true
             primary: true
             port: 7777
             protocol: UDP
+          game-tcp:
+            enabled: true
+            port: 7777
+            protocol: TCP
 
 
 

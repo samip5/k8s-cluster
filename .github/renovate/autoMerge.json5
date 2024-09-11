@@ -3,7 +3,7 @@
   "packageRules": [
     {
       matchDatasources: ["docker"],
-      automerge: true,
+      automerge: false,
       automergeType: "branch",
       ignoreTests: true,
       matchUpdateTypes: ["patch"],
