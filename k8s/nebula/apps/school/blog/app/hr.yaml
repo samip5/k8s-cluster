@@ -52,7 +52,7 @@ spec:
         containers:
           app:
             image:
-              repository: registry.skysolutions.fi/docker.io/_/ghost
+              repository: registry.skysolutions.fi/docker.io/ghost
               tag: 5.94.0-alpine
             env:
               TZ: "Europe/Helsinki"
