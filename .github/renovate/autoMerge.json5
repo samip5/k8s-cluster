@@ -6,7 +6,6 @@
       automerge: false,
       automergeType: "branch",
       ignoreTests: true,
-      matchUpdateTypes: ["patch"],
       matchPackageNames: [
         "ghcr.io/wolveix/satisfactory-server"
       ],
