@@ -8,7 +8,7 @@
       ignoreTests: true,
       matchUpdateTypes: ["patch"],
       matchPackageNames: [
-        "registry.skysolutions.fi/ghcr.io/wolveix/satisfactory-server"
+        "ghcr.io/wolveix/satisfactory-server"
       ],
     },
     {
