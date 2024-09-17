@@ -58,10 +58,10 @@ spec:
               ROOTLESS: "true"
               AUTOPAUSE: "true"
               AUTOSAVEINTERVAL: "60"
-              AUTOSAVENUM: "60"
+              AUTOSAVENUM: "30"
               AUTOSAVEONDISCONNECT: "true"
               CRASHREPORT: "false"
-              MAXPLAYERS: "4"
+              MAXPLAYERS: "5"
               MAXTICKRATE: "120" # default is a low 30
               NETWORKQUALITY: "3" # 0-3, 3 is Ultra (default)
               TIMEOUT: "300"
