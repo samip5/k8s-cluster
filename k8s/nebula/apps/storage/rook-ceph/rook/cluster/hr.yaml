@@ -63,9 +63,9 @@ spec:
         config:
           osdsPerDevice: "1"
         nodes:
-          - name: m1
-            devices:
-              - name: /dev/disk/by-id/nvme-INTEL_SSDPEKKF256G7L_BTPY72150BFA256D
+#          - name: m1
+#            devices:
+#              - name: /dev/disk/by-id/nvme-INTEL_SSDPEKKF256G7L_BTPY72150BFA256D
           - name: w-amd-1
             devices:
               - name: /dev/disk/by-id/nvme-KINGSTON_SEDC1000BM8960G_50026B76860DDA63
