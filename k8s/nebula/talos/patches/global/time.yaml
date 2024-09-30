@@ -1,0 +1,5 @@
+machine:
+  time:
+    disabled: false # Indicates if the time service is disabled for the machine.
+    servers:
+        - 10.0.105.1
