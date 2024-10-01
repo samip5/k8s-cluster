@@ -42,6 +42,8 @@ spec:
               TRUSTED_PROXIES: "**"
               FIREFLY_III_URL: "http://firefly-iii.finance.svc.cluster.local:8080"
               VANITY_URL: "https://cash.skylab.fi"
+              CAN_AUTO_IMPORT: 'true'
+              CAN_POST_FILES: 'true'
               FIREFLY_III_ACCESS_TOKEN:
                 valueFrom:
                   secretKeyRef:
@@ -55,7 +57,7 @@ spec:
                 memory: 256Mi
 
     service:
-      firefly-importer:
+      main:
         controller: firefly-importer
         ports:
           http:
@@ -74,7 +76,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  identifier: firefly-importer
+                  identifier: main
                   port: http
         tls:
           - hosts:
