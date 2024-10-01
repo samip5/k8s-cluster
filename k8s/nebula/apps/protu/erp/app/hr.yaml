@@ -67,8 +67,8 @@ spec:
               - path: "/"
                 pathType: Prefix
                 service:
-                  identifier: wordpress
-                  port: 80
+                  identifier: odoo
+                  port: http
         tls:
           - hosts:
               - *host
@@ -85,7 +85,7 @@ spec:
                 pathType: Prefix
                 service:
                   identifier: odoo
-                  port: 80
+                  port: http
         tls:
           - hosts:
               - *host
