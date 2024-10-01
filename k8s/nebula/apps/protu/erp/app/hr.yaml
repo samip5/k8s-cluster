@@ -96,12 +96,12 @@ spec:
         existingClaim: "${VOLSYNC_CLAIM}"
         globalMounts:
           - path: /var/lib/odoo
-      etc-config-file:
-        type: configMap
-        name: odoo-configmap
-        globalMounts:
-          - path: /etc/odoo/odoo.conf
-            readOnly: true
+#      etc-config-file:
+#        type: configMap
+#        name: odoo-configmap
+#        globalMounts:
+#          - path: /etc/odoo/odoo.conf
+#            readOnly: true
       extra-addons:
         existingClaim: odoo-addons-v1
         globalMounts:
