@@ -24,4 +24,4 @@ resources:
   - flux-system
 #  - tor
   - games
-#  - protu-staging
+  - protu
