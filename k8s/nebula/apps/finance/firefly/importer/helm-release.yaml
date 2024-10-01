@@ -55,7 +55,7 @@ spec:
                 memory: 256Mi
 
     service:
-      main:
+      firefly-importer:
         controller: firefly-importer
         ports:
           http:
