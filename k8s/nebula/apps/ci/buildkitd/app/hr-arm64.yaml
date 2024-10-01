@@ -40,7 +40,7 @@ spec:
               - tcp://0.0.0.0:1234
             image:
               repository: ghcr.io/vaskozl/buildkit
-              tag: 0.16.0@sha256:0dc6437dd17d67f1ba0c638e10eb704779effa1147405c5e6d21f934917b9a90
+              tag: 0.16.0@sha256:6b7091d1e4ecc27ba81db1a90f77c1dd3711dc24a7505cade6fa53b2f1e23615
             probes:
               liveness:
                 enabled: true
