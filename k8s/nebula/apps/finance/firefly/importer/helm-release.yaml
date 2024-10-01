@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 3.3.2
+      version: 3.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -27,15 +27,14 @@ spec:
     keepHistory: false
   values:
     controllers:
-      main:
+      firefly-importer:
         pod:
-          automountServiceAccountToken: false
           enableServiceLinks: false
           annotations:
             reloader.stakater.com/auto: "true"
 
         containers:
-          main:
+          app:
             image:
               repository: registry.skysolutions.fi/docker.io/fireflyiii/data-importer
               tag: version-1.5.2
@@ -57,7 +56,7 @@ spec:
 
     service:
       main:
-        controller: main
+        controller: firefly-importer
         ports:
           http:
             port: 8080
@@ -75,7 +74,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  identifier: main
+                  identifier: firefly-importer
                   port: http
         tls:
           - hosts:

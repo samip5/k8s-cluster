@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 3.3.2
+      version: 3.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -26,9 +26,8 @@ spec:
     keepHistory: false
   values:
     controllers:
-      main:
+      firefly:
         pod:
-          automountServiceAccountToken: false
           enableServiceLinks: false
           annotations:
             reloader.stakater.com/auto: "true"
@@ -44,7 +43,7 @@ spec:
         #          name: firefly-init-secret
 
         containers:
-          main:
+          firefly:
             image:
               repository: registry.skysolutions.fi/docker.io/fireflyiii/core
               tag: version-6.1.19
@@ -80,8 +79,8 @@ spec:
                 memory: 512Mi
 
     service:
-      main:
-        controller: main
+      firefly:
+        controller: firefly
         ports:
           http:
             port: 8080
@@ -105,7 +104,7 @@ spec:
             paths:
               - path: /
                 service:
-                  identifier: main
+                  identifier: firefly
                   port: http
         tls:
           - hosts:
