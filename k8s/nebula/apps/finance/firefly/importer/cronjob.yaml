@@ -28,7 +28,7 @@ spec:
 
     image:
       repository: fireflyiii/data-importer
-      tag: version-1.4.4
+      tag: version-1.5.2
 
     envFrom:
       - secretRef:
