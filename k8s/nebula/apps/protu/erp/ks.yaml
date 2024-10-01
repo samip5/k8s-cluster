@@ -8,7 +8,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *appname
-  path: ./k8s/nebula/apps/protu-staging/erp/app
+  path: ./k8s/nebula/apps/protu/erp/app
   prune: true
   wait: false
   sourceRef:
