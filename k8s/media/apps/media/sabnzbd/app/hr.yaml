@@ -90,7 +90,7 @@ spec:
             port: *port
     ingress:
       app:
-        className: internal-nginx
+        className: nginx
         hosts:
           - host: sab.media.skylab.fi
             paths:
