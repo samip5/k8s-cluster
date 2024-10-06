@@ -126,12 +126,12 @@ spec:
           - path: /config/logs
       tmp:
         type: emptyDir
-#      scripts:
-#        type: configMap
-#        name: sabnzbd-scripts
-#        defaultMode: 0775
-#        globalMounts:
-#          - readOnly: true
+      scripts:
+        type: configMap
+        name: sabnzbd-scripts
+        defaultMode: 0775
+        globalMounts:
+          - readOnly: true
       merged:
         globalMounts:
           - path: /var/mnt/merged/
