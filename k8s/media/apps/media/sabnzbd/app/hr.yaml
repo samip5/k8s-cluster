@@ -84,7 +84,7 @@ spec:
               SERVER_COUNTRIES: "Netherlands,Switzerland"
               FIREWALL_INPUT_PORTS: *port
               FIREWALL_DEBUG: "on"
-              FIREWALL_OUTBOUND_SUBNETS: "10.40.0.0/16,10.41.0.0/16,fd94:9bde:1ebb::/48,2001:14ba:16fd:9622::1:0/112" # Allow access to k8s subnets
+              FIREWALL_OUTBOUND_SUBNETS: "10.40.0.0/16,10.41.0.0/16,fd94:9bde:1ebb::/48" # Allow access to k8s subnets
               LOG_LEVEL: "debug"
               DOT: "on"
             envFrom:
