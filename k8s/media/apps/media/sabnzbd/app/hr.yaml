@@ -83,7 +83,7 @@ spec:
               VPN_SERVICE_PROVIDER: "airvpn"
               VPN_TYPE: "wireguard"
               WIREGUARD_MTU: "1320"
-              HEALTH_TARGET_ADDRESS: "www.kapsi.fi:443"
+              HEALTH_TARGET_ADDRESS: "kapsi.fi:443"
               SERVER_REGIONS: "Europe"
               FIREWALL_INPUT_PORTS: *port
               FIREWALL_DEBUG: "on"
