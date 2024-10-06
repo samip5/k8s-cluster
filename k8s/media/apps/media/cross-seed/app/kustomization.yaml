@@ -3,11 +3,6 @@ kind: Kustomization
 namespace: media
 resources:
   - ./externalsecret.yaml
-  - ./externalsecret-store.yaml
   - ./helm-release.yaml
-configMapGenerator:
-  - name: cross-seed-config-tpl
-    files:
-      - ./config/config.js
 generatorOptions:
   disableNameSuffixHash: true

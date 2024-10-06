@@ -6,10 +6,10 @@ resources:
   - ./externalsecret.yaml
   - ./hr.yaml
   - ./pvc.yaml
-#configMapGenerator:
-#  - name: sabnzbd-scripts
-#    files:
-#      - post-process.sh=./resources/post-process.sh
+configMapGenerator:
+  - name: sabnzbd-scripts
+    files:
+      - post-process.sh=./resources/post-process.sh
 generatorOptions:
   disableNameSuffixHash: true
   annotations:

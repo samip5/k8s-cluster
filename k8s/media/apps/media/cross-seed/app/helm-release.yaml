@@ -42,7 +42,7 @@ spec:
           main:
             image:
               repository: ghcr.io/cross-seed/cross-seed
-              tag: 5.9.2
+              tag: 6.0.0-36
             args:
               - daemon
             resources:
