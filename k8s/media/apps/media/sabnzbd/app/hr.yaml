@@ -64,15 +64,20 @@ spec:
                   timeoutSeconds: 1
                   failureThreshold: 3
               readiness: *probes
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 100m
               limits:
                 memory: 8Gi
+            securityContext:
+              runAsUser: 568
+              runAsGroup: 568
+              runAsNonRoot: true
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
           gluetun:
             env:
               VPN_SERVICE_PROVIDER: "privado"
@@ -89,20 +94,10 @@ spec:
               repository: ghcr.io/qdm12/gluetun
               tag: latest@sha256:e65ba7d8558c4482dc841be3a7610cda0fca76988d8454c3ed9ed45776ecda4f
             securityContext:
-              privileged: true
               capabilities:
                 add:
                   - NET_ADMIN
-              allowPrivilegeEscalation: true
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: false
-        runAsUser: 568
-        runAsGroup: 568
-        fsGroup: 568
-        fsGroupChangePolicy: OnRootMismatch
-        supplementalGroups: [10000]
-        seccompProfile: { type: RuntimeDefault }
+              allowPrivilegeEscalation: false
     service:
       app:
         controller: sabnzbd
