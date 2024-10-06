@@ -8,4 +8,5 @@ resources:
   - metrics-server/ks.yaml
   - snapshot-controller/ks.yaml
   - node-feature-discovery/ks.yaml
+  - generic-device-plugin/ks.yaml
 #  - descheduler/ks.yaml
