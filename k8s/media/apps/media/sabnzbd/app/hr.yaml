@@ -96,7 +96,7 @@ spec:
                   name: sabnzbd-vpn-secret
             image:
               repository: ghcr.io/qdm12/gluetun
-              tag: latest@sha256:e65ba7d8558c4482dc841be3a7610cda0fca76988d8454c3ed9ed45776ecda4f
+              tag: latest@sha256:a9ae51bf957bb5c71f67b3921c5ab74122650cdb7144b9bc6a347ecde9858788
             securityContext:
               capabilities:
                 add:
