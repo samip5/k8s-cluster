@@ -32,8 +32,6 @@ sonarr:
           - name: HDTV-720p
           - name: WEB 480p
             qualities: [ "WEBDL-480p", "WEBRip-480p" ]
-          - name: DVD
-          - name: SDTV
 
 
     custom_formats:
