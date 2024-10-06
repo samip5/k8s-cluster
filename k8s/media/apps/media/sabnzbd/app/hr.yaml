@@ -89,10 +89,11 @@ spec:
               repository: ghcr.io/qdm12/gluetun
               tag: latest@sha256:c8653a4a17e565d2d000ce7512493ba6ff6e17cb03f1b37c6ec4173fc362087f
             securityContext:
+              privileged: true
               capabilities:
                 add:
                   - NET_ADMIN
-              allowPrivilegeEscalation: false
+              allowPrivilegeEscalation: true
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
