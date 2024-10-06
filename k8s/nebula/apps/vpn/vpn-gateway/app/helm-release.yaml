@@ -51,8 +51,10 @@ spec:
             value: "off"
           - name: FIREWALL_VPN_INPUT_PORTS
             value: 51820,55633
-          - name: SERVER_REGIONS
-            value: Europe
+          - name: SERVER_COUNTRIES
+            value: "Switzerland,Netherlands"
+          - name: WIREGUARD_MTU
+            value: 1320
           # - name:  WIREGUARD_PRIVATE_KEY
           #   value: set in secret
           # - name:  WIREGUARD_ADDRESSES
