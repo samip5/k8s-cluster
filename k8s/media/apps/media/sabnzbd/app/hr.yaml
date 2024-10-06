@@ -81,7 +81,8 @@ spec:
           gluetun:
             env:
               VPN_SERVICE_PROVIDER: "privado"
-              SERVER_COUNTRIES: "Netherlands,Switzerland"
+              HEALTH_TARGET_ADDRESS: "www.kapsi.fi:443"
+              SERVER_COUNTRIES: "Switzerland"
               FIREWALL_INPUT_PORTS: *port
               FIREWALL_DEBUG: "on"
               FIREWALL_OUTBOUND_SUBNETS: "10.40.0.0/16,10.41.0.0/16,192.168.10.0/24,fd94:9bde:1ebb::/48" # Allow access to k8s subnets
