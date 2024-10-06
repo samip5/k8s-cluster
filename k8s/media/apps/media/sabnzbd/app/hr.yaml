@@ -132,6 +132,7 @@ spec:
         defaultMode: 0775
         globalMounts:
           - readOnly: true
+            path: /config/scripts
       merged:
         globalMounts:
           - path: /var/mnt/merged/
