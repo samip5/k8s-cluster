@@ -72,9 +72,9 @@ spec:
                     path: /
                     port: &srv-port 8080
                   initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
+                  periodSeconds: 60
+                  timeoutSeconds: 10
+                  failureThreshold: 5
               readiness: *probes
               startup:
                 enabled: false
