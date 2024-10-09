@@ -101,6 +101,8 @@ spec:
       internal:
         enabled: true
         className: internal-nginx
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-buffering: "off"
         hosts:
           - host: *host
             paths:
