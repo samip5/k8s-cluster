@@ -63,13 +63,13 @@ spec:
               - secretRef:
                   name: your-spotify-secret
 
-            probes: &probes
+            probes:
               liveness:
-                enabled: true
+                enabled: false
               readiness:
-                enabled: true
+                enabled: false
               startup:
-                enabled: true
+                enabled: false
 
             securityContext: &securityContext
               allowPrivilegeEscalation: false
@@ -90,7 +90,13 @@ spec:
             env:
               TIMEZONE: "Europe/Helsinki"
               API_ENDPOINT: *api_endpoint
-            probes: *probes
+            probes: &probes
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
             securityContext: *securityContext
 
       mongodb:
