@@ -70,10 +70,9 @@ spec:
                   name: zipline-secret
             resources:
               requests:
-                cpu: 30m
-                memory: 256Mi
-              limits:
                 memory: 512Mi
+              limits:
+                memory: 4Gi
 
     service:
       main:
