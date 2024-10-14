@@ -47,8 +47,8 @@ spec:
             args: ["--noacl", "-d"]
             env:
               TZ: "Europe/Helsinki"
-            securityContext:
-              privileged: true
+#            securityContext:
+#              privileged: true
 
     service:
       tvheadend:
