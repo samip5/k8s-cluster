@@ -119,6 +119,7 @@ spec:
 
     service:
       main:
+        controller: main
         type: ClusterIP
         ports:
           http:
