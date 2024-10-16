@@ -5,4 +5,4 @@ kind: Kustomization
 resources:
   - ./ns.yaml
   - ./rook/ks-operator.yaml
-  - ./rook/ks-cluster.yaml
+#  - ./rook/ks-cluster.yaml
