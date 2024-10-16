@@ -44,7 +44,7 @@ spec:
         kubernetes.io/hostname: w7
 
     controllers:
-      main:
+      z2m:
         type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
@@ -118,6 +118,7 @@ spec:
         #    fsGroupChangePolicy: OnRootMismatch
     service:
       main:
+        controller: z2m
         ports:
           http:
             port: *port
@@ -138,25 +139,25 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: main
                   port: http
         tls:
           - hosts:
               - "${HOSTNAME}"
-      code:
-        enabled: false
-        ingressClassName: "internal-nginx"
-        hosts:
-          - host: &code-host "z2m-code.skylab.fi"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  name: code
-                  port: http
-        tls:
-          - hosts:
-              - *code-host
+#      code:
+#        enabled: false
+#        ingressClassName: "internal-nginx"
+#        hosts:
+#          - host: &code-host "z2m-code.skylab.fi"
+#            paths:
+#              - path: /
+#                pathType: Prefix
+#                service:
+#                  name: code
+#                  port: http
+#        tls:
+#          - hosts:
+#              - *code-host
 
     persistence:
       data:
@@ -164,7 +165,7 @@ spec:
         existingClaim: "${VOLSYNC_CLAIM}"
         globalMounts:
           - path: /data
-      serial:
-        enabled: true
-        type: hostPath
-        hostPath: /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AL065A0U-if00-port0
+#      serial:
+#        enabled: true
+#        type: hostPath
+#        hostPath: /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AL065A0U-if00-port0
