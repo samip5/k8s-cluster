@@ -5,7 +5,7 @@ metadata:
   name: main-pool
   namespace: kube-system
 spec:
-  cidrs:
+  blocks:
     - cidr: 10.96.69.0/24
     - cidr: fded:687e:c3bf::/112
 ---
@@ -15,6 +15,6 @@ metadata:
   name: svc-pool
   namespace: kube-system
 spec:
-  cidrs:
+  blocks:
     - cidr: 192.168.10.0/24
     - cidr: fd2a:46ab:906e::/112
