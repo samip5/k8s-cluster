@@ -4,24 +4,24 @@ resources:
   - ci
 #  - dev
 #  - crypto
-  - collab
+#  - collab
 #  - comms
-  - security
-  - monitoring
+#  - security
+#  - monitoring
   - networking
-  - system
+#  - system
   - storage
 #  - school
   - home
   - databases
   - kube-system
-  - media
-  - vpn
+#  - media
+#  - vpn
 #  - vpn-services
   - default
   - volsync
 #  - finance
   - flux-system
 #  - tor
-  - games
+#  - games
 #  - protu
