@@ -64,7 +64,7 @@ spec:
               }]
 
         containers:
-          main:
+          ha:
             image:
               repository: registry.skysolutions.fi/ghcr.io/onedr0p/home-assistant
               tag: 2024.10.2
@@ -119,6 +119,7 @@ spec:
 
     service:
       main:
+        controller: main
         type: ClusterIP
         ports:
           http:
@@ -133,7 +134,6 @@ spec:
     ingress:
       main:
         enabled: true
-        primary: true
         className: "external-nginx"
         annotations:
           nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
@@ -146,7 +146,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: main
                   port: http
         tls:
           - hosts:
@@ -162,7 +162,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: main
                   port: http
         tls:
           - hosts:
@@ -178,7 +178,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: code
+                  identifier: code
                   port: http
         tls:
           - hosts:

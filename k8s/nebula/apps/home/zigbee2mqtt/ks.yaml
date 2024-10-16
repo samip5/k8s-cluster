@@ -23,7 +23,7 @@ spec:
   timeout: 5m
   postBuild:
     substitute:
-      APP: *appname
+      APP: zigbee2mqtt
       APP_UID: "568"
       APP_GID: "568"
       HOSTNAME: z2m.skylab.fi

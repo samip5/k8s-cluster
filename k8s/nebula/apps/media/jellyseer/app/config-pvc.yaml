@@ -10,4 +10,4 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  storageClassName: fast-ceph-filesystem
+  storageClassName: ceph-block

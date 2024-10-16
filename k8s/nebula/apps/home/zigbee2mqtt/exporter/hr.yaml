@@ -51,16 +51,10 @@ spec:
                 memory: 200Mi
     service:
       main:
+        controller: main
         ports:
-          http:
-            enabled: false
           metrics:
             enabled: true
             protocol: HTTP
             port: *port
         type: ClusterIP
-    serviceMonitor:
-       main:
-         enabled: true
-         endpoints:
-           - port: metrics

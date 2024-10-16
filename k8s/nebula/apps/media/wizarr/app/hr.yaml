@@ -36,11 +36,11 @@ spec:
         fsGroupChangePolicy: "OnRootMismatch"
 
     controllers:
-      main:
+      wizarr:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          main:
+          wizarr:
             image:
               repository: ghcr.io/wizarrrr/wizarr
               tag: 4.2.0-beta.3
@@ -54,6 +54,7 @@ spec:
                 memory: 1Gi
     service:
       main:
+        controller: wizarr
         ports:
           http:
             port: 5690
@@ -69,7 +70,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: main
                   port: http
         tls:
           - hosts:
@@ -83,7 +84,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: main
                   port: http
         tls:
           - hosts:
@@ -93,6 +94,6 @@ spec:
         enabled: true
         existingClaim: "${VOLSYNC_CLAIM}"
         advancedMounts:
-          main:
-            main:
+          wizarr:
+            wizarr:
               - path: /data/database

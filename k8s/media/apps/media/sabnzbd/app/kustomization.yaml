@@ -6,6 +6,7 @@ resources:
   - ./externalsecret.yaml
   - ./hr.yaml
   - ./pvc.yaml
+  - ./replicationsource.yaml
 configMapGenerator:
   - name: sabnzbd-scripts
     files:

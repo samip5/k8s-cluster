@@ -18,7 +18,7 @@ spec:
   interval: 30m
   values:
     controllers:
-      main:
+      maintainerr:
         annotations:
           reloader.stakater.com/auto: "true"
 
@@ -43,6 +43,7 @@ spec:
 
     service:
       main:
+        controller: maintainerr
         ports:
           http:
             port: 6246
@@ -57,7 +58,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: main
                   port: http
         tls:
           - hosts:

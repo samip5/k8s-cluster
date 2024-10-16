@@ -19,9 +19,11 @@ spec:
     - name: rook-ceph-operator
   values:
     toolbox:
-      enabled: true
-      image: quay.io/ceph/ceph:v18.2.4
+      enabled: false
+      image: quay.io/ceph/ceph:v19.2.0
     cephClusterSpec:
+      cephVersion:
+        image: quay.io/ceph/ceph:v19.2.0
       external:
         enable: true
       crashCollector:

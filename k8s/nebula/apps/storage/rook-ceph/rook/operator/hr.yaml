@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: rook-ceph
-      version: v1.14.11
+      version: v1.15.3
       sourceRef:
         kind: HelmRepository
         name: rook-ceph
