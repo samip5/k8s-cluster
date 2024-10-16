@@ -47,7 +47,7 @@ spec:
 
 
     controllers:
-      main:
+      esphome:
         type: statefulset
 
         pod:
@@ -79,6 +79,7 @@ spec:
 
     service:
       main:
+        controller: esphome
         type: ClusterIP
         ports:
           http:
@@ -97,7 +98,7 @@ spec:
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: main
                   port: http
         tls:
           - hosts:
