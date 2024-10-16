@@ -5,13 +5,13 @@ resources:
 #  - dev
 #  - crypto
   - collab
-  - comms
+#  - comms
   - security
   - monitoring
   - networking
   - system
   - storage
-  - school
+#  - school
   - home
   - databases
   - kube-system
@@ -20,8 +20,8 @@ resources:
 #  - vpn-services
   - default
   - volsync
-  - finance
+#  - finance
   - flux-system
 #  - tor
   - games
-  - protu
+#  - protu
