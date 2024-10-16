@@ -47,7 +47,7 @@ spec:
           limits:
             memory: "2Gi"
           requests:
-            memory: "1Gi"
+            memory: "2Gi"
       network:
         provider: host
         connections:
