@@ -34,7 +34,7 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
 
     controllers:
-      main:
+      pgadmin:
         type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
@@ -55,6 +55,7 @@ spec:
 
     service:
       main:
+        controller: pgadmin
         ports:
           http:
             port: 80
@@ -64,14 +65,13 @@ spec:
         enabled: true
         storageClass: ceph-block
         size: 1Gi
+        accessMode: "ReadWriteOnce"
         globalMounts:
           - path: /var/lib/pgadmin
       oauthconfig:
         enabled: true
         type: configMap
         name: pgadmin-local-config-configmap
-        subPath: config_local.py
-        readOnly: true
         globalMounts:
           - path: /pgadmin4/config_local.py
             subPath: config_local.py
@@ -80,14 +80,14 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: internal-nginx
+        className: internal-nginx
         hosts:
           - host: pgadmin.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: main
                   port: http
         tls:
           - secretName: ${SECRET_DOMAIN}-tls

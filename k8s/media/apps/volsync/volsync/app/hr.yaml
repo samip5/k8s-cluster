@@ -1,0 +1,52 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: volsync
+  namespace: volsync
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: volsync
+      version: 0.10.0
+      sourceRef:
+        kind: HelmRepository
+        name: backube
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    - name: snapshot-controller
+      namespace: kube-system
+  values:
+    manageCRDs: true
+    metrics:
+      disableAuth: true
+#    nodeSelector:
+#      kubernetes.io/arch: amd64
+    image:
+      repository: &image ghcr.io/onedr0p/volsync
+      tag: &tag 0.10.0@sha256:ad853202ca2133e36f5e07ee87aab5c62f2b319d5a1e360ce14a4c1db7533b0c
+    restic:
+      repository: *image
+      tag: *tag
+  postRenderers:
+    - kustomize:
+        patches:
+          - patch: |
+              apiVersion: apps/v1
+              kind: Deployment
+              metadata:
+                name: volsync
+              spec:
+                template:
+                  spec:
+                    priorityClassName: system-cluster-critical
