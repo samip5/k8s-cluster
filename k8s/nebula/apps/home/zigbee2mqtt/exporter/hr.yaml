@@ -64,4 +64,5 @@ spec:
        main:
          enabled: true
          endpoints:
-           - port: metrics
+           - serviceName: main
+             port: metrics
