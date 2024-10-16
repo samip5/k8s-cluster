@@ -53,8 +53,6 @@ spec:
       main:
         controller: main
         ports:
-          http:
-            enabled: false
           metrics:
             enabled: true
             protocol: HTTP
