@@ -70,7 +70,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  identifier: main
+                  identifier: wizarr
                   port: http
         tls:
           - hosts:
@@ -84,7 +84,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  identifier: main
+                  identifier: wizarr
                   port: http
         tls:
           - hosts:
