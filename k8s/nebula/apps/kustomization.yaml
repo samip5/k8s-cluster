@@ -4,9 +4,9 @@ resources:
   - ci
 #  - dev
 #  - crypto
-#  - collab
-#  - comms
-#  - security
+  - collab
+  - comms
+  - security
 #  - monitoring
   - networking
 #  - system
@@ -15,7 +15,7 @@ resources:
   - home
   - databases
   - kube-system
-#  - media
+  - media
 #  - vpn
 #  - vpn-services
   - default
@@ -23,5 +23,5 @@ resources:
 #  - finance
   - flux-system
 #  - tor
-#  - games
+  - games
 #  - protu
