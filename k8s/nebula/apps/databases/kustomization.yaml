@@ -6,7 +6,7 @@ resources:
 #  - mariadb/ks-resources.yaml
 #  - mariadb/ks-phpmyadmin.yaml
 #  - mongodb/ks.yaml
-#  - redis/ks.yaml
+  - redis/ks.yaml
   - cloudnative-pg/ks.yaml
   - cloudnative-pg/ks-cluster.yaml
   - cloudnative-pg/ks-cluster-vector.yaml
