@@ -70,7 +70,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  identifier: wizarr
+                  identifier: main
                   port: http
         tls:
           - hosts:
@@ -84,7 +84,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  identifier: wizarr
+                  identifier: main
                   port: http
         tls:
           - hosts:
@@ -94,6 +94,6 @@ spec:
         enabled: true
         existingClaim: "${VOLSYNC_CLAIM}"
         advancedMounts:
-          main:
-            main:
+          wizarr:
+            wizarr:
               - path: /data/database
