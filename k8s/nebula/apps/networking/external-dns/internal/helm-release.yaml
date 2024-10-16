@@ -50,7 +50,7 @@ spec:
 
     policy: sync
     provider: rfc2136
-    logLevel: debug
+    #logLevel: debug
 
     resources:
       requests:
