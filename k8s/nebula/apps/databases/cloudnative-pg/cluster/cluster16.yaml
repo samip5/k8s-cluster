@@ -10,7 +10,7 @@ spec:
   primaryUpdateStrategy: unsupervised
   storage:
     size: 40Gi
-    storageClass: ceph-block
+    storageClass: local-hostpath
   superuserSecret:
     name: cloudnative-pg-secret
   enableSuperuserAccess: true
@@ -19,9 +19,9 @@ spec:
       memory: 1Gi
     limits:
       memory: 2Gi
-#  bootstrap:
-#    recovery:
-#      source: &previousCluster postgres16-v3
+  bootstrap:
+    recovery:
+      source: &previousCluster postgres16-v4
   affinity:
     enablePodAntiAffinity: true
     topologyKey: kubernetes.io/hostname
@@ -49,7 +49,7 @@ spec:
         compression: bzip2
       destinationPath: s3://cnpg-main/
       endpointURL: https://s3.skym.fi
-      serverName: &currentCluster postgres16-v4
+      serverName: &currentCluster postgres16-v5
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
@@ -57,18 +57,18 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-secret
           key: aws-secret-access-key
-#  externalClusters:
-#    - name: *previousCluster
-#      barmanObjectStore:
-#        wal:
-#          compression: bzip2
-#          maxParallel: 8
-#        destinationPath: s3://cnpg-main/
-#        endpointURL: https://s3.skym.fi
-#        s3Credentials:
-#          accessKeyId:
-#            name: cloudnative-pg-secret
-#            key: aws-access-key-id
-#          secretAccessKey:
-#            name: cloudnative-pg-secret
-#            key: aws-secret-access-key
+  externalClusters:
+    - name: *previousCluster
+      barmanObjectStore:
+        wal:
+          compression: bzip2
+          maxParallel: 8
+        destinationPath: s3://cnpg-main/
+        endpointURL: https://s3.skym.fi
+        s3Credentials:
+          accessKeyId:
+            name: cloudnative-pg-secret
+            key: aws-access-key-id
+          secretAccessKey:
+            name: cloudnative-pg-secret
+            key: aws-secret-access-key
