@@ -34,7 +34,7 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
 
     controllers:
-      main:
+      pgadmin:
         type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
@@ -55,6 +55,7 @@ spec:
 
     service:
       main:
+        controller: pgadmin
         ports:
           http:
             port: 80
@@ -87,7 +88,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: main
                   port: http
         tls:
           - secretName: ${SECRET_DOMAIN}-tls
