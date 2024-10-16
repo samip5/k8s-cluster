@@ -64,7 +64,7 @@ spec:
               }]
 
         containers:
-          main:
+          ha:
             image:
               repository: registry.skysolutions.fi/ghcr.io/onedr0p/home-assistant
               tag: 2024.10.2
@@ -147,7 +147,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: main
                   port: http
         tls:
           - hosts:
@@ -163,7 +163,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: main
                   port: http
         tls:
           - hosts:
@@ -179,7 +179,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: code
+                  identifier: code
                   port: http
         tls:
           - hosts:
