@@ -27,7 +27,7 @@ spec:
     keepHistory: false
   values:
     controllers:
-      main:
+      redis:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -45,12 +45,8 @@ spec:
                 memory: 100Mi
     service:
       main:
+        controller: redis
         ports:
-          http:
-            enabled: false
           redis:
             enabled: true
             port: 6379
-    ingress:
-      main:
-        enabled: false
