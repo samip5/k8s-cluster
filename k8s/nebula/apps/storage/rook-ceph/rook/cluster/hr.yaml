@@ -24,6 +24,8 @@ spec:
     monitoring:
       enabled: true
     cephClusterSpec:
+      cephVersion:
+        image: quay.io/ceph/ceph:v19.2.0
       # This is a terrible hack (THANKS Anthony! :D)
       # I need more resources.
       crashCollector:
