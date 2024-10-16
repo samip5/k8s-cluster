@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -29,7 +30,7 @@ spec:
 
 
     controllers:
-      main:
+      unimus:
         type: deployment
         replicas: 1
         annotations:
@@ -46,7 +47,7 @@ spec:
               }]
 
         containers:
-          main:
+          unimus:
             image:
               repository: registry.skysolutions.fi/docker.io/croc/unimus # Pull-though cache
               tag: 2.5.1
@@ -60,6 +61,7 @@ spec:
                 memory: 1Gi
     service:
       main:
+        controller: unimus
         ports:
           http:
             port: 8085
@@ -73,7 +75,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: main
                   port: 8085
         tls:
           - hosts:
