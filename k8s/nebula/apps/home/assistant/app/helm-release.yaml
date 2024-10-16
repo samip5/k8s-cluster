@@ -134,7 +134,6 @@ spec:
     ingress:
       main:
         enabled: true
-        primary: true
         className: "external-nginx"
         annotations:
           nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
