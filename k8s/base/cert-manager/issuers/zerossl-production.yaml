@@ -23,10 +23,10 @@ spec:
             name: cloudflare-token-secret
             key: cloudflare-token
       selector:
-        - dnsZones:
-            - skylab.fi
-            - y2k.fi
-            - d10.fi
+        dnsZones:
+          - skylab.fi
+          - y2k.fi
+          - d10.fi
     - http01:
         ingress:
           ingressClassName: external-nginx
