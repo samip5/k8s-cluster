@@ -97,11 +97,11 @@ spec:
             securityContext: *sc
             resources:
               limits:
-                memory: 4Gi
+                memory: 6Gi
                 gpu.intel.com/i915: "1"
               requests:
                 cpu: 50m
-                memory: 2Gi
+                memory: 3Gi
                 gpu.intel.com/i915: "1"
       ml:
         type: statefulset
