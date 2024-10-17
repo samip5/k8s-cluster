@@ -187,9 +187,9 @@ spec:
       enableServiceLinks: false
       securityContext:
         runAsNonRoot: true
-        runAsUser: *uid
-        runAsGroup: *uid
-        fsGroup: *uid
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
         fsGroupChangePolicy: Always
         seccompProfile: { type: "RuntimeDefault" }
     serviceMonitor:
