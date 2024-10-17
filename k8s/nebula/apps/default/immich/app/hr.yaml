@@ -151,7 +151,7 @@ spec:
         ports:
           http:
             port: 2283
-        metrics:
+          metrics:
             port: 8081
       ml:
         controller: ml
