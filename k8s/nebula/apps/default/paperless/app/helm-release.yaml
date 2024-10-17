@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -50,7 +50,8 @@ spec:
 
         containers:
           main:
-            order: 2
+            dependsOn:
+             - redis
             image:
               repository: ghcr.io/paperless-ngx/paperless-ngx
               tag: 2.12.1
@@ -118,7 +119,6 @@ spec:
               requests:
                 cpu: 10m
           redis:
-            order: 1
             image:
               repository: public.ecr.aws/docker/library/redis
               tag: 7.4.1
