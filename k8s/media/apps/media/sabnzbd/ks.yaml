@@ -27,3 +27,4 @@ spec:
       APP: *app
       VOLSYNC_CAPACITY: 1Gi
       VOLSYNC_STORAGECLASS: ceph-rbd
+      VOLSYNC_SNAPSHOTCLASS: csi-ceph-blockpool
