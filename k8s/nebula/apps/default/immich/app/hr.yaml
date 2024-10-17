@@ -160,7 +160,6 @@ spec:
             main:
               - subPath: data
                 path: *pvc
-          microservices: *mount
       misc:
         existingClaim: immich-misc
         advancedMounts:
