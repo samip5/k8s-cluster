@@ -1,16 +1,15 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: mariadb-operator
+  name: mariadb-operator-crds
   namespace: flux-system
 spec:
-  path: ./k8s/nebula/apps/databases/mariadb/operator
+  path: ./k8s/nebula/apps/databases/mariadb/crds
   prune: true
+  wait: true
   sourceRef:
     kind: GitRepository
     name: flux-system
-  depensOn:
-    - name: mariadb-operator-crds
   interval: 30m
   retryInterval: 1m
   timeout: 5m
