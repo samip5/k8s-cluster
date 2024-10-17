@@ -13,7 +13,7 @@ metadata:
       controller: true
       kind: Cluster
       name: postgres16
-      uid: 76b9157c-b575-4f14-a38e-4e3cee569cc6
+      uid: cd3c6064-db9c-48c4-a40a-b03d598db4e9
 spec:
   internalTrafficPolicy: Cluster
   ipFamilies:
