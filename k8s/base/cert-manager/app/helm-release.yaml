@@ -21,8 +21,6 @@ spec:
       leaderElection:
         namespace: cert-manager
     installCRDs: true
-    dns01RecursiveNameserver: 1.1.1.1:53,9.9.9.9:53
-    dns01RecursiveNameserverOnly: true
     podDnsPolicy: None
     podDnsConfig:
       nameservers:
