@@ -1,12 +1,15 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sabnzbd
-  namespace: media
+  name: "${VOLSYNC_CLAIM:-${APP}}"
 spec:
+  accessModes:
+    - "${VOLSYNC_ACCESSMODES:-ReadWriteOnce}"
+  dataSourceRef:
+    kind: ReplicationDestination
+    apiGroup: volsync.backube
+    name: "${APP}-bootstrap"
   resources:
     requests:
-      storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: ceph-rbd
+      storage: "${VOLSYNC_CAPACITY:-1Gi}"
+  storageClassName: "${VOLSYNC_STORAGECLASS:-fast-ceph-filesystem}"
