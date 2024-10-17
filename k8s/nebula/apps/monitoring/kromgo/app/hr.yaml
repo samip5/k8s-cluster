@@ -36,15 +36,18 @@ spec:
               tag: v0.4.2
             env:
               PROMETHEUS_URL: http://prom-prometheus.monitoring.svc.nebula.local:9090
-              PORT: &port 80
+              SERVER_HOST: 0.0.0.0
+              SERVER_PORT: &port 80
+              HEALTH_HOST: 0.0.0.0
+              HEALTH_PORT: &hport 8888
             probes:
               liveness: &probes
                 enabled: true
                 custom: true
                 spec:
                   httpGet:
-                    path: /-/ready
-                    port: *port
+                    path: /readyz
+                    port: *hport
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
