@@ -1,0 +1,14 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mariadb-operator-crds
+spec:
+  chart:
+    spec:
+      chart: mariadb-operator-crds
+      sourceRef:
+        kind: HelmRepository
+        name: mariadb-operator
+        namespace: flux-system
+      version: "0.34.0"
+  interval: 1h0m0s
