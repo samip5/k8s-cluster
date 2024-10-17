@@ -5,6 +5,8 @@ kind: Kustomization
 metadata:
   name: &app sabnzbd
   namespace: flux-system
+  labels:
+   component.skylab.fi/part-of: definitions
 spec:
   targetNamespace: media
   commonMetadata:
