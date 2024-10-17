@@ -149,6 +149,7 @@ spec:
       microservices:
         controller: microservices
         ports:
+          http:
             port: 2283
         metrics:
             port: 8081
