@@ -43,7 +43,7 @@ spec:
                 REDIS_HOSTNAME: redis.databases.svc.cluster.local
                 REDIS_PORT: "6379"
                 REDIS_DBINDEX: 9
-              IMMICH_WORKERS_INCLUDE: &server-include 'api'
+              #IMMICH_WORKERS_INCLUDE: &server-include 'api'
             envFrom: &ef
               - secretRef:
                   name: immich-secret
