@@ -56,49 +56,6 @@ spec:
               requests:
                 cpu: 500m
                 memory: 2Gi
-      microservices:
-        type: deployment
-        replicas: 2
-        strategy: RollingUpdate
-        rollingUpdate:
-          unavailable: "90%"
-        pod:
-          labels:
-            db.home.arpa/pg: pg-home
-            prom.home.arpa/kps: allow
-          securityContext:
-            runAsNonRoot: true
-            runAsUser: &uid 568
-            runAsGroup: *uid
-            fsGroup: *uid
-            fsGroupChangePolicy: Always
-            supplementalGroups: [ 44, 104, 109, 128, 226 ] # GPU
-            seccompProfile: { type: "RuntimeDefault" }
-          topologySpreadConstraints:
-            - maxSkew: 1
-              topologyKey: kubernetes.io/hostname
-              whenUnsatisfiable: DoNotSchedule
-              labelSelector:
-                matchLabels:
-                  app.kubernetes.io/name: *app
-                  app.kubernetes.io/instance: *app
-                  app.kubernetes.io/component: microservices
-        containers:
-          main:
-            image: *img
-            env:
-              <<: *env-common
-              IMMICH_WORKERS_EXCLUDE: *server-include
-            envFrom: *ef
-            securityContext: *sc
-            resources:
-              limits:
-                memory: 4Gi
-                gpu.intel.com/i915: "1"
-              requests:
-                cpu: 50m
-                memory: 2Gi
-                gpu.intel.com/i915: "1"
       ml:
         type: statefulset
         replicas: 1
@@ -140,12 +97,7 @@ spec:
         controller: immich
         ports:
           http:
-            port: 3001
-          metrics:
-            port: 8081
-      microservices:
-        controller: microservices
-        ports:
+            port: 2283
           metrics:
             port: 8081
       ml:
@@ -218,7 +170,6 @@ spec:
                 path: /data/encoded-video
               - subPath: thumbs
                 path: /data/thumbs
-          microservices: *misc
       tmp:
         type: emptyDir
         medium: Memory
@@ -244,14 +195,6 @@ spec:
     serviceMonitor:
       immich:
         serviceName: immich
-        endpoints:
-          - port: metrics
-            scheme: http
-            path: /metrics
-            interval: 1m
-            scrapeTimeout: 30s
-      microservices:
-        serviceName: microservices
         endpoints:
           - port: metrics
             scheme: http
