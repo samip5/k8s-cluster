@@ -3,7 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: kyverno-charts
+  name: kyverno
   namespace: flux-system
 spec:
   interval: 30m
