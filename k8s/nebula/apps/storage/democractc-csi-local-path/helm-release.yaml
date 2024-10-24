@@ -13,6 +13,13 @@ spec:
         name: democratic-csi
         kind: HelmRepository
         namespace: flux-system
+  install:
+    remediation:
+      retries: 2
+  upgrade:
+    remediation:
+      strategy: uninstall
+      retries: 2
   values:
     csiDriver:
       name: "org.democratic-csi.local-hostpath"
