@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
@@ -36,12 +37,12 @@ spec:
           - 100
 
     controllers:
-      main:
+      bazarr:
         type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          main:
+          bazarr:
             image:
               repository: ghcr.io/onedr0p/bazarr
               tag: 1.4.5@sha256:c0bf91443c32f3978777b4ddd2732908f51b157bbe00cd3259b23f7716bb4af7
@@ -73,6 +74,7 @@ spec:
 
     service:
       main:
+        controller: bazarr
         ports:
           http:
             port: 6767
@@ -88,7 +90,7 @@ spec:
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: main
                   port: http
         tls:
           - hosts:
@@ -102,15 +104,16 @@ spec:
       add-ons:
         enabled: true
         type: emptyDir
-        mountPath: /add-ons
+        globalMounts:
+          - path: /add-ons
       scripts:
         enabled: true
         type: configMap
         name: bazarr-scripts # overriden by kustomizeconfig
         defaultMode: 0775
-        readOnly: true
         globalMounts:
           - path: /scripts
+            readOnly: true
       media-tv:
         enabled: true
         type: hostPath
