@@ -30,6 +30,7 @@ spec:
       - --zone-id-filter=f85f6018759f99552ac2fe5340997cb4
       - --zone-id-filter=cd86551a0f95b977ba6b4d8d5686cb9f
       - --zone-id-filter=dd9e6ee88492898e2b16e87c8387fa01
+      - --zone-id-filter=8f7cec26372ac032fe917c84f98d071d
       - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
       - --crd-source-kind=DNSEndpoint
     interval: 5m
@@ -43,6 +44,7 @@ spec:
     domainFilters:
       - "skylab.fi"
       - "d10.fi"
+      - "kryptonian.dev"
       - "${MAIN_DOMAIN}"
     serviceMonitor:
       enabled: true
