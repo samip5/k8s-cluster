@@ -23,6 +23,7 @@ spec:
   upgrade:
     cleanupOnFail: true
     remediation:
+      strategy: uninstall
       retries: 3
   uninstall:
     keepHistory: false
