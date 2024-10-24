@@ -114,13 +114,13 @@ spec:
         enabled: true
         existingClaim: "${VOLSYNC_CLAIM}"
         advancedMounts:
-          main:
-            main:
+          firefly:
+            firefly:
               - path: /var/www/html/storage/upload
       logs:
         enabled: true
         type: emptyDir
         advancedMounts:
-          main:
-            main:
+          firefly:
+            firefly:
               - path: /var/www/html/storage/logs
