@@ -21,7 +21,7 @@ resources:
 #  - vpn-services
   - default
   - volsync
-#  - finance
+  - finance
   - flux-system
 #  - tor
   - games
