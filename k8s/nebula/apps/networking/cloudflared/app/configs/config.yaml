@@ -20,4 +20,12 @@ ingress:
     service: https://nginx-external-controller.networking.svc.nebula.local:443
     originRequest:
       originServerName: "ingress-cf.skylab.fi"
+  - hostname: "kryptonian.dev"
+    service: https://nginx-external-controller.networking.svc.nebula.local:443
+    originRequest:
+      originServerName: "ingress-cf.skylab.fi"
+  - hostname: "*.kryptonian.dev"
+    service: https://nginx-external-controller.networking.svc.nebula.local:443
+    originRequest:
+      originServerName: "ingress-cf.skylab.fi"
   - service: http_status:404
