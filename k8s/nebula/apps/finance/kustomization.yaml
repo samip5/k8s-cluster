@@ -4,5 +4,5 @@ resources:
   - ./ns.yaml
 #  - ./actual/ks.yaml
 #  - ./paisa/ks.yaml
-#  - ./firefly/ks.yaml
-#  - ./firefly/ks-importer.yaml
+  - ./firefly/ks.yaml
+  - ./firefly/ks-importer.yaml
