@@ -37,6 +37,14 @@ spec:
       odoo:
         annotations:
           reloader.stakater.com/auto: "true"
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+            envFrom:
+              - secretRef:
+                  name: protu-odoo-init-secrets
 
         containers:
           odoo:
@@ -49,7 +57,7 @@ spec:
               limits:
                 memory: 4Gi
             envFrom:
-              - secret: odoo-secrets
+              - secret: protu-odoo-secrets
 
     service:
       odoo:
