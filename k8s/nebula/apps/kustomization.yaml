@@ -15,6 +15,7 @@ resources:
   - home
   - databases
   - kube-system
+  - kyverno
   - media
   - vpn
 #  - vpn-services
