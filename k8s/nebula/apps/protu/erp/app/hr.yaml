@@ -42,7 +42,7 @@ spec:
           odoo:
             image:
               repository: registry.skysolutions.fi/docker.io/odoo
-              tag: "17.0"
+              tag: "18.0"
             resources:
               requests:
                 memory: 4Gi
@@ -96,12 +96,11 @@ spec:
         existingClaim: "${VOLSYNC_CLAIM}"
         globalMounts:
           - path: /var/lib/odoo
-#      etc-config-file:
-#        type: configMap
-#        name: odoo-configmap
-#        globalMounts:
-#          - path: /etc/odoo/odoo.conf
-#            readOnly: true
+      etc-config-file:
+        type: configMap
+        name: odoo-configmap
+        globalMounts:
+          - path: /etc/odoo/odoo.conf
       extra-addons:
         existingClaim: odoo-addons-v1
         globalMounts:
