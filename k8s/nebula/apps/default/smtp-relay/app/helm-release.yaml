@@ -42,10 +42,9 @@ spec:
               POSTFIX_inet_protocols: all
             resources:
               requests:
-                cpu: 15m
+                cpu: 100m
                 memory: 64M
               limits:
-                cpu: 15m
                 memory: 64M
             probes:
               liveness:
