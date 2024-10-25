@@ -33,10 +33,12 @@ spec:
           main:
             image:
               repository: registry.skysolutions.fi/docker.io/boky/postfix
-              tag: latest
+              tag: 4.3.0-debian
             env:
               RELAYHOST: smtp.dnainternet.fi
-              ALLOWED_SENDER_DOMAINS: skylab.fi,pbx.samipsolutions.fi,samipsolutions.fi,erp.kryptonian.dev
+              TZ: Europe/Helsinki
+              # ALLOWED_SENDER_DOMAINS: skylab.fi,pbx.samipsolutions.fi,samipsolutions.fi,erp.kryptonian.dev
+              ALLOW_EMPTY_SENDER_DOMAINS: true
               POSTFIX_myhostname: mailer.k8s.skylab.fi
               POSTFIX_mynetworks: 10.244.0.0/16 [fddf:f7bc:9670::]/48 192.168.2.0/24 [2001:14ba:16fd:9600::]/56 10.0.105.0/24 10.0.50.0/24
               POSTFIX_inet_protocols: all
