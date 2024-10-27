@@ -32,6 +32,8 @@ spec:
           effect: "NoExecute"
         - operator: "Exists"
           effect: "NoSchedule"
+        - operator: "Exists"
+          affect: "PreferNoSchedule"
     controllers:
       generic-device-plugin:
         containers:
