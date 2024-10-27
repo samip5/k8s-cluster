@@ -1,0 +1,48 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app tailscale
+  namespace: flux-system
+  labels:
+    substitution.flux.home.arpa/enabled: "true"
+spec:
+  targetNamespace: networking
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  path: ./k8s/media/apps/networking/tailscale/app
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.ok8.sh/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app tailscale-proxyclass
+  namespace: flux-system
+  labels:
+    substitution.flux.home.arpa/enabled: "true"
+spec:
+  targetNamespace: networking
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  dependsOn:
+    - name: tailscale
+  path: ./k8s/media/apps/networking/tailscale/extras
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
