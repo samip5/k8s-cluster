@@ -14,3 +14,4 @@ resources:
   - ./external-dns/ks-internal.yaml
 #  - ./whoami/ks.yaml
   - ./unimus/ks.yaml
+  - ./tailscale/ks.yaml
