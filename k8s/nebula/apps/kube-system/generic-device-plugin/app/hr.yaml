@@ -36,6 +36,7 @@ spec:
           effect: "PreferNoSchedule"
     controllers:
       generic-device-plugin:
+        type: daemonset
         containers:
           generic-device-plugin:
             image:
