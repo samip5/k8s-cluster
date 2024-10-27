@@ -33,7 +33,7 @@ spec:
         - operator: "Exists"
           effect: "NoSchedule"
         - operator: "Exists"
-          affect: "PreferNoSchedule"
+          effect: "PreferNoSchedule"
     controllers:
       generic-device-plugin:
         containers:
