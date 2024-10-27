@@ -35,6 +35,9 @@ bpf:
   masquerade: true
   tproxy: true
 
+socketLB:
+  hostNamespaceOnly: true
+
 l7Proxy: true
 routingMode: "native"
 ipam:
