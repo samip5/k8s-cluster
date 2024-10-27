@@ -58,7 +58,7 @@ spec:
         className: nginx
         annotations:
           nginx.ingress.kubernetes.io/auth-method: GET
-          nginx.ingress.kubernetes.io/auth-url: http://wa-bs.n.kapsi.fi:40118/api/verify
+          nginx.ingress.kubernetes.io/auth-url: http://wa-bs.n.kapsi.fi:40118/api/authz/auth-request
           nginx.ingress.kubernetes.io/auth-signin: https://sso.skylab.fi?rm=$request_method
           nginx.ingress.kubernetes.io/auth-response-headers: Remote-User,Remote-Groups
           nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Method $request_method;
