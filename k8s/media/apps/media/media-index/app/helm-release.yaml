@@ -34,8 +34,8 @@ spec:
         containers:
           main:
             image:
-              repository: registry.skysolutions.fi/library/nginx-fancyindex
-              tag: "28102024"
+              repository: samip537/fancyindex-darktheme
+              tag: latest
             env:
               CONTAINER_TIMEZONE: Europe/Helsinki
               DISABLE_AUTH: true
@@ -92,9 +92,9 @@ spec:
 
     persistence:
       data:
-        enabled: false
+        enabled: true
         type: hostPath
-        hostPath: "/opt/docker/appdata/caddy_index/index"
+        hostPath: "/opt/docker/appdata/index"
         globalMounts:
           - path: /share
       library:
