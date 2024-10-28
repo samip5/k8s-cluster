@@ -35,7 +35,7 @@ spec:
           main:
             image:
               repository: registry.skysolutions.fi/library/nginx-fancyindex
-              tag: 28102024
+              tag: "28102024"
             env:
               CONTAINER_TIMEZONE: Europe/Helsinki
               DISABLE_AUTH: true
