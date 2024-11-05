@@ -23,6 +23,11 @@ spec:
     image:
       pullPolicy: Always
       tag: "stable"
+    persistence:
+      enabled: true
+      dataDir:
+        Size: "${VOLSYNC_CAPACITY}"
+        existingClaim: "factorio"
     service:
       type: LoadBalancer
       port: 34197
