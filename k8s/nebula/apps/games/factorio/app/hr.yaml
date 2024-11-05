@@ -1,0 +1,61 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: factorio
+  namespace: games
+spec:
+  chart:
+    spec:
+      chart: factorio-server-charts
+      version: 1.2.5
+      sourceRef:
+        kind: HelmRepository
+        name: factorio
+        namespace: flux-system
+  interval: 1h0m0s
+  valuesFrom:
+    - kind: Secret
+      name: factorio-secret
+  values:
+    nodeSelector:
+      beta.kubernetes.io/arch: amd64
+    image:
+      pullPolicy: Always
+      tag: "stable"
+    service:
+      type: LoadBalancer
+      port: 34197
+    mods:
+      enabled: true
+      portal:
+        - squeak-through-2
+        # - factorio-prometheus-exporter
+        - factoryplanner
+        - flib
+        - space-age
+    factorioServer:
+      save_name: "default-save"
+      update_mods_on_start: true
+      load_latest_save: true
+    # https://github.com/SQLJames/factorio-server-charts/pull/49
+    map_settings:
+      asteroids:
+        spawning_rate: 1
+        max_ray_portals_expanded_per_tick: 100
+    server_settings:
+      name: Back of the class
+      description: "Kryptonian's dedicated server on Kubernetes ;)"
+      max_players: 0
+      visibility:
+        public: true
+        lan: true
+      require_user_verification: true
+      max_upload_in_kilobytes_per_second: 0
+      max_upload_slots: 10
+      minimum_latency_in_ticks: 0
+      ignore_player_limit_for_returning_players: true
+      allow_commands: admins-only
+      auto_pause: true
+      only_admins_can_pause_the_game: true
+    admin_list: [kryptonian98]

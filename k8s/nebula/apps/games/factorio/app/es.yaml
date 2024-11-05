@@ -1,0 +1,27 @@
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: factorio
+spec:
+  refreshInterval: 5m
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: onepassword-connect
+  target:
+    name: factorio-secret
+    creationPolicy: Owner
+    template:
+      engineVersion: v2
+      data:
+        values.yaml: |
+          account:
+            username: "kryptonian98"
+            token: "{{ .PLAYER_TOKEN }}"
+          serverPassword:
+            game_password: "{{ .SERVER_PASSWORD }}"
+          rcon:
+            password: "{{ .RCON_PASSWORD }}"
+  dataFrom:
+    - extract:
+        key: factorio
