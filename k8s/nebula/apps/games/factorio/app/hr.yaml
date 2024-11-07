@@ -17,18 +17,19 @@ spec:
   valuesFrom:
     - kind: Secret
       name: factorio-secret
-  postRenderers:
-    - kustomize:
-        patches:
-          - target:
-              version: v1
-              kind: Deployment
-            patch: |
-              - op: add
-                path: /spec/template/spec/containers/0/env/-
-                value:
-                  name: BIND
-                  value: "::"
+# Results in failure to start: https://forums.factorio.com/viewtopic.php?f=7&t=120185
+#  postRenderers:
+#    - kustomize:
+#        patches:
+#          - target:
+#              version: v1
+#              kind: Deployment
+#            patch: |
+#              - op: add
+#                path: /spec/template/spec/containers/0/env/-
+#                value:
+#                  name: BIND
+#                  value: "::"
   values:
     nameOverride: factorio
     nodeSelector:
