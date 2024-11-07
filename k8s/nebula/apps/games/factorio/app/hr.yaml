@@ -47,7 +47,7 @@ spec:
 #      type: LoadBalancer
 #      annotations:
 #        io.cilium/lb-ipam-ips: 10.96.69.200,fded:687e:c3bf::200
-#      port: 34197
+      port: 32767
     mods:
       enabled: false
       portal:
