@@ -32,7 +32,7 @@ spec:
     service:
       type: LoadBalancer
       annotations:
-        io.cilium/lb-ipam-ips: 10.96.69.200
+        io.cilium/lb-ipam-ips: 10.96.69.200,fded:687e:c3bf::200
       port: 34197
     mods:
       enabled: true
@@ -42,7 +42,7 @@ spec:
         - factoryplanner
         - flib
     port_fixer:
-      enabled: true
+      enabled: false # results in constant getting yeeted from the game
     factorioServer:
       save_name: "default-save"
       update_mods_on_start: true
