@@ -57,6 +57,8 @@ spec:
         - flib
     port_fixer:
       enabled: false # results in constant getting yeeted from the game
+    import_save:
+      enabled: false
     factorioServer:
       save_name: "default-save"
       update_mods_on_start: true
