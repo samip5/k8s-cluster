@@ -17,6 +17,22 @@ spec:
   valuesFrom:
     - kind: Secret
       name: factorio-secret
+  postRenderers:
+    - kustomize:
+        patches:
+          - patch: |
+              spec:
+                template:
+                  metadata:
+                    labels: factorio
+                  spec:
+                    containers:
+                      - env:
+                         - name: BIND
+                           value: "::"
+            target:
+              group: apps/v1
+              kind: Deployment
   values:
     nameOverride: factorio
     nodeSelector:
