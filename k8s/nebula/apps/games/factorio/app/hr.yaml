@@ -50,7 +50,7 @@ spec:
         max_ray_portals_expanded_per_tick: 100
     server_settings:
       name: Kryptonian's game
-      description: "Kryptonian's dedicated server on Kubernetes ;)"
+      description: "dedicated server on Kubernetes ;)"
       max_players: 0
       visibility:
         public: true
