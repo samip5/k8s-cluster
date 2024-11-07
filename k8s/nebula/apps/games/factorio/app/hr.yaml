@@ -18,6 +18,7 @@ spec:
     - kind: Secret
       name: factorio-secret
   values:
+    nameOverride: factorio
     nodeSelector:
       beta.kubernetes.io/arch: amd64
     image:
@@ -61,12 +62,12 @@ spec:
       require_user_verification: true
       max_upload_in_kilobytes_per_second: 0
       max_upload_slots: 10
-      autosave_interval: 5
+      autosave_interval: 10
       autosave_slots: 10
       minimum_latency_in_ticks: 0
       ignore_player_limit_for_returning_players: true
       allow_commands: admins-only
       auto_pause: true
       only_admins_can_pause_the_game: true
-      non_blocking_saving: true # Highly experimental
+      # non_blocking_saving: true # Highly experimental
     admin_list: [kryptonian98]
