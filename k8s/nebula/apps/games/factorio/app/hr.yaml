@@ -47,7 +47,7 @@ spec:
 #      type: LoadBalancer
 #      annotations:
 #        io.cilium/lb-ipam-ips: 10.96.69.200,fded:687e:c3bf::200
-      port: &gameport 32767
+      port: 32767
     mods:
       enabled: false
       portal:
@@ -74,7 +74,7 @@ spec:
       visibility:
         public: true
         lan: true
-      port: *gameport
+      port: "32767"
       require_user_verification: true
       max_upload_in_kilobytes_per_second: 0
       max_upload_slots: 10
