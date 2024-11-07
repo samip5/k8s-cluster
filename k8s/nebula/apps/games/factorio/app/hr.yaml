@@ -43,7 +43,6 @@ spec:
         - flib
     port_fixer:
       enabled: true
-      port: 34197
     factorioServer:
       save_name: "default-save"
       update_mods_on_start: true
