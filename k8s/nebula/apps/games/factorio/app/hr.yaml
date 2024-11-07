@@ -49,7 +49,7 @@ spec:
         spawning_rate: 1
         max_ray_portals_expanded_per_tick: 100
     server_settings:
-      name: Back of the class
+      name: Kryptonian's game
       description: "Kryptonian's dedicated server on Kubernetes ;)"
       max_players: 0
       visibility:
@@ -58,9 +58,12 @@ spec:
       require_user_verification: true
       max_upload_in_kilobytes_per_second: 0
       max_upload_slots: 10
+      autosave_interval: 5
+      autosave_slots: 10
       minimum_latency_in_ticks: 0
       ignore_player_limit_for_returning_players: true
       allow_commands: admins-only
       auto_pause: true
       only_admins_can_pause_the_game: true
+      non_blocking_saving: true # Highly experimental
     admin_list: [kryptonian98]
