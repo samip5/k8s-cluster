@@ -47,7 +47,7 @@ spec:
 #      type: LoadBalancer
 #      annotations:
 #        io.cilium/lb-ipam-ips: 10.96.69.200,fded:687e:c3bf::200
-      port: 32767
+      port: &gameport 32767
     mods:
       enabled: false
       portal:
@@ -64,6 +64,7 @@ spec:
       update_mods_on_start: true
       load_latest_save: true
       enable_space_age: true
+      port: *gameport
     # https://github.com/SQLJames/factorio-server-charts/pull/49
     map_settings:
       asteroids:
@@ -76,7 +77,6 @@ spec:
       visibility:
         public: true
         lan: true
-      port: "32767"
       require_user_verification: true
       max_upload_in_kilobytes_per_second: 0
       max_upload_slots: 10
