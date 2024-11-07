@@ -43,11 +43,9 @@ spec:
         Size: "${VOLSYNC_CAPACITY}"
         existingClaim: "factorio"
     service:
-      type: NodePort
-#      type: LoadBalancer
-#      annotations:
-#        io.cilium/lb-ipam-ips: 10.96.69.200,fded:687e:c3bf::200
-      port: &gameport 32767
+      type: LoadBalancer
+      annotations:
+        io.cilium/lb-ipam-ips: 10.96.69.200,fded:687e:c3bf::200
     mods:
       enabled: false
       portal:
@@ -64,7 +62,6 @@ spec:
       update_mods_on_start: true
       load_latest_save: true
       enable_space_age: true
-      port: *gameport
     # https://github.com/SQLJames/factorio-server-charts/pull/49
     map_settings:
       asteroids:
