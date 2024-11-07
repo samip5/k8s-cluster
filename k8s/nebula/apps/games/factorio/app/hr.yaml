@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: factorio-server-charts
-      version: 2.2.1
+      version: 2.2.2
       sourceRef:
         kind: HelmRepository
         name: factorio
@@ -54,7 +54,7 @@ spec:
         - factoryplanner
         - flib
     port_fixer:
-      enabled: false # results in constant getting yeeted from the game
+      enabled: true
     import_save:
       enabled: false
     factorioServer:
