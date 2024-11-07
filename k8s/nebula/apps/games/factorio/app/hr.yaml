@@ -31,6 +31,8 @@ spec:
         existingClaim: "factorio"
     service:
       type: LoadBalancer
+      annotations:
+        io.cilium/lb-ipam-ips: 10.96.69.200
       port: 34197
     mods:
       enabled: true
