@@ -20,19 +20,15 @@ spec:
   postRenderers:
     - kustomize:
         patches:
-          - patch: |
-              spec:
-                template:
-                  metadata:
-                    labels: factorio
-                  spec:
-                    containers:
-                      - env:
-                         - name: BIND
-                           value: "::"
-            target:
-              group: apps/v1
+          - target:
+              version: v1
               kind: Deployment
+            patch: |
+              - op: add
+                path: /spec/template/spec/containers/0/env/-
+                value:
+                  name: BIND
+                  value: "::"
   values:
     nameOverride: factorio
     nodeSelector:
