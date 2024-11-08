@@ -35,8 +35,9 @@ spec:
     nodeSelector:
       kubernetes.io/arch: amd64
     image:
+      repository: "factoriotools/factorio"
       pullPolicy: Always
-      tag: "stable"
+      tag: "stable-2.0.15@sha256:2d7c0d9a6142610214b1ed138b83598a5692754e9fa26ab37499ae6fc1b6298c"
     persistence:
       enabled: true
       dataDir:
