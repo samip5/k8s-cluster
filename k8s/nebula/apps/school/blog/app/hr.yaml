@@ -87,7 +87,7 @@ spec:
         enabled: true
         className: "external-nginx"
         annotations:
-          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          #nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
           cert-manager.io/cluster-issuer: "zerossl-production"
           external-dns.alpha.kubernetes.io/target: "r.home.skym.fi"
 
@@ -107,7 +107,7 @@ spec:
       int:
         className: "internal-nginx"
         annotations:
-          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          #nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
           cert-manager.io/cluster-issuer: "zerossl-production"
           external-dns.alpha.kubernetes.io/target: "r.home.skym.fi"
 
