@@ -65,6 +65,7 @@ spec:
               mail__transport: "SMTP"
               mail__options__host: "smtp-relay.default.svc.cluster.local"
               mail__options__port: "587"
+              mail__options__tls__rejectUnauthorized: false
               mail__from: "ghost-noreply@skylab.fi"
               privacy__useRpcPing: false
             resources:
