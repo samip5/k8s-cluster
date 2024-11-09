@@ -56,9 +56,9 @@ spec:
               tag: 5.94.0-alpine
             env:
               TZ: "Europe/Helsinki"
-            envFrom:
-              - secretRef:
-                  name: *app
+              NODE_ENV: "production"
+              url: https://${HOSTNAME}
+              database__client: sqlite3
             resources:
               requests:
                 memory: 512M
@@ -77,6 +77,26 @@ spec:
       main:
         enabled: true
         className: "external-nginx"
+        annotations:
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          cert-manager.io/cluster-issuer: "zerossl-production"
+          external-dns.alpha.kubernetes.io/target: "r.home.skym.fi"
+
+        hosts:
+          - host: "${HOSTNAME}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts:
+              - "${HOSTNAME}"
+            secretName: ${HOSTNAME}-prod-tls
+
+      int:
+        className: "internal-nginx"
         annotations:
           nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
           cert-manager.io/cluster-issuer: "zerossl-production"
