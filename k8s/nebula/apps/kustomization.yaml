@@ -11,7 +11,7 @@ resources:
   - networking
 #  - system
   - storage
-#  - school
+  - school
   - home
   - databases
   - kube-system
