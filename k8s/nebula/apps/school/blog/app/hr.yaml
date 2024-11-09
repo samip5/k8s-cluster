@@ -104,25 +104,25 @@ spec:
               - "${HOSTNAME}"
             secretName: ${HOSTNAME}-prod-tls
 
-      int:
-        className: "internal-nginx"
-        annotations:
-          #nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-          cert-manager.io/cluster-issuer: "zerossl-production"
-          external-dns.alpha.kubernetes.io/target: "r.home.skym.fi"
-
-        hosts:
-          - host: "${HOSTNAME}"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: app
-                  port: http
-        tls:
-          - hosts:
-              - "${HOSTNAME}"
-            secretName: ${HOSTNAME}-prod-tls
+#      int:
+#        className: "internal-nginx"
+#        annotations:
+#          #nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+#          cert-manager.io/cluster-issuer: "zerossl-production"
+#          external-dns.alpha.kubernetes.io/target: "r.home.skym.fi"
+#
+#        hosts:
+#          - host: "${HOSTNAME}"
+#            paths:
+#              - path: /
+#                pathType: Prefix
+#                service:
+#                  identifier: app
+#                  port: http
+#        tls:
+#          - hosts:
+#              - "${HOSTNAME}"
+#            secretName: ${HOSTNAME}-prod-tls
 
 
 
