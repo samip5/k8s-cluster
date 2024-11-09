@@ -59,6 +59,9 @@ spec:
               NODE_ENV: "production"
               url: https://${HOSTNAME}
               database__client: sqlite3
+              database__connection_filename: "/var/lib/ghost/content/data/ghost.db"
+              database__useNullAsDefault: true
+              database__debug: false
             resources:
               requests:
                 memory: 512M
