@@ -62,6 +62,10 @@ spec:
               database__connection__filename: "/var/lib/ghost/content/data/ghost.db"
               database__useNullAsDefault: true
               database__debug: false
+              mail__transport: "SMTP"
+              mail__options__host: "smtp-relay.default.svc.cluster.local"
+              mail__options__port: "587"
+              mail__from: "ghost-noreply@skylab.fi"
             resources:
               requests:
                 memory: 512M
