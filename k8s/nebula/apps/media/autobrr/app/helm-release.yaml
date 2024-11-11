@@ -22,7 +22,7 @@ spec:
         runAsGroup: ${APP_GID}
         runAsNonRoot: true
     controllers:
-      main:
+      autobrr:
         annotations:
           secret.reloader.stakater.com/reload: autobrr-secret,autobrr-init-secret
         #initContainers:
@@ -35,7 +35,7 @@ spec:
         #          name: autobrr-init-secret
 
         containers:
-          main:
+          autobrr:
             image:
               repository: ghcr.io/autobrr/autobrr
               tag: v1.50.0
@@ -86,6 +86,7 @@ spec:
 
     service:
       main:
+        controller: autobrr
         ports:
           http:
             port: *port
