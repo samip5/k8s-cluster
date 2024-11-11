@@ -42,7 +42,7 @@ spec:
             env:
               AUTOBRR__CHECK_FOR_UPDATES: "false"
               AUTOBRR__HOST: 0.0.0.0
-              AUTOBRR__PORT: 7474
+              AUTOBRR__PORT: &port 7474
               AUTOBRR__LOG_LEVEL: INFO
               AUTOBRR__DATABASE_TYPE: postgres
               AUTOBRR__POSTGRES_HOST:
@@ -89,7 +89,7 @@ spec:
         controller: autobrr
         ports:
           http:
-            port: 7474
+            port: *port
 
     ingress:
       main:
@@ -101,7 +101,7 @@ spec:
               - path: /
                 service:
                   name: main
-                  port: http
+                  port: *port
         tls:
           - hosts:
               - "${HOSTNAME}"
