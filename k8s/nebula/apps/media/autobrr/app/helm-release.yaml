@@ -105,3 +105,9 @@ spec:
         tls:
           - hosts:
               - "${HOSTNAME}"
+    persistence:
+      config:
+        type: PersistentVolumeClaim
+        size: 1Gi
+        globalMounts:
+          - path: /config
