@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: factorio-server-charts
-      version: 2.5.1
+      version: 2.5.2
       sourceRef:
         kind: HelmRepository
         name: factorio
