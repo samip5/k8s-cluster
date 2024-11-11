@@ -107,7 +107,9 @@ spec:
               - "${HOSTNAME}"
     persistence:
       config:
-        type: PersistentVolumeClaim
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        storageClass: ceph-block
         size: 1Gi
         globalMounts:
           - path: /config
