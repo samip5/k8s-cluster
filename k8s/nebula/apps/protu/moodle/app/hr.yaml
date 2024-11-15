@@ -40,7 +40,7 @@ spec:
       debug: true
 
 
-    moodleSkipInstall: "true"
+    moodleSkipInstall: true
     moodleSiteName: "Protu Test"
     moodleLang: "en"
     moodleUsername: "admin"
