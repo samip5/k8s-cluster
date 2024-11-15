@@ -25,6 +25,11 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  valuesFrom:
+    - kind: Secret
+      name: protu-moodle-secrets
+      targetPath: moodlePassword
+      valuesKey: moodlePassword
   values:
     nameOverride: protu
 
