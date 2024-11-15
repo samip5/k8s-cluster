@@ -26,7 +26,7 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    nameOverride: protu-moodle
+    nameOverride: protu
 
     image:
       registry: registry.skysolutions.fi
