@@ -60,7 +60,7 @@ spec:
       enabled: false
 
     externalDatabase:
-      type: "postgresql"
+      type: "pgsql"
       host: "postgres16-rw.databases.svc.cluster.local"
       port: "5432"
       user: "protu_moodle"
