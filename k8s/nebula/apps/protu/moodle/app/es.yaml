@@ -15,7 +15,7 @@ spec:
     template:
       engineVersion: v2
       data:
-        PASSWORD: "{{ .POSTGRES_PASS }}"
+        mariadb-password: "{{ .POSTGRES_PASS }}"
   dataFrom:
     - extract:
         key: protu-moodle-test
