@@ -1,0 +1,82 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: moodle
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: moodle
+      version: 25.0.0
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    nameOverride: protu-moodle
+
+    image:
+      registry: registry.skysolutions.fi
+      repository: docker.io/bitnami/moodle
+      tag: 4.5.0-debian-12-r0
+
+    moodleSiteName: "Protu Test"
+    MOODLE_LANG: "fi"
+    moodleUsername: "admin"
+    moodleEmail: "www@protu.fi"
+
+    smtpHost: "smtp-relay.default.svc.cluster.local"
+    smtpPort: "587"
+    smtpProtocol: "nil"
+
+    serviceAccount:
+      create: false
+
+    service:
+      type: ClusterIP
+
+    ingress:
+      enabled: true
+      hostname: moodle.kryptonian.dev
+      tls: true
+      ingressClassName: external-nginx
+      annotations:
+        cert-manager.io/cluster-issuer: zerossl-production
+
+    mariadb:
+      enabled: false
+
+    externalDatabase:
+      type: "postgresql"
+      host: "postgres16-rw.databases.svc.cluster.local"
+      port: "5432"
+      user: "protu_moodle"
+      database: "protu_moodle"
+      existingSecret: protu-moodle-db-creds
+
+    networkPolicy:
+      enabled: false
+
+    persistence:
+      enabled: true
+      accessModes:
+        - ReadWriteMany
+      size: 8Gi
+      storageClass: fast-ceph-filesystem
+
+
+
+

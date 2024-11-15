@@ -1,0 +1,21 @@
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: protu-moodle
+  namespace: protu
+spec:
+  refreshInterval: 5m
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: onepassword-connect
+  target:
+    name: protu-moodle-db-creds
+    deletionPolicy: Delete
+    template:
+      engineVersion: v2
+      data:
+        PASSWORD: "{{ .POSTGRES_PASS }}"
+  dataFrom:
+    - extract:
+        key: protu-moodle-test
