@@ -32,9 +32,10 @@ spec:
       registry: registry.skysolutions.fi
       repository: docker.io/bitnami/moodle
       tag: 4.5.0-debian-12-r0
+      debug: true
 
     moodleSiteName: "Protu Test"
-    moodleLang: "fi"
+    moodleLang: "en"
     moodleUsername: "admin"
     moodleEmail: "www@protu.fi"
 
