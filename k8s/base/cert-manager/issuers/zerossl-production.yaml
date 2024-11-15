@@ -27,6 +27,7 @@ spec:
           - skylab.fi
           - y2k.fi
           - d10.fi
+          - kryptonian.dev
     - http01:
         ingress:
           ingressClassName: external-nginx
