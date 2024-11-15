@@ -44,6 +44,10 @@ spec:
 
     serviceAccount:
       create: false
+    livenessProbe:
+      enabled: false
+    readinessProbe:
+      enabled: false
 
     service:
       type: ClusterIP
