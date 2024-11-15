@@ -35,14 +35,14 @@ spec:
 
     image:
       registry: registry.skysolutions.fi
-      repository: docker.io/bitnami/moodle
-      tag: 4.5.0-debian-12-r0
+      repository: library/moodle
+      tag: 4.5-debian12
       debug: true
 
 
     moodleSkipInstall: true
     moodleSiteName: "Protu Test"
-    moodleLang: "en"
+    moodleLang: "fi"
     moodleUsername: "admin"
     moodleEmail: "www@protu.fi"
 
