@@ -38,10 +38,9 @@ spec:
       repository: docker.io/bitnami/moodle
       tag: 4.5.0-debian-12-r0
       debug: true
-    extraEnvVars:
-      - name: MOODLE_SKIP_BOOTSTRAP
-        value: "true"
 
+
+    moodleSkipInstall: "yes"
     moodleSiteName: "Protu Test"
     moodleLang: "en"
     moodleUsername: "admin"
