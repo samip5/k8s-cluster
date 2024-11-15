@@ -37,7 +37,7 @@ spec:
     image:
       repository: "factoriotools/factorio"
       pullPolicy: Always
-      tag: "stable-2.0.15@sha256:9ac9808571142ec6c139653c10c1448fc235886f5b202d6dd4da23deff056541"
+      tag: "stable-2.0.15@sha256:73264366e7b9804df01e31ba7a093809f64a591bd9fd50a517324851d9cca8b3"
     persistence:
       enabled: true
       dataDir:
