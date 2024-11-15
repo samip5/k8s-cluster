@@ -34,7 +34,7 @@ spec:
       tag: 4.5.0-debian-12-r0
 
     moodleSiteName: "Protu Test"
-    MOODLE_LANG: "fi"
+    moodleLang: "fi"
     moodleUsername: "admin"
     moodleEmail: "www@protu.fi"
 
