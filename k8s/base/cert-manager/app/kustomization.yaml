@@ -5,11 +5,4 @@ kind: Kustomization
 namespace: cert-manager
 resources:
   - ./helm-release.yaml
-configMapGenerator:
-  - name: cert-manager-dashboard
-    files:
-      - cert-manager-dashboard.json=https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
-generatorOptions:
-  disableNameSuffixHash: true
-  labels:
-    grafana_dashboard: "true"
+
