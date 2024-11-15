@@ -3,6 +3,8 @@ kind: Kustomization
 metadata:
   name: &appname protu-moodle-test
   namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
 spec:
   targetNamespace: protu
   commonMetadata:

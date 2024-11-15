@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - hr.yaml
   - es.yaml
+  - secret.sops.yaml
