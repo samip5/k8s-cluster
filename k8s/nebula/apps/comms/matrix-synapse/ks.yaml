@@ -19,5 +19,4 @@ spec:
       kind: HelmRelease
       name: matrix-synapse
   interval: 30m
-  retryInterval: 1m
   timeout: 5m

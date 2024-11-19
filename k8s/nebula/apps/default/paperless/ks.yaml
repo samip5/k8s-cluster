@@ -20,7 +20,6 @@ spec:
     kind: GitRepository
     name: flux-system
   interval: 30m
-  retryInterval: 1m
   timeout: 5m
   postBuild:
     substitute:

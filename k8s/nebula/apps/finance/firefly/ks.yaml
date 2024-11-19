@@ -21,7 +21,6 @@ spec:
       name: firefly-iii
       namespace: finance
   interval: 30m
-  retryInterval: 1m
   timeout: 5m
   postBuild:
     substitute:

@@ -19,5 +19,4 @@ spec:
       name: rook-ceph-operator
       namespace: rook-ceph
   interval: 30m
-  retryInterval: 1m
   timeout: 3m
