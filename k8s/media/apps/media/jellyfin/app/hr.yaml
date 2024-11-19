@@ -46,8 +46,8 @@ spec:
               tag: 10.10.2
             env:
               DOTNET_SYSTEM_IO_DISABLEFILELOCKING: "true"
-              JELLYFIN_FFmpeg__probesize: 50000000
-              JELLYFIN_FFmpeg__analyzeduration: 500000000
+              JELLYFIN_FFmpeg__probesize: "50000000"
+              JELLYFIN_FFmpeg__analyzeduration: "500000000"
               # Decoding requires these packages on Ubuntu 22.04
               # libnvidia-decode-550-server libnvidia-encode-550-server
               # As well as the normal nvidia drivers, runtime AND toolkit (later of which is handled by the nvidia GPU operator)
@@ -55,11 +55,11 @@ spec:
               NVIDIA_DRIVER_CAPABILITIES: all
             resources:
               requests:
-                memory: 2Gi
+                memory: 4Gi
                 nvidia.com/gpu: 1
               limits:
                 nvidia.com/gpu: 1
-                memory: 2Gi
+                memory: 4Gi
 
     service:
       jellyfin:
