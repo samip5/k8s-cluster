@@ -4,6 +4,8 @@ apiVersion: volsync.backube/v1alpha1
 kind: ReplicationDestination
 metadata:
   name: "${APP}-bootstrap"
+  labels:
+    kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
 spec:
   trigger:
     manual: restore-once
@@ -21,3 +23,6 @@ spec:
     accessModes:
       - "${VOLSYNC_ACCESSMODES:-ReadWriteOnce}"
     capacity: "${VOLSYNC_CAPACITY:-1Gi}"
+    enableFileDeletion: true
+    cleanupCachePVC: true
+    cleanupTempPVC: true
