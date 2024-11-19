@@ -4,13 +4,12 @@ metadata:
   name: mariadb-operator
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: mariadb-operator-crds
   path: ./k8s/nebula/apps/databases/mariadb/operator
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
-  depensOn:
-    - name: mariadb-operator-crds
   interval: 30m
-  retryInterval: 1m
   timeout: 5m

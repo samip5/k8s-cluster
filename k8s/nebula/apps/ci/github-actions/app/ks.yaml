@@ -16,5 +16,4 @@ spec:
       name: actions-runner-controller
       namespace: gh-actions
   interval: 30m
-  retryInterval: 1m
   timeout: 5m
