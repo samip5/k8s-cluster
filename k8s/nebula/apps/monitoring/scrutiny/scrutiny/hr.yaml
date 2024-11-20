@@ -28,6 +28,35 @@ spec:
         # capabilities:
         #   add: ["SYS_RAWIO"] # allow access to smartctl
     controllers:
+      scrutiny-collector:
+        type: cronjob
+        annotations:
+          reloader.stakater.com/auto: "true"
+        cronjob:
+          schedule: "@daily"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/analogj/scrutiny
+              tag: v0.8.1-collector
+            env:
+              TZ: Europe/Helsinki
+              COLLECTOR_API_ENDPOINT: http://scrutiny.observability.svc.cluster.local:8080
+              COLLECTOR_HOST_ID:
+                valueFrom:
+                  fieldRef:
+                    fieldPath: spec.nodeName
+            args:
+              - /opt/scrutiny/bin/scrutiny-collector-metrics
+              - run
+            securityContext:
+              privileged: true
+              readOnlyRootFilesystem: true
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 128Mi
       scrutiny:
         containers:
           app:
@@ -35,51 +64,24 @@ spec:
               repository: ghcr.io/analogj/scrutiny
               tag: v0.8.1-web
             env:
-             TZ: "Europe/Helsinki"
-             SCRUTINY_WEB_INFLUXDB_HOST: influx.databases.svc.cluster.local
+              SCRUTINY_WEB_INFLUXDB_HOST: influx.databases.svc.cluster.local
+              TZ: Europe/Helsinki
             securityContext:
-              privileged: true
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: [ "ALL" ] }
             probes:
-              liveness:
+              liveness: &probe
                 enabled: true
                 custom: true
                 spec:
-                  initialDelaySeconds: 30
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
                   httpGet:
                     path: /api/health
                     port: &port 8080
-                readiness:
-                  enabled: true
-                  custom: true
-                  spec:
-                    initialDelaySeconds: 30
-                    periodSeconds: 10
-                    timeoutSeconds: 1
-                    failureThreshold: 3
-                    httpGet:
-                      path: /api/health
-                      port: *port
-                startup:
-                  enabled: true
-                  custom: true
-                  spec:
-                    initialDelaySeconds: 0
-                    timeoutSeconds: 1
-                    periodSeconds: 5
-                    failureThreshold: 30
-                    httpGet:
-                      path: /api/health
-                      port: *port
+              readiness: *probe
+              startup:
+                enabled: false
 
-            resources:
-              requests:
-                cpu: 150m
-                memory: 512Mi
-              limits:
-                memory: 1Gi
 
     ingress:
       main:
@@ -90,7 +92,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  identifier: main
+                  identifier: scrutiny
                   port: 8080
         tls:
           - hosts:
@@ -98,7 +100,7 @@ spec:
 
 
     service:
-      main:
+      scrutiny:
         controller: scrutiny
         ports:
           http:
@@ -109,21 +111,26 @@ spec:
 
 
     persistence:
-      config:
-        enabled: true
+      scrutiny-config:
         existingClaim: "${VOLSYNC_CLAIM}"
-        globalMounts:
-          - path: /opt/scrutiny/config
-      udev:
+        advancedMounts:
+          scrutiny:
+            app:
+              - path: /opt/scrutiny/config
+      collector-config:
         enabled: true
+        type: emptyDir
+        advancedMounts:
+          scrutiny-collector:
+            app:
+              - path: /config
+      dev:
+        type: hostPath
+        hostPath: /dev
+        hostPathType: Directory
+      udev:
         type: hostPath
         hostPath: /run/udev
-        globalMounts:
-          - path: /run/udev
-      sda:
-        enabled: true
-        type: hostPath
-        hostPath: /dev/sda
-        globalMounts:
-          - path: /dev/sda
+        hostPathType: Directory
+
 

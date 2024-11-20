@@ -4,4 +4,3 @@ resources:
   - ./kromgo/ks.yaml
   - ./jellystat/ks.yaml
   - ./scrutiny/ks.yaml
-  - ./scrutiny/ks-collector.yaml
