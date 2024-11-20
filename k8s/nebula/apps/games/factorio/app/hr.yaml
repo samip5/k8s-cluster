@@ -47,13 +47,6 @@ spec:
       type: LoadBalancer
       annotations:
         io.cilium/lb-ipam-ips: 10.96.69.200,fded:687e:c3bf::200
-    mods:
-      enabled: false
-      portal:
-        - squeak-through-2
-        # - factorio-prometheus-exporter
-        - factoryplanner
-        - flib
     port_fixer:
       enabled: true
     import_save:
