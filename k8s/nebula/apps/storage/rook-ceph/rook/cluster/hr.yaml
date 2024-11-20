@@ -21,9 +21,24 @@ spec:
     toolbox:
       enabled: true
       image: quay.io/ceph/ceph:v19.2.0
+
     monitoring:
       enabled: true
+
     cephClusterSpec:
+      placement:
+        all:
+          tolerations:
+            - effect: PreferNoSchedule
+              key: node-role.kubernetes.io/control-plane
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: kubernetes.io/arch
+                      operator: In
+                      values:
+                        - amd64
       cephVersion:
         image: quay.io/ceph/ceph:v19.2.0
       # This is a terrible hack (THANKS Anthony! :D)
