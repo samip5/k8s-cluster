@@ -41,7 +41,7 @@ spec:
               tag: v0.8.1-collector
             env:
               TZ: Europe/Helsinki
-              COLLECTOR_API_ENDPOINT: http://scrutiny.observability.svc.cluster.local:8080
+              COLLECTOR_API_ENDPOINT: http://scrutiny.monitoring.svc.cluster.local:8080
               COLLECTOR_HOST_ID:
                 valueFrom:
                   fieldRef:
@@ -102,6 +102,7 @@ spec:
     service:
       scrutiny:
         controller: scrutiny
+        type: LoadBalancer
         ports:
           http:
             port: *port
