@@ -27,10 +27,14 @@ spec:
 
     cephClusterSpec:
       placement:
-        all:
-          tolerations:
-            - effect: PreferNoSchedule
-              key: node-role.kubernetes.io/control-plane
+        mgr:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: node-role.kubernetes.io/control-plane
+                      operator: Exists
+        mon:
           nodeAffinity:
             requiredDuringSchedulingIgnoredDuringExecution:
               nodeSelectorTerms:
