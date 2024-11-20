@@ -48,7 +48,7 @@ spec:
         enabled: true
         replicaCount: 2
       generic_worker:
-        enabled: false
+        enabled: true
         generic: true
         replicaCount: 2
         listeners: [client]
