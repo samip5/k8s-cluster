@@ -11,4 +11,4 @@ resources:
   - cloudnative-pg/ks-cluster.yaml
   - cloudnative-pg/ks-cluster-vector.yaml
   - pgadmin/ks.yaml
- # - influx/ks.yaml
+  - influx/ks.yaml
