@@ -25,20 +25,54 @@ spec:
   values:
     defaultPodOptions:
       automountServiceAccountToken: false
-      securityContext:
-        privileged: true
         # capabilities:
         #   add: ["SYS_RAWIO"] # allow access to smartctl
     controllers:
-      main:
+      scrutiny:
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/analogj/scrutiny
               tag: v0.8.1-web
             env:
              TZ: "Europe/Helsinki"
              SCRUTINY_WEB_INFLUXDB_HOST: influx.databases.svc.cluster.local
+            securityContext:
+              privileged: true
+            probes:
+              liveness:
+                enabled: true
+                custom: true
+                spec:
+                  initialDelaySeconds: 30
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+                  httpGet:
+                    path: /api/health
+                    port: &port 8080
+                readiness:
+                  enabled: true
+                  custom: true
+                  spec:
+                    initialDelaySeconds: 30
+                    periodSeconds: 10
+                    timeoutSeconds: 1
+                    failureThreshold: 3
+                    httpGet:
+                      path: /api/health
+                      port: *port
+                startup:
+                  enabled: true
+                  custom: true
+                  spec:
+                    initialDelaySeconds: 0
+                    timeoutSeconds: 1
+                    periodSeconds: 5
+                    failureThreshold: 30
+                    httpGet:
+                      path: /api/health
+                      port: *port
 
             resources:
               requests:
@@ -49,7 +83,6 @@ spec:
 
     ingress:
       main:
-        enabled: true
         className: internal-nginx
         hosts:
           - host: &host "scrutiny.skylab.fi"
@@ -57,7 +90,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: main
                   port: 8080
         tls:
           - hosts:
@@ -66,44 +99,11 @@ spec:
 
     service:
       main:
+        controller: scrutiny
         ports:
           http:
-            port: &port 8080
-
-    probes:
-      liveness:
-        enabled: true
-        custom: true
-        spec:
-          initialDelaySeconds: 30
-          periodSeconds: 10
-          timeoutSeconds: 1
-          failureThreshold: 3
-          httpGet:
-            path: /api/health
             port: *port
-        readiness:
-          enabled: true
-          custom: true
-          spec:
-            initialDelaySeconds: 30
-            periodSeconds: 10
-            timeoutSeconds: 1
-            failureThreshold: 3
-            httpGet:
-              path: /api/health
-              port: *port
-        startup:
-          enabled: true
-          custom: true
-          spec:
-            initialDelaySeconds: 0
-            timeoutSeconds: 1
-            periodSeconds: 5
-            failureThreshold: 30
-            httpGet:
-              path: /api/health
-              port: *port
+
 
 
 
@@ -118,14 +118,12 @@ spec:
         enabled: true
         type: hostPath
         hostPath: /run/udev
-        readOnly: true
         globalMounts:
           - path: /run/udev
       sda:
         enabled: true
         type: hostPath
         hostPath: /dev/sda
-        readOnly: true
         globalMounts:
           - path: /dev/sda
 

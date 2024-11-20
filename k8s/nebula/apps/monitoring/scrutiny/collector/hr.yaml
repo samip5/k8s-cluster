@@ -28,8 +28,6 @@ spec:
   values:
     defaultPodOptions:
       automountServiceAccountToken: false
-      securityContext:
-          privileged: true
           # capabilities:
           #   add: ["SYS_RAWIO"] # allow access to smartctl
     controllers:
@@ -50,16 +48,14 @@ spec:
                     fieldPath: spec.nodeName
               - name: TZ
                 value: "Europe/Helsinki"
+            securityContext:
+              privileged: true
             resources:
               requests:
                 cpu: 100m
                 memory: 256Mi
               limits:
                 memory: 256Mi
-
-    service:
-      main:
-        enabled: false
 
 
 
@@ -73,7 +69,6 @@ spec:
         enabled: true
         type: hostPath
         hostPath: /run/udev
-        readOnly: true
         globalMounts:
           - path: /run/udev
 
