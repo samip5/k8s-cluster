@@ -80,9 +80,6 @@ spec:
           influx:
             enabled: true
             port: 8086
-    ingress:
-      main:
-        enabled: false
 
     persistence:
       config:
