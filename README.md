@@ -41,14 +41,15 @@ _... managed with Flux, Renovate, and GitHub Actions_ 🤖
 
 
 ## 💻 Nodes
-| Node                          | Hostname | RAM  | Storage                                            | Function    | Operating System    |
-|-------------------------------|----------|------|----------------------------------------------------|-------------|---------------------|
-| Raspberry Pi Compute Module 4 | w7       | 8GB  | 2TB SSD                                            | Kube Worker | Talos 1.8.0-alpha.1 |
-| Raspberry Pi Compute Module 4 | cm4-1    | 8GB  | 32GB eMMC                                          | Kube Worker | Talos 1.8.0-alpha.1 |
-| Lenovo ThinkCentre M910q Tiny | w-amd-1  | 32GB | 1TB Kingston DC SSD + 256GB SSD                    | Kube Worker | Talos 1.8.0-alpha.1 |
-| Custom Haswell mATX system    | w-amd-2  | 32GB | 480GB Transcend SSD, 275GB Crucial SSD + 320GB HDD | Kube Worker | Talos 1.8.0-alpha.1 |
-| HP EliteDesk 800 G2           | w-amd-3  | 32GB | 256GB SSD                                          | Kube Worker | Talos 1.8.0-alpha.1 |
-| Lenovo ThinkCentre M910q Tiny | m1       | 16GB | 256GB SSD x 2                                      | Kube Master | Talos 1.8.0-alpha.1 |
+| Node                          | Hostname | RAM  | Storage                                            | Function    | Operating System |
+|-------------------------------|----------|------|----------------------------------------------------|-------------|------------------|
+| Raspberry Pi Compute Module 4 | w7       | 8GB  | 2TB SSD                                            | Kube Worker | Talos            |
+| Raspberry Pi Compute Module 4 | cm4-1    | 8GB  | 32GB eMMC                                          | Kube Worker | Talos            |
+| Lenovo ThinkCentre M910q Tiny | w-amd-1  | 32GB | 1TB Kingston DC SSD + 256GB SSD                    | Kube Worker | Talos            |
+| Random Chinese N100 board     | w-amd-2  | 32GB | 480GB Transcend SSD, 275GB Crucial SSD + 320GB HDD | Kube Worker | Talos            |
+| HP EliteDesk 800 G2           | w-amd-3  | 32GB | 256GB SSD                                          | Kube Worker | Talos            |
+| Lenovo ThinkCentre M910q Tiny | m1       | 16GB | 256GB SSD x 2                                      | Kube Master | Talos            |
+| Synology VM                   | m2       | 4GB  | 100GB SSD                                          | Kube Master | Talos            |
 
 ## Storage
 | Node         | Hostname | RAM  | Storage                                                                                  | Function   | Operating System |
@@ -57,12 +58,12 @@ _... managed with Flux, Renovate, and GitHub Actions_ 🤖
 
 ## Network
 
-| Vendor   | Model                        | Function                                                          |
-|----------|------------------------------|-------------------------------------------------------------------|
-| Juniper  | EX2200-48P-4g                | Hallway switch with PoE+ and fiber uplinks to rack                |
-| Juniper  | EX3300-48P                   | Rack switch with PoE++ and 10G SFP+                               |
-| Ubiquiti | Unifi USW-Flex-Mini          | Bedroom switching (gaming iTX system, Apple TV 4K and Steam Deck) |
-| Qotom    | TLSense C3758  (TekLager.se) | Main router                                                       |
+| Vendor  | Model                        | Function                                           |
+|---------|------------------------------|----------------------------------------------------|
+| Juniper | EX2200-48P-4g                | Hallway switch with PoE+ and fiber uplinks to rack |
+| Juniper | EX3300-48P                   | Rack switch with PoE++ and 10G SFP+                |
+| TP-Link | TL-SG108E                    | Bedroom switching behind desk                      |
+| Qotom   | TLSense C3758  (TekLager.se) | Main router                                        |
 
 All nodes are connected to a dual-stack network, with private IPv4 and public IPv6. 
 Kubernetes' nodes are on their own VLAN which has access to the NAS.
@@ -73,18 +74,16 @@ While most of my infrastructure and workloads are self-hosted I do rely upon the
 
 The alternative solution to these two problems would be to host a Kubernetes cluster in the cloud and deploy applications like [HCVault](https://www.vaultproject.io/), [Vaultwarden](https://github.com/dani-garcia/vaultwarden), [ntfy](https://ntfy.sh/), and [Gatus](https://gatus.io/). However, maintaining another cluster and monitoring another group of workloads is a lot more time and effort than I am willing to put in.
 
-| Service                                                               | Use                                                                | Cost           |
-|-----------------------------------------------------------------------|--------------------------------------------------------------------|----------------|
-| [Cloudflare](https://www.cloudflare.com/)                             | Domain(s) and S3                                                   | ~$20/yr        |
-| [GCP](https://cloud.google.com/)                                      | Voice interactions with Home Assistant over Google Assistant       | Free           |
-| [GitHub](https://github.com/)                                         | Hosting this repository and continuous integration/deployments     | Free           |
-| [Fastmail](https://fastmail.com/)                                     | Email hosting                                                      | ~$99/yr        |
-| [NextDNS](https://nextdns.io/)                                        | My router DNS server which includes AdBlocking                     | ~$20/yr        |
-| [Kapsi internet-users association](https://www.kapsi.fi/english.html) | Hosts my off-site backup aka minio (S3), Bitwarden and own website | 40€/yr         |
-| [updown.io](https://updown.io)                                        | External monitoring (IPv4/IPv6)                                    | ~€5/yr         |
-| [Bilance](https://www.bilanceapp.com)                                 | Budgeting app for iOS and Android                                  | ~30€/yr        |
+| Service                                                               | Use                                                                | Cost                |
+|-----------------------------------------------------------------------|--------------------------------------------------------------------|---------------------|
+| [Cloudflare](https://www.cloudflare.com/)                             | Domain(s) and S3                                                   | ~$20/yr             |
+| [GitHub](https://github.com/)                                         | Hosting this repository and continuous integration/deployments     | Free                |
+| [Mailbox](https://mailbox.org/)                                       | Email hosting                                                      | ~9€/3 months        |
+| [NextDNS](https://nextdns.io/)                                        | My router DNS server which includes AdBlocking                     | ~$20/yr             |
+| [Kapsi internet-users association](https://www.kapsi.fi/english.html) | Hosts my off-site backup aka minio (S3), Bitwarden and own website | 40€/yr              |
+| [Bilance](https://www.bilanceapp.com)                                 | Budgeting app for iOS and Android                                  | ~30€/yr             |
 | [1Password](https://1password.eu)                                     | External Secrets and secret management                             | Free for the moment |
-|                                                                       |                                                                    | Total: ~40€/mo |
+|                                                                       |                                                                    | Total: ~40€/mo      |
 
 ## Stargazers
 
