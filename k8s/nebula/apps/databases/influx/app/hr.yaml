@@ -35,7 +35,7 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
 
     controllers:
-      main:
+      influxdb:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -49,35 +49,34 @@ spec:
                 memory: 512M
               limits:
                 memory: 1Gi
-        probes:
-          liveness: &health
-            enabled: true
-            custom: true
-            spec:
-              initialDelaySeconds: 30
-              periodSeconds: 10
-              timeoutSeconds: 1
-              failureThreshold: 3
-              httpGet:
-                path: /health
-                port: 8086
-          readiness: *health
-          startup:
-            enabled: true
-            custom: true
-            spec:
-              initialDelaySeconds: 0
-              timeoutSeconds: 1
-              periodSeconds: 5
-              failureThreshold: 30
-              httpGet:
-                path: /health
-                port: 8086
+            probes:
+              liveness: &health
+                enabled: true
+                custom: true
+                spec:
+                  initialDelaySeconds: 30
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+                  httpGet:
+                    path: /health
+                    port: 8086
+              readiness: *health
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  initialDelaySeconds: 0
+                  timeoutSeconds: 1
+                  periodSeconds: 5
+                  failureThreshold: 30
+                  httpGet:
+                    path: /health
+                    port: 8086
     service:
       main:
+        controller: influxdb
         ports:
-          http:
-            enabled: false
           influx:
             enabled: true
             port: 8086
