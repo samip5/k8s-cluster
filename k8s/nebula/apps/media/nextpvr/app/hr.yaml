@@ -41,7 +41,7 @@ spec:
         containers:
           nextpvr:
             image:
-              repository: registry.skysolutions.fi/docker.io/nextpvr_amd64
+              repository: registry.skysolutions.fi/docker.io/nextpvr/nextpvr_amd64
               tag: stable
             env:
               TZ: "Europe/Helsinki"
