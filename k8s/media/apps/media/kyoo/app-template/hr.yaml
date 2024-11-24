@@ -189,11 +189,10 @@ spec:
               requests:
                 cpu: 10m
                 memory: 500Mi
+                nvidia.com/gpu: 1
               limits:
-                gpu.intel.com/i915: 1
+                nvidia.com/gpu: 1
                 memory: 8Gi
-          nodeSelector:
-            intel.feature.node.kubernetes.io/gpu: "true"
 
     defaultPodOptions:
       securityContext:

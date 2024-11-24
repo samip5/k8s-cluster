@@ -20,7 +20,7 @@ data:
   DEFAULT_PERMISSIONS: overall.read,overall.play
 
   # Hardware transcoding
-  GOCODER_HWACCEL: vaapi
+  GOCODER_HWACCEL: nvidia
   # the preset used during transcode. faster means worst quality, you can probably use a slower preset with hwaccels
   # warning: using vaapi hwaccel disable presets (they are not supported).
   GOCODER_PRESET: fast
