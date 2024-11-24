@@ -249,7 +249,7 @@ spec:
           nignx.ingress.kubernetes.io/force-ssl-redirect: "true"
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
         hosts:
-          - host: kyoo.media.skylab.fi
+          - host: &host1 kyoo.media.skylab.fi
             paths:
               - path: /
                 pathType: Prefix
@@ -261,6 +261,9 @@ spec:
                 service:
                   identifier: back
                   port: http
+        tls:
+          - hosts:
+              - *host1
     persistence:
       kyoo:
         existingClaim: *app
