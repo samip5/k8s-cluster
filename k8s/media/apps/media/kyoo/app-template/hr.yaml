@@ -242,7 +242,7 @@ spec:
             port: 7666
     ingress:
       main:
-        className: internal
+        className: nginx
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             rewrite /api/(.*) /$1 break;
