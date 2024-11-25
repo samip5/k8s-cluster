@@ -37,6 +37,6 @@ spec:
             name: cert-manager-bind-kapsi-secret
             key: secret
       selector:
-        - dnsZones:
-            - sky.iki.fi
+        dnsZones:
+          - sky.iki.fi
 
