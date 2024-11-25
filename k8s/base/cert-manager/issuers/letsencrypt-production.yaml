@@ -17,3 +17,14 @@ spec:
           apiTokenSecretRef:
             name: cloudflare-token-secret
             key: cloudflare-token
+    - dns01:
+        rfc2136:
+          nameserver: 91.232.154.53
+          tsigKeyName: skyexternaldns
+          tsigAlgorithm: HMACSHA256
+          tsigSecretSecretRef:
+            name: cert-manager-bind-kapsi-secret
+            key: secret
+      selector:
+        dnsZones:
+          - sky.iki.fi
