@@ -25,7 +25,7 @@ spec:
       APP: *appname
       APP_UID: "568"
       APP_GID: "568"
-      HOSTNAME: tikblog.sky.iki.fi
+      HOSTNAME: tikblog.skylab.fi
       VOLSYNC_CLAIM: school-blog-data
       VOLSYNC_CAPACITY: 2Gi
       VOLSYNC_STORAGECLASS: ceph-block
