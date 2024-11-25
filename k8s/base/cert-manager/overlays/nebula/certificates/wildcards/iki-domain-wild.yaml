@@ -1,0 +1,23 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: sky.iki.fi
+  namespace: networking
+spec:
+  secretName: sky.iki.fi-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  privateKey:
+    algorithm: ECDSA
+    size: 384
+  commonName: "sky.iki.fi"
+  dnsNames:
+  - "sky.iki.fi"
+  - "*.sky.iki.fi"
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+      reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "school"
