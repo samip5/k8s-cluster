@@ -12,6 +12,7 @@ resources:
   - ./external-dns/ks-shared.yaml
   - ./external-dns/ks-external.yaml
   - ./external-dns/ks-internal.yaml
+  - ./external-dns/ks-kapsi.yaml
 #  - ./whoami/ks.yaml
   - ./unimus/ks.yaml
   - ./tailscale/ks.yaml
