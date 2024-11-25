@@ -30,7 +30,7 @@ spec:
           - kryptonian.dev
     - dns01:
         rfc2136:
-          nameserver: ns1.kapsi.fi
+          nameserver: 91.232.154.53
           tsigKeyName: skyexternaldns
           tsigAlgorithm: HMACSHA256
           tsigSecretSecretRef:
