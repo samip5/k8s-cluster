@@ -28,9 +28,15 @@ spec:
           - y2k.fi
           - d10.fi
           - kryptonian.dev
-    - http01:
-        ingress:
-          ingressClassName: external-nginx
+    - dns01:
+        rfc2136:
+          nameserver: ns1.kapsi.fi
+          tsigKeyName: skyexternaldns
+          tsigAlgorithm: HMACSHA256
+          tsigSecretSecretRef:
+            name: cert-manager-bind-kapsi-secret
+            key: secret
       selector:
-        dnsZones:
-          - sky.iki.fi
+        - dnsZones:
+            - sky.iki.fi
+
