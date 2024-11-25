@@ -28,15 +28,15 @@ spec:
           - y2k.fi
           - d10.fi
           - kryptonian.dev
-    - dns01:
-        rfc2136:
-          nameserver: 91.232.154.53
-          tsigKeyName: skyexternaldns
-          tsigAlgorithm: HMACSHA256
-          tsigSecretSecretRef:
-            name: cert-manager-bind-kapsi-secret
-            key: secret
-      selector:
-        dnsZones:
-          - sky.iki.fi
+#    - dns01:
+#        rfc2136:
+#          nameserver: 91.232.154.53
+#          tsigKeyName: skyexternaldns
+#          tsigAlgorithm: HMACSHA256
+#          tsigSecretSecretRef:
+#            name: cert-manager-bind-kapsi-secret
+#            key: secret
+#      selector:
+#        dnsZones:
+#          - sky.iki.fi
 

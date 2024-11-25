@@ -88,7 +88,7 @@ spec:
         className: "external-nginx"
         annotations:
           #nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-          cert-manager.io/cluster-issuer: "zerossl-production"
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
           external-dns.alpha.kubernetes.io/target: "r.home.skym.fi"
 
         hosts:
