@@ -28,7 +28,7 @@ spec:
           app:
             image:
               repository: ghcr.io/diced/zipline
-              tag: trunk@sha256:5e78973416a9bf51f1a06f8f93fb7688d8c2381985fa0a30b57a18dc38df9685
+              tag: trunk@sha256:ef4b18b9ea19632ff57f81ae2d75ada0e983344f7619451805216e417f348cc6
             env:
               TZ: "Europe/Helsinki"
               DATASOURCE_S3_USE_SSL: "true"
