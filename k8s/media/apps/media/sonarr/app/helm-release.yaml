@@ -50,7 +50,7 @@ spec:
                   name: sonarr
             image:
               repository: ghcr.io/onedr0p/sonarr-develop
-              tag: 4.0.11.2688
+              tag: 4.0.11.2697
             probes:
               liveness:
                 enabled: true
