@@ -26,7 +26,7 @@ spec:
       APP_UID: "1000"
       APP_GID: "1000"
       VOLSYNC_CAPACITY: "200Gi"
-      VOLSYNC_CACHE_CAPACITY: "20Gi"
+      VOLSYNC_CACHE_CAPACITY: "50Gi"
       VOLSYNC_STORAGECLASS: "fast-ceph-filesystem"
       VOLSYNC_SNAPSHOTCLASS: "csi-ceph-filesystem"
       VOLSYNC_ACCESSMODES: "ReadWriteMany"
