@@ -14,6 +14,13 @@
         "registry.samipsolutions.fi/docker/fireflyiii/core",
         "registry.samipsolutions.fi/docker/fireflyiii/data-importer"
       ]
+    },
+    {
+      "matchDatasources": ["docker"],
+      "versioning": "regex:^stable-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)+$",
+      "matchPackageNames": [
+        "factoriotools/factorio",
+      ]
     }
   ]
 }
