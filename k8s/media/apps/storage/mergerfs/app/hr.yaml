@@ -25,7 +25,7 @@ spec:
           app:
             image:
               repository: registry.skysolutions.fi/library/mergerfs
-              tag: "17102024@sha256:3e496371693668ccca2e63f140492d7ce10c79ca1c6e2e2342e489a362cff4e3"
+              tag: "29112024@sha256:28642e09472746c0d84fbbedc820707797bcf4da114d774353c17bc693672eef"
             probes:
               liveness:
                 enabled: false
