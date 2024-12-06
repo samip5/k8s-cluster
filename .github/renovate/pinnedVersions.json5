@@ -12,5 +12,12 @@
       "matchDatasources": ["docker"],
       "allowedVersions": "<=3.6.1",
       "matchPackagePatterns": ["csi-provisioner"]
-    }]
+    },
+    {
+      "description": "Pin Home-Assistant",
+      "matchDatasources": ["docker"],
+      "allowedVersions": "<=2024.11.3",
+      "matchPackagePatterns": ["home-assistant"]
+    }
+  ]
 }
