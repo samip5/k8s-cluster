@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: moodle
-      version: 25.0.1
+      version: 25.0.2
       sourceRef:
         kind: HelmRepository
         name: bitnami
