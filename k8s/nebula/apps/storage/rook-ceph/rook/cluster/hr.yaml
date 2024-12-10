@@ -26,6 +26,7 @@ spec:
       [global]
       bdev_enable_discard = true
       bdev_async_discard = true
+      [osd]
       osd_mclock_override_recovery_settings = true
       osd_max_backfills = 10
       osd_mclock_profile = high_recovery_ops
