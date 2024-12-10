@@ -22,6 +22,19 @@ spec:
       enabled: true
       image: quay.io/ceph/ceph:v19.2.0
 
+    configOverride: |
+      [global]
+      bdev_enable_discard = true
+      bdev_async_discard = true
+      osd_mclock_override_recovery_settings = true
+      osd_max_backfills = 10
+      osd_mclock_profile = high_recovery_ops
+      osd_recovery_max_active = 10
+      osd_recovery_sleep = 0.1
+      osd_scrub_auto_repair = true
+      
+      
+
     monitoring:
       enabled: true
 
