@@ -117,7 +117,7 @@ spec:
             devices:
               - name: /dev/disk/by-id/nvme-SAMSUNG_MZ9LQ512HBLU-00BVL_S73XNX0T887767
       mon:
-        count: 3
+        count: 2
         allowMultiplePerNode: false
       mgr:
         count: 2
@@ -133,7 +133,7 @@ spec:
         spec:
           failureDomain: host
           replicated:
-            size: 3
+            size: 2
         storageClass:
           enabled: true
           name: ceph-block
@@ -156,7 +156,7 @@ spec:
           name: .mgr
           failureDomain: host
           replicated:
-            size: 3
+            size: 2
             requireSafeReplicaSize: false
           parameters:
             compression_mode: none
@@ -167,11 +167,11 @@ spec:
         spec:
           metadataPool:
             replicated:
-              size: 3
+              size: 2
           dataPools:
             - failureDomain: host
               replicated:
-                size: 3
+                size: 2
               name: fast-data0
           metadataServer:
             activeCount: 1
