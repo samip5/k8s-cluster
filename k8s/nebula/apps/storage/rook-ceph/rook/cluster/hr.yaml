@@ -106,7 +106,7 @@ spec:
         nodes:
           - name: m1
             devices:
-              - name: /dev/disk/by-id/nvme-Micron_7450_MTFDKBA960TFR_24434BD57125
+              - name: /dev/nvme0n1 # /dev/disk/by-id/nvme-Micron_7450_MTFDKBA960TFR_24434BD57125
           - name: w-amd-1
             devices:
               - name: /dev/disk/by-id/nvme-KINGSTON_SEDC1000BM8960G_50026B76860DDA63
