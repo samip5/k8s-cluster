@@ -105,11 +105,14 @@ spec:
         nodes:
           - name: m1
             devices:
-              - name: /dev/nvme0n1
+              - name: /dev/disk/by-id/nvme-Micron_7450_MTFDKBA960TFR_24434BD57125
           - name: w-amd-1
             devices:
               - name: /dev/disk/by-id/nvme-KINGSTON_SEDC1000BM8960G_50026B76860DDA63
-          - name: w-amd-3
+#          - name: w-amd-3
+#            devices:
+#              - name: /dev/disk/by-id/nvme-SAMSUNG_MZ9LQ512HBLU-00BVL_S73XNX0T887767
+          - name: w-amd-4
             devices:
               - name: /dev/disk/by-id/nvme-SAMSUNG_MZ9LQ512HBLU-00BVL_S73XNX0T887767
       mon:
