@@ -45,9 +45,9 @@ spec:
         existingClaim: "factorio"
     securityContext:
       runAsNonRoot: true
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
+      runAsUser: 568
+      runAsGroup: 65534
+      fsGroup: 65534
       fsGroupChangePolicy: OnRootMismatch
     service:
       type: LoadBalancer
