@@ -43,12 +43,11 @@ spec:
       dataDir:
         Size: "${VOLSYNC_CAPACITY}"
         existingClaim: "factorio"
-    securityContext:
-      fsGroup: 845
-      fsGroupChangePolicy: OnRootMismatch
     podSecurityContext:
       runAsUser: 845
       runAsGroup: 845
+      fsGroup: 845
+      fsGroupChangePolicy: OnRootMismatch
     service:
       type: LoadBalancer
       annotations:
