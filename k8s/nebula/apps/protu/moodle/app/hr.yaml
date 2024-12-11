@@ -33,6 +33,11 @@ spec:
   values:
     nameOverride: protu
 
+    global:
+      security:
+        allowInsecureImages: true
+
+
     image:
       registry: registry.skysolutions.fi
       repository: library/moodle
