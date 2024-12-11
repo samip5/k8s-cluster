@@ -61,18 +61,14 @@ spec:
     import_save:
       enabled: false
     factorioServer:
-      env:
-        - name: BIND
-          value: "0.0.0.0"
+#      env:
+#        - name: BIND
+#          value: "0.0.0.0"
       save_name: "new-non-modded-save"
       update_mods_on_start: true
       load_latest_save: true
       enable_space_age: true
     # https://github.com/SQLJames/factorio-server-charts/pull/49
-    map_settings:
-      asteroids:
-        spawning_rate: 1
-        max_ray_portals_expanded_per_tick: 100
     server_settings:
       name: Kryptonian's game
       description: "dedicated server on Kubernetes ;)"
