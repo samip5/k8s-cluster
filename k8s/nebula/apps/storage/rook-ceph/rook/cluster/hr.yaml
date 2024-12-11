@@ -19,6 +19,7 @@ spec:
   dependsOn:
     - name: rook-ceph-operator
   values:
+    clusterName: nebula
     toolbox:
       enabled: true
       image: quay.io/ceph/ceph:v19.2.0
@@ -27,39 +28,30 @@ spec:
       [global]
       bdev_enable_discard = true
       bdev_async_discard = true
-      [osd]
-      osd_mclock_override_recovery_settings = true
-      osd_max_backfills = 10
-      osd_mclock_profile = high_recovery_ops
-      osd_recovery_max_active = 10
-      osd_recovery_sleep = 0.1
-      osd_scrub_auto_repair = true
-      
+      osd_class_update_on_start = false
+      osd_pool_default_size = 3
+      osd_pool_default_min_size = 2
+      mon_data_avail_warn = 10
       
 
     monitoring:
       enabled: true
 
     cephClusterSpec:
-      placement: {}
-#      placement:
-##        mgr:
-##          nodeAffinity:
-##            requiredDuringSchedulingIgnoredDuringExecution:
-##              nodeSelectorTerms:
-##                - matchExpressions:
-##                    - key: node-role.kubernetes.io/control-plane
-##                      operator: Exists
-#
-#        mon:
-#          nodeAffinity:
-#            requiredDuringSchedulingIgnoredDuringExecution:
-#              nodeSelectorTerms:
-#                - matchExpressions:
-#                    - key: kubernetes.io/arch
-#                      operator: In
-#                      values:
-#                        - amd64
+      placement:
+        all:
+          tolerations:
+            - key: "node-role.kubernetes.io/control-plane"
+              operator: "Exists"
+        mon:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: kubernetes.io/arch
+                      operator: In
+                      values:
+                        - amd64
       cephVersion:
         image: quay.io/ceph/ceph:v19.2.0
       # This is a terrible hack (THANKS Anthony! :D)
@@ -99,32 +91,33 @@ spec:
         enabled: true
         urlPrefix: /
         ssl: false
+      removeOSDsIfOutAndSafeToRemove: false
       storage:
         useAllNodes: false
         useAllDevices: false
-        encryptedDevice: true
         config:
           osdsPerDevice: "1"
+          encryptedDevice: "true"
         nodes:
           - name: m1
             devices:
-              - name: /dev/nvme0n1 # /dev/disk/by-id/nvme-Micron_7450_MTFDKBA960TFR_24434BD57125
+              - name: /dev/disk/by-id/nvme-Micron_7450_MTFDKBA960TFR_24434BD57125
           - name: w-amd-1
             devices:
               - name: /dev/disk/by-id/nvme-KINGSTON_SEDC1000BM8960G_50026B76860DDA63
-#          - name: w-amd-3
-#            devices:
-#              - name: /dev/disk/by-id/nvme-SAMSUNG_MZ9LQ512HBLU-00BVL_S73XNX0T887767
           - name: w-amd-4
             devices:
               - name: /dev/disk/by-id/nvme-SAMSUNG_MZ9LQ512HBLU-00BVL_S73XNX0T887767
       mon:
-        count: 2
+        count: 3
         allowMultiplePerNode: false
       mgr:
         count: 2
+        allowMultiplePerNode: false
         modules:
-          - name: pg_autoscaler
+          - name: "pg_autoscaler"
+            enabled: true
+          - name: "diskprediction_local"
             enabled: true
       priorityClassNames:
         mon: system-node-critical
@@ -135,17 +128,21 @@ spec:
         spec:
           failureDomain: host
           replicated:
-            size: 2
+            size: 3
+          parameters:
+            min_size: "2"
+            compression_mode: "aggressive"
+            compression_algorithm: "lz4"
         storageClass:
           enabled: true
           name: ceph-block
           isDefault: false
           reclaimPolicy: Delete
           allowVolumeExpansion: true
-          mountOptions: []
+          mountOptions: ["discard"]
           parameters:
             imageFormat: "2"
-            imageFeatures: layering
+            imageFeatures: "layering,exclusive-lock,object-map,fast-diff,deep-flatten" # https://docs.ceph.com/en/quincy/rbd/rbd-config-ref/#image-features
             csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
             csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
             csi.storage.k8s.io/controller-expand-secret-name: rook-csi-rbd-provisioner
@@ -158,9 +155,10 @@ spec:
           name: .mgr
           failureDomain: host
           replicated:
-            size: 2
+            size: 3
             requireSafeReplicaSize: false
           parameters:
+            min_size: "2"
             compression_mode: none
         storageClass:
           enabled: false
@@ -173,7 +171,7 @@ spec:
           dataPools:
             - failureDomain: host
               replicated:
-                size: 2
+                size: 3
               name: fast-data0
           metadataServer:
             activeCount: 1
