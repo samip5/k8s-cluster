@@ -43,6 +43,10 @@ spec:
       dataDir:
         Size: "${VOLSYNC_CAPACITY}"
         existingClaim: "factorio"
+    securityContext:
+      runAsUser: 845
+      runAsGroup: 845
+      fsGroup: 845
     podSecurityContext:
       runAsUser: 845
       runAsGroup: 845
