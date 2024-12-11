@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: moodle
-      version: 25.0.2
+      version: 25.1.0
       sourceRef:
         kind: HelmRepository
         name: bitnami
@@ -32,6 +32,11 @@ spec:
       valuesKey: moodlePassword
   values:
     nameOverride: protu
+
+    global:
+      security:
+        allowInsecureImages: true
+
 
     image:
       registry: registry.skysolutions.fi
