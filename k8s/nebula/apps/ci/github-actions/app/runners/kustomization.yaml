@@ -6,5 +6,5 @@ resources:
   - ./skysolutions-runners.yaml
   - ./skysolutions-runners-arm64.yaml
   - ./externalsecret.yaml
-#  - ./samip5-k8s-cluster.yaml
+  - ./samip5-k8s-cluster.yaml
 #  - ./samip5-k8s-cluster-arm64.yaml
