@@ -44,11 +44,11 @@ spec:
         Size: "${VOLSYNC_CAPACITY}"
         existingClaim: "factorio"
     securityContext:
-      runAsNonRoot: true
-      runAsUser: 568
-      runAsGroup: 65534
-      fsGroup: 65534
+      fsGroup: 845
       fsGroupChangePolicy: OnRootMismatch
+    podSecurityContext:
+      runAsUser: 845
+      runAsGroup: 845
     service:
       type: LoadBalancer
       annotations:
