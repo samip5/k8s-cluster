@@ -5,13 +5,13 @@ resources:
   - bazarr/ks.yaml
   - radarr/ks.yaml
   - sonarr/ks.yaml
-  - sabnzbd/ks.yaml
+#  - sabnzbd/ks.yaml
 #  - tautulli/ks.yaml
 #  - tdarr/ks.yaml
   - media-index/ks.yaml
   - qbit/ks.yaml
-  - qbittorrent/ks.yaml
-  - cross-seed/ks.yaml
+#  - qbittorrent/ks.yaml
+#  - cross-seed/ks.yaml
   - unpackerr/ks.yaml
   - jellyfin/ks.yaml
   - kyoo/ks.yaml
