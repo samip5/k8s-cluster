@@ -8,5 +8,5 @@ resources:
 #  - theme-park/ks.yaml
 #  - your_spotify/ks.yaml
 #  - linkwarden/ks.yaml
-  - immich/ks.yaml
+#  - immich/ks.yaml
 #  - syncthing/ks.yaml
