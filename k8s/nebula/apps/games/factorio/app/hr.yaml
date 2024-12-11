@@ -61,6 +61,9 @@ spec:
     import_save:
       enabled: false
     factorioServer:
+      env:
+        - name: BIND
+          value: "0.0.0.0"
       save_name: "default-save"
       update_mods_on_start: true
       load_latest_save: true
