@@ -18,6 +18,12 @@
       "matchDatasources": ["docker"],
       "allowedVersions": "<=2024.11.3",
       "matchPackagePatterns": ["home-assistant"]
+    },
+    {
+      "description": "Pin MariaDB to the supported by operator",
+      "matchDatasources": ["docker"],
+      "allowedVersions": "<=11.4.3",
+      "matchPackagePatterns": ["mariadb"]
     }
   ]
 }

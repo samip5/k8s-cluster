@@ -13,7 +13,7 @@ spec:
     storageClassName: ceph-block
 
   replicas: 3
-  image: "mariadb:11.5.2"
+  image: "mariadb:11.4.3"
   imagePullPolicy: IfNotPresent
 
   maxScale:
@@ -46,7 +46,7 @@ spec:
   galera:
     enabled: true
 
-    #podRecoveryTimeout: 15m
+    podRecoveryTimeout: 15m
 
   service:
     type: LoadBalancer
