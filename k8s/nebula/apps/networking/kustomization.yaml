@@ -14,5 +14,6 @@ resources:
   - ./external-dns/ks-internal.yaml
   - ./external-dns/ks-kapsi.yaml
 #  - ./whoami/ks.yaml
-#  - ./unimus/ks.yaml
+  - ./unimus/ks.yaml
+  - ./observium/ks.yaml
   - ./tailscale/ks.yaml
