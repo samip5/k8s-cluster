@@ -118,6 +118,11 @@ spec:
           scrutiny:
             app:
               - path: /opt/scrutiny/config
+
+      apt-cache:
+        type: emptyDir
+        globalMounts:
+          - path: /var/lib/apt/
       collector-config:
         enabled: true
         type: emptyDir
