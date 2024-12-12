@@ -15,6 +15,9 @@ spec:
       engineVersion: v2
       data:
         OBSERVIUM_DB_PASS: "{{ .PASS }}"
+        OBSERVIUM_ADMIN_USER: "{{ .ADMIN_PASS }}"
   dataFrom:
     - extract:
         key: mariadb-observium
+    - extract:
+        key: observium
