@@ -29,8 +29,8 @@ spec:
         - ip: "192.168.10.3"
           hostnames:
             - "scrutiny.skylab.fi"
-      capabilities:
-        add: [ "SYS_RAWIO" ] # allow access to smartctl
+#      capabilities:
+#        add: [ "SYS_RAWIO" ] # allow access to smartctl
     controllers:
       main:
         type: daemonset
@@ -49,6 +49,8 @@ spec:
                     fieldPath: spec.nodeName
               - name: TZ
                 value: "Europe/Helsinki"
+            securityContext:
+              privileged: true
             resources:
               requests:
                 cpu: 100m
