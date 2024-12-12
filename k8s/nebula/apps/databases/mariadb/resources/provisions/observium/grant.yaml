@@ -1,0 +1,13 @@
+---
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Grant
+metadata:
+  name: observium
+spec:
+  mariaDbRef:
+    name: mariadb-galera
+  privileges:
+    - 'ALL'
+  database: 'observium'
+  table: '*'
+  username: observium
