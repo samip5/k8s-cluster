@@ -4,8 +4,8 @@ resources:
   - ns.yaml
   - mariadb/ks-crds.yaml
   - mariadb/ks.yaml
-#  - mariadb/ks-resources.yaml
-#  - mariadb/ks-phpmyadmin.yaml
+  - mariadb/ks-resources.yaml
+  - mariadb/ks-phpmyadmin.yaml
 #  - mongodb/ks.yaml
   - redis/ks.yaml
   - cloudnative-pg/ks.yaml
