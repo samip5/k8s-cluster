@@ -53,6 +53,9 @@ spec:
                     fieldPath: spec.nodeName
               - name: TZ
                 value: "Europe/Helsinki"
+            args:
+              - /opt/scrutiny/bin/scrutiny-collector-metrics
+              - run
             securityContext:
               privileged: true
             resources:
