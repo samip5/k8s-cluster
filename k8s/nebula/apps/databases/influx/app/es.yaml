@@ -1,0 +1,19 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: influxdb
+  namespace: default
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: onepassword-connect
+  target:
+    name: influxdb-secret
+    creationPolicy: Owner
+    template:
+      engineVersion: v2
+      data:
+        DOCKER_INFLUXDB_INIT_PASSWORD: "{{ .PASS }}"
+  dataFrom:
+    - extract:
+        key: influxdb
