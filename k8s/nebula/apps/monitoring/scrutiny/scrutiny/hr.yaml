@@ -67,9 +67,9 @@ spec:
               SCRUTINY_WEB_INFLUXDB_HOST: influx.databases.svc.cluster.local
               TZ: Europe/Helsinki
             securityContext:
-              runAsUser: 501
-              runAsGroup: 50
-              fsGroup: 50
+              runAsUser: 568
+              runAsGroup: 568
+              fsGroup: 568
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities: { drop: [ "ALL" ] }
