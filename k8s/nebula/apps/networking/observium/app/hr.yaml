@@ -71,7 +71,7 @@ spec:
         controller: observium
         ports:
           http:
-            port: 8085
+            port: 80
     ingress:
       main:
         enabled: true
@@ -83,7 +83,7 @@ spec:
                 pathType: Prefix
                 service:
                   identifier: main
-                  port: 8085
+                  port: 80
         tls:
           - hosts:
               - "${HOSTNAME}"
