@@ -33,13 +33,17 @@ spec:
 #        add: [ "SYS_RAWIO" ] # allow access to smartctl
     controllers:
       main:
-        type: daemonset
+        type: cronjob
+        annotations:
+          reloader.stakater.com/auto: "true"
+        cronjob:
+          schedule: "@daily"
 
         containers:
           main:
             image:
               repository: ghcr.io/analogj/scrutiny
-              tag: master-collector
+              tag: v0.8.1-collector
             env:
               - name: COLLECTOR_API_ENDPOINT
                 value: https://scrutiny.skylab.fi
