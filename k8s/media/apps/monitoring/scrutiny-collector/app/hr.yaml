@@ -29,13 +29,12 @@ spec:
         - ip: "192.168.10.3"
           hostnames:
             - "scrutiny.skylab.fi"
+      securityContext:
+        capabilities:
+          add: [ "SYS_RAWIO" ] # allow access to smartctl
     controllers:
       main:
         type: daemonset
-        pod:
-          securityContext:
-            capabilities:
-              add: [ "SYS_RAWIO" ] # allow access to smartctl
 
         containers:
           main:
@@ -58,28 +57,19 @@ spec:
               limits:
                 memory: 512Mi
 
-    service:
-      main:
-        enabled: false
-
 
 
     persistence:
       config:
-        enabled: true
         type: emptyDir
         globalMounts:
           - path: /opt/scrutiny/config
       dev:
-        enabled: true
         type: hostPath
         hostPath: /dev
-        readOnly: true
       udev:
-        enabled: true
         type: hostPath
         hostPath: /run/udev
-        readOnly: true
         globalMounts:
           - path: /run/udev
 
