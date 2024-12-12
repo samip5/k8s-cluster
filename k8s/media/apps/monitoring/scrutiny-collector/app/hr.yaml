@@ -54,9 +54,9 @@ spec:
             resources:
               requests:
                 cpu: 100m
-                memory: 128Mi
+                memory: 256Mi
               limits:
-                memory: 128Mi
+                memory: 512Mi
 
     service:
       main:
@@ -70,6 +70,11 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /opt/scrutiny/config
+      dev:
+        enabled: true
+        type: hostPath
+        hostPath: /dev
+        readOnly: true
       udev:
         enabled: true
         type: hostPath
@@ -77,55 +82,6 @@ spec:
         readOnly: true
         globalMounts:
           - path: /run/udev
-      sda:
-        enabled: true
-        type: hostPath
-        hostPath: /dev/sda
-        readOnly: true
-        globalMounts:
-          - path: /dev/sda
-      sdf:
-        enabled: true
-        type: hostPath
-        hostPath: /dev/sdf
-        readOnly: true
-        globalMounts:
-          - path: /dev/sdf
-      sdc:
-        enabled: true
-        type: hostPath
-        hostPath: /dev/sdc
-        readOnly: true
-        globalMounts:
-          - path: /dev/sdc
-      sdb:
-        enabled: true
-        type: hostPath
-        hostPath: /dev/sdb
-        readOnly: true
-        globalMounts:
-          - path: /dev/sdb
-      sde:
-        enabled: true
-        type: hostPath
-        hostPath: /dev/sde
-        readOnly: true
-        globalMounts:
-          - path: /dev/sde
-      sdd:
-        enabled: true
-        type: hostPath
-        hostPath: /dev/sdd
-        readOnly: true
-        globalMounts:
-          - path: /dev/sdd
-      sdg:
-        enabled: true
-        type: hostPath
-        hostPath: /dev/sdg
-        readOnly: true
-        globalMounts:
-          - path: /dev/sdg
 
 
 
