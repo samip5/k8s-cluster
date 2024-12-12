@@ -2,6 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: mariadb-operator-crds
+  namespace: databases
 spec:
   chart:
     spec:
