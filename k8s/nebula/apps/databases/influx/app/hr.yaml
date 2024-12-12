@@ -112,3 +112,6 @@ spec:
         existingClaim: "${VOLSYNC_CLAIM}"
         globalMounts:
           - path: /var/lib/influxdb2
+            subPath: var
+          - path: /etc/influxdb2/
+            subPath: etc
