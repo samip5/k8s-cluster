@@ -94,6 +94,8 @@ spec:
                   port: influx
         tls:
           - secretName: ${SECRET_DOMAIN}-tls
+            hosts:
+              - influx.${SECRET_DOMAIN}
 
 
     persistence:
