@@ -81,6 +81,20 @@ spec:
             enabled: true
             port: 8086
 
+    ingress:
+      className: internal-nginx
+      hosts:
+        - host: influx.${SECRET_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                identifier: main
+                port: influx
+      tls:
+        - secretName: ${SECRET_DOMAIN}-tls
+
+
     persistence:
       config:
         enabled: true
