@@ -32,6 +32,9 @@ spec:
       - --zone-id-filter=dd9e6ee88492898e2b16e87c8387fa01
       - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
       - --crd-source-kind=DNSEndpoint
+      - --events
+      - --ignore-ingress-tls-spec
+      - --ingress-class=external
     interval: 5m
     logLevel: info
     provider: cloudflare
