@@ -34,11 +34,10 @@ spec:
       - --crd-source-kind=DNSEndpoint
       - --events
       - --ignore-ingress-tls-spec
-      - --ingress-class=external
     interval: 5m
     logLevel: info
     provider: cloudflare
-    policy: sync
+    policy: upsert-only
     sources:
       - ingress
       - crd
