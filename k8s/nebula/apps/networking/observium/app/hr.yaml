@@ -26,7 +26,7 @@ spec:
     defaultPodOptions:
       automountServiceAccountToken: false
       nodeSelector:
-        kubernetes.io/arch: "amd64"
+        kubernetes.io/hostname: "w-amd-2" # TODO: Multiple nodes with management vlan needed
 
 
     controllers:
