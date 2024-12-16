@@ -35,7 +35,7 @@ spec:
     interval: 5m
     logLevel: info
     provider: cloudflare
-    policy: upsert-only
+    policy: sync
     sources:
       - ingress
       - crd
