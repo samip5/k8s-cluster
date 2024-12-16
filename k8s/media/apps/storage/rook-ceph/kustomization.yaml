@@ -2,7 +2,9 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-resources: []
+resources:
+  - ./rook/ks-operator.yaml
+  - ./rook/ks-cluster.yaml
 #  - ./ns.yaml
 #  - ./rook/ks-operator.yaml
 #  - ./rook/ks-cluster.yaml
