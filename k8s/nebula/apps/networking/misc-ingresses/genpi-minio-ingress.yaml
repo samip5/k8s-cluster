@@ -28,6 +28,8 @@ kind: Ingress
 metadata:
   name: genpi-minio-int
   namespace: networking
+  annotations:
+    external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
 spec:
   ingressClassName: internal-nginx
   rules:
