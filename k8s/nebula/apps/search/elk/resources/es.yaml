@@ -4,7 +4,7 @@ metadata:
   name: main
   namespace: search
 spec:
-  version: 7.17.16
+  version: 8.16.1
   volumeClaimDeletePolicy: DeleteOnScaledownOnly
   http:
     tls:
