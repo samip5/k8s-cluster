@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - ns.yaml
   - elk/ks.yaml
-  - elk/ks-resources.yaml
+#  - elk/ks-resources.yaml

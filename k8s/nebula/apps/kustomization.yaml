@@ -10,6 +10,7 @@ resources:
   - monitoring
   - networking
 #  - system
+  - search
   - storage
   - school
   - home
