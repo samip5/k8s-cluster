@@ -4,16 +4,13 @@ metadata:
   annotations:
     meta.helm.sh/release-name: authentik
     meta.helm.sh/release-namespace: security
+    external-dns.alpha.kubernetes.io/target: ingress.skylab.fi
   labels:
     app.kubernetes.io/component: server
     app.kubernetes.io/instance: authentik
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: authentik
     app.kubernetes.io/part-of: authentik
-    app.kubernetes.io/version: 2024.2.2
-    helm.sh/chart: authentik-2024.2.2
-    helm.toolkit.fluxcd.io/name: authentik
-    helm.toolkit.fluxcd.io/namespace: security
   name: authentik-int
   namespace: security
 spec:
