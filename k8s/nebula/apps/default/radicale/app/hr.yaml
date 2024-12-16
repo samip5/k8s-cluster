@@ -84,6 +84,7 @@ spec:
         enabled: true
         className: internal-nginx
         annotations:
+          external-dns.alpha.kubernetes.io/target: ingress.skylab.fi
           nginx.ingress.kubernetes.io/auth-url: |-
             http://ak-outpost-authentik-embedded-outpost.security.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
           nginx.ingress.kubernetes.io/auth-signin: |-

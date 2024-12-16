@@ -35,7 +35,7 @@ spec:
       - --events
       - --ignore-ingress-tls-spec
     interval: 5m
-    logLevel: info
+    logLevel: debug
     provider: cloudflare
     policy: upsert-only
     sources:
