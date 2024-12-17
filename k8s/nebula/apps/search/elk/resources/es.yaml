@@ -16,7 +16,6 @@ spec:
       count: 2
       config:
         node.store.allow_mmap: false
-        insecure_network_trace_enabled: true
         xpack.security.authc:
           anonymous:
             username: anonymous
