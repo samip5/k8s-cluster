@@ -91,7 +91,7 @@ spec:
             persistence_location /data/mosquitto/
             autosave_interval 1800
             connection_messages true
-            password_file /mosquitto/external_config/mosquitto_pwd
+    #        password_file /mosquitto/external_config/mosquitto_pwd
     persistence:
       data:
         enabled: true
