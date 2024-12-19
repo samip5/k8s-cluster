@@ -63,7 +63,7 @@ spec:
         controller: mosquitto
         type: LoadBalancer
         annotations:
-          io.cilium/lb-ipam-ips: "192.168.10.10"
+          io.cilium/lb-ipam-ips: "10.96.69.10"
         externalTrafficPolicy: Cluster
         ipFamilyPolicy: SingleStack
         ipFamilies:

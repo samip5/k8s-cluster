@@ -42,9 +42,7 @@ spec:
           - IPv4
           - IPv6
         annotations:
-          io.cilium/lb-ipam-ips: "192.168.10.20,2001:14ba:16fd:961d::20"
-        #  metallb.universe.tf/loadBalancerIPs: "192.168.10.20,2001:14ba:16d6:a6ad::20"
-        #  metallb.universe.tf/address-pool: plex
+          io.cilium/lb-ipam-ips: "10.96.69.20,fded:687e:c3bf:::20"
         ports:
           http:
             port: 32400
