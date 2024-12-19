@@ -201,7 +201,7 @@ spec:
       backup:
         enabled: true
         type: nfs
-        server: nas.skylab.fi
+        server: 192.168.2.2 # nas.skylab.fi
         path: /volume3/Backups/k8s/hass
         globalMounts:
           - path: /config/backups
