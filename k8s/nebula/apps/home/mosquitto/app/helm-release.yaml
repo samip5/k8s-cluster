@@ -44,9 +44,16 @@ spec:
       mosquitto:
         annotations:
           reloader.stakater.com/auto: "true"
-
+        initContainers:
+          init-config:
+            image:
+              repository: public.ecr.aws/docker/library/eclipse-mosquitto
+              tag: 2.0.20
+              pullPolicy: IfNotPresent
+            command: [ "/bin/sh", "-c" ]
+            args: [ "cp /tmp/secret/* /mosquitto/external_config/ && mosquitto_passwd -U /mosquitto/external_config/mosquitto_pwd" ]
         containers:
-          main:
+          app:
             image:
               repository: eclipse-mosquitto
               tag: 2.0.20
@@ -84,6 +91,7 @@ spec:
             persistence_location /data/mosquitto/
             autosave_interval 1800
             connection_messages true
+            password_file /mosquitto/external_config/mosquitto_pwd
     persistence:
       data:
         enabled: true
@@ -97,3 +105,14 @@ spec:
         globalMounts:
           - path: /mosquitto/config/mosquitto.conf
             subPath: mosquitto.conf
+      secret-file:
+        type: secret
+        name: mosquitto
+        advancedMounts:
+          mosquitto:
+            init-config:
+              - path: /tmp/secret
+      external-config:
+        type: emptyDir
+        globalMounts:
+          - path: /mosquitto/external_config
