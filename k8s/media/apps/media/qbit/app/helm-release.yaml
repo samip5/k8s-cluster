@@ -80,7 +80,7 @@ spec:
               - name: VPN_INTERFACE
                 value: wg0
               - name: FIREWALL
-                value: on
+                value: off
               - name: LOG_LEVEL
                 value: debug
               - name: DOT
