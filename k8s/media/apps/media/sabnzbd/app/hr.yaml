@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+# yaml-language-server: $schema=https://flux.jank.ing/helmrelease/v2/github/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -26,6 +26,7 @@ spec:
     - name: rook-ceph-cluster
       namespace: rook-ceph
   values:
+
     controllers:
       sabnzbd:
         annotations:
@@ -88,7 +89,7 @@ spec:
               SERVER_REGIONS: "Europe"
               FIREWALL_INPUT_PORTS: *port
               FIREWALL_DEBUG: "on"
-              FIREWALL_OUTBOUND_SUBNETS: "10.40.0.0/16,10.41.0.0/16,192.168.10.0/24,fd94:9bde:1ebb::/48" # Allow access to k8s subnets
+              FIREWALL_OUTBOUND_SUBNETS: "10.40.0.0/16,10.41.0.0/16,192.168.10.0/24" # Allow access to k8s subnets
               LOG_LEVEL: "debug"
               DOT: "off"
             envFrom:
@@ -96,7 +97,7 @@ spec:
                   name: sabnzbd-vpn-secret
             image:
               repository: ghcr.io/qdm12/gluetun
-              tag: pr-2518
+              tag: v3.39.1
             securityContext:
               capabilities:
                 add:
