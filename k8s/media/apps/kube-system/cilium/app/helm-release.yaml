@@ -38,7 +38,7 @@ spec:
     rollOutCiliumPods: true
     localRedirectPolicy: true
     autoDirectNodeRoutes: true
-    kubeProxyReplacement: strict
+    kubeProxyReplacement: true
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
     ipv4NativeRoutingCIDR: "10.40.0.0/16"
     ipv6NativeRoutingCIDR: "fd94:9bde:1ebb::/48"
