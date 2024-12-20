@@ -4,4 +4,5 @@ resources:
   - cilium/ks.yaml
   - cilium/ks-config.yaml
   - snapshot-controller/ks.yaml
+  - generic-device-plugin/ks.yaml
 #  - ./nvidia/device-plugin/ks.yaml
