@@ -1,17 +1,17 @@
-#cgroup:
-#  automount:
-#    enabled: false
-#  hostRoot: /sys/fs/cgroup
-
+#    cgroup:
+#      automount:
+#        enabled: false
+#      hostRoot: /sys/fs/cgroup
 cni:
   exclusive: false
 
 cluster:
   name: media
   id: 2
-localRedirectPolicy: true
 rollOutCiliumPods: true
-kubeProxyReplacement: strict
+localRedirectPolicy: true
+# autoDirectNodeRoutes: true
+kubeProxyReplacement: true
 kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
 ipv4NativeRoutingCIDR: "10.40.0.0/16"
 ipv6NativeRoutingCIDR: "fd94:9bde:1ebb::/48"
@@ -32,13 +32,13 @@ l7Proxy: true
 ipam:
   mode: "kubernetes"
 ipv6:
-  enabled: true
-#enableIPv6Masquerade: false
+  enabled: false
+# enableIPv6Masquerade: false
 operator:
   replicas: 1
   rollOutPods: true
 hubble:
-  enabled: true
+  enabled: false
   tls:
     insecure: true
     auto:
@@ -64,12 +64,12 @@ hubble:
       labelValue: "1"
       annotations: { }
   relay:
-    enabled: true
+    enabled: false
     rollOutPods: true
     prometheus:
       enabled: true
   ui:
-    enabled: true
+    enabled: false
     rollOutPods: true
     ingress:
       enabled: true
@@ -92,23 +92,23 @@ bgpControlPlane:
 
 securityContext:
   privileged: true
-#  capabilities:
-#    ciliumAgent:
-#      - CHOWN
-#      - KILL
-#      - NET_ADMIN
-#      - NET_RAW
-#      - IPC_LOCK
-#      - SYS_ADMIN
-#      - SYS_RESOURCE
-#      - DAC_OVERRIDE
-#      - FOWNER
-#      - SETGID
-#      - SETUID
-#    cleanCiliumState:
-#      - NET_ADMIN
-#      - SYS_ADMIN
-#      - SYS_RESOURCE
+#      capabilities:
+#        ciliumAgent:
+#          - CHOWN
+#          - KILL
+#          - NET_ADMIN
+#          - NET_RAW
+#          - IPC_LOCK
+#          - SYS_ADMIN
+#          - SYS_RESOURCE
+#          - DAC_OVERRIDE
+#          - FOWNER
+#          - SETGID
+#          - SETUID
+#        cleanCiliumState:
+#          - NET_ADMIN
+#          - SYS_ADMIN
+#          - SYS_RESOURCE
 
 prometheus:
   enabled: false

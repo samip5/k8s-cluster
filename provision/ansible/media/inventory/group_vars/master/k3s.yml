@@ -28,7 +28,7 @@ k3s_server:
   # Network CIDR to use for pod IPs
   cluster-cidr: "10.40.0.0/16,fd94:9bde:1ebb::/48"
   # Network CIDR to use for service IPs
-  service-cidr: "10.41.0.0/16,2001:14ba:16fd:9622::1:0/112"
+  service-cidr: "10.41.0.0/16,fdf0:8e18:6727::/112"
   kubelet-arg:
     - "feature-gates=GracefulNodeShutdown=true"
     - "node-status-update-frequency=4s"

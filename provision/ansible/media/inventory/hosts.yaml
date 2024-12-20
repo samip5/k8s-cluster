@@ -5,7 +5,7 @@ kubernetes:
       hosts:
         plex-server:
           ansible_host: 192.168.2.129
-          ansible_port: 6666
+          ansible_port: 22
       vars:
-        ansible_user: sm
+        ansible_user: sky
         k3s_become: true
