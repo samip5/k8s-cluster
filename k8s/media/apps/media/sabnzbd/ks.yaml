@@ -12,8 +12,6 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  dependsOn:
-    - name: external-secrets-stores
   path: ./k8s/media/apps/media/sabnzbd/app
   prune: true
   sourceRef:
