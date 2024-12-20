@@ -81,6 +81,8 @@ spec:
                 value: wg0
               - name: FIREWALL
                 value: on
+              - name: FIREWALL_DEBUG
+                value: on
               - name: DOT
                 value: off
               - name: FIREWALL_VPN_INPUT_PORTS
