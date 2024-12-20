@@ -37,7 +37,7 @@ spec:
       id: 2
     rollOutCiliumPods: true
     localRedirectPolicy: true
-    autoDirectNodeRoutes: true
+    # autoDirectNodeRoutes: true
     kubeProxyReplacement: true
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
     ipv4NativeRoutingCIDR: "10.40.0.0/16"
@@ -56,8 +56,8 @@ spec:
     ipam:
       mode: "kubernetes"
     ipv6:
-      enabled: true
-    enableIPv6Masquerade: false
+      enabled: false
+    # enableIPv6Masquerade: false
     operator:
       replicas: 1
       rollOutPods: true
