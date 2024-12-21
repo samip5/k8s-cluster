@@ -36,11 +36,17 @@ spec:
         fsGroup: 568
         fsGroupChangePolicy: OnRootMismatch
         supplementalGroups: [ 100 ]
-      annotations:
-        reloader.stakater.com/auto: "true"
 
     controllers:
-      main:
+      radarr:
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+            envFrom: &envFrom
+              - secretRef:
+                  name: radarr
         containers:
           main:
             image:
@@ -56,9 +62,7 @@ spec:
               RADARR__LOG__DBENABLED: false
               RADARR__AUTH__METHOD: External
               RADARR__AUTH__REQUIRED: DisabledForLocalAddresses
-            envFrom:
-              - secretRef:
-                  name: radarr
+            envFrom: *envFrom
             resources:
               requests:
                 cpu: 10m
@@ -83,7 +87,7 @@ spec:
 
     service:
       main:
-        controller: main
+        controller: radarr
         ports:
           http:
             port: *port
