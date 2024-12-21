@@ -4,9 +4,9 @@ resources:
   - flux-system
   - kube-system
   - networking
-#  - storage
+  - storage
 #  - media
 #  - gpu
-#  - volsync
+  - volsync
 #  - monitoring # Fuck it, cannot get it work in kubes, so manually on host it is.
 #   - databases
