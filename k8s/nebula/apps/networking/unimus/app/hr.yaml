@@ -50,7 +50,7 @@ spec:
           unimus:
             image:
               repository: registry.skysolutions.fi/docker.io/croc/unimus # Pull-though cache
-              tag: 2.6.0
+              tag: 2.6.1
             env:
               TZ: "Europe/Helsinki"
               JAVA_OPTS: "-Xms256M -Xmx1024M -Dunimus.core.connect-timeout=20000 -Dunimus.core.inter-connection-delay=1000 -Dunimus.core.cli-expect-timeout=30000"
