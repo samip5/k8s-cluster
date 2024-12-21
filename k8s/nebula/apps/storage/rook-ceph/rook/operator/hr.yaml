@@ -30,9 +30,11 @@ spec:
     keepHistory: false
   values:
     csi:
+      enableVolumeGroupSnapshot: false # TODO: enable this when v1beta1 CRDs are available
       cephFSKernelMountOptions: ms_mode=secure # Set when encryption/compression is enabled
-      provisioner:
-        image: registry.k8s.io/sig-storage/csi-provisioner:v3.6.1 # See https://github.com/rook/rook/issues/13458
+      enableLiveness: true
+#      provisioner:
+#        image: registry.k8s.io/sig-storage/csi-provisioner:v3.6.1 # See https://github.com/rook/rook/issues/13458
       pluginTolerations:
         - key: "cm4"
           operator: "Exists"
