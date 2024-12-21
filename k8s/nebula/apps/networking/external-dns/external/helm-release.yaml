@@ -23,7 +23,7 @@ spec:
       #repository: registry.skysolutions.fi/library/external-dns
       #tag: v10.0.0-1-g0ed31684@sha256:5f5c8b5c3c0d95d93297c91dbc83742f5223caceb648973c86d6e4d0e9379c95
       repository: registry.k8s.io/external-dns/external-dns
-      tag: v0.15.0
+      tag: v0.15.1
     extraArgs:
       - --ingress-class=external-nginx
       - --zone-id-filter=565f87a7bf0ab8ea9db9b83dca55bc54
