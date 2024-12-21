@@ -5,8 +5,8 @@ resources:
   - kube-system
   - networking
   - storage
-#  - media
-#  - gpu
+  - media
+  - gpu
   - volsync
 #  - monitoring # Fuck it, cannot get it work in kubes, so manually on host it is.
 #   - databases
