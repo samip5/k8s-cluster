@@ -56,6 +56,9 @@ spec:
               RADARR__LOG__DBENABLED: false
               RADARR__AUTH__METHOD: External
               RADARR__AUTH__REQUIRED: DisabledForLocalAddresses
+            envFrom:
+              - secretRef:
+                  name: radarr
             resources:
               requests:
                 cpu: 10m
