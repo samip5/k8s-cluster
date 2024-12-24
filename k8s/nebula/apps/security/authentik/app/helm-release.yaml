@@ -34,7 +34,7 @@ spec:
     global:
       image:
         repository: ghcr.io/goauthentik/server
-        tag: 2024.12.0
+        tag: 2024.12.1
       fullnameOverride: authentik
     authentik:
       log_level: info
