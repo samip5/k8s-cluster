@@ -109,6 +109,12 @@ spec:
         globalMounts:
           - path: /var/mnt/merged/
 
+      nas:
+        type: hostPath
+        hostPath: "/mnt/nas"
+        globalMounts:
+          - path: /mnt/nas
+
       transcode:
         type: emptyDir
         globalMounts:
