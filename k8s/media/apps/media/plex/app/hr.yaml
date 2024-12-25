@@ -92,13 +92,12 @@ spec:
             port: &port 32400
 
     ingress:
-      app:
-        enabled: true
+      int:
         className: nginx
         annotations:
           nginx.ingress.kubernetes.io/backend-protocol: HTTPS
         hosts:
-          - host: &host plex.dh.skylab.fi
+          - host: &host1 plex.media.skylab.fi
             paths:
               - path: /
                 service:
@@ -106,7 +105,21 @@ spec:
                   port: http
         tls:
           - hosts:
-              - *host
+              - *host1
+      app:
+        className: nginx
+        annotations:
+          nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+        hosts:
+          - host: &host2 plex.dh.skylab.fi
+            paths:
+              - path: /
+                service:
+                  identifier: plex
+                  port: http
+        tls:
+          - hosts:
+              - *host2
 
     persistence:
       config:
