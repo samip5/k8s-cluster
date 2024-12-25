@@ -73,7 +73,7 @@ spec:
             # Force nvidia runtime instead of default
             resources:
               requests:
-                cpu: 4000m
+                # cpu: 4000m
                 memory: 4Gi
                 nvidia.com/gpu: 1
                 # Transcoding: https://support.plex.tv/articles/115002178853-using-hardware-accelerated-streaming/

@@ -5,7 +5,7 @@ metadata:
   name: plex-config-v1
   namespace: media
 spec:
-  storageClassName: local-hostpath
+  storageClassName: cephfs
   accessModes:
     - ReadWriteOnce
   resources:
