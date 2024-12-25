@@ -128,8 +128,8 @@ spec:
       config:
         existingClaim: plex-config-v1
         advancedMounts:
-          main:
-            main:
+          plex:
+            app:
               - path: /config
                 subPath: plex
       media:
