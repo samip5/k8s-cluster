@@ -94,10 +94,9 @@ spec:
     ingress:
       app:
         enabled: true
-        className: external-nginx
+        className: nginx
         annotations:
           nginx.ingress.kubernetes.io/backend-protocol: HTTPS
-          external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
         hosts:
           - host: &host plex.dh.skylab.fi
             paths:
@@ -108,21 +107,6 @@ spec:
         tls:
           - hosts:
               - *host
-    int:
-      enabled: true
-      className: internal-nginx
-      annotations:
-        nginx.ingress.kubernetes.io/backend-protocol: HTTPS
-      hosts:
-        - host: &host plex.dh.skylab.fi
-          paths:
-            - path: /
-              service:
-                identifier: plex
-                port: http
-      tls:
-        - hosts:
-            - *host
 
     persistence:
       config:

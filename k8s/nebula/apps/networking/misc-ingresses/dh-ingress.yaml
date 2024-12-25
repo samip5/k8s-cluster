@@ -74,9 +74,34 @@ spec:
         paths:
           - backend:
               service:
-                name: dh-plex
+                name: dh
                 port:
-                  name: https
+                  number: 443
+            pathType: Prefix
+            path: "/"
+  tls:
+    - hosts:
+        - "plex.dh.skylab.fi"
+      secretName: plex-dh-tls
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dh-plex-int
+  namespace: networking
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  ingressClassName: internal-nginx
+  rules:
+    - host: "plex.dh.skylab.fi"
+      http:
+        paths:
+          - backend:
+              service:
+                name: dh
+                port:
+                  number: 443
             pathType: Prefix
             path: "/"
   tls:
