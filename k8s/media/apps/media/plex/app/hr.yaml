@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 3.2.0
+      version: 3.5.1
       interval: 15m
       sourceRef:
         kind: HelmRepository
@@ -49,18 +49,18 @@ spec:
           app:
             image:
               repository: ghcr.io/onedr0p/plex
-              tag: 1.40.5.8854-f36c552fd
+              tag: 1.41.3.9314-a0bfb8370
               # https://hub.docker.com/r/plexinc/pms-docker/
               # repository: docker.io/plexinc/pms-docker
               # tag: plexpass
               # pullPolicy: IfNotPresent
             env:
               TZ: "Europe/Helsinki"
-              PLEX_CLAIM:
-                valueFrom:
-                  secretKeyRef:
-                    name: plex-secret
-                    key: PLEX_CLAIM
+#              PLEX_CLAIM:
+#                valueFrom:
+#                  secretKeyRef:
+#                    name: plex-secret
+#                    key: PLEX_CLAIM
               # Remote access will look at `ADVERTISE_IP`, but because it's behind a proxy, it's likely that
               # the dashboard will say "Not available outside your network" even though it is... >:(
               # The local IP is also required for direct play with some apps (such as the Apple TV apparently)
@@ -126,21 +126,24 @@ spec:
 
     persistence:
       config:
-        enabled: true
         existingClaim: plex-config-v1
         advancedMounts:
           main:
             main:
               - path: /config
                 subPath: plex
-      library:
-        type: hostPath
-        hostPath: "/var/mnt/merged/"
+      media:
         globalMounts:
-          - path: /var/mnt/merged/
+          - path: /var/mnt/merged/library
+        hostPath: /var/mnt/merged/library
+        type: hostPath
+      nas:
+        type: hostPath
+        hostPath: "/mnt/nas"
+        globalMounts:
+          - path: /mnt/nas
       # https://support.plex.tv/articles/200250347-transcoder/
       transcode:
-        enabled: true
         type: emptyDir
         globalMounts:
           - path: /transcode
