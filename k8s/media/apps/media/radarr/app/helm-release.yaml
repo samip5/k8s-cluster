@@ -1,6 +1,6 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta2.json
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: radarr
@@ -118,24 +118,15 @@ spec:
 
     persistence:
       config:
-        enabled: true
         existingClaim: radarr-config-v1
         globalMounts:
           - path: /config
-      movies-kids:
-        enabled: true
+      library:
         type: hostPath
-        hostPath: "/var/mnt/merged/library/Kid Movies"
+        hostPath: "/var/mnt/merged/library/"
         globalMounts:
-          - path: /merge/movies_kids
-      movies:
-        enabled: true
-        type: hostPath
-        hostPath: "/var/mnt/merged/library/Movies"
-        globalMounts:
-          - path: /merge/movies
+          - path: /var/mnt/merged/library/
       downloads:
-        enabled: true
         type: hostPath
         hostPath: "/var/mnt/merged/Downloads/"
         globalMounts:
