@@ -184,11 +184,10 @@ nodes:
     controlPlane: false
     installDiskSelector:
       wwid: naa.5002538f4173a3bc
-    noSchematicValidate: true
     schematic:
       overlay:
-        name: sbc-raspberrypi
-        image: registry.skysolutions.fi/library/sbc-raspberrypi:alpha.1-1@sha256:f5734630fbae0647daf6e490ff91cd5f95220c3fc34e64364b2f245cde502a43
+        image: siderolabs/sbc-raspberrypi
+        name: rpi_generic
     disableSearchDomain: true
     networkInterfaces:
       - interface: bond0
@@ -214,12 +213,10 @@ nodes:
     installDiskSelector:
       size: '>=30GB'
     controlPlane: false
-    noSchematicValidate: true
     schematic:
       overlay:
-        name: sbc-raspberrypi
-        image: registry.skysolutions.fi/library/sbc-raspberrypi:alpha.1-1@sha256:f5734630fbae0647daf6e490ff91cd5f95220c3fc34e64364b2f245cde502a43
-    talosImageURL: registry.skysolutions.fi/library/talos/installer
+        image: siderolabs/sbc-raspberrypi
+        name: rpi_generic
     networkInterfaces:
       - interface: bond0
         bond:
