@@ -64,7 +64,7 @@ spec:
               # Remote access will look at `ADVERTISE_IP`, but because it's behind a proxy, it's likely that
               # the dashboard will say "Not available outside your network" even though it is... >:(
               # The local IP is also required for direct play with some apps (such as the Apple TV apparently)
-              ADVERTISE_IP: "https://plex.dh.skylab.fi:443"
+              ADVERTISE_IP: "https://plex.dh.skylab.fi:443,https://plex.media.skylab.fi:443"
               # Transcoding:
               # https://github.com/NVIDIA/nvidia-container-runtime#nvidia_visible_devices
               NVIDIA_VISIBLE_DEVICES: all
