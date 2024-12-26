@@ -189,7 +189,7 @@ spec:
           envFrom:
             - secretRef:
                 name: vpn-gateway-vpnconfig
-          image: docker.io/qmcgaw/gluetun:v3.39.1
+          image: docker.io/qmcgaw/gluetun:v3.40.0
           name: gluetun
           securityContext:
             privileged: true
