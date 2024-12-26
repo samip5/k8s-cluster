@@ -1,7 +1,7 @@
 ---
 clusterName: nebula
 # renovate: depName=ghcr.io/siderolabs/installer datasource=docker
-talosVersion: 1.8.0-alpha.1
+talosVersion: v1.9.1
 # renovate: depName=ghcr.io/siderolabs/kubelet datasource=docker
 kubernetesVersion: v1.30.2
 
@@ -29,13 +29,12 @@ nodes:
   - hostname: m1
     ipAddress: 10.0.105.34
     controlPlane: true
-    installDiskSelector:
-      busPath: /pci0000:00/0000:00:17.0/ata1/host0/target0:0:0/0:0:0:0/
+    installDisk: /dev/sda
     schematic: &amd-schematic
       customization:
         systemExtensions:
           officialExtensions:
-            - siderolabs/i915-ucode
+            - siderolabs/i915
             - siderolabs/intel-ucode
             - siderolabs/iscsi-tools
             - siderolabs/util-linux-tools
@@ -87,8 +86,7 @@ nodes:
   - hostname: w-amd-1
     ipAddress: 10.0.105.50
     controlPlane: false
-    installDiskSelector:
-      busPath: /pci0000:00/0000:00:17.0/ata1/host0/target0:0:0/0:0:0:0/
+    installDisk: /dev/sda
     schematic: *amd-schematic
     disableSearchDomain: true
     networkInterfaces:
@@ -117,10 +115,15 @@ nodes:
     controlPlane: false
     installDiskSelector:
       size: "<= 300GB"
-      busPath: /pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/
-    install:
-      image: registry.skysolutions.fi/library/installer:v1.8.0-alpha.1-1
-    schematic: *amd-schematic
+    schematic:
+      customization:
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/i915
+            - siderolabs/intel-ucode
+            - siderolabs/iscsi-tools
+            - siderolabs/util-linux-tools
+            - siderolabs/dvb-cx23885
     networkInterfaces:
       - interface: bond0
         bond:
@@ -152,8 +155,7 @@ nodes:
   - hostname: w-amd-3
     ipAddress: 10.0.105.19
     controlPlane: false
-    installDiskSelector:
-      busPath: /pci0000:00/0000:00:17.0/ata1/host0/target0:0:0/0:0:0:0/
+    installDisk: /dev/sda
     schematic: *amd-schematic
     disableSearchDomain: true
     networkInterfaces:
