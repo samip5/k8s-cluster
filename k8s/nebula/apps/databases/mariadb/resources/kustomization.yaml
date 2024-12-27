@@ -5,8 +5,8 @@ namespace: databases
 resources:
   - ./externalsecret.yaml
   - ./externalsecret-backups.yaml
-#  - ./backup.yaml
-#  - ./backup-daily.yaml
+  - ./backup.yaml
+  - ./backup-daily.yaml
   - ./mariadb.yaml
   - ./provisions
 labels:
