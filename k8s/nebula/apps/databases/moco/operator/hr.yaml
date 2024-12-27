@@ -1,0 +1,51 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: moco
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: moco
+      version: 0.15.1
+      sourceRef:
+        kind: HelmRepository
+        name: moco
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    image:
+      # image.repository -- MOCO image repository to use.
+      repository: ghcr.io/cybozu-go/moco
+
+      # image.tag -- MOCO image tag to use.
+      # @default -- `{{ .Chart.AppVersion }}`
+      tag: # 0.20.2
+
+    # resources -- resources used by moco-controller.
+    resources:
+      requests:
+        cpu: 100m
+        memory: 20Mi
+
+    extraArgs: []
+
+    nodeSelector: {}
+
+    affinity: {}
+
+    tolerations: []
+
+    topologySpreadConstraints: []
+
+    crds:
+      enabled: true
