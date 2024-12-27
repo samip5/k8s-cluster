@@ -44,10 +44,10 @@ jobs:
         id: containers
         run: |
           containers=$(.github/scripts/container-parser.sh --file "${{ matrix.file }}")
-          echo "${containers}"
-          echo "containers=${containers}" >> $GITHUB_OUTPUT
+          # Ensure proper JSON format for matrix
+          echo "containers=$(echo "${containers}" | jq -c '{"containers": .}')" >> $GITHUB_OUTPUT
     outputs:
-      containers: ${{ steps.containers.outputs.containers }}
+      containers: ${{ steps.detect-containers.outputs.containers }}
   scan-containers:
     name: Scan Containers
     runs-on: ubuntu-latest
