@@ -16,4 +16,4 @@ spec:
     name: flux-system
   wait: true
   dependsOn:
-    - name: cluster-apps-multus
+    - name: multus

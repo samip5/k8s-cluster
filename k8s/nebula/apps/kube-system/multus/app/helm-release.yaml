@@ -2,49 +2,66 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: multus
-  namespace: kube-system
+  name: &app multus
 spec:
-  interval: 5m
+  interval: 30m
   chart:
     spec:
-      chart: multus
-      version: 4.0.0
+      chart: app-template
+      version: 3.6.0
       sourceRef:
         kind: HelmRepository
-        name: angelnu-charts
+        name: bjw-s
         namespace: flux-system
-      interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
   values:
-    image:
-      repository: ghcr.io/k8snetworkplumbingwg/multus-cni
-      tag: v3.9.3
-
-    args:
-      - --multus-conf-file=auto
-
-
-    tolerations:
-      - effect: NoSchedule
-        operator: Exists
-      - effect: NoExecute
-        operator: Exists
-
-    cni:
-      image:
-        repository: ghcr.io/skyssolutions/cni-plugins
-        tag: 1.6.1
-
-      paths:
-        config: /etc/cni/net.d
-        bin: /opt/cni/bin
-
-    resources:
-      requests:
-        cpu: 5m
-        memory: 96Mi
-      limits:
-        memory: 96Mi
-
-    hostPaths:
-      netns: /var/run/netns
+    controllers:
+      multus:
+        type: daemonset
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          multus:
+            image:
+              repository: ghcr.io/k8snetworkplumbingwg/multus-cni
+              tag: v4.1.4
+            command:
+              - /thin_entrypoint
+            args:
+              - --cni-bin-dir=/opt/cni/bin
+              - --cni-conf-dir=/etc/cni/net.d
+              - --cleanup-config-on-exit=true
+              - --multus-conf-file=/config/00-multus.conf
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 512Mi
+            securityContext:
+              privileged: true
+    defaultPodOptions:
+      hostNetwork: true
+    persistence:
+      config:
+        type: configMap
+        name: multus-configmap
+        globalMounts:
+          - path: /config/00-multus.conf
+            subPath: 00-multus.conf
+            readOnly: true
+      etc-cni-net-d:
+        type: hostPath
+        hostPath: /etc/cni/net.d
+      opt-cni-bin:
+        type: hostPath
+        hostPath: /opt/cni/bin
+    serviceAccount:
+      create: true
+      name: *app
