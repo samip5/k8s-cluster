@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - cilium/ks.yaml
   - cilium/ks-config.yaml
-#  - multus/ks.yaml
+  - multus/ks.yaml
   - multus/ks-config.yaml
   - metrics-server/ks.yaml
   - snapshot-controller/ks.yaml
