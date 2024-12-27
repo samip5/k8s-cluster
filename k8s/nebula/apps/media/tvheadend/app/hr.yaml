@@ -53,6 +53,7 @@ spec:
     service:
       tvheadend:
         controller: tvheadend
+        type: LoadBalancer
         ports:
           http:
             port: 9981
