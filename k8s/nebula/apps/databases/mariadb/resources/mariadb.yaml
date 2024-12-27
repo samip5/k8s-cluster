@@ -48,7 +48,7 @@ spec:
     recovery:
       enabled: true
       podRecoveryTimeout: 15m
-      forceClusterBootstrapInPod: "mariadb-galera-2"
+      # forceClusterBootstrapInPod: "mariadb-galera-2"
 
   service:
     type: LoadBalancer
