@@ -5,6 +5,15 @@ kind: Backup
 metadata:
   name: mariadb-galera-daily
 spec:
+  timeZone: "Europe/Helsinki"
+  stagingStorage:
+    persistentVolumeClaim:
+      storageClassName: ceph-block
+      resources:
+        requests:
+          storage: 6Gi
+      accessModes:
+        - ReadWriteOnce
   mariaDbRef:
     name: mariadb-galera
 
@@ -24,4 +33,41 @@ spec:
       secretAccessKeySecretKeyRef:
         name: mariadb-galera-s3-secret
         key: secret-access-key
+---
+# yaml-language-server: $schema=https://ks.hsn.dev/k8s.mariadb.com/backup_v1alpha1.json
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Backup
+metadata:
+  name: mariadb-galera-daily-obs
+spec:
+  timeZone: "Europe/Helsinki"
+  stagingStorage:
+    persistentVolumeClaim:
+      storageClassName: ceph-block
+      resources:
+        requests:
+          storage: 6Gi
+      accessModes:
+        - ReadWriteOnce
+  mariaDbRef:
+    name: mariadb-galera
 
+  schedule:
+    cron: "30 1 * * *"
+
+  databases:
+    - observium
+
+  storage:
+    s3:
+      prefix: nebula-galera-obs/
+      bucket: backups-mariadb
+      endpoint: s3.skym.fi
+
+      accessKeyIdSecretKeyRef:
+        name: mariadb-galera-s3-secret
+        key: access-key-id
+
+      secretAccessKeySecretKeyRef:
+        name: mariadb-galera-s3-secret
+        key: secret-access-key

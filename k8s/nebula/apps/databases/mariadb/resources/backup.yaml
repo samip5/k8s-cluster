@@ -5,6 +5,15 @@ kind: Backup
 metadata:
   name: mariadb-galera-weekly
 spec:
+  timeZone: "Europe/Helsinki"
+  stagingStorage:
+    persistentVolumeClaim:
+      storageClassName: ceph-block
+      resources:
+        requests:
+          storage: 6Gi
+      accessModes:
+        - ReadWriteOnce
   mariaDbRef:
     name: mariadb-galera
 
