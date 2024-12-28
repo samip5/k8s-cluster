@@ -57,7 +57,7 @@ spec:
       mode: "kubernetes"
     ipv6:
       enabled: true
-    # enableIPv6Masquerade: false
+    enableIPv6Masquerade: false
     operator:
       replicas: 1
       rollOutPods: true
