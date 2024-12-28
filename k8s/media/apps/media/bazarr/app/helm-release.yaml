@@ -116,6 +116,7 @@ spec:
         type: hostPath
         hostPath: "/var/mnt/merged/library/TV Shows/"
         globalMounts:
+          - path: "/var/mnt/merged/library/TV Shows/"
           - path: "/merge/tv"
       nas:
         type: hostPath
