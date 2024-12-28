@@ -122,8 +122,8 @@ spec:
         hostPath: "/mnt/nas"
         globalMounts:
           - path: /mnt/nas
-      media-movies-kids:
+      media-movies:
         type: hostPath
-        hostPath: "/var/mnt/merged/library"
+        hostPath: "/var/mnt/merged/library/Movies"
         globalMounts:
-          - path: "/var/mnt/merged/library/"
+          - path: "/merge/Movies"
