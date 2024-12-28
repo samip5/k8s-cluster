@@ -100,15 +100,12 @@ spec:
 
     persistence:
       config:
-        enabled: true
         existingClaim: bazarr-config-v1
       add-ons:
-        enabled: true
         type: emptyDir
         globalMounts:
           - path: /add-ons
       scripts:
-        enabled: true
         type: configMap
         name: bazarr-scripts # overriden by kustomizeconfig
         defaultMode: 0775
@@ -116,26 +113,17 @@ spec:
           - path: /scripts
             readOnly: true
       media-tv:
-        enabled: true
         type: hostPath
         hostPath: "/var/mnt/merged/library/TV Shows/"
         globalMounts:
-          - path: "/var/mnt/merged/library/TV Shows/"
-      media-movies:
-        enabled: true
+          - path: "/merge/tv"
+      nas:
         type: hostPath
-        hostPath: "/var/mnt/merged/library/Movies/"
+        hostPath: "/mnt/nas"
         globalMounts:
-          - path: "/var/mnt/merged/library/Movies/"
+          - path: /mnt/nas
       media-movies-kids:
-        enabled: true
         type: hostPath
-        hostPath: "/var/mnt/merged/library/Kid Movies/"
+        hostPath: "/var/mnt/merged/library"
         globalMounts:
-          - path: "/var/mnt/merged/library/Kid Movies/"
-      media-anime:
-        enabled: true
-        type: hostPath
-        hostPath: "/var/mnt/merged/library/Anime/"
-        globalMounts:
-          - path: "/var/mnt/merged/library/Anime/"
+          - path: "/var/mnt/merged/library/"
