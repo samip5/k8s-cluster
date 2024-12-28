@@ -127,3 +127,4 @@ spec:
         hostPath: "/var/mnt/merged/library/Movies"
         globalMounts:
           - path: "/merge/Movies"
+          - path: "/var/mnt/merged/library/Movies"
