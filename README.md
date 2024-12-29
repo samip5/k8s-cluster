@@ -78,12 +78,12 @@ The alternative solution to these two problems would be to host a Kubernetes clu
 |-----------------------------------------------------------------------|--------------------------------------------------------------------|---------------------|
 | [Cloudflare](https://www.cloudflare.com/)                             | Domain(s) and S3                                                   | ~$20/yr             |
 | [GitHub](https://github.com/)                                         | Hosting this repository and continuous integration/deployments     | Free                |
-| [Mailbox](https://mailbox.org/)                                       | Email hosting                                                      | ~9€/3 months        |
+| [Mailbox](https://mailbox.org/)                                       | Email hosting                                                      | ~30€/12 months        |
 | [NextDNS](https://nextdns.io/)                                        | My router DNS server which includes AdBlocking                     | ~$20/yr             |
 | [Kapsi internet-users association](https://www.kapsi.fi/english.html) | Hosts my off-site backup aka minio (S3), Bitwarden and own website | 40€/yr              |
 | [Bilance](https://www.bilanceapp.com)                                 | Budgeting app for iOS and Android                                  | ~30€/yr             |
-| [1Password](https://1password.eu)                                     | External Secrets and secret management                             | Free for the moment |
-|                                                                       |                                                                    | Total: ~40€/mo      |
+| [1Password](https://1password.eu)                                     | External Secrets and secret management                             | 20€/yr (Student discount) |
+|                                                                       |                                                                    | Total: ~140€/yr      |
 
 ## Stargazers
 
