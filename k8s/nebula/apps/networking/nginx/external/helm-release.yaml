@@ -49,6 +49,7 @@ spec:
               values:
                 - external-nginx
       config:
+        annotations-risk-level: Critical
         proxy-body-size: 0
         proxy-buffer-size: 16k
         hsts: false
