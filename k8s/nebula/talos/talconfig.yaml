@@ -5,6 +5,10 @@ talosVersion: v1.9.1
 # renovate: depName=ghcr.io/siderolabs/kubelet datasource=docker
 kubernetesVersion: v1.30.2
 
+imageFactory:
+  registryURL: factory.kryptonian.dev
+
+
 cniConfig:
   name: none
 
@@ -62,27 +66,6 @@ nodes:
           routeMetric: 4000
         vip:
           ip: 10.0.105.10
-  - hostname: m2
-    ipAddress: 10.0.105.30
-    controlPlane: true
-    installDiskSelector:
-      size: ">=80GB"
-    disableSearchDomain: true
-    networkInterfaces:
-      - interface: bond0
-        bond:
-          mode: active-backup
-          interfaces:
-            - enx0211322432e5
-        dhcp: true
-        routes:
-          - network: "::/0"
-            gateway: "fd9d:7a72:44eb:c::1"
-            metric: 1
-        dhcpOptions:
-          routeMetric: 4000
-        vip:
-          ip: 10.0.105.10
   - hostname: w-amd-1
     ipAddress: 10.0.105.50
     controlPlane: false
@@ -115,15 +98,20 @@ nodes:
     controlPlane: false
     installDiskSelector:
       size: "<= 300GB"
+    kernelModules:
+      - name: i2c_mux
+      - name: dvb_core
+        parameters: ["frontend_debug=on"]
+      - name: cx23885
+        parameters: ["debug=1"]
+
     schematic:
       customization:
         systemExtensions:
           officialExtensions:
-            - siderolabs/i915
-            - siderolabs/intel-ucode
-            - siderolabs/iscsi-tools
-            - siderolabs/util-linux-tools
-            - siderolabs/dvb-cx23885
+            - samip5/siderolabs/i915
+            - samip5/siderolabs/intel-ucode
+            - samip5/siderolabs/dvb-cx23885
     networkInterfaces:
       - interface: bond0
         bond:
