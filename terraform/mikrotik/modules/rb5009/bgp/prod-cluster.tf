@@ -94,7 +94,7 @@ resource "routeros_routing_bgp_connection" "nebula-w-amd-2-v6" {
     address = "fd9d:7a72:44eb:c::1"
   }
   remote {
-    address = "fd9d:7a72:44eb:c:6e4b:90ff:fe2d:a807"
+    address = "fd9d:7a72:44eb:c:2d0:b4ff:fe02:195"
     as = routeros_routing_bgp_template.default.as
   }
 }
@@ -127,7 +127,7 @@ resource "routeros_routing_bgp_connection" "nebula-w-amd-3-v6" {
     address = "fd9d:7a72:44eb:c::1"
   }
   remote {
-    address = "fd9d:7a72:44eb:c:2d0:b4ff:fe02:197"
+    address = "fd9d:7a72:44eb:c:ee8e:b5ff:fe7b:efaa"
     as = routeros_routing_bgp_template.default.as
   }
 }
