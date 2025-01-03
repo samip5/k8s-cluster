@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
   - ns.yaml
   - authentik/ks.yaml
+  - onepassword-connect/ks.yaml
   - external-secrets/ks.yaml
