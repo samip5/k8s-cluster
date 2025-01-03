@@ -6,6 +6,7 @@ resource "routeros_routing_bgp_connection" "nebula-m1-v4" {
 
   local {
     role = "ibgp"
+    address = "10.0.105.1"
   }
 
   remote {
@@ -36,6 +37,7 @@ resource "routeros_routing_bgp_connection" "nebula-w-amd-1-v4" {
   address_families = "ip"
   local {
     role = "ibgp"
+    address = "10.0.105.1"
   }
   remote {
     address = "10.0.105.50"
@@ -65,6 +67,7 @@ resource "routeros_routing_bgp_connection" "nebula-w-amd-2-v4" {
   address_families = "ip"
   local {
     role = "ibgp"
+    address = "10.0.105.1"
   }
   remote {
     address = "10.0.105.50"
@@ -80,6 +83,7 @@ resource "routeros_routing_bgp_connection" "nebula-w-amd-2-v6" {
   address_families = "ipv6"
   local {
     role = "ibgp"
+    address = "10.0.105.1"
   }
   remote {
     address = "fd9d:7a72:44eb:c:6e4b:90ff:fe2d:a807"
@@ -94,6 +98,7 @@ resource "routeros_routing_bgp_connection" "nebula-w-amd-3-v4" {
   address_families = "ip"
   local {
     role = "ibgp"
+    address = "10.0.105.1"
   }
   remote {
     address = "10.0.105.33"
@@ -123,6 +128,7 @@ resource "routeros_routing_bgp_connection" "nebula-w-amd-4-v4" {
   address_families = "ip"
   local {
     role = "ibgp"
+    address = "10.0.105.1"
   }
   remote {
     address = "10.0.105.28"
@@ -153,6 +159,7 @@ resource "routeros_routing_bgp_connection" "nebula-cm4-1-v4" {
   address_families = "ip"
   local {
     role = "ibgp"
+    address = "10.0.105.1"
   }
   remote {
     address = "10.0.105.32"
@@ -186,6 +193,7 @@ resource "routeros_routing_bgp_connection" "nebula-w7-v4" {
 
   local {
     role = "ibgp"
+    address = "10.0.105.1"
   }
   remote {
     address = "10.0.105.29"

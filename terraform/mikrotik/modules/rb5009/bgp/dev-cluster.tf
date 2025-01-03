@@ -5,6 +5,7 @@ resource "routeros_routing_bgp_connection" "dev-m1-v4" {
   address_families = "ip"
   local {
     role = "ibgp"
+    address = "10.0.110.1"
   }
   remote {
     address = "10.0.110.18"
@@ -35,6 +36,7 @@ resource "routeros_routing_bgp_connection" "dev-w2-v4" {
   address_families = "ip"
   local {
     role = "ibgp"
+    address = "10.0.110.1"
   }
   remote {
     address = "10.0.110.20"
