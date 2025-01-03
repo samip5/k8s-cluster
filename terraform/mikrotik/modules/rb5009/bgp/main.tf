@@ -19,6 +19,8 @@ resource "routeros_routing_bgp_connection" "plex-srv-v6" {
   templates = [routeros_routing_bgp_template.default.name]
   name = "plex-srv-v6"
   address_families = "ip, ipv6"
+  keepalive_time = "30s"
+  hold_time = "90s"
   local {
     role = "ibgp"
     address = "fd9d:7a72:44eb:a::1"
