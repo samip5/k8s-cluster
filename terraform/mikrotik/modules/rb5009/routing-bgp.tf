@@ -1,0 +1,3 @@
+module "bgp" {
+  source = "./bgp"
+}
