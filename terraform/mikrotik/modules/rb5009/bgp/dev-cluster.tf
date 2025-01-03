@@ -18,6 +18,8 @@ resource "routeros_routing_bgp_connection" "dev-m1-v6" {
   as   = routeros_routing_bgp_template.default.as
   name = "dev-m1-v6"
   address_families = "ip, ipv6"
+  keepalive_time = "30s"
+  hold_time = "90s"
   local {
     role = "ibgp"
     address = "fd9d:7a72:44eb:d::1"
@@ -50,6 +52,8 @@ resource "routeros_routing_bgp_connection" "dev-w2-v6" {
   as   = routeros_routing_bgp_template.default.as
   name = "dev-w2-v6"
   address_families = "ip, ipv6"
+  keepalive_time = "30s"
+  hold_time = "90s"
   local {
     role = "ibgp"
     address = "fd9d:7a72:44eb:d::1"

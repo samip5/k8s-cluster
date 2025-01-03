@@ -21,6 +21,8 @@ resource "routeros_routing_bgp_connection" "nebula-m1-v6" {
   name = "nebula-m1-v6"
   as = routeros_routing_bgp_template.default.as
   address_families = "ip, ipv6"
+  keepalive_time = "30s"
+  hold_time = "90s"
   local {
     role = "ibgp"
     address = "fd9d:7a72:44eb:c::1"
@@ -52,6 +54,8 @@ resource "routeros_routing_bgp_connection" "nebula-w-amd-1-v6" {
   name = "nebula-w-amd-1-v6"
   as = routeros_routing_bgp_template.default.as
   address_families = "ip, ipv6"
+  keepalive_time = "30s"
+  hold_time = "90s"
   local {
     role = "ibgp"
     address = "fd9d:7a72:44eb:c::1"
@@ -83,6 +87,8 @@ resource "routeros_routing_bgp_connection" "nebula-w-amd-2-v6" {
   name = "nebula-w-amd-2-v6"
   as = routeros_routing_bgp_template.default.as
   address_families = "ip, ipv6"
+  keepalive_time = "30s"
+  hold_time = "90s"
   local {
     role = "ibgp"
     address = "fd9d:7a72:44eb:c::1"
@@ -114,6 +120,8 @@ resource "routeros_routing_bgp_connection" "nebula-w-amd-3-v6" {
   name = "nebula-w-amd-3-v6"
   as = routeros_routing_bgp_template.default.as
   address_families = "ip, ipv6"
+  keepalive_time = "30s"
+  hold_time = "90s"
   local {
     role = "ibgp"
     address = "fd9d:7a72:44eb:c::1"
@@ -145,6 +153,8 @@ resource "routeros_routing_bgp_connection" "nebula-w-amd-4-v6" {
   name = "nebula-w-amd-4-v6"
   as = routeros_routing_bgp_template.default.as
   address_families = "ip, ipv6"
+  keepalive_time = "30s"
+  hold_time = "90s"
   local {
     role = "ibgp"
     address = "fd9d:7a72:44eb:c::1"
@@ -178,6 +188,8 @@ resource "routeros_routing_bgp_connection" "nebula-cm4-1-v6" {
   name = "nebula-cm4-1-v6"
   as = routeros_routing_bgp_template.default.as
   address_families = "ip, ipv6"
+  keepalive_time = "30s"
+  hold_time = "90s"
 
   local {
     role = "ibgp"
@@ -214,6 +226,8 @@ resource "routeros_routing_bgp_connection" "nebula-w7-v6" {
   as = routeros_routing_bgp_template.default.as
 
   address_families = "ip, ipv6"
+  keepalive_time = "30s"
+  hold_time = "90s"
 
   local {
     role = "ibgp"

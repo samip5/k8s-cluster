@@ -16,6 +16,7 @@ resource "routeros_routing_bgp_template" "default" {
 
 resource "routeros_routing_bgp_connection" "plex-srv-v6" {
   as   = routeros_routing_bgp_template.default.as
+  templates = [routeros_routing_bgp_template.default.name]
   name = "plex-srv-v6"
   address_families = "ip, ipv6"
   local {
