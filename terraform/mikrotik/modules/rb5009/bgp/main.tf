@@ -9,6 +9,8 @@ terraform {
 resource "routeros_routing_bgp_template" "default" {
   as   = "213021"
   name = "better"
+  keepalive_time = "30s"
+  hold_time = "90s"
   address_families = "ip, ipv6"
 }
 
