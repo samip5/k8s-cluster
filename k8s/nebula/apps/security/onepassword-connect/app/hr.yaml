@@ -113,7 +113,7 @@ spec:
         runAsGroup: 999
     ingress:
       app:
-        className: internal
+        className: internal-nginx
         hosts:
           - host: "{{ .Release.Name }}.skylab.fi"
             paths:
