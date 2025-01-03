@@ -26,8 +26,13 @@ resource "routeros_interface_wireguard_peer" "backdoor-peer1" {
 
 resource "routeros_ip_route" "backdoor-route" {
   gateway = routeros_interface_wireguard.backdoor.name
-  for_each = toset(["10.0.0.0/24", "10.0.1.0/24", "172.17.50.0/24", "172.17.51.0/24", "2001:67c:1be8:2::/64"])
+  for_each = toset(["10.0.0.0/24", "10.0.1.0/24", "172.17.50.0/24", "172.17.51.0/24"])
   dst_address = each.key
+}
+
+resource "routeros_ipv6_route" "backdoor-route_v6" {
+  gateway = routeros_interface_wireguard.backdoor.name
+  dst_address = "2001:67c:1be8:2::/64"
 }
 
 resource "routeros_ip_firewall_addr_list" "backdoor-addr-v4-1" {
