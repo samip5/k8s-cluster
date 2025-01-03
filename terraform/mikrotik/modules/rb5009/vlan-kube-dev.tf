@@ -29,7 +29,7 @@ resource "routeros_interface_bridge_vlan" "KubeDev" {
 
 resource "routeros_ip_pool" "KubeDev_dhcp" {
   name = "kubernetes-dev-dhcp-pool"
-  ranges = ["10.0.105.20-10.0.105.30"]
+  ranges = ["10.0.110.20-10.0.105.30"]
 }
 
 resource "routeros_ip_dhcp_server_network" "KubeDev" {
