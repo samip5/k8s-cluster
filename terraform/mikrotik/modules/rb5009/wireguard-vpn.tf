@@ -40,8 +40,8 @@ resource "routeros_ip_firewall_nat" "backdoorNAT" {
   out_interface = routeros_interface_wireguard.backdoor.name
 }
 
-resource "routeros_ipv6_firewall_nat" "backdoorNATv6" {
-  action = "masquerade"
-  chain = "srcnat"
-  out_interface = routeros_interface_wireguard.backdoor.name
-}
+# resource "routeros_ipv6_firewall_nat" "backdoorNATv6" {
+#   action = "masquerade"
+#   chain = "srcnat"
+#   out_interface = routeros_interface_wireguard.backdoor.name
+# }
