@@ -5,7 +5,7 @@ resource "routeros_interface_vlan" "KubeProd" {
 }
 
 resource "routeros_ip_address" "KubeProdv4" {
-  address   = "10.0.105.0/24"
+  address   = "10.0.105.1/24"
   interface = routeros_interface_vlan.KubeProd.name
   network = "10.0.105.0"
 }

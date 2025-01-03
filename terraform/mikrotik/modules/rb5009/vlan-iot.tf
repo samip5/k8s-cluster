@@ -5,7 +5,7 @@ resource "routeros_interface_vlan" "IoT" {
 }
 
 resource "routeros_ip_address" "IoTv4" {
-  address   = "10.0.50.0/24"
+  address   = "10.0.50.1/24"
   interface = routeros_interface_vlan.IoT.name
   network = "10.0.50.0"
 }
