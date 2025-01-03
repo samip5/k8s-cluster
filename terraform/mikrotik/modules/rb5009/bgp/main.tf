@@ -15,7 +15,7 @@ resource "routeros_routing_bgp_template" "default" {
 resource "routeros_routing_bgp_connection" "plex-srv-v6" {
   as   = routeros_routing_bgp_template.default.as
   name = "plex-srv-v6"
-  address_families = "ipv6"
+  address_families = "ip, ipv6"
   local {
     role = "ibgp"
     address = "fd9d:7a72:44eb:a::1"
@@ -26,18 +26,18 @@ resource "routeros_routing_bgp_connection" "plex-srv-v6" {
   }
 }
 
-resource "routeros_routing_bgp_connection" "plex-srv-v4" {
-  as   = routeros_routing_bgp_template.default.as
-  name = "plex-srv-v4"
-  address_families = "ip"
-  local {
-    role = "ibgp"
-    address = "192.168.2.1"
-  }
-
-  remote {
-    address = "192.168.2.129"
-    as = routeros_routing_bgp_template.default.as
-  }
-}
+# resource "routeros_routing_bgp_connection" "plex-srv-v4" {
+#   as   = routeros_routing_bgp_template.default.as
+#   name = "plex-srv-v4"
+#   address_families = "ip"
+#   local {
+#     role = "ibgp"
+#     address = "192.168.2.1"
+#   }
+#
+#   remote {
+#     address = "192.168.2.129"
+#     as = routeros_routing_bgp_template.default.as
+#   }
+# }
 
