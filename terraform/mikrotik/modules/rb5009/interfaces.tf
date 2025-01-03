@@ -24,7 +24,6 @@ resource "routeros_interface_ethernet" "ether4" {
 resource "routeros_interface_ethernet" "ether5" {
   factory_name = "ether5"
   name         = "ether5"
-  disabled     = true
 }
 
 resource "routeros_interface_ethernet" "ether6" {

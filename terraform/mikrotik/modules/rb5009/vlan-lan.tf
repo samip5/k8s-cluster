@@ -1,6 +1,6 @@
 resource "routeros_interface_vlan" "LAN" {
   interface = routeros_interface_bridge.bridge.name
-  name      = "LAN"
+  name      = "MainLAN"
   vlan_id   = 10
 }
 
@@ -41,7 +41,7 @@ resource "routeros_ip_dhcp_server_network" "LAN" {
 
 resource "routeros_ip_dhcp_server" "LAN" {
   name = "LAN"
-  address_pool = routeros_ip_pool.mgmnt_dhcp.name
+  address_pool = routeros_ip_pool.lan_dhcp.name
   interface = routeros_interface_vlan.LAN.name
   conflict_detection = false
 }

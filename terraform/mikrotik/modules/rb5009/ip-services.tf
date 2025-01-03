@@ -1,7 +1,7 @@
 locals {
   tls_service     = { "api-ssl" = 8729, "www-ssl" = 443 }
-  disable_service = { "api" = 8728, "ftp" = 21, "telnet" = 23, "www" = 80, "ssh" = 22 }
-  enable_service  = { "winbox" = 8291 }
+  disable_service = { "api" = 8728, "ftp" = 21, "telnet" = 23, "www" = 80 }
+  enable_service  = { "winbox" = 8291, "ssh" = 10222 }
 }
 
 ## ================================================================================================
