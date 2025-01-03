@@ -19,7 +19,6 @@ resource "routeros_interface_ethernet" "ether3" {
 resource "routeros_interface_ethernet" "ether4" {
   factory_name = "ether4"
   name         = "ether4"
-  disabled = true
 }
 
 resource "routeros_interface_ethernet" "ether5" {
@@ -40,9 +39,10 @@ resource "routeros_interface_ethernet" "ether7" {
   disabled     = true
 }
 
-resource "routeros_interface_ethernet" "mngmt-backuo" {
+resource "routeros_interface_ethernet" "mngmt-backup" {
   factory_name = "ether8"
   name = "ether8"
+  comment = "Management BACKUP"
 }
 
 resource "routeros_interface_ethernet" "trunk" {

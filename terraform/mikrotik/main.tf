@@ -4,4 +4,5 @@ module "rb5009" {
   mikrotik_username   = var.mikrotik_username
   mikrotik_password   = var.mikrotik_password
   mikrotik_insecure   = true
+  doh_server_url      = "https://dns.nextdns.io/f5ec55"
 }

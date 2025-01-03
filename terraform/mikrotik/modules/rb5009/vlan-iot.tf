@@ -10,6 +10,12 @@ resource "routeros_ip_address" "IoTv4" {
   network = "10.0.50.0"
 }
 
+resource "routeros_ipv6_address" "IoTv6" {
+  address = "fd9d:7a72:44eb:e::1/64"
+  advertise = true
+  interface = routeros_interface_vlan.IoT.name
+}
+
 resource "routeros_interface_bridge_vlan" "IoT" {
   bridge   = routeros_interface_bridge.bridge.name
   vlan_ids = [routeros_interface_vlan.IoT.vlan_id]
