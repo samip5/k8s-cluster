@@ -82,7 +82,7 @@ spec:
               ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://mosquitto.home.svc.cluster.local
               ZIGBEE2MQTT_CONFIG_MQTT_VERSION: 5
               ZIGBEE2MQTT_CONFIG_PERMIT_JOIN: "true"
-              ZIGBEE2MQTT_CONFIG_SERIAL_PORT: tcp://10.0.50.137:6638
+              ZIGBEE2MQTT_CONFIG_SERIAL_PORT: tcp://10.0.50.30:6638
               ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER: zstack
             envFrom:
               - secretRef:
