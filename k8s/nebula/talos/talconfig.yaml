@@ -25,8 +25,8 @@ clusterPodNets:
   - 10.244.0.0/16
   - fddf:f7bc:9670::/48
 clusterSvcNets:
-  - 10.96.0.0/12
-  - 2001:14ba:74ae:3405::1e:0/112
+  - 10.96.0.0/16
+  - fd2a:0ff3:1d2f::/112
 
 
 nodes:
@@ -99,7 +99,8 @@ nodes:
     installDiskSelector:
       size: "<= 300GB"
     kernelModules:
-      - name: i2c_mux
+      - name: si2157
+        parameters: ["debug=1"]
       - name: dvb_core
         parameters: ["frontend_debug=on"]
       - name: cx23885
