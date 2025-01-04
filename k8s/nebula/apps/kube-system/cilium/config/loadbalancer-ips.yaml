@@ -17,3 +17,6 @@ metadata:
 spec:
   blocks:
     - cidr: 2001:14ba:45a:213d::/112
+  serviceSelector:
+    matchLabels:
+      pool: public
