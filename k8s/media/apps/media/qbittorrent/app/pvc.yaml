@@ -1,13 +1,15 @@
----
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: qbittorrent-config
-  namespace: media
+  name: "${VOLSYNC_CLAIM:-${APP}}"
 spec:
   accessModes:
-    - ReadWriteMany
+    - "${VOLSYNC_ACCESSMODES:-ReadWriteOnce}"
+  dataSourceRef:
+    kind: ReplicationDestination
+    apiGroup: volsync.backube
+    name: "${APP}-bootstrap"
   resources:
     requests:
-      storage: 2Gi
-  storageClassName: cephfs
+      storage: "${VOLSYNC_CAPACITY:-1Gi}"
+  storageClassName: "${VOLSYNC_STORAGECLASS:-cephfs}"
