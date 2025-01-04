@@ -74,9 +74,11 @@ spec:
       service:
         enabled: true
         type: LoadBalancer
+        labels:
+          pool: public
         annotations:
           external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
-          io.cilium/lb-ipam-ips: "10.96.69.80,fded:687e:c3bf::4443"
+          io.cilium/lb-ipam-ips: "10.96.69.80,2001:14ba:45a:213d::4443"
         externalTrafficPolicy: Cluster
         ipFamilyPolicy: "PreferDualStack"
         ipFamilies:
