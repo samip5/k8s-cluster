@@ -30,10 +30,10 @@ resource "routeros_ip_route" "backdoor-route" {
   dst_address = each.key
 }
 
-# resource "routeros_ipv6_route" "backdoor-route_v6" {
-#   gateway = routeros_interface_wireguard.backdoor.name
-#   dst_address = "2001:67c:1be8:2::/64"
-# }
+resource "routeros_ipv6_route" "backdoor-route_v6" {
+  gateway = routeros_interface_wireguard.backdoor.name
+  dst_address = "2001:67c:1be8:2::/64"
+}
 
 resource "routeros_ip_firewall_addr_list" "backdoor-addr-v4-1" {
   address = "10.0.0.0/24"
@@ -66,7 +66,7 @@ resource "routeros_ip_address" "backdoorV4" {
 }
 
 resource "routeros_ipv6_address" "backdoorV6" {
-  address   = "2001:67c:1be8:3b::4/12"
+  address   = "2001:67c:1be8:3b::4/128"
   interface = routeros_interface_wireguard.backdoor.name
 }
 
