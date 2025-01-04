@@ -11,7 +11,7 @@ resources:
   - media-index/ks.yaml
   - plex/ks.yaml
   - qbit/ks.yaml
-#  - qbittorrent/ks.yaml
+  - qbittorrent/ks.yaml
 #  - cross-seed/ks.yaml
   - unpackerr/ks.yaml
   - jellyfin/ks.yaml
