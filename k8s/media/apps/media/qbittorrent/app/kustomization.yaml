@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: media
 resources:
   - ./es.yaml
-#  - ./pvc.yaml
+  - ./pvc.yaml
   - ./helm-release.yaml
   - ./replicationsource.yaml
   - ./replicationdestination.yaml
