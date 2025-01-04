@@ -12,7 +12,7 @@ resources:
   - plex/ks.yaml
   - qbit/ks.yaml
   - qbittorrent/ks.yaml
-#  - cross-seed/ks.yaml
+  - cross-seed/ks.yaml
   - unpackerr/ks.yaml
   - jellyfin/ks.yaml
 #  - kyoo/ks.yaml
