@@ -20,6 +20,7 @@ spec:
       VOLSYNC_CAPACITY: 1Gi
       VOLSYNC_STORAGECLASS: cephfs
       VOLSYNC_SNAPSHOTCLASS: csi-ceph-filesystem
+      VOLSYNC_CACHE_SNAPSHOTCLASS: ceph-rbd
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
