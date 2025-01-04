@@ -8,3 +8,12 @@ spec:
   blocks:
     - cidr: 10.96.69.0/24
     - cidr: fded:687e:c3bf::/112
+---
+apiVersion: "cilium.io/v2alpha1"
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: public-v6
+  namespace: kube-system
+spec:
+  blocks:
+    - cidr: 2001:14ba:45a:213d::/112
