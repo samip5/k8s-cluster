@@ -11,7 +11,6 @@ spec:
     copyMethod: Snapshot
     repository: "${APP}-volsync-minio"
     cacheStorageClassName: "${VOLSYNC_CACHE_SNAPSHOTCLASS:-local-hostpath}"
-    cacheAccessModes: "${VOLSYNC_CACHE_ACCESSMODES:-ReadWriteOnce}"
     cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:-1Gi}"
     storageClassName: "${VOLSYNC_STORAGECLASS:-fast-ceph-filesystem}"
     volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:-csi-ceph-filesystem}"
@@ -21,4 +20,6 @@ spec:
       fsGroup: ${APP_GID:-568}
     accessModes:
       - "${VOLSYNC_ACCESSMODES:-ReadWriteOnce}"
+    cacheAccessModes:
+      - "${VOLSYNC_CACHE_ACCESSMODES:-ReadWriteOnce}"
     capacity: "${VOLSYNC_CAPACITY:-1Gi}"
