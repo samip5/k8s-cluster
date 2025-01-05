@@ -5,5 +5,3 @@ resources:
   - local-path/ks.yaml
   - snapshot-controller/ks.yaml
   - rook-ceph
-# Running it inside pod doesn't work properly.
-#  - mergerfs/ks.yaml

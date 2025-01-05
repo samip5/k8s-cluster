@@ -1,7 +1,7 @@
 ---
 clusterName: nebula
 # renovate: depName=ghcr.io/siderolabs/installer datasource=docker
-talosVersion: v1.9.1
+talosVersion: v1.9.2
 # renovate: depName=ghcr.io/siderolabs/kubelet datasource=docker
 kubernetesVersion: v1.30.2
 
@@ -99,12 +99,11 @@ nodes:
     installDiskSelector:
       size: "<= 300GB"
     kernelModules:
-      - name: si2157
-        parameters: ["debug=1"]
-      - name: dvb_core
-        parameters: ["frontend_debug=on"]
+#      - name: si2157
+#        parameters: ["debug=1"]
+#      - name: dvb_core
+#        parameters: ["frontend_debug=on"]
       - name: cx23885
-        parameters: ["debug=1"]
 
     schematic:
       customization:
@@ -162,6 +161,61 @@ nodes:
           - vlanId: 50
             mtu: 1500
             addresses: [ "10.0.50.11/24" ]
+            routes:
+              - network: "10.0.50.0/24"
+                gateway: "10.0.50.1"
+                metric: 4097
+        dhcpOptions:
+          routeMetric: 4000
+  - hostname: w-amd-4
+    ipAddress: 10.0.105.33
+    controlPlane: false
+    installDisk: /dev/sdb
+    schematic: *amd-schematic
+    disableSearchDomain: true
+    networkInterfaces:
+      - interface: bond0
+        bond:
+          mode: active-backup
+          interfaces:
+            - enp2s0
+        dhcp: true
+        routes:
+          - network: "::/0"
+            gateway: "fd9d:7a72:44eb:c::1"
+            metric: 1
+        vlans:
+          - vlanId: 50
+            mtu: 1500
+            addresses: [ "10.0.50.11/24" ]
+            routes:
+              - network: "10.0.50.0/24"
+                gateway: "10.0.50.1"
+                metric: 4097
+        dhcpOptions:
+          routeMetric: 4000
+  - hostname: w-amd-5
+    ipAddress: 10.0.105.19
+    controlPlane: false
+    installDiskSelector:
+      wwid: eui.5cd2e41571a22939
+    schematic: *amd-schematic
+    disableSearchDomain: true
+    networkInterfaces:
+      - interface: bond0
+        bond:
+          mode: active-backup
+          interfaces:
+            - enp5s0
+        dhcp: true
+        routes:
+          - network: "::/0"
+            gateway: "fd9d:7a72:44eb:c::1"
+            metric: 1
+        vlans:
+          - vlanId: 50
+            mtu: 1500
+            addresses: [ "10.0.50.12/24" ]
             routes:
               - network: "10.0.50.0/24"
                 gateway: "10.0.50.1"
