@@ -25,7 +25,7 @@ spec:
       strategy: rollback
       retries: 3
   dependsOn:
-    - name: monitoring-kps-crds
+    - name: kube-prometheus-stack-crds
       namespace: monitoring
     - name: rook-ceph-cluster
       namespace: rook-ceph
