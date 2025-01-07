@@ -24,7 +24,7 @@ metadata:
 spec:
   targetNamespace: monitoring
   path: "./k8s/base/monitoring/prom-stack/crds"
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
