@@ -42,7 +42,7 @@ spec:
           main:
             image:
               repository: docker.io/library/influxdb
-              tag: 2.7-alpine@sha256:0abb5192f5d03a926995a57d8ada705021872cf2e3c398e23f09a524b1e972c0
+              tag: 2.7-alpine@sha256:76ab0f67013c3f5e3fa3467b3db23024cbe4d50a33d7f16b3d5be7aa4ebd742d
             env:
               DOCKER_INFLUXDB_INIT_MODE: setup
               DOCKER_INFLUXDB_INIT_USERNAME: sky
