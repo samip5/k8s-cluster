@@ -22,6 +22,7 @@ metadata:
   labels:
     component.skylab.fi/part-of: definitions
 spec:
+  targetNamespace: monitoring
   path: "./k8s/base/monitoring/prom-stack/crds"
   prune: false
   sourceRef:
