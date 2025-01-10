@@ -99,7 +99,7 @@ spec:
 
     settings:
       IPV4_ENABLED: true
-      IPV6_ENABLED: true
+      IPV6_ENABLED: false
       VPN_INTERFACE: "wg0"
       VXLAN_ID: 44
       VXLAN_PORT: 4789
