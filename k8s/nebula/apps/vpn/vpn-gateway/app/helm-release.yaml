@@ -24,10 +24,10 @@ spec:
       retries: 5
   values:
     image:
-      repository: ghcr.io/angelnu/pod-gateway
-      tag: v1.11.1
-#      repository: registry.skysolutions.fi/library/pod-gateway
-#      tag: 110125@sha256:77ad6c6f7b2e48c8ad17bd6bfa2bd0f30091a734c1b3b99158b1bd671901f14b
+#      repository: ghcr.io/angelnu/pod-gateway
+#      tag: v1.11.1
+      repository: registry.skysolutions.fi/library/pod-gateway
+      tag: 110125@sha256:77ad6c6f7b2e48c8ad17bd6bfa2bd0f30091a734c1b3b99158b1bd671901f14b
 
     addons:
       netshoot:
