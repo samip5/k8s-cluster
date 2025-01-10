@@ -27,7 +27,7 @@ spec:
       #repository: ghcr.io/angelnu/pod-gateway
       #tag: v1.10.0@sha256:d728eac85f750b37c96a0dafd038561ea4b8035857802be1128ea9b19c61e181
       repository: registry.skysolutions.fi/library/pod-gateway
-      tag: 230724
+      tag: 100125
 
     addons:
       netshoot:
@@ -69,24 +69,24 @@ spec:
 #            add:
 #              - NET_ADMIN
 
-        networkPolicy:
-          enabled: true
-          egress:
-            - to:
-                - ipBlock:
-                    cidr: 0.0.0.0/0
-                - ipBlock:
-                    cidr: ::/0 # Allow IPv6 to VPN servers
-              ports:
-                # VPN traffic
-                - port: 51820
-                  protocol: UDP
-                - port: 1637
-                  protocol: UDP
-                - port: 53
-                  protocol: UDP
-            - to:
-                - namespaceSelector: {}
+#        networkPolicy:
+#          enabled: false
+#          egress:
+#            - to:
+#                - ipBlock:
+#                    cidr: 0.0.0.0/0
+#                - ipBlock:
+#                    cidr: ::/0 # Allow IPv6 to VPN servers
+#              ports:
+#                # VPN traffic
+#                - port: 51820
+#                  protocol: UDP
+#                - port: 1637
+#                  protocol: UDP
+#                - port: 53
+#                  protocol: UDP
+#            - to:
+#                - namespaceSelector: {}
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: vpn-gateway-pod-gateway
@@ -98,9 +98,12 @@ spec:
       - media
 
     settings:
+      IPV4_ENABLED: true
+      IPV6_ENABLED: true
       VPN_INTERFACE: "wg0"
       VXLAN_ID: 44
       VXLAN_IP_NETWORK: 172.16.1
+      VXLAN_IPV6_NETWORK: fd60:ca7f:e5d8:42e9
       VXLAN_GATEWAY_FIRST_DYNAMIC_IP: 20
       VPN_BLOCK_OTHER_TRAFFIC: false
       VPN_TRAFFIC_PORT: "51820"
