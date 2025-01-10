@@ -31,6 +31,8 @@ spec:
   values:
     defaultPodOptions:
       automountServiceAccountToken: false
+      securityContext:
+        privileged: true
 #      annotations:
 #        setGateway: "true"
 
