@@ -43,5 +43,6 @@ spec:
             image:
               repository: nicolaka/netshoot
               tag: latest
+            command: ["/bin/sleep", "infinity"]
             env:
               TZ: "Europe/Helsinki"
