@@ -27,7 +27,7 @@ spec:
       #repository: ghcr.io/angelnu/pod-gateway
       #tag: v1.10.0@sha256:d728eac85f750b37c96a0dafd038561ea4b8035857802be1128ea9b19c61e181
       repository: registry.skysolutions.fi/library/pod-gateway
-      tag: 100125@sha256:6e79d5fdc16c1094c6d379b94133eba71c3b85aadedb4b3f6317c7b21881f156
+      tag: 100125@sha256:dc741d8fd3c4dbf91c193ae77161ae79cc84e7c42857d7c80cd8b87ede7fddfe
 
     addons:
       netshoot:
