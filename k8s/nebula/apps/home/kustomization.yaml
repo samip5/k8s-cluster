@@ -4,8 +4,8 @@ resources:
   - ./ns.yaml
   - ./priority-class.yaml
   - ./mosquitto/ks.yaml
-#  - ./mosquitto/ks-exporter.yaml
+  - ./mosquitto/ks-exporter.yaml
   - ./esphome/ks.yaml
   - ./zigbee2mqtt/ks.yaml
-#  - ./zigbee2mqtt/ks-exporter.yaml
+  - ./zigbee2mqtt/ks-exporter.yaml
   - ./assistant/ks.yaml
