@@ -38,7 +38,7 @@ spec:
               # LOG_LEVEL: DEBUG
               # LOG_MQTT_MESSAGE: "true"
               MQTT_ADDRESS: mosquitto.home
-              MQTT_TOPIC: "homeassistant/sensor/0x2c1165fffeeeeded/power"
+              MQTT_TOPIC: "zigbee2mqtt/closet/rack"
               MQTT_V5_PROTOCOL: "true"
               PROMETHEUS_PORT: &port 3321
               PROMETHEUS_PREFIX: "mqtt_"
