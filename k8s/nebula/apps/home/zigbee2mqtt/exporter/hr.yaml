@@ -58,3 +58,12 @@ spec:
             protocol: HTTP
             port: *port
         type: ClusterIP
+    serviceMonitor:
+      z2m-exporter:
+        serviceName: main
+        endpoints:
+          - port: metrics
+            scheme: http
+            path: /metrics
+            interval: 1m
+            scrapeTimeout: 30s
