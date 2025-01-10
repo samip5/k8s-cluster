@@ -45,6 +45,7 @@ spec:
             image:
               repository: ghcr.io/flaresolverr/flaresolverr
               tag: v3.3.21
+            command: ["/bin/sleep", "infinity"]
             env:
               TZ: "Europe/Helsinki"
               LOG_LEVEL: debug
