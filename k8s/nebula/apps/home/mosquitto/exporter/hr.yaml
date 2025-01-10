@@ -60,7 +60,7 @@ spec:
         type: ClusterIP
     serviceMonitor:
       mosquitto-exporter:
-        serviceName: main
+        serviceName: mqtt-exporter-tasmota-1
         endpoints:
           - port: metrics
             scheme: http

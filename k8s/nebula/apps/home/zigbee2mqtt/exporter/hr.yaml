@@ -60,7 +60,7 @@ spec:
         type: ClusterIP
     serviceMonitor:
       z2m-exporter:
-        serviceName: main
+        serviceName: mqtt-exporter
         endpoints:
           - port: metrics
             scheme: http
