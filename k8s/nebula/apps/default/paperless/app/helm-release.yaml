@@ -102,6 +102,7 @@ spec:
               - "--chromium-allow-list=file:///tmp/.*"
             resources:
               limits:
+                cpu: 500m
                 memory: 512Mi
               requests:
                 cpu: 10m
@@ -117,6 +118,7 @@ spec:
               limits:
                 memory: 512Mi
               requests:
+                memory: 512Mi
                 cpu: 10m
           redis:
             image:

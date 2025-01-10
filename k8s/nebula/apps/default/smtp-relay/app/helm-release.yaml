@@ -47,7 +47,8 @@ spec:
                 cpu: 100m
                 memory: 64M
               limits:
-                memory: 64M
+                cpu: 100m
+                memory: 100M
             probes:
               liveness:
                 enabled: false

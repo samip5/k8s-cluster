@@ -64,8 +64,6 @@ spec:
       service:
         selector:
           k8s-app: kube-controller-manager
-    kubeEtcd:
-      <<: *kubeControllerManager # etcd runs on control plane nodes
     kubeProxy:
       enabled: false
     prometheus:

@@ -62,6 +62,13 @@ spec:
             envFrom:
               - secretRef:
                   name: your-spotify-secret
+            resources:
+              limits:
+                memory: 2Gi
+                cpu: 2
+              requests:
+                memory: 1Gi
+                cpu: 1
 
             probes:
               liveness: &probes
@@ -98,6 +105,13 @@ spec:
             env:
               TIMEZONE: "Europe/Helsinki"
               API_ENDPOINT: *api_endpoint
+            resources:
+              limits:
+                cpu: 0.5
+                memory: 512Mi
+              requests:
+                cpu: 0.5
+                memory: 512Mi
             probes: &probes
               liveness:
                 enabled: true

@@ -74,8 +74,10 @@ spec:
               FOOTER: Skyler Mäntysaari © 2022-2024
             resources:
               requests:
+                cpu: 50m
                 memory: 64M
               limits:
+                cpu: 100m
                 memory: 100M
     service:
       main:
