@@ -35,7 +35,7 @@ spec:
               repository: ghcr.io/kashalls/kromgo
               tag: v0.4.3
             env:
-              PROMETHEUS_URL: http://prom-prometheus.monitoring.svc.cluster.local:9090
+              PROMETHEUS_URL: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
               SERVER_HOST: 0.0.0.0
               SERVER_PORT: &port 80
               HEALTH_HOST: 0.0.0.0
