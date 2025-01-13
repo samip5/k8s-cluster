@@ -1,73 +1,73 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: dh
-  namespace: networking
-  annotations:
-    external-dns-cf/is-dns-public: "true"
-    external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-    nginx.ingress.kubernetes.io/auth-url: |-
-      http://ak-outpost-authentik-embedded-outpost.security.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
-    nginx.ingress.kubernetes.io/auth-response-headers: |-
-      Set-Cookie,X-authentik-username,X-authentik-groups
-    nginx.ingress.kubernetes.io/auth-snippet: |
-      proxy_set_header X-Forwarded-Host $http_host;
-    nginx.ingress.kubernetes.io/server-snippet: |
-      proxy_ssl_name dh.skylab.fi;
-      proxy_ssl_server_name on;
-spec:
-  ingressClassName: external-nginx
-  rules:
-    - host: "dh.skylab.fi"
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: dh
-                port:
-                  number: 443
-  tls:
-    - hosts:
-        - "dh.skylab.fi"
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: dh-int
-  namespace: networking
-  annotations:
-    external-dns-cf/is-dns-public: "true"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-    external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
-    nginx.ingress.kubernetes.io/auth-url: |-
-      http://ak-outpost-authentik-embedded-outpost.security.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
-    nginx.ingress.kubernetes.io/auth-response-headers: |-
-      Set-Cookie,X-authentik-username,X-authentik-groups
-    nginx.ingress.kubernetes.io/auth-snippet: |
-      proxy_set_header X-Forwarded-Host $http_host;
-    nginx.ingress.kubernetes.io/server-snippet: |
-      proxy_ssl_name dh.skylab.fi;
-      proxy_ssl_server_name on;
-spec:
-  ingressClassName: internal-nginx
-  rules:
-    - host: "dh.skylab.fi"
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: dh
-                port:
-                  number: 443
-  tls:
-    - hosts:
-        - "dh.skylab.fi"
-      secretName: plex-dh-tls
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: dh
+#  namespace: networking
+#  annotations:
+#    external-dns-cf/is-dns-public: "true"
+#    external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
+#    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+#    nginx.ingress.kubernetes.io/auth-url: |-
+#      http://ak-outpost-authentik-embedded-outpost.security.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
+#    nginx.ingress.kubernetes.io/auth-response-headers: |-
+#      Set-Cookie,X-authentik-username,X-authentik-groups
+#    nginx.ingress.kubernetes.io/auth-snippet: |
+#      proxy_set_header X-Forwarded-Host $http_host;
+#    nginx.ingress.kubernetes.io/server-snippet: |
+#      proxy_ssl_name dh.skylab.fi;
+#      proxy_ssl_server_name on;
+#spec:
+#  ingressClassName: external-nginx
+#  rules:
+#    - host: "dh.skylab.fi"
+#      http:
+#        paths:
+#          - pathType: Prefix
+#            path: "/"
+#            backend:
+#              service:
+#                name: dh
+#                port:
+#                  number: 443
+#  tls:
+#    - hosts:
+#        - "dh.skylab.fi"
+#---
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: dh-int
+#  namespace: networking
+#  annotations:
+#    external-dns-cf/is-dns-public: "true"
+#    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+#    external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
+#    nginx.ingress.kubernetes.io/auth-url: |-
+#      http://ak-outpost-authentik-embedded-outpost.security.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
+#    nginx.ingress.kubernetes.io/auth-response-headers: |-
+#      Set-Cookie,X-authentik-username,X-authentik-groups
+#    nginx.ingress.kubernetes.io/auth-snippet: |
+#      proxy_set_header X-Forwarded-Host $http_host;
+#    nginx.ingress.kubernetes.io/server-snippet: |
+#      proxy_ssl_name dh.skylab.fi;
+#      proxy_ssl_server_name on;
+#spec:
+#  ingressClassName: internal-nginx
+#  rules:
+#    - host: "dh.skylab.fi"
+#      http:
+#        paths:
+#          - pathType: Prefix
+#            path: "/"
+#            backend:
+#              service:
+#                name: dh
+#                port:
+#                  number: 443
+#  tls:
+#    - hosts:
+#        - "dh.skylab.fi"
+#      secretName: plex-dh-tls
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
