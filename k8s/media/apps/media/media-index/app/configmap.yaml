@@ -4,7 +4,8 @@ metadata:
   name: index-config
 data:
   Caddyfile: |
-    http://localhost
+    http://dh.media.skylab.fi
+    http://dh.skylab.fi
     
     root * /share
     
