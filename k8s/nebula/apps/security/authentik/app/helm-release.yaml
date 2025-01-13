@@ -65,6 +65,10 @@ spec:
         enabled: true
         minAvailable: 1
         maxUnavailable: 1
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "2"
       ingress:
         enabled: true
         ingressClassName: external-nginx
