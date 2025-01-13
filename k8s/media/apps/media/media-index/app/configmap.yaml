@@ -4,9 +4,13 @@ metadata:
   name: index-config
 data:
   Caddyfile: |
-    http://dh.media.skylab.fi
-    http://dh.skylab.fi
+    http://dh.media.skylab.fi {
+      root * /share
     
-    root * /share
+      file_server browse
+    }
     
-    file_server browse
+    http://dh.skylab.fi {
+      root * /share
+      file_server browse
+    }
