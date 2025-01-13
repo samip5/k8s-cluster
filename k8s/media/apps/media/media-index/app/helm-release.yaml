@@ -26,6 +26,13 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 568
+        runAsGroup: 568
+        runAsUser: 568
+        supplementalGroups:
+          - 10000
     controllers:
       main:
         annotations:
