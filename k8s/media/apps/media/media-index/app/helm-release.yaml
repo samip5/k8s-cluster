@@ -31,8 +31,6 @@ spec:
         fsGroup: 568
         runAsGroup: 568
         runAsUser: 568
-        supplementalGroups:
-          - 10000
     controllers:
       main:
         annotations:
@@ -41,11 +39,8 @@ spec:
         containers:
           main:
             image:
-              repository: samip537/fancyindex-darktheme
-              tag: latest
-            env:
-              CONTAINER_TIMEZONE: Europe/Helsinki
-              DISABLE_AUTH: true
+              repository: registry.skysolutions.fi/library/caddy-cf
+              tag: 2.8.4
             resources:
               requests:
                 cpu: 10m
@@ -115,6 +110,12 @@ spec:
             secretName: "dh.tail251312.ts.net-tls"
 
     persistence:
+      config:
+        type: configMap
+        name: index-config
+        globalMounts:
+          - path: /etc/caddy/Caddyfile
+            subPath: Caddyfile
       data:
         enabled: true
         type: hostPath

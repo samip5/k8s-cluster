@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: index-configmap
+data:
+  Caddyfile: |
+    localhost
+    
+    root * /share
+    
+    file_server browse
