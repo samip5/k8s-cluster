@@ -5,6 +5,7 @@ resources:
   - kube-system
   - networking
   - storage
+  - security
   - media
   - gpu
   - volsync
