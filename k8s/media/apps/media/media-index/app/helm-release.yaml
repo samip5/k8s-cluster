@@ -62,7 +62,7 @@ spec:
 #          nginx.ingress.kubernetes.io/auth-response-headers: Remote-User,Remote-Groups
 #          nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Method $request_method;
         hosts:
-          - host: &host "dh.media.skylab.fi"
+          - host: &host "dh.skylab.fi"
             paths:
               - path: /
                 pathType: Prefix
@@ -74,6 +74,22 @@ spec:
           - hosts:
               - *host
             secretName: "dh.skylab.fi-tls"
+
+      main2:
+        className: nginx
+        hosts:
+          - host: &host2 "dh.media.skylab.fi"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: main
+                  port: 80
+
+        tls:
+          - hosts:
+              - *host2
+            secretName: "dh.media.skylab.fi-tls"
 
       tailscale:
         enabled: false
