@@ -8,7 +8,7 @@ spec:
     kind: ClusterSecretStore
     name: onepassword-connect
   target:
-    name: stmp-relay-secret
+    name: smtp-relay-secret
     creationPolicy: Owner
     template:
       engineVersion: v2
