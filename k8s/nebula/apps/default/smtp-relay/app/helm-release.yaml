@@ -35,7 +35,7 @@ spec:
               repository: registry.skysolutions.fi/docker.io/boky/postfix
               tag: 4.3.0-debian
             env:
-              RELAYHOST: [mail.kapsi.fi]:587
+              RELAYHOST: "[mail.kapsi.fi]:587"
               TZ: Europe/Helsinki
               # ALLOWED_SENDER_DOMAINS: skylab.fi,pbx.samipsolutions.fi,samipsolutions.fi,erp.kryptonian.dev
               ALLOW_EMPTY_SENDER_DOMAINS: true
