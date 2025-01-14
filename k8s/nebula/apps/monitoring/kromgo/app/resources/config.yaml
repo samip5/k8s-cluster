@@ -36,8 +36,8 @@ metrics:
     suffix: "W"
     colors:
       - { color: "green", min: 0, max: 320 }
-      - { color: "orange", min: 321, max: 750 }
-      - { color: "red", min: 751, max: 9999 }
+      - { color: "orange", min: 321, max: 350 }
+      - { color: "red", min: 351, max: 9999 }
 
   - name: cluster_age_days
     query: round((time() - max(kube_node_created) ) / 86400)
