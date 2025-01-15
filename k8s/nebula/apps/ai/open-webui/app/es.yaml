@@ -1,0 +1,33 @@
+---
+# yaml-language-server: $schema=https://kochhaus-schemas.pages.dev/external-secrets.io/externalsecret_v1beta1.json
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: &app openwebui
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: onepassword-connect
+  target:
+    name: *app
+    template:
+      data:
+        # Database Init
+        INIT_POSTGRES_HOST:  "postgres16-rw.databases.svc.cluster.local"
+        INIT_POSTGRES_DBNAME: openwebui
+        INIT_POSTGRES_USER: openwebui
+        INIT_POSTGRES_PASS: "{{ .POSTGRES_GENERIC_APP_PASSWORD }}"
+        INIT_POSTGRES_SUPER_USER: "{{ .POSTGRES_SUPER_USER }}"
+        INIT_POSTGRES_SUPER_PASS: "{{ .POSTGRES_SUPER_PASS }}"
+        # App
+        DATABASE_URL: "postgres://openwebui:{{ .POSTGRES_GENERIC_APP_PASSWORD }}@postgres16-rw.databases.svc.cluster.local/openwebui?sslmode=disable"
+        # Redis
+        # https://docs.openwebui.com/getting-started/advanced-topics/env-configuration/#redis
+        ENABLE_WEBSOCKET_SUPPORT: "true"
+        WEBSOCKET_MANAGER: "redis"
+        WEBSOCKET_REDIS_URL: "redis://redis.databases:6379"
+
+
+  dataFrom:
+    - extract:
+        key: cloudnative-pg
