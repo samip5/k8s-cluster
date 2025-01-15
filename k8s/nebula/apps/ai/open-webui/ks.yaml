@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: volsync
+    - name: cluster-apps-volsync
   path: ./kubernetes/nebula/apps/ai/open-webui/app
   prune: true
   sourceRef:
