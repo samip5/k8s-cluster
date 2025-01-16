@@ -42,7 +42,7 @@ spec:
               tag: v0.5.4
             env:
               - name: OLLAMA_BASE_URL
-                value: http://192.168.2.98:11434
+                value: http://192.168.2.37:11434
               - name: ENABLE_RAG_WEB_SEARCH
                 value: true
               - name: RAG_WEB_SEARCH_ENGINE
