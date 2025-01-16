@@ -3,6 +3,6 @@ kind: Kustomization
 resources:
   - ./grafana/ks.yaml
   - ./kromgo/ks.yaml
-#  - ./jellystat/ks.yaml
+  - ./jellystat/ks.yaml
   - ./scrutiny/ks.yaml
   - prom-stack/ks.yaml
