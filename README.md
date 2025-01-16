@@ -49,7 +49,6 @@ _... managed with Flux, Renovate, and GitHub Actions_ 🤖
 | Random Chinese N100 board     | w-amd-2  | 32GB | 480GB Transcend SSD, 275GB Crucial SSD + 320GB HDD | Kube Worker | Talos            |
 | HP EliteDesk 800 G2           | w-amd-3  | 32GB | 256GB SSD                                          | Kube Worker | Talos            |
 | Lenovo ThinkCentre M910q Tiny | m1       | 16GB | 256GB SSD x 2                                      | Kube Master | Talos            |
-| Synology VM                   | m2       | 4GB  | 100GB SSD                                          | Kube Master | Talos            |
 
 ## Storage
 | Node         | Hostname | RAM  | Storage                                                                                  | Function   | Operating System |
