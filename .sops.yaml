@@ -1,11 +1,20 @@
+---
 creation_rules:
   - path_regex: ansible/.*\.sops\.ya?ml
     unencrypted_regex: "^(kind)$"
-    pgp: >-
-     6CD908E8381A8B4FA3F20A891CF4D098419C9124
-     90F388ADD3E186B00A1D77855CBFF29F9005BCE1
+    mac_only_encrypted: true
+    key_groups:
+      - pgp:
+          - 6CD908E8381A8B4FA3F20A891CF4D098419C9124
+          - 90F388ADD3E186B00A1D77855CBFF29F9005BCE1
   - path_regex: .*.yaml
     encrypted_regex: ^(data|stringData)$
-    pgp: >-
-     6CD908E8381A8B4FA3F20A891CF4D098419C9124
-     90F388ADD3E186B00A1D77855CBFF29F9005BCE1
+    mac_only_encrypted: true
+    key_groups:
+      - pgp:
+          - 6CD908E8381A8B4FA3F20A891CF4D098419C9124
+          - 90F388ADD3E186B00A1D77855CBFF29F9005BCE1
+
+stores:
+  yaml:
+    ident: 2
