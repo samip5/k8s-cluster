@@ -40,7 +40,7 @@ spec:
           main:
             image:
               repository: registry.skysolutions.fi/library/caddy-cf
-              tag: 2.8.4
+              tag: 2.9.1
             resources:
               requests:
                 cpu: 10m
