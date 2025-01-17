@@ -33,7 +33,7 @@ spec:
     cni:
       image:
         repository: ghcr.io/skyssolutions/cni-plugins
-        tag: 1.6.1
+        tag: 1.6.2
 
       paths:
         config: /etc/cni/net.d
