@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - ns.yaml
   - github-actions
-  - buildkitd/ks.yaml
+#  - buildkitd/ks.yaml
