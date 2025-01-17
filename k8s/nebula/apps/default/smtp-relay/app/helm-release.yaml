@@ -33,7 +33,7 @@ spec:
           main:
             image:
               repository: registry.skysolutions.fi/docker.io/boky/postfix
-              tag: 4.3.0-debian
+              tag: v4.4.0-debian
             env:
               RELAYHOST: "[mail.kapsi.fi]:587"
               TZ: Europe/Helsinki
