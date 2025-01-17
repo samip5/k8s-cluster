@@ -182,8 +182,8 @@ spec:
         type: Recreate
       resources:
         requests:
-          cpu: 1000m
-          memory: 2500Mi
+          cpu: 500m
+          memory: 2.5Gi
         limits:
           cpu: 1000m
           memory: 2500Mi
