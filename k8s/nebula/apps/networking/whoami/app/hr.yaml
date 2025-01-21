@@ -33,7 +33,7 @@ spec:
           main:
             image:
               repository: registry.skysolutions.fi/docker.io/traefik/whoami
-              tag: v1.10.3
+              tag: v1.10.4
             resources:
               requests:
                 cpu: 10m
