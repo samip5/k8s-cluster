@@ -32,7 +32,7 @@ spec:
       spec:
         containers:
           - name: runner
-            image: ghcr.io/joryirving/actions-runner:2.321.0
+            image: ghcr.io/joryirving/actions-runner:2.322.0
             command: [ "/home/runner/run.sh" ]
         nodeSelector:
           kubernetes.io/arch: arm64
