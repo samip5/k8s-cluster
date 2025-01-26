@@ -18,7 +18,7 @@ spec:
       imageRegistry: "registry.skysolutions.fi/docker"
     image:
       repository: bitnami/mongodb
-      tag: '7.0'
+      tag: '8.0'
       pullPolicy: IfNotPresent
     strategy:
       type: Recreate
