@@ -103,7 +103,7 @@ main() {
     fi
 
     # Update permissions on the release directory
-    chmod -R 750 "${RELEASE_DIR}"
+    #chmod -R 750 "${RELEASE_DIR}"
 
     # Send pushover notification
     send_pushover_notification
