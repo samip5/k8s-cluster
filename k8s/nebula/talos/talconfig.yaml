@@ -5,8 +5,8 @@ talosVersion: v1.9.2
 # renovate: depName=ghcr.io/siderolabs/kubelet datasource=docker
 kubernetesVersion: v1.30.2
 
-imageFactory:
-  registryURL: factory.kryptonian.dev
+#imageFactory:
+#  registryURL: factory.kryptonian.dev
 
 
 cniConfig:
@@ -109,9 +109,9 @@ nodes:
       customization:
         systemExtensions:
           officialExtensions:
-            - samip5/siderolabs/i915
-            - samip5/siderolabs/intel-ucode
-            - samip5/siderolabs/dvb-cx23885
+            - siderolabs/i915
+            - siderolabs/intel-ucode
+            - siderolabs/dvb-cx23885
     networkInterfaces:
       - interface: bond0
         bond:
