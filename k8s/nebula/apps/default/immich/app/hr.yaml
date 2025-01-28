@@ -32,7 +32,7 @@ spec:
           main:
             image: &img
               repository: ghcr.io/immich-app/immich-server
-              tag: v1.125.3
+              tag: v1.125.6
             env:
               <<: &env-common
                 TZ: "Europe/Helsinki"
@@ -120,7 +120,7 @@ spec:
           main:
             image:
               repository: ghcr.io/immich-app/immich-machine-learning
-              tag: v1.125.3
+              tag: v1.125.6
             env:
               <<: *env-common
               MPLCONFIGDIR: /tmp/matplotlib
