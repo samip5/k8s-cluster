@@ -22,7 +22,7 @@ spec:
   values:
     image:
       repository: ghcr.io/element-hq/synapse
-      tag: v1.122.0
+      tag: v1.123.0
     serverName: skylab.fi
     publicServerName: matrix.skylab.fi
     wellknown:
