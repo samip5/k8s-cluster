@@ -87,44 +87,6 @@ spec:
         tls:
           - hosts:
               - *host
-      short:
-        enabled: true
-        className: external-nginx
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "ingress-cf.skylab.fi"
-          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-          external-dns-cf/is-dns-public: "true"
-        hosts:
-          - host: &shorten-domain "d10.fi"
-            paths:
-              - path: *shorten
-                pathType: Prefix
-                service:
-                  identifier: main
-                  port: http
-        tls:
-          - hosts:
-              - *shorten-domain
-
-      short-rewrite:
-        enabled: true
-        className: external-nginx
-        annotations:
-          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-          external-dns.alpha.kubernetes.io/target: "ingress-cf.skylab.fi"
-          nginx.ingress.kubernetes.io/use-regex: "true"
-          nginx.ingress.kubernetes.io/rewrite-target: /go/$1
-        hosts:
-          - host: *shorten-domain
-            paths:
-              - path: /(.*)
-                pathType: Prefix
-                service:
-                  identifier: main
-                  port: http
-        tls:
-          - hosts:
-              - *shorten-domain
 
 
     #initContainers:
