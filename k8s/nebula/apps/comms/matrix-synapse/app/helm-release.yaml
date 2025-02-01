@@ -186,7 +186,7 @@ spec:
           memory: 2.5Gi
         limits:
           cpu: 1000m
-          memory: 2500Mi
+          memory: 4Gi
 
 
 
