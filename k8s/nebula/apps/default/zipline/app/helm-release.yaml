@@ -32,7 +32,7 @@ spec:
             env:
               TZ: "Europe/Helsinki"
               DATASOURCE_TYPE: "s3"
-              CORE_HOSTNAME: "z.skylab.fi"
+              CORE_HOSTNAME: "0.0.0.0"
               CORE_PORT: "3000"
               OAUTH_AUTHENTIK_CLIENT_ID: "XGyLZHRJ992IMgBaN4M9eXnYZvqi011x1k9wiMNi"
               OAUTH_AUTHENTIK_AUTHORIZE_URL: "https://id.skylab.fi/application/o/authorize/"
