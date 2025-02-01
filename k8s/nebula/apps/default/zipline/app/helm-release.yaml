@@ -34,10 +34,7 @@ spec:
               DATASOURCE_TYPE: "s3"
               CORE_HOSTNAME: "0.0.0.0"
               CORE_PORT: "3000"
-              OAUTH_AUTHENTIK_CLIENT_ID: "XGyLZHRJ992IMgBaN4M9eXnYZvqi011x1k9wiMNi"
-              OAUTH_AUTHENTIK_AUTHORIZE_URL: "https://id.skylab.fi/application/o/authorize/"
-              OAUTH_AUTHENTIK_USERINFO_URL: "https://id.skylab.fi/application/o/userinfo/"
-              OAUTH_AUTHENTIK_TOKEN_URL: "https://id.skylab.fi/application/o/token/"
+              DATASOURCE_S3_FORCE_PATH_STYLE: true
             envFrom:
               - secretRef:
                   name: zipline-secret
