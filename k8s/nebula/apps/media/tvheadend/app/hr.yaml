@@ -60,35 +60,35 @@ spec:
           htsp:
             port: 9982
     ingress:
-      main:
-        enabled: true
-        className: "external-nginx"
-        annotations:
-          hajimari.io/icon: mdi:television-box
-          hajimari.io/group: Media
-          nginx.ingress.kubernetes.io/auth-method: GET
-          nginx.ingress.kubernetes.io/auth-url: http://10.0.0.56:40119/api/verify
-          nginx.ingress.kubernetes.io/auth-signin: https://sso.samip.fi?rm=$request_method
-          nginx.ingress.kubernetes.io/auth-response-headers: Remote-User,Remote-Groups
-          nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Method $request_method;
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            send_timeout 100m;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection "Upgrade";
-        hosts:
-          - host: "${HOSTNAME}"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: tvheadend
-                  port: 9981
-        tls:
-          - hosts:
-              - "${HOSTNAME}"
+#      main:
+#        enabled: true
+#        className: "external-nginx"
+#        annotations:
+#          hajimari.io/icon: mdi:television-box
+#          hajimari.io/group: Media
+#          nginx.ingress.kubernetes.io/auth-method: GET
+#          nginx.ingress.kubernetes.io/auth-url: http://10.0.0.56:40119/api/verify
+#          nginx.ingress.kubernetes.io/auth-signin: https://sso.samip.fi?rm=$request_method
+#          nginx.ingress.kubernetes.io/auth-response-headers: Remote-User,Remote-Groups
+#          nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Method $request_method;
+#          nginx.ingress.kubernetes.io/configuration-snippet: |
+#            proxy_set_header Host $host;
+#            proxy_set_header X-Real-IP $remote_addr;
+#            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+#            send_timeout 100m;
+#            proxy_set_header Upgrade $http_upgrade;
+#            proxy_set_header Connection "Upgrade";
+#        hosts:
+#          - host: "${HOSTNAME}"
+#            paths:
+#              - path: /
+#                pathType: Prefix
+#                service:
+#                  identifier: tvheadend
+#                  port: 9981
+#        tls:
+#          - hosts:
+#              - "${HOSTNAME}"
       int:
         enabled: true
         className: "internal-nginx"
