@@ -67,6 +67,8 @@ spec:
     kubeProxy:
       enabled: false
     prometheus:
+      startupProbe:
+        enabled: false
       ingress:
         enabled: true
         ingressClassName: internal-nginx
