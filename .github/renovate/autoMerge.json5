@@ -7,7 +7,8 @@
       automergeType: "branch",
       ignoreTests: true,
       matchPackageNames: [
-        "ghcr.io/wolveix/satisfactory-server"
+        "ghcr.io/wolveix/satisfactory-server",
+        "ghcr.io/diced/zipline"
       ],
     },
     {
