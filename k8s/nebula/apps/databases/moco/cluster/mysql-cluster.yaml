@@ -5,7 +5,7 @@ metadata:
 spec:
   replicas: 3
   mysqlConfigMapName: mysql-mycnf
-  backupPolicyName: daily
+  # backupPolicyName: daily
   podTemplate:
     spec:
       securityContext:
