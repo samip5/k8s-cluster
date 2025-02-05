@@ -9,4 +9,5 @@ resources:
   - snapshot-controller/ks.yaml
   - node-feature-discovery/ks.yaml
   - generic-device-plugin/ks.yaml
+  - kubelet-csr-approver/ks.yaml
 #  - descheduler/ks.yaml

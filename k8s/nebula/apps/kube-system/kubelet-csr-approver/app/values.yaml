@@ -1,0 +1,5 @@
+---
+providerRegex: |
+  ^(m\d+\-\d+|w(\d|amd\d+)|cm4\d+)$
+
+bypassDnsResolution: true
