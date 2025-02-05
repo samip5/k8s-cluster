@@ -26,4 +26,4 @@ spec:
                 storage: 2Gi
 
 
-  schedule:
+  schedule: "30 1 * * *"
