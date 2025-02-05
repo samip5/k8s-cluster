@@ -50,6 +50,7 @@ spec:
                 - external-nginx
       config:
         annotations-risk-level: Critical
+        strict-validate-path-type: false
         proxy-body-size: 0
         proxy-buffer-size: 16k
         hsts: false

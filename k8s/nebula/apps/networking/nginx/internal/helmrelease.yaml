@@ -50,6 +50,7 @@ spec:
 
       config:
         annotations-risk-level: Critical
+        strict-validate-path-type: false
         block-user-agents: "GPTBot,~*GPTBot*,ChatGPT-User,~*ChatGPT-User*,Google-Extended,~*Google-Extended*,CCBot,~*CCBot*,Omgilibot,~*Omgilibot*,FacebookBot,~*FacebookBot*" # taken from https://github.com/superseriousbusiness/gotosocial/blob/main/internal/web/robots.go
         client-header-timeout: 120
         client-body-buffer-size: "100M"
