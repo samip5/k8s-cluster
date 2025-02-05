@@ -1,0 +1,25 @@
+apiVersion: moco.cybozu.com/v1beta2
+kind: MySQLCluster
+metadata:
+  name: mysql
+spec:
+  replicas: 3
+  mysqlConfigMapName: mysql-mycnf
+  podTemplate:
+    spec:
+      securityContext:
+         fsGroup: 10000
+         fsGroupChangePolicy: "OnRootMismatch"
+      containers:
+        - name: mysqld
+          image: ghcr.io/cybozu-go/moco/mysql:8.4.4
+  volumeClaimTemplates:
+    - metadata:
+        name: mysql-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 2Gi
+

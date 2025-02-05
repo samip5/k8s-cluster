@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ns.yaml
   - moco/ks.yaml
+  - moco/ks-cluster.yaml
 #  - mongodb/ks.yaml
   - redis/ks.yaml
   - cloudnative-pg/ks.yaml

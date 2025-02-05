@@ -1,0 +1,16 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: moco-cluster
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: moco
+  targetNamespace: databases
+  path: ./k8s/nebula/apps/databases/moco/cluster
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 30m
+  timeout: 5m

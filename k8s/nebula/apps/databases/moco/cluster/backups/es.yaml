@@ -1,0 +1,22 @@
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: mariadb-backups
+  namespace: databases
+spec:
+  refreshInterval: 5m
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: onepassword-connect
+  target:
+    name: mariadb-backup-secrets
+    deletionPolicy: Delete
+    template:
+      engineVersion: v2
+      data:
+        AWS_ACCESS_KEY_ID: "{{ .ACCESS_KEY_ID }}"
+        AWS_SECRET_ACCESS_KEY: "{{ .SECRET_ACCESS_KEY }}"
+  dataFrom:
+    - extract:
+        key: mariadb-backups

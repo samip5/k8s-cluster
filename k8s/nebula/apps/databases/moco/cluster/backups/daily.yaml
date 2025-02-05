@@ -1,0 +1,29 @@
+apiVersion: moco.cybozu.com/v1beta2
+kind: BackupPolicy
+metadata:
+  name: daily
+spec:
+  jobConfig:
+    bucketConfig:
+      bucketName: backups-mariadb
+      endpointURL: https://s3.skym.fi
+      usePathStyle: true
+    envFrom:
+      - secretRef:
+          name: mariadb-backup-secrets
+    serviceAccountName: backup-owner
+    workVolume:
+      ephemeral:
+        volumeClaimTemplate:
+          metadata:
+            labels:
+              type: mysql-backup-vol
+          spec:
+            accessModes: [ "ReadWriteOnce" ]
+            storageClassName: "local-hostpath"
+            resources:
+              requests:
+                storage: 2Gi
+
+
+  schedule:
