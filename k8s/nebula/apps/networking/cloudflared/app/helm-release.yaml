@@ -53,7 +53,7 @@ spec:
               TUNNEL_TRANSPORT_PROTOCOL: auto
             image:
               repository: registry.skysolutions.fi/docker.io/cloudflare/cloudflared
-              tag: 2025.1.1
+              tag: 2025.2.0
             probes:
               liveness:
                 enabled: true
