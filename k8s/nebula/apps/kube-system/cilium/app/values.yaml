@@ -35,6 +35,9 @@ bpf:
   masquerade: true
   tproxy: true
 
+bandwidthManager:
+  enabled: true
+
 socketLB:
   hostNamespaceOnly: true
 
