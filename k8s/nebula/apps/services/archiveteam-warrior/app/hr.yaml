@@ -52,6 +52,10 @@ spec:
     controllers:
       archiveteam-warrior:
         pod:
+          dnsConfig:
+            options:
+              - name: ndots
+                value: "1"
           nodeSelector:
             kubernetes.io/arch: amd64
           annotations:
