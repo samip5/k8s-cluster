@@ -1,0 +1,106 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app archiveteam-warrior
+spec:
+  interval: 30m
+  maxHistory: 3
+  chart:
+    spec:
+      chart: app-template
+      version: 3.6.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    defaultPodOptions:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65534
+        runAsGroup: 65534
+        fsGroup: 65534
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile:
+          type: RuntimeDefault
+      # affinity:
+      #   podAntiAffinity:
+      #     preferredDuringSchedulingIgnoredDuringExecution:
+      #       - weight: 80
+      #         podAffinityTerm:
+      #           labelSelector:
+      #             matchExpressions:
+      #               - key: app.kubernetes.io/name
+      #                 operator: In
+      #                 values:
+      #                   - *app
+      #           topologyKey: "kubernetes.io/hostname"
+
+    controllers:
+      archiveteam-warrior:
+        pod:
+          nodeSelector:
+            kubernetes.io/arch: amd64
+          annotations:
+            kubernetes.io/egress-bandwidth: "50M"
+            kubernetes.io/ingress-bandwidth: "50M"
+
+        containers:
+          app:
+            image:
+              repository: atdr.meo.ws/archiveteam/warrior-dockerfile
+              tag: latest@sha256:afe7e9a9a1cd11d044ec960f48a3f3d8e871d0bd058c204163757e6bc7b74ee
+            resources:
+              requests:
+                cpu: 20m
+                memory: 300Mi
+              limits:
+                memory: 500Mi
+            env:
+              DOWNLOADER: kryptonian
+              SELECTED_PROJECT: auto
+
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: 8001
+
+    ingress:
+      app:
+        className: internal-nginx
+        hosts:
+          - host: warrior.skylab.fi
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+        annotations:
+          gethomepage.dev/name: *app
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: web
+          gethomepage.dev/icon: mdi-archive-arrow-up
+
+    persistence:
+      config:
+        type: persistentVolumeClaim
+        storageClass: ceph-block
+        size: 20Gi
+        accessMode: ReadWriteOnce
+        globalMounts:
+          - path: /projects
