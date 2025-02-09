@@ -4,10 +4,12 @@
 set -euo pipefail
 
 # User-defined variables
+CROSS_SEED_ENABLED="${CROSS_SEED_ENABLED:-false}"
 CROSS_SEED_HOST="${CROSS_SEED_HOST:-required}"
 CROSS_SEED_PORT="${CROSS_SEED_PORT:-required}"
 CROSS_SEED_API_KEY="${CROSS_SEED_API_KEY:-required}"
 CROSS_SEED_SLEEP_INTERVAL="${CROSS_SEED_SLEEP_INTERVAL:-30}"
+PUSHOVER_ENABLED="${PUSHOVER_ENABLED:-false}"
 PUSHOVER_USER_KEY="${PUSHOVER_USER_KEY:-required}"
 PUSHOVER_TOKEN="${PUSHOVER_TOKEN:-required}"
 
@@ -18,7 +20,7 @@ set_sab_vars() {
     RELEASE_CAT="${SAB_CAT:-}"
     RELEASE_SIZE="${SAB_BYTES:-}"
     RELEASE_STATUS="${SAB_PP_STATUS:-}"
-    RELEASE_INDEXER="${SAB_URL:-}"
+    RELEASE_INDEXER="${SAB_URL:-Unknown}"
     RELEASE_TYPE="NZB"
 }
 
@@ -88,12 +90,19 @@ search_cross_seed() {
 }
 
 main() {
-    # Determine the source and set release variables accordingly
-    if env | grep -q "^SAB_"; then
-        set_sab_vars
-    else
-        set_qb_vars "$@"
-    fi
+    # Determine the source app and set release variables accordingly
+    case $HOSTNAME in
+        qbittorrent*)
+            set_qb_vars "$@"
+            ;;
+        sabnzbd*)
+            set_sab_vars
+            ;;
+        *)
+            printf "unknown hostname %s\n" "${HOSTNAME}" >&2
+            exit 1
+            ;;
+    esac
 
     # Check if post-processing was successful
     if [[ "${RELEASE_STATUS}" -ne 0 ]]; then
@@ -103,13 +112,17 @@ main() {
     fi
 
     # Update permissions on the release directory
-    #chmod -R 750 "${RELEASE_DIR}"
+    # chmod -R 750 "${RELEASE_DIR}"
 
     # Send pushover notification
-    send_pushover_notification
+    if [[ "${PUSHOVER_ENABLED}" == "true" ]]; then
+        send_pushover_notification
+    fi
 
     # Search for cross-seed
-    search_cross_seed
+    if [[ "${CROSS_SEED_ENABLED}" == "true" && "${RELEASE_CAT}" != "cross-seed" ]]; then
+        search_cross_seed
+    fi
 }
 
 main "$@"
