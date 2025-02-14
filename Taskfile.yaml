@@ -6,7 +6,7 @@ vars:
   # Directories
   ANSIBLE_DIR: "{{.ROOT_DIR}}/provision/ansible"
   BOOTSTRAP_DIR: "{{.ROOT_DIR}}/bootstrap"
-  KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
+  KUBERNETES_DIR: "{{.ROOT_DIR}}/k8s"
   PRIVATE_DIR: "{{.ROOT_DIR}}/.private"
   SCRIPTS_DIR: "{{.ROOT_DIR}}/scripts"
   # Files
