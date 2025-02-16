@@ -5,6 +5,14 @@ machine:
       rotate-server-certificates: "true"
     extraConfig:
       maxPods: 150
+    extraMounts:
+      - destination: /var/lib/longhorn
+        type: bind
+        source: /var/lib/longhorn
+        options:
+          - bind
+          - rshared
+          - rw
     nodeIP:
       validSubnets:
         - 10.0.105.0/24

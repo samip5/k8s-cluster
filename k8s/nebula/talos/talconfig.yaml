@@ -1,7 +1,7 @@
 ---
 clusterName: nebula
 # renovate: depName=ghcr.io/siderolabs/installer datasource=docker
-talosVersion: v1.9.3
+talosVersion: v1.9.4
 # renovate: depName=ghcr.io/siderolabs/kubelet datasource=docker
 kubernetesVersion: v1.32.0
 
@@ -94,7 +94,7 @@ nodes:
         dhcpOptions:
           routeMetric: 4000
   - hostname: w-amd-2
-    ipAddress: 10.0.105.28
+    ipAddress: 10.0.105.35
     controlPlane: false
     installDiskSelector:
       size: "<= 300GB"
@@ -195,7 +195,7 @@ nodes:
         dhcpOptions:
           routeMetric: 4000
   - hostname: w-amd-5
-    ipAddress: 10.0.105.19
+    ipAddress: 10.0.105.31
     controlPlane: false
     installDiskSelector:
       wwid: eui.5cd2e41571a22939
@@ -251,28 +251,28 @@ nodes:
             dhcp: true
             dhcpOptions:
               routeMetric: 4096
-  - hostname: cm4-1
-    ipAddress: 10.0.105.32
-    installDiskSelector:
-      size: '>=30GB'
-    controlPlane: false
-    schematic:
-      overlay:
-        image: siderolabs/sbc-raspberrypi
-        name: rpi_generic
-    networkInterfaces:
-      - interface: bond0
-        bond:
-          mode: active-backup
-          interfaces:
-            - enxe45f012e06ac
-        dhcp: true
-        routes:
-          - network: "::/0"
-            gateway: "fd9d:7a72:44eb:d::1"
-            metric: 1
-        dhcpOptions:
-          routeMetric: 4000
+#  - hostname: cm4-1
+#    ipAddress: 10.0.105.32
+#    installDiskSelector:
+#      size: '>=30GB'
+#    controlPlane: false
+#    schematic:
+#      overlay:
+#        image: siderolabs/sbc-raspberrypi
+#        name: rpi_generic
+#    networkInterfaces:
+#      - interface: bond0
+#        bond:
+#          mode: active-backup
+#          interfaces:
+#            - enxe45f012e06ac
+#        dhcp: true
+#        routes:
+#          - network: "::/0"
+#            gateway: "fd9d:7a72:44eb:d::1"
+#            metric: 1
+#        dhcpOptions:
+#          routeMetric: 4000
 
 
 patches:
