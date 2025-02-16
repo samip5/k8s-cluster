@@ -50,14 +50,6 @@ spec:
         org_id: 1
         role_attribute_path: |
           contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'
-      date_formats:
-        use_browser_locale: true
-      explore:
-        enabled: true
-      log:
-        mode: console
-      news:
-        news_feed_enabled: false
       paths:
         data: /var/lib/grafana/data
         logs: /var/log/grafana
