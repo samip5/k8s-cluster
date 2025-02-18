@@ -71,7 +71,7 @@ spec:
               STEAM: https://steamcommunity.com/id/samip537
               EMAIL: sm+me@skym.fi
               EMAIL_TEXT: Email me!
-              FOOTER: Skyler Mäntysaari © 2022-2024
+              FOOTER: Skyler Mäntysaari © 2022-2025
             resources:
               requests:
                 cpu: 50m
