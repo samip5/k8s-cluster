@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
   - ./ns.yaml
   - ./searxng/ks.yaml
-  - ./archiveteam-warrior/ks.yaml
