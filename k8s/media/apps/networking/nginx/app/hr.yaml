@@ -40,7 +40,7 @@ spec:
         hsts: false
         ssl-prefer-server-ciphers: false
         ssl-protocols: "TLSv1.3 TLSv1.2"
-        ssl-redirect: false
+        ssl-redirect: true
         server-tokens: false
         enable-real-ip: true
         enable-brotli: "true"
