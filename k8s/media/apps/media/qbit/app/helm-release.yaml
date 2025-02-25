@@ -48,7 +48,7 @@ spec:
               TZ: Europe/Helsinki
             image:
               repository: ghcr.io/onedr0p/qbittorrent
-              tag: 4.6.4@sha256:53ead5ab43027d04efc5d52740aa02308a88d6b4a6eaa90cf6fd2e94fc11ba17
+              tag: 4.6.4
             probes:
               liveness:
                 enabled: false
