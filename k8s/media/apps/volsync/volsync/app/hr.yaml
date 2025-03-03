@@ -34,7 +34,7 @@ spec:
 #      kubernetes.io/arch: amd64
     image:
       repository: &image ghcr.io/joryirving/volsync
-      tag: &tag 0.11.0@sha256:29aedaccac68d520990809495a32cf557d5af72482b4d917a6bc26678003ccd4
+      tag: &tag 0.12.0@sha256:d1fbc620984fd6e32221d1d5b4d50357ceb6962ef217e3a79d3a52d15864216e
     restic:
       repository: *image
       tag: *tag
