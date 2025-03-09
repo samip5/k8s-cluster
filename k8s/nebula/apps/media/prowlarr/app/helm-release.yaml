@@ -44,7 +44,7 @@ spec:
           prowlarr:
             image:
               repository: ghcr.io/onedr0p/prowlarr-develop
-              tag: 1.32.0.4978
+              tag: 1.32.1.4983
             env:
               PROWLARR__APP__INSTANCENAME: Prowlarr
               PROWLARR__SERVER__PORT: &port 80
