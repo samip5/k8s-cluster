@@ -39,7 +39,7 @@ spec:
       dnsConfig:
         options:
           - name: ndots
-            value: "1"
+            value: "3"
     controllers:
       prowlarr:
         annotations:
