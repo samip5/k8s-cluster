@@ -34,6 +34,7 @@ loadBalancer:
 bpf:
   masquerade: true
   tproxy: true
+  vlanBypass: [0]
 
 bandwidthManager:
   enabled: true
