@@ -1,7 +1,7 @@
 ---
 clusterName: nebula
 # renovate: depName=ghcr.io/siderolabs/installer datasource=docker
-talosVersion: v1.9.4
+talosVersion: v1.9.5
 # renovate: depName=ghcr.io/siderolabs/kubelet datasource=docker
 kubernetesVersion: v1.32.0
 
@@ -57,11 +57,6 @@ nodes:
         vlans:
           - vlanId: 50
             mtu: 1500
-            addresses: [ "10.0.50.13/24" ]
-            routes:
-              - network: "10.0.50.0/24"
-                gateway: "10.0.50.1"
-                metric: 4097
         dhcpOptions:
           routeMetric: 4000
         vip:
@@ -86,11 +81,6 @@ nodes:
         vlans:
           - vlanId: 50
             mtu: 1500
-            addresses: [ "10.0.50.12/24" ]
-            routes:
-              - network: "10.0.50.0/24"
-                gateway: "10.0.50.1"
-                metric: 4097
         dhcpOptions:
           routeMetric: 4000
   - hostname: w-amd-2
@@ -128,18 +118,8 @@ nodes:
         vlans:
           - vlanId: 50
             mtu: 1500
-            addresses: [ "10.0.50.10/24"]
-            routes:
-              - network: "10.0.50.0/24"
-                gateway: "10.0.50.1"
-                metric: 4097
           - vlanId: 99
             mtu: 1500
-            addresses: [ "192.168.99.10/24" ]
-            routes:
-              - network: "192.168.99.0/24"
-                gateway: "192.168.99.1"
-                metric: 4096
   - hostname: w-amd-3
     ipAddress: 10.0.105.19
     controlPlane: false
@@ -160,11 +140,6 @@ nodes:
         vlans:
           - vlanId: 50
             mtu: 1500
-            addresses: [ "10.0.50.11/24" ]
-            routes:
-              - network: "10.0.50.0/24"
-                gateway: "10.0.50.1"
-                metric: 4097
         dhcpOptions:
           routeMetric: 4000
   - hostname: w-amd-4
@@ -187,11 +162,6 @@ nodes:
         vlans:
           - vlanId: 50
             mtu: 1500
-            addresses: [ "10.0.50.11/24" ]
-            routes:
-              - network: "10.0.50.0/24"
-                gateway: "10.0.50.1"
-                metric: 4097
         dhcpOptions:
           routeMetric: 4000
   - hostname: w-amd-5
@@ -215,11 +185,6 @@ nodes:
         vlans:
           - vlanId: 50
             mtu: 1500
-            addresses: [ "10.0.50.12/24" ]
-            routes:
-              - network: "10.0.50.0/24"
-                gateway: "10.0.50.1"
-                metric: 4097
         dhcpOptions:
           routeMetric: 4000
   - hostname: w7
