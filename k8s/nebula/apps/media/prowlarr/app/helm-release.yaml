@@ -36,6 +36,10 @@ spec:
         fsGroup: 568 # ${APP_GID}
         fsGroupChangePolicy: "OnRootMismatch"
         seccompProfile: { type: RuntimeDefault }
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
     controllers:
       prowlarr:
         annotations:
