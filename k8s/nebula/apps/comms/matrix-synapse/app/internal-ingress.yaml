@@ -163,14 +163,7 @@ spec:
                 name: matrix-synapse-media-repository
                 port:
                   number: 8083
-            path: /_matrix/client/(v1|v2|v3)/media/.*
-            pathType: ImplementationSpecific
-          - backend:
-              service:
-                name: matrix-synapse-media-repository
-                port:
-                  number: 8083
-            path: /_matrix/federation/v1/media/.*
+            path: /_matrix/federation/v1/media/.*$
             pathType: ImplementationSpecific
           - backend:
               service:
@@ -418,20 +411,6 @@ spec:
                 name: matrix-synapse-media-repository
                 port:
                   number: 8083
-            path: /_matrix/client/v1/media/.*
-            pathType: ImplementationSpecific
-          - backend:
-              service:
-                name: matrix-synapse-media-repository
-                port:
-                  number: 8083
-            path: /_matrix/federation/v1/media/.*
-            pathType: ImplementationSpecific
-          - backend:
-              service:
-                name: matrix-synapse-media-repository
-                port:
-                  number: 8083
             path: /_synapse/admin/v1/purge_media_cache$
             pathType: ImplementationSpecific
           - backend:
@@ -471,6 +450,13 @@ spec:
             pathType: ImplementationSpecific
           - backend:
               service:
+                name: matrix-synapse-media-repository
+                port:
+                  number: 8083
+            path: /_matrix/client/v1/media/.*$
+            pathType: ImplementationSpecific
+          - backend:
+              service:
                 name: matrix-synapse-synchrotron
                 port:
                   number: 8083
@@ -503,13 +489,6 @@ spec:
                 port:
                   number: 8008
             path: /_matrix
-            pathType: Prefix
-          - backend:
-              service:
-                name: matrix-synapse
-                port:
-                  number: 8008
-            path: /_synapse
             pathType: Prefix
   tls:
     - hosts:
