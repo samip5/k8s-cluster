@@ -4,4 +4,3 @@ resources:
   - ./ns.yaml
   - ./factorio/ks.yaml
 #  - ./satisfactory/ks.yaml
-#   - ./minecraft/ks.yaml # Doesn't work, DNS issues for the moment.
