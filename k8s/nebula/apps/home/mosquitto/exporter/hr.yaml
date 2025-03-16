@@ -33,7 +33,7 @@ spec:
           main:
             image:
               repository: registry.skysolutions.fi/docker.io/kpetrem/mqtt-exporter # Pull-though cache
-              tag: latest
+              tag: latest@sha256:7e2a27e3dce10427ae46490ede2f74fb7799e9e909baae6f8642fb4d5794f1e0
             env:
               TZ: "Europe/Helsinki"
               # LOG_LEVEL: DEBUG
