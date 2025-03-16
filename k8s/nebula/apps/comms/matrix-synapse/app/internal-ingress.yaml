@@ -163,7 +163,7 @@ spec:
                 name: matrix-synapse-media-repository
                 port:
                   number: 8083
-            path: /_matrix/client/v1/media/.*
+            path: /_matrix/client/(v1|v2|v3)/media/.*
             pathType: ImplementationSpecific
           - backend:
               service:
