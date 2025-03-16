@@ -66,7 +66,7 @@ spec:
         containers:
           ha:
             image:
-              repository: registry.skysolutions.fi/ghcr.io/onedr0p/home-assistant
+              repository: ghcr.io/onedr0p/home-assistant
               tag: 2025.3.1
             env:
               TZ: "Europe/Helsinki"
