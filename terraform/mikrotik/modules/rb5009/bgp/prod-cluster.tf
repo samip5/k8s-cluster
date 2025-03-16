@@ -165,6 +165,23 @@ resource "routeros_routing_bgp_connection" "nebula-w-amd-4-v6" {
   }
 }
 
+resource "routeros_routing_bgp_connection" "nebula-w-amd-5-v6" {
+  templates = [routeros_routing_bgp_template.default.name]
+  name = "nebula-w-amd-5-v6"
+  as = routeros_routing_bgp_template.default.as
+  address_families = "ip, ipv6"
+  keepalive_time = "30s"
+  hold_time = "90s"
+  local {
+    role = "ibgp"
+    address = "fd9d:7a72:44eb:c::1"
+  }
+  remote {
+    address = "fd9d:7a72:44eb:c:227c:14ff:fef2:37da"
+    as = routeros_routing_bgp_template.default.as
+  }
+}
+
 
 # resource "routeros_routing_bgp_connection" "nebula-cm4-1-v4" {
 #   templates = [routeros_routing_bgp_template.default.name]
