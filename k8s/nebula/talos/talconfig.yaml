@@ -57,6 +57,7 @@ nodes:
         vlans:
           - vlanId: 50
             mtu: 1500
+            dhcp: false
         dhcpOptions:
           routeMetric: 4000
         vip:
@@ -81,6 +82,7 @@ nodes:
         vlans:
           - vlanId: 50
             mtu: 1500
+            dhcp: false
         dhcpOptions:
           routeMetric: 4000
   - hostname: w-amd-2
@@ -118,8 +120,10 @@ nodes:
         vlans:
           - vlanId: 50
             mtu: 1500
+            dhcp: false
           - vlanId: 99
             mtu: 1500
+            dhcp: false
   - hostname: w-amd-3
     ipAddress: 10.0.105.19
     controlPlane: false
@@ -140,6 +144,7 @@ nodes:
         vlans:
           - vlanId: 50
             mtu: 1500
+            dhcp: false
         dhcpOptions:
           routeMetric: 4000
   - hostname: w-amd-4
@@ -162,6 +167,7 @@ nodes:
         vlans:
           - vlanId: 50
             mtu: 1500
+            dhcp: false
         dhcpOptions:
           routeMetric: 4000
   - hostname: w-amd-5
@@ -185,6 +191,7 @@ nodes:
         vlans:
           - vlanId: 50
             mtu: 1500
+            dhcp: false
         dhcpOptions:
           routeMetric: 4000
   - hostname: w7
@@ -213,7 +220,7 @@ nodes:
         vlans:
           - vlanId: 50
             mtu: 1500
-            dhcp: true
+            dhcp: false
             dhcpOptions:
               routeMetric: 4096
 #  - hostname: cm4-1
