@@ -42,23 +42,21 @@ spec:
             memory: 512Mi
       media_repository:
         enabled: true
-        listeners: [media]
+        listeners: [media, metrics, client, federation]
         strategy:
           type: Recreate
         csPaths:
           - "/_matrix/media/.*"
-          - "/_matrix/client/v1/media/.*"
-          - "/_matrix/federation/v1/media/.*"
           - "/_synapse/admin/v1/purge_media_cache$"
           - "/_synapse/admin/v1/room/.*/media"
           - "/_synapse/admin/v1/user/.*/media"
           - "/_synapse/admin/v1/media/"
           - "/_synapse/admin/v1/quarantine_media/"
           - "/_synapse/admin/v1/users/.*/media$"
+          - "/_matrix/client/v1/media/.*$"
         paths:
           - "/_matrix/media/.*"
-          - "/_matrix/client/v1/media/.*"
-          - "/_matrix/federation/v1/media/.*"
+          - "/_matrix/federation/v1/media/.*$"
 
 
       federation_sender:
