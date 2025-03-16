@@ -178,7 +178,7 @@ spec:
     ingress:
       enabled: true
       className: external-nginx
-      includeUnderscoreSynapse: false
+      includeUnderscoreSynapse: true
       annotations:
         cert-manager.io/cluster-issuer: zerossl-production
         nginx.ingress.kubernetes.io/use-regex: "true"
