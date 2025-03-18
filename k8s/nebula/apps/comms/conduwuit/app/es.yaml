@@ -1,0 +1,19 @@
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: conduwuit
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: onepassword-connect
+  target:
+    name: conduwuit
+    creationPolicy: Owner
+    template:
+      engineVersion: v2
+      data:
+        token: "{{ .CONDUWUIT_TOKEN }}"
+  dataFrom:
+    - extract:
+        key: conduwuit
