@@ -6,7 +6,7 @@ metadata:
   labels:
     component.skylab.fi/part-of: definitions
 spec:
-  targetNamespace: default
+  targetNamespace: comms
   commonMetadata:
     labels:
       app.kubernetes.io/name: *appname

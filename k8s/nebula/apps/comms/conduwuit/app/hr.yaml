@@ -2,8 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: littlelink
-  namespace: collab
+  name: condwuit
 spec:
   interval: 30m
   releaseName: condwuit
