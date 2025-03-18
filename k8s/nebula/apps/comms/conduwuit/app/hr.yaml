@@ -64,11 +64,6 @@ spec:
                 value: "true"
               - name: CONDUWUIT_ALLOW_REGISTRATION
                 value: "true"
-              - name: CONDUWUIT_REGISTRATION_TOKEN
-                valueFrom:
-                  secretKeyRef:
-                      name: conduwuit
-                      key: token
               - name: CONDUWUIT_TRUSTED_SERVERS
                 value: '["kapsi.fi","pikaviestin.fi"]'
               - name: CONDUWUIT_WELL_KNOWN__CLIENT
@@ -79,6 +74,9 @@ spec:
                 value: "104857600"
               - name: CONDUWUIT_IP_LOOKUP_STRATEGY
                 value: "4"
+            envFrom:
+              - secretRef:
+                  name: conduwuit
             resources:
               requests:
                 cpu: 1000m

@@ -13,7 +13,7 @@ spec:
     template:
       engineVersion: v2
       data:
-        token: "{{ .CONDUWUIT_TOKEN }}"
+        CONDUWUIT_REGISTRATION_TOKEN: "{{ .CONDUWUIT_TOKEN }}"
   dataFrom:
     - extract:
         key: conduwuit
