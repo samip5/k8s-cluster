@@ -81,11 +81,9 @@ spec:
                   name: conduwuit
             resources:
               requests:
-                cpu: 1000m
-                memory: 128Mi
-              limits:
-                cpu: 2000m
                 memory: 512Mi
+              limits:
+                memory: 1Gi
             probes:
               liveness: &probes
                 enabled: false
