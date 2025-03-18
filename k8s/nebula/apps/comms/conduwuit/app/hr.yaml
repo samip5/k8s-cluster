@@ -109,7 +109,7 @@ spec:
         hosts:
           - host: "skylab.fi"
             paths:
-              - path: .well-known/matrix
+              - path: /.well-known/matrix
                 pathType: Prefix
                 service:
                   identifier: main
