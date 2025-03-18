@@ -81,7 +81,7 @@ spec:
                 memory: 100M
             probes:
               liveness: &probes
-                enabled: true
+                enabled: false
                 custom: true
                 spec:
                   httpGet:
@@ -99,6 +99,7 @@ spec:
         ports:
           http:
             port: 80
+            protocol: TCP
             targetPort: 8080
     ingress:
       main:
