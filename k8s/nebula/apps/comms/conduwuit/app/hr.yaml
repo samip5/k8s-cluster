@@ -35,7 +35,7 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     controllers:
       conduwuit:
-        type: Statefulset
+        type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -109,20 +109,17 @@ spec:
             paths:
               - path: /.well-known/matrix
                 pathType: Prefix
-                backend:
-                  service:
-                    name: conduwuit
-                    port:
-                      name: http
+                service:
+                  identifier: main
+                  port: http
+
           - host: "matrix.skylab.fi"
             paths:
               - path: /_matrix
                 pathType: Prefix
-                backend:
-                  service:
-                    name: conduwuit
-                    port:
-                      name: http
+                service:
+                  identifier: main
+                  port: http
         tls:
           - hosts:
               - skylab.fi
@@ -138,27 +135,22 @@ spec:
             paths:
               - path: /.well-known/matrix
                 pathType: Prefix
-                backend:
-                  service:
-                    name: conduwuit
-                    port:
-                      name: http
+                service:
+                  identifier: main
+                  port: http
+
           - host: "matrix.skylab.fi"
             paths:
               - path: /_matrix
                 pathType: Prefix
-                backend:
-                  service:
-                    name: conduwuit
-                    port:
-                      name: http
+                service:
+                  identifier: main
+                  port: http
               - path: /_conduwuit/
                 pathType: Prefix
-                backend:
-                  service:
-                    name: conduwuit
-                    port:
-                      name: http
+                service:
+                  identifier: main
+                  port: http
         tls:
           - hosts:
               - skylab.fi
