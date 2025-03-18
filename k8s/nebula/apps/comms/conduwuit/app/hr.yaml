@@ -61,7 +61,7 @@ spec:
               - name: CONDUWUIT_ALLOW_FEDERATION
                 value: "true"
               - name: CONDUWUIT_TRUSTED_SERVERS
-                value: '{"servers":["kapsi.fi", "pikaviestin.fi"]}'
+                value: '["kapsi.fi","pikaviestin.fi"]'
               - name: CONDUWUIT_GLOBAL_WELL_KNOWN_CLIENT
                 value: "https://matrix.skylab.fi"
               - name: CONDUWUIT_GLOBAL_WELL_KNOWN_SERVER
