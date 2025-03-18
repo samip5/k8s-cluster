@@ -2,10 +2,10 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: condwuit
+  name: conduwuit
 spec:
   interval: 30m
-  releaseName: condwuit
+  releaseName: conduwuit
   chart:
     spec:
       chart: app-template
@@ -93,7 +93,7 @@ spec:
 
     service:
       main:
-        controller: condwuit
+        controller: conduwuit
         ports:
           http:
             port: 8080
