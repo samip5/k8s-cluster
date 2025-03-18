@@ -59,7 +59,7 @@ spec:
               - name: CONDUWUIT_PORT
                 value: "8080"
               - name: RUST_LOG
-                value: "info"
+                value: "debug"
               - name: CONDUWUIT_ALLOW_FEDERATION
                 value: "true"
               - name: CONDUWUIT_ALLOW_REGISTRATION
