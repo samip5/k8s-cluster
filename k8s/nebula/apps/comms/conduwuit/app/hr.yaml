@@ -1,0 +1,177 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: littlelink
+  namespace: collab
+spec:
+  interval: 30m
+  releaseName: condwuit
+  chart:
+    spec:
+      chart: app-template
+      version: 3.7.3
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      interval: 5m
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    defaultPodOptions:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsUser: ${APP_UID}
+        runAsGroup: ${APP_GID}
+        fsGroup: ${APP_GID}
+        fsGroupChangePolicy: OnRootMismatch
+    controllers:
+      conduwuit:
+        type: Statefulset
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+                repository: ghcr.io/girlbossceo/conduwuit
+                tag: v0.5.0-rc3-b6e9dc3d98704c56027219d3775336910a0136c6
+            env:
+              - name: TOKIO_WORKER_THREADS
+                value: "1"
+              - name: CONDUWUIT_ROCKSDB_PARALLELISM_THREADS
+                value: "1"
+              - name: CONDUWUIT_DATABASE_PATH
+                value: "/data/db"
+              - name: CONDUWUIT_DATABASE_BACKEND
+                value: "rocksdb"
+              - name: CONDUWUIT_ADDRESS
+                value: "0.0.0.0"
+              - name: CONDUWUIT_PORT
+                value: "8080"
+              - name: RUST_LOG
+                value: "info"
+              - name: CONDUWUIT_ALLOW_FEDERATION
+                value: "true"
+              - name: CONDUWUIT_TRUSTED_SERVERS
+                value: '{"servers":["kapsi.fi", "pikaviestin.fi"]}'
+              - name: CONDUWUIT_GLOBAL_WELL_KNOWN_CLIENT
+                value: "https://matrix.skylab.fi"
+              - name: CONDUWUIT_GLOBAL_WELL_KNOWN_SERVER
+                value: "matrix.skylab.fi:443"
+              - name: CONDUWUIT_MAX_REQUEST_SIZE
+                value: "1048576"
+              - name: CONDUWUIT_IP_LOOKUP_STRATEGY
+                value: "4"
+            resources:
+              requests:
+                cpu: 1000m
+                memory: 64M
+              limits:
+                cpu: 2000m
+                memory: 100M
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /_matrix/federation/v1/version
+                    port: http
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+
+    service:
+      main:
+        controller: condwuit
+        ports:
+          http:
+            port: 8080
+    ingress:
+      main:
+        className: "external-nginx"
+        annotations:
+          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+          external-dns.alpha.kubernetes.io/target: "ingress-cf.skylab.fi"
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+        hosts:
+          - host: "skylab.fi"
+            paths:
+              - path: /.well-known/matrix
+                pathType: Prefix
+                backend:
+                  service:
+                    name: conduwuit
+                    port:
+                      name: http
+          - host: "matrix.skylab.fi"
+            paths:
+              - path: /_matrix
+                pathType: Prefix
+                backend:
+                  service:
+                    name: conduwuit
+                    port:
+                      name: http
+        tls:
+          - hosts:
+              - skylab.fi
+              - matrix.skylab.fi
+            secretName: matrix-tls
+
+      int:
+        className: "internal-nginx"
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+        hosts:
+          - host: "skylab.fi"
+            paths:
+              - path: /.well-known/matrix
+                pathType: Prefix
+                backend:
+                  service:
+                    name: conduwuit
+                    port:
+                      name: http
+          - host: "matrix.skylab.fi"
+            paths:
+              - path: /_matrix
+                pathType: Prefix
+                backend:
+                  service:
+                    name: conduwuit
+                    port:
+                      name: http
+              - path: /_conduwuit/
+                pathType: Prefix
+                backend:
+                  service:
+                    name: conduwuit
+                    port:
+                      name: http
+        tls:
+          - hosts:
+              - skylab.fi
+              - matrix.skylab.fi
+            secretName: matrix-tls
+
+
+
+    persistence:
+      data:
+        existingClaim: "${VOLSYNC_CLAIM}"
+        advancedMounts:
+          conduwuit:
+            app:
+              - path: /data
