@@ -109,11 +109,11 @@ spec:
         hosts:
           - host: "skylab.fi"
             paths:
-              - path: /.well-known/matrix
+              - path: .well-known/matrix
                 pathType: Prefix
                 service:
                   identifier: main
-                  port: http
+                  port: 8080
 
           - host: "matrix.skylab.fi"
             paths:
@@ -121,7 +121,7 @@ spec:
                 pathType: Prefix
                 service:
                   identifier: main
-                  port: http
+                  port: 8080
         tls:
           - hosts:
               - skylab.fi
@@ -139,7 +139,7 @@ spec:
                 pathType: Prefix
                 service:
                   identifier: main
-                  port: http
+                  port: 8080
 
           - host: "matrix.skylab.fi"
             paths:
@@ -147,12 +147,12 @@ spec:
                 pathType: Prefix
                 service:
                   identifier: main
-                  port: http
+                  port: 8080
               - path: /_conduwuit/
                 pathType: Prefix
                 service:
                   identifier: main
-                  port: http
+                  port: 8080
         tls:
           - hosts:
               - skylab.fi
