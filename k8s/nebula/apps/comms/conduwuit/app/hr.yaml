@@ -64,9 +64,9 @@ spec:
                 value: "true"
               - name: CONDUWUIT_TRUSTED_SERVERS
                 value: '["kapsi.fi","pikaviestin.fi"]'
-              - name: CONDUWUIT_GLOBAL_WELL_KNOWN__CLIENT
+              - name: CONDUWUIT_WELL_KNOWN__CLIENT
                 value: "https://matrix.skylab.fi"
-              - name: CONDUWUIT_GLOBAL_WELL_KNOWN__SERVER
+              - name: CONDUWUIT_WELL_KNOWN__SERVER
                 value: "matrix.skylab.fi:443"
               - name: CONDUWUIT_MAX_REQUEST_SIZE
                 value: "104857600"
