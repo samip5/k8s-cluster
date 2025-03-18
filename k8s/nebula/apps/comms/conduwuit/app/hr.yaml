@@ -72,6 +72,8 @@ spec:
                 value: "matrix.skylab.fi:443"
               - name: CONDUWUIT_MAX_REQUEST_SIZE
                 value: "104857600"
+              - name: CONDUWUIT_QUERY_OVER_TCP_ONLY
+                value: "true"
               - name: CONDUWUIT_IP_LOOKUP_STRATEGY
                 value: "4"
             envFrom:
