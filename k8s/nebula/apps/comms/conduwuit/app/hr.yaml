@@ -47,7 +47,7 @@ spec:
               - name: CONDUWUIT_SERVER_NAME
                 value: "skylab.fi"
               - name: TOKIO_WORKER_THREADS
-                value: "2"
+                value: "5"
               - name: CONDUWUIT_ROCKSDB_PARALLELISM_THREADS
                 value: "4"
               - name: CONDUWUIT_DATABASE_PATH
