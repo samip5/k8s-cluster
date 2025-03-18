@@ -69,7 +69,7 @@ spec:
               - name: CONDUWUIT_GLOBAL_WELL_KNOWN_SERVER
                 value: "matrix.skylab.fi:443"
               - name: CONDUWUIT_MAX_REQUEST_SIZE
-                value: "1048576"
+                value: "104857600"
               - name: CONDUWUIT_IP_LOOKUP_STRATEGY
                 value: "4"
             resources:
