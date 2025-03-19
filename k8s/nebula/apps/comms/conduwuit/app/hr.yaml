@@ -75,7 +75,7 @@ spec:
 #              - name: CONDUWUIT_QUERY_OVER_TCP_ONLY
 #                value: "true"
               - name: CONDUWUIT_IP_LOOKUP_STRATEGY
-                value: "1"
+                value: "5"
             envFrom:
               - secretRef:
                   name: conduwuit
