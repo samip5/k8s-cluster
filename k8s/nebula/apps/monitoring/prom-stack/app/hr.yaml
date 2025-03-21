@@ -67,14 +67,13 @@ spec:
     kubeProxy:
       enabled: false
     prometheus:
-      startupProbe:
-        enabled: false
       ingress:
         enabled: true
         ingressClassName: internal-nginx
         hosts: ["prom.skylab.fi"]
         pathType: Prefix
       prometheusSpec:
+        maximumStartupDurationSeconds: 14400 # 4 hours
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
         ruleSelectorNilUsesHelmValues: false
@@ -91,7 +90,7 @@ spec:
             cpu: 100m
             memory: 1.5Gi
           limits:
-            memory: 2Gi
+            memory: 4Gi
         storageSpec:
           volumeClaimTemplate:
             spec:
