@@ -59,6 +59,9 @@ spec:
     ingress:
       enabled: true
       ingressClassName: external-nginx
+      annotations:
+        external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+        external-dns.alpha.kubernetes.io/target: ingress-cf.skylab.fi
       hosts:
         - &host grafana.skylab.fi
       tls:
