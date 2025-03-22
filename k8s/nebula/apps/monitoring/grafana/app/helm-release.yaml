@@ -14,7 +14,7 @@ spec:
     name: grafana
     namespace: flux-system
   values:
-    replicas: 2
+    replicas: 1
     assertNoLeakedSecrets: false
     rbac:
       pspEnabled: false
