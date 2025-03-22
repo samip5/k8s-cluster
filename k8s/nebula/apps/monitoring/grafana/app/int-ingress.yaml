@@ -12,7 +12,7 @@ metadata:
     helm.sh/chart: grafana-8.10.4_65f46559da18
     helm.toolkit.fluxcd.io/name: grafana
     helm.toolkit.fluxcd.io/namespace: monitoring
-  name: grafana
+  name: grafana-int
   namespace: monitoring
 spec:
   ingressClassName: internal-nginx
