@@ -12,6 +12,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: grafana
+    namespace: flux-system
   values:
     replicas: 2
     rbac:
