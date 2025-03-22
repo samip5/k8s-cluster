@@ -17,8 +17,6 @@ spec:
     replicas: 2
     rbac:
       pspEnabled: false
-
-
     grafana.ini:
       analytics:
         check_for_updates: false
@@ -57,17 +55,7 @@ spec:
         root_url: https://grafana.skylab.fi
 
     ingress:
-      enabled: true
-      ingressClassName: external-nginx
-      annotations:
-        external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-        external-dns.alpha.kubernetes.io/target: ingress-cf.skylab.fi
-      hosts:
-        - &host grafana.skylab.fi
-      tls:
-        - hosts:
-            - *host
-
+      enabled: false
     persistence:
       enabled: false
 
@@ -120,10 +108,10 @@ spec:
     dashboards:
       default:
         electricity:
-          url: https://raw.githubusercontent.com/samip5/k8s-cluster/main/k8s/nebula/apps/monitoring/grafana/dashboards/electricity_dash.json
+          url: https://raw.githubusercontent.com/samip5/k8s-cluster/refs/heads/main/k8s/nebula/apps/monitoring/grafana/app/dashboards/electricity_dash.json
           datasource: InfluxDB
         zigbee:
-          url: https://raw.githubusercontent.com/samip5/k8s-cluster/main/k8s/nebula/apps/monitoring/grafana/dashboards/zigbee_dash.json
+          url: https://raw.githubusercontent.com/samip5/k8s-cluster/refs/heads/main/k8s/nebula/apps/monitoring/grafana/app/dashboards/zigbee_dash.json
           datasource: InfluxDB
         speedtest-exporter-hub:
           gnetId: 13665
@@ -131,12 +119,6 @@ spec:
           datasource:
             - name: "DS_PROMETHEUS"
               value: Prometheus
-        flux-cluster:
-          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/cluster.json
-          datasource: Prometheus
-        flux-control-plane:
-          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/control-plane.json
-          datasource: Prometheus
       node-exporter:
         # Ref: https://grafana.com/grafana/dashboards/1860-node-exporter-full/
         node-exporter:
