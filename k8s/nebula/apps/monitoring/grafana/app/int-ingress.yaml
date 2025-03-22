@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    meta.helm.sh/release-name: grafana
+    meta.helm.sh/release-namespace: monitoring
+  labels:
+    app.kubernetes.io/instance: grafana
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/version: 11.5.2
+    helm.sh/chart: grafana-8.10.4_65f46559da18
+    helm.toolkit.fluxcd.io/name: grafana
+    helm.toolkit.fluxcd.io/namespace: monitoring
+  name: grafana
+  namespace: monitoring
+spec:
+  ingressClassName: internal-nginx
+  rules:
+    - host: grafana.skylab.fi
+      http:
+        paths:
+          - backend:
+              service:
+                name: grafana
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - grafana.skylab.fi
