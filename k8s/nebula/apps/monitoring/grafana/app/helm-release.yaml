@@ -25,7 +25,6 @@ spec:
       auth:
         signout_redirect_url: https://id.skylab.fi/application/o/grafana/end-session/
         disable_login_form: true
-        oauth_auto_login: true
       auth.anonymous:
         enabled: true
         org_name: Main Org.
@@ -33,6 +32,7 @@ spec:
         hide_version: true
       auth.generic_oauth:
         enabled: true
+        auto_login: true
         client_id: d1a7ff96ee7113d80a1b2a6d935a91f050856fcc
         client_secret: ${SECRET_GRAFANA_AUTHENTIK_OAUTH_CLIENT}
         scopes: openid email profile
@@ -134,7 +134,7 @@ spec:
             isDefault: true
             name: Prometheus
             type: prometheus
-            url: http://prom-prometheus:9090/
+            url: http://kube-prometheus-stack-prometheus:9090/
           - name: InfluxDB
             type: influxdb
             access: proxy
@@ -149,7 +149,7 @@ spec:
           - name: Alertmanager
             type: alertmanager
             access: proxy
-            url: http://alertmanager.monitoring.svc.cluster.local:9093
+            url: http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093
             jsonData:
               implementation: prometheus
         deleteDatasources:
