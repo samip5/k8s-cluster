@@ -3,6 +3,8 @@ kind: Kustomization
 metadata:
   name: monitoring-grafana
   namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
 spec:
   path: ./k8s/nebula/apps/monitoring/grafana/app
   prune: true
