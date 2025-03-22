@@ -7,22 +7,16 @@ metadata:
   labels:
     component.skylab.fi/part-of: standard-helm-release
 spec:
-  interval: 5m
-  chart:
-    spec:
-      # renovate: registryUrl=https://grafana.github.io/helm-charts
-      chart: grafana
-      version: 8.9.0
-      sourceRef:
-        kind: HelmRepository
-        name: grafana-charts
-        namespace: flux-system
-      interval: 5m
+  interval: 30m
+  maxHistory: 3
+  chartRef:
+    kind: OCIRepository
+    name: grafana
   values:
-    replicas: 1
-    deploymentStrategy:
-      type: Recreate
-    #envFromSecret: grafana-secret
+    replicas: 2
+    rbac:
+      pspEnabled: false
+
 
     grafana.ini:
       analytics:
@@ -81,22 +75,22 @@ spec:
       - grafana-worldmap-panel
       - grafana-clock-panel
 
-    podAnnotations:
-      configmap.reloader.stakater.com/reload: grafana
-      secret.reloader.stakater.com/reload: grafana-secrets
+    sidecar:
+      datasources:
+        enabled: true
+        searchNamespace: ALL
+        initDatasources: true
+        labelValue: ""
+      dashboards:
+        enabled: true
+        labelValue: ""
+        label: grafana_dashboard
+        folderAnnotation: grafana_folder
+        searchNamespace: ALL
+        provider:
+          disableDelete: true
+          foldersFromFilesStructure: true
 
-    rbac:
-      pspEnabled: false
-
-    resources:
-      limits:
-        memory: 219M
-      requests:
-        cpu: 23m
-        memory: 127M
-
-    serviceMonitor:
-      enabled: true
 
     dashboardProviders:
       dashboardproviders.yaml:
@@ -147,9 +141,6 @@ spec:
           datasource: Prometheus
 
     datasources:
-      enabled: true
-      labelValue: ""
-      searchNamespace: ALL
       datasources.yaml:
         apiVersion: 1
         datasources:
@@ -176,21 +167,20 @@ spec:
             jsonData:
               implementation: prometheus
         deleteDatasources:
-          - name: Loki
-            orgId: 1
           - name: Alertmanager
             orgId: 1
-    sidecar:
-      dashboards:
-        enabled: true
-        labelValue: ""
-        label: grafana_dashboard
-        folderAnnotation: grafana_folder
-        searchNamespace: ALL
-        provider:
-          disableDelete: true
-          foldersFromFilesStructure: true
-      logLevel: INFO
+
+
+
+    resources:
+      limits:
+        memory: 219M
+      requests:
+        cpu: 23m
+        memory: 127M
+
+    serviceMonitor:
+      enabled: true
 
 
 
