@@ -42,7 +42,7 @@ spec:
           app:
             image:
                 repository: ghcr.io/girlbossceo/conduwuit
-                tag: v0.5.0-rc3-b6e9dc3d98704c56027219d3775336910a0136c6-debug
+                tag: main-7bf92c8a3710eeff229bd86bc81a89daa94b66d5-haswell
             env:
               - name: CONDUWUIT_SERVER_NAME
                 value: "skylab.fi"
@@ -59,7 +59,7 @@ spec:
               - name: CONDUWUIT_PORT
                 value: "8080"
               - name: RUST_LOG
-                value: "debug"
+                value: "info"
               - name: CONDUWUIT_ALLOW_FEDERATION
                 value: "true"
               - name: CONDUWUIT_ALLOW_REGISTRATION
