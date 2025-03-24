@@ -42,7 +42,7 @@ spec:
           app:
             image:
                 repository: ghcr.io/girlbossceo/conduwuit
-                tag: main-7bf92c8a3710eeff229bd86bc81a89daa94b66d5-haswell
+                tag: main-7bf92c8a3710eeff229bd86bc81a89daa94b66d5-debug
             env:
               - name: CONDUWUIT_SERVER_NAME
                 value: "skylab.fi"
@@ -52,8 +52,6 @@ spec:
                 value: "4"
               - name: CONDUWUIT_DATABASE_PATH
                 value: "/data/db"
-              - name: CONDUWUIT_DATABASE_BACKEND
-                value: "rocksdb"
               - name: CONDUWUIT_ADDRESS
                 value: "0.0.0.0"
               - name: CONDUWUIT_PORT
