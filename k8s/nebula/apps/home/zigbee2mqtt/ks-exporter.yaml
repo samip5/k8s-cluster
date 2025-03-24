@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *appname
   path: ./k8s/nebula/apps/home/zigbee2mqtt/exporter
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
