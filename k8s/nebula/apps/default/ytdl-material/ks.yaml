@@ -14,7 +14,7 @@ spec:
     labels:
       app.kubernetes.io/name: *appname
   path: ./k8s/nebula/apps/default/ytdl-material/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: flux-system

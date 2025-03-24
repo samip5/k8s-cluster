@@ -9,7 +9,7 @@ spec:
   dependsOn:
     - name: nfd
   path: ./k8s/nebula/apps/kube-system/node-feature-discovery/rules
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: flux-system

@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   path: ./k8s/nebula/apps/networking/nginx/shared
-  prune: true
+  prune: false
   wait: true
   sourceRef:
     kind: GitRepository

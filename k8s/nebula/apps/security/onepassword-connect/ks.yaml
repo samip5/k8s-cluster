@@ -8,7 +8,7 @@ metadata:
 spec:
   targetNamespace: security
   path: ./k8s/nebula/apps/security/onepassword-connect/app
-  prune: true
+  prune: false
   wait: true
   sourceRef:
     kind: GitRepository

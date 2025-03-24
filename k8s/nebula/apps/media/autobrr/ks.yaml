@@ -9,7 +9,7 @@ spec:
     labels:
       app.kubernetes.io/name: *appname
   path: ./k8s/nebula/apps/media/autobrr/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: flux-system

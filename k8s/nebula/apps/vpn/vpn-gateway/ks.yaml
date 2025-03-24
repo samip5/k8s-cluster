@@ -8,7 +8,7 @@ metadata:
 spec:
   targetNamespace: vpn
   path: ./k8s/nebula/apps/vpn/vpn-gateway/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: flux-system

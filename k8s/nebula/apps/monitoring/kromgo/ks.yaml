@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   path: ./k8s/nebula/apps/monitoring/kromgo/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: flux-system

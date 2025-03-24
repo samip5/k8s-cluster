@@ -14,7 +14,7 @@ spec:
     - name: rook-ceph-cluster
     - name: cluster-apps-volsync
   path: ./k8s/nebula/apps/databases/influx/app
-  prune: true
+  prune: false
   wait: false
   sourceRef:
     kind: GitRepository

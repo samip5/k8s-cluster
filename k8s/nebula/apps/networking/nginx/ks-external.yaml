@@ -8,7 +8,7 @@ metadata:
 spec:
   interval: 10m
   path: "./k8s/nebula/apps/networking/nginx/external"
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: flux-system

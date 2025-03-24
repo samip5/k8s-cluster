@@ -9,7 +9,7 @@ spec:
   dependsOn:
     - name: cluster-apps-externaldns-shared
   path: ./k8s/nebula/apps/networking/external-dns/internal
-  prune: true
+  prune: false
   wait: true
   sourceRef:
     kind: GitRepository

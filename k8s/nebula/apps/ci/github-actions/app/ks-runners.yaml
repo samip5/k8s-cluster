@@ -9,7 +9,7 @@ spec:
     - name: cluster-apps-ci-gh-operator
       namespace: flux-system
   path: ./k8s/nebula/apps/ci/github-actions/app/runners
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: flux-system

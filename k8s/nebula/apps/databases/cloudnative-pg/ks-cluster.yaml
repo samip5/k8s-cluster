@@ -7,7 +7,7 @@ spec:
   dependsOn:
     - name: cnpg-operator
   path: ./k8s/nebula/apps/databases/cloudnative-pg/cluster
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: flux-system

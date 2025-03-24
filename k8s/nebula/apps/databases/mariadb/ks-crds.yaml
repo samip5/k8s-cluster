@@ -6,7 +6,7 @@ metadata:
 spec:
   targetNamespace: databases
   path: ./k8s/nebula/apps/databases/mariadb/crds
-  prune: true
+  prune: false
   wait: true
   sourceRef:
     kind: GitRepository

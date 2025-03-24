@@ -7,7 +7,7 @@ spec:
   dependsOn:
     - name: cnpg-cluster
   path: ./k8s/nebula/apps/default/zipline/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: flux-system

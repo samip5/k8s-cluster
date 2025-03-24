@@ -6,7 +6,7 @@ metadata:
 spec:
   targetNamespace: ci
   path: ./k8s/nebula/apps/ci/buildkitd/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: flux-system

@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: *appname
   interval: 10m
   path: ./k8s/nebula/apps/media/maintainerr/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: flux-system

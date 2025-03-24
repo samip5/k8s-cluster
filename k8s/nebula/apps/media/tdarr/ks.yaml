@@ -9,7 +9,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   path: ./k8s/nebula/apps/media/tdarr/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: flux-system

@@ -9,7 +9,7 @@ metadata:
     component.skylab.fi/part-of: definitions
 spec:
   path: ./k8s/nebula/apps/storage/democractc-csi-local-path/app
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: flux-system
