@@ -3,15 +3,12 @@ kind: Kustomization
 resources:
   - ai
   - ci
-#  - dev
-#  - crypto
   - collab
   - comms
   - security
   - services
   - monitoring
   - networking
-#  - system
   - search
   - storage
   - school
@@ -20,7 +17,6 @@ resources:
   - kube-system
   - media
   - vpn
-#  - vpn-services
   - default
   - volsync
   - finance
