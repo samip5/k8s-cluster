@@ -27,7 +27,7 @@ spec:
   interval: 10m0s
   retryInterval: 2m0s
   timeout: 5m
-  prune: false
+  prune: true
   path: ./k8s/nebula/flux/config
   wait: false
   sourceRef:

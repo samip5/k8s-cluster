@@ -7,7 +7,7 @@ spec:
   dependsOn:
     - name: cluster-apps-cilium
   path: ./k8s/nebula/apps/kube-system/cilium/config
-  prune: false # never should be deleted
+  prune: true # never should be deleted
   sourceRef:
     kind: GitRepository
     name: flux-system

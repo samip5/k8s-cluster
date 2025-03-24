@@ -13,7 +13,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   path: ./k8s/nebula/apps/networking/tailscale/app
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -37,7 +37,7 @@ spec:
   dependsOn:
     - name: tailscale
   path: ./k8s/nebula/apps/networking/tailscale/extras
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system

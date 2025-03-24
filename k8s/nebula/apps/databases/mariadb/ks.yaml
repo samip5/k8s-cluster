@@ -7,7 +7,7 @@ spec:
   dependsOn:
     - name: mariadb-operator-crds
   path: ./k8s/nebula/apps/databases/mariadb/operator
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system

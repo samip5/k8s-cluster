@@ -6,7 +6,7 @@ metadata:
 spec:
   targetNamespace: gh-actions
   path: ./k8s/nebula/apps/ci/github-actions/app/operator
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system

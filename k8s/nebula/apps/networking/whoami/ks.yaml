@@ -8,7 +8,7 @@ metadata:
 spec:
   interval: 10m
   path: "./k8s/nebula/apps/networking/whoami/app"
-  prune: false
+  prune: true
   wait: false
   sourceRef:
     kind: GitRepository

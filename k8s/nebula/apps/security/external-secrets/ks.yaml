@@ -13,7 +13,7 @@ spec:
       app.kubernetes.io/name: *appname
   interval: 10m
   path: "./k8s/nebula/apps/security/external-secrets/stores"
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: home-ops-kubernetes

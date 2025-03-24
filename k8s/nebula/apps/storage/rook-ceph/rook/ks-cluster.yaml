@@ -9,7 +9,7 @@ metadata:
     component.skylab.fi/part-of: definitions
 spec:
   path: ./k8s/nebula/apps/storage/rook-ceph/rook/cluster
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system

@@ -21,7 +21,7 @@ metadata:
     component.skylab.fi/part-of: definitions
 spec:
   path: "./k8s/base/storage/storage-classes/nfs-client-provisioner"
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system

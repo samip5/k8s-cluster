@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   path: ./k8s/nebula/apps/databases/redis/app
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system

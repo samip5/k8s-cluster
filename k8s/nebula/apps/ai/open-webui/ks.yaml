@@ -13,7 +13,7 @@ spec:
   dependsOn:
     - name: cluster-apps-volsync
   path: ./k8s/nebula/apps/ai/open-webui/app
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system

@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *appname
   path: ./k8s/nebula/apps/default/radicale/app
-  prune: false
+  prune: true
   wait: false
   sourceRef:
     kind: GitRepository

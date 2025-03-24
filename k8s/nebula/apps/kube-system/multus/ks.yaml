@@ -8,7 +8,7 @@ metadata:
 spec:
   targetNamespace: kube-system
   path: ./k8s/nebula/apps/kube-system/multus/app
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system

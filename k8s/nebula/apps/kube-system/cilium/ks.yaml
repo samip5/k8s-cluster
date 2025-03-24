@@ -6,7 +6,7 @@ metadata:
 spec:
   targetNamespace: kube-system
   path: ./k8s/nebula/apps/kube-system/cilium/app
-  prune: false # never should be deleted
+  prune: true # never should be deleted
   sourceRef:
     kind: GitRepository
     name: flux-system

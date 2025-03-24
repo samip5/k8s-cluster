@@ -9,7 +9,7 @@ spec:
   dependsOn:
     - name: cnpg-cluster
   path: ./k8s/nebula/apps/media/prowlarr/app
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system

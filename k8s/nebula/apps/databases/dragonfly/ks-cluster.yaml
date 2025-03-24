@@ -12,7 +12,7 @@ spec:
   dependsOn:
     - name: dragonfly
   path: ./k8s/nebula/apps/databases/dragonfly/cluster
-  prune: false
+  prune: true
   wait: true
   sourceRef:
     kind: GitRepository

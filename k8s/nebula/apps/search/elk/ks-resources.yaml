@@ -9,7 +9,7 @@ spec:
   dependsOn:
     - name: eck-operator
   path: ./k8s/nebula/apps/search/elk/resources
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system

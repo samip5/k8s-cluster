@@ -12,7 +12,7 @@ spec:
     - name: rook-ceph-cluster
     - name: cluster-apps-volsync
   path: ./k8s/nebula/apps/monitoring/scrutiny/scrutiny
-  prune: false
+  prune: true
   wait: false
   sourceRef:
     kind: GitRepository
