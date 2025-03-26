@@ -64,7 +64,7 @@ spec:
           main:
             image:
               repository: ghcr.io/esphome/esphome
-              tag: 2025.3.1
+              tag: 2025.3.2
             env:
               PLATFORMIO_CORE_DIR: /cache/platformio
               PLATFORMIO_GLOBALLIB_DIR: /cache/platformio/lib
