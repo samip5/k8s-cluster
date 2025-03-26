@@ -32,7 +32,7 @@ spec:
           main:
             image: &img
               repository: ghcr.io/immich-app/immich-server
-              tag: v1.130.1
+              tag: v1.130.2
             env:
               <<: &env-common
                 TZ: "Europe/Helsinki"
