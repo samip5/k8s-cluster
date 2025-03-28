@@ -12,6 +12,7 @@ spec:
   privateKey:
     algorithm: ECDSA
     size: 256
+    rotationPolicy: Always
   commonName: "dh.skylab.fi"
   dnsNames:
     - "dh.skylab.fi"
