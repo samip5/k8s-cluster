@@ -50,10 +50,6 @@ nodes:
           interfaces:
             - enp0s31f6
         dhcp: true
-        routes:
-          - network: "::/0"
-            gateway: "fd9d:7a72:44eb:c::1"
-            metric: 1
         vlans:
           - vlanId: 50
             mtu: 1500
@@ -75,10 +71,6 @@ nodes:
           interfaces:
             - enp0s31f6
         dhcp: true
-        routes:
-          - network: "::/0"
-            gateway: "fd9d:7a72:44eb:c::1"
-            metric: 1
         vlans:
           - vlanId: 50
             mtu: 1500
@@ -111,10 +103,6 @@ nodes:
           interfaces:
            - enp2s0
         dhcp: true
-        routes:
-          - network: "::/0"
-            gateway: "fd9d:7a72:44eb:c::1"
-            metric: 1
         dhcpOptions:
           routeMetric: 4000
         vlans:
@@ -137,10 +125,6 @@ nodes:
           interfaces:
             - eno1
         dhcp: true
-        routes:
-          - network: "::/0"
-            gateway: "fd9d:7a72:44eb:c::1"
-            metric: 1
         vlans:
           - vlanId: 50
             mtu: 1500
@@ -160,10 +144,6 @@ nodes:
           interfaces:
             - enp2s0
         dhcp: true
-        routes:
-          - network: "::/0"
-            gateway: "fd9d:7a72:44eb:c::1"
-            metric: 1
         vlans:
           - vlanId: 50
             mtu: 1500
@@ -184,10 +164,6 @@ nodes:
           interfaces:
             - enp5s0
         dhcp: true
-        routes:
-          - network: "::/0"
-            gateway: "fd9d:7a72:44eb:c::1"
-            metric: 1
         vlans:
           - vlanId: 50
             mtu: 1500
@@ -211,10 +187,6 @@ nodes:
           interfaces:
             - enxd83addd870bc
         dhcp: true
-        routes:
-          - network: "::/0"
-            gateway: "fd9d:7a72:44eb:c::1"
-            metric: 1
         dhcpOptions:
           routeMetric: 4000
         vlans:
