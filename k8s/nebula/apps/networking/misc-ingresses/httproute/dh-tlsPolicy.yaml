@@ -1,0 +1,13 @@
+---
+apiVersion: gateway.networking.k8s.io/v1alpha3
+kind: BackendTLSPolicy
+metadata:
+  name: dh-tls-upstream
+spec:
+  targetRefs:
+    - group: ""
+      kind: Service
+      name: dh
+  validation:
+    hostname: media.skylab.fi
+    wellKnownCACertificates: "System"
