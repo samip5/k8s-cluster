@@ -7,11 +7,12 @@ metadata:
 spec:
   secretName: media.skylab.fi-tls
   issuerRef:
-    name: letsencrypt-production
+    name: zerossl-production
     kind: ClusterIssuer
   privateKey:
     algorithm: ECDSA
-    size: 384
+    size: 256
+    rotationPolicy: Always
   commonName: "media.skylab.fi"
   dnsNames:
   - "media.skylab.fi"
@@ -20,4 +21,4 @@ spec:
     annotations:
       reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
       reflector.v1.k8s.emberstack.com/reflection-enabled: "true"
-      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "media,default"
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "media,default,kube-system"
