@@ -10,7 +10,7 @@ spec:
   parentRefs:
     - name: internal
       namespace: kube-system
-      sectionName: https
+      sectionName: https-media
   hostnames:
     - "jelly.media.skylab.fi"
   rules:
