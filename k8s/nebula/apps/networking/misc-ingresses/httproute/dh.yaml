@@ -21,4 +21,3 @@ spec:
       backendRefs:
         - name: dh
           port: 443
-          protocol: HTTPS
