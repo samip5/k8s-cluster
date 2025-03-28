@@ -40,6 +40,9 @@ gatewayAPI:
   enabled: true
   enableAlpn: true
   xffNumTrustedHops: 1
+  secretsNamespace:
+    create: false
+    name: kube-system
 
 bandwidthManager:
   enabled: true
