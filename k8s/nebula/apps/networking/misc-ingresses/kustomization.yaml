@@ -3,10 +3,6 @@ kind: Kustomization
 resources:
   - ./sso-skylab.yaml
   - dh-cert.yaml
-  - dh-ingress.yaml
   - dh-service.yaml
   - dh-endpoints.yaml
-#  - genpi-minio-endpoints.yaml
-#  - genpi-minio-svc.yaml
-#  - genpi-minio-ingress.yaml
-#  - nas-ingress-and-service.yaml
+  - httproute

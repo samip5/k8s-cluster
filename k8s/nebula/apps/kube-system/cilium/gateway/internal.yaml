@@ -1,0 +1,55 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.networking.k8s.io/gateway_v1.json
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: internal
+spec:
+  gatewayClassName: cilium
+  addresses:
+    - type: IPAddress
+      value: 10.96.69.20
+    - type: IPAddress
+      value: fded:687e:c3bf::20
+  listeners:
+    - name: http
+      protocol: HTTP
+      port: 80
+      hostname: "*.skylab.fi"
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: https
+      protocol: HTTPS
+      port: 443
+      hostname: "*.skylab.fi"
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        certificateRefs:
+          - kind: Secret
+            name: "skylab.fi-tls"
+    - name: https-dh1
+      protocol: HTTPS
+      port: 443
+      hostname: "*.dh.skylab.fi"
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        certificateRefs:
+          - kind: Secret
+            name: "plex-dh-tls"
+    - name: https-media
+      protocol: HTTPS
+      port: 443
+      hostname: "*.media.skylab.fi"
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: "plex-dh-tls"
