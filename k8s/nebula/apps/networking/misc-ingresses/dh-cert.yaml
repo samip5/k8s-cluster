@@ -18,3 +18,8 @@ spec:
     - "plex.dh.skylab.fi"
     - "jelly.dh.skylab.fi"
     - "jelly.media.skylab.fi"
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "kube-system"
+      reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"

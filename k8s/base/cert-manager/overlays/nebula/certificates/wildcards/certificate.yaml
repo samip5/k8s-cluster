@@ -19,4 +19,5 @@ spec:
   secretTemplate:
     annotations:
       reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "media,default"
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "media,default,kube-system"
+      reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
