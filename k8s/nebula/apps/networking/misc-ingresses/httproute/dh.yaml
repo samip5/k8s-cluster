@@ -1,5 +1,5 @@
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TLSRoute
 metadata:
   name: dh-jellyfin
   namespace: networking
@@ -14,10 +14,6 @@ spec:
   hostnames:
     - "jelly.media.skylab.fi"
   rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: "/"
-      backendRefs:
+    - backendRefs:
         - name: dh
           port: 443

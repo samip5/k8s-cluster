@@ -43,14 +43,11 @@ spec:
           - kind: Secret
             name: "plex-dh-tls"
     - name: https-media
-      protocol: HTTPS
       port: 443
+      protocol: TLS
       hostname: "*.media.skylab.fi"
+      tls:
+        mode: Passthrough
       allowedRoutes:
         namespaces:
           from: All
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - kind: Secret
-            name: "plex-dh-tls"
