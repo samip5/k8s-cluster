@@ -1,0 +1,52 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.networking.k8s.io/gateway_v1.json
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: internal
+  namespace: kube-system
+spec:
+  gatewayClassName: cilium
+  addresses:
+    - type: IPAddress
+      value: 192.168.12.20
+    - type: IPAddress
+      value: 2001:14ba:16fd:9622::e::20
+  listeners:
+    - name: http
+      protocol: HTTP
+      port: 80
+      hostname: "*.dh.skylab.fi"
+      allowedRoutes:
+       namespaces:
+          from: All
+    - name: https
+      protocol: HTTPS
+      port: 443
+      hostname: "*.dh.skylab.fi"
+      allowedRoutes:
+       namespaces:
+        from: All
+      tls:
+        certificateRefs:
+          - kind: Secret
+            name: "media.skylab.fi-tls"
+    - name: http-media
+      protocol: HTTP
+      port: 80
+      hostname: "*.media.skylab.fi"
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: https-media
+      port: 443
+      protocol: HTTPS
+      hostname: "*.media.skylab.fi"
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: "media.skylab.fi-tls"
+      allowedRoutes:
+        namespaces:
+          from: All

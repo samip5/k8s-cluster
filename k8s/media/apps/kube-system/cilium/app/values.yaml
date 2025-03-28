@@ -20,6 +20,15 @@ k8sServicePort: 6443
 
 routingMode: "native"
 
+gatewayAPI:
+  enabled: true
+  enableAlpn: true
+  xffNumTrustedHops: 1
+  secretsNamespace:
+    create: false
+    name: kube-system
+    sync: false
+
 bpf:
   masquerade: true
   tproxy: true
