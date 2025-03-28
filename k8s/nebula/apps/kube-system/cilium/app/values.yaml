@@ -36,6 +36,11 @@ bpf:
   tproxy: true
   vlanBypass: [0]
 
+gatewayAPI:
+  enabled: true
+  enableAlpn: true
+  xffNumTrustedHops: 1
+
 bandwidthManager:
   enabled: true
 
