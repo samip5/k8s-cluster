@@ -4,10 +4,3 @@ kind: Kustomization
 namespace: networking
 resources:
   - ./helm-release.yaml
-  - ./rbac.yaml
-configMapGenerator:
-  - name: k8s-gateway-configmap
-    files:
-      - ./Corefile
-generatorOptions:
-  disableNameSuffixHash: true
