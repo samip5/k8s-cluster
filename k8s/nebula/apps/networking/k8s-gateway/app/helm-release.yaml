@@ -31,7 +31,7 @@ spec:
     filters:
       ingressClasses: ["internal-nginx"]
 
-    watchedResources: ["Ingress", "httpRoute"]
+    watchedResources: ["Ingress", "HTTPRoute"]
     domain: "skylab.fi kryptonian.dev"
     ttl: 1
     service:
