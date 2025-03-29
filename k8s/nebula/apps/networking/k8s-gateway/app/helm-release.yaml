@@ -41,7 +41,9 @@ spec:
         io.cilium/lb-ipam-ips: "10.96.69.53"
       externalTrafficPolicy: Cluster
 
-    debug: true
+    debug:
+      enabled: true
+      level: 5
 
 
 
