@@ -99,6 +99,8 @@ hubble:
       annotations: { }
   relay:
     enabled: true
+    service:
+      type: LoadBalancer
     rollOutPods: true
     prometheus:
       enabled: true
