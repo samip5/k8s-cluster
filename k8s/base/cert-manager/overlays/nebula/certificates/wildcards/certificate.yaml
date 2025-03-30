@@ -9,6 +9,8 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
+  privateKey:
+    rotationPolicy: Always
   commonName: "skylab.fi"
   dnsNames:
   - "skylab.fi"
