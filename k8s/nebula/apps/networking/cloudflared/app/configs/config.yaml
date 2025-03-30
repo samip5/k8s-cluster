@@ -12,8 +12,12 @@ ingress:
     service: https://nginx-external-controller.networking.svc.nebula.local:443
     originRequest:
       originServerName: "ingress-cf.skylab.fi"
+  - hostname: "matrix.skylab.fi"
+    service: https://cilium-gateway-external.kube-system.svc.nebula.local:443
+    originRequest:
+      originServerName: "ingress-cf.skylab.fi"
   - hostname: "skylab.fi"
-    service: https://nginx-external-controller.networking.svc.nebula.local:443
+    service: https://cilium-gateway-external.kube-system.svc.nebula.local:443
     originRequest:
       originServerName: "ingress-cf.skylab.fi"
   - hostname: "*.skylab.fi"
