@@ -10,9 +10,9 @@ ingress:
   - hostname: "*.d10.fi"
     service: https://nginx-external-controller.networking.svc.nebula.local:443
   - hostname: "matrix.skylab.fi"
-    service: https://cilium-gateway-external.kube-system.svc.nebula.local:443
+    service: https://nginx-external-controller.networking.svc.nebula.local:443
   - hostname: "skylab.fi"
-    service: https://cilium-gateway-external.kube-system.svc.nebula.local:443
+    service: https://nginx-external-controller.networking.svc.nebula.local:443
   - hostname: "*.skylab.fi"
     service: https://nginx-external-controller.networking.svc.nebula.local:443
   - hostname: "kryptonian.dev"
