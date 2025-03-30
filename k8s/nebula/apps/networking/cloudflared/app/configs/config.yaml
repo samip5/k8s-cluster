@@ -1,35 +1,22 @@
 ---
 originRequest:
   http2Origin: true
+  originServerName: "ingress-cf.skylab.fi"
 
 # https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/ingress
 ingress:
   - hostname: "d10.fi"
     service: https://nginx-external-controller.networking.svc.nebula.local:443
-    originRequest:
-      originServerName: "ingress-cf.skylab.fi"
   - hostname: "*.d10.fi"
     service: https://nginx-external-controller.networking.svc.nebula.local:443
-    originRequest:
-      originServerName: "ingress-cf.skylab.fi"
   - hostname: "matrix.skylab.fi"
     service: https://cilium-gateway-external.kube-system.svc.nebula.local:443
-    originRequest:
-      originServerName: "ingress-cf.skylab.fi"
   - hostname: "skylab.fi"
     service: https://cilium-gateway-external.kube-system.svc.nebula.local:443
-    originRequest:
-      originServerName: "ingress-cf.skylab.fi"
   - hostname: "*.skylab.fi"
     service: https://nginx-external-controller.networking.svc.nebula.local:443
-    originRequest:
-      originServerName: "ingress-cf.skylab.fi"
   - hostname: "kryptonian.dev"
     service: https://nginx-external-controller.networking.svc.nebula.local:443
-    originRequest:
-      originServerName: "ingress-cf.skylab.fi"
   - hostname: "*.kryptonian.dev"
     service: https://nginx-external-controller.networking.svc.nebula.local:443
-    originRequest:
-      originServerName: "ingress-cf.skylab.fi"
   - service: http_status:404
