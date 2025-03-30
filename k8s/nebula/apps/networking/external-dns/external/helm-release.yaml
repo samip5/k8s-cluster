@@ -17,6 +17,10 @@ spec:
         name: external-dns-charts
         namespace: flux-system
       interval: 5m
+  upgrade:
+    remediation:
+      strategy: rollback
+      retries: 1
   values:
     fullnameOverride: externaldns-external
     image:
