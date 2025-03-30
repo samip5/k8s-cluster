@@ -7,10 +7,6 @@ cluster:
   name: nebula
   id: 1
 
-debug:
-  enabled: true
-  verbose: ["envoy", "datapath"]
-
 cni:
   exclusive: false
 
