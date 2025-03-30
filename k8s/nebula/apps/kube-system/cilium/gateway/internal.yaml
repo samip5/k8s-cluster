@@ -31,17 +31,17 @@ spec:
         certificateRefs:
           - kind: Secret
             name: "skylab.fi-tls"
-    - name: https-dh1
-      protocol: HTTPS
-      port: 443
-      hostname: "*.dh.skylab.fi"
-      allowedRoutes:
-        namespaces:
-          from: All
-      tls:
-        certificateRefs:
-          - kind: Secret
-            name: "plex-dh-tls"
+#    - name: https-dh1
+#      protocol: HTTPS
+#      port: 443
+#      hostname: "*.dh.skylab.fi"
+#      allowedRoutes:
+#        namespaces:
+#          from: All
+#      tls:
+#        certificateRefs:
+#          - kind: Secret
+#            name: "plex-dh-tls"
     - name: http-media
       port: 443
       protocol: HTTPS
