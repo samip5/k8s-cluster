@@ -9,8 +9,7 @@ cluster:
 
 debug:
   enabled: true
-  type: ["envoy", "datapath"]
-  verbose: true
+  verbose: ["envoy", "datapath"]
 
 cni:
   exclusive: false
