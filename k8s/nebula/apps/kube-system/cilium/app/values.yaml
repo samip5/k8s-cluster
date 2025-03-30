@@ -10,6 +10,7 @@ cluster:
 debug:
   enabled: true
   type: ["envoy", "datapath"]
+  verbose: true
 
 cni:
   exclusive: false
@@ -40,6 +41,10 @@ bpf:
   preallocateMaps: true
   tproxy: true
   vlanBypass: [0]
+
+envoy:
+  log:
+    level: debug
 
 gatewayAPI:
   enabled: true
