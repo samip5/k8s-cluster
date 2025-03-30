@@ -33,6 +33,7 @@ loadBalancer:
 
 bpf:
   masquerade: true
+  preallocateMaps: true
   tproxy: true
   vlanBypass: [0]
 
