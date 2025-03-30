@@ -26,13 +26,12 @@ spec:
     remediation:
       retries: 3
   values:
-    controller:
-      annotations:
-        reloader.stakater.com/auto: 'true'
-      replicas: 1
-      strategy: RollingUpdate
     controllers:
       cloudflared:
+        annotations:
+          reloader.stakater.com/auto: 'true'
+        replicas: 1
+        strategy: RollingUpdate
         containers:
           app:
             args:
