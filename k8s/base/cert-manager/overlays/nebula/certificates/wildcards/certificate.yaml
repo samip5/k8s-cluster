@@ -11,7 +11,8 @@ spec:
     kind: ClusterIssuer
   privateKey:
     algorithm: ECDSA
-    size: 384
+    size: 256
+    rotationPolicy: Always
   commonName: "skylab.fi"
   dnsNames:
   - "skylab.fi"
