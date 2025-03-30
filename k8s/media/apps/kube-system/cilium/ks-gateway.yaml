@@ -6,6 +6,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-cilium
+  targetNamespace: kube-system
   path: ./k8s/media/apps/kube-system/cilium/gateway
   prune: true # never should be deleted
   sourceRef:
