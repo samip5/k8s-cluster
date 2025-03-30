@@ -6,6 +6,7 @@ metadata:
   labels:
     component.skylab.fi/part-of: definitions
 spec:
+  targetNamespace: networking
   path: ./k8s/nebula/apps/networking/external-dns/shared
   prune: true
   sourceRef:

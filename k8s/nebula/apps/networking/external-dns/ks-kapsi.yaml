@@ -8,6 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-externaldns-shared
+  targetNamespace: networking
   path: ./k8s/nebula/apps/networking/external-dns/internal-kapsi
   prune: true
   wait: true
