@@ -13,13 +13,24 @@ spec:
     - type: IPAddress
       value: fded:687e:c3bf::21
   listeners:
-    - name: http
+    - name: http-root
       protocol: HTTP
       port: 80
-      hostname: "*.skylab.fi"
+      hostname: "skylab.fi"
       allowedRoutes:
         namespaces:
           from: All
+    - name: https-root
+      protocol: HTTPS
+      port: 443
+      hostname: "skylab.fi"
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        certificateRefs:
+          - kind: Secret
+            name: "skylab.fi-tls"
     - name: https
       protocol: HTTPS
       port: 443

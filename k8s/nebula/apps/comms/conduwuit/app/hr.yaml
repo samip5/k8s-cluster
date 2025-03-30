@@ -135,10 +135,10 @@ spec:
         parentRefs:
           - name: internal
             namespace: kube-system
-            sectionName: https
+            sectionName: https-root
           - name: external
             namespace: kube-system
-            sectionName: https
+            sectionName: https-root
         rules:
           - matches:
               - path:
