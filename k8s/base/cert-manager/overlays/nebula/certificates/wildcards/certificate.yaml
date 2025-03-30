@@ -9,10 +9,6 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  privateKey:
-    algorithm: ECDSA
-    size: 256
-    rotationPolicy: Always
   commonName: "skylab.fi"
   dnsNames:
   - "skylab.fi"
