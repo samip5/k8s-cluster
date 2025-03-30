@@ -25,6 +25,7 @@ spec:
     image:
       repository: registry.k8s.io/external-dns/external-dns
       tag: v0.16.1
+      pullPolicy: Always
 
     domainFilters:
       - skylab.fi
