@@ -43,6 +43,7 @@ gatewayAPI:
   secretsNamespace:
     create: false
     name: kube-system
+    sync: false
 
 bandwidthManager:
   enabled: true
