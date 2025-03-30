@@ -6,21 +6,19 @@ metadata:
   name: external-dns-external
   namespace: networking
 spec:
-  interval: 5m
-  chart:
-    spec:
-      # renovate: registryUrl=https://kubernetes-sigs.github.io/external-dns
-      chart: external-dns
-      version: 1.15.2
-      sourceRef:
-        kind: HelmRepository
-        name: external-dns-charts
-        namespace: flux-system
-      interval: 5m
-  upgrade:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: external-dns
+  install:
+    disableSchemaValidation: true
     remediation:
-      strategy: rollback
-      retries: 1
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    disableSchemaValidation: true # Ref: https://github.com/kubernetes-sigs/external-dns/issues/5206
+    remediation:
+      retries: 3
   values:
     fullnameOverride: externaldns-external
     image:
