@@ -38,8 +38,7 @@ bpf:
   vlanBypass: [0]
 
 envoy:
-  log:
-    level: debug
+  enabled: false
 
 gatewayAPI:
   enabled: true
