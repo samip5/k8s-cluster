@@ -16,4 +16,4 @@ spec:
   rules:
     - backendRefs:
         - name: dh
-          port: 80
+          port: 443
