@@ -98,7 +98,7 @@ spec:
         certificateRefs:
           - kind: Secret
             name: "plex-dh-tls"
-    - name: http-media
+    - name: https-media
       port: 443
       protocol: HTTPS
       hostname: "*.media.skylab.fi"
