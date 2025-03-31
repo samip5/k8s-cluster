@@ -62,6 +62,8 @@ spec:
                 value: "true"
               - name: CONDUWUIT_ALLOW_REGISTRATION
                 value: "true"
+              - name: CONDUWUIT_FREEZE_LEGACY_MEDIA
+                value: "true"
               - name: CONDUWUIT_TRUSTED_SERVERS
                 value: '["kapsi.fi","pikaviestin.fi"]'
               - name: CONDUWUIT_WELL_KNOWN__CLIENT
