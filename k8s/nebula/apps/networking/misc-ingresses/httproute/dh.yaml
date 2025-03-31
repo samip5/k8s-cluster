@@ -8,7 +8,7 @@ metadata:
     external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
 spec:
   parentRefs:
-    - name: internal
+    - name: envoy-internal
       namespace: kube-system
       sectionName: https-media
   hostnames:
