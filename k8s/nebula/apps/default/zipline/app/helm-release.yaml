@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: zipline
+  name: &app zipline
   namespace: default
 spec:
   interval: 30m
@@ -49,41 +49,59 @@ spec:
         controller: zipline
         ports:
           http:
-            port: 3000
-    ingress:
-      main:
-        enabled: true
-        className: external-nginx
+            port: &port 3000
+    route:
+      app:
         annotations:
+          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
-        hosts:
-          - host: &host "z.skylab.fi"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: main
-                  port: http
-        tls:
-          - hosts:
-              - *host
-      internal:
-        enabled: true
-        className: internal-nginx
+        hostnames:
+          - "z.skylab.fi"
+        parentRefs:
+          - name: envoy-internal
+            namespace: kube-system
+            sectionName: https
+          - name: envoy-external
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
+#    ingress:
+#      main:
+#        enabled: true
+#        className: external-nginx
 #        annotations:
-#          nginx.ingress.kubernetes.io/proxy-buffering: "off"
-        hosts:
-          - host: *host
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: main
-                  port: http
-
-        tls:
-          - hosts:
-              - *host
+#          external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
+#        hosts:
+#          - host: &host "z.skylab.fi"
+#            paths:
+#              - path: /
+#                pathType: Prefix
+#                service:
+#                  identifier: main
+#                  port: http
+#        tls:
+#          - hosts:
+#              - *host
+#      internal:
+#        enabled: true
+#        className: internal-nginx
+##        annotations:
+##          nginx.ingress.kubernetes.io/proxy-buffering: "off"
+#        hosts:
+#          - host: *host
+#            paths:
+#              - path: /
+#                pathType: Prefix
+#                service:
+#                  identifier: main
+#                  port: http
+#
+#        tls:
+#          - hosts:
+#              - *host
 
 
     #initContainers:

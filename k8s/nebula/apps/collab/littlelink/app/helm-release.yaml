@@ -93,10 +93,10 @@ spec:
         hostnames:
             - "links.skylab.fi"
         parentRefs:
-          - name: internal
+          - name: envoy-internal
             namespace: kube-system
             sectionName: https
-          - name: external
+          - name: envoy-external
             namespace: kube-system
             sectionName: https
         rules:
