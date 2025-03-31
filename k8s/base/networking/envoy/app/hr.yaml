@@ -1,0 +1,32 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: envoygateway
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: gateway-helm
+      version: v0.0.0-latest
+      sourceRef:
+        kind: HelmRepository
+        name: envoy-proxy
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    deployment:
+      envoyGateway:
+        image:
+          repository: docker.io/envoyproxy/gateway
+          tag: v1.3.2
+        rbac:
+          cluster: true
