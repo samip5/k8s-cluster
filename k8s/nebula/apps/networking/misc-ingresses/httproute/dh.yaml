@@ -9,7 +9,7 @@ metadata:
 spec:
   parentRefs:
     - name: envoy-internal
-      namespace: kube-system
+      namespace: networking
       sectionName: https-media
   hostnames:
     - "jelly.media.skylab.fi"

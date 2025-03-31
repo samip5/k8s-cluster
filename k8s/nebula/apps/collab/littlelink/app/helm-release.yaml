@@ -94,10 +94,10 @@ spec:
             - "links.skylab.fi"
         parentRefs:
           - name: envoy-internal
-            namespace: kube-system
+            namespace: networking
             sectionName: https
           - name: envoy-external
-            namespace: kube-system
+            namespace: networking
             sectionName: https
         rules:
             - backendRefs:

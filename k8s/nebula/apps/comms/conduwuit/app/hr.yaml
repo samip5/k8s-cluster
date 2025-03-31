@@ -113,10 +113,10 @@ spec:
           - "matrix.skylab.fi"
         parentRefs:
           - name: envoy-internal
-            namespace: kube-system
+            namespace: networking
             sectionName: https
           - name: envoy-external
-            namespace: kube-system
+            namespace: networking
             sectionName: https
         rules:
           - matches:
@@ -134,10 +134,10 @@ spec:
           - "skylab.fi"
         parentRefs:
           - name: envoy-internal
-            namespace: kube-system
+            namespace: networking
             sectionName: https-root
           - name: envoy-external
-            namespace: kube-system
+            namespace: networking
             sectionName: https-root
         rules:
           - matches:
