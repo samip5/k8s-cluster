@@ -55,6 +55,24 @@ spec:
       main:
         ports:
           http:
-            port: 80
+            port: &port 80
+
+    route:
+      app:
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
+        hostnames:
+          - "who.skylab.fi"
+        parentRefs:
+          - name: envoy-internal
+            namespace: kube-system
+            sectionName: https
+          - name: envoy-external
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
 
 
