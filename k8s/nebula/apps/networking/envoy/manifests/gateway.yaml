@@ -22,11 +22,9 @@ metadata:
     type: external
 spec:
   gatewayClassName: envoy
-  addresses:
-    - type: IPAddress
-      value: 10.96.69.21
-    - type: IPAddress
-      value: fded:687e:c3bf::21
+  infrastructure:
+    annotations:
+      lbipam.cilium.io/ips: 10.96.69.21,fded:687e:c3bf::21
   listeners:
     - name: http-root
       protocol: HTTP
@@ -67,11 +65,6 @@ metadata:
     type: internal
 spec:
   gatewayClassName: envoy
-  addresses:
-    - type: IPAddress
-      value: 10.96.69.20
-    - type: IPAddress
-      value: fded:687e:c3bf::20
   infrastructure:
     annotations:
       lbipam.cilium.io/ips: 10.96.69.20,fded:687e:c3bf::20
