@@ -98,6 +98,7 @@ metadata:
   name: envoy-app
   namespace: flux-system
 spec:
+  targetNamespace: networking
   path: "./k8s/base/networking/envoy/app"
   prune: true
   sourceRef:
