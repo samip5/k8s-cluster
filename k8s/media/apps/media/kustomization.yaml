@@ -15,4 +15,3 @@ resources:
   - cross-seed/ks.yaml
   - unpackerr/ks.yaml
   - jellyfin/ks.yaml
-#  - kyoo/ks.yaml

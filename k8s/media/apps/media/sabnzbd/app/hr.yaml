@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: sabnzbd
+  name: &app sabnzbd
 spec:
   interval: 30m
   chart:
@@ -116,16 +116,17 @@ spec:
         ports:
           http:
             port: *port
-    ingress:
+    route:
       app:
-        className: nginx
-        hosts:
-          - host: sab.media.skylab.fi
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames: [ "sab.media.skylab.fi" ]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https-media
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
     persistence:
       config:
         existingClaim: sabnzbd

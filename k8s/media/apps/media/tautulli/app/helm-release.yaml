@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: tautulli
+  name: &app tautulli
   namespace: media
 spec:
   interval: 15m
@@ -84,24 +84,17 @@ spec:
             runAsNonRoot: true
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
-    ingress:
-      main:
-        enabled: true
-        className: nginx
-        annotations:
-          gatus.io/enabled: "true"
-          gatus.io/path: *path
-          hajimari.io/icon: mdi:chart-bar
-        hosts:
-          - host: &host "tautulli.media.skylab.fi"
-            paths:
-              - path: /
-                service:
-                  name: main
-                  port: http
-        tls:
-          - hosts:
-              - *host
+    route:
+      app:
+        hostnames: [ "tautulli.media.skylab.fi" ]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https-media
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
     persistence:
       add-ons:
         type: emptyDir

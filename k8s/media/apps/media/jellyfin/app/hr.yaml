@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: jellyfin
+  name: &app jellyfin
   namespace: media
 spec:
   chart:
@@ -68,33 +68,23 @@ spec:
         externalTrafficPolicy: Cluster
         ports:
           http:
-            port: 8096
+            port: &port 8096
 
-    ingress:
+    route:
       app:
-        className: nginx
-        hosts:
-          - host: &host1 jelly.media.skylab.fi
-            paths:
-              - path: /
-                service:
-                  identifier: jellyfin
-                  port: http
-        tls:
-          - hosts:
-              - *host1
-      external:
-        className: nginx
-        hosts:
-          - host: &host2 jelly.dh.skylab.fi
-            paths:
-              - path: /
-                service:
-                  identifier: jellyfin
-                  port: http
-        tls:
-          - hosts:
-              - *host2
+        hostnames:
+        - "jelly.media.skylab.fi"
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https-media
+          - name: external
+            namespace: kube-system
+            sectionName: https-media
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
 
     persistence:
       config:

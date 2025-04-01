@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: radarr
+  name: &app radarr
   namespace: media
 spec:
   interval: 30m
@@ -92,29 +92,17 @@ spec:
           http:
             port: *port
 
-    ingress:
-      main:
-        enabled: true
-        className: nginx
-        annotations:
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.skylab.fi/css/base/radarr/nord.css"></head>';
-            sub_filter_once on;
-          hajimari.io/icon: mdi:filmstrip
-        hosts:
-          - host: &host "radarr.media.skylab.fi"
-            paths:
-              - path: /
-                service:
-                  identifier: main
-                  port: *port
-
-
-        tls:
-          - hosts:
-              - *host
-            secretName: media.skylab.fi-tls
+    route:
+      app:
+        hostnames: [ "radarr.media.skylab.fi" ]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https-media
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
 
     persistence:
       config:

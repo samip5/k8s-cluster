@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: sonarr
+  name: &app sonarr
   namespace: media
 spec:
   chart:
@@ -70,23 +70,17 @@ spec:
         runAsUser: 568
         supplementalGroups:
           - 10000
-    ingress:
+    route:
       app:
-        annotations:
-          hajimari.io/icon: mdi:television-classic
-        className: nginx
-        hosts:
-          - host: sonarr.media.skylab.fi
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: app
-                  port: http
-        tls:
-          - hosts:
-              - sonarr.media.skylab.fi
-            secretName: media.skylab.fi-tls
+        hostnames: [ "sonarr.media.skylab.fi" ]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https-media
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
     persistence:
       config:
         existingClaim: sonarr-config-v1

@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: plex
+  name: &app plex
   namespace: media
 spec:
   interval: 5m
@@ -91,35 +91,21 @@ spec:
           http:
             port: &port 32400
 
-    ingress:
-      int:
-        className: nginx
-        annotations:
-          nginx.ingress.kubernetes.io/backend-protocol: HTTPS
-        hosts:
-          - host: &host1 plex.media.skylab.fi
-            paths:
-              - path: /
-                service:
-                  identifier: plex
-                  port: http
-        tls:
-          - hosts:
-              - *host1
+    route:
       app:
-        className: nginx
-        annotations:
-          nginx.ingress.kubernetes.io/backend-protocol: HTTPS
-        hosts:
-          - host: &host2 plex.dh.skylab.fi
-            paths:
-              - path: /
-                service:
-                  identifier: plex
-                  port: http
-        tls:
-          - hosts:
-              - *host2
+        hostnames:
+          - "plex.media.skylab.fi"
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https-media
+          - name: external
+            namespace: kube-system
+            sectionName: https-media
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
 
     persistence:
       config:

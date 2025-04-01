@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: qbit
+  name: &app qbit
   namespace: media
 spec:
   chart:
@@ -44,7 +44,7 @@ spec:
           app:
             env:
               QBITTORRENT__BT_PORT: 57427
-              QBITTORRENT__PORT: 80
+              QBITTORRENT__PORT: &port 80
               TZ: Europe/Helsinki
             image:
               repository: ghcr.io/onedr0p/qbittorrent
@@ -107,20 +107,17 @@ spec:
                 add:
                   - NET_ADMIN
               allowPrivilegeEscalation: false
-    ingress:
+    route:
       app:
-        className: nginx
-        hosts:
-          - host: qb.media.skylab.fi
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: qbit
-                  port: http
-        tls:
-          - hosts:
-              - qb.media.skylab.fi
+        hostnames: [ "qb.media.skylab.fi" ]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https-media
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
     persistence:
       config:
         existingClaim: qbit-config
