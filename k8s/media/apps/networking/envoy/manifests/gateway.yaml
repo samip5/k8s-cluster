@@ -21,7 +21,6 @@ metadata:
 spec:
   gatewayClassName: envoy
   infrastructure:
-    ipFamilyPolicy: RequiredDualStack
     annotations:
       lbipam.cilium.io/ips: 192.168.12.20,2001:14ba:45a:211d::20
   listeners:
