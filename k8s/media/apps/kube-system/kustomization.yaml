@@ -3,6 +3,6 @@ kind: Kustomization
 resources:
   - cilium/ks.yaml
   - cilium/ks-config.yaml
-  - cilium/ks-gateway.yaml
+#  - cilium/ks-gateway.yaml
   - generic-device-plugin/ks.yaml
 #  - ./nvidia/device-plugin/ks.yaml

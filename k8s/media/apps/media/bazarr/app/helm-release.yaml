@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: bazarr
+  name: &app bazarr
   namespace: media
 spec:
   interval: 15m
@@ -78,24 +78,22 @@ spec:
         controller: bazarr
         ports:
           http:
-            port: 6767
+            port: &port 6767
 
-    ingress:
-      main:
-        enabled: true
-        className: nginx
+    route:
+      app:
+        hostnames:
+          - "bazarr.media.skylab.fi"
         annotations:
           hajimari.io/icon: mdi:subtitles-outline
-        hosts:
-          - host: &host "bazarr.media.skylab.fi"
-            paths:
-              - path: /
-                service:
-                  identifier: main
-                  port: http
-        tls:
-          - hosts:
-              - *host
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https-media
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
 
 
     persistence:

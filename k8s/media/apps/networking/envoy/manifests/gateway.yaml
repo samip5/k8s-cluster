@@ -1,0 +1,63 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: envoy
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+  parametersRef:
+    group: gateway.envoyproxy.io
+    kind: EnvoyProxy
+    name: config
+    namespace: networking
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: envoy-internal
+  namespace: networking
+  labels:
+    type: internal
+spec:
+  gatewayClassName: envoy
+  infrastructure:
+    annotations:
+      lbipam.cilium.io/ips: 192.168.12.20,2001:14ba:45a:211d::20
+  listeners:
+    - name: http
+      protocol: HTTP
+      port: 80
+      hostname: "*.dh.skylab.fi"
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: https
+      protocol: HTTPS
+      port: 443
+      hostname: "*.dh.skylab.fi"
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        certificateRefs:
+          - kind: Secret
+            name: "media.skylab.fi-tls"
+    - name: http-media
+      protocol: HTTP
+      port: 80
+      hostname: "*.media.skylab.fi"
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: https-media
+      port: 443
+      protocol: HTTPS
+      hostname: "*.media.skylab.fi"
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: "media.skylab.fi-tls"
+      allowedRoutes:
+        namespaces:
+          from: All

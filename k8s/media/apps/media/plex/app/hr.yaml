@@ -96,11 +96,8 @@ spec:
         hostnames:
           - "plex.media.skylab.fi"
         parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https-media
-          - name: external
-            namespace: kube-system
+          - name: envoy-internal
+            namespace: networking
             sectionName: https-media
         rules:
           - backendRefs:

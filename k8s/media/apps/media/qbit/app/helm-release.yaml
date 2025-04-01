@@ -111,8 +111,8 @@ spec:
       app:
         hostnames: [ "qb.media.skylab.fi" ]
         parentRefs:
-          - name: internal
-            namespace: kube-system
+          - name: envoy-internal
+            namespace: networking
             sectionName: https-media
         rules:
           - backendRefs:
