@@ -41,7 +41,7 @@ spec:
       tls:
         certificateRefs:
           - kind: Secret
-            name: "media.skylab.fi-tls"
+            name: "dh.skylab.fi-tls"
     - name: http-media
       protocol: HTTP
       port: 80
