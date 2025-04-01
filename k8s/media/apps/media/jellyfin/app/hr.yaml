@@ -65,6 +65,7 @@ spec:
       jellyfin:
         controller: jellyfin
         type: LoadBalancer
+        ipFamily: DualStack
         externalTrafficPolicy: Cluster
         ports:
           http:

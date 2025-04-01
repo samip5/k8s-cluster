@@ -5,7 +5,7 @@ metadata:
   name: config
   namespace: networking
 spec:
-  ipFamily: RequireDualStack
+  ipFamily: DualStack
   telemetry:
     metrics:
       prometheus: {}
