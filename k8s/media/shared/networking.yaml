@@ -17,7 +17,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: gateway-api
+  name: gateway-api-crds
   namespace: flux-system
   labels:
     component.skylab.fi/part-of: definitions
