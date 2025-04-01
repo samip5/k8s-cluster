@@ -21,7 +21,7 @@ k8sServicePort: 6443
 routingMode: "native"
 
 gatewayAPI:
-  enabled: true
+  enabled: false
   enableAlpn: true
   xffNumTrustedHops: 1
   secretsNamespace:
@@ -31,6 +31,7 @@ gatewayAPI:
 
 bpf:
   masquerade: true
+  preallocateMaps: true
   tproxy: true
 
 socketLB:
