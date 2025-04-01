@@ -48,7 +48,7 @@ operator:
   replicas: 1
   rollOutPods: true
 hubble:
-  enabled: false
+  enabled: true
   tls:
     insecure: true
     auto:
