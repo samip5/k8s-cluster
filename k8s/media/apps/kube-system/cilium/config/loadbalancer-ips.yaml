@@ -17,4 +17,4 @@ metadata:
 spec:
   blocks:
     - cidr: 192.168.12.0/24
-    - cidr: 2001:14ba:16fd:9622::e:0/112
+    - cidr: 2001:14ba:45a:211d::/64

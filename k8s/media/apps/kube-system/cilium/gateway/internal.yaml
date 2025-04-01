@@ -11,7 +11,7 @@ spec:
     - type: IPAddress
       value: 192.168.12.20
     - type: IPAddress
-      value: 2001:14ba:16fd:9622::e::20
+      value: 2001:14ba:45a:211d::20
   listeners:
     - name: http
       protocol: HTTP
