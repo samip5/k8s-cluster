@@ -18,9 +18,9 @@ spec:
     alpnProtocols:
       - h2
       - http/1.1
-  http1:
-    http10: {}
-  http3: {}
+#  http1:
+#    http10: {}
+#  http3: {}
 #---
 #apiVersion: gateway.envoyproxy.io/v1alpha1
 #kind: ClientTrafficPolicy
