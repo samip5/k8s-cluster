@@ -64,8 +64,8 @@ spec:
           - "who.media.skylab.fi"
         parentRefs:
           - name: envoy-internal
-            namespace: kube-system
-            sectionName: https
+            namespace: networking
+            sectionName: https-media
 #          - name: envoy-external
 #            namespace: kube-system
 #            sectionName: https
