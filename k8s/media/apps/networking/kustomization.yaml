@@ -5,4 +5,5 @@ resources:
 #  - k8s-gateway/ks.yaml
   - tailscale/ks.yaml
   - envoy/ks.yaml
+  - whoami/ks.yaml
 
