@@ -5,7 +5,7 @@ terraform {
   required_providers {
     routeros = {
       source  = "terraform-routeros/routeros"
-      version = "1.79.0"
+      version = "1.81.0"
     }
   }
   #backend "pg" {
