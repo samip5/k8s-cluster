@@ -66,8 +66,8 @@ spec:
         containers:
           ha:
             image:
-              repository: ghcr.io/onedr0p/home-assistant
-              tag: 2025.3.1
+              repository: ghcr.io/home-operations/home-assistant
+              tag: 2025.4.1
             env:
               TZ: "Europe/Helsinki"
             envFrom:
