@@ -82,7 +82,7 @@ spec:
           code:
             image:
               repository: ghcr.io/coder/code-server
-              tag: 4.98.2
+              tag: 4.99.0
             env:
               TZ: "Europe/Helsinki"
             args:
