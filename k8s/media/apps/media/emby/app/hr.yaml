@@ -1,0 +1,107 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app jellyfin
+  namespace: media
+spec:
+  chart:
+    spec:
+      chart: app-template
+      version: 3.7.3
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  interval: 30m
+  upgrade:
+    remediation:
+      strategy: uninstall
+  values:
+    defaultPodOptions:
+      runtimeClassName: nvidia
+      enableServiceLinks: false
+      securityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: "OnRootMismatch"
+        supplementalGroups:
+          - 44
+          - 109
+          - 100
+      annotations:
+        reloader.stakater.com/auto: "true"
+
+    controllers:
+      emby:
+        type: statefulset
+
+        containers:
+          app:
+            image:
+              repository: ghcr.io/home-operations/emby
+              tag: 4.8.11
+            env:
+              DOTNET_SYSTEM_IO_DISABLEFILELOCKING: "true"
+              # Decoding requires these packages on Ubuntu 22.04
+              # libnvidia-decode-550-server libnvidia-encode-550-server
+              # As well as the normal nvidia drivers, runtime AND toolkit (later of which is handled by the nvidia GPU operator)
+              NVIDIA_VISIBLE_DEVICES: all
+              NVIDIA_DRIVER_CAPABILITIES: all
+            resources:
+              requests:
+                memory: 4Gi
+                nvidia.com/gpu: 1
+              limits:
+                nvidia.com/gpu: 1
+                memory: 4Gi
+
+    service:
+      emby:
+        controller: emby
+        type: LoadBalancer
+        ipFamilyPolicy: RequireDualStack
+        externalTrafficPolicy: Cluster
+        ports:
+          http:
+            port: &port 8096
+
+    route:
+      app:
+        hostnames:
+          - "emby.media.skylab.fi"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https-media
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
+
+    persistence:
+      config:
+        existingClaim: "emby-config-v1"
+        advancedMounts:
+          emby:
+            app:
+              - path: /config
+      library:
+        type: hostPath
+        hostPath: "/var/mnt/merged/"
+        globalMounts:
+          - path: /var/mnt/merged/
+
+      nas:
+        type: hostPath
+        hostPath: "/mnt/nas"
+        globalMounts:
+          - path: /mnt/nas
+
+      transcode:
+        type: emptyDir
+        globalMounts:
+          - path: /config/transcodes
