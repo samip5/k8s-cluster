@@ -47,8 +47,8 @@ spec:
               QBITTORRENT__PORT: &port 80
               TZ: Europe/Helsinki
             image:
-              repository: ghcr.io/onedr0p/qbittorrent
-              tag: 4.6.4@sha256:53ead5ab43027d04efc5d52740aa02308a88d6b4a6eaa90cf6fd2e94fc11ba17
+              repository: ghcr.io/home-operations/qbittorrent
+              tag: 5.0.4
             probes:
               liveness:
                 enabled: false
