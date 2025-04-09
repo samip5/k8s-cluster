@@ -1,8 +1,0 @@
----
-# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomize.config.k8s.io/kustomization_v1beta1.json
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-  - ./helm-release.yaml
-metadata:
-  namespace: storage
