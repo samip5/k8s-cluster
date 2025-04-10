@@ -22,7 +22,7 @@ spec:
     clusterName: nebula
     toolbox:
       enabled: true
-      image: quay.io/ceph/ceph:v19.2.1
+      image: quay.io/ceph/ceph:v19.2.2
 
     configOverride: |
       [global]
@@ -53,7 +53,7 @@ spec:
                       values:
                         - amd64
       cephVersion:
-        image: quay.io/ceph/ceph:v19.2.1
+        image: quay.io/ceph/ceph:v19.2.2
       # This is a terrible hack (THANKS Anthony! :D)
       # I need more resources.
       crashCollector:
