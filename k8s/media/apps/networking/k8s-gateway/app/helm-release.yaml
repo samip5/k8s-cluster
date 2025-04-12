@@ -1,19 +1,14 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: &app k8s-gateway
   namespace: networking
 spec:
   interval: 15m
-  chart:
-    spec:
-      chart: app-template
-      version: 3.7.3
-      sourceRef:
-        kind: HelmRepository
-        name: bjw-s
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: k8s-gateway
   install:
     createNamespace: true
     remediation:
@@ -22,71 +17,23 @@ spec:
     remediation:
       retries: 5
   values:
-    controller:
-      replicas: 1
-      strategy: RollingUpdate
-      annotations:
-        reloader.stakater.com/auto: "true"
-
     image:
-      repository: quay.io/oriedge/k8s_gateway
-      tag: v0.4.0
+      registry: ghcr.io
+      repository: k8s-gateway/k8s_gateway
+      tag: 1.0.3
+      pullPolicy: IfNotPresent
 
-    args: ["-conf", "/etc/coredns/Corefile"]
+    filters:
+      ingressClasses: ["nginx"]
 
+    watchedResources: ["Ingress", "HTTPRoute"]
+    domain: "media.skylab.fi"
+    ttl: 1
     service:
-      main:
-        type: LoadBalancer
-        annotations:
-          io.cilium/lb-ipam-ips: "10.41.69.53,2001:14ba:45a:962d::53"
-        externalTrafficPolicy: Cluster
-        ports:
-          http:
-            enabled: false
-          metrics:
-            enabled: true
-            port: 9153
-          dns:
-            enabled: true
-            port: 53
-            targetPort: 1053
-            protocol: UDP
+      type: LoadBalancer
+      port: 53
+      annotations:
+        io.cilium/lb-ipam-ips: "10.41.69.53,2001:14ba:45a:962d::53"
+      externalTrafficPolicy: Cluster
 
-    serviceMonitor:
-      main:
-        enabled: true
-        endpoints:
-          - port: metrics
-            scheme: http
-            path: /metrics
-            interval: 1m
-            scrapeTimeout: 10s
 
-    probes:
-      readiness:
-        custom: true
-        spec:
-          httpGet:
-            path: /ready
-            port: 8181
-      liveness:
-        custom: true
-        spec:
-          httpGet:
-            path: /health
-            port: 8080
-      startup:
-        enabled: false
-
-    serviceAccount:
-      create: true
-      name: *app
-
-    persistence:
-      config-file:
-        enabled: true
-        type: configMap
-        name: k8s-gateway-configmap
-        subPath: Corefile
-        mountPath: /etc/coredns/Corefile
-        readOnly: true
