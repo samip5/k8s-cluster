@@ -11,6 +11,8 @@ ingress:
     service: https://nginx-external-controller.networking.svc.nebula.local:443
   - hostname: "matrix.skylab.fi"
     service: https://nginx-external-controller.networking.svc.nebula.local:443
+  - hostname: "paperless.skylab.fi"
+    service: https://envoy-networking-envoy-external-45a7c13f.networking.svc.nebula.local:443
   - hostname: "skylab.fi"
     service: https://nginx-external-controller.networking.svc.nebula.local:443
   - hostname: "*.skylab.fi"
