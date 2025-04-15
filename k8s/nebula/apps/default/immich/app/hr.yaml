@@ -188,7 +188,7 @@ spec:
       ext:
         className: external-nginx
         annotations:
-          external-dns.alpha.kubernetes.io/target: ingress.skylab.fi
+          external-dns.alpha.kubernetes.io/target: r.home.skym.fi
           nginx.ingress.kubernetes.io/configuration-snippet: |
             set $forwarded_client_ip "";
             if ($http_x_forwarded_for ~ "^([^,]+)") {
