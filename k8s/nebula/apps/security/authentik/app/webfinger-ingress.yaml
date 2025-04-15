@@ -5,6 +5,7 @@ metadata:
     meta.helm.sh/release-name: authentik
     meta.helm.sh/release-namespace: security
     nginx.ingress.kubernetes.io/permanent-redirect: https://id.skylab.fi/.well-known/webfinger
+    external-dns.alpha.kubernetes.io/target: ingress.skylab.fi
   labels:
     app.kubernetes.io/component: server
     app.kubernetes.io/instance: authentik
