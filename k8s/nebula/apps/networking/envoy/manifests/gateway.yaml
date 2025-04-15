@@ -71,29 +71,6 @@ spec:
     annotations:
       lbipam.cilium.io/ips: 10.96.69.20,fded:687e:c3bf::20
   listeners:
-    - name: https-media
-      port: 443
-      protocol: HTTPS
-      hostname: "*.media.skylab.fi"
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - kind: Secret
-            name: "plex-dh-tls"
-      allowedRoutes:
-        namespaces:
-          from: All
-    - name: https-dh1
-      protocol: HTTPS
-      port: 443
-      hostname: "*.dh.skylab.fi"
-      allowedRoutes:
-        namespaces:
-          from: All
-      tls:
-        certificateRefs:
-          - kind: Secret
-            name: "plex-dh-tls"
     - name: http
       protocol: HTTP
       port: 80
