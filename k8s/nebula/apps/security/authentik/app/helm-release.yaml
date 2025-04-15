@@ -62,7 +62,7 @@ spec:
     server:
       replicas: 2
       pdb:
-        enabled: true
+        enabled: false
         minAvailable: 1
         maxUnavailable: 1
       dnsConfig:
@@ -92,9 +92,9 @@ spec:
         limits:
           memory: 2Gi
     worker:
-      replicas: 2
+      replicas:
       pdb:
-        enabled: true
+        enabled: false
         minAvailable: 1
         maxUnavailable: 1
       resources:
