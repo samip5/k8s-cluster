@@ -100,7 +100,7 @@ spec:
       - --ingress-class=internal-nginx
       - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
       - --crd-source-kind=DNSEndpoint
-      - --gateway-name=external
+      - --gateway-name=envoy-external
       - --managed-record-types=A
       - --managed-record-types=AAAA
       - --managed-record-types=CNAME
