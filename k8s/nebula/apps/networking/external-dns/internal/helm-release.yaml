@@ -101,6 +101,7 @@ spec:
       - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
       - --crd-source-kind=DNSEndpoint
       - --gateway-name=envoy-external
+      - --gateway-name=envoy-internal
       - --managed-record-types=A
       - --managed-record-types=AAAA
       - --managed-record-types=CNAME
