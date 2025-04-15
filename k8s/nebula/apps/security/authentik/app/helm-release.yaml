@@ -37,7 +37,7 @@ spec:
         tag: 2025.2.4
       fullnameOverride: authentik
     authentik:
-      log_level: info
+      log_level: debug
       avatars: "initials"
       email:
         host: "smtp-relay.default.svc.cluster.local"
