@@ -23,8 +23,10 @@ metadata:
 spec:
   gatewayClassName: envoy
   infrastructure:
+    labels:
+      pool: public
     annotations:
-      lbipam.cilium.io/ips: 10.96.69.21,fded:687e:c3bf::21
+      lbipam.cilium.io/ips: 10.96.69.21,2001:14ba:45a:213d::443
   listeners:
     - name: http-root
       protocol: HTTP
