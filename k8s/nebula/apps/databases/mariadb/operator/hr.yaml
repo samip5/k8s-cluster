@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         name: mariadb-operator
         namespace: flux-system
-      version: "0.37.1"
+      version: "0.38.1"
   interval: 1h0m0s
   values:
     logLevel: debug
