@@ -13,12 +13,12 @@ spec:
     drainTimeout: 300s
   logging:
     level:
-      default: info
+      default: debug
   provider:
     type: Kubernetes
     kubernetes:
       envoyDeployment:
-        replicas: 2
+        replicas: 1
         container:
           resources:
             requests:
