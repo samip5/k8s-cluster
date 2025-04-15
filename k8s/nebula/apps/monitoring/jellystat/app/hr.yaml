@@ -69,26 +69,21 @@ spec:
           http:
             port: &httpPort 3000
 
-    ingress:
-      main:
-        className: internal-nginx
+    route:
+      app:
         annotations:
-          hajimari.io/enable: "true"
           hajimari.io/appName: "Jellyfin Stats"
           hajimari.io/icon: simple-icons:jellyfin
           hajimari.io/group: "media"
-          hajimari.io/instance: "admin"
-        hosts:
-          - host: &host "jellystat.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: main
-                  port: *httpPort
-        tls:
-          - hosts:
-              - *host
+        hostnames: [ "jellystat.skylab.fi" ]
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *httpPort
 
     persistence:
       backup:

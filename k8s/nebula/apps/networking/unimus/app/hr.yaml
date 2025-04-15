@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: unimus
+  name: &app unimus
   namespace: networking
 spec:
   interval: 15m
@@ -64,22 +64,19 @@ spec:
         controller: unimus
         ports:
           http:
-            port: 8085
-    ingress:
-      main:
-        enabled: true
-        className: internal-nginx
-        hosts:
-          - host: "${HOSTNAME}"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: main
-                  port: 8085
-        tls:
-          - hosts:
-              - "${HOSTNAME}"
+            port: &port 8085
+
+    route:
+      app:
+        hostnames: [ "${HOSTNAME}" ]
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
 
 
     persistence:

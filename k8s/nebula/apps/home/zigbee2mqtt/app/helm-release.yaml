@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: zigbee2mqtt
+  name: &app zigbee2mqtt
   namespace: home
 spec:
   interval: 5m
@@ -122,35 +122,19 @@ spec:
       #    http:
       #      port: 8081
 
-    ingress:
-      main:
-        enabled: true
-        className: "internal-nginx"
-        hosts:
-          - host: "${HOSTNAME}"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: main
-                  port: http
-        tls:
-          - hosts:
-              - "${HOSTNAME}"
-#      code:
-#        enabled: false
-#        ingressClassName: "internal-nginx"
-#        hosts:
-#          - host: &code-host "z2m-code.skylab.fi"
-#            paths:
-#              - path: /
-#                pathType: Prefix
-#                service:
-#                  name: code
-#                  port: http
-#        tls:
-#          - hosts:
-#              - *code-host
+    route:
+      app:
+        hostnames:
+          - "${HOSTNAME}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
+
 
     persistence:
       data:

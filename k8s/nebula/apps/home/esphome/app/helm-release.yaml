@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: esphome
+  name: &app esphome
   namespace: home
 spec:
   interval: 30m
@@ -84,26 +84,43 @@ spec:
         type: ClusterIP
         ports:
           http:
-            port: 6052
+            port: &port 6052
 
-    ingress:
-      main:
-        enabled: true
-        className: "internal-nginx"
+    route:
+      app:
         annotations:
-          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-          hajimari.io/enable: "true"
           hajimari.io/icon: "chip"
-        hosts:
-          - host: &host "esph.skylab.fi"
-            paths:
-              - path: /
-                service:
-                  identifier: main
-                  port: http
-        tls:
-          - hosts:
-              - *host
+        hostnames:
+          - "esph.skylab.fi"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
+
+
+
+#    ingress:
+#      main:
+#        enabled: true
+#        className: "internal-nginx"
+#        annotations:
+#          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+#          hajimari.io/enable: "true"
+#          hajimari.io/icon: "chip"
+#        hosts:
+#          - host: &host "esph.skylab.fi"
+#            paths:
+#              - path: /
+#                service:
+#                  identifier: main
+#                  port: http
+#        tls:
+#          - hosts:
+#              - *host
 
     persistence:
       config:

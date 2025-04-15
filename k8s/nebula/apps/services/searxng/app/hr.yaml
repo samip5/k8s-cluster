@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: searxng
+  name: &app searxng
 spec:
   interval: 30m
   chart:
@@ -74,16 +74,17 @@ spec:
           http:
             port: *httpPort
 
-    ingress:
+    route:
       app:
-        className: "internal-nginx"
-        hosts:
-          - host: search.skylab.fi
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames: [ "search.skylab.fi" ]
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *httpPort
 
     persistence:
       config:
