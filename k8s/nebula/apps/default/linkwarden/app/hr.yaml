@@ -31,7 +31,7 @@ spec:
       automountServiceAccountToken: false
 
     controllers:
-      main:
+      linkwarden:
         pod:
           securityContext:
             runAsUser: ${APP_UID}
@@ -50,7 +50,7 @@ spec:
         #          name: linkwarden-init-secret
 
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/linkwarden/linkwarden
               tag: v2.10.0
@@ -68,7 +68,8 @@ spec:
               - secretRef:
                   name: linkwarden-secret
     service:
-      main:
+      app:
+        controller: linkwarden
         ports:
           http:
             port: &port 3000
