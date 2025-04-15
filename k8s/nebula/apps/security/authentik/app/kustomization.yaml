@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - ./helm-release.yaml
   - ./internal-ingress.yaml
-  - ./webfinger-ingress.yaml
+#  - ./webfinger-ingress.yaml

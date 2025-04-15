@@ -70,18 +70,7 @@ spec:
           - name: ndots
             value: "2"
       ingress:
-        enabled: true
-        ingressClassName: external-nginx
-        annotations:
-          external-dns.alpha.kubernetes.io/target: ingress.skylab.fi
-        hosts:
-          - &host "id.skylab.fi"
-        paths:
-          - /
-        tls:
-          - hosts:
-              - *host
-            secretName: skylab.fi-tls
+        enabled: false
       metrics:
         serviceMonitor:
           enabled: true
