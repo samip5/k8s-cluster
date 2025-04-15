@@ -58,18 +58,18 @@ spec:
           http:
             port: 5006
 
-    ingress:
-      app:
-        className: "internal-nginx"
-        annotations:
-          hajimari.io/icon: mdi:cash
-        hosts:
-          - host: actual.skylab.fi
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+#    ingress:
+#      app:
+#        className: "internal-nginx"
+#        annotations:
+#          hajimari.io/icon: mdi:cash
+#        hosts:
+#          - host: actual.skylab.fi
+#            paths:
+#              - path: /
+#                service:
+#                  identifier: app
+#                  port: http
 
     persistence:
       data:

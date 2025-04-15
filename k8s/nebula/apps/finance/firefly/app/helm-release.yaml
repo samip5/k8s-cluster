@@ -85,30 +85,30 @@ spec:
           http:
             port: 8080
 
-    ingress:
-      main:
-        enabled: true
-        className: "internal-nginx"
-        annotations:
-          hajimari.io/icon: mdi:cash
-          nginx.ingress.kubernetes.io/auth-url: |-
-            http://ak-outpost-internal.security.svc.nebula.local:9000/outpost.goauthentik.io/auth/nginx
-          nginx.ingress.kubernetes.io/auth-signin: |-
-            https://cash.skylab.fi/outpost.goauthentik.io/start?rd=$escaped_request_uri
-          nginx.ingress.kubernetes.io/auth-response-headers: |-
-            Set-Cookie,X-authentik-username,X-authentik-uid,X-authentik-email
-          nginx.ingress.kubernetes.io/auth-snippet: |
-            proxy_set_header X-Forwarded-Host $http_host;
-        hosts:
-          - host: "${HOSTNAME}"
-            paths:
-              - path: /
-                service:
-                  identifier: firefly
-                  port: http
-        tls:
-          - hosts:
-              - "${HOSTNAME}"
+#    ingress:
+#      main:
+#        enabled: true
+#        className: "internal-nginx"
+#        annotations:
+#          hajimari.io/icon: mdi:cash
+#          nginx.ingress.kubernetes.io/auth-url: |-
+#            http://ak-outpost-internal.security.svc.nebula.local:9000/outpost.goauthentik.io/auth/nginx
+#          nginx.ingress.kubernetes.io/auth-signin: |-
+#            https://cash.skylab.fi/outpost.goauthentik.io/start?rd=$escaped_request_uri
+#          nginx.ingress.kubernetes.io/auth-response-headers: |-
+#            Set-Cookie,X-authentik-username,X-authentik-uid,X-authentik-email
+#          nginx.ingress.kubernetes.io/auth-snippet: |
+#            proxy_set_header X-Forwarded-Host $http_host;
+#        hosts:
+#          - host: "${HOSTNAME}"
+#            paths:
+#              - path: /
+#                service:
+#                  identifier: firefly
+#                  port: http
+#        tls:
+#          - hosts:
+#              - "${HOSTNAME}"
     persistence:
       upload:
         enabled: true

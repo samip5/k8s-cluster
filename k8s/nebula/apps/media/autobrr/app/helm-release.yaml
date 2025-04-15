@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: autobrr
+  name: &app autobrr
 spec:
   interval: 30m
   chart:
@@ -93,20 +93,18 @@ spec:
           http:
             port: *port
 
-    ingress:
-      main:
-        enabled: true
-        className: internal-nginx
-        hosts:
-          - host: "${HOSTNAME}"
-            paths:
-              - path: /
-                service:
-                  name: main
-                  port: *port
-        tls:
-          - hosts:
-              - "${HOSTNAME}"
+    route:
+      app:
+        hostnames: [ "${HOSTNAME}" ]
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
+
     persistence:
       config:
         type: persistentVolumeClaim
