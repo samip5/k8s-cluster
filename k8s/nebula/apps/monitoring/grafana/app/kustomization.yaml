@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
 - ocirepo.yaml
 - helm-release.yaml
-- int-ingress.yaml
