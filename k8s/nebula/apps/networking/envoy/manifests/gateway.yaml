@@ -17,7 +17,7 @@ metadata:
   name: envoy-external
   namespace: networking
   annotations:
-    external-dns.alpha.kubernetes.io/target: &host external.garb.dev
+    external-dns.alpha.kubernetes.io/target: &host ingress.skylab.fi
   labels:
     type: external
 spec:
