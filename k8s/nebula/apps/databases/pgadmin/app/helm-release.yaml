@@ -62,7 +62,7 @@ spec:
 
     route:
       app:
-        hostnames: [ "influx.skylab.fi" ]
+        hostnames: [ "pgadmin.skylab.fi" ]
         parentRefs:
           - name: envoy-external
             namespace: networking
