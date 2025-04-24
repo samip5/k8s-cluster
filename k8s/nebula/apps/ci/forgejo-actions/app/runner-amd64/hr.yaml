@@ -1,0 +1,161 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: forgejo-runner-amd64
+  namespace: ci
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: fergejo-runner
+      version: 0.4.25
+      sourceRef:
+        kind: HelmRepository
+        name: wrenix
+        namespace: flux-system
+      interval: 30m
+
+  values:
+    fullnameOverride: forgejo-runner-amd64
+
+    dind:
+      image:
+        registry: docker.io
+        repository: library/docker
+        pullPolicy: IfNotPresent
+        tag: 28.1.1-dind
+      resources: {}
+
+    kubectl:
+      image:
+        registry: registry.k8s.io
+        repository: kubectl
+        pullPolicy: IfNotPresent
+        tag: 1.32.1
+
+    serviceAccount:
+      create: false
+      automount: false
+      name: ""
+
+
+    runner:
+      config:
+        create: true
+        #existingSecret: "forgejo-runner-amd64"
+        instance: https://git.skyssolutions.fi
+        file:
+          log:
+            # -- The level of logging, can be trace, debug, info, warn, error, fatal
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            level: "info"
+            # -- The level of logging for jobs, can be trace, debug, info, earn, error, fatal
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            job_level: info
+          runner:
+            # -- Runner config which contains id and token of this runner (autogenerate with create)
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            file: ".runner"
+            # -- Execute how many tasks concurrently at the same time.
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            capacity: 2
+            # -- Extra environment variables to run jobs.
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+#            envs:
+#              A_TEST_ENV_NAME_1: a_test_env_value_1
+#              A_TEST_ENV_NAME_2: a_test_env_value_2
+            # -- Extra environment variables to run jobs from a file.
+            # It will be ignored if it's empty or the file doesn't exist.
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            env_file: .env
+            # -- The timeout for a job to be finished.
+            # Please note that the Forgejo instance also has a timeout (3h by default) for the job.
+            # So the job could be stopped by the Forgejo instance if it's timeout is shorter than this.
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            timeout: 3h
+            # -- Whether skip verifying the TLS certificate of the Forgejo instance.
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            insecure: false
+            # -- The timeout for fetching the job from the Forgejo instance.
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            fetch_timeout: 60s
+            # -- The interval for fetching the job from the Forgejo instance.
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            fetch_interval: 2s
+            # -- The labels of a runner are used to determine which jobs the runner can run, and how to run them.
+            # Like: ["macos-arm64:host", "ubuntu-latest:docker://node:16-bullseye", "ubuntu-22.04:docker://node:16-bullseye"]
+            # If it's empty when registering, it will ask for inputting labels.
+            # If it's empty when execute `deamon`, will use labels in `.runner` file.
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            labels: [ ]
+
+          cache:
+            # -- Enable cache server to use actions/cache.
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            enabled: false
+            # -- The directory to store the cache data.
+            # If it's empty, the cache data will be stored in $HOME/.cache/actcache.
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            dir: ""
+            # -- The host of the cache server.
+            # It's not for the address to listen, but the address to connect from job containers.
+            # So 0.0.0.0 is a bad choice, leave it empty to detect automatically.
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            host: ""
+            # -- The port of the cache server.
+            # 0 means to use a random available port.
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            port: 0
+            # -- The external cache server URL. Valid only when enable is true.
+            # If it's specified, act_runner will use this URL as the ACTIONS_CACHE_URL rather than start a server by itself.
+            # The URL should generally end with "/".
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            external_server: ""
+
+          container:
+            # -- Specifies the network to which the container will connect.
+            # Could be hosted, bridge or the name of a custom network.
+            # If it's empty, create a network automatically.
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            network: ""
+            # -- Whether to create networks with IPv6 enabled. Requires the Docker daemon to be set up accordingly.
+            # Only takes effect if "network" is set to "".
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            enable_ipv6: false
+            # -- And other options to be used when the container is started (eg, `--add-host=my.forgejo.url:host-gateway`).
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            privileged: false
+            # -- And other options to be used when the container is started (eg, `--add-host=my.forgejo.url:host-gateway`).
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            options:
+            # -- The parent directory of a job's working directory.
+            # If it's empty, /workspace will be used.
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            workdir_parent:
+            # -- Volumes (including bind mounts) can be mounted to containers. Glob syntax is supported, see https://github.com/gobwas/glob
+            # You can specify multiple volumes. If the sequence is empty, no volumes can be mounted.
+            # For example, if you only allow containers to mount the `data` volume and all the json files in `/src`, you should change the config to:
+            # valid_volumes:
+            #   - data
+            #   - /src/*.json
+            # If you want to allow any volume, please use the following configuration:
+            # valid_volumes:
+            #   - '**'
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            valid_volumes: [ ]
+            # -- overrides the docker client host with the specified one.
+            # If "-", an available docker host will automatically be found.
+            # If empty, an available docker host will automatically be found and mounted in the job container (e.g. /var/run/docker.sock).
+            # Otherwise the specified docker host will be used and an error will be returned if it doesn't work.
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            docker_host: "-"
+            # -- Pull docker image(s) even if already present
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            force_pull: false
+
+          host:
+            # -- The parent directory of a job's working directory.
+            # If it's empty, $HOME/.cache/act/ will be used.
+            # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
+            workdir_parent:
