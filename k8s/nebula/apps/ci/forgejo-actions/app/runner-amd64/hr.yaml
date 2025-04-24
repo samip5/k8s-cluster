@@ -47,7 +47,7 @@ spec:
         create: true
         name: forgejo-runner-amd64
         #existingSecret: "forgejo-runner-amd64"
-        instance: https://git.skyssolutions.fi
+        instance: https://git.skysolutions.fi
         file:
           log:
             # -- The level of logging, can be trace, debug, info, warn, error, fatal
