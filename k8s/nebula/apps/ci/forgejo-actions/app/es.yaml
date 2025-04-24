@@ -1,0 +1,19 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: forgejo-actions
+  namespace: gh-runners
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: onepassword-connect
+  target:
+    name: forgejo-actions-secret
+    template:
+      engineVersion: v2
+      data:
+        TOKEN: |-
+          {{ .ACTION_REGISTRATION_TOKEN }}
+  dataFrom:
+    - extract:
+        key: forgejo-actions

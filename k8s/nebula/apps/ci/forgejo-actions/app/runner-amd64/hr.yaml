@@ -45,6 +45,7 @@ spec:
     runner:
       config:
         create: true
+        name: forgejo-runner-amd64
         #existingSecret: "forgejo-runner-amd64"
         instance: https://git.skyssolutions.fi
         file:
@@ -161,3 +162,8 @@ spec:
             # If it's empty, $HOME/.cache/act/ will be used.
             # @section -- Configuration yaml of runner (see: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml)
             workdir_parent:
+  valuesFrom:
+    - kind: Secret
+      name: forgejo-actions-secret
+      valuesKey: TOKEN
+      targetPath: runner.config.token
