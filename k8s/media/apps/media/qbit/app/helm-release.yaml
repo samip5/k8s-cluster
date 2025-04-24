@@ -44,7 +44,6 @@ spec:
           app:
             env:
               QBITTORRENT__BT_PORT: 57427
-              QBITTORRENT__PORT: &port 80
               TZ: Europe/Helsinki
             image:
               repository: ghcr.io/home-operations/qbittorrent
@@ -88,7 +87,7 @@ spec:
               - name: FIREWALL_VPN_INPUT_PORTS
                 value: 1637,41909,57427
               - name: FIREWALL_INPUT_PORTS
-                value: 80
+                value: 8080
               - name: WIREGUARD_MTU
                 value: 1320
             envFrom:
@@ -117,7 +116,7 @@ spec:
         rules:
           - backendRefs:
               - name: *app
-                port: *port
+                port: 8080
     persistence:
       config:
         existingClaim: qbit-config
@@ -138,4 +137,4 @@ spec:
         controller: qbit
         ports:
           http:
-            port: 80
+            port: 8080
