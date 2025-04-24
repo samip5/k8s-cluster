@@ -17,7 +17,7 @@ spec:
           - group: ""
             kind: Service
             name: authentik-server
-            namespace: services
+            namespace: security
             port: 80
             weight: 1
         matches:
