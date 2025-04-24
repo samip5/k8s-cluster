@@ -8,7 +8,7 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: fergejo-runner
+      chart: forgejo-runner
       version: 0.4.25
       sourceRef:
         kind: HelmRepository
