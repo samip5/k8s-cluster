@@ -29,10 +29,10 @@ spec:
 
     kubectl:
       image:
-        registry: registry.k8s.io
+        registry: ghcr.io/auricom
         repository: kubectl
         pullPolicy: IfNotPresent
-        tag: 1.32.1
+        tag: 1.32
 
     serviceAccount:
       create: false
