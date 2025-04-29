@@ -34,7 +34,7 @@ spec:
     global:
       image:
         repository: ghcr.io/goauthentik/server
-        tag: 2025.2.4
+        tag: 2025.4.0-rc2
       fullnameOverride: authentik
     authentik:
       log_level: debug
@@ -46,7 +46,7 @@ spec:
         from: "no-reply@skylab.fi"
       secret_key: "${SECRET_AUTHENTIK_SECRET_KEY}"
       error_reporting:
-        enable: false
+        enable: true
         send_pii: false
         environment: "kryptonian"
       outposts:
