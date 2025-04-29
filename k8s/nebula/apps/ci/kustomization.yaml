@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - ns.yaml
   - github-actions
-  - forgejo-actions/ks.yaml
+#  - forgejo-actions/ks.yaml
 #  - buildkitd/ks.yaml

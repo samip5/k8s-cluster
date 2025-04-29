@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: scrutiny
+  name: &app scrutiny
   namespace: monitoring
 spec:
   interval: 30m
@@ -85,22 +85,17 @@ spec:
               startup:
                 enabled: false
 
-
-    ingress:
-      main:
-        className: internal-nginx
-        hosts:
-          - host: &host "scrutiny.skylab.fi"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: scrutiny
-                  port: 8080
-        tls:
-          - hosts:
-              - *host
-
+    route:
+      app:
+        hostnames: [ "scrutiny.skylab.fi" ]
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
 
     service:
       scrutiny:
