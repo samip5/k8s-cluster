@@ -15,7 +15,6 @@ resources:
   - ./external-dns/ks-kapsi.yaml
   - ./whoami/ks.yaml
   - ./unimus/ks.yaml
-  - ./observium/ks.yaml
   - ./tailscale/ks.yaml
   - ./k8s-gateway/ks.yaml
   - ./envoy/ks.yaml
