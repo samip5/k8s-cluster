@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: actual
+  name: &app actual
 spec:
   interval: 30m
   chart:
@@ -56,20 +56,22 @@ spec:
         controller: actual
         ports:
           http:
-            port: 5006
+            port: &port 5006
 
-#    ingress:
-#      app:
-#        className: "internal-nginx"
-#        annotations:
-#          hajimari.io/icon: mdi:cash
-#        hosts:
-#          - host: actual.skylab.fi
-#            paths:
-#              - path: /
-#                service:
-#                  identifier: app
-#                  port: http
+    route:
+      app:
+        annotations:
+          hajimari.io/icon: mdi:cash
+        hostnames:
+          - "actual.skylab.fi"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
 
     persistence:
       data:
