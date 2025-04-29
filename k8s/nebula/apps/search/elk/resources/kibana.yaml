@@ -6,7 +6,7 @@ metadata:
   namespace: search
 spec:
   version: 8.16.1
-  count: 2
+  count: 1
   elasticsearchRef:
     name: main
   config:
