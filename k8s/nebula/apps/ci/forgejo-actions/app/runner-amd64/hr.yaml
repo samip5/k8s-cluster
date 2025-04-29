@@ -34,7 +34,7 @@ spec:
         registry: ghcr.io/auricom
         repository: kubectl
         pullPolicy: IfNotPresent
-        tag: 1.32
+        tag: 1.33
 
     serviceAccount:
       create: false
