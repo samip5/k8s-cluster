@@ -108,6 +108,24 @@ spec:
             protocol: TCP
             targetPort: 8080
     route:
+      int:
+        hostnames:
+          - "matrix.skylab.fi"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
+        rules:
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /_matrix
+              - path:
+                  type: PathPrefix
+                  value: /
+            backendRefs:
+              - name: *app
+                port: *port
       matrix:
         annotations:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
@@ -115,9 +133,6 @@ spec:
         hostnames:
           - "matrix.skylab.fi"
         parentRefs:
-          - name: envoy-internal
-            namespace: networking
-            sectionName: https
           - name: envoy-external
             namespace: networking
             sectionName: https
@@ -136,9 +151,6 @@ spec:
         hostnames:
           - "skylab.fi"
         parentRefs:
-          - name: envoy-internal
-            namespace: networking
-            sectionName: https-root
           - name: envoy-external
             namespace: networking
             sectionName: https-root
@@ -150,33 +162,33 @@ spec:
             backendRefs:
               - name: *app
                 port: *port
-    ingress:
-      main:
-        className: "external-nginx"
-        annotations:
-          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-          external-dns.alpha.kubernetes.io/target: "ingress-cf.skylab.fi"
-          nginx.ingress.kubernetes.io/proxy-body-size: "0"
-        hosts:
-          - host: "skylab.fi"
-            paths:
-              - path: /.well-known/matrix
-                pathType: Prefix
-                service:
-                  identifier: main
-                  port: 8080
-
-          - host: "matrix.skylab.fi"
-            paths:
-              - path: /_matrix
-                pathType: Prefix
-                service:
-                  identifier: main
-                  port: 8080
-        tls:
-          - hosts:
-              - skylab.fi
-              - matrix.skylab.fi
+#    ingress:
+#      main:
+#        className: "external-nginx"
+#        annotations:
+#          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+#          external-dns.alpha.kubernetes.io/target: "ingress-cf.skylab.fi"
+#          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+#        hosts:
+#          - host: "skylab.fi"
+#            paths:
+#              - path: /.well-known/matrix
+#                pathType: Prefix
+#                service:
+#                  identifier: main
+#                  port: 8080
+#
+#          - host: "matrix.skylab.fi"
+#            paths:
+#              - path: /_matrix
+#                pathType: Prefix
+#                service:
+#                  identifier: main
+#                  port: 8080
+#        tls:
+#          - hosts:
+#              - skylab.fi
+#              - matrix.skylab.fi
 #
 #      int:
 #        className: "internal-nginx"
