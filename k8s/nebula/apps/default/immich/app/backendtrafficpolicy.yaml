@@ -5,6 +5,7 @@ metadata:
   namespace: default
 spec:
   targetRef:
+    group: ""
     kind: Service
     name: immich-server
   loadBalancer:
