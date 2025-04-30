@@ -58,7 +58,7 @@ spec:
     route:
       app:
         hostnames:
-          - "dh.skylab.fi"
+          - "dh.media.skylab.fi"
         parentRefs:
           - name: envoy-internal
             namespace: networking
