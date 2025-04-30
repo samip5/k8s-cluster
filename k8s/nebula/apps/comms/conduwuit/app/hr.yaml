@@ -42,7 +42,7 @@ spec:
           app:
             image:
                 repository: ghcr.io/girlbossceo/conduwuit
-                tag: main-d8311a5ff672fdc4729d956af5e3af8646b0670d-debug
+                tag: main-d8311a5ff672fdc4729d956af5e3af8646b0670d
             env:
               - name: CONDUWUIT_SERVER_NAME
                 value: "skylab.fi"
