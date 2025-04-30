@@ -50,7 +50,7 @@ spec:
         send_pii: false
         environment: "kryptonian"
       outposts:
-        container_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
+        container_image_base: ghcr.io/goauthentik/%(type)s:2025.4.0-rc2
       postgresql:
         host: "postgres16-rw.databases.svc.cluster.local"
         name: "authentik"
