@@ -1,0 +1,14 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: BackendTrafficPolicy
+metadata:
+  name: immich-client-ip-affinity
+  namespace: default
+spec:
+  targetRef:
+    kind: Service
+    name: immich-server
+    namespace: default
+  loadBalancer:
+    type: ConsistentHash
+    consistentHash:
+      type: SourceIP
