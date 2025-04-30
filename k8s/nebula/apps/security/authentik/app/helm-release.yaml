@@ -28,7 +28,7 @@ spec:
     recreate: true
     cleanupOnFail: true
   dependsOn:
-    - name: redis
+    - name: dragonfly-cluster
       namespace: databases
   values:
     global:
@@ -57,7 +57,7 @@ spec:
         user: "authentik"
         password: "${SECRET_AUTHENTIK_POSTGRES_PASSWORD}"
       redis:
-        host: "redis.databases.svc.cluster.local"
+        host: "dragonfly.databases.svc.cluster.local"
 
     server:
       replicas: 2

@@ -41,7 +41,7 @@ spec:
                 IMMICH_MACHINE_LEARNING_URL: http://immich-ml.default.svc.cluster.local:3003
                 IMMICH_LOG_LEVEL: verbose
                 IMMICH_IGNORE_MOUNT_CHECK_ERRORS: "true"
-                REDIS_HOSTNAME: redis.databases.svc.cluster.local
+                REDIS_HOSTNAME: dragonfly.databases.svc.cluster.local
                 REDIS_PORT: "6379"
                 REDIS_DBINDEX: 9
               IMMICH_WORKERS_INCLUDE: &server-include 'api'

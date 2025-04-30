@@ -25,7 +25,7 @@ spec:
         # https://docs.openwebui.com/getting-started/advanced-topics/env-configuration/#redis
         ENABLE_WEBSOCKET_SUPPORT: "true"
         WEBSOCKET_MANAGER: "redis"
-        WEBSOCKET_REDIS_URL: "redis://redis.databases:6379"
+        WEBSOCKET_REDIS_URL: "redis://dragonfly.databases.svc.cluster.local:6379"
 
 
   dataFrom:
