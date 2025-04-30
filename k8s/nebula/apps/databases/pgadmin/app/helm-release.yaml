@@ -43,7 +43,7 @@ spec:
           main:
             image:
               repository: registry.skysolutions.fi/docker.io/dpage/pgadmin4
-              tag: 9.2
+              tag: 9.3
             env:
               PGADMIN_DEFAULT_EMAIL: sm@${SECRET_DOMAIN}
               PGADMIN_DEFAULT_PASSWORD: ${SECRET_PASSWORD}
