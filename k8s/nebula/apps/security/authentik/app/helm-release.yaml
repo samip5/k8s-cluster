@@ -69,21 +69,22 @@ spec:
 
 
       route:
-        enabled: true
-        hostnames: ["id.skylab.fi"]
-        annotations:
-          external-dns.alpha.kubernetes.io/target: ingress.skylab.fi
-        parentRefs:
-          - group: gateway.networking.k8s.io
-            kind: Gateway
-            name: envoy-internal
-            namespace: networking
-            sectionName: https
-          - group: gateway.networking.k8s.io
-            kind: Gateway
-            name: envoy-external
-            namespace: networking
-            sectionName: https
+        main:
+          enabled: true
+          hostnames: ["id.skylab.fi"]
+          annotations:
+            external-dns.alpha.kubernetes.io/target: ingress.skylab.fi
+          parentRefs:
+            - group: gateway.networking.k8s.io
+              kind: Gateway
+              name: envoy-internal
+              namespace: networking
+              sectionName: https
+            - group: gateway.networking.k8s.io
+              kind: Gateway
+              name: envoy-external
+              namespace: networking
+              sectionName: https
       metrics:
         serviceMonitor:
           enabled: true
