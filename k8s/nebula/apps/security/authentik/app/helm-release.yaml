@@ -27,9 +27,6 @@ spec:
     timeout: 10m
     recreate: true
     cleanupOnFail: true
-  dependsOn:
-    - name: dragonfly-cluster
-      namespace: databases
   values:
     global:
       image:

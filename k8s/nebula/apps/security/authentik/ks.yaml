@@ -8,6 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: cnpg-cluster
+    - name: dragonfly-cluster
   path: ./k8s/nebula/apps/security/authentik/app
   prune: true
   sourceRef:
