@@ -20,7 +20,7 @@ spec:
     - name: rook-ceph-operator
   values:
     clusterName: nebula
-    skipUpgradeChecks: true
+    # skipUpgradeChecks: true
     toolbox:
       enabled: true
       image: quay.io/ceph/ceph:v19.2.2
