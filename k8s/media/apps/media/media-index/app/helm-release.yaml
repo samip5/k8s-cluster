@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: index
+  name: &app index
   namespace: media
 spec:
   interval: 15m
@@ -53,29 +53,43 @@ spec:
         controller: main
         ports:
           http:
-            port: 80
-    ingress:
-      main:
-        className: nginx
-#        annotations:
-#          nginx.ingress.kubernetes.io/auth-method: GET
-#          nginx.ingress.kubernetes.io/auth-url: http://wa-bs.n.kapsi.fi:40118/api/authz/auth-request
-#          nginx.ingress.kubernetes.io/auth-signin: https://sso.skylab.fi?rm=$request_method
-#          nginx.ingress.kubernetes.io/auth-response-headers: Remote-User,Remote-Groups
-#          nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Method $request_method;
-        hosts:
-          - host: &host "dh.skylab.fi"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: main
-                  port: 80
+            port: &port 80
 
-        tls:
-          - hosts:
-              - *host
-            secretName: "dh.skylab.fi-tls"
+    route:
+      app:
+        hostnames:
+          - "dh.skylab.fi"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https-media
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
+
+#    ingress:
+#      main:
+#        className: nginx
+##        annotations:
+##          nginx.ingress.kubernetes.io/auth-method: GET
+##          nginx.ingress.kubernetes.io/auth-url: http://wa-bs.n.kapsi.fi:40118/api/authz/auth-request
+##          nginx.ingress.kubernetes.io/auth-signin: https://sso.skylab.fi?rm=$request_method
+##          nginx.ingress.kubernetes.io/auth-response-headers: Remote-User,Remote-Groups
+##          nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Method $request_method;
+#        hosts:
+#          - host: &host "dh.skylab.fi"
+#            paths:
+#              - path: /
+#                pathType: Prefix
+#                service:
+#                  identifier: main
+#                  port: 80
+#
+#        tls:
+#          - hosts:
+#              - *host
+#            secretName: "dh.skylab.fi-tls"
 
       main2:
         className: nginx
@@ -92,22 +106,6 @@ spec:
           - hosts:
               - *host2
             secretName: "dh.media.skylab.fi-tls"
-
-      tailscale:
-        enabled: false
-        className: tailscale
-        hosts:
-          - host: &host2 "dh.tail251312.ts.net"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: main
-                  port: 80
-        tls:
-          - hosts:
-              - *host2
-            secretName: "dh.tail251312.ts.net-tls"
 
     persistence:
       config:
