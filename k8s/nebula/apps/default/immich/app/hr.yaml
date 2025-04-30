@@ -178,53 +178,6 @@ spec:
               - name: *app
                 port: *port
 
-#    ingress:
-#      main:
-#        className: internal-nginx
-#        annotations:
-#          nginx.ingress.kubernetes.io/configuration-snippet: |
-#            set $forwarded_client_ip "";
-#            if ($http_x_forwarded_for ~ "^([^,]+)") {
-#              set $forwarded_client_ip $1;
-#            }
-#            set $client_ip $remote_addr;
-#            if ($forwarded_client_ip != "") {
-#              set $client_ip $forwarded_client_ip;
-#            }
-#          nignx.ingress.kubernetes.io/force-ssl-redirect: "true"
-#          nginx.ingress.kubernetes.io/proxy-body-size: "0"
-#          nginx.ingress.kubernetes.io/upstream-hash-by: "$client_ip"
-#        hosts:
-#          - host: &host "photos.skylab.fi"
-#            paths: &paths
-#              - path: /
-#                pathType: Prefix
-#                service:
-#                  identifier: immich
-#                  port: http
-#        tls:
-#          - hosts: [ *host ]
-#      ext:
-#        className: external-nginx
-#        annotations:
-#          external-dns.alpha.kubernetes.io/target: r.home.skym.fi
-#          nginx.ingress.kubernetes.io/configuration-snippet: |
-#            set $forwarded_client_ip "";
-#            if ($http_x_forwarded_for ~ "^([^,]+)") {
-#              set $forwarded_client_ip $1;
-#            }
-#            set $client_ip $remote_addr;
-#            if ($forwarded_client_ip != "") {
-#              set $client_ip $forwarded_client_ip;
-#            }
-#          nignx.ingress.kubernetes.io/force-ssl-redirect: "true"
-#          nginx.ingress.kubernetes.io/proxy-body-size: "0"
-#          nginx.ingress.kubernetes.io/upstream-hash-by: "$client_ip"
-#        hosts:
-#          - host: *host
-#            paths: *paths
-#        tls:
-#          - hosts: [ *host ]
     persistence:
       data:
         existingClaim: immich-data
