@@ -66,19 +66,24 @@ spec:
         options:
           - name: ndots
             value: "2"
-      ingress:
+
+
+      route:
         enabled: true
-        ingressClassName: external-nginx
+        hostnames: ["id.skylab.fi"]
         annotations:
           external-dns.alpha.kubernetes.io/target: ingress.skylab.fi
-        hosts:
-          - &host "id.skylab.fi"
-        paths:
-          - /
-        tls:
-          - hosts:
-              - *host
-            secretName: skylab.fi-tls
+        parentRefs:
+          - group: gateway.networking.k8s.io
+            kind: Gateway
+            name: envoy-internal
+            namespace: networking
+            sectionName: https
+          - group: gateway.networking.k8s.io
+            kind: Gateway
+            name: envoy-external
+            namespace: networking
+            sectionName: https
       metrics:
         serviceMonitor:
           enabled: true
