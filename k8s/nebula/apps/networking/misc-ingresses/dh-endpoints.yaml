@@ -5,7 +5,7 @@ metadata:
   namespace: networking
 subsets:
   - addresses:
-      - ip: 10.41.69.80
+      - ip: 192.168.12.20
     ports:
       - name: http
         port: 80
