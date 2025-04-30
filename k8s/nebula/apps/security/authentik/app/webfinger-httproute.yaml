@@ -9,12 +9,12 @@ spec:
       kind: Gateway
       name: envoy-external
       namespace: networking
-      sectionName: https
+      sectionName: https-root
     - group: gateway.networking.k8s.io
       kind: Gateway
       name: envoy-internal
       namespace: networking
-      sectionName: https
+      sectionName: https-root
   hostnames:
     - skylab.fi
   rules:
@@ -26,3 +26,9 @@ spec:
         - type: URLRewrite
           urlRewrite:
             hostname: id.skylab.fi
+      backendRefs:
+        - kind: Service
+          name: authentik-server
+          namespace: security
+          port: 80
+          weight: 1
