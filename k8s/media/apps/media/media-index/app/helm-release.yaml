@@ -91,21 +91,21 @@ spec:
 #              - *host
 #            secretName: "dh.skylab.fi-tls"
 
-      main2:
-        className: nginx
-        hosts:
-          - host: &host2 "dh.media.skylab.fi"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: main
-                  port: 80
+#      main2:
+#        className: nginx
+#        hosts:
+#          - host: &host2 "dh.media.skylab.fi"
+#            paths:
+#              - path: /
+#                pathType: Prefix
+#                service:
+#                  identifier: main
+#                  port: 80
 
-        tls:
-          - hosts:
-              - *host2
-            secretName: "dh.media.skylab.fi-tls"
+#        tls:
+#          - hosts:
+#              - *host2
+#            secretName: "dh.media.skylab.fi-tls"
 
     persistence:
       config:
