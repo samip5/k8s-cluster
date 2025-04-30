@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: authentik
-      version: 2025.2.4
+      version: 2025.4.0
       sourceRef:
         kind: HelmRepository
         name: authentik-charts
@@ -34,7 +34,7 @@ spec:
     global:
       image:
         repository: ghcr.io/goauthentik/server
-        tag: 2025.4.0-rc2
+        tag: 2025.4.0
       fullnameOverride: authentik
     authentik:
       log_level: debug
@@ -50,7 +50,7 @@ spec:
         send_pii: false
         environment: "kryptonian"
       outposts:
-        container_image_base: ghcr.io/goauthentik/%(type)s:2025.4.0-rc2
+        container_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
       postgresql:
         host: "postgres16-rw.databases.svc.cluster.local"
         name: "authentik"
