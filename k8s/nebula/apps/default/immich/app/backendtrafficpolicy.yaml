@@ -5,9 +5,9 @@ metadata:
   namespace: default
 spec:
   targetRef:
-    group: ""
-    kind: Service
-    name: immich-server
+    group: "gateway.networking.k8s.io"
+    kind: HTTPRoute
+    name: immich
   loadBalancer:
     type: ConsistentHash
     consistentHash:
