@@ -11,8 +11,34 @@ spec:
     - name: envoy-internal
       namespace: networking
       sectionName: https-media
+    - name: envoy-external
+      namespace: networking
+      sectionName: https-media
   hostnames:
     - "jelly.media.skylab.fi"
+  rules:
+    - backendRefs:
+        - name: dh
+          port: 443
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: dh-index
+  namespace: networking
+  annotations:
+    external-dns-cf/is-dns-public: "true"
+    external-dns.alpha.kubernetes.io/target: "ingress.skylab.fi"
+spec:
+  parentRefs:
+    - name: envoy-external
+      namespace: networking
+      sectionName: https-media
+    - name: envoy-internal
+      namespace: networking
+      sectionName: https-media
+  hostnames:
+    - "dh.media.skylab.fi"
   rules:
     - backendRefs:
         - name: dh
