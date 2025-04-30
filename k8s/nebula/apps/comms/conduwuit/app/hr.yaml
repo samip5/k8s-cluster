@@ -101,6 +101,7 @@ spec:
     service:
       main:
         controller: conduwuit
+        ipFamilyPolicy: RequireDualStack
         ports:
           http:
             port: &port 80
