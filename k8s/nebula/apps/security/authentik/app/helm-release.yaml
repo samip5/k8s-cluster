@@ -92,7 +92,9 @@ spec:
         limits:
           memory: 2Gi
     worker:
-      replicas:
+      replicas: 1
+      serviceAccount:
+        create: true
       pdb:
         enabled: false
         minAvailable: 1
