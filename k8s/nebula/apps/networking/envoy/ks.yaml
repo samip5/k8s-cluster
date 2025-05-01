@@ -6,6 +6,9 @@ metadata:
   name: envoy-manifests
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: envoy-app
+      namespace: flux-system
   interval: 10m
   path: "./k8s/nebula/apps/networking/envoy/manifests"
   prune: true

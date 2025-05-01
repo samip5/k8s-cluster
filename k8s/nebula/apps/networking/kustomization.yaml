@@ -17,4 +17,4 @@ resources:
   - ./unimus/ks.yaml
   - ./tailscale/ks.yaml
   - ./k8s-gateway/ks.yaml
-#  - ./envoy/ks.yaml
+  - ./envoy/ks.yaml
