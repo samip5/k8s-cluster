@@ -89,7 +89,7 @@ spec:
           encryption:
             enabled: true
       dashboard:
-        enabled: false
+        enabled: true
         urlPrefix: /
         ssl: false
       removeOSDsIfOutAndSafeToRemove: false
@@ -203,6 +203,7 @@ spec:
             csi.storage.k8s.io/fstype: xfs
     cephObjectStores: []
     ingress:
+      enabled: false
       dashboard:
         ingressClassName: "internal-nginx"
         annotations:
