@@ -1,15 +1,15 @@
----
-apiVersion: gateway.networking.k8s.io/v1
-kind: GatewayClass
-metadata:
-  name: envoy
-spec:
-  controllerName: gateway.envoyproxy.io/gatewayclass-controller
-  parametersRef:
-    group: gateway.envoyproxy.io
-    kind: EnvoyProxy
-    name: config
-    namespace: networking
+#---
+#apiVersion: gateway.networking.k8s.io/v1
+#kind: GatewayClass
+#metadata:
+#  name: envoy
+#spec:
+#  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+#  parametersRef:
+#    group: gateway.envoyproxy.io
+#    kind: EnvoyProxy
+#    name: config
+#    namespace: networking
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway

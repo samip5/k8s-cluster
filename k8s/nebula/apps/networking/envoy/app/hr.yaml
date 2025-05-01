@@ -31,5 +31,31 @@ spec:
           tag: v1.4.0-rc.1
         rbac:
           cluster: true
+    config:
+     envoyGateway:
+       gateway:
+         controllerName: gateway.envoyproxy.io/gatewayclass-controller
+       ipFamily: DualStack
+       telemetry:
+         metrics:
+           prometheus: {}
+       shutdown:
+         drainTimeout: 300s
+       logging:
+         level:
+           default: debug
+       provider:
+         type: Kubernetes
+         kubernetes:
+           envoyDeployment:
+             replicas: 3
+             container:
+               resources:
+                 requests:
+                   cpu: 150m
+                   memory: 640Mi
+                 limits:
+                   cpu: 500m
+                   memory: 1Gi
     topologyInjector:
       enabled: true
