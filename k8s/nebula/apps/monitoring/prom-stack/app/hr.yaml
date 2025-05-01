@@ -35,7 +35,7 @@ spec:
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
       ingress:
-        enabled: true
+        enabled: false
         ingressClassName: internal-nginx
         hosts: ["alerts.skylab.fi"]
         pathType: Prefix
@@ -68,7 +68,7 @@ spec:
       enabled: false
     prometheus:
       ingress:
-        enabled: true
+        enabled: false
         ingressClassName: internal-nginx
         hosts: ["prom.skylab.fi"]
         pathType: Prefix
