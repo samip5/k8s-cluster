@@ -41,7 +41,7 @@ envoy:
   enabled: false
 
 gatewayAPI:
-  enabled: true
+  enabled: false
   enableAlpn: true
   xffNumTrustedHops: 1
   secretsNamespace:
