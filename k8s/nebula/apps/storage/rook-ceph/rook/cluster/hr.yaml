@@ -89,7 +89,7 @@ spec:
           encryption:
             enabled: true
       dashboard:
-        enabled: true
+        enabled: false
         urlPrefix: /
         ssl: false
       removeOSDsIfOutAndSafeToRemove: false
