@@ -35,7 +35,6 @@ spec:
      envoyGateway:
        gateway:
          controllerName: gateway.envoyproxy.io/gatewayclass-controller
-       ipFamily: DualStack
        telemetry:
          metrics:
            prometheus: {}
@@ -46,16 +45,5 @@ spec:
            default: debug
        provider:
          type: Kubernetes
-         kubernetes:
-           envoyDeployment:
-             replicas: 3
-             container:
-               resources:
-                 requests:
-                   cpu: 150m
-                   memory: 640Mi
-                 limits:
-                   cpu: 500m
-                   memory: 1Gi
     topologyInjector:
-      enabled: true
+      enabled: false
