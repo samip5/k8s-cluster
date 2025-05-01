@@ -202,16 +202,3 @@ spec:
             csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
             csi.storage.k8s.io/fstype: xfs
     cephObjectStores: []
-    ingress:
-      enabled: false
-      dashboard:
-        ingressClassName: "internal-nginx"
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
-        host:
-          name: "rook.skylab.fi"
-          path: "/"
-        tls:
-          - secretName: rook-tls
-            hosts:
-              - "rook.skylab.fi"
