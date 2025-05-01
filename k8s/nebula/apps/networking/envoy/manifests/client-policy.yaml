@@ -20,6 +20,7 @@ spec:
       - http/1.1
   http1:
     http10: {}
+  # Not supported yet: https://github.com/envoyproxy/gateway/pull/5671
   #http3: {}
 ---
 apiVersion: gateway.envoyproxy.io/v1alpha1
