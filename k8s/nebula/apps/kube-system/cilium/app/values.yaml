@@ -111,7 +111,7 @@ hubble:
     enabled: true
     rollOutPods: true
     ingress:
-      enabled: true
+      enabled: false
       className: "internal-nginx"
       annotations:
         cert-manager.io/cluster-issuer: zerossl-production
