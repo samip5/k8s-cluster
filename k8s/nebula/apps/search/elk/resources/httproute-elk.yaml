@@ -1,0 +1,49 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  annotations:
+    gateway.networking.k8s.io/generator: ingress2gateway-v0.4.0-rc1-7-g36c9792
+  name: elk
+  namespace: search
+spec:
+  hostnames:
+    - elk.skylab.fi
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: envoy-internal
+      namespace: networking
+      sectionName: https
+  rules:
+    - backendRefs:
+        - name: main-es-http
+          port: 9200
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  annotations:
+    gateway.networking.k8s.io/generator: ingress2gateway-v0.4.0-rc1-7-g36c9792
+  name: kb
+  namespace: search
+spec:
+  hostnames:
+    - kb.skylab.fi
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: envoy-internal
+      namespace: networking
+      sectionName: https
+  rules:
+    - backendRefs:
+        - name: main-kb-http
+          port: 5601
+      matches:
+        - path:
+            type: PathPrefix
+            value: /

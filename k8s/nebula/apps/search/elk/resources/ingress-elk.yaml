@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
     nginx.ingress.kubernetes.io/proxy-ssl-verify: 'off'
 spec:
-  ingressClassName: internal-nginx
+  ingressClassName: nginx
   rules:
     - host: elk.skylab.fi
       http:
@@ -30,7 +30,7 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
     nginx.ingress.kubernetes.io/proxy-ssl-verify: 'off'
 spec:
-  ingressClassName: internal-nginx
+  ingressClassName: nginx
   rules:
     - host: kb.skylab.fi
       http:
