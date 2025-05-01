@@ -31,4 +31,4 @@ spec:
         rbac:
           cluster: true
     topologyInjector:
-      enabled: false
+      enabled: true
