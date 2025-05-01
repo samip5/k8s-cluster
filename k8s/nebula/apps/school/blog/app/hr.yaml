@@ -80,47 +80,24 @@ spec:
         type: ClusterIP
         ports:
           http:
-            port: 2368
+            port: &port 2368
 
-    ingress:
-      main:
-        enabled: true
-        className: "external-nginx"
+    route:
+      app:
         annotations:
-          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
           external-dns.alpha.kubernetes.io/target: "r.home.skym.fi"
-
-        hosts:
-          - host: "${HOSTNAME}"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: app
-                  port: http
-        tls:
-          - hosts:
-              - "${HOSTNAME}"
-            #secretName: ${HOSTNAME}-prod-tls
-
-      int:
-        className: "internal-nginx"
-        annotations:
-          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-
-        hosts:
-          - host: "${HOSTNAME}"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: app
-                  port: http
-        tls:
-          - hosts:
-              - "${HOSTNAME}"
-#            secretName: ${HOSTNAME}-prod-tls
+        hostnames: [ "${HOSTNAME}" ]
+        parentRefs:
+        - name: envoy-external
+          namespace: kube-system
+          sectionName: https
+        - name: envoy-internal
+          namespace: kube-system
+          sectionName: https
+        rules:
+        - backendRefs:
+            - name: *app
+              port: *port
 
 
 
