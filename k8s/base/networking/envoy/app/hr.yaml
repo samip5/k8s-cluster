@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: gateway-helm
-      version: v1.3.2
+      version: v0.0.0-latest
       sourceRef:
         kind: HelmRepository
         name: envoy-proxy
