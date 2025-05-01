@@ -111,24 +111,28 @@ spec:
         runAsNonRoot: true
         runAsUser: 999
         runAsGroup: 999
-    ingress:
-      app:
-        className: internal-nginx
-        hosts:
-          - host: "{{ .Release.Name }}.skylab.fi"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
-    persistence:
-      config:
-        type: emptyDir
-        globalMounts:
-          - path: *configDir
+
     service:
       app:
         controller: *app
         ports:
           http:
             port: *apiPort
+
+    route:
+      app:
+        hostnames: [ "{{ .Release.Name }}.skylab.fi" ]
+        parentRefs:
+          - name: envoy-internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *apiPort
+
+    persistence:
+      config:
+        type: emptyDir
+        globalMounts:
+          - path: *configDir
