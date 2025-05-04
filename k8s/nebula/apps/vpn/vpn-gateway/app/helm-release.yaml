@@ -122,7 +122,7 @@ spec:
     persistence:
       config:
         type: configMap
-        name: vpn-gateway-configmap
+        name: vpn-gateway-config
         advancedMounts:
           vpn-gateway:
             routes:
