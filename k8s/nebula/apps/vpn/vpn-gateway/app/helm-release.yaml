@@ -23,15 +23,15 @@ spec:
       vpn-gateway:
         annotations:
           reloader.stakater.com/auto: "true"
-          initContainers:
-            routes:
-              image:
-                repository: ghcr.io/angelnu/pod-gateway
-                tag: v1.13.0
-              command:
-                - /bin/gateway_init.sh
-              securityContext:
-                privileged: true
+        initContainers:
+          routes:
+            image:
+              repository: ghcr.io/angelnu/pod-gateway
+              tag: v1.13.0
+            command:
+              - /bin/gateway_init.sh
+            securityContext:
+              privileged: true
         containers:
           gateway:
             image:
