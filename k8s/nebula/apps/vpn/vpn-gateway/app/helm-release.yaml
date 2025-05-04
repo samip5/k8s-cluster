@@ -1,20 +1,16 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/common-3.7.3/charts/library/common/values.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: vpn-gateway
+  name: &app vpn-gateway
   namespace: vpn
 spec:
   interval: 15m
-  chart:
-    spec:
-      chart: pod-gateway
-      version: 6.5.1
-      sourceRef:
-        kind: HelmRepository
-        name: angelnu-charts
-        namespace: flux-system
-      interval: 15m
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+    namespace: flux-system
   install:
     createNamespace: true
     remediation:
@@ -23,108 +19,115 @@ spec:
     remediation:
       retries: 5
   values:
-    image:
-      repository: ghcr.io/angelnu/pod-gateway
-      tag: v1.13.0
-#      repository: registry.skysolutions.fi/library/pod-gateway
-#      tag: 110125@sha256:2578dd6cc5d56857a9ffaf992e573c97bda68307ac593162982d35f298b617ee
-
-    addons:
-      netshoot:
+    controllers:
+      vpn-gateway:
+        annotations:
+          reloader.stakater.com/auto: "true"
+          initContainers:
+            routes:
+              image:
+                repository: ghcr.io/angelnu/pod-gateway
+                tag: v1.13.0
+              command:
+                - /bin/gateway_init.sh
+              securityContext:
+                privileged: true
+        containers:
+          gateway:
+            image:
+              repository: ghcr.io/angelnu/pod-gateway
+              tag: v1.13.0
+            command:
+              - /bin/gateway_sidecar.sh
+            securityContext:
+              capabilities:
+                add: [ "NET_RAW", "NET_ADMIN" ]
+          netshoot:
+            image:
+              repository: ghcr.io/nicolaka/netshoot
+              tag: v0.13
+            command:
+              - /bin/sh
+              - -c
+              - sleep infinity
+            resources:
+              requests:
+                cpu: 10m
+                memory: 10M
+              limits:
+                memory: 50M
+            securityContext:
+              capabilities:
+                add: [ "NET_ADMIN" ]
+          gluetun:
+            image:
+              repository: ghcr.io/qdm12/gluetun
+              tag: v3.40.0@sha256:2b42bfa046757145a5155acece417b65b4443c8033fb88661a8e9dcf7fda5a00
+            env:
+              TZ: "Europe/Helsinki"
+              VPN_TYPE: wireguard
+              VPN_SERVICE_PROVIDER: airvpn
+              VPN_INTERFACE: wg0
+              FIREWALL: "off"
+              DOT: "off"
+              FIREWALL_VPN_INPUT_PORTS: "51820,55633"
+              SERVER_COUNTRIES: "Switzerland,Netherlands"
+              WIREGUARD_MTU: 1320
+            envFrom:
+              - secretRef:
+                  name: pod-gateway-secret
+            resources:
+              requests:
+                cpu: 15m
+                memory: 64Mi
+              limits:
+                squat.ai/tun: 1
+                memory: 128Mi
+            securityContext:
+              capabilities:
+                add: [ "NET_ADMIN" ]
+    service:
+      app:
+        controller: *app
+        type: ClusterIP
+        clusterIP: None
+        ports:
+          vxlan:
+            protocol: UDP
+            port: 4789
+    configMaps:
+      config:
         enabled: true
-      vpn:
-        enabled: true
-        type: gluetun
-        image:
-          repository: docker.io/qmcgaw/gluetun
-          tag: v3.40.0
-        env:
-          - name: VPN_TYPE
-            value: wireguard
-          - name: VPN_SERVICE_PROVIDER
-            value: airvpn
-          - name: VPN_INTERFACE
-            value: wg0
-          - name: FIREWALL
-            value: "off"
-          - name: DOT
-            value: "off"
-          - name: FIREWALL_VPN_INPUT_PORTS
-            value: 51820,55633
-          - name: SERVER_COUNTRIES
-            value: "Switzerland,Netherlands"
-          - name: WIREGUARD_MTU
-            value: 1320
-          # - name:  WIREGUARD_PRIVATE_KEY
-          #   value: set in secret
-          # - name:  WIREGUARD_ADDRESSES
-          #   value: set in secret
-
-        envFrom:
-          - secretRef:
-              name: vpn-gateway-vpnconfig
-        securityContext:
-          privileged: true
-#          capabilities:
-#            add:
-#              - NET_ADMIN
-
-      networkPolicy:
-        enabled: false
-#        egress:
-#          - to:
-#              - ipBlock:
-#                  cidr: 0.0.0.0/0
-#              - ipBlock:
-#                  cidr: ::/0 # Allow IPv6 to VPN servers
-#            ports:
-#              # VPN traffic
-#              - port: 51820
-#                protocol: UDP
-#              - port: 1637
-#                protocol: UDP
-#              - port: 53
-#                protocol: UDP
-#          - to:
-#              - namespaceSelector: {}
-
-    podAnnotations:
-      configmap.reloader.stakater.com/reload: vpn-gateway-pod-gateway
-      secret.reloader.stakater.com/reload: vpn-gateway-vpnconfig
-
-
-    DNS: 172.16.1.1
-    routed_namespaces:
-      - media
-
-    settings:
-      IPV4_ENABLED: true
-      IPV6_ENABLED: false
-      VPN_INTERFACE: "wg0"
-      VXLAN_ID: 44
-      VXLAN_PORT: 4789
-      VXLAN_IP_NETWORK: 172.16.1
-      VXLAN_IPV6_NETWORK: fd60:ca7f:e5d8:42e9
-      VXLAN_GATEWAY_FIRST_DYNAMIC_IP: 20
-      VPN_BLOCK_OTHER_TRAFFIC: false
-      VPN_TRAFFIC_PORT: "51820"
-      VPN_LOCAL_CIDRS: 10.0.0.0/8 192.168.0.0/16
-      NOT_ROUTED_TO_GATEWAY_CIDRS: 10.0.0.0/8 192.168.0.0/16
-
-
-    webhook:
-      image:
-        repository: ghcr.io/angelnu/gateway-admision-controller
-        tag: v3.12.0@sha256:6f6ab596afd5fef0ca4648eadfb21cd37ba86fa5afa8b85edcc072976a61fbed
-      gatewayDefault: false
-      gatewayLabel: setGateway
-      gatewayAnnotation: setGateway
-      namespaceSelector:
-        label: "vpn-routed-gateway"
+        data:
+          nat.conf: |
+           # Placeholder
+          nat6.conf: |
+           # Placeholder
+          settings.sh: |
+            #!/bin/sh
+            DNS_LOCAL_CIDRS="local"
+            IPV4_ENABLED="true"
+            IPV6_ENABLED="false"
+            NOT_ROUTED_TO_GATEWAY_CIDRS="10.0.0.0/8 192.168.0.0/16"
+            VPN_BLOCK_OTHER_TRAFFIC="false"
+            VPN_INTERFACE="wg0"
+            VPN_LOCAL_CIDRS="10.0.0.0/8 192.168.0.0/16"
+            VPN_TRAFFIC_PORT="51820"
+            VXLAN_GATEWAY_FIRST_DYNAMIC_IP="20"
+            VXLAN_ID="44"
+            VXLAN_IPV6_NETWORK="fd60:ca7f:e5d8:42e9"
+            VXLAN_IP_NETWORK="172.16.1"
+            VXLAN_PORT="4789"
 
     persistence:
-      dev:
-        enabled: false
-        hostPath: /dev/
-        mountPath: /dev/
-        type: hostPath
+      config:
+        type: configMap
+        name: vpn-gateway-configmap
+        advancedMounts:
+          pod-gateway:
+            routes:
+              - path: /config
+                readOnly: true
+            gateway:
+              - path: /config
+                readOnly: true

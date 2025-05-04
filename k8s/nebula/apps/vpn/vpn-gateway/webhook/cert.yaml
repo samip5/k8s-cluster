@@ -1,0 +1,60 @@
+---
+# Create a selfsigned Issuer, in order to create a root CA certificate for
+# signing webhook serving certificates
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: vpn-gateway-webhook-selfsign
+  labels:
+    app.kubernetes.io/name: pod-gateway
+    app.kubernetes.io/instance: vpn-gateway
+spec:
+  selfSigned: {}
+---
+# Generate a CA Certificate used to sign certificates for the webhook
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vpn-gateway-webhook-ca
+  labels:
+    app.kubernetes.io/name: pod-gateway
+    app.kubernetes.io/instance: vpn-gateway
+spec:
+  secretName: vpn-gateway-webhook-ca
+  duration: 43800h # 5y
+  issuerRef:
+    name: vpn-gateway-webhook-selfsign
+    kind: Issuer
+  commonName: "ca.vpn-gateway.cert-manager"
+  isCA: true
+---
+# Create an Issuer that uses the above generated CA certificate to issue certs
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: vpn-gateway-webhook-ca
+  labels:
+    app.kubernetes.io/name: pod-gateway
+    app.kubernetes.io/instance: vpn-gateway
+spec:
+  ca:
+    secretName: pod-gateway-webhook-ca
+---
+# Finally, generate a serving certificate for the webhook to use
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vpn-gateway-webhook-tls
+  labels:
+    app.kubernetes.io/name: pod-gateway
+    app.kubernetes.io/instance: vpn-gateway
+spec:
+  secretName: pod-gateway-webhook-tls
+  duration: 8760h # 1y
+  issuerRef:
+    name: vpn-gateway-webhook-ca
+    kind: Issuer
+  dnsNames:
+    - vpn-gateway-webhook
+    - vpn-gateway-webhook.vpn
+    - vpn-gateway-webhook.vpn.svc

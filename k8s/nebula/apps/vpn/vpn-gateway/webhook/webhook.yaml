@@ -1,0 +1,30 @@
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: vpn-gateway
+  labels:
+    app.kubernetes.io/name: pod-gateway
+    app.kubernetes.io/instance: vpn-gateway
+  annotations:
+    cert-manager.io/inject-ca-from: "vpn/vpn-gateway-webhook-tls"
+webhooks:
+  - name: vpn-gateway.svc.cluster.local
+    clientConfig:
+      service:
+        name: vpn-gateway-webhook
+        namespace: vpn
+        path: "/wh/mutating/setgateway"
+    rules:
+      - apiGroups: [""]
+        apiVersions: ["v1"]
+        operations: ["CREATE"]
+        resources: ["pods"]
+        scope: "Namespaced"
+    failurePolicy: Fail
+    admissionReviewVersions: ["v1", "v1beta1"]
+    sideEffects: None
+    timeoutSeconds: 5
+    namespaceSelector:
+      matchLabels:
+        label: "vpn-routed-gateway"
