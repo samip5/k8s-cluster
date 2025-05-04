@@ -75,7 +75,7 @@ spec:
               WIREGUARD_MTU: 1320
             envFrom:
               - secretRef:
-                  name: pod-gateway-secret
+                  name: vpn-gateway-vpnconfig
             resources:
               requests:
                 cpu: 15m
