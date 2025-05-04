@@ -81,7 +81,7 @@ spec:
                 cpu: 15m
                 memory: 64Mi
               limits:
-                squat.ai/tun: 1
+                kernel.org/tun: 1
                 memory: 128Mi
             securityContext:
               capabilities:
