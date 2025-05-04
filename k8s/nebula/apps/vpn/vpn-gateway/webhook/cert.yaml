@@ -38,7 +38,7 @@ metadata:
     app.kubernetes.io/instance: vpn-gateway
 spec:
   ca:
-    secretName: pod-gateway-webhook-ca
+    secretName: vpn-gateway-webhook-ca
 ---
 # Finally, generate a serving certificate for the webhook to use
 apiVersion: cert-manager.io/v1
@@ -49,7 +49,7 @@ metadata:
     app.kubernetes.io/name: pod-gateway
     app.kubernetes.io/instance: vpn-gateway
 spec:
-  secretName: pod-gateway-webhook-tls
+  secretName: vpn-gateway-webhook-tls
   duration: 8760h # 1y
   issuerRef:
     name: vpn-gateway-webhook-ca
