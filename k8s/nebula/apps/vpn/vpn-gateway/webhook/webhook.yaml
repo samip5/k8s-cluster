@@ -4,7 +4,7 @@ kind: MutatingWebhookConfiguration
 metadata:
   name: vpn-gateway
   labels:
-    app.kubernetes.io/name: pod-gateway
+    app.kubernetes.io/name: vpn-gateway
     app.kubernetes.io/instance: vpn-gateway
   annotations:
     cert-manager.io/inject-ca-from: "vpn/vpn-gateway-webhook-tls"
@@ -27,4 +27,4 @@ webhooks:
     timeoutSeconds: 5
     namespaceSelector:
       matchLabels:
-        label: "vpn-routed-gateway"
+        vpn-routed-gateway: "true"
