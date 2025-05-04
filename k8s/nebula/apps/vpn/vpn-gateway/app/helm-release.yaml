@@ -124,7 +124,7 @@ spec:
         type: configMap
         name: vpn-gateway-configmap
         advancedMounts:
-          pod-gateway:
+          vpn-gateway:
             routes:
               - path: /config
                 readOnly: true
