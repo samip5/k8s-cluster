@@ -29,6 +29,7 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    priorityClassName: system-cluster-critical
     csi:
       enableVolumeGroupSnapshot: false # TODO: enable this when v1beta1 CRDs are available
       cephFSKernelMountOptions: ms_mode=secure # Set when encryption/compression is enabled
