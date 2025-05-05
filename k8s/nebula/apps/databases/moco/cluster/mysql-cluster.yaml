@@ -3,7 +3,7 @@ kind: MySQLCluster
 metadata:
   name: mysql
 spec:
-  replicas: 3
+  replicas: 2
   mysqlConfigMapName: mysql-mycnf
   # backupPolicyName: daily
   podTemplate:
