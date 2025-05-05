@@ -19,7 +19,7 @@ spec:
     - --cluster_mode=emulated
     - --default_lua_flags=allow-undeclared-keys
   resources:
-    requests:
-      cpu: 100m
+#    requests:
+#      cpu: 100m
     limits:
       memory: 512Mi

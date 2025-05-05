@@ -49,7 +49,7 @@ spec:
               PGADMIN_DEFAULT_PASSWORD: ${SECRET_PASSWORD}
             resources:
               requests:
-                memory: 300Mi
+                memory: 64Mi
               limits:
                 memory: 1Gi
 
