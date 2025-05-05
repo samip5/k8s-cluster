@@ -61,6 +61,13 @@ spec:
             envFrom:
               - secretRef:
                   name: *app
+            resources:
+              requests:
+                  cpu: 10m
+                  memory: 100Mi
+              limits:
+                  cpu: 50m
+                  memory: 200Mi
 
     service:
       main:
