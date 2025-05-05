@@ -68,7 +68,7 @@ spec:
               VPN_TYPE: wireguard
               VPN_SERVICE_PROVIDER: airvpn
               VPN_INTERFACE: wg0
-              FIREWALL: "off"
+              FIREWALL_ENABLED_DISABLING_IT_SHOOTS_YOU_IN_YOUR_FOOT: "off"
               DOT: "off"
               FIREWALL_VPN_INPUT_PORTS: "51820,55633"
               SERVER_COUNTRIES: "Switzerland,Netherlands"
