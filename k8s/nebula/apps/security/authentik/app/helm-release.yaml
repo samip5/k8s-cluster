@@ -57,7 +57,7 @@ spec:
         host: "dragonfly.databases.svc.cluster.local"
 
     server:
-      replicas: 2
+      replicas: 1
       pdb:
         enabled: false
         minAvailable: 1
@@ -107,7 +107,7 @@ spec:
           cpu: 50m
           memory: 512Mi
         limits:
-          memory: 1Gi
+          memory: 1.5Gi
     prometheus:
       rules:
         enabled: true
