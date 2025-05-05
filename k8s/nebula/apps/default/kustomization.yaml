@@ -5,5 +5,5 @@ resources:
   - paperless/ks.yaml
   - smtp-relay/ks.yaml
   - your_spotify/ks.yaml
-  - linkwarden/ks.yaml
+#  - linkwarden/ks.yaml
   - immich/ks.yaml
