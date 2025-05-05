@@ -53,7 +53,7 @@ spec:
               limits:
                 memory: 2.5Gi
               requests:
-                cpu: 500m
+                #cpu: 100m
                 memory: 2Gi
 
       microservices:
