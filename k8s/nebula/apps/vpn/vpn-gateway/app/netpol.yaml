@@ -1,0 +1,53 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: vpn-gateway
+  labels:
+    app.kubernetes.io/instance: vpn-gateway
+    app.kubernetes.io/name: vpn-gateway
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: vpn-gateway
+      app.kubernetes.io/name: vpn-gateway
+  egress:
+    - toCIDR:
+        - 0.0.0.0/0
+        - ::/0
+      toPorts:
+        - ports:
+            - port: "1637"
+              protocol: UDP
+        - ports:
+            - port: "53"
+              protocol: TCP
+    - toEntities:
+        - cluster
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: vpn-gateway-vxlan
+  labels:
+    app.kubernetes.io/instance: vpn-gateway
+    app.kubernetes.io/name: vpn-gateway
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/instance: vpn-gateway
+      app.kubernetes.io/name: vpn-gateway
+  egress:
+    - toPorts:
+        - ports:
+            - port: "4789"
+              protocol: UDP
+  ingress:
+    - toPorts:
+        - ports:
+            - port: "4789"
+              protocol: UDP
+    - icmps:
+        - fields:
+            - type: 8
+              family: IPv4
