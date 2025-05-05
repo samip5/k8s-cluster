@@ -28,6 +28,7 @@ spec:
   values:
     defaultPodOptions:
       automountServiceAccountToken: false
+      priorityClassName: home-cluster-critical
       securityContext:
         runAsUser: ${APP_UID}
         runAsGroup: ${APP_GID}
