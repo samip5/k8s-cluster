@@ -65,10 +65,10 @@ spec:
             resources:
               limits:
                 memory: 2Gi
-                cpu: 2
+                #cpu: 2
               requests:
                 memory: 1Gi
-                cpu: 1
+                #cpu: 1
 
             probes:
               liveness: &probes
