@@ -68,15 +68,15 @@ spec:
         osd:
           limits:
 #            cpu: "2000m"
-            memory: "3Gi"
+            memory: "2.5Gi"
           requests:
 #            cpu: "500m"
-            memory: "2Gi"
+            memory: "1Gi"
         mds:
           limits:
             memory: "2Gi"
           requests:
-            memory: "2Gi"
+            memory: "1Gi"
         mgr:
           limits:
             memory: "2Gi"
