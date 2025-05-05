@@ -73,6 +73,7 @@ spec:
         hosts: ["prom.skylab.fi"]
         pathType: Prefix
       prometheusSpec:
+        priorityClassName: system-cluster-critical
         maximumStartupDurationSeconds: 14400 # 4 hours
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
