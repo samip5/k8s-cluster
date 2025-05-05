@@ -39,7 +39,7 @@ spec:
           app:
             image:
               repository: ghcr.io/open-webui/open-webui
-              tag: v0.6.5
+              tag: v0.6.6
             env:
               - name: OLLAMA_BASE_URL
                 value: http://192.168.2.37:11434
