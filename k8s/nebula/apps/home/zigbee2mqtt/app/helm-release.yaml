@@ -82,33 +82,6 @@ spec:
                   name: z2m-secret
             securityContext:
               privileged: true
-            #securityContext:
-            #  allowPrivilegeEscalation: false
-            #  readOnlyRootFilesystem: true
-            #  capabilities: { drop: [ "ALL" ] }
-          #code:
-          #  image:
-          #    repository: ghcr.io/coder/code-server
-          #    tag: 4.20.0
-          #  env:
-          #    TZ: "Europe/Helsinki"
-          #  args:
-          #    - --auth
-          #    - "none"
-          #    - --user-data-dir
-          #    - "/data/.vscode"
-          #    - --extensions-dir
-          #    - "/data/.vscode"
-          #    - --port
-          #    - "8081"
-          #    - "/data"
-        #pod:
-        #  securityContext:
-        #    runAsUser: ${APP_UID}
-        #    runAsGroup: ${APP_GID}
-        #    runAsNonRoot: true
-        #    fsGroup: ${APP_GID}
-        #    fsGroupChangePolicy: OnRootMismatch
     service:
       main:
         controller: z2m

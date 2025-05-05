@@ -64,6 +64,7 @@ spec:
             resources: &resources
               requests:
                 cpu: 10m
+                memory: 64Mi
               limits:
                 memory: 64Mi
             securityContext: &securityContext
