@@ -4,12 +4,12 @@ resources:
   - cilium/ks.yaml
   - cilium/ks-config.yaml
 #  - cilium/ks-gateway.yaml
-  - multus/ks.yaml
-  - multus/ks-config.yaml
+#  - multus/ks.yaml
+#  - multus/ks-config.yaml
   - metrics-server/ks.yaml
   - snapshot-controller/ks.yaml
   - node-feature-discovery/ks.yaml
-  - generic-device-plugin/ks.yaml
-  - spegel/ks.yaml
+#  - generic-device-plugin/ks.yaml
+#  - spegel/ks.yaml
 #  - kubelet-csr-approver/ks.yaml
 #  - descheduler/ks.yaml
