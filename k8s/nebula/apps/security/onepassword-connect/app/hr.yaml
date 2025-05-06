@@ -125,7 +125,7 @@ spec:
         hostnames: [ "{{ .Release.Name }}.skylab.fi" ]
         parentRefs:
           - name: envoy-internal
-            namespace: kube-system
+            namespace: networking
             sectionName: https
         rules:
           - backendRefs:
