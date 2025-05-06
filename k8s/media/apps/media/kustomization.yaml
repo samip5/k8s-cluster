@@ -10,8 +10,8 @@ resources:
 #  - tdarr/ks.yaml
   - media-index/ks.yaml
   - emby/ks.yaml
-  - qbit/ks.yaml
-  - qbittorrent/ks.yaml
-  - cross-seed/ks.yaml
+#  - qbit/ks.yaml
+#  - qbittorrent/ks.yaml
+#  - cross-seed/ks.yaml
   - unpackerr/ks.yaml
   - jellyfin/ks.yaml
