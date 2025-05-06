@@ -5,7 +5,7 @@ resources:
  - ns.yaml
  - ./autobrr/ks.yaml
  - ./prowlarr/ks.yaml
- - ./flaresolverr/ks.yaml
+# - ./flaresolverr/ks.yaml
 # - ./jellyseer/ks.yaml
 # - ./wizarr/ks.yaml
  - ./recyclarr/ks.yaml
