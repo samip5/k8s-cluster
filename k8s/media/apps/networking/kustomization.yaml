@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
 #  - nginx/ks.yaml
 #  - k8s-gateway/ks.yaml
-  - tailscale/ks.yaml
+#  - tailscale/ks.yaml
   - envoy/ks.yaml
-  - whoami/ks.yaml
+#  - whoami/ks.yaml
 
