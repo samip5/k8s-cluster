@@ -9,7 +9,7 @@ resources:
   - services
   - monitoring
   - networking
-  - search
+#  - search
   - storage
   - school
   - home
@@ -21,5 +21,5 @@ resources:
   - volsync
   - finance
   - flux-system
-  - tor
-  - games
+#  - tor
+#  - games
