@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
   - ./externalsecret.yaml
   - ./hr.yaml
-  - ../../../../../templates/volsync-minio
+  - ./pvc.yaml
 configMapGenerator:
   - name: sabnzbd-scripts
     files:

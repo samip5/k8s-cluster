@@ -22,9 +22,9 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  dependsOn:
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
+#  dependsOn:
+#    - name: rook-ceph-cluster
+#      namespace: rook-ceph
   values:
 
     controllers:
