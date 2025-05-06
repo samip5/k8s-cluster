@@ -11,7 +11,7 @@ resources:
   - networking
 #  - search
   - storage
-  - school
+#  - school
   - home
   - databases
   - kube-system
@@ -19,6 +19,6 @@ resources:
 #  - vpn
   - default
   - volsync
-  - finance
+#  - finance
 #  - tor
 #  - games
