@@ -8,7 +8,7 @@ resources:
 #  - multus/ks-config.yaml
   - metrics-server/ks.yaml
   - snapshot-controller/ks.yaml
-  - node-feature-discovery/ks.yaml
+#  - node-feature-discovery/ks.yaml
 #  - generic-device-plugin/ks.yaml
 #  - spegel/ks.yaml
 #  - kubelet-csr-approver/ks.yaml
