@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: databases
 resources:
   - helm-release.yaml
+  - secret.sops.yaml
 #  - externalsecret.yaml
 generatorOptions:
   disableNameSuffixHash: true
