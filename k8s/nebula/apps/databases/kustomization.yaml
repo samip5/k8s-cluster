@@ -10,4 +10,4 @@ resources:
 #  - dragonfly/ks.yaml
 #  - dragonfly/ks-cluster.yaml
 #  - pgadmin/ks.yaml
-  - influx/ks.yaml
+#  - influx/ks.yaml
