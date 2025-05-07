@@ -21,6 +21,13 @@ spec:
   values:
     clusterName: nebula
     # skipUpgradeChecks: true
+    cleanupPolicy:
+      confirmation: yes-really-destroy-data
+      sanitizeDisks:
+        method: quick
+        dataSource: zero
+        iteration: 1
+      allowUninstallWithVolumes: false
     toolbox:
       enabled: true
       image: quay.io/ceph/ceph:v19.2.2
