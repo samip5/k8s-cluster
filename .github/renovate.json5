@@ -12,7 +12,7 @@
     "github>samip5/k8s-cluster//.github/renovate/looseVersioning.json5",
     "github>samip5/k8s-cluster//.github/renovate/pinnedVersions.json5"
   ],
-  "ignorePaths": [".archive/**","**/archive/**", "k8s/**/config/**"],
+  "ignorePaths": [".archive/**","**/archive/**", "k8s/**/config/**", "k8s/nebula/**"],
   "flux": {
     "fileMatch": ["k8s/.+\\.ya?ml$"]
   },

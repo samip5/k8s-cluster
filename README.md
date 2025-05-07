@@ -6,7 +6,7 @@ _... managed with Flux, Renovate, and GitHub Actions_ 🤖
 
 </div>
 
-<div align="center">
+<!-- <div align="center">
 
 [![Talos](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.skylab.fi%2Fquery%3Fformat%3Dendpoint%26metric%3Dtalos_version&style=for-the-badge&logo=talos&logoColor=white&label=%20&color=blue)](https://talos.dev)&nbsp;&nbsp;
 ![Kubernetes](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.skylab.fi%2Fquery%3Fformat%3Dendpoint%26metric%3Dkubernetes_version&style=for-the-badge&logo=kubernetes&logoColor=white&label=%20&color=blue)
@@ -47,7 +47,7 @@ _... managed with Flux, Renovate, and GitHub Actions_ 🤖
 | Random Chinese N100 board     | w-amd-2  | 32GB | 480GB Transcend SSD, 275GB Crucial SSD + 320GB HDD | Kube Worker | Talos            |
 | HP EliteDesk 800 G2           | w-amd-3  | 32GB | 256GB SSD                                          | Kube Worker | Talos            |
 | Lenovo ThinkCentre M910q Tiny | m1       | 16GB | 256GB SSD x 2                                      | Kube Master | Talos            |
-
+-->
 ## Storage
 | Node         | Hostname | RAM  | Storage                                                                                  | Function   | Operating System |
 |--------------|----------|------|------------------------------------------------------------------------------------------|------------|------------------|
