@@ -10,4 +10,4 @@ resources:
   - gpu
   - volsync
   - monitoring
-   - databases
+  - databases
