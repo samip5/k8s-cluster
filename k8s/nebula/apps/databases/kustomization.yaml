@@ -4,10 +4,10 @@ resources:
   - ns.yaml
 #  - moco/ks.yaml
 #  - moco/ks-cluster.yaml
-  - cloudnative-pg/ks.yaml
-  - cloudnative-pg/ks-cluster.yaml
+#  - cloudnative-pg/ks.yaml
+#  - cloudnative-pg/ks-cluster.yaml
 #  - cloudnative-pg/ks-cluster-vector.yaml
 #  - dragonfly/ks.yaml
 #  - dragonfly/ks-cluster.yaml
-  - pgadmin/ks.yaml
+#  - pgadmin/ks.yaml
   - influx/ks.yaml

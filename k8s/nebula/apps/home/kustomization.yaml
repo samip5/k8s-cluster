@@ -3,11 +3,11 @@ kind: Kustomization
 resources:
   - ./ns.yaml
   - ./priority-class.yaml
-  - ./mosquitto/ks.yaml
-  - ./mosquitto/ks-exporter.yaml
+#  - ./mosquitto/ks.yaml
+#  - ./mosquitto/ks-exporter.yaml
 #  - ./esphome/ks.yaml
-  - ./zigbee2mqtt/ks.yaml
-  - ./zigbee2mqtt/ks-exporter.yaml
-  - ./assistant/ks.yaml
+#  - ./zigbee2mqtt/ks.yaml
+#  - ./zigbee2mqtt/ks-exporter.yaml
+# - ./assistant/ks.yaml
 #  - ./wyoming-whisper/ks.yaml
 #  - ./wyoming-piper/ks.yaml
