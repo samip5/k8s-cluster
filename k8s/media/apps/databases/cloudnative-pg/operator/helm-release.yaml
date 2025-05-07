@@ -1,0 +1,31 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cloudnative-pg
+  namespace: databases
+  labels:
+    component.skylab.fi/part-of: standard-helm-release
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: cloudnative-pg
+      version: 0.23.2
+      sourceRef:
+        kind: HelmRepository
+        name: cloudnative-pg
+        namespace: flux-system
+  values:
+    crds:
+      create: true
+    config:
+      data:
+        INHERITED_ANNOTATIONS: kyverno.io/ignore
+    nodeSelector:
+      kubernetes.io/arch: amd64
+    monitoring:
+      podMonitorEnabled: true
+      grafanaDashboard:
+        create: true
+
