@@ -15,6 +15,19 @@ sonarr:
 
     quality_profiles:
       - name: WEB-1080p
+      - name: WEB-720p
+        reset_unmatched_scores:
+          enabled: true
+        upgrade:
+          allowed: true
+          until_quality: WEB 720p
+        quality_sort: top
+        qualities:
+          - name: WEB 720p
+            qualities: [ "WEBDL-720p", "WEBRip-720p" ]
+          - name: HDTV-720p
+          - name: WEB 480p
+            qualities: [ "WEBDL-480p", "WEBRip-480p" ]
       - name: ANY
         reset_unmatched_scores:
           enabled: true
