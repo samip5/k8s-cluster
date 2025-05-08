@@ -10,6 +10,7 @@ resources:
 #  - tdarr/ks.yaml
   - media-index/ks.yaml
   - emby/ks.yaml
+  - recyclarr/ks.yaml
 #  - qbit/ks.yaml
 #  - qbittorrent/ks.yaml
 #  - cross-seed/ks.yaml

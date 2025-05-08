@@ -1,0 +1,73 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: recyclarr
+  namespace: media
+spec:
+  chart:
+    spec:
+      chart: app-template
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      version: 3.7.3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  interval: 15m
+  maxHistory: 2
+  uninstall:
+    keepHistory: false
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: 'true'
+    controllers:
+      recyclarr:
+        containers:
+          app:
+            env:
+              TZ: Europe/Helsinki
+            envFrom:
+              - secretRef:
+                  name: recyclarr
+            image:
+              repository: ghcr.io/recyclarr/recyclarr
+              tag: 7.4.1
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+            resources:
+              limits:
+                memory: 200Mi
+              requests:
+                cpu: 10m
+                memory: 50Mi
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 568
+        runAsUser: 568
+    persistence:
+      config:
+        existingClaim: recyclarr-config-v2
+      config-file:
+        globalMounts:
+          - path: /config/recyclarr.yml
+            subPath: recyclarr.yml
+        name: recyclarr-configmap
+        type: configMap
+    service:
+      app:
+        controller: recyclarr
+        enabled: false
