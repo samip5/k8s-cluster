@@ -39,14 +39,14 @@ spec:
 
     controllers:
       radarr:
-        initContainers:
-          init-db:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 16
-            envFrom: &envFrom
-              - secretRef:
-                  name: radarr
+#        initContainers:
+#          init-db:
+#            image:
+#              repository: ghcr.io/onedr0p/postgres-init
+#              tag: 16
+#            envFrom: &envFrom
+#              - secretRef:
+#                  name: radarr
         containers:
           main:
             image:
@@ -62,7 +62,9 @@ spec:
               RADARR__LOG__DBENABLED: false
               RADARR__AUTH__METHOD: External
               RADARR__AUTH__REQUIRED: DisabledForLocalAddresses
-            envFrom: *envFrom
+            envFrom:
+              - secretRef:
+                  name: radarr
             resources:
               requests:
                 cpu: 10m
