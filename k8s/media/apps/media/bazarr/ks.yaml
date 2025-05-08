@@ -1,8 +1,10 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-bazarr
+  name: bazarr
   namespace: flux-system
+  labels:
+    component.skylab.fi/part-of: definitions
 spec:
   targetNamespace: media
   path: ./k8s/media/apps/media/bazarr/app
