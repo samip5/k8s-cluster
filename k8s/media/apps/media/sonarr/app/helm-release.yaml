@@ -44,6 +44,7 @@ spec:
               SONARR__LOG__LEVEL: debug
               SONARR__SERVER__PORT: &port 80
               SONARR__UPDATE__BRANCH: develop
+
               TZ: Europe/Helsinki
             envFrom:
               - secretRef:
