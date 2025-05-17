@@ -51,6 +51,7 @@ spec:
     service:
       main:
         controller: main
+        type: LoadBalancer
         ports:
           http:
             port: &port 80
@@ -67,17 +68,17 @@ spec:
           - backendRefs:
               - name: *app
                 port: *port
-      app2:
-          hostnames:
-            - "dh.skylab.fi"
-          parentRefs:
-            - name: envoy-internal
-              namespace: networking
-              sectionName: https
-          rules:
-            - backendRefs:
-                - name: *app
-                  port: *port
+#      app2:
+#          hostnames:
+#            - "dh.skylab.fi"
+#          parentRefs:
+#            - name: envoy-internal
+#              namespace: networking
+#              sectionName: https
+#          rules:
+#            - backendRefs:
+#                - name: *app
+#                  port: *port
 
 #    ingress:
 #      main:
