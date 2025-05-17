@@ -34,7 +34,7 @@ spec:
         - kind: Secret
           name: "dh.skylab.fi-tls"
       allowedRoutes:
-          namespaces:
+        namespaces:
           from: All
     - name: http-media
       protocol: HTTP
