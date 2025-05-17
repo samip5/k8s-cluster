@@ -2,6 +2,12 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "packageRules": [
     {
+      "description": ["Split app-template 4.0.x into separate PRs per-app"],
+      "matchDataSources": ["helm"],
+      "matchPackagePatterns": ["app-template"],
+      "additionalBranchPrefix": "{{baseDir}}-"
+    },
+    {
       "description": "External Snapshotter charts",
       "groupName": "External Snapshotter",
       "matchPackageNames": ["snapshot-controller", "snapshot-validation-webhook"],
