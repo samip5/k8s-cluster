@@ -79,7 +79,7 @@ jobs:
     needs: ["publish-manifests"]
     steps:
       - name: Setup Flux
-        uses: fluxcd/flux2/action@b73c7f7191086ca7629840e680e71873349787f8 # v2.6.1
+        uses: fluxcd/flux2/action@a48f81a66c4ca9fbd993233ab99dd03a7cfbe09a # v2.6.2
 
       - name: Setup QEMU
         uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392 # v3.6.0
