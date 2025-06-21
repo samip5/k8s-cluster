@@ -60,7 +60,7 @@ spec:
           subcleaner:
             image:
               repository: registry.k8s.io/git-sync/git-sync
-              tag: v4.4.1
+              tag: v4.4.2
             args:
               - --repo=https://github.com/KBlixt/subcleaner
               - --ref=master
