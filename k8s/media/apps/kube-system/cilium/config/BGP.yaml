@@ -15,7 +15,7 @@ spec:
         matchExpressions:
           - { key: thisFakeSelector, operator: NotIn, values: [ 'will-match-and-announce-all-services' ] }
       neighbors:
-#        - peerAddress: "192.168.2.1/32" # unlike bgp-config ConfigMap, peerAddress needs to be in CIDR notation
-#          peerASN: 213021
-        - peerAddress: "fd9d:7a72:44eb:a::1/128"
+        - peerAddress: "192.168.2.1/32" # unlike bgp-config ConfigMap, peerAddress needs to be in CIDR notation
           peerASN: 213021
+#        - peerAddress: "fd9d:7a72:44eb:a::1/128"
+#          peerASN: 213021
