@@ -24,7 +24,8 @@ spec:
   upgrade:
     cleanupOnFail: true
     remediation:
-      retries: 3
+      strategy: uninstall
+      retries: 1
   values:
     controller:
       annotations:
