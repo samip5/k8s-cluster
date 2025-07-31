@@ -64,6 +64,8 @@ spec:
         controller: emby
         type: LoadBalancer
         ipFamilyPolicy: RequireDualStack
+        annotations:
+          external-dns.alpha.kubernetes.io/hostname: "emby-direct.media.skylab.fi"
         externalTrafficPolicy: Cluster
         ports:
           http:

@@ -66,6 +66,8 @@ spec:
         controller: jellyfin
         type: LoadBalancer
         ipFamilyPolicy: RequireDualStack
+        annotations:
+          external-dns.alpha.kubernetes.io/hostname: "jelly-direct.media.skylab.fi"
         externalTrafficPolicy: Cluster
         ports:
           http:
