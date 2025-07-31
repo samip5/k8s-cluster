@@ -68,6 +68,7 @@ spec:
         ipFamilyPolicy: RequireDualStack
         annotations:
           external-dns.alpha.kubernetes.io/hostname: "jelly-direct.media.skylab.fi"
+          external-dns.alpha.kubernetes.io/target: "10.41.69.0,2001:14ba:45a:962d::"
         externalTrafficPolicy: Cluster
         ports:
           http:

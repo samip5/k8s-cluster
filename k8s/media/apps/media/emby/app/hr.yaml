@@ -66,6 +66,7 @@ spec:
         ipFamilyPolicy: RequireDualStack
         annotations:
           external-dns.alpha.kubernetes.io/hostname: "emby-direct.media.skylab.fi"
+          external-dns.alpha.kubernetes.io/target: "10.41.69.203,2001:14ba:45a:962d::1"
         externalTrafficPolicy: Cluster
         ports:
           http:
