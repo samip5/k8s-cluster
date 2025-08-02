@@ -82,8 +82,8 @@ spec:
           - backendRefs:
               - name: *app
                 port: *port
-            timeouts:
-              request: 10m
+        timeouts:
+          request: 10m
     persistence:
       config:
         existingClaim: sonarr-config-v1
