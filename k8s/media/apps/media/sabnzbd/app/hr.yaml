@@ -87,7 +87,7 @@ spec:
               VPN_TYPE: "wireguard"
               WIREGUARD_MTU: "1320"
               DNS_ADDRESS: 10.41.0.10
-              HEALTH_TARGET_ADDRESS: "kapsi.fi:443"
+              HEALTH_TARGET_ADDRESS: "hilla.kapsi.fi:443"
               SERVER_REGIONS: "Europe"
               FIREWALL_INPUT_PORTS: *port
               FIREWALL_DEBUG: "on"
