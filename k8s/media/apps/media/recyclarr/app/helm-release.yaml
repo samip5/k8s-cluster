@@ -44,9 +44,9 @@ spec:
               tag: 7.4.1
             probes:
               liveness:
-                enabled: true
+                enabled: false
               readiness:
-                enabled: true
+                enabled: false
             resources:
               limits:
                 memory: 200Mi
@@ -68,7 +68,3 @@ spec:
             subPath: recyclarr.yml
         name: recyclarr-configmap
         type: configMap
-    service:
-      app:
-        controller: recyclarr
-        enabled: false
