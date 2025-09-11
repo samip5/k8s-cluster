@@ -105,6 +105,8 @@ spec:
           - backendRefs:
               - name: *app
                 port: *port
+            timeouts:
+              request: 10m
 
     persistence:
       config:
