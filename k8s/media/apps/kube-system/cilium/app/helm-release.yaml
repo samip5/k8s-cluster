@@ -111,10 +111,10 @@ spec:
         prometheus:
           enabled: true
       ui:
-        enabled: false
+        enabled: true
         rollOutPods: true
         ingress:
-          enabled: true
+          enabled: false
           annotations:
             cert-manager.io/cluster-issuer: zerossl-production
             kubernetes.io/ingress.class: nginx
