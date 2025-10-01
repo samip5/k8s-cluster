@@ -58,9 +58,10 @@ _... managed with Flux, Renovate, and GitHub Actions_ 🤖
 | Vendor   | Model         | Function                                           |
 |----------|---------------|----------------------------------------------------|
 | Juniper  | EX2200-48P-4g | Hallway switch with PoE+ and fiber uplinks to rack |
-| Juniper  | EX3300-48P    | Rack switch with PoE++ and 10G SFP+                |
+<!-- | Juniper  | EX3300-48P    | Rack switch with PoE++ and 10G SFP+                | -->
 | TP-Link  | TL-SG108E     | Bedroom switching behind desk                      |
 | Mikrotik | RB5009        | Main router                                        |
+| Mikrotik | CRS326        | Rack switch with 10G uplink                        |
 
 All nodes are connected to a dual-stack network, with private IPv4 and public IPv6. 
 Kubernetes' nodes are on their own VLAN which has access to the NAS.
