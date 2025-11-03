@@ -41,7 +41,7 @@ spec:
           generic-device-plugin:
             image:
               repository: ghcr.io/squat/generic-device-plugin
-              tag: latest@sha256:0573cc6f83db2e3466caa8b597620fd05aea914c4b96f6232203a165c0c1dd86
+              tag: latest@sha256:f4eeaae71c6cd7b4d3950f8f0c46a68da2e0880403adf15dcf6f02cd8d097681
             args:
               - --domain
               - kernel.org
