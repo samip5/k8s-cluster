@@ -1,0 +1,82 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster16-vector
+  namespace: databases
+spec:
+  instances: 1
+  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:16.2-v0.2.1
+  primaryUpdateStrategy: unsupervised
+  storage:
+    size: 15Gi
+    storageClass: local-hostpath
+  superuserSecret:
+    name: cloudnative-pg-secret
+  enableSuperuserAccess: true
+  resources:
+    requests:
+      memory: 1Gi
+    limits:
+      memory: 2Gi
+#  bootstrap:
+#    initdb:
+#      postInitSQL:
+#        - ALTER SYSTEM SET search_path TO "$user", public, vectors;
+#        - CREATE EXTENSION IF NOT EXISTS "vectors";
+  bootstrap:
+    recovery:
+      source: &previousCluster postgres-vector-v12
+  affinity:
+    enablePodAntiAffinity: true
+    topologyKey: kubernetes.io/hostname
+    podAntiAffinityType: required
+    nodeSelector:
+      kubernetes.io/arch: amd64
+
+  postgresql:
+    shared_preload_libraries:
+      - "vectors.so"
+    enableAlterSystem: true
+    parameters:
+      max_connections: "600"
+      shared_buffers: 512MB
+  monitoring:
+    enablePodMonitor: true
+    # https://github.com/cloudnative-pg/cloudnative-pg/issues/2501
+    podMonitorMetricRelabelings:
+        - { sourceLabels: [ "cluster" ], targetLabel: cnpg_cluster, action: replace }
+        - { regex: cluster, action: labeldrop }
+  backup:
+    retentionPolicy: "30d"
+    barmanObjectStore:
+      wal:
+        compression: bzip2
+        maxParallel: 4
+      data:
+        compression: bzip2
+      destinationPath: s3://cnpg-main/
+      endpointURL: https://s3.skym.fi
+      serverName: &currentCluster postgres-vector-v13
+      s3Credentials:
+        accessKeyId:
+          name: cloudnative-pg-secret
+          key: aws-access-key-id
+        secretAccessKey:
+          name: cloudnative-pg-secret
+          key: aws-secret-access-key
+  externalClusters:
+    - name: *previousCluster
+      barmanObjectStore:
+        wal:
+          compression: bzip2
+          maxParallel: 8
+        destinationPath: s3://cnpg-main/
+        endpointURL: https://s3.skym.fi
+        s3Credentials:
+          accessKeyId:
+            name: cloudnative-pg-secret
+            key: aws-access-key-id
+          secretAccessKey:
+            name: cloudnative-pg-secret
+            key: aws-secret-access-key
