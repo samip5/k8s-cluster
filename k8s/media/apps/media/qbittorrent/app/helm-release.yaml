@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 4.4.0
+      version: 4.5.0
   install:
     createNamespace: true
     remediation:
