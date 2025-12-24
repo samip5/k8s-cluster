@@ -104,7 +104,7 @@ spec:
                 kernel.org/tun: 1
             image:
               repository: ghcr.io/qdm12/gluetun
-              tag: v3.40.3
+              tag: v3.40.4
             securityContext:
               capabilities:
                 add:
