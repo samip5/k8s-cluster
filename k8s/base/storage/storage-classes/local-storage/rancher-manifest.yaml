@@ -57,7 +57,7 @@ spec:
       serviceAccountName: local-path-provisioner-service-account
       containers:
         - name: local-path-provisioner
-          image: registry.skysolutions.fi/docker.io/rancher/local-path-provisioner:v0.0.32
+          image: registry.skysolutions.fi/docker.io/rancher/local-path-provisioner:v0.0.33
           imagePullPolicy: IfNotPresent
           command:
             - local-path-provisioner
