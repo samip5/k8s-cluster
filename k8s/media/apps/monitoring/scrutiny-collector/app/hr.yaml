@@ -39,7 +39,7 @@ spec:
           main:
             image:
               repository: ghcr.io/analogj/scrutiny
-              tag: v0.8.1-collector
+              tag: v0.8.2-collector
             env:
               - name: COLLECTOR_API_ENDPOINT
                 value: https://scrutiny.skylab.fi
