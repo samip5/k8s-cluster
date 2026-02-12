@@ -4,7 +4,7 @@ roles:
     version: v3.6.2
 collections:
   - name: community.docker
-    version: 5.0.5
+    version: 5.0.6
   - name: community.general
     version: 12.3.0
   - name: community.kubernetes
