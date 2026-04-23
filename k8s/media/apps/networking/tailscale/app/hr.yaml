@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: tailscale-operator
-      version: 1.94.2
+      version: 1.96.5
       interval: 30m
       sourceRef:
         kind: HelmRepository
