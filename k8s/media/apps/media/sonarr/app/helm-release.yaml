@@ -112,6 +112,8 @@ spec:
     service:
       app:
         controller: sonarr
+        annotations:
+          tailscale.com/expose: "true"
         ports:
           http:
             port: 80
