@@ -16,7 +16,7 @@ spec:
         namespace: flux-system
   values:
     operatorConfig:
-      hostname: "tailscale-operator"
+      hostname: "media-cluster"
     apiServerProxyConfig:
       mode: "false"
     proxyClass:
