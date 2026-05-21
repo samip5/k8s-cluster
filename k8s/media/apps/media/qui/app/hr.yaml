@@ -1,0 +1,103 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: qui
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: qui
+  interval: 1h
+  values:
+    controllers:
+      qui:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/autobrr/qui
+              tag: v1.19.0@sha256:baa07db5326f75f8c2246703603cbe2132476c8ad0ab31c976a960cb4c4731f5
+            env:
+              QUI__AUTH_DISABLED: true
+              QUI__I_ACKNOWLEDGE_THIS_IS_A_BAD_IDEA: true
+              QUI__AUTH_DISABLED_ALLOWED_CIDRS: 0.0.0.0/0
+              QUI__HOST: 0.0.0.0
+              QUI__PORT: &port 80
+              QUI__METRICS_ENABLED: true
+              QUI__METRICS_HOST: 0.0.0.0
+              QUI__METRICS_PORT: &metricsPort 8080
+              TZ: Europe/Helsinki
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}-secret"
+            probes:
+              liveness:
+                enabled: true
+                spec:
+                  periodSeconds: 30
+                  timeoutSeconds: 5
+                  failureThreshold: 5
+              readiness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: *port
+                  periodSeconds: 10
+                  timeoutSeconds: 5
+                  failureThreshold: 5
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 10
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 2Gi
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        ports:
+          http:
+            port: *port
+          metrics:
+            port: *metricsPort
+    serviceMonitor:
+      app:
+        endpoints:
+          - port: metrics
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.media.skylab.fi"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https-media
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
+    persistence:
+      config:
+        existingClaim: "qui-config-v1"
+      library:
+        type: hostPath
+        hostPath: "/var/mnt/merged/"
+        globalMounts:
+          - path: /var/mnt/merged/

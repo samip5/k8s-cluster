@@ -12,6 +12,7 @@ resources:
   - emby/ks.yaml
   - recyclarr/ks.yaml
   - qbit/ks.yaml
+  - qui/ks.yaml
 #  - qbittorrent/ks.yaml
 #  - cross-seed/ks.yaml
   - unpackerr/ks.yaml
