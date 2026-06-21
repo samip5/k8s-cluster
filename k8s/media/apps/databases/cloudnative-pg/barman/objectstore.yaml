@@ -7,7 +7,7 @@ metadata:
 spec:
   retentionPolicy: 30d
   configuration:
-    endpointURL: https://s3.skym.fi
+    endpointURL: http://lakka.n.kapsi.fi:62761 #https://s3.skym.fi
     destinationPath: s3://cnpg-main/
     s3Credentials:
       accessKeyId:
