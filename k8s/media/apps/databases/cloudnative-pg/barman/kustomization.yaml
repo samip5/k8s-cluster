@@ -6,3 +6,4 @@ namespace: databases
 resources:
   - ./source.yaml
   - ./hr.yaml
+  - ./objectstore.yaml

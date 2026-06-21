@@ -4,6 +4,9 @@ kind: Cluster
 metadata:
   name: postgres16
   namespace: databases
+  annotations:
+    # required for seamless bootstrap: https://github.com/cloudnative-pg/cloudnative-pg/issues/5778#issuecomment-2783417464
+    cnpg.io/skipEmptyWalArchiveCheck: "enabled"
 spec:
   instances: 1
   imageName: ghcr.io/cloudnative-pg/postgresql:16.1-18
@@ -14,14 +17,22 @@ spec:
   superuserSecret:
     name: cloudnative-pg-secret
   enableSuperuserAccess: true
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters: &pluginparams
+        barmanObjectName: pg-s3-store
+        serverName: postgres16-v6
+
   resources:
     requests:
       memory: 1.5Gi
     limits:
       memory: 2Gi
-  bootstrap:
-    recovery:
-      source: &previousCluster postgres16-v5
+#  bootstrap:
+#    recovery:
+#      source: &previousCluster postgres16-v5
   affinity:
     enablePodAntiAffinity: true
     topologyKey: kubernetes.io/hostname
@@ -41,34 +52,3 @@ spec:
       - { regex: cluster, action: labeldrop }
   backup:
     retentionPolicy: "30d"
-    barmanObjectStore:
-      wal:
-        compression: bzip2
-        maxParallel: 4
-      data:
-        compression: bzip2
-      destinationPath: s3://cnpg-main/
-      endpointURL: https://s3.skym.fi
-      serverName: &currentCluster postgres16-v6
-      s3Credentials:
-        accessKeyId:
-          name: cloudnative-pg-secret
-          key: aws-access-key-id
-        secretAccessKey:
-          name: cloudnative-pg-secret
-          key: aws-secret-access-key
-  externalClusters:
-    - name: *previousCluster
-      barmanObjectStore:
-        wal:
-          compression: bzip2
-          maxParallel: 8
-        destinationPath: s3://cnpg-main/
-        endpointURL: https://s3.skym.fi
-        s3Credentials:
-          accessKeyId:
-            name: cloudnative-pg-secret
-            key: aws-access-key-id
-          secretAccessKey:
-            name: cloudnative-pg-secret
-            key: aws-secret-access-key

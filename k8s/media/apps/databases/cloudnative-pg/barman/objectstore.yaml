@@ -1,0 +1,25 @@
+---
+# yaml-language-server: $schema=https://github.com/datreeio/CRDs-catalog/raw/refs/heads/main/barmancloud.cnpg.io/objectstore_v1.json
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: pg-s3-store
+spec:
+  retentionPolicy: 30d
+  configuration:
+    endpointURL: https://s3.skym.fi
+    destinationPath: s3://cnpg-main/
+    s3Credentials:
+      accessKeyId:
+        name: cloudnative-pg-secret
+        key: aws-access-key-id
+      secretAccessKey:
+        name: cloudnative-pg-secret
+        key: aws-secret-access-key
+    wal:
+      compression: bzip2
+      maxParallel: 8
+    data:
+      compression: bzip2
+      immediateCheckpoint: false
+      jobs: 4
