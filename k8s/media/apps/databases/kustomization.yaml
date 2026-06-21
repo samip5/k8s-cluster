@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
   - cloudnative-pg/ks.yaml
   - cloudnative-pg/ks-cluster.yaml
+  - cloudnative-pg/ks-barman.yaml
 #  - cloudnative-pg/ks-cluster-vector.yaml

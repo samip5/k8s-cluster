@@ -1,0 +1,15 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: plugin-barman-cloud
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: plugin-barman-cloud
+  interval: 1h
+  values:
+    crds:
+      create: true
+
+    # Install the plugin in the same namespace as the CNPG operator.
+    namespaceOverride: databases
