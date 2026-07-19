@@ -51,7 +51,7 @@ spec:
           main:
             image:
               repository: ghcr.io/home-operations/radarr
-              tag: 6.3.0.10514
+              tag: 6.4.0.10523
             env:
               TZ: Europe/Helsinki
               RADARR__INSTANCE_NAME: Radarr
