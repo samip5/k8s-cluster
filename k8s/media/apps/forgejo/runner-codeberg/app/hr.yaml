@@ -32,14 +32,14 @@ spec:
               namespace: forgejo
               poll_timeout: 10m
             log:
-              level: debug
+              level: info
             plugins:
               k8s:
                 address: "unix:///plugin/forgejo-runner-k8s.sock"
                 options:
                   namespace: forgejo
                   poll_timeout: 10m
-                  labels: "app.kubernetes.io/name=forgejo-runner-instance,egress.home.arpa/custom-egress=true"
+                  labels: "app.kubernetes.io/name=forgejo-runner-instance"
                   resources: |
                     requests:
                       memory: 256Mi
@@ -153,6 +153,8 @@ spec:
             image:
               repository: registry.erwanleboucher.dev/eleboucher/runner-k8s-plugin
               tag: 12.10.9
+            env:
+              FORGEJO_RUNNER_LOG_LEVEL: debug
             args:
               - --listen
               - unix:///plugin/forgejo-runner-k8s.sock
