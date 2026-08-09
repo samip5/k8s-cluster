@@ -13,9 +13,8 @@ spec:
   path: "./k8s/media/apps/forgejo/forgejo-runner-codeberg/app"
   prune: true
   sourceRef:
-    kind: OCIRepository
+    kind: GitRepository
     name: flux-system
-    namespace: flux-system
   targetNamespace: forgejo
   timeout: 5m
   wait: false
