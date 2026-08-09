@@ -10,7 +10,7 @@ spec:
     labels:
       app.kubernetes.io/name: forgejo-runner-codeberg
   interval: 1h
-  path: "./k8s/media/apps/forgejo/forgejo-runner-codeberg/app"
+  path: "./k8s/media/apps/forgejo/runner-codeberg/app"
   prune: true
   sourceRef:
     kind: GitRepository
