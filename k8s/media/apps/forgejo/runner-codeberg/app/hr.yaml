@@ -52,7 +52,6 @@ spec:
                 - ubuntu-latest:k8s:/config/podspec-default.yaml
                 - default:k8s:/config/podspec-default.yaml
                 - docker:k8s:/config/podspec-dind.yaml
-                - multiarch:k8s:/config/podspec-dind.yaml  # you need binfmt-misc extension for multiarch
               timeout: 3h
               shutdown_timeout: 3m
           podspec-default.yaml: |-
