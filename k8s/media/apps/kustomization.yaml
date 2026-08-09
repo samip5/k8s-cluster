@@ -11,3 +11,4 @@ resources:
   - volsync
   - monitoring
   - databases
+  - forgejo
