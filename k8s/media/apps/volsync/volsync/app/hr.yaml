@@ -28,8 +28,6 @@ spec:
       namespace: storage
   values:
     manageCRDs: true
-    metrics:
-      disableAuth: true
 #    nodeSelector:
 #      kubernetes.io/arch: amd64
     image:
