@@ -50,6 +50,7 @@ spec:
               capacity: 3
               labels:
                 - ubuntu-latest:k8s:/config/podspec-default.yaml
+                - self-hosted:k8s:/config/podspec-default.yaml
                 - default:k8s:/config/podspec-default.yaml
                 - docker:k8s:/config/podspec-dind.yaml
               timeout: 3h
