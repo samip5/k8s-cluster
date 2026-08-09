@@ -59,10 +59,8 @@ spec:
               - env:
                   - name: DEBIAN_FRONTEND
                     value: noninteractive
-                  - name: FORGEJO_RUNNER_LOG_LEVEL
-                    value: debug
                   - name: FORGEJO_RUNNER_K8S_LOG_JOB_OUTPUT
-                    value: "true"
+                    value: true
                 image: ghcr.io/bjw-s-labs/forgejo-runner:ubuntu-24.04
                 imagePullPolicy: IfNotPresent
                 name: main
@@ -76,9 +74,6 @@ spec:
             initContainers:
               - name: dind
                 image: docker:29-dind
-                args:
-                  - --ipv6
-                  - --fixed-cidr-v6=fd00:d1d::/64
                 securityContext:
                   privileged: true
                 restartPolicy: Always
@@ -114,10 +109,8 @@ spec:
                     value: "1"
                   - name: DOCKER_CERT_PATH
                     value: /certs/client
-                  - name: FORGEJO_RUNNER_LOG_LEVEL
-                    value: debug
                   - name: FORGEJO_RUNNER_K8S_LOG_JOB_OUTPUT
-                    value: "true"
+                    value: true
                 image: ghcr.io/bjw-s-labs/forgejo-runner:ubuntu-24.04
                 imagePullPolicy: IfNotPresent
                 name: main
