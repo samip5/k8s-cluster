@@ -42,7 +42,6 @@ spec:
                   labels: "app.kubernetes.io/name=forgejo-runner-instance,egress.home.arpa/custom-egress=true"
                   resources: |
                     requests:
-                      cpu: 100m
                       memory: 256Mi
                     limits:
                       memory: 1Gi
@@ -65,10 +64,8 @@ spec:
                 name: main
                 resources:
                   requests:
-                    cpu: 100m
                     memory: 1Gi
                   limits:
-                    cpu: 500m
                     memory: 4Gi
             restartPolicy: Never
           podspec-dind.yaml: |-
@@ -86,10 +83,8 @@ spec:
                     value: /certs
                 resources:
                   requests:
-                    cpu: 100m
                     memory: 1Gi
                   limits:
-                    cpu: 500m
                     memory: 8Gi
                 volumeMounts:
                   - name: docker-storage
@@ -120,10 +115,8 @@ spec:
                 name: main
                 resources:
                   requests:
-                    cpu: 100m
                     memory: 1Gi
                   limits:
-                    cpu: 500m
                     memory: 4Gi
                 volumeMounts:
                   - name: docker-certs
