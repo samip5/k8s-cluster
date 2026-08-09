@@ -70,8 +70,6 @@ spec:
                   limits:
                     cpu: 500m
                     memory: 4Gi
-            nodeSelector:
-              kubernetes.io/hostname: kharkiv
             restartPolicy: Never
           podspec-dind.yaml: |-
             initContainers:
@@ -136,8 +134,6 @@ spec:
                 emptyDir: {}
               - name: docker-certs
                 emptyDir: {}
-            nodeSelector:
-              kubernetes.io/hostname: kharkiv
             restartPolicy: Never
     controllers:
       forgejo-runner-codeberg:
