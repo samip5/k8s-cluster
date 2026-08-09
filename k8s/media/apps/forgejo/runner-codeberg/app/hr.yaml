@@ -49,7 +49,7 @@ spec:
               capacity: 3
               labels:
                 - ubuntu-latest:k8s:/config/podspec-default.yaml
-                - self-hosted:k8s:/config/podspec-default.yaml
+                - self-hosted:k8s:/config/podspec-dind.yaml
                 - default:k8s:/config/podspec-default.yaml
                 - docker:k8s:/config/podspec-dind.yaml
               timeout: 3h
@@ -59,7 +59,7 @@ spec:
               - env:
                   - name: DEBIAN_FRONTEND
                     value: noninteractive
-                image: ghcr.io/bjw-s-labs/forgejo-runner:ubuntu-24.04@sha256:175bb41fcb7d53a1316bc1288aa20f07d68f3394650177bdc88462bf87054036
+                image: ghcr.io/bjw-s-labs/forgejo-runner:ubuntu-24.04
                 imagePullPolicy: IfNotPresent
                 name: main
                 resources:
@@ -110,7 +110,7 @@ spec:
                     value: "1"
                   - name: DOCKER_CERT_PATH
                     value: /certs/client
-                image: ghcr.io/bjw-s-labs/forgejo-runner:ubuntu-24.04@sha256:175bb41fcb7d53a1316bc1288aa20f07d68f3394650177bdc88462bf87054036
+                image: ghcr.io/bjw-s-labs/forgejo-runner:ubuntu-24.04
                 imagePullPolicy: IfNotPresent
                 name: main
                 resources:
