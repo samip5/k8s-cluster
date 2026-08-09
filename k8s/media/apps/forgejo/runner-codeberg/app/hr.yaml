@@ -125,7 +125,18 @@ spec:
                     readOnly: true
             volumes:
               - name: docker-storage
-                emptyDir: {}
+                ephemeral:
+                  volumeClaimTemplate:
+                    metadata:
+                      labels:
+                         app.kubernetes.io/managed-by: forgejo-runner-codeberg
+                    spec:
+                      storageClassName: local-hostpath
+                      accessModes:
+                        - ReadWriteOnce
+                      resources:
+                        requests:
+                          storage: 5Gi
               - name: docker-certs
                 emptyDir: {}
             restartPolicy: Never
