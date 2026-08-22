@@ -16,8 +16,7 @@ metadata:
   namespace: kube-system
 spec:
   blocks:
-    cidr:
-      - cidr: fd60:6b11:86d1:1d00::/64
+    - cidr: fd60:6b11:86d1:1d00::/64
 ---
 apiVersion: "cilium.io/v2alpha1"
 kind: CiliumLoadBalancerIPPool
