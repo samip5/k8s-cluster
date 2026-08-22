@@ -1,21 +1,56 @@
+apiVersion: cilium.io/v2
+kind: CiliumBGPPeerConfig
+metadata:
+  name: mikrotik-peer-config
+spec:
+  families:
+    - afi: ipv4
+      safi: unicast
+      advertisements:
+        matchLabels:
+          advertise: bgp-lb-main
+    - afi: ipv6
+      safi: unicast
+      advertisements:
+        matchLabels:
+          advertise: bgp-lb-main
 ---
-apiVersion: cilium.io/v2alpha1
-kind: CiliumBGPPeeringPolicy
+apiVersion: cilium.io/v2
+kind: CiliumBGPAdvertisement
+metadata:
+  name: bgp-lb-main-advertisements
+  labels:
+    advertise: bgp-lb-main
+spec:
+  advertisements:
+    - advertisementType: PodCIDR
+    - advertisementType: Service
+      service:
+        addresses:
+          - LoadBalancerIP
+      selector:
+        matchExpressions:
+          - { key: thisFakeSelector, operator: NotIn, values: [ 'will-match-and-announce-all-services' ] }
+---
+apiVersion: cilium.io/v2
+kind: CiliumBGPClusterConfig
 metadata:
   name: bgp-loadbalancer-ip-main
-  namespace: kube-system
 spec:
   nodeSelector:
     matchLabels:
       kubernetes.io/os: "linux"
-  virtualRouters:
-    - localASN: 213021
-      exportPodCIDR: true
-      serviceSelector:
-        matchExpressions:
-          - { key: thisFakeSelector, operator: NotIn, values: [ 'will-match-and-announce-all-services' ] }
-      neighbors:
-        - peerAddress: "192.168.2.1/32" # unlike bgp-config ConfigMap, peerAddress needs to be in CIDR notation
+  bgpInstances:
+    - name: instance-213021
+      localASN: 213021
+      peers:
+        - name: mikrotik-v4
           peerASN: 213021
-        - peerAddress: "fc60:6b11:86d1:0:f61e:57ff:fe51:88f4/64"
+          peerAddress: "192.168.2.1"
+          peerConfigRef:
+            name: mikrotik-peer-config
+        - name: mikrotik-v6
           peerASN: 213021
+          peerAddress: "fc60:6b11:86d1:0:f61e:57ff:fe51:88f4"
+          peerConfigRef:
+            name: mikrotik-peer-config
