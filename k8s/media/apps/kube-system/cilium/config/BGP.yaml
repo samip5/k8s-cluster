@@ -49,8 +49,3 @@ spec:
           peerAddress: "192.168.2.1"
           peerConfigRef:
             name: mikrotik-peer-config
-        - name: mikrotik-v6
-          peerASN: 213021
-          peerAddress: "fc60:6b11:86d1:0:f61e:57ff:fe51:88f4"
-          peerConfigRef:
-            name: mikrotik-peer-config
