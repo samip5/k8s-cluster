@@ -1,4 +1,4 @@
-apiVersion: cilium.io/v2
+apiVersion: cilium.io/v2alpha1
 kind: CiliumBGPPeerConfig
 metadata:
   name: mikrotik-peer-config
@@ -15,7 +15,7 @@ spec:
         matchLabels:
           advertise: bgp-lb-main
 ---
-apiVersion: cilium.io/v2
+apiVersion: cilium.io/v2alpha1
 kind: CiliumBGPAdvertisement
 metadata:
   name: bgp-lb-main-advertisements
@@ -32,7 +32,7 @@ spec:
         matchExpressions:
           - { key: thisFakeSelector, operator: NotIn, values: [ 'will-match-and-announce-all-services' ] }
 ---
-apiVersion: cilium.io/v2
+apiVersion: cilium.io/v2alpha1
 kind: CiliumBGPClusterConfig
 metadata:
   name: bgp-loadbalancer-ip-main
