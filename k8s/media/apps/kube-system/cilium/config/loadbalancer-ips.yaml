@@ -17,6 +17,9 @@ metadata:
 spec:
   blocks:
     - cidr: fd60:6b11:86d1:1d00::/64
+  serviceSelector:
+    matchLabels:
+      dn42: "true"
 ---
 apiVersion: "cilium.io/v2alpha1"
 kind: CiliumLoadBalancerIPPool
