@@ -1,0 +1,21 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/external-secrets.io/externalsecret_v1.json
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: forgejo-runner-tmi
+spec:
+  refreshInterval: 5m
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: onepassword-connect
+  target:
+    name: forgejo-runner-tmi-secret
+    creationPolicy: Owner
+    template:
+      data:
+        token: "{{ .token }}"
+        uuid: "{{ .uuid }}"
+  dataFrom:
+    - extract:
+        key: forgejo-runner-tmi
