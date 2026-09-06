@@ -10,6 +10,11 @@ data:
       file_server browse
     }
     
+    http://dh.netbird-proxy.skylab.fi {
+      root * /share
+      file_server browse
+    }
+    
     http://dh.skylab.fi {
       root * /share
       file_server browse
