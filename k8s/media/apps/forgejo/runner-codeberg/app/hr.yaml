@@ -46,7 +46,7 @@ spec:
                     limits:
                       memory: 1Gi
             runner:
-              capacity: 3
+              capacity: 5
               labels:
                 - ubuntu-latest:k8s:/config/podspec-default.yaml
                 - self-hosted:k8s:/config/podspec-dind.yaml
