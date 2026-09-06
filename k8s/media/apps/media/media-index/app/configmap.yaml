@@ -5,17 +5,31 @@ metadata:
 data:
   Caddyfile: |
     http://dh.media.skylab.fi {
+      log {
+        output stdout
+        format json
+      }
+
       root * /share
     
       file_server browse
     }
     
     http://dh.netbird-proxy.skylab.fi {
+      log {
+        output stdout
+        format json
+      }
+    
       root * /share
       file_server browse
     }
     
     http://dh.skylab.fi {
+      log {
+        output stdout
+        format json
+      }
       root * /share
       file_server browse
     }
