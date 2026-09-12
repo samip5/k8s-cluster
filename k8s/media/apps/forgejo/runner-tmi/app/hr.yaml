@@ -163,7 +163,7 @@ spec:
           k8s-plugin:
             image:
               repository: registry.erwanleboucher.dev/eleboucher/runner-k8s-plugin
-              tag: 12.10.9
+              tag: 13.1.0
             env:
               FORGEJO_RUNNER_LOG_LEVEL: debug
             args:
