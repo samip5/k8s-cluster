@@ -52,7 +52,7 @@ spec:
           node:
             image:
               repository: ghcr.io/haveagitgat/tdarr_node
-              tag: 2.96.01
+              tag: 3.01.00
               pullPolicy: IfNotPresent
             env:
               - name: nodeID
