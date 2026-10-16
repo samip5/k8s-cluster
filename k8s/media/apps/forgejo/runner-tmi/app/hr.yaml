@@ -186,7 +186,7 @@ spec:
           runner:
             image:
               repository: registry.erwanleboucher.dev/eleboucher/runner
-              tag: 12.13.0
+              tag: 13.2.1
             command:
               - sh
               - -ec
