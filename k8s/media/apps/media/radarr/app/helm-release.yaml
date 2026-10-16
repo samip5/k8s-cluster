@@ -81,7 +81,7 @@ spec:
                     port: *port
                     httpHeaders:
                       - name: Host
-                        value: radarr.media.svc.cluster.local
+                        value: radarr.media.skylab.fi
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
