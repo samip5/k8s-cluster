@@ -185,8 +185,8 @@ spec:
         containers:
           runner:
             image:
-              repository: data.forgejo.org/forgejo/runner
-              tag: 13.2.1
+              repository: code.forgejo.org/forgejo/runner
+              tag: 13.2.0
             command:
               - sh
               - -ec
