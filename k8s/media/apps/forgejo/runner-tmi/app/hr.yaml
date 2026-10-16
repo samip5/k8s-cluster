@@ -185,7 +185,7 @@ spec:
         containers:
           runner:
             image:
-              repository: registry.erwanleboucher.dev/eleboucher/runner
+              repository: data.forgejo.org/forgejo/runner
               tag: 13.2.1
             command:
               - sh
