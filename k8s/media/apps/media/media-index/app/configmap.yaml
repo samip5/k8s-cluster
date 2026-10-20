@@ -15,7 +15,7 @@ data:
       file_server browse
     }
     
-    http://dh.netbird-proxy.skylab.fi {
+    http://dh.dock.skylab.fi {
       log {
         output stdout
         format json
