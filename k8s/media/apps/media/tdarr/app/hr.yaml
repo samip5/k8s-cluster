@@ -42,7 +42,7 @@ spec:
           app:
             image:
               repository: ghcr.io/haveagitgat/tdarr
-              tag: 2.96.01
+              tag: 3.04.00
             env:
               TZ: Europe/Helsinki
             resources:
