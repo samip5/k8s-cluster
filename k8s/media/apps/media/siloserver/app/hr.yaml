@@ -1,0 +1,233 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app siloserver
+  namespace: media
+spec:
+  chart:
+    spec:
+      chart: app-template
+      version: 4.6.2
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  interval: 30m
+  upgrade:
+    remediation:
+      strategy: uninstall
+  values:
+    defaultPodOptions:
+      runtimeClassName: nvidia
+      enableServiceLinks: false
+      securityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: "OnRootMismatch"
+        supplementalGroups:
+          - 44
+          - 109
+          - 100
+      annotations:
+        reloader.stakater.com/auto: "true"
+
+    controllers:
+      siloserver:
+        type: statefulset
+        pod:
+          # Silo drains in-flight playback on stop (SILO_SHUTDOWN_DELAY, default 5s)
+          terminationGracePeriodSeconds: 120
+
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/home-operations/postgres-init
+              tag: 17
+            envFrom: &envFrom
+              - secretRef:
+                  name: siloserver
+          # Silo's migrations run CREATE EXTENSION vector, which is not a trusted
+          # extension and therefore needs a superuser. Pre-create it so the app
+          # role does not need superuser rights.
+          init-extensions:
+            image:
+              repository: ghcr.io/home-operations/postgres-init
+              tag: 17
+            env:
+              PGHOST:
+                valueFrom:
+                  secretKeyRef:
+                    name: siloserver
+                    key: INIT_POSTGRES_HOST
+              PGDATABASE:
+                valueFrom:
+                  secretKeyRef:
+                    name: siloserver
+                    key: INIT_POSTGRES_DBNAME
+              PGUSER:
+                valueFrom:
+                  secretKeyRef:
+                    name: siloserver
+                    key: INIT_POSTGRES_SUPER_USER
+              PGPASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: siloserver
+                    key: INIT_POSTGRES_SUPER_PASS
+            command:
+              - /bin/sh
+              - -c
+              - >-
+                until pg_isready; do sleep 1; done;
+                psql -v ON_ERROR_STOP=1 -c "CREATE EXTENSION IF NOT EXISTS vector WITH SCHEMA public;"
+                -c "CREATE EXTENSION IF NOT EXISTS citext;"
+                -c "CREATE EXTENSION IF NOT EXISTS pg_trgm;"
+
+        containers:
+          app:
+            image:
+              repository: ghcr.io/silo-server/silo-server
+              tag: build-1770@sha256:b989857a785638ad78daf5e90d8c54e11541b7fd6633b56f712524e7659f943d
+            env:
+              TZ: Europe/Helsinki
+              MODE: integrated
+              PORT: &port 8080
+              JF_PORT: &jfPort 8096
+              ABS_PORT: &absPort 13378
+              SILO_PLUGIN_CACHE_DIR: /var/lib/silo/plugins
+              SILO_METRICS_LISTEN: :9091
+              # Database is managed by CNPG; don't let Silo ALTER SYSTEM it
+              POSTGRES_TUNE: "off"
+              NVIDIA_VISIBLE_DEVICES: all
+              NVIDIA_DRIVER_CAPABILITIES: all
+            envFrom: *envFrom
+            probes:
+              liveness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/v1/health
+                    port: *port
+              readiness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/v1/ready
+                    port: *port
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/v1/health
+                    port: *port
+                  # First start runs migrations, which can take a while
+                  periodSeconds: 10
+                  failureThreshold: 60
+            resources:
+              requests:
+                cpu: 100m
+                memory: 2Gi
+                nvidia.com/gpu: 1
+              limits:
+                nvidia.com/gpu: 1
+                memory: 6Gi
+
+    service:
+      siloserver:
+        controller: siloserver
+        type: LoadBalancer
+        ipFamilyPolicy: RequireDualStack
+        annotations:
+          io.cilium/lb-ipam-ips: "10.41.69.204,2001:14ba:45a:962d::204"
+          external-dns.alpha.kubernetes.io/hostname: "silo-direct.media.skylab.fi"
+          external-dns.alpha.kubernetes.io/target: "10.41.69.204,2001:14ba:45a:962d::204"
+        externalTrafficPolicy: Cluster
+        ports:
+          http:
+            port: *port
+          jellyfin:
+            port: *jfPort
+          abs:
+            port: *absPort
+          metrics:
+            port: 9091
+
+    serviceMonitor:
+      app:
+        serviceName: *app
+        endpoints:
+          - port: metrics
+
+    route:
+      app:
+        hostnames:
+          - "silo.media.skylab.fi"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https-media
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
+            timeouts:
+              backendRequest: 3600s
+      jellyfin:
+        hostnames:
+          - "silo-jf.media.skylab.fi"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https-media
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *jfPort
+            timeouts:
+              backendRequest: 3600s
+
+    persistence:
+      config:
+        existingClaim: "siloserver-config-v1"
+        advancedMounts:
+          siloserver:
+            app:
+              - path: /var/lib/silo
+      library:
+        type: hostPath
+        hostPath: "/var/mnt/merged/"
+        globalMounts:
+          - path: /var/mnt/merged/
+            readOnly: true
+
+      nas:
+        type: hostPath
+        hostPath: "/mnt/nas"
+        globalMounts:
+          - path: /mnt/nas
+            readOnly: true
+
+      # Transcode scratch (playback.transcode_dir defaults to /tmp/silo-transcode)
+      transcode:
+        type: emptyDir
+        advancedMounts:
+          siloserver:
+            app:
+              - path: /tmp/silo-transcode
+
+      # Prepared offline downloads are kept beside the transcode dir; persist
+      # them on the config PVC so they survive restarts.
+      download-artifacts:
+        existingClaim: "siloserver-config-v1"
+        advancedMounts:
+          siloserver:
+            app:
+              - path: /tmp/silo-download-artifacts
+                subPath: download-artifacts
