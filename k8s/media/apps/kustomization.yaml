@@ -10,5 +10,4 @@ resources:
   - gpu
   - volsync
   - monitoring
-  - databases
   - forgejo
