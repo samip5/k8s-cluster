@@ -42,51 +42,6 @@ spec:
           # Silo drains in-flight playback on stop (SILO_SHUTDOWN_DELAY, default 5s)
           terminationGracePeriodSeconds: 120
 
-        initContainers:
-          init-db:
-            image:
-              repository: ghcr.io/home-operations/postgres-init
-              tag: 17
-            envFrom: &envFrom
-              - secretRef:
-                  name: siloserver
-          # Silo's migrations run CREATE EXTENSION vector, which is not a trusted
-          # extension and therefore needs a superuser. Pre-create it so the app
-          # role does not need superuser rights.
-          init-extensions:
-            image:
-              repository: ghcr.io/home-operations/postgres-init
-              tag: 17
-            env:
-              PGHOST:
-                valueFrom:
-                  secretKeyRef:
-                    name: siloserver
-                    key: INIT_POSTGRES_HOST
-              PGDATABASE:
-                valueFrom:
-                  secretKeyRef:
-                    name: siloserver
-                    key: INIT_POSTGRES_DBNAME
-              PGUSER:
-                valueFrom:
-                  secretKeyRef:
-                    name: siloserver
-                    key: INIT_POSTGRES_SUPER_USER
-              PGPASSWORD:
-                valueFrom:
-                  secretKeyRef:
-                    name: siloserver
-                    key: INIT_POSTGRES_SUPER_PASS
-            command:
-              - /bin/sh
-              - -c
-              - >-
-                until pg_isready; do sleep 1; done;
-                psql -v ON_ERROR_STOP=1 -c "CREATE EXTENSION IF NOT EXISTS vector WITH SCHEMA public;"
-                -c "CREATE EXTENSION IF NOT EXISTS citext;"
-                -c "CREATE EXTENSION IF NOT EXISTS pg_trgm;"
-
         containers:
           app:
             image:
@@ -100,11 +55,13 @@ spec:
               ABS_PORT: &absPort 13378
               SILO_PLUGIN_CACHE_DIR: /var/lib/silo/plugins
               SILO_METRICS_LISTEN: :9091
-              # Database is managed by CNPG; don't let Silo ALTER SYSTEM it
+              # Shared NAS Postgres; do not let Silo ALTER SYSTEM it
               POSTGRES_TUNE: "off"
               NVIDIA_VISIBLE_DEVICES: all
               NVIDIA_DRIVER_CAPABILITIES: all
-            envFrom: *envFrom
+            envFrom:
+              - secretRef:
+                  name: siloserver
             probes:
               liveness:
                 enabled: true
