@@ -51,7 +51,7 @@ spec:
                   name: sonarr
             image:
               repository: ghcr.io/home-operations/sonarr
-              tag: 5.0.0.2800
+              tag: 5.0.0.2838
             probes:
               liveness:
                 enabled: true
