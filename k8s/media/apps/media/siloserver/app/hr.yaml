@@ -32,8 +32,6 @@ spec:
           - 44
           - 109
           - 100
-      annotations:
-        reloader.stakater.com/auto: "true"
 
     controllers:
       siloserver:
@@ -44,16 +42,18 @@ spec:
 
         containers:
           app:
+            command: ["silo"]
             image:
               repository: ghcr.io/silo-server/silo-server
-              tag: build-1770@sha256:b989857a785638ad78daf5e90d8c54e11541b7fd6633b56f712524e7659f943d
+              tag: latest@sha256:572322b071782208c7f9fe51c9f3c1f9e6f2003b65a4b266c303cfcf5cade760
             env:
               TZ: Europe/Helsinki
               MODE: integrated
               PORT: &port 8080
               JF_PORT: &jfPort 8096
               ABS_PORT: &absPort 13378
-              SILO_PLUGIN_CACHE_DIR: /var/lib/silo/plugins
+              HOME: /tmp
+              SILO_PLUGIN_CACHE_DIR: /tmp/silo-plugins
               SILO_METRICS_LISTEN: :9091
               # Shared NAS Postgres; do not let Silo ALTER SYSTEM it
               POSTGRES_TUNE: "off"
@@ -86,7 +86,7 @@ spec:
                     port: *port
                   # First start runs migrations, which can take a while
                   periodSeconds: 10
-                  failureThreshold: 60
+                  failureThreshold: 150
             resources:
               requests:
                 cpu: 100m
@@ -157,6 +157,11 @@ spec:
           siloserver:
             app:
               - path: /var/lib/silo
+      tmp:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
+
       library:
         type: hostPath
         hostPath: "/var/mnt/merged/"
