@@ -1,7 +1,7 @@
 apiVersion: tailscale.com/v1alpha1
 kind: Connector
 metadata:
-  name: ts-router
+  name: router
 spec:
   hostname: media-router
   proxyClass: tun-access
