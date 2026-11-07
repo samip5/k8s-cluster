@@ -6,9 +6,12 @@ spec:
   statefulSet:
     pod:
       tailscaleContainer:
-#        resources:
-#          limits:
-#            kernel.org/tun: "1"
+        # /dev/net/tun is injected by generic-device-plugin (kube-system).
+        # Without it containerboot tries to mknod the device, which needs
+        # CAP_MKNOD and fails with "operation not permitted".
+        resources:
+          limits:
+            kernel.org/tun: "1"
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
