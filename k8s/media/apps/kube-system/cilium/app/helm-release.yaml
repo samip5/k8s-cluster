@@ -89,7 +89,9 @@ spec:
         auto:
           enabled: true
           method: cronJob
-          certValidityDuration: 1095 # 3 years
+          # Leaf certs must expire before the Cilium CA (certgen 1.20 enforces this);
+          # the CA itself defaults to 1095 days (tls.ca.certValidityDuration).
+          certValidityDuration: 365
           schedule: "0 0 1 */4 *"
       metrics:
         enabled:
