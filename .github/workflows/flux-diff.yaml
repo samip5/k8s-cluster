@@ -15,7 +15,7 @@ jobs:
     name: Changed Clusters
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.changed-clusters.outputs.all_changed_and_modified_files }}
+      matrix: ${{ steps.clusters.outputs.matrix }}
     steps:
       - name: Generate Token
         uses: actions/create-github-app-token@v3
@@ -40,10 +40,21 @@ jobs:
           dir_names_max_depth: 2
           matrix: true
 
-      - name: List All Changed Clusters
-        run: echo "${{ steps.changed-clusters.outputs.all_changed_and_modified_files }}"
+      # Only directories with a Flux entrypoint (<cluster>/flux) can be rendered
+      - name: Filter Flux Clusters
+        id: clusters
+        env:
+          CHANGED: ${{ steps.changed-clusters.outputs.all_changed_and_modified_files }}
+        run: |
+          matrix=$(jq -c '[.[] | select(. != "")] | unique' <<< "${CHANGED:-[]}" \
+            | jq -r '.[]' \
+            | while read -r dir; do [[ -d "${dir}/flux" ]] && echo "${dir}"; done \
+            | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          echo "matrix=${matrix}" >> "$GITHUB_OUTPUT"
+          echo "${matrix}"
 
   flux-diff:
+    if: ${{ needs.changed-clusters.outputs.matrix != '[]' }}
     name: Flux Diff
     runs-on: ubuntu-latest
     needs: ["changed-clusters"]
@@ -52,7 +63,6 @@ jobs:
     strategy:
       matrix:
         paths: ${{ fromJSON(needs.changed-clusters.outputs.matrix) }}
-        resources: ["helmrelease", "kustomization"]
       max-parallel: 4
       fail-fast: false
     steps:
@@ -67,56 +77,96 @@ jobs:
         uses: actions/checkout@v7
         with:
           token: "${{ steps.app-token.outputs.token }}"
-          path: pull
+          fetch-depth: 0
 
-      - name: Checkout Default Branch
-        uses: actions/checkout@v7
+      - name: Setup flate
+        uses: home-operations/flate/action@v0.6.5
         with:
-          token: "${{ steps.app-token.outputs.token }}"
-          ref: "${{ github.event.repository.default_branch }}"
-          path: default
+          base: "origin/${{ github.event.repository.default_branch }}"
+          cache: "true"
 
+      # flate exits 1 on render failures (on either side) but still prints the
+      # diff it could produce, so capture the status instead of failing here.
       - name: Diff Resources
-        uses: docker://ghcr.io/allenporter/flux-local:v8.4.0
-        with:
-          args: >-
-            diff ${{ matrix.resources }}
-            --unified 6
-            --path /github/workspace/pull/${{ matrix.paths }}/flux
-            --path-orig /github/workspace/default/${{ matrix.paths }}/flux
-            --strip-attrs "helm.sh/chart,checksum/config,app.kubernetes.io/version,chart"
-            --limit-bytes 10000
-            --all-namespaces
-            --sources "flux-system"
-            --output-file diff.patch
-
-      - name: Generate Diff
         id: diff
+        env:
+          CLUSTER_PATH: ${{ matrix.paths }}
         run: |
-          cat diff.patch;
+          set +e
+          flate diff all \
+            --path "${CLUSTER_PATH}/flux" \
+            --output github \
+            --no-progress \
+            > diff.patch 2> diff.err
+          status=$?
+          set -e
+
+          cat diff.err >&2
+          cat diff.patch
+
+          # Keep the PR comment well under GitHub's 65536 character limit
+          if [[ $(wc -c < diff.patch) -gt 60000 ]]; then
+            head -c 60000 diff.patch > diff.trunc
+            printf '\n... diff truncated, see the job summary for the full output\n' >> diff.trunc
+          else
+            cp diff.patch diff.trunc
+          fi
+
           {
-            echo 'diff<<EOF'
-            cat diff.patch
-            echo EOF
-          } >> "$GITHUB_OUTPUT";
+            if [[ -s diff.trunc ]]; then
+              echo '```diff'
+              cat diff.trunc
+              echo '```'
+            fi
+            if [[ "${status}" != "0" ]]; then
+              echo
+              echo '> [!CAUTION]'
+              echo '> flate failed to render some resources (on this PR or on the base branch):'
+              echo
+              echo '```'
+              head -c 4000 diff.err
+              echo '```'
+            fi
+          } > comment.md
+
           {
-            echo "### Diff"
+            echo "status=${status}"
+            echo 'comment<<FLATE_EOF'
+            cat comment.md
+            echo FLATE_EOF
+          } >> "$GITHUB_OUTPUT"
+
+          {
+            echo "### Diff (${CLUSTER_PATH})"
             echo '```diff'
             cat diff.patch
             echo '```'
+            if [[ -s diff.err ]]; then
+              echo "### Errors"
+              echo '```'
+              cat diff.err
+              echo '```'
+            fi
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - if: ${{ steps.diff.outputs.diff != '' }}
+      - if: ${{ steps.diff.outputs.comment != '' }}
         name: Add comment
         uses: mshick/add-pr-comment@v3
         with:
           repo-token: "${{ steps.app-token.outputs.token }}"
-          message-id: "${{ github.event.pull_request.number }}/${{ matrix.paths }}/${{ matrix.resources }}"
+          message-id: "${{ github.event.pull_request.number }}/${{ matrix.paths }}"
           message-failure: Diff was not successful
           message: |
-            ```diff
-            ${{ steps.diff.outputs.diff }}
-            ```
+            ### Flux diff: `${{ matrix.paths }}`
+
+            ${{ steps.diff.outputs.comment }}
+
+      # Gate only on the PR side: render errors that already exist on the base
+      # branch show up in the diff comment but must not block a PR fixing them.
+      - name: Test Render
+        env:
+          CLUSTER_PATH: ${{ matrix.paths }}
+        run: flate test all --path "${CLUSTER_PATH}/flux" --no-progress
 
   # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
   flux-diff-success:
