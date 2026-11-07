@@ -25,7 +25,4 @@ spec:
     remediation:
       retries: 3
   values:
-    installCRDs: true
     replicaCount: 1
-    extraArgs:
-      loglevel: debug
