@@ -80,10 +80,10 @@ parse_files() {
 
     # look in hydrated flux helm releases
     chart_registry_url=$(sed -nr 's|.*registryUrl=(.+)$|\1|p' "${file}")
-    chart_name=$(yq eval .spec.chart.spec.chart "${file}" 2>/dev/null)
-    if [[ -n ${chart_registry_url} && -n "${chart_name}" ]]; then
-        chart_version=$(yq eval .spec.chart.spec.version "${file}" 2>/dev/null)
-        chart_values=$(yq eval .spec.values "${file}" 2>/dev/null)
+    chart_name=$(yq eval .spec.chart.spec.chart "${file}" 2>/dev/null || true)
+    if [[ -n ${chart_registry_url} && -n "${chart_name}" && "${chart_name}" != "null" ]]; then
+        chart_version=$(yq eval .spec.chart.spec.version "${file}" 2>/dev/null || true)
+        chart_values=$(yq eval .spec.values "${file}" 2>/dev/null || true)
         pushd "$(mktemp -d)" > /dev/null 2>&1
         helm repo add ci "${chart_registry_url}" > /dev/null 2>&1
         helm pull "ci/${chart_name}" --untar --version "${chart_version}"
@@ -92,20 +92,24 @@ parse_files() {
         images+=("$(echo "${resources}" | yq eval-all '.spec.template.spec.containers.[].image' -)")
     fi
 
-    # look in helm values
-    images+=("$(yq eval-all '[.. | select(has("repository")) | select(has("tag"))] | .[] | .repository + ":" + .tag' "${file}" 2>/dev/null)")
+    # Every query below is best-effort: a file that doesn't match a shape (or
+    # that yq can't evaluate) must not abort the whole parse under errexit.
+
+    # look in helm values (explode resolves YAML anchors/aliases such as
+    # `repository: *image`, which otherwise break the string concatenation)
+    images+=("$(yq eval-all 'explode(.) | [.. | select(tag == "!!map") | select(has("repository")) | select(has("tag"))] | .[] | .repository + ":" + .tag' "${file}" 2>/dev/null || true)")
 
     # look in kubernetes deployments, statefulsets and daemonsets
-    images+=("$(yq eval-all '.spec.template.spec.containers.[].image' "${file}" 2>/dev/null)")
+    images+=("$(yq eval-all '.spec.template.spec.containers.[].image' "${file}" 2>/dev/null || true)")
 
     # look in kubernetes pods
-    images+=("$(yq eval-all '.spec.containers.[].image' "${file}" 2>/dev/null)")
+    images+=("$(yq eval-all '.spec.containers.[].image' "${file}" 2>/dev/null || true)")
 
     # look in kubernetes cronjobs
-    images+=("$(yq eval-all '.spec.jobTemplate.spec.template.spec.containers.[].image' "${file}" 2>/dev/null)")
+    images+=("$(yq eval-all '.spec.jobTemplate.spec.template.spec.containers.[].image' "${file}" 2>/dev/null || true)")
 
     # look in docker compose
-    images+=("$(yq eval-all '.services.*.image' "${file}" 2>/dev/null)")
+    images+=("$(yq eval-all '.services.*.image' "${file}" 2>/dev/null || true)")
 
     # remove duplicate values xD
     IFS=" " read -r -a images <<< "$(tr ' ' '\n' <<< "${images[@]}" | sort -u | tr '\n' ' ')"

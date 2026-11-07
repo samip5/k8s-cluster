@@ -8,6 +8,8 @@ on: # yamllint disable-line rule:truthy
     paths:
       - "k8s/**.yaml"
       - "provision/ansible/**.yml.j2"
+      - ".github/workflows/scan-containers.yaml"
+      - ".github/scripts/container-parser.sh"
 
 jobs:
   detect-file-changes:
@@ -27,13 +29,15 @@ jobs:
               - added|modified: "**.yml.j2"
     outputs:
       yaml_files: ${{ steps.filter.outputs.yaml_files }}
+
+  # One job over every changed file: outputs of a matrix job only keep a
+  # single leg's value, so images from all but one file used to be dropped.
   detect-containers:
     name: Detect Containers
     runs-on: ubuntu-latest
     needs: detect-file-changes
-    strategy:
-      matrix:
-        file: ${{ fromJSON(needs.detect-file-changes.outputs.yaml_files) }}
+    outputs:
+      containers: ${{ steps.containers.outputs.containers }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -42,18 +46,45 @@ jobs:
           sudo apt-get install jo -y
       - name: Detect Containers in Files
         id: containers
+        env:
+          FILES: ${{ needs.detect-file-changes.outputs.yaml_files }}
         run: |
-          containers=$(.github/scripts/container-parser.sh --file "${{ matrix.file }}")
-          # Ensure proper JSON format for matrix
-          echo "containers=$(echo "${containers}" | jq -c '{"containers": .}')" >> $GITHUB_OUTPUT
-    outputs:
-      containers: ${{ steps.detect-containers.outputs.containers }}
+          : > images.txt
+          for file in $(jq -r '.[]' <<< "${FILES:-[]}"); do
+            [[ -f "${file}" ]] || continue
+            echo "::group::${file}"
+            if parsed=$(.github/scripts/container-parser.sh --file "${file}"); then
+              if [[ -n "${parsed}" ]]; then
+                jq -r '.containers[]' <<< "${parsed}" | tee -a images.txt
+              fi
+            else
+              echo "::warning file=${file}::Could not parse container images"
+            fi
+            echo "::endgroup::"
+          done
+
+          # Drop unrendered template references (Jinja/Flux substitutions),
+          # which aren't pullable image refs
+          containers=$(grep -v -E '^\s*$|\{\{|\$\{' images.txt | sort -u \
+            | jq -R -s -c 'split("\n") | map(select(length > 0))' || echo '[]')
+          echo "containers=${containers}" >> "$GITHUB_OUTPUT"
+          echo "${containers}"
+          {
+            echo "### Containers"
+            jq -r '.[] | "* `\(.)`"' <<< "${containers}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
   scan-containers:
+    if: ${{ needs.detect-containers.outputs.containers != '[]' && needs.detect-containers.outputs.containers != '' }}
     name: Scan Containers
     runs-on: ubuntu-latest
     needs: detect-containers
+    permissions:
+      contents: read
+      security-events: write
     strategy:
-      matrix: ${{ fromJSON(needs.detect-containers.outputs.containers) }}
+      matrix:
+        container: ${{ fromJSON(needs.detect-containers.outputs.containers) }}
       fail-fast: false
     steps:
       - name: Checkout
@@ -61,7 +92,7 @@ jobs:
       - name: Scan Container
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
-          image-ref: ${{ matrix.containers }}
+          image-ref: ${{ matrix.container }}
           vuln-type: os,library
           severity: CRITICAL,HIGH
           format: template
@@ -71,3 +102,5 @@ jobs:
         uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4
         with:
           sarif_file: trivy-results.sarif
+          # One category per image so parallel uploads don't overwrite each other
+          category: trivy/${{ matrix.container }}
