@@ -6,11 +6,10 @@ metadata:
 spec:
   interval: 5m
   upgrade:
-    # Stepping Cilium one minor at a time (1.17 -> 1.18 -> 1.19 -> 1.20).
-    # Automatic rollback is disabled: a Cilium downgrade is unsupported, so a
-    # failed upgrade must be handled by hand. Restore remediation after 1.20.
     remediation:
-      retries: 0
+      remediateLastFailure: true
+      retries: 5
+      strategy: rollback
   install:
     createNamespace: true
     remediation:
@@ -28,8 +27,6 @@ spec:
 #    - kind: ConfigMap
 #      name: cilium-values
   values:
-    # Keep defaults compatible with the Cilium version this upgrade series started from.
-    upgradeCompatibility: "1.17"
     #    cgroup:
     #      automount:
     #        enabled: false
