@@ -80,7 +80,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup flate
-        uses: home-operations/flate/action@v0.6.5
+        uses: home-operations/flate/action@v0.7.3
         with:
           base: "origin/${{ github.event.repository.default_branch }}"
           cache: "true"
