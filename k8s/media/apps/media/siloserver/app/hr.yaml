@@ -45,7 +45,7 @@ spec:
             command: ["silo"]
             image:
               repository: ghcr.io/silo-server/silo-server
-              tag: latest@sha256:7787198cc5a4acb954bed8d2a533e325465f34195f878d033e80a795dc6c3806
+              tag: latest@sha256:01025c2505bd5c3e8def8c4cf98d7c54fd95f703634f5487d5c16d8e5ea49fe7
             env:
               TZ: Europe/Helsinki
               MODE: integrated
