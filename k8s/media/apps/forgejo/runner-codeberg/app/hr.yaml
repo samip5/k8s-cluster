@@ -38,6 +38,7 @@ spec:
                 address: "unix:///plugin/forgejo-runner-k8s.sock"
                 options:
                   namespace: forgejo
+                  services_mode: sidecar
                   poll_timeout: 10m
                   labels: "app.kubernetes.io/name=forgejo-runner-instance"
                   resources: |
